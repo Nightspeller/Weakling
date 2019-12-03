@@ -219,9 +219,9 @@ export default class GeneralEntity {
                 let target = effect.targetCharacteristic.split('.');
                 if (target[1] === 'currentHealth') {
                     if (effect.modifierValue !== undefined) {
-                        newCharacteristics[target[0]][target[1]] = newCharacteristics[target[0]][target[1]] - effect.modifierValue;
+                        newCharacteristics[target[0]][target[1]] =  this.currentCharacteristics[target[0]][target[1]] - effect.modifierValue;
                     } else {
-                        newCharacteristics[target[0]][target[1]] = newCharacteristics[target[0]][target[1]] - effect.levels[effect.currentLevel];
+                        newCharacteristics[target[0]][target[1]] =  this.currentCharacteristics[target[0]][target[1]] - effect.levels[effect.currentLevel];
                     }
                     this.currentEffects.splice(i, 1);
                 }
