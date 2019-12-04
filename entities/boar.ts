@@ -15,8 +15,8 @@ export class Boar extends EnemyEntity {
                 intelligence: 1,
             },
             parameters: {
-                health: 100,
-                currentHealth: 100,
+                health: 20,
+                currentHealth: 20,
                 manna: 0,
                 currentManna: 0,
                 energy: 10,

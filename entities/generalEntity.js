@@ -42,7 +42,12 @@ export default class GeneralEntity {
     }
     draw(scene, x, y) {
         this.drawEffectsIcons(scene, x, y);
-        this.battleImage = scene.add.sprite(x, y, this.spriteParams.texture, this.spriteParams.frame);
+        if (this.isAlive) {
+            this.battleImage = scene.add.sprite(x, y, this.spriteParams.texture, this.spriteParams.frame);
+        }
+        else {
+            this.battleImage = scene.add.sprite(x, y, 'dead-character');
+        }
         return this.battleImage;
     }
     drawEffectsIcons(scene, x, y) {

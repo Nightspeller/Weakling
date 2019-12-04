@@ -60,6 +60,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('interface', 'assets/images/interface/Interface.png');
         this.load.image('weakling', 'assets/images/characters/weakling.png');
         this.load.image('boar-avatar', 'assets/images/characters/boar-avatar.png');
+        this.load.image("dead-character", "assets/images/characters/dead_character.png");
         this.load.spritesheet('solider', 'assets/images/characters/PIPOYA FREE RPG Character Sprites 32x32/Soldier/Soldier 01-1.png', { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet('enemies', 'assets/images/characters/RoguelikeSprites@512_mod.png', { frameWidth: 128, frameHeight: 128 });
         this.load.spritesheet("player", "assets/images/sprites/Martha Pink.png", { frameWidth: 32, frameHeight: 32 });

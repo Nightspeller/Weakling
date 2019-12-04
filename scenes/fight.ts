@@ -65,17 +65,22 @@ export class FightScene extends Phaser.Scene {
     }
 
     private startTurn(character) {
-        console.log('Starting new TURN on the scene');
-        this.dispositionDisplayGroup.clear(true, true);
-        this.turnOrderDisplayGroup.clear(true, true);
-        this.actionInterfaceDisplayGroup.clear(true, true);
-        this.drawDisposition(this.disposition);
-        if (character instanceof Player) {
-            console.log('drawing player interface for', character.name);
-            this.drawActionInterface(character)
+        if (this.disposition.enemyCharacters.some(char => char.isAlive)) {
+            console.log('Starting new TURN on the scene');
+            this.dispositionDisplayGroup.clear(true, true);
+            this.turnOrderDisplayGroup.clear(true, true);
+            this.actionInterfaceDisplayGroup.clear(true, true);
+            this.drawDisposition(this.disposition);
+            if (character instanceof Player) {
+                console.log('drawing player interface for', character.name);
+                this.drawActionInterface(character)
+            } else {
+                this.disposition.aiTurn();
+                this.endTurn();
+            }
         } else {
-            this.disposition.aiTurn();
-            this.endTurn();
+            console.log('All enemies are dead, going to the World Map');
+            this.scene.start("WorldMap");
         }
     }
 
@@ -181,7 +186,7 @@ export class FightScene extends Phaser.Scene {
                 ).setOrigin(0, 1);
                 this.actionInterfaceDisplayGroup.add(descriptionText);
                 actionText.setInteractive()
-                    .once('pointerdown', function () {
+                    .on('pointerdown', function () {
                         if (action.target === 'self') {
                             scene.disposition.processAction(currentPlayerCharacter, currentPlayerCharacter, action);
                             scene.endTurn();
@@ -203,18 +208,21 @@ export class FightScene extends Phaser.Scene {
                                 });
                             Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => {
                                 // @ts-ignore
-                                enemy.battleImage.off('pointerdown').setDepth(10).setInteractive().once('pointerdown', () => {
-                                    console.log('pointerdown event arrived on enemy', this);
-                                    overlay.destroy();
-                                    zone.destroy();
+                                if (enemy.isAlive) {
                                     // @ts-ignore
-                                    enemy.battleImage.setDepth(0);
-                                    this.setBackgroundColor(null);
-                                    // @ts-ignore
-                                    Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.off('pointerdown'));
-                                    scene.disposition.processAction(currentPlayerCharacter, enemy, action);
-                                    scene.endTurn();
-                                })
+                                    enemy.battleImage.off('pointerdown').setDepth(10).setInteractive().once('pointerdown', () => {
+                                        console.log('pointerdown event arrived on enemy', this);
+                                        overlay.destroy();
+                                        zone.destroy();
+                                        // @ts-ignore
+                                        enemy.battleImage.setDepth(0);
+                                        this.setBackgroundColor(null);
+                                        // @ts-ignore
+                                        Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.off('pointerdown'));
+                                        scene.disposition.processAction(currentPlayerCharacter, enemy, action);
+                                        scene.endTurn();
+                                    })
+                                }
                             });
                         }
                     })
