@@ -173,43 +173,57 @@ export class FightScene extends Phaser.Scene {
                     },
                 });
                 this.actionInterfaceDisplayGroup.add(actionText);
-                actionText.setInteractive().once('pointerdown', function () {
-                    if (action.target === 'self') {
-                        scene.disposition.processAction(currentPlayerCharacter, currentPlayerCharacter, action);
-                        scene.endTurn();
-                    }
-                    if (action.target === 'enemy') {
-                        this.setBackgroundColor('red');
-                        console.log('starting enemy selection');
-                        let overlay = scene.add.graphics()
-                            .fillStyle(0x000000, 0.25)
-                            .fillRect(0, 0, 800, 640);
-                        let zone = scene.add.zone(0, 0, 800, 640).setOrigin(0, 0)
-                            .setInteractive().once('pointerdown', () => {
-                                console.log('zone is clicked');
-                                overlay.destroy();
-                                zone.destroy();
+                const descriptionText = this.add.text(
+                    skillPositionX,
+                    skillPositionY,
+                    '',
+                    {font: '12px monospace', fill: '#000000', backgroundColor: 'lightgrey', wordWrap: {width: 245}}
+                ).setOrigin(0, 1);
+                this.actionInterfaceDisplayGroup.add(descriptionText);
+                actionText.setInteractive()
+                    .once('pointerdown', function () {
+                        if (action.target === 'self') {
+                            scene.disposition.processAction(currentPlayerCharacter, currentPlayerCharacter, action);
+                            scene.endTurn();
+                        }
+                        if (action.target === 'enemy') {
+                            this.setBackgroundColor('red');
+                            console.log('starting enemy selection');
+                            let overlay = scene.add.graphics()
+                                .fillStyle(0x000000, 0.25)
+                                .fillRect(0, 0, 800, 640);
+                            let zone = scene.add.zone(0, 0, 800, 640).setOrigin(0, 0)
+                                .setInteractive().once('pointerdown', () => {
+                                    console.log('zone is clicked');
+                                    overlay.destroy();
+                                    zone.destroy();
+                                    // @ts-ignore
+                                    Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.setDepth(0).off('pointerdown'));
+                                    this.setBackgroundColor(null);
+                                });
+                            Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => {
                                 // @ts-ignore
-                                Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.setDepth(0).off('pointerdown'));
-                                this.setBackgroundColor(null);
+                                enemy.battleImage.off('pointerdown').setDepth(10).setInteractive().once('pointerdown', () => {
+                                    console.log('pointerdown event arrived on enemy', this);
+                                    overlay.destroy();
+                                    zone.destroy();
+                                    // @ts-ignore
+                                    enemy.battleImage.setDepth(0);
+                                    this.setBackgroundColor(null);
+                                    // @ts-ignore
+                                    Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.off('pointerdown'));
+                                    scene.disposition.processAction(currentPlayerCharacter, enemy, action);
+                                    scene.endTurn();
+                                })
                             });
-                        Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => {
-                            // @ts-ignore
-                            enemy.battleImage.off('pointerdown').setDepth(10).setInteractive().once('pointerdown', () => {
-                                console.log('pointerdown event arrived on enemy', this);
-                                overlay.destroy();
-                                zone.destroy();
-                                // @ts-ignore
-                                enemy.battleImage.setDepth(0);
-                                this.setBackgroundColor(null);
-                                // @ts-ignore
-                                Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.off('pointerdown'));
-                                scene.disposition.processAction(currentPlayerCharacter, enemy, action);
-                                scene.endTurn();
-                            })
-                        });
-                    }
-                });
+                        }
+                    })
+                    .on('pointerover', () => {
+                        descriptionText.setText(action.actionDescription);
+                    })
+                    .on('pointerout', () => {
+                        descriptionText.setText('');
+                    });
             }
         })
     }

@@ -11,6 +11,7 @@ export default class GeneralEntity {
     public worldImage: Phaser.GameObjects.Sprite & { body: Phaser.Physics.Arcade.Body };
     public effectIcons: Phaser.GameObjects.Sprite[];
     public entityInfoGroup: Phaser.GameObjects.Group;
+    public effectInformationGroup: Phaser.GameObjects.Group;
     public currentEffects: Effect[];
     public availableActions: any[];
     private actedThisRound: boolean;
@@ -68,11 +69,43 @@ export default class GeneralEntity {
     private drawEffectsIcons(scene: Phaser.Scene, x, y) {
         this.currentEffects.forEach((effect, index) => {
             if (index < 4) {
-                this.effectIcons.push(scene.add.sprite(x - 32, y + 32 * index, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0))
+                const iconX = x - 32;
+                const iconY = y + 32 * index;
+                const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
+                iconSprite.setInteractive().on(
+                    'pointerover',
+                    (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)
+                ).on(
+                    'pointerout',
+                    (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true)
+                );
+                this.effectIcons.push(iconSprite);
             } else {
                 this.effectIcons.push(scene.add.sprite(x + 32 * (index - 4), y + 32 * 4, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0))
             }
         })
+    }
+
+    private drawEffectInformation(scene: Phaser.Scene, effect: Effect, x: number, y: number) {
+        console.log(effect, x, y);
+        this.effectInformationGroup = scene.add.group();
+        const background = scene.add.graphics()
+            .lineStyle(1, 0xff0000)
+            .fillStyle(0xf0d191)
+            .fillRect(x, y, 32 * 8, 3 * 32);
+        this.effectInformationGroup.add(background);
+        this.effectInformationGroup.add(scene.add.text(
+            x + 8,
+            y + 8,
+            `${effect.name}`,
+            {font: 'bold 12px monospace', fill: '#000000'}
+        ));
+        this.effectInformationGroup.add(scene.add.text(
+            x + 8,
+            y + 8 + 12 + 8,
+            `${effect.description} \nDuration: ${effect.durationLeft} / ${effect.baseDuration}`,
+            {font: '12px monospace', fill: '#000000'}
+        ));
     }
 
     public drawEntityInfo(scene: Phaser.Scene, x, y) {
@@ -205,7 +238,7 @@ export default class GeneralEntity {
                 }
                 if (target.length === 3) {
                     if (effect.modifierValue !== undefined) {
-                        newCharacteristics[target[0]][target[1]][target[2]] = newCharacteristics[target[0]][target[1]][target[2]]  - effect.modifierValue
+                        newCharacteristics[target[0]][target[1]][target[2]] = newCharacteristics[target[0]][target[1]][target[2]] - effect.modifierValue
                     } else {
                         newCharacteristics[target[0]][target[1]][target[2]] = newCharacteristics[target[0]][target[1]][target[2]] * effect.levels[effect.currentLevel]
                     }
@@ -219,9 +252,9 @@ export default class GeneralEntity {
                 let target = effect.targetCharacteristic.split('.');
                 if (target[1] === 'currentHealth') {
                     if (effect.modifierValue !== undefined) {
-                        newCharacteristics[target[0]][target[1]] =  this.currentCharacteristics[target[0]][target[1]] - effect.modifierValue;
+                        newCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.modifierValue;
                     } else {
-                        newCharacteristics[target[0]][target[1]] =  this.currentCharacteristics[target[0]][target[1]] - effect.levels[effect.currentLevel];
+                        newCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.levels[effect.currentLevel];
                     }
                     this.currentEffects.splice(i, 1);
                 }
@@ -233,9 +266,11 @@ export default class GeneralEntity {
     private recalculateEffects() {
         this.currentEffects.forEach((effect, i) => {
             if (effect.durationLeft === 1) {
+                console.log('-----------------------removing effect', effect)
                 this.currentEffects.splice(i, 1);
             } else {
                 if (effect.durationLeft !== -1) {
+                    console.log('-----------------------decreasing effect duration', effect)
                     this.currentEffects[i].durationLeft--;
                 }
             }

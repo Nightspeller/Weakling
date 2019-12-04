@@ -119,7 +119,10 @@ export class FightScene extends Phaser.Scene {
                     },
                 });
                 this.actionInterfaceDisplayGroup.add(actionText);
-                actionText.setInteractive().once('pointerdown', function () {
+                const descriptionText = this.add.text(skillPositionX, skillPositionY, '', { font: '12px monospace', fill: '#000000', backgroundColor: 'lightgrey', wordWrap: { width: 245 } }).setOrigin(0, 1);
+                this.actionInterfaceDisplayGroup.add(descriptionText);
+                actionText.setInteractive()
+                    .once('pointerdown', function () {
                     if (action.target === 'self') {
                         scene.disposition.processAction(currentPlayerCharacter, currentPlayerCharacter, action);
                         scene.endTurn();
@@ -155,6 +158,12 @@ export class FightScene extends Phaser.Scene {
                             });
                         });
                     }
+                })
+                    .on('pointerover', () => {
+                    descriptionText.setText(action.actionDescription);
+                })
+                    .on('pointerout', () => {
+                    descriptionText.setText('');
                 });
             }
         });

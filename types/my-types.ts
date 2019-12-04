@@ -28,6 +28,8 @@ interface CharacteristicsSet {
 
 interface Effect {
     effectId: string;
+    name: string;
+    description: string;
     type: 'direct' | 'passive' | 'conditional'
     targetCharacteristic: string;
     baseDuration: number;

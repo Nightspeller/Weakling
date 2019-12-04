@@ -48,12 +48,27 @@ export default class GeneralEntity {
     drawEffectsIcons(scene, x, y) {
         this.currentEffects.forEach((effect, index) => {
             if (index < 4) {
-                this.effectIcons.push(scene.add.sprite(x - 32, y + 32 * index, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0));
+                const iconX = x - 32;
+                const iconY = y + 32 * index;
+                const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
+                iconSprite.setInteractive().on('pointerover', (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)).on('pointerout', (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true));
+                this.effectIcons.push(iconSprite);
             }
             else {
                 this.effectIcons.push(scene.add.sprite(x + 32 * (index - 4), y + 32 * 4, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0));
             }
         });
+    }
+    drawEffectInformation(scene, effect, x, y) {
+        console.log(effect, x, y);
+        this.effectInformationGroup = scene.add.group();
+        const background = scene.add.graphics()
+            .lineStyle(1, 0xff0000)
+            .fillStyle(0xf0d191)
+            .fillRect(x, y, 32 * 8, 3 * 32);
+        this.effectInformationGroup.add(background);
+        this.effectInformationGroup.add(scene.add.text(x + 8, y + 8, `${effect.name}`, { font: 'bold 12px monospace', fill: '#000000' }));
+        this.effectInformationGroup.add(scene.add.text(x + 8, y + 8 + 12 + 8, `${effect.description} \nDuration: ${effect.durationLeft} / ${effect.baseDuration}`, { font: '12px monospace', fill: '#000000' }));
     }
     drawEntityInfo(scene, x, y) {
         //todo: normalize x, fix y gaps
@@ -195,10 +210,12 @@ export default class GeneralEntity {
     recalculateEffects() {
         this.currentEffects.forEach((effect, i) => {
             if (effect.durationLeft === 1) {
+                console.log('-----------------------removing effect', effect);
                 this.currentEffects.splice(i, 1);
             }
             else {
                 if (effect.durationLeft !== -1) {
+                    console.log('-----------------------decreasing effect duration', effect);
                     this.currentEffects[i].durationLeft--;
                 }
             }
