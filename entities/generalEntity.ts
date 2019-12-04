@@ -9,7 +9,6 @@ export default class GeneralEntity {
     public initiative: number;
     public battleImage: Phaser.GameObjects.Sprite;
     public worldImage: Phaser.GameObjects.Sprite & { body: Phaser.Physics.Arcade.Body };
-    public effectIcons: Phaser.GameObjects.Sprite[];
     public entityInfoGroup: Phaser.GameObjects.Group;
     public effectInformationGroup: Phaser.GameObjects.Group;
     public currentEffects: Effect[];
@@ -17,6 +16,11 @@ export default class GeneralEntity {
     private actedThisRound: boolean;
     public actionPoints: { magical: number; physical: number; misc: number };
     public isAlive: boolean;
+    private healthText: Phaser.GameObjects.Text;
+    private mannaText: Phaser.GameObjects.Text;
+    private energyText: Phaser.GameObjects.Text;
+    private effectIconsGroup: Phaser.GameObjects.Group;
+    private makingTurnGraphics: Phaser.GameObjects.Graphics;
 
     constructor() {
         this.spriteParams = {texture: null, frame: null};
@@ -27,7 +31,6 @@ export default class GeneralEntity {
         this.position = null;
         this.initiative = null;
         this.currentEffects = [];
-        this.effectIcons = [];
         this.actedThisRound = false;
         this.isAlive = true;
         this.baseCharacteristics = {
@@ -60,18 +63,54 @@ export default class GeneralEntity {
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
     }
 
+    public drawMakingTurnGraphics(scene) {
+        this.makingTurnGraphics = scene.add.graphics()
+            .lineStyle(1, 0xff0000)
+            .strokeRectShape(this.battleImage.getBounds())
+    }
+
     public draw(scene: Phaser.Scene, x, y) {
-        this.drawEffectsIcons(scene, x, y);
+        this.battleImage?.destroy();
+        this.makingTurnGraphics?.destroy();
         if (this.isAlive) {
             this.battleImage = scene.add.sprite(x, y, this.spriteParams.texture, this.spriteParams.frame);
         } else {
             this.battleImage = scene.add.sprite(x, y, 'dead-character');
         }
+        this.drawHealthAndManna(scene, x, y);
+        this.drawEffectsIcons(scene, x, y);
+        this.battleImage.setOrigin(0, 0).setDisplaySize(96, 96).setInteractive()
+            .on('pointerdown', (pointer, localX, localY, event) => this.drawEntityInfo(scene, x < 400 ? x + 96 : x - 32*8, 32));
 
         return this.battleImage;
     }
 
+    private drawHealthAndManna(scene: Phaser.Scene, x, y) {
+        this.healthText?.destroy();
+        this.mannaText?.destroy();
+        this.energyText?.destroy();
+        this.healthText = scene.add.text(
+            x,
+            y-24,
+            `${this.currentCharacteristics.parameters.currentHealth} / ${this.currentCharacteristics.parameters.health}`,
+            {font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#ff000075'}
+        ).setOrigin(0, 1);
+        this.mannaText = scene.add.text(
+            x,
+            y-12,
+            `${this.currentCharacteristics.parameters.currentManna} / ${this.currentCharacteristics.parameters.manna}`,
+            {font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#0000ff75'}
+        ).setOrigin(0, 1);
+        this.energyText = scene.add.text(
+            x,
+            y,
+            `${this.currentCharacteristics.parameters.currentEnergy} / ${this.currentCharacteristics.parameters.energy}`,
+            {font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#00ff0075'}
+        ).setOrigin(0, 1);
+    }
+
     private drawEffectsIcons(scene: Phaser.Scene, x, y) {
+        this.effectIconsGroup ? this.effectIconsGroup.clear(true, true) : this.effectIconsGroup = scene.add.group();
         this.currentEffects.forEach((effect, index) => {
             if (index < 4) {
                 const iconX = x - 32;
@@ -84,9 +123,9 @@ export default class GeneralEntity {
                     'pointerout',
                     (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true)
                 );
-                this.effectIcons.push(iconSprite);
+                this.effectIconsGroup.add(iconSprite);
             } else {
-                this.effectIcons.push(scene.add.sprite(x + 32 * (index - 4), y + 32 * 4, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0))
+                this.effectIconsGroup.add(scene.add.sprite(x + 32 * (index - 4), y + 32 * 4, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0))
             }
         })
     }
@@ -114,7 +153,6 @@ export default class GeneralEntity {
     }
 
     public drawEntityInfo(scene: Phaser.Scene, x, y) {
-        //todo: normalize x, fix y gaps
         this.battleImage.setDepth(10).disableInteractive();
         this.entityInfoGroup = scene.add.group();
 
@@ -134,65 +172,65 @@ export default class GeneralEntity {
         const background = scene.add.graphics()
             .lineStyle(1, 0xff0000)
             .fillStyle(0xf0d191)
-            .fillRect(x + 32, y, 32 * 8, 13 * 32);
+            .fillRect(x, y, 32 * 8, 13 * 32);
         this.entityInfoGroup.add(background);
-        this.entityInfoGroup.create(x + 36, y, this.spriteParams.texture, this.spriteParams.frame).setOrigin(0, 0).setDisplaySize(96, 96);
+        this.entityInfoGroup.create(x + 2, y, this.spriteParams.texture, this.spriteParams.frame).setOrigin(0, 0).setDisplaySize(96, 96);
 
-        const name = scene.add.text(x + 138, y, this.name, {font: '20px monospace', fill: '#000000'});
+        const name = scene.add.text(x + 2 + 96 + 2, y, this.name, {font: '20px monospace', fill: '#000000'});
         this.entityInfoGroup.add(name);
 
-        const health = scene.add.text(x + 138, y + 24, `HP: ${this.currentCharacteristics.parameters.currentHealth}/${this.currentCharacteristics.parameters.health}`, {
+        const health = scene.add.text(x + 2 + 96 + 2, y + 24, `HP: ${this.currentCharacteristics.parameters.currentHealth}/${this.currentCharacteristics.parameters.health}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(health);
 
-        const manna = scene.add.text(x + 138, y + 40, `MP: ${this.currentCharacteristics.parameters.currentManna}/${this.currentCharacteristics.parameters.manna}`, {
+        const manna = scene.add.text(x + 2 + 96 + 2, y + 40, `MP: ${this.currentCharacteristics.parameters.currentManna}/${this.currentCharacteristics.parameters.manna}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(manna);
 
-        const energy = scene.add.text(x + 138, y + 56, `EN: ${this.currentCharacteristics.parameters.currentEnergy}/${this.currentCharacteristics.parameters.energy}`, {
+        const energy = scene.add.text(x + 2 + 96 + 2, y + 56, `EN: ${this.currentCharacteristics.parameters.currentEnergy}/${this.currentCharacteristics.parameters.energy}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(energy);
 
-        const strength = scene.add.text(x + 40, y + 102, `Strength: ${this.currentCharacteristics.attributes.strength}`, {
+        const strength = scene.add.text(x + 8, y + 102, `Strength: ${this.currentCharacteristics.attributes.strength}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(strength);
 
-        const agility = scene.add.text(x + 40, y + 118, `Agility: ${this.currentCharacteristics.attributes.agility}`, {
+        const agility = scene.add.text(x + 8, y + 118, `Agility: ${this.currentCharacteristics.attributes.agility}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(agility);
 
-        const intelligence = scene.add.text(x + 40, y + 134, `Intelligence: ${this.currentCharacteristics.attributes.intelligence}`, {
+        const intelligence = scene.add.text(x + 8, y + 134, `Intelligence: ${this.currentCharacteristics.attributes.intelligence}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(intelligence);
 
-        const armor = scene.add.text(x + 40, y + 154, `Armor: ${this.currentCharacteristics.defences.armor}`, {
+        const armor = scene.add.text(x + 8, y + 154, `Armor: ${this.currentCharacteristics.defences.armor}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(armor);
 
-        const dodge = scene.add.text(x + 40, y + 170, `Dodge: ${this.currentCharacteristics.defences.dodge}`, {
+        const dodge = scene.add.text(x + 8, y + 170, `Dodge: ${this.currentCharacteristics.defences.dodge}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(dodge);
 
-        const resistance = scene.add.text(x + 40, y + 182, `Resistance: `, {font: '12px monospace', fill: '#000000'});
+        const resistance = scene.add.text(x + 8, y + 186, `Resistance: `, {font: '12px monospace', fill: '#000000'});
         this.entityInfoGroup.add(resistance);
 
-        const resistanceDetails = scene.add.text(x + 40, y + 202,
+        const resistanceDetails = scene.add.text(x + 8, y + 202,
             `🔥${this.currentCharacteristics.defences.resistance.fire} ` +
             `❄${this.currentCharacteristics.defences.resistance.cold} ` +
             `⚡${this.currentCharacteristics.defences.resistance.electricity} ` +
@@ -202,14 +240,14 @@ export default class GeneralEntity {
             {font: '14px monospace', fill: '#000000'});
         this.entityInfoGroup.add(resistanceDetails);
 
-        const actionPointsText = scene.add.text(x + 40, y + 222, `Action points:`, {
+        const actionPointsText = scene.add.text(x + 8, y + 218, `Action points:`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(actionPointsText);
 
         let prepareActionPointsText = '🔴'.repeat(this.actionPoints.physical) + '🔵'.repeat(this.actionPoints.magical) + '🟢'.repeat(this.actionPoints.misc);
-        const actionPoints = scene.add.text(x + 40, y + 234, prepareActionPointsText, {
+        const actionPoints = scene.add.text(x + 8, y + 234, prepareActionPointsText, {
             font: '16px monospace',
             fill: '#000000'
         });

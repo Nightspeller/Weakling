@@ -38,7 +38,7 @@ export class FightScene extends Phaser.Scene {
     startTurn(character) {
         if (this.disposition.enemyCharacters.some(char => char.isAlive)) {
             console.log('Starting new TURN on the scene');
-            this.dispositionDisplayGroup.clear(true, true);
+            //this.dispositionDisplayGroup.clear(true, true);
             this.turnOrderDisplayGroup.clear(true, true);
             this.actionInterfaceDisplayGroup.clear(true, true);
             this.drawDisposition(this.disposition);
@@ -71,12 +71,17 @@ export class FightScene extends Phaser.Scene {
     }
     drawDisposition(disposition) {
         var _a, _b, _c, _d, _e, _f, _g, _h;
-        this.dispositionDisplayGroup.addMultiple([(_a = disposition.playerCharactersPositions.frontTop) === null || _a === void 0 ? void 0 : _a.draw(this, 64 + 96 + 64, 32 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.playerCharactersPositions.frontTop.drawEntityInfo(this, 64 + 96 + 64 + 64, 32)), (_b = disposition.playerCharactersPositions.backTop) === null || _b === void 0 ? void 0 : _b.draw(this, 64, 32 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.playerCharactersPositions.backTop.drawEntityInfo(this, 64 + 64, 32)), (_c = disposition.playerCharactersPositions.frontBottom) === null || _c === void 0 ? void 0 : _c.draw(this, 64 + 96 + 64, 32 + 96 + 64 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.playerCharactersPositions.frontBottom.drawEntityInfo(this, 64 + 96 + 64 + 64, 32)), (_d = disposition.playerCharactersPositions.backBottom) === null || _d === void 0 ? void 0 : _d.draw(this, 64, 32 + 96 + 64 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.playerCharactersPositions.backBottom.drawEntityInfo(this, 64 + 64, 32))]);
         this.dispositionDisplayGroup.addMultiple([
-            (_e = disposition.enemyCharactersPositions.frontTop) === null || _e === void 0 ? void 0 : _e.draw(this, 800 - 64 - 96 - 64 - 96, 32 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.enemyCharactersPositions.frontTop.drawEntityInfo(this, 64 + 64 + 64, 32)),
-            (_f = disposition.enemyCharactersPositions.backTop) === null || _f === void 0 ? void 0 : _f.draw(this, 800 - 64 - 96, 32 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.enemyCharactersPositions.backTop.drawEntityInfo(this, 64 + 96 + 64 + 64 + 64, 32)),
-            (_g = disposition.enemyCharactersPositions.frontBottom) === null || _g === void 0 ? void 0 : _g.draw(this, 800 - 64 - 96 - 64 - 96, 32 + 96 + 64 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.enemyCharactersPositions.frontBottom.drawEntityInfo(this, 64 + 64 + 64, 32)),
-            (_h = disposition.enemyCharactersPositions.backBottom) === null || _h === void 0 ? void 0 : _h.draw(this, 800 - 64 - 96, 32 + 96 + 64 + 128).setOrigin(0, 0).setDisplaySize(96, 96).setInteractive().on('pointerdown', (pointer, localX, localY, event) => disposition.enemyCharactersPositions.backBottom.drawEntityInfo(this, 64 + 96 + 64 + 64 + 64, 32)),
+            (_a = disposition.playerCharactersPositions.frontTop) === null || _a === void 0 ? void 0 : _a.draw(this, 64 + 96 + 64, 32 + 128),
+            (_b = disposition.playerCharactersPositions.backTop) === null || _b === void 0 ? void 0 : _b.draw(this, 64, 32 + 128),
+            (_c = disposition.playerCharactersPositions.frontBottom) === null || _c === void 0 ? void 0 : _c.draw(this, 64 + 96 + 64, 32 + 96 + 96 + 128),
+            (_d = disposition.playerCharactersPositions.backBottom) === null || _d === void 0 ? void 0 : _d.draw(this, 64, 32 + 96 + 96 + 128),
+        ]);
+        this.dispositionDisplayGroup.addMultiple([
+            (_e = disposition.enemyCharactersPositions.frontTop) === null || _e === void 0 ? void 0 : _e.draw(this, 800 - 64 - 96 - 64 - 96, 32 + 128),
+            (_f = disposition.enemyCharactersPositions.backTop) === null || _f === void 0 ? void 0 : _f.draw(this, 800 - 64 - 96, 32 + 128),
+            (_g = disposition.enemyCharactersPositions.frontBottom) === null || _g === void 0 ? void 0 : _g.draw(this, 800 - 64 - 96 - 64 - 96, 32 + 96 + 96 + 128),
+            (_h = disposition.enemyCharactersPositions.backBottom) === null || _h === void 0 ? void 0 : _h.draw(this, 800 - 64 - 96, 32 + 96 + 96 + 128),
         ]);
         this.turnOrderDisplayGroup.add(this.add.graphics()
             .fillStyle(0xf0d191, 0.5)
@@ -86,9 +91,7 @@ export class FightScene extends Phaser.Scene {
         disposition.turnOrder.forEach((char, i) => {
             this.turnOrderDisplayGroup.add(this.add.image(16 + 64 * i, 32, char.spriteParams.texture, char.spriteParams.frame).setOrigin(0, 0).setDisplaySize(64, 64));
         });
-        this.dispositionDisplayGroup.add(this.add.graphics()
-            .lineStyle(1, 0xff0000)
-            .strokeRectShape(disposition.turnOrder[0].battleImage.getBounds()));
+        disposition.turnOrder[0].drawMakingTurnGraphics(this);
     }
     drawActionInterface(currentPlayerCharacter) {
         let scene = this;
@@ -120,10 +123,17 @@ export class FightScene extends Phaser.Scene {
                     y: skillPositionY,
                     text: action.actionName,
                     style: {
+                        fixedWidth: 240,
                         font: '20px monospace',
-                        fill: '#000000'
+                        color: '#000000',
+                        backgroundColor: '#f0d191',
+                        align: 'center',
+                        border: '10px solid black'
                     },
                 });
+                const border = this.add.graphics();
+                border.lineStyle(1, 0x000000, 1);
+                border.strokeRectShape(actionText.getBounds());
                 this.actionInterfaceDisplayGroup.add(actionText);
                 const descriptionText = this.add.text(skillPositionX, skillPositionY, '', { font: '12px monospace', fill: '#000000', backgroundColor: 'lightgrey', wordWrap: { width: 245 } }).setOrigin(0, 1);
                 this.actionInterfaceDisplayGroup.add(descriptionText);
@@ -146,7 +156,7 @@ export class FightScene extends Phaser.Scene {
                             zone.destroy();
                             // @ts-ignore
                             Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.setDepth(0).off('pointerdown'));
-                            this.setBackgroundColor(null);
+                            this.setBackgroundColor('#f0d191');
                         });
                         Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => {
                             // @ts-ignore

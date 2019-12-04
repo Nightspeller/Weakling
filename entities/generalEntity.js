@@ -8,7 +8,6 @@ export default class GeneralEntity {
         this.position = null;
         this.initiative = null;
         this.currentEffects = [];
-        this.effectIcons = [];
         this.actedThisRound = false;
         this.isAlive = true;
         this.baseCharacteristics = {
@@ -40,27 +39,48 @@ export default class GeneralEntity {
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
     }
+    drawMakingTurnGraphics(scene) {
+        this.makingTurnGraphics = scene.add.graphics()
+            .lineStyle(1, 0xff0000)
+            .strokeRectShape(this.battleImage.getBounds());
+    }
     draw(scene, x, y) {
-        this.drawEffectsIcons(scene, x, y);
+        var _a, _b;
+        (_a = this.battleImage) === null || _a === void 0 ? void 0 : _a.destroy();
+        (_b = this.makingTurnGraphics) === null || _b === void 0 ? void 0 : _b.destroy();
         if (this.isAlive) {
             this.battleImage = scene.add.sprite(x, y, this.spriteParams.texture, this.spriteParams.frame);
         }
         else {
             this.battleImage = scene.add.sprite(x, y, 'dead-character');
         }
+        this.drawHealthAndManna(scene, x, y);
+        this.drawEffectsIcons(scene, x, y);
+        this.battleImage.setOrigin(0, 0).setDisplaySize(96, 96).setInteractive()
+            .on('pointerdown', (pointer, localX, localY, event) => this.drawEntityInfo(scene, x < 400 ? x + 96 : x - 32 * 8, 32));
         return this.battleImage;
     }
+    drawHealthAndManna(scene, x, y) {
+        var _a, _b, _c;
+        (_a = this.healthText) === null || _a === void 0 ? void 0 : _a.destroy();
+        (_b = this.mannaText) === null || _b === void 0 ? void 0 : _b.destroy();
+        (_c = this.energyText) === null || _c === void 0 ? void 0 : _c.destroy();
+        this.healthText = scene.add.text(x, y - 24, `${this.currentCharacteristics.parameters.currentHealth} / ${this.currentCharacteristics.parameters.health}`, { font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#ff000075' }).setOrigin(0, 1);
+        this.mannaText = scene.add.text(x, y - 12, `${this.currentCharacteristics.parameters.currentManna} / ${this.currentCharacteristics.parameters.manna}`, { font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#0000ff75' }).setOrigin(0, 1);
+        this.energyText = scene.add.text(x, y, `${this.currentCharacteristics.parameters.currentEnergy} / ${this.currentCharacteristics.parameters.energy}`, { font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#00ff0075' }).setOrigin(0, 1);
+    }
     drawEffectsIcons(scene, x, y) {
+        this.effectIconsGroup ? this.effectIconsGroup.clear(true, true) : this.effectIconsGroup = scene.add.group();
         this.currentEffects.forEach((effect, index) => {
             if (index < 4) {
                 const iconX = x - 32;
                 const iconY = y + 32 * index;
                 const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
                 iconSprite.setInteractive().on('pointerover', (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)).on('pointerout', (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true));
-                this.effectIcons.push(iconSprite);
+                this.effectIconsGroup.add(iconSprite);
             }
             else {
-                this.effectIcons.push(scene.add.sprite(x + 32 * (index - 4), y + 32 * 4, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0));
+                this.effectIconsGroup.add(scene.add.sprite(x + 32 * (index - 4), y + 32 * 4, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0));
             }
         });
     }
@@ -76,7 +96,6 @@ export default class GeneralEntity {
         this.effectInformationGroup.add(scene.add.text(x + 8, y + 8 + 12 + 8, `${effect.description} \nDuration: ${effect.durationLeft} / ${effect.baseDuration}`, { font: '12px monospace', fill: '#000000' }));
     }
     drawEntityInfo(scene, x, y) {
-        //todo: normalize x, fix y gaps
         this.battleImage.setDepth(10).disableInteractive();
         this.entityInfoGroup = scene.add.group();
         let overlay = scene.add.graphics()
@@ -94,67 +113,67 @@ export default class GeneralEntity {
         const background = scene.add.graphics()
             .lineStyle(1, 0xff0000)
             .fillStyle(0xf0d191)
-            .fillRect(x + 32, y, 32 * 8, 13 * 32);
+            .fillRect(x, y, 32 * 8, 13 * 32);
         this.entityInfoGroup.add(background);
-        this.entityInfoGroup.create(x + 36, y, this.spriteParams.texture, this.spriteParams.frame).setOrigin(0, 0).setDisplaySize(96, 96);
-        const name = scene.add.text(x + 138, y, this.name, { font: '20px monospace', fill: '#000000' });
+        this.entityInfoGroup.create(x + 2, y, this.spriteParams.texture, this.spriteParams.frame).setOrigin(0, 0).setDisplaySize(96, 96);
+        const name = scene.add.text(x + 2 + 96 + 2, y, this.name, { font: '20px monospace', fill: '#000000' });
         this.entityInfoGroup.add(name);
-        const health = scene.add.text(x + 138, y + 24, `HP: ${this.currentCharacteristics.parameters.currentHealth}/${this.currentCharacteristics.parameters.health}`, {
+        const health = scene.add.text(x + 2 + 96 + 2, y + 24, `HP: ${this.currentCharacteristics.parameters.currentHealth}/${this.currentCharacteristics.parameters.health}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(health);
-        const manna = scene.add.text(x + 138, y + 40, `MP: ${this.currentCharacteristics.parameters.currentManna}/${this.currentCharacteristics.parameters.manna}`, {
+        const manna = scene.add.text(x + 2 + 96 + 2, y + 40, `MP: ${this.currentCharacteristics.parameters.currentManna}/${this.currentCharacteristics.parameters.manna}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(manna);
-        const energy = scene.add.text(x + 138, y + 56, `EN: ${this.currentCharacteristics.parameters.currentEnergy}/${this.currentCharacteristics.parameters.energy}`, {
+        const energy = scene.add.text(x + 2 + 96 + 2, y + 56, `EN: ${this.currentCharacteristics.parameters.currentEnergy}/${this.currentCharacteristics.parameters.energy}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(energy);
-        const strength = scene.add.text(x + 40, y + 102, `Strength: ${this.currentCharacteristics.attributes.strength}`, {
+        const strength = scene.add.text(x + 8, y + 102, `Strength: ${this.currentCharacteristics.attributes.strength}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(strength);
-        const agility = scene.add.text(x + 40, y + 118, `Agility: ${this.currentCharacteristics.attributes.agility}`, {
+        const agility = scene.add.text(x + 8, y + 118, `Agility: ${this.currentCharacteristics.attributes.agility}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(agility);
-        const intelligence = scene.add.text(x + 40, y + 134, `Intelligence: ${this.currentCharacteristics.attributes.intelligence}`, {
+        const intelligence = scene.add.text(x + 8, y + 134, `Intelligence: ${this.currentCharacteristics.attributes.intelligence}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(intelligence);
-        const armor = scene.add.text(x + 40, y + 154, `Armor: ${this.currentCharacteristics.defences.armor}`, {
+        const armor = scene.add.text(x + 8, y + 154, `Armor: ${this.currentCharacteristics.defences.armor}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(armor);
-        const dodge = scene.add.text(x + 40, y + 170, `Dodge: ${this.currentCharacteristics.defences.dodge}`, {
+        const dodge = scene.add.text(x + 8, y + 170, `Dodge: ${this.currentCharacteristics.defences.dodge}`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(dodge);
-        const resistance = scene.add.text(x + 40, y + 182, `Resistance: `, { font: '12px monospace', fill: '#000000' });
+        const resistance = scene.add.text(x + 8, y + 186, `Resistance: `, { font: '12px monospace', fill: '#000000' });
         this.entityInfoGroup.add(resistance);
-        const resistanceDetails = scene.add.text(x + 40, y + 202, `🔥${this.currentCharacteristics.defences.resistance.fire} ` +
+        const resistanceDetails = scene.add.text(x + 8, y + 202, `🔥${this.currentCharacteristics.defences.resistance.fire} ` +
             `❄${this.currentCharacteristics.defences.resistance.cold} ` +
             `⚡${this.currentCharacteristics.defences.resistance.electricity} ` +
             `☣${this.currentCharacteristics.defences.resistance.acid} ` +
             `☠${this.currentCharacteristics.defences.resistance.poison} ` +
             `✨${this.currentCharacteristics.defences.resistance.magic} `, { font: '14px monospace', fill: '#000000' });
         this.entityInfoGroup.add(resistanceDetails);
-        const actionPointsText = scene.add.text(x + 40, y + 222, `Action points:`, {
+        const actionPointsText = scene.add.text(x + 8, y + 218, `Action points:`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(actionPointsText);
         let prepareActionPointsText = '🔴'.repeat(this.actionPoints.physical) + '🔵'.repeat(this.actionPoints.magical) + '🟢'.repeat(this.actionPoints.misc);
-        const actionPoints = scene.add.text(x + 40, y + 234, prepareActionPointsText, {
+        const actionPoints = scene.add.text(x + 8, y + 234, prepareActionPointsText, {
             font: '16px monospace',
             fill: '#000000'
         });
