@@ -67,6 +67,57 @@ export const effects: {[key: string]: Effect} = {
         source: null,
         statusImage: {texture: 'icons', frame: 124},
     },
+    intelligenceUp: {
+        effectId: 'intelligenceUp',
+        name: 'Intelligence up',
+        description: 'Intelligence is increased',
+        type: 'passive',
+        targetCharacteristic: 'attributes.intelligence',
+        baseDuration: 3,
+        levels: {
+            1: +1.33,
+            2: +1.66,
+            3: +2
+        },
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
+        statusImage: {texture: 'icons', frame: 19},
+    },
+    intelligenceDown: {
+        effectId: 'intelligenceDown',
+        name: 'Intelligence down',
+        description: 'Intelligence is decreased',
+        type: 'passive',
+        targetCharacteristic: 'attributes.intelligence',
+        baseDuration: 3,
+        levels: {
+            1: -1.33,
+            2: -1.66,
+            3: -2
+        },
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
+        statusImage: {texture: 'icons', frame: 62},
+    },
+    initiativeUp: {
+        effectId: 'initiativeUp',
+        name: 'Initiative up',
+        description: 'Initiative is increased',
+        type: 'passive',
+        targetCharacteristic: 'attributes.initiative',
+        baseDuration: 3,
+        levels: {
+            1: +1.33,
+            2: +1.66,
+            3: +2
+        },
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
+        statusImage: {texture: 'icons', frame: 36},
+    },
     trapped: {
         effectId: 'trapped',
         name: 'Trap prepared',

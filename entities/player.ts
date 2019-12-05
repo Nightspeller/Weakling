@@ -18,7 +18,6 @@ export default class Player extends GeneralEntity{
         this.worldImage = scene.physics.add.sprite(x, y, "player", 1).setOrigin(0, 0);
         this.spriteParams = {texture: 'weakling', frame: null};
         this.worldImage.anims.play("idle_down");
-        this.initiative = Phaser.Math.Between(0,30);
         this.keys = scene.input.keyboard.createCursorKeys();
         this.speed = 200;
         this.baseCharacteristics = {
@@ -26,6 +25,7 @@ export default class Player extends GeneralEntity{
                 strength: 10,
                 agility: 10,
                 intelligence: 10,
+                initiative: Phaser.Math.Between(0,30)
             },
             parameters: {
                 health: 100,

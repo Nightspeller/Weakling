@@ -6,13 +6,13 @@ export class Boar extends EnemyEntity {
         this.spriteParams = {texture: 'boar-avatar', frame: null};
         this.level = 1;
         this.actions = ['wildRush', 'enrage'];
-        this.initiative = Phaser.Math.Between(0,45);
         this.name = 'Wild Boar';
         this.baseCharacteristics = {
             attributes: {
                 strength: 10,
-                agility: 5,
+                agility: 10,
                 intelligence: 1,
+                initiative: Phaser.Math.Between(0,30)
             },
             parameters: {
                 health: 20,

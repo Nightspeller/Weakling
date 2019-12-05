@@ -15,6 +15,7 @@ interface CharacteristicsSet {
         strength: number;
         agility: number;
         intelligence: number;
+        initiative: number;
     };
     parameters: {
         health: number;

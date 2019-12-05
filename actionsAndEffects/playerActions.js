@@ -104,12 +104,12 @@ export class PlayerActions {
                 actionName: 'Swift mind',
                 actionDescription: 'You think faster, allowing you to consider more options and quicker react on what is happening',
                 effect: [{
-                        effectId: 'intelligence',
-                        source: '',
+                        effectId: 'intelligenceUp',
+                        source: 'swiftMind',
                         level: 1
                     }, {
-                        effectId: 'dodge',
-                        source: '',
+                        effectId: 'initiativeUp',
+                        source: 'swiftMind',
                         level: 1
                     }],
                 target: 'self',

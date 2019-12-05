@@ -6,7 +6,6 @@ export default class GeneralEntity {
         this.level = null;
         this.actions = [];
         this.position = null;
-        this.initiative = null;
         this.currentEffects = [];
         this.actedThisRound = false;
         this.isAlive = true;
@@ -15,6 +14,7 @@ export default class GeneralEntity {
                 strength: null,
                 agility: null,
                 intelligence: null,
+                initiative: null
             },
             parameters: {
                 health: null,
@@ -80,12 +80,15 @@ export default class GeneralEntity {
                 this.effectIconsGroup.add(iconSprite);
             }
             else {
-                this.effectIconsGroup.add(scene.add.sprite(x + 32 * (index - 4), y + 32 * 4, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0));
+                const iconX = x + 32 * (index - 4);
+                const iconY = y + 32 * 3;
+                const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
+                iconSprite.setInteractive().on('pointerover', (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)).on('pointerout', (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true));
+                this.effectIconsGroup.add(scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0));
             }
         });
     }
     drawEffectInformation(scene, effect, x, y) {
-        console.log(effect, x, y);
         this.effectInformationGroup = scene.add.group();
         const background = scene.add.graphics()
             .lineStyle(1, 0xff0000)
@@ -104,7 +107,6 @@ export default class GeneralEntity {
         this.entityInfoGroup.add(overlay);
         let zone = scene.add.zone(0, 0, 800, 640).setOrigin(0, 0)
             .setInteractive().once('pointerdown', () => {
-            console.log('zone outside of entity info is clicked', this.name);
             overlay.destroy();
             zone.destroy();
             this.entityInfoGroup.clear(true, true);
@@ -167,13 +169,18 @@ export default class GeneralEntity {
             `☠${this.currentCharacteristics.defences.resistance.poison} ` +
             `✨${this.currentCharacteristics.defences.resistance.magic} `, { font: '14px monospace', fill: '#000000' });
         this.entityInfoGroup.add(resistanceDetails);
-        const actionPointsText = scene.add.text(x + 8, y + 218, `Action points:`, {
+        const initiative = scene.add.text(x + 8, y + 218, `Initiative: ${this.currentCharacteristics.attributes.initiative}`, {
+            font: '12px monospace',
+            fill: '#000000'
+        });
+        this.entityInfoGroup.add(initiative);
+        const actionPointsText = scene.add.text(x + 8, y + 234, `Action points:`, {
             font: '12px monospace',
             fill: '#000000'
         });
         this.entityInfoGroup.add(actionPointsText);
         let prepareActionPointsText = '🔴'.repeat(this.actionPoints.physical) + '🔵'.repeat(this.actionPoints.magical) + '🟢'.repeat(this.actionPoints.misc);
-        const actionPoints = scene.add.text(x + 8, y + 234, prepareActionPointsText, {
+        const actionPoints = scene.add.text(x + 8, y + 250, prepareActionPointsText, {
             font: '16px monospace',
             fill: '#000000'
         });

@@ -3,16 +3,18 @@ import GeneralEntity from "./generalEntity.js";
 import {effects} from "../actionsAndEffects/effects.js";
 import Player from "./player.js";
 import {weapons} from "../actionsAndEffects/weapons.js";
+import {enemyActions} from "../actionsAndEffects/enemyActions.js";
+import generalEntity from "./generalEntity.js";
 
 export class Disposition {
     public playerCharacters: any[];
     public enemyCharacters: any[];
-    public currentCharactersTurn: string;
+    public currentCharactersTurn: GeneralEntity;
     public location: string;
     public playerCharactersPositions: { frontTop: null; frontBottom: null; backTop: null; backBottom: null };
     public enemyCharactersPositions: { frontTop: null; frontBottom: null; backTop: null; backBottom: null };
     public currentPhase: 'preparation' | 'battle';
-    public turnOrder: any[];
+    public turnOrder: generalEntity[];
 
     constructor(playerCharacters, enemyCharacters, location) {
         this.playerCharacters = playerCharacters;
@@ -45,14 +47,14 @@ export class Disposition {
     calculateTurnOrder() {
         if (this.currentPhase === 'preparation') {
             return [...this.playerCharacters]
-                .filter(char => !char.actedThisRound)
+                .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.initiative - a.initiative);
+                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         } else {
             return [...this.playerCharacters, ...this.enemyCharacters]
-                .filter(char => !char.actedThisRound)
+                .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.initiative - a.initiative);
+                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
     }
 
@@ -60,25 +62,26 @@ export class Disposition {
         return [...this.playerCharacters, ...this.enemyCharacters]
             .filter(char => !char.actedThisRound)
             .sort((a, b) => Math.random() - 1)
-            .sort((a, b) => b.initiative - a.initiative);
+            .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
     }
 
     public aiTurn() {
         console.log('disposition calculates AI actions');
+        const currentAICharacter = this.turnOrder[0];
+        const randomPlayer = this.playerCharacters[Math.floor(Math.random() * this.playerCharacters.length)];
+        const randomAction = currentAICharacter.actions[Math.floor(Math.random() * currentAICharacter.actions.length)];
+        this.processAction(currentAICharacter, randomPlayer, enemyActions[randomAction]);
     }
 
-    public processAction(source: GeneralEntity, target: GeneralEntity | GeneralEntity[], action: Action) {
+    public processAction(source: GeneralEntity, target: GeneralEntity/* | GeneralEntity[]*/, action: Action) {
+        console.log(`%c${source.name} %cperforms %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         if (action.target === 'self') {
             action.effect.forEach(effectDescription => {
                 const effect = effects[effectDescription.effectId];
                 effect.currentLevel = effectDescription.level;
                 effect.durationLeft = effect.baseDuration;
                 effect.source = effectDescription.source;
-                if (target instanceof GeneralEntity) {
-                    target.applyEffect(effect);
-                } else {
-                    console.log('incorrect target passed');
-                }
+                source.applyEffect(effect);
             });
         }
         if (action.target === 'enemy') {
@@ -89,7 +92,7 @@ export class Disposition {
                 effect.source = effectDescription.source;
                 if (target instanceof GeneralEntity) {
                     if (effect.type === 'direct') {
-                        if (action.actionId === 'meleeAttack') {
+                        if (effect.effectId === 'physicalDamage') {
                             let hitChance: number;
                             if (source.currentCharacteristics.attributes.agility > target.currentCharacteristics.defences.dodge * 1.5) {
                                 hitChance = 0.9;

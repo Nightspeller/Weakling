@@ -3,6 +3,7 @@ import GeneralEntity from "./generalEntity.js";
 import { effects } from "../actionsAndEffects/effects.js";
 import Player from "./player.js";
 import { weapons } from "../actionsAndEffects/weapons.js";
+import { enemyActions } from "../actionsAndEffects/enemyActions.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location) {
         this.playerCharacters = playerCharacters;
@@ -31,39 +32,39 @@ export class Disposition {
     calculateTurnOrder() {
         if (this.currentPhase === 'preparation') {
             return [...this.playerCharacters]
-                .filter(char => !char.actedThisRound)
+                .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.initiative - a.initiative);
+                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
         else {
             return [...this.playerCharacters, ...this.enemyCharacters]
-                .filter(char => !char.actedThisRound)
+                .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.initiative - a.initiative);
+                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
     }
     calculateNextTurnOrder() {
         return [...this.playerCharacters, ...this.enemyCharacters]
             .filter(char => !char.actedThisRound)
             .sort((a, b) => Math.random() - 1)
-            .sort((a, b) => b.initiative - a.initiative);
+            .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
     }
     aiTurn() {
         console.log('disposition calculates AI actions');
+        const currentAICharacter = this.turnOrder[0];
+        const randomPlayer = this.playerCharacters[Math.floor(Math.random() * this.playerCharacters.length)];
+        const randomAction = currentAICharacter.actions[Math.floor(Math.random() * currentAICharacter.actions.length)];
+        this.processAction(currentAICharacter, randomPlayer, enemyActions[randomAction]);
     }
-    processAction(source, target, action) {
+    processAction(source, target /* | GeneralEntity[]*/, action) {
+        console.log(`%c${source.name} %cperforms %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         if (action.target === 'self') {
             action.effect.forEach(effectDescription => {
                 const effect = effects[effectDescription.effectId];
                 effect.currentLevel = effectDescription.level;
                 effect.durationLeft = effect.baseDuration;
                 effect.source = effectDescription.source;
-                if (target instanceof GeneralEntity) {
-                    target.applyEffect(effect);
-                }
-                else {
-                    console.log('incorrect target passed');
-                }
+                source.applyEffect(effect);
             });
         }
         if (action.target === 'enemy') {
@@ -74,7 +75,7 @@ export class Disposition {
                 effect.source = effectDescription.source;
                 if (target instanceof GeneralEntity) {
                     if (effect.type === 'direct') {
-                        if (action.actionId === 'meleeAttack') {
+                        if (effect.effectId === 'physicalDamage') {
                             let hitChance;
                             if (source.currentCharacteristics.attributes.agility > target.currentCharacteristics.defences.dodge * 1.5) {
                                 hitChance = 0.9;
