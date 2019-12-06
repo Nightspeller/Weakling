@@ -53,16 +53,32 @@ interface Action {
     actionId: string;
     actionCost: string;
     actionDescription: string;
-    type: 'physical' | 'magic'| 'misc';
+    type: 'physical' | 'magic' | 'misc';
     noticeable: string;
     actionName: string;
     target: 'self' | 'enemy' | 'friend' | 'any' | 'all' | 'allEnemies' | 'allFriends' | 'party';
     special?: string;
-    requires? :string;
+    requires?: string;
 }
 
 interface Weapon {
     weaponId: string;
-    slot: 'any'| 'anyHand' | 'rightHand' | 'leftHand' | 'twoHands' | 'tail';
+    slot: 'any' | 'anyHand' | 'rightHand' | 'leftHand' | 'twoHands' | 'tail';
     damage: number;
+}
+
+interface DialogOptions {
+    borderThickness?: number;
+    borderColor?: number;
+    borderAlpha?: number;
+    backgroundColor?: number;
+    backgroundAlpha?: number;
+    closeButtonColor?: string;
+    closeButtonHoverColor?: string;
+    dialogY?: number;
+    dialogX?: number;
+    dialogHeight?: number;
+    dialogWidth?: number;
+    textColor?: string;
+    letterAppearanceDelay?: number;
 }

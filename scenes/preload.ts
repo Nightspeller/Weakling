@@ -72,6 +72,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('solider', 'assets/images/characters/PIPOYA FREE RPG Character Sprites 32x32/Soldier/Soldier 01-1.png',{frameWidth: 32, frameHeight: 32});
         this.load.spritesheet('enemies', 'assets/images/characters/RoguelikeSprites@512_mod.png', {frameWidth: 128, frameHeight: 128});
         this.load.spritesheet("player", "assets/images/sprites/Martha Pink.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("stranger", "assets/images/characters/PIPOYA FREE RPG Character Sprites 32x32/Male/Male 17-4.png", {frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("icons", "assets/images/Shikashi's Fantasy Icons Pack/Background 2c.png", {frameWidth: 32, frameHeight: 32});
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/caltor.json');
