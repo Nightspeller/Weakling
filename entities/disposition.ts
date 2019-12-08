@@ -18,7 +18,11 @@ export class Disposition {
 
     constructor(playerCharacters, enemyCharacters, location) {
         this.playerCharacters = playerCharacters;
-        this.enemyCharacters = enemyCharacters.map(char => new enemiesList[char]);
+        this.enemyCharacters = enemyCharacters.map((char, index) =>{
+            const enemy = new enemiesList[char];
+            enemy.name = `${enemy.name} ${index+1}`;
+            return enemy;
+        });
         this.location = location;
 
         this.playerCharactersPositions = {
@@ -58,19 +62,8 @@ export class Disposition {
         }
     }
 
-    calculateNextTurnOrder() {
-        return [...this.playerCharacters, ...this.enemyCharacters]
-            .filter(char => !char.actedThisRound)
-            .sort((a, b) => Math.random() - 1)
-            .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
-    }
-
     public aiTurn() {
-        console.log('disposition calculates AI actions');
-        const currentAICharacter = this.turnOrder[0];
-        const randomPlayer = this.playerCharacters[Math.floor(Math.random() * this.playerCharacters.length)];
-        const randomAction = currentAICharacter.actions[Math.floor(Math.random() * currentAICharacter.actions.length)];
-        this.processAction(currentAICharacter, randomPlayer, enemyActions[randomAction]);
+        this.turnOrder[0].aiTurn(this);
     }
 
     public processAction(source: GeneralEntity, target: GeneralEntity/* | GeneralEntity[]*/, action: Action) {
@@ -111,6 +104,12 @@ export class Disposition {
                                     console.log('Weapon Damage', weapon.damage);
                                     console.log('Penetration', penetration, weapon.damage * penetration);
                                     effect.modifierValue = weapon.damage * penetration;
+                                } else {
+                                    const weaponDamage = effect.levels[effect.currentLevel];
+                                    const penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor > 1 ? 1 : source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
+                                    console.log('Weapon Damage', weaponDamage);
+                                    console.log('Penetration', penetration, weaponDamage * penetration);
+                                    effect.modifierValue = weaponDamage * penetration;
                                 }
 
                                 target.applyEffect(effect);

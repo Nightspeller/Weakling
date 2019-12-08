@@ -3,11 +3,14 @@ import GeneralEntity from "./generalEntity.js";
 import { effects } from "../actionsAndEffects/effects.js";
 import Player from "./player.js";
 import { weapons } from "../actionsAndEffects/weapons.js";
-import { enemyActions } from "../actionsAndEffects/enemyActions.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location) {
         this.playerCharacters = playerCharacters;
-        this.enemyCharacters = enemyCharacters.map(char => new enemiesList[char]);
+        this.enemyCharacters = enemyCharacters.map((char, index) => {
+            const enemy = new enemiesList[char];
+            enemy.name = `${enemy.name} ${index + 1}`;
+            return enemy;
+        });
         this.location = location;
         this.playerCharactersPositions = {
             frontTop: this.playerCharacters[0] || null,
@@ -43,18 +46,8 @@ export class Disposition {
                 .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
     }
-    calculateNextTurnOrder() {
-        return [...this.playerCharacters, ...this.enemyCharacters]
-            .filter(char => !char.actedThisRound)
-            .sort((a, b) => Math.random() - 1)
-            .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
-    }
     aiTurn() {
-        console.log('disposition calculates AI actions');
-        const currentAICharacter = this.turnOrder[0];
-        const randomPlayer = this.playerCharacters[Math.floor(Math.random() * this.playerCharacters.length)];
-        const randomAction = currentAICharacter.actions[Math.floor(Math.random() * currentAICharacter.actions.length)];
-        this.processAction(currentAICharacter, randomPlayer, enemyActions[randomAction]);
+        this.turnOrder[0].aiTurn(this);
     }
     processAction(source, target /* | GeneralEntity[]*/, action) {
         console.log(`%c${source.name} %cperforms %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
@@ -96,6 +89,13 @@ export class Disposition {
                                     console.log('Weapon Damage', weapon.damage);
                                     console.log('Penetration', penetration, weapon.damage * penetration);
                                     effect.modifierValue = weapon.damage * penetration;
+                                }
+                                else {
+                                    const weaponDamage = effect.levels[effect.currentLevel];
+                                    const penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor > 1 ? 1 : source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
+                                    console.log('Weapon Damage', weaponDamage);
+                                    console.log('Penetration', penetration, weaponDamage * penetration);
+                                    effect.modifierValue = weaponDamage * penetration;
                                 }
                                 target.applyEffect(effect);
                                 if (target.currentCharacteristics.parameters.currentHealth <= 0) {

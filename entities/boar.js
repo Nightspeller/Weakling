@@ -1,4 +1,6 @@
 import EnemyEntity from "./enemyEntity.js";
+import { effects } from "../actionsAndEffects/effects.js";
+import { enemyActions } from "../actionsAndEffects/enemyActions.js";
 export class Boar extends EnemyEntity {
     constructor() {
         super();
@@ -24,14 +26,12 @@ export class Boar extends EnemyEntity {
             defences: {
                 armor: 12,
                 dodge: 10,
-                resistance: {
-                    fire: 0,
-                    cold: 5,
-                    acid: 0,
-                    electricity: 0,
-                    poison: 0,
-                    magic: 0,
-                }
+                fireResistance: 0,
+                coldResistance: 5,
+                acidResistance: 0,
+                electricityResistance: 0,
+                poisonResistance: 0,
+                magicResistance: 0,
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
@@ -40,6 +40,13 @@ export class Boar extends EnemyEntity {
             magical: 0,
             misc: 1
         };
+    }
+    aiTurn(disposition) {
+        const currentAICharacter = this;
+        const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
+        const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
+        const action = this.currentEffects.includes(effects.intelligenceDown) ? 'wildRush' : 'enrage';
+        disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
     }
 }
 //# sourceMappingURL=boar.js.map

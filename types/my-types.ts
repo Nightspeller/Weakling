@@ -2,14 +2,12 @@ interface CharacteristicsSet {
     defences: {
         dodge: number;
         armor: number;
-        resistance: {
-            fire: number;
-            cold: number;
-            electricity: number;
-            acid: number;
-            poison: number;
-            magic: number;
-        }
+        fireResistance: number;
+        coldResistance: number;
+        electricityResistance: number;
+        acidResistance: number;
+        poisonResistance: number;
+        magicResistance: number;
     };
     attributes: {
         strength: number;

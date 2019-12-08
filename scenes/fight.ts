@@ -55,6 +55,8 @@ export class FightScene extends Phaser.Scene {
             ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar'],
             'forrest');
 
+        this.createAnimations();
+
         this.startRound();
     }
 
@@ -179,7 +181,15 @@ export class FightScene extends Phaser.Scene {
                     .on('pointerdown', function () {
                         if (action.target === 'self') {
                             scene.disposition.processAction(currentPlayerCharacter, currentPlayerCharacter, action);
-                            scene.endTurn();
+                            currentPlayerCharacter.battleImage.setDepth(2);
+                            scene.add.sprite(currentPlayerCharacter.battleImage.getCenter().x, currentPlayerCharacter.battleImage.getCenter().y, 'player').setDepth(1)
+                                .play('defense_up_animation').on('animationcomplete', function (currentAnim, currentFrame, sprite) {
+                                currentPlayerCharacter.battleImage.setDepth(null);
+                                console.log('animation complete');
+                                sprite.destroy();
+                                scene.endTurn();
+                            });
+                            //scene.endTurn();
                         }
                         if (action.target === 'enemy') {
                             this.setBackgroundColor('red');
@@ -224,6 +234,16 @@ export class FightScene extends Phaser.Scene {
                     });
             }
         })
+    }
+
+    private createAnimations() {
+        this.anims.create({
+            key: 'defense_up_animation',
+            frames: this.anims.generateFrameNames('light-pillar'),
+            duration: 500,
+            showOnStart: true,
+            hideOnComplete: true
+        });
     }
 
     public update() {

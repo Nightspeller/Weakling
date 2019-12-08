@@ -1,10 +1,11 @@
 import GeneralEntity from "./generalEntity.js";
+
 /**
  * A class that wraps up our top down player logic. It creates, animates and moves a sprite in
  * response to WASD keys. Call its update method from the scene's update and call its destroy
  * method when you're done with the player.
  */
-export default class Player extends GeneralEntity{
+export default class Player extends GeneralEntity {
     private scene: Phaser.Scene;
     private readonly keys: Phaser.Types.Input.Keyboard.CursorKeys;
     private lastCursor: string;
@@ -25,11 +26,11 @@ export default class Player extends GeneralEntity{
                 strength: 10,
                 agility: 10,
                 intelligence: 10,
-                initiative: Phaser.Math.Between(0,30)
+                initiative: Phaser.Math.Between(0, 30)
             },
             parameters: {
-                health: 100,
-                currentHealth: 100,
+                health: 5,
+                currentHealth: 5,
                 manna: 25,
                 currentManna: 25,
                 energy: 50,
@@ -38,14 +39,12 @@ export default class Player extends GeneralEntity{
             defences: {
                 armor: 10,
                 dodge: 10,
-                resistance: {
-                    fire: 10,
-                    cold: 10,
-                    acid: 10,
-                    electricity: 10,
-                    poison: 10,
-                    magic: 10,
-                }
+                fireResistance: 10,
+                coldResistance: 10,
+                acidResistance: 10,
+                electricityResistance: 10,
+                poisonResistance: 10,
+                magicResistance: 10,
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
@@ -172,6 +171,4 @@ export default class Player extends GeneralEntity{
     destroy() {
         this.worldImage.destroy();
     }
-
-
 }

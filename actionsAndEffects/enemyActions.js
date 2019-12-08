@@ -19,7 +19,7 @@ export const enemyActions = {
         phase: ['battle'],
         type: 'misc',
         actionName: 'Enrage',
-        actionDescription: 'Character gets really angry, loosing ability to think straight, but gaining extra strength',
+        actionDescription: 'Character gets really angry, loosing the ability to think straight, but gaining extra strength',
         effect: [{
                 effectId: 'strengthUp',
                 source: 'enrage',

@@ -143,9 +143,9 @@ export const effects = {
         targetCharacteristic: 'parameters.currentHealth',
         baseDuration: null,
         levels: {
-            1: +1.33,
-            2: +1.66,
-            3: +2
+            1: 2,
+            2: 3,
+            3: 4
         },
         durationLeft: null,
         currentLevel: null,

@@ -27,14 +27,12 @@ export default class GeneralEntity {
             defences: {
                 armor: null,
                 dodge: null,
-                resistance: {
-                    fire: null,
-                    cold: null,
-                    acid: null,
-                    electricity: null,
-                    poison: null,
-                    magic: null,
-                }
+                fireResistance: null,
+                coldResistance: null,
+                acidResistance: null,
+                electricityResistance: null,
+                poisonResistance: null,
+                magicResistance: null,
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
@@ -162,12 +160,12 @@ export default class GeneralEntity {
         this.entityInfoGroup.add(dodge);
         const resistance = scene.add.text(x + 8, y + 186, `Resistance: `, { font: '12px monospace', fill: '#000000' });
         this.entityInfoGroup.add(resistance);
-        const resistanceDetails = scene.add.text(x + 8, y + 202, `🔥${this.currentCharacteristics.defences.resistance.fire} ` +
-            `❄${this.currentCharacteristics.defences.resistance.cold} ` +
-            `⚡${this.currentCharacteristics.defences.resistance.electricity} ` +
-            `☣${this.currentCharacteristics.defences.resistance.acid} ` +
-            `☠${this.currentCharacteristics.defences.resistance.poison} ` +
-            `✨${this.currentCharacteristics.defences.resistance.magic} `, { font: '14px monospace', fill: '#000000' });
+        const resistanceDetails = scene.add.text(x + 8, y + 202, `🔥${this.currentCharacteristics.defences.fireResistance} ` +
+            `❄${this.currentCharacteristics.defences.coldResistance} ` +
+            `⚡${this.currentCharacteristics.defences.electricityResistance} ` +
+            `☣${this.currentCharacteristics.defences.acidResistance} ` +
+            `☠${this.currentCharacteristics.defences.poisonResistance} ` +
+            `✨${this.currentCharacteristics.defences.magicResistance} `, { font: '14px monospace', fill: '#000000' });
         this.entityInfoGroup.add(resistanceDetails);
         const initiative = scene.add.text(x + 8, y + 218, `Initiative: ${this.currentCharacteristics.attributes.initiative}`, {
             font: '12px monospace',
@@ -198,27 +196,17 @@ export default class GeneralEntity {
         this.recalculateCharacteristics();
     }
     recalculateCharacteristics() {
-        let newCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
         this.currentEffects.forEach((effect, i) => {
             if (effect.type === 'passive') {
                 let target = effect.targetCharacteristic.split('.');
                 if (target.length === 2) {
                     if (effect.modifierValue !== undefined) {
-                        newCharacteristics[target[0]][target[1]] = newCharacteristics[target[0]][target[1]] - effect.modifierValue;
+                        this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] - effect.modifierValue;
                     }
                     else {
-                        newCharacteristics[target[0]][target[1]] = newCharacteristics[target[0]][target[1]] * effect.levels[effect.currentLevel];
+                        this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] * effect.levels[effect.currentLevel];
                     }
                 }
-                if (target.length === 3) {
-                    if (effect.modifierValue !== undefined) {
-                        newCharacteristics[target[0]][target[1]][target[2]] = newCharacteristics[target[0]][target[1]][target[2]] - effect.modifierValue;
-                    }
-                    else {
-                        newCharacteristics[target[0]][target[1]][target[2]] = newCharacteristics[target[0]][target[1]][target[2]] * effect.levels[effect.currentLevel];
-                    }
-                }
-                this.currentCharacteristics = newCharacteristics;
             }
             if (effect.type === 'conditional') {
                 console.log('conditional effect is on the target');
@@ -226,15 +214,15 @@ export default class GeneralEntity {
             if (effect.type === 'direct') {
                 let target = effect.targetCharacteristic.split('.');
                 if (target[1] === 'currentHealth') {
+                    console.log('dealing physical damage', effect);
                     if (effect.modifierValue !== undefined) {
-                        newCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.modifierValue;
+                        this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.modifierValue;
                     }
                     else {
-                        newCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.levels[effect.currentLevel];
+                        this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.levels[effect.currentLevel];
                     }
                     this.currentEffects.splice(i, 1);
                 }
-                this.currentCharacteristics = newCharacteristics;
             }
         });
     }
@@ -259,5 +247,7 @@ export default class GeneralEntity {
         this.recalculateCharacteristics();
         this.recalculateEffects();
     }
+    aiTurn(disposition) { }
+    ;
 }
 //# sourceMappingURL=generalEntity.js.map

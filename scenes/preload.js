@@ -66,6 +66,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("player", "assets/images/sprites/Martha Pink.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet("stranger", "assets/images/characters/PIPOYA FREE RPG Character Sprites 32x32/Male/Male 17-4.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet("icons", "assets/images/Shikashi's Fantasy Icons Pack/Background 2c.png", { frameWidth: 32, frameHeight: 32 });
+        //animations
+        this.load.spritesheet("light-pillar", "assets/images/animations/Pipoya VFX LightPillar/192x192/pipo-mapeffect013a.png", { frameWidth: 192, frameHeight: 192 });
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/caltor.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
