@@ -23,55 +23,18 @@ export class FightScene extends Phaser.Scene {
         this.player2 = new Player(this, 0, 0);
         this.player3 = new Player(this, 0, 0);
         this.player4 = new Player(this, 0, 0);
-        this.player.name = this.player.name + 1;
-        this.player2.name = this.player2.name + 2;
-        this.player3.name = this.player3.name + 3;
-        this.player4.name = this.player4.name + 4;
-        this.disposition = new Disposition([this.player, this.player2, this.player3, this.player4], ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar'], 'forrest');
+        this.player.name = this.player.name + ' 1';
+        this.player2.name = this.player2.name + ' 2';
+        this.player3.name = this.player3.name + ' 3';
+        this.player4.name = this.player4.name + ' 4';
+        new Disposition([this.player, this.player2, this.player3, this.player4], ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar'], 'forrest', this);
         this.createAnimations();
-        this.startRound();
-    }
-    startRound() {
-        console.log('Starting new round on the scene');
-        this.disposition.startRound();
-        this.startTurn(this.disposition.turnOrder[0]);
-    }
-    startTurn(character) {
-        if (this.disposition.enemyCharacters.some(char => char.isAlive)) {
-            console.log('Starting new TURN on the scene');
-            //this.dispositionDisplayGroup.clear(true, true);
-            this.turnOrderDisplayGroup.clear(true, true);
-            this.actionInterfaceDisplayGroup.clear(true, true);
-            this.drawDisposition(this.disposition);
-            if (character instanceof Player) {
-                console.log('drawing player interface for', character.name);
-                this.drawActionInterface(character);
-            }
-            else {
-                this.disposition.aiTurn();
-                this.endTurn();
-            }
-        }
-        else {
-            console.log('All enemies are dead, going to the World Map');
-            this.scene.start("WorldMap");
-        }
-    }
-    endTurn() {
-        console.log('Ending TURN on the scene');
-        this.disposition.turnOrder[0].actedThisRound = true;
-        this.disposition.turnOrder.shift();
-        if (this.disposition.turnOrder.length !== 0) {
-            this.startTurn(this.disposition.turnOrder[0]);
-        }
-        else {
-            // start new round
-            console.log('Turn order is empty');
-            this.startRound();
-        }
     }
     drawDisposition(disposition) {
         var _a, _b, _c, _d, _e, _f, _g, _h;
+        this.dispositionDisplayGroup.clear(true, true);
+        this.turnOrderDisplayGroup.clear(true, true);
+        this.actionInterfaceDisplayGroup.clear(true, true);
         this.dispositionDisplayGroup.addMultiple([
             (_a = disposition.playerCharactersPositions.frontTop) === null || _a === void 0 ? void 0 : _a.draw(this, 64 + 96 + 64, 32 + 128),
             (_b = disposition.playerCharactersPositions.backTop) === null || _b === void 0 ? void 0 : _b.draw(this, 64, 32 + 128),
@@ -84,73 +47,78 @@ export class FightScene extends Phaser.Scene {
             (_g = disposition.enemyCharactersPositions.frontBottom) === null || _g === void 0 ? void 0 : _g.draw(this, 800 - 64 - 96 - 64 - 96, 32 + 96 + 96 + 128),
             (_h = disposition.enemyCharactersPositions.backBottom) === null || _h === void 0 ? void 0 : _h.draw(this, 800 - 64 - 96, 32 + 96 + 96 + 128),
         ]);
+        this.drawTurnOrder(disposition);
+        disposition.currentCharacter.drawMakingTurnGraphics(this);
+        disposition.currentCharacter.drawActionPoints(this);
+        if (disposition.currentCharacter instanceof Player) {
+            console.log('drawing player interface for', disposition.currentCharacter.name);
+            this.drawActionInterface(disposition);
+        }
+    }
+    drawTurnOrder(disposition) {
         this.turnOrderDisplayGroup.add(this.add.graphics()
             .fillStyle(0xf0d191, 0.5)
-            .fillRect(16, 32, 64 * disposition.turnOrder.length, 64)
+            .fillRect(16, 16, 64 * disposition.turnOrder.length, 64 + 16)
             .lineStyle(1, 0x000000)
-            .strokeRect(16, 32, 64 * disposition.turnOrder.length, 64));
+            .strokeRect(16, 16, 64 * disposition.turnOrder.length, 64 + 16));
         disposition.turnOrder.forEach((char, i) => {
-            this.turnOrderDisplayGroup.add(this.add.image(16 + 64 * i, 32, char.spriteParams.texture, char.spriteParams.frame).setOrigin(0, 0).setDisplaySize(64, 64));
+            const charNameText = this.add.text(16 + 64 * i, 16 + 16 + 64, char.name, {
+                backgroundColor: 'lightgrey',
+                color: 'black'
+            }).setVisible(false);
+            const initiativeText = this.add.text(16 + 64 * i, 16, char.currentCharacteristics.attributes.initiative.toString(), {
+                fixedWidth: 64,
+                fixedHeight: 16,
+                align: 'center',
+                color: 'black'
+            });
+            initiativeText.setInteractive()
+                .on('pointerover', (pointer, localX, localY, event) => charNameText.setText('Initiative').setVisible(true))
+                .on('pointerout', (pointer, localX, localY, event) => charNameText.setVisible(false));
+            this.turnOrderDisplayGroup.add(charNameText);
+            this.turnOrderDisplayGroup.add(initiativeText);
+            this.turnOrderDisplayGroup.create(16 + 64 * i, 32, char.spriteParams.texture, char.spriteParams.frame)
+                .setOrigin(0, 0).setDisplaySize(64, 64).setInteractive()
+                .on('pointerover', (pointer, localX, localY, event) => charNameText.setText(char.name).setVisible(true))
+                .on('pointerout', (pointer, localX, localY, event) => charNameText.setVisible(false));
         });
-        disposition.turnOrder[0].drawMakingTurnGraphics(this);
     }
-    drawActionInterface(currentPlayerCharacter) {
+    drawActionInterface(disposition) {
         let scene = this;
-        const availableActions = currentPlayerCharacter.availableActions;
+        const currentCharacter = disposition.currentCharacter;
+        const availableActions = currentCharacter.availableActions;
         const actions = new PlayerActions();
-        let skillsInCategory = [0, 0, 0];
-        let skillPositionX;
-        let skillPositionY;
-        availableActions.sort().forEach((actionId, i) => {
+        let actionsOfType = [0, 0, 0];
+        let buttonX;
+        let buttonY;
+        availableActions.sort().forEach(actionId => {
             const action = actions.getActionById(actionId);
-            if (action.phase.includes(this.disposition.currentPhase)) {
+            if (action.phase.includes(disposition.currentPhase)) {
                 if (action.type === 'physical') {
-                    skillsInCategory[0]++;
-                    skillPositionX = 32;
-                    skillPositionY = 500 + 30 * skillsInCategory[0];
+                    actionsOfType[0]++;
+                    buttonX = 32;
+                    buttonY = 500 + 30 * actionsOfType[0];
                 }
-                if (action.type === 'magic') {
-                    skillsInCategory[1]++;
-                    skillPositionX = 32 + (800 - 64) / 3;
-                    skillPositionY = 500 + 30 * skillsInCategory[1];
+                if (action.type === 'magical') {
+                    actionsOfType[1]++;
+                    buttonX = 32 + (800 - 64) / 3;
+                    buttonY = 500 + 30 * actionsOfType[1];
                 }
                 if (action.type === 'misc') {
-                    skillsInCategory[2]++;
-                    skillPositionX = 32 + (800 - 64) / 3 * 2;
-                    skillPositionY = 500 + 30 * skillsInCategory[2];
+                    actionsOfType[2]++;
+                    buttonX = 32 + (800 - 64) / 3 * 2;
+                    buttonY = 500 + 30 * actionsOfType[2];
                 }
-                const actionText = this.make.text({
-                    x: skillPositionX,
-                    y: skillPositionY,
-                    text: action.actionName,
-                    style: {
-                        fixedWidth: 240,
-                        font: '20px monospace',
-                        color: '#000000',
-                        backgroundColor: '#f0d191',
-                        align: 'center',
-                        border: '10px solid black'
-                    },
-                });
-                const border = this.add.graphics();
-                border.lineStyle(1, 0x000000, 1);
-                border.strokeRectShape(actionText.getBounds());
-                this.actionInterfaceDisplayGroup.add(actionText);
-                const descriptionText = this.add.text(skillPositionX, skillPositionY, '', { font: '12px monospace', fill: '#000000', backgroundColor: 'lightgrey', wordWrap: { width: 245 } }).setOrigin(0, 1);
-                this.actionInterfaceDisplayGroup.add(descriptionText);
-                actionText.setInteractive()
-                    .on('pointerdown', function () {
+                const button = this.drawActionInterfaceButton(action, buttonX, buttonY, currentCharacter);
+                button.on('pointerdown', function () {
                     if (action.target === 'self') {
-                        scene.disposition.processAction(currentPlayerCharacter, currentPlayerCharacter, action);
-                        currentPlayerCharacter.battleImage.setDepth(2);
-                        scene.add.sprite(currentPlayerCharacter.battleImage.getCenter().x, currentPlayerCharacter.battleImage.getCenter().y, 'player').setDepth(1)
+                        currentCharacter.battleImage.setDepth(2);
+                        scene.add.sprite(currentCharacter.battleImage.getCenter().x, currentCharacter.battleImage.getCenter().y, 'player').setDepth(1)
                             .play('defense_up_animation').on('animationcomplete', function (currentAnim, currentFrame, sprite) {
-                            currentPlayerCharacter.battleImage.setDepth(null);
-                            console.log('animation complete');
+                            currentCharacter.battleImage.setDepth(null);
                             sprite.destroy();
-                            scene.endTurn();
+                            disposition.processAction(currentCharacter, currentCharacter, action);
                         });
-                        //scene.endTurn();
                     }
                     if (action.target === 'enemy') {
                         this.setBackgroundColor('red');
@@ -164,36 +132,96 @@ export class FightScene extends Phaser.Scene {
                             overlay.destroy();
                             zone.destroy();
                             // @ts-ignore
-                            Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.setDepth(0).off('pointerdown'));
+                            Object.values(disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.setDepth(0).off('pointerdown'));
                             this.setBackgroundColor('#f0d191');
                         });
-                        Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => {
+                        Object.values(disposition.enemyCharactersPositions).forEach(enemy => {
                             // @ts-ignore
                             if (enemy.isAlive) {
                                 // @ts-ignore
                                 enemy.battleImage.off('pointerdown').setDepth(10).setInteractive().once('pointerdown', () => {
-                                    console.log('pointerdown event arrived on enemy', this);
+                                    console.log('pointerdown event arrived on enemy');
                                     overlay.destroy();
                                     zone.destroy();
                                     // @ts-ignore
                                     enemy.battleImage.setDepth(0);
                                     this.setBackgroundColor(null);
                                     // @ts-ignore
-                                    Object.values(scene.disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.off('pointerdown'));
-                                    scene.disposition.processAction(currentPlayerCharacter, enemy, action);
-                                    scene.endTurn();
+                                    Object.values(disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.off('pointerdown'));
+                                    disposition.processAction(currentCharacter, enemy, action);
                                 });
                             }
                         });
                     }
-                })
-                    .on('pointerover', () => {
-                    descriptionText.setText(action.actionDescription);
-                })
-                    .on('pointerout', () => {
-                    descriptionText.setText('');
                 });
             }
+        });
+        this.drawEndTurnButton(disposition);
+    }
+    drawActionInterfaceButton(action, buttonX, buttonY, character) {
+        const isAvailable = character.actionPoints[action.type] >= action.actionCost;
+        const descriptionText = this.add.text(buttonX, buttonY, '', { font: '12px monospace', fill: '#000000', backgroundColor: 'lightgrey', wordWrap: { width: 245 } }).setOrigin(0, 1);
+        this.actionInterfaceDisplayGroup.add(descriptionText);
+        const actionText = this.make.text({
+            x: buttonX,
+            y: buttonY,
+            text: action.actionName,
+            style: {
+                fixedWidth: 240,
+                font: '22px monospace',
+                color: '#000000',
+                backgroundColor: isAvailable ? '#f0d191' : '#474747',
+                padding: {
+                    left: 2
+                },
+            },
+        });
+        if (isAvailable) {
+            actionText.setInteractive()
+                .on('pointerover', () => {
+                descriptionText.setText(action.actionDescription);
+            })
+                .on('pointerout', () => {
+                descriptionText.setText('');
+            });
+        }
+        this.actionInterfaceDisplayGroup.add(actionText);
+        const border = this.add.graphics();
+        border.lineStyle(1, 0x000000, 1);
+        border.strokeRectShape(actionText.getBounds());
+        this.actionInterfaceDisplayGroup.add(border);
+        let pointsDrawn = 0;
+        const frames = { physical: 0, magical: 1, misc: 2 };
+        if (action.actionCost % 1 === 0.5) {
+            this.actionInterfaceDisplayGroup.create(buttonX + 240 - 2, buttonY + 2, 'action-points', frames[action.type] + 3).setOrigin(1, 0);
+            pointsDrawn++;
+        }
+        for (let i = 0; i < Math.trunc(action.actionCost); i++) {
+            this.actionInterfaceDisplayGroup.create(buttonX + 240 - pointsDrawn * 16 - 2, buttonY + 2, 'action-points', frames[action.type]).setOrigin(1, 0);
+            pointsDrawn++;
+        }
+        return actionText;
+    }
+    drawEndTurnButton(disposition) {
+        const endTurnText = this.make.text({
+            x: 800 / 2,
+            y: 500,
+            text: 'End Turn',
+            style: {
+                fixedWidth: 140,
+                font: '22px monospace',
+                color: '#000000',
+                backgroundColor: '#8ef000',
+                align: 'center',
+            },
+        }).setOrigin(0.5, 0.5).setInteractive();
+        this.actionInterfaceDisplayGroup.add(endTurnText);
+        const border = this.add.graphics();
+        border.lineStyle(1, 0x000000, 1);
+        border.strokeRectShape(endTurnText.getBounds());
+        this.actionInterfaceDisplayGroup.add(border);
+        endTurnText.once('pointerdown', () => {
+            disposition.endTurn();
         });
     }
     createAnimations() {

@@ -43,9 +43,10 @@ export default class GeneralEntity {
             .strokeRectShape(this.battleImage.getBounds());
     }
     draw(scene, x, y) {
-        var _a, _b;
+        var _a, _b, _c;
         (_a = this.battleImage) === null || _a === void 0 ? void 0 : _a.destroy();
         (_b = this.makingTurnGraphics) === null || _b === void 0 ? void 0 : _b.destroy();
+        (_c = this.actionPointsGroup) === null || _c === void 0 ? void 0 : _c.clear(true, true);
         if (this.isAlive) {
             this.battleImage = scene.add.sprite(x, y, this.spriteParams.texture, this.spriteParams.frame);
         }
@@ -70,19 +71,43 @@ export default class GeneralEntity {
     drawEffectsIcons(scene, x, y) {
         this.effectIconsGroup ? this.effectIconsGroup.clear(true, true) : this.effectIconsGroup = scene.add.group();
         this.currentEffects.forEach((effect, index) => {
+            let iconX, iconY;
             if (index < 4) {
-                const iconX = x - 32;
-                const iconY = y + 32 * index;
-                const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
-                iconSprite.setInteractive().on('pointerover', (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)).on('pointerout', (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true));
-                this.effectIconsGroup.add(iconSprite);
+                iconX = x - 32;
+                iconY = y + 32 * index;
             }
             else {
-                const iconX = x + 32 * (index - 4);
-                const iconY = y + 32 * 3;
-                const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
-                iconSprite.setInteractive().on('pointerover', (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)).on('pointerout', (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true));
-                this.effectIconsGroup.add(scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0));
+                iconX = x + 32 * (index - 4);
+                iconY = y + 32 * 3;
+            }
+            const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
+            iconSprite.setInteractive()
+                .on('pointerover', (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY))
+                .on('pointerout', (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true))
+                .on('destroy', () => { var _a; return (_a = this.effectInformationGroup) === null || _a === void 0 ? void 0 : _a.clear(true, true); });
+            this.effectIconsGroup.add(iconSprite);
+        });
+    }
+    drawActionPoints(scene) {
+        const x = this.battleImage.getBounds().x;
+        const y = this.battleImage.getBounds().y;
+        this.actionPointsGroup ? this.actionPointsGroup.clear(true, true) : this.actionPointsGroup = scene.add.group();
+        Object.keys(this.actionPoints).forEach((pointType, index) => {
+            let pointsDrawn = 0;
+            for (let i = 0; i < Math.min(Math.trunc(this.actionPoints[pointType]), 2); i++) {
+                this.actionPointsGroup.create(x + 96 - 16, y + pointsDrawn * 16 + 32 * index, 'action-points', index).setOrigin(0);
+                pointsDrawn++;
+            }
+            if (this.actionPoints[pointType] % 1 === 0.5) {
+                if (pointsDrawn < 2) {
+                    this.actionPointsGroup.create(x + 96 - 16, y + pointsDrawn * 16 + 32 * index, 'action-points', index + 3).setOrigin(0);
+                }
+                else {
+                    this.actionPointsGroup.create(x + 96, y + 32 * index, 'action-points', index + 3).setOrigin(0);
+                }
+            }
+            if (this.actionPoints[pointType] === 3) {
+                this.actionPointsGroup.create(x + 96, y + 32 * index, 'action-points', index).setOrigin(0);
             }
         });
     }
@@ -177,12 +202,17 @@ export default class GeneralEntity {
             fill: '#000000'
         });
         this.entityInfoGroup.add(actionPointsText);
-        let prepareActionPointsText = '🔴'.repeat(this.actionPoints.physical) + '🔵'.repeat(this.actionPoints.magical) + '🟢'.repeat(this.actionPoints.misc);
-        const actionPoints = scene.add.text(x + 8, y + 250, prepareActionPointsText, {
-            font: '16px monospace',
-            fill: '#000000'
+        let pointsDrawn = 0;
+        Object.keys(this.actionPoints).forEach((pointType, index) => {
+            for (let i = 0; i < Math.trunc(this.actionPoints[pointType]); i++) {
+                this.entityInfoGroup.create(x + 8 + pointsDrawn * 16, y + 250, 'action-points', index).setOrigin(0);
+                pointsDrawn++;
+            }
+            if (this.actionPoints[pointType] % 1 === 0.5) {
+                this.entityInfoGroup.create(x + 8 + pointsDrawn * 16, y + 250, 'action-points', index + 3).setOrigin(0);
+                pointsDrawn++;
+            }
         });
-        this.entityInfoGroup.add(actionPoints);
     }
     applyEffect(effect) {
         const existingEffectIndex = this.currentEffects.findIndex(elem => (elem.source === effect.source && elem.effectId === effect.effectId));
@@ -240,14 +270,16 @@ export default class GeneralEntity {
             }
         });
     }
+    startRound(roundType) {
+    }
     startTurn() {
-        this.recalculateCharacteristics();
     }
     endTurn() {
-        this.recalculateCharacteristics();
-        this.recalculateEffects();
+        //this.recalculateCharacteristics();
+        //this.recalculateEffects();
     }
-    aiTurn(disposition) { }
+    aiTurn(disposition) {
+    }
     ;
 }
 //# sourceMappingURL=generalEntity.js.map

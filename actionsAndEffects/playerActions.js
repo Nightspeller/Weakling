@@ -16,7 +16,7 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'self',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0'
             }, {
                 actionId: 'adjustArmor',
@@ -34,7 +34,7 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'self',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0'
             }, {
                 actionId: 'setTrap',
@@ -48,7 +48,7 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'enemy',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0.1'
             }, {
                 actionId: 'meleeAttack',
@@ -62,12 +62,12 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'enemy',
-                actionCost: '1',
+                actionCost: 1,
                 noticeable: '1'
             }, {
                 actionId: 'drainingSoil',
                 phase: ['preparation'],
-                type: 'magic',
+                type: 'magical',
                 actionName: 'Draining soil',
                 actionDescription: 'Puts the curse on the most likely way of the selected opponent',
                 effect: [{
@@ -80,13 +80,13 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'enemy',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0',
                 special: 'If the trap is on the way, trap gets cursed, both effects are +10%, if trap is placed on cursed land - gets cursed himself'
             }, {
                 actionId: 'fireProtection',
                 phase: ['preparation', 'battle'],
-                type: 'magic',
+                type: 'magical',
                 actionName: 'Fire protection',
                 actionDescription: 'Creates the sphere of protection against the fire around the target',
                 effect: [{
@@ -95,12 +95,12 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'any',
-                actionCost: '0.5',
+                actionCost: 1.5,
                 noticeable: '0'
             }, {
                 actionId: 'swiftMind',
                 phase: ['preparation', 'battle'],
-                type: 'magic',
+                type: 'magical',
                 actionName: 'Swift mind',
                 actionDescription: 'You think faster, allowing you to consider more options and quicker react on what is happening',
                 effect: [{
@@ -113,7 +113,7 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'self',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0'
             }, {
                 actionId: 'drinkWeakHealthPotion',
@@ -132,7 +132,7 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'self',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0'
             }, {
                 actionId: 'inspectEnemy',
@@ -146,7 +146,7 @@ export class PlayerActions {
                         level: 1
                     }],
                 target: 'enemy',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0'
             }, {
                 actionId: 'meditate',
@@ -164,7 +164,7 @@ export class PlayerActions {
                         level: 10
                     }],
                 target: 'enemy',
-                actionCost: '0.5',
+                actionCost: 0.5,
                 noticeable: '0'
             }];
     }

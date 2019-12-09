@@ -36,9 +36,9 @@ export class Boar extends EnemyEntity {
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
         this.actionPoints = {
-            physical: 2,
+            physical: 1,
             magical: 0,
-            misc: 1
+            misc: 0
         };
     }
     aiTurn(disposition) {
@@ -47,6 +47,10 @@ export class Boar extends EnemyEntity {
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.includes(effects.intelligenceDown) ? 'wildRush' : 'enrage';
         disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
+    }
+    startRound(roundType) {
+        this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
+        this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
     }
 }
 //# sourceMappingURL=boar.js.map

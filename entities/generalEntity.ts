@@ -22,6 +22,7 @@ export default class GeneralEntity {
     private energyText: Phaser.GameObjects.Text;
     private effectIconsGroup: Phaser.GameObjects.Group;
     private makingTurnGraphics: Phaser.GameObjects.Graphics;
+    private actionPointsGroup: Phaser.GameObjects.Group;
 
     constructor() {
         this.spriteParams = {texture: null, frame: null};
@@ -71,6 +72,7 @@ export default class GeneralEntity {
     public draw(scene: Phaser.Scene, x, y) {
         this.battleImage?.destroy();
         this.makingTurnGraphics?.destroy();
+        this.actionPointsGroup?.clear(true, true)
         if (this.isAlive) {
             this.battleImage = scene.add.sprite(x, y, this.spriteParams.texture, this.spriteParams.frame);
         } else {
@@ -79,7 +81,7 @@ export default class GeneralEntity {
         this.drawHealthAndManna(scene, x, y);
         this.drawEffectsIcons(scene, x, y);
         this.battleImage.setOrigin(0, 0).setDisplaySize(96, 96).setInteractive()
-            .on('pointerdown', (pointer, localX, localY, event) => this.drawEntityInfo(scene, x < 400 ? x + 96 : x - 32*8, 32));
+            .on('pointerdown', (pointer, localX, localY, event) => this.drawEntityInfo(scene, x < 400 ? x + 96 : x - 32 * 8, 32));
 
         return this.battleImage;
     }
@@ -90,13 +92,13 @@ export default class GeneralEntity {
         this.energyText?.destroy();
         this.healthText = scene.add.text(
             x,
-            y-24,
+            y - 24,
             `${this.currentCharacteristics.parameters.currentHealth} / ${this.currentCharacteristics.parameters.health}`,
             {font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#ff000075'}
         ).setOrigin(0, 1);
         this.mannaText = scene.add.text(
             x,
-            y-12,
+            y - 12,
             `${this.currentCharacteristics.parameters.currentManna} / ${this.currentCharacteristics.parameters.manna}`,
             {font: '12px monospace', fill: '#000000', align: 'center', fixedWidth: 32 * 3, backgroundColor: '#0000ff75'}
         ).setOrigin(0, 1);
@@ -111,30 +113,45 @@ export default class GeneralEntity {
     private drawEffectsIcons(scene: Phaser.Scene, x, y) {
         this.effectIconsGroup ? this.effectIconsGroup.clear(true, true) : this.effectIconsGroup = scene.add.group();
         this.currentEffects.forEach((effect, index) => {
+            let iconX, iconY;
             if (index < 4) {
-                const iconX = x - 32;
-                const iconY = y + 32 * index;
-                const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
-                iconSprite.setInteractive().on(
-                    'pointerover',
-                    (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)
-                ).on(
-                    'pointerout',
-                    (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true)
-                );
-                this.effectIconsGroup.add(iconSprite);
+                iconX = x - 32;
+                iconY = y + 32 * index;
             } else {
-                const iconX = x + 32 * (index - 4);
-                const iconY = y + 32 * 3;
-                const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
-                iconSprite.setInteractive().on(
-                    'pointerover',
-                    (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY)
-                ).on(
-                    'pointerout',
-                    (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true)
-                );
-                this.effectIconsGroup.add(scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0))
+                iconX = x + 32 * (index - 4);
+                iconY = y + 32 * 3;
+            }
+            const iconSprite = scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame).setOrigin(0, 0);
+            iconSprite.setInteractive()
+                .on('pointerover',
+                    (pointer, localX, localY, event) => this.drawEffectInformation(scene, effect, iconX + 32, iconY))
+                .on('pointerout',
+                    (pointer, localX, localY, event) => this.effectInformationGroup.clear(true, true))
+                .on('destroy',
+                    () => this.effectInformationGroup?.clear(true, true));
+            this.effectIconsGroup.add(iconSprite);
+        })
+    }
+
+    public drawActionPoints(scene: Phaser.Scene) {
+        const x = this.battleImage.getBounds().x;
+        const y = this.battleImage.getBounds().y;
+        this.actionPointsGroup ? this.actionPointsGroup.clear(true, true) : this.actionPointsGroup = scene.add.group();
+        Object.keys(this.actionPoints).forEach((pointType, index) => {
+            let pointsDrawn = 0;
+            for (let i = 0; i < Math.min(Math.trunc(this.actionPoints[pointType]), 2); i++) {
+                this.actionPointsGroup.create(x + 96 - 16, y + pointsDrawn * 16 + 32 * index, 'action-points', index).setOrigin(0);
+                pointsDrawn++;
+            }
+            if (this.actionPoints[pointType] % 1 === 0.5) {
+                if (pointsDrawn < 2) {
+                    this.actionPointsGroup.create(x + 96 - 16, y + pointsDrawn * 16 + 32 * index, 'action-points', index + 3).setOrigin(0);
+                } else {
+                    this.actionPointsGroup.create(x + 96, y + 32 * index, 'action-points', index + 3).setOrigin(0);
+                }
+            }
+            if (this.actionPoints[pointType] === 3) {
+                this.actionPointsGroup.create(x + 96, y + 32 * index, 'action-points', index).setOrigin(0);
             }
         })
     }
@@ -259,12 +276,17 @@ export default class GeneralEntity {
         });
         this.entityInfoGroup.add(actionPointsText);
 
-        let prepareActionPointsText = '🔴'.repeat(this.actionPoints.physical) + '🔵'.repeat(this.actionPoints.magical) + '🟢'.repeat(this.actionPoints.misc);
-        const actionPoints = scene.add.text(x + 8, y + 250, prepareActionPointsText, {
-            font: '16px monospace',
-            fill: '#000000'
-        });
-        this.entityInfoGroup.add(actionPoints);
+        let pointsDrawn = 0;
+        Object.keys(this.actionPoints).forEach((pointType, index) => {
+            for (let i = 0; i < Math.trunc(this.actionPoints[pointType]); i++) {
+                this.entityInfoGroup.create(x + 8 + pointsDrawn * 16, y + 250, 'action-points', index).setOrigin(0);
+                pointsDrawn++;
+            }
+            if (this.actionPoints[pointType] % 1 === 0.5) {
+                this.entityInfoGroup.create(x + 8 + pointsDrawn * 16, y + 250, 'action-points', index + 3).setOrigin(0);
+                pointsDrawn++;
+            }
+        })
     }
 
     public applyEffect(effect: Effect) {
@@ -323,15 +345,19 @@ export default class GeneralEntity {
         });
     }
 
+    public startRound(roundType: 'preparation' | 'battle') {
+
+    }
+
     public startTurn() {
-        this.recalculateCharacteristics();
 
     }
 
     public endTurn() {
-        this.recalculateCharacteristics();
-        this.recalculateEffects();
+        //this.recalculateCharacteristics();
+        //this.recalculateEffects();
     }
 
-    public aiTurn(disposition: Disposition) {};
+    public aiTurn(disposition: Disposition) {
+    };
 }

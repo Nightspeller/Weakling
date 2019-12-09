@@ -49,9 +49,9 @@ interface Action {
     phase: ('preparation' | 'battle')[];
     effect: { effectId: string; source: string; level: number }[];
     actionId: string;
-    actionCost: string;
+    actionCost: number;
     actionDescription: string;
-    type: 'physical' | 'magic' | 'misc';
+    type: 'physical' | 'magical' | 'misc';
     noticeable: string;
     actionName: string;
     target: 'self' | 'enemy' | 'friend' | 'any' | 'all' | 'allEnemies' | 'allFriends' | 'party';

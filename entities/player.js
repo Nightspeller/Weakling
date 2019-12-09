@@ -63,9 +63,9 @@ export default class Player extends GeneralEntity {
             }
         };
         this.actionPoints = {
-            physical: 3,
-            magical: 3,
-            misc: 3
+            physical: 0,
+            magical: 0,
+            misc: 0
         };
         this.name = 'Weakling';
         this.availableActions = ['meditate', 'inspectEnemy', 'drinkWeakHealthPotion', 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
@@ -121,6 +121,11 @@ export default class Player extends GeneralEntity {
             frameRate: 10,
             repeat: -1
         });
+    }
+    startRound(roundType) {
+        this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
+        this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
+        this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
     }
     freeze() {
         this.worldImage.body.moves = false;
