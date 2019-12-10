@@ -55,8 +55,9 @@ export default class Player extends GeneralEntity {
                 leftHand: 'fist',
                 rightHand: 'fist',
                 body: null,
+                cape: null,
                 gloves: null,
-                belt: null,
+                belt: 'rope',
                 tail: null,
                 pants: null,
                 boots: null
@@ -68,7 +69,7 @@ export default class Player extends GeneralEntity {
             misc: 0
         };
         this.name = 'Weakling';
-        this.availableActions = ['meditate', 'inspectEnemy', 'drinkWeakHealthPotion', 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', 'drinkWeakHealthPotion', 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.currentEffects = [];
     }
     createAnimations() {

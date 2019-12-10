@@ -2,6 +2,7 @@ import Player from "../entities/player.js";
 import {PlayerActions} from "../actionsAndEffects/playerActions.js";
 import {Disposition} from "../entities/disposition.js";
 import GeneralEntity from "../entities/generalEntity.js";
+import {InventoryPlugin} from "../plugins/inventory.js";
 
 export class FightScene extends Phaser.Scene {
     private player: Player;
@@ -18,12 +19,14 @@ export class FightScene extends Phaser.Scene {
     private dispositionDisplayGroup: Phaser.GameObjects.Group;
     private turnOrderDisplayGroup: Phaser.GameObjects.Group;
     private actionInterfaceDisplayGroup: Phaser.GameObjects.Group;
+    public inventory: InventoryPlugin;
 
     constructor() {
         super({key: 'Fight'});
     }
 
     public preload() {
+        this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
 
     public create() {
@@ -121,6 +124,7 @@ export class FightScene extends Phaser.Scene {
     }
 
     private drawActionInterface(disposition) {
+        this.drawEndTurnButton(disposition);
         let scene = this;
         const currentCharacter = disposition.currentCharacter;
         const availableActions = currentCharacter.availableActions;
@@ -195,8 +199,6 @@ export class FightScene extends Phaser.Scene {
                 });
             }
         });
-
-        this.drawEndTurnButton(disposition);
     }
 
     private drawActionInterfaceButton(action: Action, buttonX: number, buttonY: number, character: GeneralEntity) {

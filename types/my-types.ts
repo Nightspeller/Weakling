@@ -65,6 +65,14 @@ interface Weapon {
     damage: number;
 }
 
+interface Belt {
+    beltId: string;
+    slot: 'belt';
+    additionalCharacteristics: any[];
+    quickSlots: number;
+    sprite: {key: string; frame: number};
+}
+
 interface DialogOptions {
     borderThickness?: number;
     borderColor?: number;

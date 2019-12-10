@@ -2,7 +2,7 @@ import { Boar } from "./boar.js";
 import GeneralEntity from "./generalEntity.js";
 import { effects } from "../actionsAndEffects/effects.js";
 import Player from "./player.js";
-import { weapons } from "../actionsAndEffects/weapons.js";
+import { weapons } from "../actionsAndEffects/items.js";
 import EnemyEntity from "./enemyEntity.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location, scene) {
@@ -38,6 +38,7 @@ export class Disposition {
     }
     startTurn() {
         this.currentCharacter = this.turnOrder[0];
+        //this.scene.inventory.showInventory(this.currentCharacter);
         this.scene.drawDisposition(this);
         if (this.currentCharacter instanceof EnemyEntity) {
             this.aiTurn();
@@ -91,13 +92,20 @@ export class Disposition {
         else {
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
             if (action.target === 'self') {
-                action.effect.forEach(effectDescription => {
-                    const effect = effects[effectDescription.effectId];
-                    effect.currentLevel = effectDescription.level;
-                    effect.durationLeft = effect.baseDuration;
-                    effect.source = effectDescription.source;
-                    source.applyEffect(effect);
-                });
+                if (action.actionId === 'accessInventory') {
+                    if (source instanceof Player) {
+                        this.scene.inventory.showInventory(source);
+                    }
+                }
+                else {
+                    action.effect.forEach(effectDescription => {
+                        const effect = effects[effectDescription.effectId];
+                        effect.currentLevel = effectDescription.level;
+                        effect.durationLeft = effect.baseDuration;
+                        effect.source = effectDescription.source;
+                        source.applyEffect(effect);
+                    });
+                }
             }
             if (action.target === 'enemy') {
                 action.effect.forEach(effectDescription => {

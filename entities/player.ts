@@ -10,7 +10,7 @@ export default class Player extends GeneralEntity {
     private readonly keys: Phaser.Types.Input.Keyboard.CursorKeys;
     private lastCursor: string;
     public speed: number;
-    public inventory: { equipped: { leftHand: string; rightHand: string; pants: null; belt: null; tail: null; ringRight2: null; ringRight1: null; body: null; neck2: null; neck1: null; head: null; gloves: null; backpack: null; ringLeft2: null; boots: null; ringLeft1: null }; backpack: any[] };
+    public inventory: { equipped: { leftHand: string; rightHand: string; pants: null; cape:null; belt: string; tail: null; ringRight2: null; ringRight1: null; body: null; neck2: null; neck1: null; head: null; gloves: null; backpack: null; ringLeft2: null; boots: null; ringLeft1: null }; backpack: any[] };
 
     constructor(scene, x, y) {
         super();
@@ -62,8 +62,9 @@ export default class Player extends GeneralEntity {
                 leftHand: 'fist',
                 rightHand: 'fist',
                 body: null,
+                cape: null,
                 gloves: null,
-                belt: null,
+                belt: 'rope',
                 tail: null,
                 pants: null,
                 boots: null
@@ -76,7 +77,7 @@ export default class Player extends GeneralEntity {
         };
         this.name = 'Weakling';
 
-        this.availableActions = ['meditate', 'inspectEnemy', 'drinkWeakHealthPotion', 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', 'drinkWeakHealthPotion', 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
 
         this.currentEffects = [];
     }

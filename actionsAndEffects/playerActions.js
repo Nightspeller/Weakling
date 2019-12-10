@@ -166,7 +166,21 @@ export class PlayerActions {
                 target: 'enemy',
                 actionCost: 0.5,
                 noticeable: '0'
-            }];
+            }, {
+                actionId: 'accessInventory',
+                phase: ['preparation', 'battle'],
+                type: 'misc',
+                actionName: 'Access inventory',
+                actionDescription: 'Sometimes even in the heat of the battle you absolutely have to do it',
+                effect: [{
+                        effectId: 'openInventory',
+                        source: 'accessInventory',
+                        level: 1
+                    }],
+                target: 'self',
+                actionCost: 0.5,
+                noticeable: '0'
+            },];
     }
     getActionById(actionId) {
         return this.actions.find(action => action.actionId === actionId);

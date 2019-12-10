@@ -1,11 +1,13 @@
 import Player from "../entities/player.js";
 import { PlayerActions } from "../actionsAndEffects/playerActions.js";
 import { Disposition } from "../entities/disposition.js";
+import { InventoryPlugin } from "../plugins/inventory.js";
 export class FightScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Fight' });
     }
     preload() {
+        this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
     create() {
         this.map = this.make.tilemap({ key: 'fight' });
@@ -84,6 +86,7 @@ export class FightScene extends Phaser.Scene {
         });
     }
     drawActionInterface(disposition) {
+        this.drawEndTurnButton(disposition);
         let scene = this;
         const currentCharacter = disposition.currentCharacter;
         const availableActions = currentCharacter.availableActions;
@@ -156,7 +159,6 @@ export class FightScene extends Phaser.Scene {
                 });
             }
         });
-        this.drawEndTurnButton(disposition);
     }
     drawActionInterfaceButton(action, buttonX, buttonY, character) {
         const isAvailable = character.actionPoints[action.type] >= action.actionCost;

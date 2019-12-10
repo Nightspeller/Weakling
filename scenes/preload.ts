@@ -81,6 +81,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/caltor.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
         this.load.tilemapTiledJSON('fight', 'assets/tilemaps/fight.json');
+        // items
+        this.load.image("rope-belt", "assets/images/items/rope-belt.png");
     }
     create() {
         console.log('Preload done, calling WorldMap');
