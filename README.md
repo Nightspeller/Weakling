@@ -10,3 +10,4 @@ To run it locally just checkout from the repo and use the web server of your cho
 To compile you will need to do npm install and use typescript compiler to work with (and, well, compile) .ts files.
 
 All games assets are free to use under different free licenses (as far as i can say ._.), all the credit for it goes to their authors.
+UPD: ahaha not anymore - i stole the doll image from the heroes 3 xD. Can somebody draw one for me please >_<
