@@ -17,7 +17,7 @@ export class PlayerActions {
                     }],
                 target: 'self',
                 actionCost: 0.5,
-                noticeable: '0'
+                noticeable: 0
             }, {
                 actionId: 'adjustArmor',
                 phase: ['preparation', 'battle'],
@@ -35,7 +35,7 @@ export class PlayerActions {
                     }],
                 target: 'self',
                 actionCost: 0.5,
-                noticeable: '0'
+                noticeable: 0
             }, {
                 actionId: 'setTrap',
                 phase: ['preparation'],
@@ -49,7 +49,7 @@ export class PlayerActions {
                     }],
                 target: 'enemy',
                 actionCost: 0.5,
-                noticeable: '0.1'
+                noticeable: 0.1
             }, {
                 actionId: 'meleeAttack',
                 phase: ['battle'],
@@ -63,7 +63,7 @@ export class PlayerActions {
                     }],
                 target: 'enemy',
                 actionCost: 1,
-                noticeable: '1'
+                noticeable: 1
             }, {
                 actionId: 'drainingSoil',
                 phase: ['preparation'],
@@ -71,17 +71,13 @@ export class PlayerActions {
                 actionName: 'Draining soil',
                 actionDescription: 'Puts the curse on the most likely way of the selected opponent',
                 effect: [{
-                        effectId: 'strengthDown',
-                        source: 'drainingSoil',
-                        level: 1
-                    }, {
-                        effectId: 'agilityDown',
+                        effectId: 'cursedSoil',
                         source: 'drainingSoil',
                         level: 1
                     }],
                 target: 'enemy',
                 actionCost: 0.5,
-                noticeable: '0',
+                noticeable: 0,
                 special: 'If the trap is on the way, trap gets cursed, both effects are +10%, if trap is placed on cursed land - gets cursed himself'
             }, {
                 actionId: 'fireProtection',
@@ -94,9 +90,9 @@ export class PlayerActions {
                         source: 'fireProtection',
                         level: 1
                     }],
-                target: 'any',
+                target: 'self',
                 actionCost: 1.5,
-                noticeable: '0'
+                noticeable: 0
             }, {
                 actionId: 'swiftMind',
                 phase: ['preparation', 'battle'],
@@ -114,7 +110,7 @@ export class PlayerActions {
                     }],
                 target: 'self',
                 actionCost: 0.5,
-                noticeable: '0'
+                noticeable: 0
             }, {
                 actionId: 'drinkWeakHealthPotion',
                 phase: ['preparation', 'battle'],
@@ -133,7 +129,7 @@ export class PlayerActions {
                     }],
                 target: 'self',
                 actionCost: 0.5,
-                noticeable: '0'
+                noticeable: 0
             }, {
                 actionId: 'inspectEnemy',
                 phase: ['preparation', 'battle'],
@@ -147,7 +143,7 @@ export class PlayerActions {
                     }],
                 target: 'enemy',
                 actionCost: 0.5,
-                noticeable: '0'
+                noticeable: 0
             }, {
                 actionId: 'meditate',
                 phase: ['preparation'],
@@ -165,7 +161,7 @@ export class PlayerActions {
                     }],
                 target: 'enemy',
                 actionCost: 0.5,
-                noticeable: '0'
+                noticeable: 0
             }, {
                 actionId: 'accessInventory',
                 phase: ['preparation', 'battle'],
@@ -179,7 +175,7 @@ export class PlayerActions {
                     }],
                 target: 'self',
                 actionCost: 0.5,
-                noticeable: '0'
+                noticeable: 0
             },];
     }
     getActionById(actionId) {

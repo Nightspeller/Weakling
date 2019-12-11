@@ -11,8 +11,12 @@ export const enemyActions: {[key: string]: Action} = {
             level: 1
         }],
         target: 'enemy',
-        actionCost: '1',
-        noticeable: '1'
+        actionCost: 1,
+        noticeable: 1,
+        triggers: [
+            {conditionId: 'trapped', probability: 0.75, conditionDisplayName: 'Trapped'},
+            {conditionId: 'cursedSoil', probability: 0.75, conditionDisplayName: 'Cursed Soil'}
+        ]
     },
     enrage: {
         actionId: 'enrage',
@@ -30,7 +34,7 @@ export const enemyActions: {[key: string]: Action} = {
             level: 1
         }],
         target: 'self',
-        actionCost: '0.5',
-        noticeable: '1'
+        actionCost: 0.5,
+        noticeable: 1
     },
 };

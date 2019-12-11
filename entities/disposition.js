@@ -91,6 +91,7 @@ export class Disposition {
         }
         else {
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
+            this._checkForTriggers(source, target, action);
             if (action.target === 'self') {
                 if (action.actionId === 'accessInventory') {
                     if (source instanceof Player) {
@@ -169,6 +170,31 @@ export class Disposition {
         }
         this.scene.drawDisposition(this);
         this.shouldContinueFight();
+    }
+    _checkForTriggers(source, target, action) {
+        source.currentEffects.forEach((effect, index) => {
+            var _a;
+            if (effect.type === 'conditional') {
+                console.log(`Conditional effect %c${effect.effectId} %cis getting checked`, 'color: red', 'color: auto', effect);
+                (_a = action.triggers) === null || _a === void 0 ? void 0 : _a.forEach(trigger => {
+                    if (trigger.conditionId === effect.effectId) {
+                        const triggerRoll = Math.random();
+                        console.log(`Trigger probability of ${trigger.probability} vs trigger roll of ${triggerRoll}`);
+                        if (triggerRoll < trigger.probability) {
+                            console.log('Triggered!', 'applying new effect,', effect.levels[effect.currentLevel]);
+                            source.currentEffects.splice(index, 1);
+                            effect.levels[effect.currentLevel].forEach(effectOfTheTrigger => {
+                                effectOfTheTrigger.currentLevel = effect.currentLevel;
+                                source.applyEffect(effectOfTheTrigger);
+                            });
+                        }
+                        else {
+                            console.log('Avoided!');
+                        }
+                    }
+                });
+            }
+        });
     }
 }
 const enemiesList = {

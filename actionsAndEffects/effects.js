@@ -101,6 +101,23 @@ export const effects = {
         source: null,
         statusImage: { texture: 'icons', frame: 62 },
     },
+    agilityDown: {
+        effectId: 'agilityDown',
+        name: 'Agility down',
+        description: 'Agility is decreased',
+        type: 'passive',
+        targetCharacteristic: 'attributes.agility',
+        baseDuration: 3,
+        levels: {
+            1: -1.33,
+            2: -1.66,
+            3: -2
+        },
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
+        statusImage: { texture: 'icons', frame: 35 },
+    },
     initiativeUp: {
         effectId: 'initiativeUp',
         name: 'Initiative up',
@@ -118,13 +135,13 @@ export const effects = {
         source: null,
         statusImage: { texture: 'icons', frame: 36 },
     },
-    trapped: {
-        effectId: 'trapped',
-        name: 'Trap prepared',
-        description: 'Trap is set on the character\'s path',
-        type: 'conditional',
-        targetCharacteristic: 'parameters.currentHealth',
-        baseDuration: -1,
+    fireResistanceUp: {
+        effectId: 'fireResistanceUp',
+        name: 'Fire resistance up',
+        description: 'Fire resistance is increased',
+        type: 'passive',
+        targetCharacteristic: 'defences.fireResistance',
+        baseDuration: 3,
         levels: {
             1: +1.33,
             2: +1.66,
@@ -133,7 +150,88 @@ export const effects = {
         durationLeft: null,
         currentLevel: null,
         source: null,
+        statusImage: { texture: 'icons', frame: 57 },
+    },
+    trapped: {
+        effectId: 'trapped',
+        name: 'Trap prepared',
+        description: 'Trap is set on the character\'s path',
+        type: 'conditional',
+        targetCharacteristic: 'parameters.currentHealth',
+        baseDuration: -1,
+        levels: {
+            1: [{
+                    effectId: 'physicalDamage',
+                    name: null,
+                    description: null,
+                    type: 'direct',
+                    targetCharacteristic: 'parameters.currentHealth',
+                    baseDuration: null,
+                    levels: {
+                        1: 5,
+                        2: 10,
+                        3: 15
+                    },
+                    durationLeft: null,
+                    currentLevel: null,
+                    source: null,
+                    statusImage: { texture: 'icons', frame: 0 },
+                }],
+            2: 10,
+            3: 15
+        },
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
         statusImage: { texture: 'icons', frame: 174 },
+    },
+    cursedSoil: {
+        effectId: 'cursedSoil',
+        name: 'Cursed soil',
+        description: 'The soil is cursed on the character\'s path',
+        type: 'conditional',
+        baseDuration: -1,
+        levels: {
+            1: [{
+                    effectId: 'physicalDamage',
+                    name: null,
+                    description: null,
+                    type: 'direct',
+                    targetCharacteristic: 'parameters.currentHealth',
+                    baseDuration: null,
+                    levels: {
+                        1: 5,
+                        2: 10,
+                        3: 15
+                    },
+                    durationLeft: null,
+                    currentLevel: null,
+                    source: null,
+                    statusImage: { texture: 'icons', frame: 0 },
+                }, {
+                    effectId: 'agilityDown',
+                    name: 'Agility down',
+                    description: 'Agility is decreased',
+                    type: 'passive',
+                    targetCharacteristic: 'attributes.agility',
+                    baseDuration: 3,
+                    levels: {
+                        1: -1.33,
+                        2: -1.66,
+                        3: -2
+                    },
+                    durationLeft: null,
+                    currentLevel: null,
+                    source: null,
+                    statusImage: { texture: 'icons', frame: 35 },
+                }],
+            2: 10,
+            3: 15
+        },
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
+        statusImage: { texture: 'icons', frame: 283 },
     },
     physicalDamage: {
         effectId: 'physicalDamage',

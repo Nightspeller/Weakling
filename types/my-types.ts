@@ -30,7 +30,7 @@ interface Effect {
     name: string;
     description: string;
     type: 'direct' | 'passive' | 'conditional'
-    targetCharacteristic: string;
+    targetCharacteristic?: string;
     baseDuration: number;
     levels: object,
     durationLeft: number;
@@ -52,11 +52,12 @@ interface Action {
     actionCost: number;
     actionDescription: string;
     type: 'physical' | 'magical' | 'misc';
-    noticeable: string;
+    noticeable: number;
     actionName: string;
     target: 'self' | 'enemy' | 'friend' | 'any' | 'all' | 'allEnemies' | 'allFriends' | 'party';
     special?: string;
     requires?: string;
+    triggers?: {conditionId: string, probability: number, conditionDisplayName: string}[];
 }
 
 interface Weapon {
