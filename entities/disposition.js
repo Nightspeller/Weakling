@@ -172,8 +172,11 @@ export class Disposition {
         this.shouldContinueFight();
     }
     _checkForTriggers(source, target, action) {
-        source.currentEffects.forEach((effect, index) => {
-            var _a;
+        var _a;
+        let sourceEffectsLength = source.currentEffects.length;
+        for (let index = 0; index < sourceEffectsLength; index++) {
+            console.log(sourceEffectsLength);
+            let effect = source.currentEffects[index];
             if (effect.type === 'conditional') {
                 console.log(`Conditional effect %c${effect.effectId} %cis getting checked`, 'color: red', 'color: auto', effect);
                 (_a = action.triggers) === null || _a === void 0 ? void 0 : _a.forEach(trigger => {
@@ -183,6 +186,8 @@ export class Disposition {
                         if (triggerRoll < trigger.probability) {
                             console.log('Triggered!', 'applying new effect,', effect.levels[effect.currentLevel]);
                             source.currentEffects.splice(index, 1);
+                            index--;
+                            sourceEffectsLength--;
                             effect.levels[effect.currentLevel].forEach(effectOfTheTrigger => {
                                 effectOfTheTrigger.currentLevel = effect.currentLevel;
                                 source.applyEffect(effectOfTheTrigger);
@@ -194,7 +199,7 @@ export class Disposition {
                     }
                 });
             }
-        });
+        }
     }
 }
 const enemiesList = {

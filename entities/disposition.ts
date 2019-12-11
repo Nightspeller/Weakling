@@ -191,7 +191,10 @@ export class Disposition {
     }
 
     private _checkForTriggers(source: GeneralEntity, target: GeneralEntity, action: Action) {
-        source.currentEffects.forEach((effect, index) => {
+        let sourceEffectsLength = source.currentEffects.length;
+        for (let index = 0; index < sourceEffectsLength; index++) {
+            console.log(sourceEffectsLength);
+            let effect = source.currentEffects[index];
             if (effect.type === 'conditional') {
                 console.log(`Conditional effect %c${effect.effectId} %cis getting checked`, 'color: red', 'color: auto', effect);
                 action.triggers?.forEach(trigger => {
@@ -201,6 +204,8 @@ export class Disposition {
                         if (triggerRoll < trigger.probability) {
                             console.log('Triggered!', 'applying new effect,', effect.levels[effect.currentLevel]);
                             source.currentEffects.splice(index, 1);
+                            index--;
+                            sourceEffectsLength--;
                             effect.levels[effect.currentLevel].forEach(effectOfTheTrigger => {
                                 effectOfTheTrigger.currentLevel = effect.currentLevel;
                                 source.applyEffect(effectOfTheTrigger);
@@ -211,7 +216,7 @@ export class Disposition {
                     }
                 });
             }
-        });
+        }
     }
 }
 
