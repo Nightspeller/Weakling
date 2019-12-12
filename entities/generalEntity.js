@@ -253,8 +253,8 @@ export default class GeneralEntity {
     }
     recalculateCharacteristics() {
         this.currentEffects.forEach((effect, i) => {
-            let target = effect.targetCharacteristic.split('.');
             if (effect.type === 'passive') {
+                let target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] + effect.modifier.value;
                 }
@@ -263,6 +263,7 @@ export default class GeneralEntity {
                 }
             }
             if (effect.type === 'direct') {
+                let target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] + effect.modifier.value;
                 }
