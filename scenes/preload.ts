@@ -86,6 +86,6 @@ export class PreloadScene extends Phaser.Scene {
     }
     create() {
         console.log('Preload done, calling WorldMap');
-        this.scene.start("Fight");
+        this.scene.start("WorldMap");
     }
 }
