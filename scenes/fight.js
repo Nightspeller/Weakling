@@ -53,7 +53,6 @@ export class FightScene extends Phaser.Scene {
         disposition.currentCharacter.drawMakingTurnGraphics(this);
         disposition.currentCharacter.drawActionPoints(this);
         if (disposition.currentCharacter instanceof Player) {
-            console.log('drawing player interface for', disposition.currentCharacter.name);
             this.drawActionInterface(disposition);
         }
     }

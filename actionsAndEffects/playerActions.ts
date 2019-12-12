@@ -153,16 +153,16 @@ export class PlayerActions {
             actionName: 'Meditate',
             actionDescription: 'Clear your mind, balance and expand your energies',
             effect: [{
-                effectId: 'manna',
-                source: '',
-                level: 10
+                effectId: 'restoreManna',
+                source: 'meditate',
+                level: 1
             }, {
-                effectId: 'energy',
-                source: '',
-                level: 10
+                effectId: 'restoreEnergy',
+                source: 'meditate',
+                level: 1
             }],
-            target: 'enemy',
-            actionCost: 0.5,
+            target: 'self',
+            actionCost: 1,
             noticeable: 0
         }, {
             actionId: 'accessInventory',

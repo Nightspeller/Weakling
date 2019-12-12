@@ -36,6 +36,32 @@ export default class GeneralEntity {
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
+        this.characteristicsModifiers = {
+            attributes: {
+                strength: null,
+                agility: null,
+                intelligence: null,
+                initiative: null
+            },
+            parameters: {
+                health: null,
+                currentHealth: null,
+                manna: null,
+                currentManna: null,
+                energy: null,
+                currentEnergy: null,
+            },
+            defences: {
+                armor: null,
+                dodge: null,
+                fireResistance: null,
+                coldResistance: null,
+                acidResistance: null,
+                electricityResistance: null,
+                poisonResistance: null,
+                magicResistance: null,
+            }
+        };
     }
     drawMakingTurnGraphics(scene) {
         this.makingTurnGraphics = scene.add.graphics()
@@ -227,32 +253,23 @@ export default class GeneralEntity {
     }
     recalculateCharacteristics() {
         this.currentEffects.forEach((effect, i) => {
+            let target = effect.targetCharacteristic.split('.');
             if (effect.type === 'passive') {
-                let target = effect.targetCharacteristic.split('.');
-                if (target.length === 2) {
-                    if (effect.modifierValue !== undefined) {
-                        this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] - effect.modifierValue;
-                    }
-                    else {
-                        this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] * effect.levels[effect.currentLevel];
-                    }
+                if (effect.modifier.type === 'value') {
+                    this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] + effect.modifier.value;
                 }
-            }
-            if (effect.type === 'conditional') {
-                console.log('conditional effect is on the target');
+                if (effect.modifier.type === 'percent') {
+                    this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] + this.baseCharacteristics[target[0]][target[1]] * (effect.modifier.value / 100);
+                }
             }
             if (effect.type === 'direct') {
-                let target = effect.targetCharacteristic.split('.');
-                if (target[1] === 'currentHealth') {
-                    console.log('dealing physical damage', effect);
-                    if (effect.modifierValue !== undefined) {
-                        this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.modifierValue;
-                    }
-                    else {
-                        this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] - effect.levels[effect.currentLevel];
-                    }
-                    this.currentEffects.splice(i, 1);
+                if (effect.modifier.type === 'value') {
+                    this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] + effect.modifier.value;
                 }
+                if (effect.modifier.type === 'percent') {
+                    this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] + this.currentCharacteristics[target[0]][target[1]] * (effect.modifier.value / 100);
+                }
+                this.currentEffects.splice(i, 1);
             }
         });
     }

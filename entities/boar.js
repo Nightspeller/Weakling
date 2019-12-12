@@ -40,13 +40,19 @@ export class Boar extends EnemyEntity {
             magical: 0,
             misc: 0
         };
+        this.weapon = { damage: 3 };
     }
     aiTurn(disposition) {
         const currentAICharacter = this;
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.includes(effects.intelligenceDown) ? 'wildRush' : 'enrage';
-        disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
+        if (action === 'enrage') {
+            disposition.processAction(currentAICharacter, currentAICharacter, enemyActions[action]);
+        }
+        else {
+            disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
+        }
     }
     startRound(roundType) {
         this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;

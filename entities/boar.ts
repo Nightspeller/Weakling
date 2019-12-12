@@ -4,6 +4,7 @@ import {Disposition} from "./disposition.js";
 import {enemyActions} from "../actionsAndEffects/enemyActions.js";
 
 export class Boar extends EnemyEntity {
+    private weapon: { damage: number };
     constructor() {
         super();
         this.spriteParams = {texture: 'boar-avatar', frame: null};
@@ -42,6 +43,7 @@ export class Boar extends EnemyEntity {
             magical: 0,
             misc: 0
         };
+        this.weapon = {damage: 3};
     }
 
     public aiTurn(disposition: Disposition) {
@@ -49,7 +51,12 @@ export class Boar extends EnemyEntity {
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.includes(effects.intelligenceDown) ? 'wildRush' : 'enrage';
-        disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
+        if (action === 'enrage'){
+            disposition.processAction(currentAICharacter, currentAICharacter, enemyActions[action]);
+        } else {
+            disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
+        }
+
     }
 
     public startRound(roundType: 'preparation' | 'battle') {

@@ -24,10 +24,10 @@ export default class Player extends GeneralEntity {
             parameters: {
                 health: 5,
                 currentHealth: 5,
-                manna: 25,
-                currentManna: 25,
-                energy: 50,
-                currentEnergy: 50,
+                manna: 5,
+                currentManna: 5,
+                energy: 10,
+                currentEnergy: 10,
             },
             defences: {
                 armor: 10,

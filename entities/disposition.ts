@@ -106,84 +106,34 @@ export class Disposition {
         }
     }
 
-    public processAction(source: GeneralEntity, target: GeneralEntity/* | GeneralEntity[]*/, action: Action) {
+    public processAction(source: GeneralEntity, target: GeneralEntity, action: Action) {
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         if (source.actionPoints[action.type] < action.actionCost) {
             return false;
         } else {
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
             this._checkForTriggers(source, target, action);
-            if (action.target === 'self') {
-                if (action.actionId === 'accessInventory') {
-                    if (source instanceof Player) {
-                        this.scene.inventory.showInventory(source);
-                    }
-                } else {
-                    action.effect.forEach(effectDescription => {
-                        const effect = effects[effectDescription.effectId];
-                        effect.currentLevel = effectDescription.level;
-                        effect.durationLeft = effect.baseDuration;
-                        effect.source = effectDescription.source;
-                        source.applyEffect(effect);
-                    });
+            if (action.actionId === 'accessInventory') {
+                if (source instanceof Player) {
+                    this.scene.inventory.showInventory(source);
                 }
-            }
-            if (action.target === 'enemy') {
+            } else {
                 action.effect.forEach(effectDescription => {
                     const effect = effects[effectDescription.effectId];
                     effect.currentLevel = effectDescription.level;
                     effect.durationLeft = effect.baseDuration;
                     effect.source = effectDescription.source;
-                    if (target instanceof GeneralEntity) {
-                        if (effect.type === 'direct') {
-                            if (effect.effectId === 'physicalDamage') {
-                                let hitChance: number;
-                                if (source.currentCharacteristics.attributes.agility > target.currentCharacteristics.defences.dodge * 1.5) {
-                                    hitChance = 0.9;
-                                } else if (source.currentCharacteristics.attributes.agility < target.currentCharacteristics.defences.dodge * 0.5) {
-                                    hitChance = 0.1;
-                                } else {
-                                    hitChance = 0.8 * (source.currentCharacteristics.attributes.agility / target.currentCharacteristics.defences.dodge) - 0.3;
-                                }
-                                const hitRoll = Math.random();
-                                console.log(hitChance, hitRoll);
-                                if (hitChance >= hitRoll) {
-                                    console.log('HIT!');
-                                    if (source instanceof Player) {
-                                        const weapon = weapons[source.inventory.equipped.rightHand];
-                                        const penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor > 1 ? 1 : source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
-                                        console.log('Weapon Damage', weapon.damage);
-                                        console.log('Penetration', penetration, weapon.damage * penetration);
-                                        effect.modifierValue = weapon.damage * penetration;
-                                    } else {
-                                        const weaponDamage = effect.levels[effect.currentLevel];
-                                        const penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor > 1 ? 1 : source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
-                                        console.log('Weapon Damage', weaponDamage);
-                                        console.log('Penetration', penetration, weaponDamage * penetration);
-                                        effect.modifierValue = weaponDamage * penetration;
-                                    }
-
-                                    target.applyEffect(effect);
-                                    if (target.currentCharacteristics.parameters.currentHealth <= 0) {
-                                        target.isAlive = false;
-                                    }
-                                } else {
-                                    console.log('Miss..');
-                                }
-                            }
-                        }
-                        if (effect.type === 'passive') {
-                            target.applyEffect(effect);
-                        }
-                        if (effect.type === 'conditional') {
-                            target.applyEffect(effect);
-                        }
-
-                    } else {
-                        console.log('incorrect target passed');
+                    if (effect.applicationCheck(source, target, action)) {
+                        effect.setModifier(source, target, action);
+                        target.applyEffect(effect);
                     }
                 });
-
+                if (target.currentCharacteristics.parameters.currentHealth <= 0) {
+                    target.isAlive = false;
+                }
+                if (source.currentCharacteristics.parameters.currentHealth <= 0) {
+                    source.isAlive = false;
+                }
             }
         }
         this.scene.drawDisposition(this);
@@ -193,7 +143,6 @@ export class Disposition {
     private _checkForTriggers(source: GeneralEntity, target: GeneralEntity, action: Action) {
         let sourceEffectsLength = source.currentEffects.length;
         for (let index = 0; index < sourceEffectsLength; index++) {
-            console.log(sourceEffectsLength);
             let effect = source.currentEffects[index];
             if (effect.type === 'conditional') {
                 console.log(`Conditional effect %c${effect.effectId} %cis getting checked`, 'color: red', 'color: auto', effect);
@@ -202,14 +151,17 @@ export class Disposition {
                         const triggerRoll = Math.random();
                         console.log(`Trigger probability of ${trigger.probability} vs trigger roll of ${triggerRoll}`);
                         if (triggerRoll < trigger.probability) {
-                            console.log('Triggered!', 'applying new effect,', effect.levels[effect.currentLevel]);
+                            console.log('Triggered!', 'applying new effects,', effect.modifier.value);
                             source.currentEffects.splice(index, 1);
                             index--;
                             sourceEffectsLength--;
-                            effect.levels[effect.currentLevel].forEach(effectOfTheTrigger => {
-                                effectOfTheTrigger.currentLevel = effect.currentLevel;
-                                source.applyEffect(effectOfTheTrigger);
-                            });
+                            if (effect.modifier.type === 'effect') {
+                                effect.modifier.value.forEach(effectOfTheTrigger => {
+                                    const trapEffect = effects[effectOfTheTrigger];
+                                    trapEffect.setModifier();
+                                    source.applyEffect(trapEffect);
+                                });
+                            }
                         } else {
                             console.log('Avoided!');
                         }

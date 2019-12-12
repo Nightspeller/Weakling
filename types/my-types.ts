@@ -32,12 +32,14 @@ interface Effect {
     type: 'direct' | 'passive' | 'conditional'
     targetCharacteristic?: string;
     baseDuration: number;
-    levels: object,
     durationLeft: number;
     currentLevel: number;
     modifierValue?: number;
+    modifier?: Modifier;
     source: string;
     statusImage: SpriteParameters;
+    applicationCheck: Function;
+    setModifier: Function;
 }
 
 interface SpriteParameters {
@@ -57,13 +59,14 @@ interface Action {
     target: 'self' | 'enemy' | 'friend' | 'any' | 'all' | 'allEnemies' | 'allFriends' | 'party';
     special?: string;
     requires?: string;
-    triggers?: {conditionId: string, probability: number, conditionDisplayName: string}[];
+    triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
 }
 
 interface Weapon {
     weaponId: string;
     slot: 'any' | 'anyHand' | 'rightHand' | 'leftHand' | 'twoHands' | 'tail';
     damage: number;
+    size: string[];
 }
 
 interface Belt {
@@ -71,7 +74,8 @@ interface Belt {
     slot: 'belt';
     additionalCharacteristics: any[];
     quickSlots: number;
-    sprite: {key: string; frame: number};
+    sprite: { key: string; frame: number };
+    size: string[];
 }
 
 interface DialogOptions {
@@ -89,3 +93,15 @@ interface DialogOptions {
     textColor?: string;
     letterAppearanceDelay?: number;
 }
+
+interface EffectModifier {
+    type: 'effect';
+    value: string[];
+}
+
+interface ValueModifier {
+    type: 'percent' | 'value';
+    value: number;
+}
+
+type Modifier = EffectModifier | ValueModifier;
