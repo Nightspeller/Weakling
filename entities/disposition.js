@@ -48,8 +48,9 @@ export class Disposition {
         //this.scene.inventory.showInventory(this.currentCharacter);
         this.scene.drawDisposition(this);
         if (this.currentCharacter instanceof EnemyEntity) {
-            this.aiTurn();
-            this.endTurn();
+            this.aiTurn().then(() => {
+                this.endTurn();
+            });
         }
     }
     endTurn() {
@@ -77,8 +78,8 @@ export class Disposition {
                 .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
     }
-    aiTurn() {
-        this.currentCharacter.aiTurn(this);
+    async aiTurn() {
+        await this.currentCharacter.aiTurn(this);
     }
     shouldContinueFight() {
         if (!this.enemyCharacters.some(char => char.isAlive)) {

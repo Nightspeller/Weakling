@@ -15,7 +15,7 @@ export class Disposition {
     public enemyCharactersPositions: { frontTop: EnemyEntity; frontBottom: EnemyEntity; backTop: EnemyEntity; backBottom: EnemyEntity };
     public currentPhase: 'preparation' | 'battle';
     public turnOrder: generalEntity[];
-    private scene: FightScene;
+    public scene: FightScene;
 
     constructor(playerCharacters, enemyCharacters, location, scene: FightScene) {
         this.scene = scene;
@@ -68,8 +68,9 @@ export class Disposition {
         //this.scene.inventory.showInventory(this.currentCharacter);
         this.scene.drawDisposition(this);
         if (this.currentCharacter instanceof EnemyEntity) {
-            this.aiTurn();
-            this.endTurn();
+            this.aiTurn().then(() => {
+                this.endTurn();
+            });
         }
     }
 
@@ -78,7 +79,7 @@ export class Disposition {
         this.currentCharacter.actedThisRound = true;
         this.turnOrder.shift();
         if (this.turnOrder.length !== 0) {
-            this.startTurn()
+            this.startTurn();
         } else {
             this.endRound();
         }
@@ -98,8 +99,8 @@ export class Disposition {
         }
     }
 
-    public aiTurn() {
-        this.currentCharacter.aiTurn(this);
+    public async aiTurn() {
+        await this.currentCharacter.aiTurn(this);
     }
 
     private shouldContinueFight() {

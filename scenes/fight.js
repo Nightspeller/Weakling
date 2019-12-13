@@ -115,10 +115,7 @@ export class FightScene extends Phaser.Scene {
                 button.on('pointerdown', function () {
                     if (action.target === 'self') {
                         currentCharacter.battleImage.setDepth(2);
-                        scene.add.sprite(currentCharacter.battleImage.getCenter().x, currentCharacter.battleImage.getCenter().y, 'player').setDepth(1)
-                            .play('defense_up_animation').on('animationcomplete', function (currentAnim, currentFrame, sprite) {
-                            currentCharacter.battleImage.setDepth(null);
-                            sprite.destroy();
+                        currentCharacter.playCastAnimation(scene).then(() => {
                             disposition.processAction(currentCharacter, currentCharacter, action);
                         });
                     }
@@ -150,7 +147,9 @@ export class FightScene extends Phaser.Scene {
                                     this.setBackgroundColor(null);
                                     // @ts-ignore
                                     Object.values(disposition.enemyCharactersPositions).forEach(enemy => enemy.battleImage.off('pointerdown'));
-                                    disposition.processAction(currentCharacter, enemy, action);
+                                    currentCharacter.playMeleeAttackAnimation(scene, enemy).then(() => {
+                                        disposition.processAction(currentCharacter, enemy, action);
+                                    });
                                 });
                             }
                         });

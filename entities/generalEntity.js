@@ -299,8 +299,47 @@ export default class GeneralEntity {
     }
     endTurn() {
     }
-    aiTurn(disposition) {
+    async aiTurn(disposition) {
     }
     ;
+    playMeleeAttackAnimation(scene, target) {
+        return new Promise((resolve, reject) => {
+            const prevX = this.battleImage.x;
+            const prevY = this.battleImage.y;
+            const enemyX = prevX < 400 ? target.battleImage.x - 96 : target.battleImage.x + 96;
+            const enemyY = target.battleImage.y;
+            scene.tweens.add({
+                targets: this.battleImage,
+                props: {
+                    x: {
+                        value: enemyX,
+                    },
+                    y: {
+                        value: enemyY,
+                    }
+                },
+                ease: 'Back.easeOut',
+                duration: 500,
+                yoyo: true,
+                /*paused: true,
+                onActive: function () { addEvent('onActive') },
+                onStart: function () { addEvent('onStart') },
+                onLoop: function () { addEvent('onLoop') },
+                onYoyo: function () {  resolve() },
+                onRepeat: function () { addEvent('onRepeat') },*/
+                onComplete: function () { resolve(); }
+            });
+        });
+    }
+    playCastAnimation(scene) {
+        return new Promise((resolve, reject) => {
+            scene.add.sprite(this.battleImage.getCenter().x, this.battleImage.getCenter().y, 'player').setDepth(1)
+                .play('defense_up_animation').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                this.battleImage.setDepth(null);
+                sprite.destroy();
+                resolve();
+            });
+        });
+    }
 }
 //# sourceMappingURL=generalEntity.js.map
