@@ -28,11 +28,20 @@ export class Disposition {
     }
     startRound() {
         this.currentPhase = this.currentPhase !== undefined ? 'battle' : 'preparation';
-        console.log('Starting new round on the disposition', this.currentPhase);
+        console.log(`---------------------------%cSTART ${this.currentPhase} ROUND%c---------------------------`, 'color: red', 'color: auto');
         [...this.playerCharacters, ...this.enemyCharacters].forEach(char => char.actedThisRound = false);
         this.turnOrder = this.calculateTurnOrder();
         this.turnOrder.forEach(char => char.startRound(this.currentPhase));
         this.startTurn();
+    }
+    endRound() {
+        console.log('---------------------------%cEND ROUND%c---------------------------', 'color: red', 'color: auto');
+        [...this.playerCharacters, ...this.enemyCharacters].forEach(char => {
+            if (char.isAlive) {
+                char.endRound();
+            }
+        });
+        this.startRound();
     }
     startTurn() {
         this.currentCharacter = this.turnOrder[0];
@@ -51,8 +60,7 @@ export class Disposition {
             this.startTurn();
         }
         else {
-            console.log('Turn order is empty, round is over');
-            this.startRound();
+            this.endRound();
         }
     }
     calculateTurnOrder() {
@@ -97,7 +105,7 @@ export class Disposition {
             }
             else {
                 action.effect.forEach(effectDescription => {
-                    const effect = effects[effectDescription.effectId];
+                    const effect = { ...effects[effectDescription.effectId] };
                     effect.currentLevel = effectDescription.level;
                     effect.durationLeft = effect.baseDuration;
                     effect.source = effectDescription.source;
@@ -123,7 +131,6 @@ export class Disposition {
         for (let index = 0; index < sourceEffectsLength; index++) {
             let effect = source.currentEffects[index];
             if (effect.type === 'conditional') {
-                console.log(`Conditional effect %c${effect.effectId} %cis getting checked`, 'color: red', 'color: auto', effect);
                 (_a = action.triggers) === null || _a === void 0 ? void 0 : _a.forEach(trigger => {
                     if (trigger.conditionId === effect.effectId) {
                         const triggerRoll = Math.random();
@@ -135,7 +142,9 @@ export class Disposition {
                             sourceEffectsLength--;
                             if (effect.modifier.type === 'effect') {
                                 effect.modifier.value.forEach(effectOfTheTrigger => {
-                                    const trapEffect = effects[effectOfTheTrigger];
+                                    const trapEffect = { ...effects[effectOfTheTrigger] };
+                                    trapEffect.durationLeft = trapEffect.baseDuration;
+                                    trapEffect.source = effect.source;
                                     trapEffect.setModifier();
                                     source.applyEffect(trapEffect);
                                 });

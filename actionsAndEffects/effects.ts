@@ -242,15 +242,20 @@ export const effects: { [key: string]: Effect } = {
         statusImage: {texture: 'icons', frame: 0},
         applicationCheck: (source, target, action) => {
             let hitChance: number;
-            if (source.currentCharacteristics.attributes.agility > target.currentCharacteristics.defences.dodge * 1.5) {
+            const agility = source.currentCharacteristics.attributes.agility;
+            const dodge =  target.currentCharacteristics.defences.dodge;
+            if (agility > dodge * 1.5) {
                 hitChance = 0.9;
-            } else if (source.currentCharacteristics.attributes.agility < target.currentCharacteristics.defences.dodge * 0.5) {
+            } else if (agility < dodge * 0.5) {
                 hitChance = 0.1;
             } else {
-                hitChance = 0.8 * (source.currentCharacteristics.attributes.agility / target.currentCharacteristics.defences.dodge) - 0.3;
+                hitChance = 0.8 * (agility / dodge) - 0.3;
             }
             const hitRoll = Math.random();
-            hitChance >= hitRoll ? console.log('%cHit!', 'color: red') : console.log('%cMiss..', 'color: red');
+            hitChance >= hitRoll ?
+                console.log(`%cHit!   %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance*100}%. Roll was ${1-hitRoll}, for success had to be higher then ${1-hitChance}`, 'color: red', 'color: auto')
+                :
+                console.log(`%cMiss.. %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance*100}%. Roll was ${1-hitRoll}, for success had to be higher then ${1-hitChance}`, 'color: red', 'color: auto');
             return hitChance >= hitRoll;
         },
         setModifier: function(source, target, action) {
@@ -262,6 +267,7 @@ export const effects: { [key: string]: Effect } = {
             }
             let penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
             penetration = penetration < 1 ? penetration : 1;
+            console.log(`%c${weapon.damage * penetration} damage is done. %c${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${penetration*100}%. Weapon attack power was ${weapon.damage}, thus final damage is ${weapon.damage * penetration}`, 'color: red', 'color: auto')
             this.modifier = {
                 type: 'value',
                 value: - (weapon.damage * penetration)
@@ -294,11 +300,6 @@ export const effects: { [key: string]: Effect } = {
         type: 'direct',
         targetCharacteristic: 'parameters.currentEnergy',
         baseDuration: null,
-        levels: {
-            1: 3,
-            2: 4,
-            3: 5
-        },
         durationLeft: null,
         currentLevel: null,
         source: null,

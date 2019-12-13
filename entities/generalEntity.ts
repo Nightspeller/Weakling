@@ -62,32 +62,6 @@ export default class GeneralEntity {
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
-        this.characteristicsModifiers = {
-            attributes: {
-                strength: null,
-                agility: null,
-                intelligence: null,
-                initiative: null
-            },
-            parameters: {
-                health: null,
-                currentHealth: null,
-                manna: null,
-                currentManna: null,
-                energy: null,
-                currentEnergy: null,
-            },
-            defences: {
-                armor: null,
-                dodge: null,
-                fireResistance: null,
-                coldResistance: null,
-                acidResistance: null,
-                electricityResistance: null,
-                poisonResistance: null,
-                magicResistance: null,
-            }
-        };
     }
 
     public drawMakingTurnGraphics(scene) {
@@ -324,19 +298,41 @@ export default class GeneralEntity {
         } else {
             this.currentEffects.push(effect);
         }
-
         this.recalculateCharacteristics();
     }
 
     private recalculateCharacteristics() {
+        this.characteristicsModifiers = {
+            attributes: {
+                strength: 0,
+                agility: 0,
+                intelligence: 0,
+                initiative: 0
+            },
+            parameters: {
+                health: 0,
+                manna: 0,
+                energy: 0,
+            },
+            defences: {
+                armor: 0,
+                dodge: 0,
+                fireResistance: 0,
+                coldResistance: 0,
+                acidResistance: 0,
+                electricityResistance: 0,
+                poisonResistance: 0,
+                magicResistance: 0,
+            }
+        };
         this.currentEffects.forEach((effect, i) => {
             if (effect.type === 'passive') {
                 let target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
-                    this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] + effect.modifier.value;
+                    this.characteristicsModifiers[target[0]][target[1]] = this.characteristicsModifiers[target[0]][target[1]] + effect.modifier.value;
                 }
                 if (effect.modifier.type === 'percent') {
-                    this.currentCharacteristics[target[0]][target[1]] = this.baseCharacteristics[target[0]][target[1]] + this.baseCharacteristics[target[0]][target[1]] * (effect.modifier.value / 100);
+                    this.characteristicsModifiers[target[0]][target[1]] = this.characteristicsModifiers[target[0]][target[1]] + this.baseCharacteristics[target[0]][target[1]] * (effect.modifier.value / 100);
                 }
             }
             if (effect.type === 'direct') {
@@ -350,18 +346,22 @@ export default class GeneralEntity {
                 this.currentEffects.splice(i, 1);
             }
         });
+        Object.entries(this.characteristicsModifiers).forEach(([firstKey, value]) => {
+            Object.entries(value).forEach(([secondKey, value]) => {
+                this.currentCharacteristics[firstKey][secondKey] = this.baseCharacteristics[firstKey][secondKey] + this.characteristicsModifiers[firstKey][secondKey]
+            })
+        })
     }
 
     private recalculateEffects() {
-        this.currentEffects.forEach((effect, i) => {
+        this.currentEffects = this.currentEffects.filter((effect, i) => {
             if (effect.durationLeft === 1) {
-                console.log('-----------------------removing effect', effect);
-                this.currentEffects.splice(i, 1);
+                return false
             } else {
                 if (effect.durationLeft !== -1) {
-                    console.log('-----------------------decreasing effect duration', effect);
-                    this.currentEffects[i].durationLeft--;
+                    effect.durationLeft--;
                 }
+                return true;
             }
         });
     }
@@ -370,13 +370,17 @@ export default class GeneralEntity {
 
     }
 
+    public endRound() {
+        this.recalculateEffects();
+        this.recalculateCharacteristics();
+    }
+
     public startTurn() {
 
     }
 
     public endTurn() {
-        //this.recalculateCharacteristics();
-        //this.recalculateEffects();
+
     }
 
     public aiTurn(disposition: Disposition) {

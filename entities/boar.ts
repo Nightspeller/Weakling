@@ -50,7 +50,7 @@ export class Boar extends EnemyEntity {
         const currentAICharacter = this;
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-        const action = this.currentEffects.includes(effects.intelligenceDown) ? 'wildRush' : 'enrage';
+        const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
         if (action === 'enrage'){
             disposition.processAction(currentAICharacter, currentAICharacter, enemyActions[action]);
         } else {
