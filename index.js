@@ -2,6 +2,7 @@ import { PreloadScene } from './scenes/preload.js';
 import { WorldMapScene } from "./scenes/worldMap.js";
 import { HouseScene } from "./scenes/house.js";
 import { FightScene } from "./scenes/fight.js";
+import { VillageScene } from "./scenes/village.js";
 const zoom = 1;
 const gameConfig = {
     title: 'Sample',
@@ -19,7 +20,7 @@ const gameConfig = {
     },
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, WorldMapScene, HouseScene, FightScene]
+    scene: [PreloadScene, WorldMapScene, HouseScene, FightScene, VillageScene]
 };
 export const game = new Phaser.Game(gameConfig);
 //# sourceMappingURL=index.js.map

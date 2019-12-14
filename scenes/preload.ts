@@ -65,6 +65,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('dirt1-dirt2', 'assets/images/tilesets/dirt1-dirt2.png');
         this.load.image('grass1', 'assets/images/tilesets/grass1.png');
         this.load.image('grass1-dirt2', 'assets/images/tilesets/grass1-dirt2.png');
+        this.load.image('grass1-dirt4', 'assets/images/tilesets/grass1-dirt4.png');
+        this.load.image('flowers', 'assets/images/tilesets/flowers.png');
         this.load.image('castle', 'assets/images/tilesets/castle.png');
 
         // Interface
@@ -94,6 +96,7 @@ export class PreloadScene extends Phaser.Scene {
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/caltor.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
+        this.load.tilemapTiledJSON('village', 'assets/tilemaps/village.json');
         this.load.tilemapTiledJSON('fight', 'assets/tilemaps/fight.json');
     }
     create() {

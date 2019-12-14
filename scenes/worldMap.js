@@ -33,6 +33,14 @@ export class WorldMapScene extends Phaser.Scene {
             .setVisible(false)
             .setImmovable();
         this.physics.add.collider(this.player.worldImage, houseDoor, () => this.scene.start("House"));
+        const villageObject = map.findObject("Objects", obj => obj.name === "Village");
+        const villagePortal = this.physics.add
+            .image(villageObject['x'], villageObject['y'], null)
+            .setOrigin(0, 0)
+            .setDisplaySize(villageObject['width'], villageObject['height'])
+            .setVisible(false)
+            .setImmovable();
+        this.physics.add.collider(this.player.worldImage, villagePortal, () => this.scene.start("Village"));
         const enemyObject = map.findObject("Objects", obj => obj.name === "Goblin");
         const enemy = this.physics.add
             .image(enemyObject['x'], enemyObject['y'], 'enemies', 2)
