@@ -114,7 +114,6 @@ export class FightScene extends Phaser.Scene {
                 const button = this.drawActionInterfaceButton(action, buttonX, buttonY, currentCharacter);
                 button.on('pointerdown', function () {
                     if (action.target === 'self') {
-                        currentCharacter.battleImage.setDepth(2);
                         currentCharacter.playCastAnimation(scene).then(() => {
                             disposition.processAction(currentCharacter, currentCharacter, action);
                         });
@@ -226,8 +225,22 @@ export class FightScene extends Phaser.Scene {
     }
     createAnimations() {
         this.anims.create({
-            key: 'defense_up_animation',
+            key: 'light_pillar_animation',
             frames: this.anims.generateFrameNames('light-pillar'),
+            duration: 500,
+            showOnStart: true,
+            hideOnComplete: true
+        });
+        this.anims.create({
+            key: 'light_pillar_animation_back',
+            frames: this.anims.generateFrameNames('light-pillar-back'),
+            duration: 500,
+            showOnStart: true,
+            hideOnComplete: true
+        });
+        this.anims.create({
+            key: 'light_pillar_animation_front',
+            frames: this.anims.generateFrameNames('light-pillar-front'),
             duration: 500,
             showOnStart: true,
             hideOnComplete: true

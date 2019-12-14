@@ -333,11 +333,16 @@ export default class GeneralEntity {
     }
     playCastAnimation(scene) {
         return new Promise((resolve, reject) => {
+            this.battleImage.setDepth(2);
             scene.add.sprite(this.battleImage.getCenter().x, this.battleImage.getCenter().y, 'player').setDepth(1)
-                .play('defense_up_animation').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                .play('light_pillar_animation_back').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
                 this.battleImage.setDepth(null);
                 sprite.destroy();
                 resolve();
+            });
+            scene.add.sprite(this.battleImage.getCenter().x, this.battleImage.getCenter().y, 'player').setDepth(3)
+                .play('light_pillar_animation_front').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                sprite.destroy();
             });
         });
     }

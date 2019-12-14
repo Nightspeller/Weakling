@@ -18,8 +18,8 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             letterAppearanceDelay: 10,
         };
         this.inventoryDisplayGroup = scene.add.group();
-        this.scene.load.image('doll', 'assets/images/characters/doll.png');
-        this.scene.load.image('inventory-slot', 'assets/images/characters/inventory-slot.png');
+        this.scene.load.image('doll', 'assets/images/interface/doll.png');
+        this.scene.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
     }
     showInventory(character, options, closeCallback) {
         console.log(character, options);

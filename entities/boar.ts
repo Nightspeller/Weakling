@@ -55,7 +55,8 @@ export class Boar extends EnemyEntity {
             await this.playCastAnimation(disposition.scene);
             disposition.processAction(currentAICharacter, currentAICharacter, enemyActions[action]);
         } else {
-            await this.playMeleeAttackAnimation(disposition.scene, randomAlivePlayer);
+            await this.playMeleeAttackAnimation(disposition.scene,
+                randomAlivePlayer);
             disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
         }
     }

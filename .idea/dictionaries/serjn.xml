@@ -2,6 +2,8 @@
   <dictionary name="serjn">
     <words>
       <w>phaser</w>
+      <w>tileset</w>
+      <w>tilesets</w>
     </words>
   </dictionary>
 </component>

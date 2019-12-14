@@ -52,29 +52,35 @@ export class PreloadScene extends Phaser.Scene {
             percentText.destroy();
             assetText.destroy();
         });
-        this.load.image('base', 'assets/images/Pipoya RPG Tileset 32x32/[Base]BaseChip_pipo.png');
-        this.load.image('dirt1-dirt2', 'assets/images/Pipoya RPG Tileset 32x32/[A]_type3/[A]Dirt1-Dirt2_pipo.png');
-        this.load.image('grass1', 'assets/images/Pipoya RPG Tileset 32x32/[A]_type3/[A]Grass1_pipo.png');
-        this.load.image('grass1-dirt2', 'assets/images/Pipoya RPG Tileset 32x32/[A]_type3/[A]Grass1-Dirt2_pipo.png');
-        this.load.image('castle', 'assets/images/castle.png');
+        // Tilesets
+        this.load.image('base', 'assets/images/tilesets/main.png');
+        this.load.image('dirt1-dirt2', 'assets/images/tilesets/dirt1-dirt2.png');
+        this.load.image('grass1', 'assets/images/tilesets/grass1.png');
+        this.load.image('grass1-dirt2', 'assets/images/tilesets/grass1-dirt2.png');
+        this.load.image('castle', 'assets/images/tilesets/castle.png');
+        // Interface
         this.load.image('interface', 'assets/images/interface/Interface.png');
-        this.load.image('weakling', 'assets/images/characters/weakling.png');
-        this.load.image('boar-avatar', 'assets/images/characters/boar-avatar.png');
-        this.load.image("dead-character", "assets/images/characters/dead_character.png");
-        this.load.spritesheet('solider', 'assets/images/characters/PIPOYA FREE RPG Character Sprites 32x32/Soldier/Soldier 01-1.png', { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet('enemies', 'assets/images/characters/RoguelikeSprites@512_mod.png', { frameWidth: 128, frameHeight: 128 });
-        this.load.spritesheet("player", "assets/images/sprites/Martha Pink.png", { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet("stranger", "assets/images/characters/PIPOYA FREE RPG Character Sprites 32x32/Male/Male 17-4.png", { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet("icons", "assets/images/Shikashi's Fantasy Icons Pack/Background 2c.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet("action-points", "assets/images/interface/action-points.png", { frameWidth: 16, frameHeight: 16 });
-        //animations
-        this.load.spritesheet("light-pillar", "assets/images/animations/Pipoya VFX LightPillar/192x192/pipo-mapeffect013a.png", { frameWidth: 192, frameHeight: 192 });
+        this.load.spritesheet("icons", 'assets/images/interface/icons-with-background.png', { frameWidth: 32, frameHeight: 32 });
+        // World characters images
+        this.load.spritesheet("martha", "assets/images/characters/world-map/party/martha-pink.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('solider', 'assets/images/characters/world-map/neutral/solider.png', { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('enemies', 'assets/images/characters/various-enemies.png', { frameWidth: 128, frameHeight: 128 });
+        this.load.spritesheet("stranger", "assets/images/characters/world-map/neutral/stranger.png", { frameWidth: 32, frameHeight: 32 });
+        // Battle characters images
+        this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
+        this.load.image('boar-avatar', 'assets/images/characters/battle/enemies/boar.png');
+        this.load.image("dead-character", "assets/images/characters/battle/dead-character.png");
+        // Items
+        this.load.image("rope-belt", "assets/images/items/rope-belt.png");
+        // Animations
+        this.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", { frameWidth: 192, frameHeight: 192 });
+        this.load.spritesheet("light-pillar-back", "assets/images/animations/light-pillar/light-pillar-yellow-back.png", { frameWidth: 192, frameHeight: 192 });
+        this.load.spritesheet("light-pillar-front", "assets/images/animations/light-pillar/light-pillar-yellow-front.png", { frameWidth: 192, frameHeight: 192 });
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/caltor.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
         this.load.tilemapTiledJSON('fight', 'assets/tilemaps/fight.json');
-        // items
-        this.load.image("rope-belt", "assets/images/items/rope-belt.png");
     }
     create() {
         console.log('Preload done, calling WorldMap');

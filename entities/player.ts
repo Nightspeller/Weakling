@@ -16,7 +16,7 @@ export default class Player extends GeneralEntity {
         super();
         this.scene = scene;
         this.createAnimations();
-        this.worldImage = scene.physics.add.sprite(x, y, "player", 1).setOrigin(0, 0);
+        this.worldImage = scene.physics.add.sprite(x, y, "martha", 1).setOrigin(0, 0);
         this.spriteParams = {texture: 'weakling', frame: null};
         this.worldImage.anims.play("idle_down");
         this.keys = scene.input.keyboard.createCursorKeys();
@@ -86,49 +86,49 @@ export default class Player extends GeneralEntity {
         const anims = this.scene.anims;
         anims.create({
             key: 'walk_down',
-            frames: anims.generateFrameNames('player', {start: 0, end: 2}),
+            frames: anims.generateFrameNames('martha', {start: 0, end: 2}),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: 'walk_up',
-            frames: anims.generateFrameNames('player', {start: 9, end: 11}),
+            frames: anims.generateFrameNames('martha', {start: 9, end: 11}),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: 'walk_right',
-            frames: anims.generateFrameNames('player', {start: 6, end: 8}),
+            frames: anims.generateFrameNames('martha', {start: 6, end: 8}),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: 'walk_left',
-            frames: anims.generateFrameNames('player', {start: 3, end: 5}),
+            frames: anims.generateFrameNames('martha', {start: 3, end: 5}),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: 'idle_up',
-            frames: [{key: 'player', frame: 10}],
+            frames: [{key: 'martha', frame: 10}],
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: 'idle_down',
-            frames: [{key: 'player', frame: 1}],
+            frames: [{key: 'martha', frame: 1}],
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: 'idle_left',
-            frames: [{key: 'player', frame: 4}],
+            frames: [{key: 'martha', frame: 4}],
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: 'idle_right',
-            frames: [{key: 'player', frame: 7}],
+            frames: [{key: 'martha', frame: 7}],
             frameRate: 10,
             repeat: -1
         });
