@@ -117,7 +117,6 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             this.timedEvent = this.scene.time.addEvent({
                 delay: this.options.letterAppearanceDelay,
                 callback: () => {
-                    console.log('Cycling through the letters');
                     textGameObject.setText(text.slice(0, shownLettersCounter));
                     if (text.length === shownLettersCounter) {
                         this.timedEvent.remove();

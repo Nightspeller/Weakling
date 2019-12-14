@@ -75,7 +75,7 @@ export class Disposition {
     }
 
     public endTurn() {
-        console.log('Ending TURN on the scene');
+        console.log('%cTurn ended', 'color: green');
         this.currentCharacter.actedThisRound = true;
         this.turnOrder.shift();
         if (this.turnOrder.length !== 0) {

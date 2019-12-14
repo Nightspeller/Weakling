@@ -1,5 +1,4 @@
 import Player from "../entities/player.js";
-import Sprite = Phaser.Physics.Arcade.Sprite;
 
 export class HouseScene extends Phaser.Scene {
     private player: Player;
