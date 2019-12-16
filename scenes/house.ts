@@ -23,6 +23,15 @@ export class HouseScene extends Phaser.Scene {
         this.player = new Player(this, spawnPoint['x'], spawnPoint['y']);
         this.physics.add.collider(this.player.worldImage, layer2);
 
+        const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
+        const worldMapPortal = this.physics.add
+            .image(worldMapObject['x'], worldMapObject['y'], null)
+            .setOrigin(0, 0)
+            .setDisplaySize(worldMapObject['width'], worldMapObject['height'])
+            .setVisible(false)
+            .setImmovable();
+        this.physics.add.collider(this.player.worldImage, worldMapPortal, () => this.scene.start("WorldMap"));
+
         const camera = this.cameras.main;
         camera.startFollow(this.player.worldImage);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);

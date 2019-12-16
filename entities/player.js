@@ -69,7 +69,7 @@ export default class Player extends GeneralEntity {
             misc: 0
         };
         this.name = 'Weakling';
-        this.availableActions = ['meditate', 'accessInventory', 'drinkWeakHealthPotion', 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.currentEffects = [];
     }
     createAnimations() {

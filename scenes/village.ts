@@ -12,17 +12,34 @@ export class VillageScene extends Phaser.Scene {
     public create() {
         const map = this.make.tilemap({key: 'village'});
         const tileSet1 = map.addTilesetImage('main', 'base');
-        const tileSet2 = map.addTilesetImage('grass1-dirt4', 'grass1-dirt4');
-        const tileSet3 = map.addTilesetImage('flowers', 'flowers');
+        const tileSet2 = map.addTilesetImage('flowers', 'flowers');
+        const tileSet3 = map.addTilesetImage('dirt1', 'dirt1');
+        const tileSet4 = map.addTilesetImage('dirt2', 'dirt2');
+        const tileSet5 = map.addTilesetImage('dirt4', 'dirt4');
+        const tileSet6 = map.addTilesetImage('grass4', 'grass4');
+        const tileSet7 = map.addTilesetImage('grass1-dirt1', 'grass1-dirt1');
+        const tileSet8 = map.addTilesetImage('grass1-dirt2', 'grass1-dirt2');
+        const tileSet9 = map.addTilesetImage('grass1-dirt4', 'grass1-dirt4');
 
-        const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1, tileSet2, tileSet3], 0, 0);
-        const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet2, tileSet3], 0, 0);
-        const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2, tileSet3], 0, 0);
+
+        const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
+        const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
+        const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
+        const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         //layer2.setCollisionByProperty({collides: true});
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
         this.player = new Player(this, spawnPoint['x'], spawnPoint['y']);
         this.physics.add.collider(this.player.worldImage, layer2);
+
+        const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
+        const worldMapPortal = this.physics.add
+            .image(worldMapObject['x'], worldMapObject['y'], null)
+            .setOrigin(0, 0)
+            .setDisplaySize(worldMapObject['width'], worldMapObject['height'])
+            .setVisible(false)
+            .setImmovable();
+        this.physics.add.collider(this.player.worldImage, worldMapPortal, () => this.scene.start("WorldMap"));
 
         const camera = this.cameras.main;
         camera.startFollow(this.player.worldImage);
