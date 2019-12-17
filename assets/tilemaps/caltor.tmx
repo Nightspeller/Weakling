@@ -3,7 +3,7 @@
  <editorsettings>
   <export target="caltor.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="[A]Grass1_pipo" tilewidth="32" tileheight="32" tilecount="48" columns="8">
+ <tileset firstgid="1" name="grass1" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="../images/tilesets/grass1.png" width="256" height="192"/>
   <terraintypes>
    <terrain name="Grass1" tile="0"/>
@@ -22,7 +22,7 @@
   <tile id="36" terrain="0,,0,0"/>
   <tile id="37" terrain=",0,0,0"/>
  </tileset>
- <tileset firstgid="49" name="[Base]BaseChip_pipo" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
+ <tileset firstgid="49" name="base" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
   <image source="../images/tilesets/main.png" width="256" height="4256"/>
   <tile id="8">
    <properties>
@@ -1425,7 +1425,7 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="1113" name="[A]Dirt1-Dirt2_pipo" tilewidth="32" tileheight="32" tilecount="48" columns="8">
+ <tileset firstgid="1113" name="dirt1-dirt2" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="../images/tilesets/dirt1-dirt2.png" width="256" height="192"/>
   <terraintypes>
    <terrain name="Dirt" tile="-1"/>
@@ -1444,7 +1444,7 @@
   <tile id="36" terrain="0,,0,0"/>
   <tile id="37" terrain=",0,0,0"/>
  </tileset>
- <tileset firstgid="1161" name="[A]Grass1-Dirt2_pipo" tilewidth="32" tileheight="32" tilecount="48" columns="8">
+ <tileset firstgid="1161" name="grass1-dirt2" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="../images/tilesets/grass1-dirt2.png" width="256" height="192"/>
   <terraintypes>
    <terrain name="Dirt on grass" tile="0"/>

@@ -15,10 +15,10 @@ export class WorldMapScene extends Phaser.Scene {
 
     public create() {
         const map = this.make.tilemap({key: 'map'});
-        const tileSet1 = map.addTilesetImage('[Base]BaseChip_pipo', 'base');
-        const tileSet2 = map.addTilesetImage('[A]Grass1_pipo', 'grass1');
-        const tileSet3 = map.addTilesetImage('[A]Dirt1-Dirt2_pipo', 'dirt1-dirt2');
-        const tileSet4 = map.addTilesetImage('[A]Grass1-Dirt2_pipo', 'grass1-dirt2');
+        const tileSet1 = map.addTilesetImage('base', 'base');
+        const tileSet2 = map.addTilesetImage('grass1', 'grass1');
+        const tileSet3 = map.addTilesetImage('dirt1-dirt2', 'dirt1-dirt2');
+        const tileSet4 = map.addTilesetImage('grass1-dirt2', 'grass1-dirt2');
         const baseLayer = map.createStaticLayer('Base Layer', [tileSet1, tileSet2, tileSet3, tileSet4], 0, 0);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1], 0, 0);

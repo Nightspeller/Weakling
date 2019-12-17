@@ -170,7 +170,7 @@
          "imageheight":192,
          "imagewidth":256,
          "margin":0,
-         "name":"[A]Grass1_pipo",
+         "name":"grass1",
          "spacing":0,
          "terrains":[
                 {
@@ -241,7 +241,7 @@
          "imageheight":4256,
          "imagewidth":256,
          "margin":0,
-         "name":"[Base]BaseChip_pipo",
+         "name":"base",
          "spacing":0,
          "tilecount":1064,
          "tileheight":32,
@@ -2775,7 +2775,7 @@
          "imageheight":192,
          "imagewidth":256,
          "margin":0,
-         "name":"[A]Dirt1-Dirt2_pipo",
+         "name":"dirt1-dirt2",
          "spacing":0,
          "terrains":[
                 {
@@ -2846,7 +2846,7 @@
          "imageheight":192,
          "imagewidth":256,
          "margin":0,
-         "name":"[A]Grass1-Dirt2_pipo",
+         "name":"grass1-dirt2",
          "spacing":0,
          "terrains":[
                 {
