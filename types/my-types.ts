@@ -105,3 +105,20 @@ interface ValueModifier {
 }
 
 type Modifier = EffectModifier | ValueModifier;
+
+interface DialogReplay {
+    text: string;
+    checkCharacteristic?: string;
+    checkValue?: number;
+    successTriggers?: string;
+    failureTriggers?: string;
+    callbackParam?: string;
+}
+
+interface DialogLine {
+    id: string;
+    text: string;
+    replies: DialogReplay[];
+}
+
+type DialogTree = DialogLine[];

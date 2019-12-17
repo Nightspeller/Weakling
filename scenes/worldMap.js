@@ -1,5 +1,6 @@
 import Player from "../entities/player.js";
 import { ModalDialogPlugin } from "../plugins/modal-dialog.js";
+import greetingDialog from "../dialogs/greetingDialog.js";
 export class WorldMapScene extends Phaser.Scene {
     constructor() {
         super({ key: 'WorldMap' });
@@ -73,8 +74,8 @@ export class WorldMapScene extends Phaser.Scene {
         this.physics.add.collider(this.player.worldImage, stranger, () => {
             if (isDialogClosed) {
                 isDialogClosed = false;
-                this.modalDialog.showDialog(`Hello there, my young friend. Came here to see the brand new dialog system in action? Well, here it is, in all it's glory. Okay, not 'all' all - just a simple window and a close button.. But hey, this is the start, isn't it? Come back later for dialog portraits, response options and more! (But that is not certain)`, {}, () => {
-                    console.log('dialog closed');
+                this.modalDialog.showDialog(greetingDialog, this.player, {}, (param) => {
+                    console.log('dialog closed', param);
                     isDialogClosed = true;
                 });
             }

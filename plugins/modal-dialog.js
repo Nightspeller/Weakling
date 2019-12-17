@@ -8,9 +8,9 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             backgroundColor: 0x303030,
             backgroundAlpha: 0.8,
             dialogWidth: +scene.sys.game.config.width - 32 * 2,
-            dialogHeight: 150,
+            dialogHeight: 250,
             dialogX: 32,
-            dialogY: +scene.sys.game.config.height - 32 - 150,
+            dialogY: +scene.sys.game.config.height - 32 - 250,
             closeButtonColor: 'darkgoldenrod',
             closeButtonHoverColor: 'red',
             textColor: 'white',
@@ -18,14 +18,55 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         };
         this.dialogDisplayGroup = scene.add.group();
     }
-    showDialog(text, options, closeCallback) {
+    showDialog(dialogTree, player, options, closeCallback) {
+        this.dialogTree = dialogTree;
+        this.options = { ...this.options, ...options };
+        this.closeCallback = closeCallback;
+        this.player = player;
+        this._showLine(dialogTree[0]);
+    }
+    _showLine(line) {
         var _a;
         this.dialogDisplayGroup.clear(true, true);
         (_a = this.timedEvent) === null || _a === void 0 ? void 0 : _a.remove();
-        this.options = { ...this.options, ...options };
-        this.closeCallback = closeCallback;
         this._drawDialogWindow();
-        this._setText(text, this.options.letterAppearanceDelay > 0);
+        this._setText(line.text, this.options.letterAppearanceDelay > 0);
+        this._setReplies(line.replies);
+    }
+    _setReplies(replies) {
+        replies.forEach((reply, index) => {
+            const replyX = this.options.dialogX + 25;
+            const replyY = this.options.dialogY + this.options.dialogHeight - 10 - 34 * replies.length + 34 * index;
+            const replyGameObject = this.scene.add.text(replyX, replyY, `${index + 1}. ${reply.text}`, {
+                color: this.options.closeButtonColor,
+                wordWrap: {
+                    width: this.options.dialogWidth - 50
+                }
+            }).setScrollFactor(0).setInteractive();
+            replyGameObject.once('pointerdown', () => {
+                if (reply.checkCharacteristic !== undefined) {
+                    const charToCheck = reply.checkCharacteristic.split('.');
+                    if (this.player.currentCharacteristics[charToCheck[0]][charToCheck[1]] >= reply.checkValue) {
+                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                        this._showLine(nextLine);
+                    }
+                    else {
+                        const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
+                        this._showLine(nextLine);
+                    }
+                }
+                else {
+                    if (reply.successTriggers !== undefined) {
+                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                        this._showLine(nextLine);
+                    }
+                    else {
+                        this._closeDialog(reply.callbackParam);
+                    }
+                }
+            });
+            this.dialogDisplayGroup.add(replyGameObject);
+        });
     }
     boot() {
         console.log('booting dialog plugin');
@@ -69,13 +110,16 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         closeBtn.on('pointerover', () => closeBtn.setColor(this.options.closeButtonHoverColor));
         closeBtn.on('pointerout', () => closeBtn.setColor(this.options.closeButtonColor));
         closeBtn.on('pointerdown', () => {
-            var _a, _b;
             console.log('close btn clicked');
-            (_a = this.timedEvent) === null || _a === void 0 ? void 0 : _a.remove();
-            this.dialogDisplayGroup.clear(true, true);
-            (_b = this.closeCallback) === null || _b === void 0 ? void 0 : _b.call(this);
+            this._closeDialog();
         });
         this.dialogDisplayGroup.add(closeBtn);
+    }
+    _closeDialog(param) {
+        var _a, _b;
+        (_a = this.timedEvent) === null || _a === void 0 ? void 0 : _a.remove();
+        this.dialogDisplayGroup.clear(true, true);
+        (_b = this.closeCallback) === null || _b === void 0 ? void 0 : _b.call(this, param);
     }
     _setText(text, animate) {
         const textX = this.options.dialogX + 25;

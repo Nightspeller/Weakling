@@ -1,8 +1,12 @@
+import Player from "../entities/player.js";
+
 export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
     private timedEvent: Phaser.Time.TimerEvent;
     private dialogDisplayGroup: Phaser.GameObjects.Group;
     private options: DialogOptions;
     private closeCallback: Function;
+    private dialogTree: any[];
+    private player: Player;
 
     constructor(scene: Phaser.Scene, pluginManager) {
         super(scene, pluginManager);
@@ -16,9 +20,9 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             backgroundAlpha: 0.8,
 
             dialogWidth: +scene.sys.game.config.width - 32 * 2,
-            dialogHeight: 150,
+            dialogHeight: 250,
             dialogX: 32,
-            dialogY: +scene.sys.game.config.height - 32 - 150,
+            dialogY: +scene.sys.game.config.height - 32 - 250,
 
             closeButtonColor: 'darkgoldenrod',
             closeButtonHoverColor: 'red',
@@ -30,14 +34,57 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         this.dialogDisplayGroup = scene.add.group();
     }
 
-    public showDialog(text: string, options?: DialogOptions, closeCallback?: Function) {
-        this.dialogDisplayGroup.clear(true, true);
-        this.timedEvent?.remove();
+    public showDialog(dialogTree: DialogTree, player: Player, options?: DialogOptions, closeCallback?: Function) {
 
+
+        this.dialogTree = dialogTree;
         this.options = {...this.options, ...options};
         this.closeCallback = closeCallback;
+        this.player = player;
+
+        this._showLine(dialogTree[0])
+    }
+
+    private _showLine(line) {
+        this.dialogDisplayGroup.clear(true, true);
+        this.timedEvent?.remove();
         this._drawDialogWindow();
-        this._setText(text, this.options.letterAppearanceDelay > 0)
+
+        this._setText(line.text, this.options.letterAppearanceDelay > 0)
+        this._setReplies(line.replies)
+    }
+
+    private _setReplies(replies) {
+        replies.forEach((reply, index) => {
+            const replyX = this.options.dialogX + 25;
+            const replyY = this.options.dialogY + this.options.dialogHeight - 10 - 34 * replies.length + 34 * index;
+            const replyGameObject = this.scene.add.text(replyX, replyY, `${index+1}. ${reply.text}`, {
+                color: this.options.closeButtonColor,
+                wordWrap: {
+                    width: this.options.dialogWidth - 50
+                }
+            }).setScrollFactor(0).setInteractive();
+            replyGameObject.once('pointerdown', () => {
+                if (reply.checkCharacteristic !== undefined) {
+                    const charToCheck = reply.checkCharacteristic.split('.');
+                    if (this.player.currentCharacteristics[charToCheck[0]][charToCheck[1]] >= reply.checkValue) {
+                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                        this._showLine(nextLine);
+                    } else {
+                        const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
+                        this._showLine(nextLine);
+                    }
+                } else {
+                    if (reply.successTriggers !== undefined) {
+                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                        this._showLine(nextLine);
+                    } else {
+                        this._closeDialog(reply.callbackParam);
+                    }
+                }
+            });
+            this.dialogDisplayGroup.add(replyGameObject);
+        })
     }
 
     public boot() {
@@ -71,7 +118,7 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
 
         this._createCloseButton();
     }
-    
+
     private _createCloseButton() {
         const closeButtonX = this.options.dialogX + this.options.dialogWidth - 20;
         const closeButtonY = this.options.dialogY;
@@ -92,21 +139,25 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         closeBtn.on('pointerout', () => closeBtn.setColor(this.options.closeButtonColor));
         closeBtn.on('pointerdown', () => {
             console.log('close btn clicked');
-            this.timedEvent?.remove();
-            this.dialogDisplayGroup.clear(true, true);
-            this.closeCallback?.call(this);
+           this._closeDialog();
         });
 
         this.dialogDisplayGroup.add(closeBtn);
     }
-    
+
+    private _closeDialog(param?) {
+        this.timedEvent?.remove();
+        this.dialogDisplayGroup.clear(true, true);
+        this.closeCallback?.call(this, param);
+    }
+
     private _setText(text: string, animate: boolean) {
         const textX = this.options.dialogX + 25;
         const textY = this.options.dialogY + 10;
         const textGameObject = this.scene.add.text(textX, textY, '', {
             color: this.options.textColor,
             wordWrap: {
-                width: this.options.dialogWidth -50
+                width: this.options.dialogWidth - 50
             }
         }).setScrollFactor(0);
         this.dialogDisplayGroup.add(textGameObject);
