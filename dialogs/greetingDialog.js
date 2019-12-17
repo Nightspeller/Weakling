@@ -59,7 +59,7 @@ export default [{
             }]
     }, {
         id: 'daggerFailure',
-        text: 'I am sorry, but that will not do - you should try something else!',
+        text: '(Check failed) I am sorry, but that will not do - you should try something else!',
         replies: [{
                 text: 'Okay.. -(',
                 successTriggers: 'capabilitiesShort',

@@ -1484,7 +1484,7 @@
   </data>
  </layer>
  <objectgroup id="6" name="Objects">
-  <object id="1" name="Goblin" x="797.333" y="3061.33" width="64" height="64">
+  <object id="1" name="Goblin" x="800" y="3040" width="64" height="64">
    <properties>
     <property name="Enemy" type="bool" value="true"/>
    </properties>

@@ -141,12 +141,15 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
                 let shownLettersCounter = 0;
                 if (this.timedEvent)
                     this.timedEvent.remove();
+                let zone = this.scene.add.zone(this.options.dialogX, this.options.dialogY, this.options.dialogWidth, this.options.dialogHeight)
+                    .setOrigin(0, 0).setScrollFactor(0).setInteractive();
                 this.timedEvent = this.scene.time.addEvent({
                     delay: this.options.letterAppearanceDelay,
                     callback: () => {
                         textGameObject.setText(text.slice(0, shownLettersCounter));
                         if (text.length === shownLettersCounter) {
                             this.timedEvent.remove();
+                            zone.destroy();
                             resolve();
                         }
                         else {
@@ -155,17 +158,12 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
                     },
                     loop: true
                 });
-                /*                console.log('creating zone');
-                                let zone = this.scene.add.zone(0, 0, 800, 640).setOrigin(0,0).setDepth(500)
-                                    .setInteractive();
-                                zone.once('pointerdown', () => {
-                                        console.log('dialog zone is clicked');
-                                        zone.destroy();
-                                        this.timedEvent.remove();
-                                        textGameObject.setText(text);
-                                        resolve();
-                                    });
-                                console.log(zone);*/
+                zone.once('pointerdown', () => {
+                    zone.destroy();
+                    this.timedEvent.remove();
+                    textGameObject.setText(text);
+                    resolve();
+                });
             }
             else {
                 textGameObject.setText(text);

@@ -60,7 +60,7 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         replies.forEach((reply, index) => {
             const replyX = this.options.dialogX + 25;
             const replyY = this.options.dialogY + this.options.dialogHeight - 10 - 34 * replies.length + 34 * index;
-            const replyGameObject = this.scene.add.text(replyX, replyY, `${index+1}. ${reply.text}`, {
+            const replyGameObject = this.scene.add.text(replyX, replyY, `${index + 1}. ${reply.text}`, {
                 color: this.options.responseTextColor,
                 wordWrap: {
                     width: this.options.dialogWidth - 50
@@ -143,7 +143,7 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         closeBtn.on('pointerout', () => closeBtn.setColor(this.options.closeButtonColor));
         closeBtn.on('pointerdown', () => {
             console.log('close btn clicked');
-           this._closeDialog();
+            this._closeDialog();
         });
 
         this.dialogDisplayGroup.add(closeBtn);
@@ -170,12 +170,16 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             if (animate) {
                 let shownLettersCounter = 0;
                 if (this.timedEvent) this.timedEvent.remove();
+                let zone = this.scene.add.zone(this.options.dialogX, this.options.dialogY, this.options.dialogWidth, this.options.dialogHeight)
+                    .setOrigin(0, 0).setScrollFactor(0).setInteractive();
+
                 this.timedEvent = this.scene.time.addEvent({
                     delay: this.options.letterAppearanceDelay,
                     callback: () => {
                         textGameObject.setText(text.slice(0, shownLettersCounter));
                         if (text.length === shownLettersCounter) {
                             this.timedEvent.remove();
+                            zone.destroy();
                             resolve();
                         } else {
                             shownLettersCounter++;
@@ -183,17 +187,13 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
                     },
                     loop: true
                 });
-/*                console.log('creating zone');
-                let zone = this.scene.add.zone(0, 0, 800, 640).setOrigin(0,0).setDepth(500)
-                    .setInteractive();
+
                 zone.once('pointerdown', () => {
-                        console.log('dialog zone is clicked');
-                        zone.destroy();
-                        this.timedEvent.remove();
-                        textGameObject.setText(text);
-                        resolve();
-                    });
-                console.log(zone);*/
+                    zone.destroy();
+                    this.timedEvent.remove();
+                    textGameObject.setText(text);
+                    resolve();
+                });
             } else {
                 textGameObject.setText(text);
                 resolve();
