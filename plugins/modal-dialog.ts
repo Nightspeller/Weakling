@@ -142,8 +142,7 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         closeBtn.on('pointerover', () => closeBtn.setColor(this.options.closeButtonHoverColor));
         closeBtn.on('pointerout', () => closeBtn.setColor(this.options.closeButtonColor));
         closeBtn.on('pointerdown', () => {
-            console.log('close btn clicked');
-            this._closeDialog();
+            this._closeDialog('closeButtonClicked');
         });
 
         this.dialogDisplayGroup.add(closeBtn);
