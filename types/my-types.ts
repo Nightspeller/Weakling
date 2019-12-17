@@ -86,6 +86,8 @@ interface DialogOptions {
     backgroundAlpha?: number;
     closeButtonColor?: string;
     closeButtonHoverColor?: string;
+    responseTextColor?: string;
+    responseTextHoverColor?: string;
     dialogY?: number;
     dialogX?: number;
     dialogHeight?: number;

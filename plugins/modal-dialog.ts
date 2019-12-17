@@ -24,6 +24,9 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             dialogX: 32,
             dialogY: +scene.sys.game.config.height - 32 - 250,
 
+            responseTextColor: 'darkgoldenrod',
+            responseTextHoverColor: 'white',
+
             closeButtonColor: 'darkgoldenrod',
             closeButtonHoverColor: 'red',
 
@@ -35,8 +38,6 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
     }
 
     public showDialog(dialogTree: DialogTree, player: Player, options?: DialogOptions, closeCallback?: Function) {
-
-
         this.dialogTree = dialogTree;
         this.options = {...this.options, ...options};
         this.closeCallback = closeCallback;
@@ -50,8 +51,9 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         this.timedEvent?.remove();
         this._drawDialogWindow();
 
-        this._setText(line.text, this.options.letterAppearanceDelay > 0)
-        this._setReplies(line.replies)
+        this._setText(line.text, this.options.letterAppearanceDelay > 0).then(() => {
+            this._setReplies(line.replies)
+        });
     }
 
     private _setReplies(replies) {
@@ -59,11 +61,13 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             const replyX = this.options.dialogX + 25;
             const replyY = this.options.dialogY + this.options.dialogHeight - 10 - 34 * replies.length + 34 * index;
             const replyGameObject = this.scene.add.text(replyX, replyY, `${index+1}. ${reply.text}`, {
-                color: this.options.closeButtonColor,
+                color: this.options.responseTextColor,
                 wordWrap: {
                     width: this.options.dialogWidth - 50
                 }
             }).setScrollFactor(0).setInteractive();
+            replyGameObject.on('pointerover', () => replyGameObject.setColor(this.options.responseTextHoverColor));
+            replyGameObject.on('pointerout', () => replyGameObject.setColor(this.options.responseTextColor));
             replyGameObject.once('pointerdown', () => {
                 if (reply.checkCharacteristic !== undefined) {
                     const charToCheck = reply.checkCharacteristic.split('.');
@@ -152,33 +156,48 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
     }
 
     private _setText(text: string, animate: boolean) {
-        const textX = this.options.dialogX + 25;
-        const textY = this.options.dialogY + 10;
-        const textGameObject = this.scene.add.text(textX, textY, '', {
-            color: this.options.textColor,
-            wordWrap: {
-                width: this.options.dialogWidth - 50
-            }
-        }).setScrollFactor(0);
-        this.dialogDisplayGroup.add(textGameObject);
+        return new Promise(resolve => {
+            const textX = this.options.dialogX + 25;
+            const textY = this.options.dialogY + 10;
+            const textGameObject = this.scene.add.text(textX, textY, '', {
+                color: this.options.textColor,
+                wordWrap: {
+                    width: this.options.dialogWidth - 50
+                }
+            }).setScrollFactor(0);
+            this.dialogDisplayGroup.add(textGameObject);
 
-        if (animate) {
-            let shownLettersCounter = 0;
-            if (this.timedEvent) this.timedEvent.remove();
-            this.timedEvent = this.scene.time.addEvent({
-                delay: this.options.letterAppearanceDelay,
-                callback: () => {
-                    textGameObject.setText(text.slice(0, shownLettersCounter));
-                    if (text.length === shownLettersCounter) {
+            if (animate) {
+                let shownLettersCounter = 0;
+                if (this.timedEvent) this.timedEvent.remove();
+                this.timedEvent = this.scene.time.addEvent({
+                    delay: this.options.letterAppearanceDelay,
+                    callback: () => {
+                        textGameObject.setText(text.slice(0, shownLettersCounter));
+                        if (text.length === shownLettersCounter) {
+                            this.timedEvent.remove();
+                            resolve();
+                        } else {
+                            shownLettersCounter++;
+                        }
+                    },
+                    loop: true
+                });
+/*                console.log('creating zone');
+                let zone = this.scene.add.zone(0, 0, 800, 640).setOrigin(0,0).setDepth(500)
+                    .setInteractive();
+                zone.once('pointerdown', () => {
+                        console.log('dialog zone is clicked');
+                        zone.destroy();
                         this.timedEvent.remove();
-                    } else {
-                        shownLettersCounter++;
-                    }
-                },
-                loop: true
-            });
-        } else {
-            textGameObject.setText(text);
-        }
+                        textGameObject.setText(text);
+                        resolve();
+                    });
+                console.log(zone);*/
+            } else {
+                textGameObject.setText(text);
+                resolve();
+            }
+        });
     }
 }
