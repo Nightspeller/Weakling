@@ -1,4 +1,3 @@
-import GeneralEntity from "../entities/generalEntity.js";
 import Player from "../entities/player.js";
 import {belts} from "../actionsAndEffects/items.js";
 
