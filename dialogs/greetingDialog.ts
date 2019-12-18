@@ -15,7 +15,7 @@ export default [{
     }]
 }, {
     id: 'capabilities',
-    text: 'Let\'s see what I can show you.. With the new dialog system you can for example try to pass some ability checks. Try to get this shiny new dagger from me',
+    text: 'Let\'s see what I can show you.. With the new dialog system you can for example try to pass some ability checks. Try to get this shiny new dagger from me.',
     replies: [{
         text: '(Strength) Aaaa! I want a new dagger give me give me give me!',
         checkCharacteristic: 'attributes.strength',
