@@ -1,12 +1,14 @@
 import Player from "../entities/player.js";
 import { ModalDialogPlugin } from "../plugins/modal-dialog.js";
 import greetingDialog from "../dialogs/greetingDialog.js";
+import { InventoryPlugin } from "../plugins/inventory.js";
 export class WorldMapScene extends Phaser.Scene {
     constructor() {
         super({ key: 'WorldMap' });
     }
     preload() {
         this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
+        this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
     create() {
         const map = this.make.tilemap({ key: 'map' });
@@ -80,6 +82,7 @@ export class WorldMapScene extends Phaser.Scene {
                 });
             }
         });
+        this.inventory.showOpenIcon(this.player);
         const debugGraphics = this.add.graphics().setAlpha(0.25);
         layer2.renderDebug(debugGraphics, {
             tileColor: null,

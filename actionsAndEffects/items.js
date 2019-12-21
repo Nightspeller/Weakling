@@ -1,18 +1,27 @@
 export const weapons = {
-    fist: {
-        weaponId: 'fist',
+    'fist-weapon': {
+        weaponId: 'fist-weapon',
         damage: 10,
         slot: 'anyHand',
+        sprite: { key: 'fist', frame: null },
         size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
     }
 };
 export const belts = {
-    rope: {
-        beltId: 'rope',
+    'rope-belt': {
+        beltId: 'rope-belt',
         additionalCharacteristics: [],
         quickSlots: 2,
         slot: 'belt',
         sprite: { key: 'rope-belt', frame: null },
+        size: ['xs', 's', 'm'],
+    },
+    'fancy-belt': {
+        beltId: 'fancy-belt',
+        additionalCharacteristics: [],
+        quickSlots: 2,
+        slot: 'belt',
+        sprite: { key: 'icons', frame: 127 },
         size: ['xs', 's', 'm'],
     }
 };

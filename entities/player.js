@@ -41,28 +41,13 @@ export default class Player extends GeneralEntity {
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
-        this.inventory = {
-            backpack: [],
-            equipped: {
-                head: null,
-                neck1: null,
-                neck2: null,
-                backpack: null,
-                ringLeft1: null,
-                ringLeft2: null,
-                ringRight1: null,
-                ringRight2: null,
-                leftHand: 'fist',
-                rightHand: 'fist',
-                body: null,
-                cape: null,
-                gloves: null,
-                belt: 'rope',
-                tail: null,
-                pants: null,
-                boots: null
-            }
-        };
+        this.inventory = [
+            { itemId: 'rope-belt', quantity: 4, slotName: 'backpack1_4' },
+            { itemId: 'rope-belt', quantity: 2, slotName: 'backpack0_0' },
+            { itemId: 'fist-weapon', quantity: 1, slotName: 'leftHand' },
+            { itemId: 'fist-weapon', quantity: 1, slotName: 'rightHand' },
+            { itemId: 'rope-belt', quantity: 1, slotName: 'belt' }
+        ];
         this.actionPoints = {
             physical: 0,
             magical: 0,

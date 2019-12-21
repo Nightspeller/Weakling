@@ -261,7 +261,7 @@ export const effects: { [key: string]: Effect } = {
         setModifier: function(source, target, action) {
             let weapon;
             if (source instanceof Player) {
-                weapon = weapons[source.inventory.equipped.rightHand];
+                weapon = weapons[source.inventory.find(item => item.slotName === 'rightHand')?.itemId] || {damage: 1};
             } else {
                 weapon = source.weapon;
             }

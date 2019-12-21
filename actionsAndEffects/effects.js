@@ -260,9 +260,10 @@ export const effects = {
             return hitChance >= hitRoll;
         },
         setModifier: function (source, target, action) {
+            var _a;
             let weapon;
             if (source instanceof Player) {
-                weapon = weapons[source.inventory.equipped.rightHand];
+                weapon = weapons[(_a = source.inventory.find(item => item.slotName === 'rightHand')) === null || _a === void 0 ? void 0 : _a.itemId] || { damage: 1 };
             }
             else {
                 weapon = source.weapon;

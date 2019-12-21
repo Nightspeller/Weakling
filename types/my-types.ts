@@ -65,6 +65,7 @@ interface Action {
 interface Weapon {
     weaponId: string;
     slot: 'any' | 'anyHand' | 'rightHand' | 'leftHand' | 'twoHands' | 'tail';
+    sprite: {key: string; frame: number};
     damage: number;
     size: string[];
 }
