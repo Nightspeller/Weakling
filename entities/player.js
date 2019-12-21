@@ -1,4 +1,5 @@
 import GeneralEntity from "./generalEntity.js";
+import { items } from "../actionsAndEffects/items.js";
 /**
  * A class that wraps up our top down player logic. It creates, animates and moves a sprite in
  * response to WASD keys. Call its update method from the scene's update and call its destroy
@@ -41,13 +42,12 @@ export default class Player extends GeneralEntity {
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
-        this.inventory = [
-            { itemId: 'rope-belt', quantity: 4, slotName: 'backpack1_4' },
-            { itemId: 'rope-belt', quantity: 2, slotName: 'backpack0_0' },
-            { itemId: 'fist-weapon', quantity: 1, slotName: 'leftHand' },
-            { itemId: 'fist-weapon', quantity: 1, slotName: 'rightHand' },
-            { itemId: 'rope-belt', quantity: 1, slotName: 'belt' }
-        ];
+        this.inventory = [];
+        this.addItemToInventory('rope-belt').currentSlot = 'belt';
+        this.addItemToInventory('fancy-belt');
+        this.addItemToInventory('minor-healing-potion');
+        this.addItemToInventory('minor-healing-potion', 2);
+        this.addItemToInventory('fist-weapon').currentSlot = 'rightHand';
         this.actionPoints = {
             physical: 0,
             magical: 0,
@@ -56,6 +56,29 @@ export default class Player extends GeneralEntity {
         this.name = 'Weakling';
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.currentEffects = [];
+    }
+    addItemToInventory(itemId, quantity = 1) {
+        // todo? might have to do deep copy...
+        const item = { ...items[itemId] };
+        if (item.stackable) {
+            item.quantity = quantity;
+            const existingItem = this.inventory.find(existingItem => existingItem.itemId === item.itemId);
+            if (existingItem) {
+                existingItem.quantity += item.quantity;
+                return existingItem;
+            }
+        }
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                const testedSlot = `backpack${i}_${j}`;
+                if (!this.inventory.find(item => item.currentSlot === testedSlot)) {
+                    item.currentSlot = testedSlot;
+                    this.inventory.push(item);
+                    return item;
+                }
+            }
+        }
+        return null;
     }
     createAnimations() {
         const anims = this.scene.anims;

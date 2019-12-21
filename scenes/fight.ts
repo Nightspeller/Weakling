@@ -25,6 +25,11 @@ export class FightScene extends Phaser.Scene {
         super({key: 'Fight'});
     }
 
+    public init(player){
+        this.player = player;
+        this.player.scene = this;
+    }
+
     public preload() {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
@@ -43,7 +48,7 @@ export class FightScene extends Phaser.Scene {
         this.turnOrderDisplayGroup = this.add.group()
         this.actionInterfaceDisplayGroup = this.add.group();
 
-        this.player = new Player(this, 0, 0);
+        //this.player = new Player(this, 0, 0);
         this.player2 = new Player(this, 0, 0);
         this.player3 = new Player(this, 0, 0);
         this.player4 = new Player(this, 0, 0);

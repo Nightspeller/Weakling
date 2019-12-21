@@ -79,6 +79,17 @@ interface Belt {
     size: string[];
 }
 
+interface Item {
+    itemId: string;
+    slot: string[];
+    sprite: {key: string; frame: number};
+    stackable: boolean;
+    modified: boolean;
+    currentSlot: string;
+    quantity?: number;
+    specifics?: any;
+}
+
 interface DialogOptions {
     borderThickness?: number;
     borderColor?: number;

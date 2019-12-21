@@ -82,6 +82,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image("rope-belt", "assets/images/items/rope-belt.png");
         this.load.image("bag-green", "assets/images/items/bag-green.png");
         this.load.image("fist-weapon", "assets/images/items/fist.png");
+        this.load.spritesheet("potion-sheet", "assets/images/items/potion-sheet.png", { frameWidth: 64, frameHeight: 64, spacing: 1, margin: 1 });
+        this.load.spritesheet("icon-item-set", "assets/images/items/icon-item-set.png", { frameWidth: 32, frameHeight: 32 });
         // Animations
         this.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", { frameWidth: 192, frameHeight: 192 });
         this.load.spritesheet("light-pillar-back", "assets/images/animations/light-pillar/light-pillar-yellow-back.png", { frameWidth: 192, frameHeight: 192 });

@@ -59,9 +59,9 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         const targetSlot = displayObjects.find(slot => slot.name === targetSlotName);
         const targetSlotX = targetSlot.x;
         const targetSlotY = targetSlot.y;
-        const movedItem = this.character.inventory.find(item => item.slotName === currentItemSlotName);
+        const movedItem = this.character.inventory.find(item => item.currentSlot === currentItemSlotName);
         const movedItemImage = displayObjects.find(item => item.name === currentItemSlotName + 'image');
-        const itemInTargetSlot = this.character.inventory.find(item => item.slotName === targetSlotName);
+        const itemInTargetSlot = this.character.inventory.find(item => item.currentSlot === targetSlotName);
         if (itemInTargetSlot !== undefined) {
             const itemInTargetSlotImage = displayObjects.find(item => item.name === targetSlotName + 'image');
             const originalSlot = displayObjects.find(slot => slot.name === currentItemSlotName);
@@ -74,7 +74,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
                 ease: 'Back.easeOut',
                 duration: 500
             });
-            itemInTargetSlot.slotName = currentItemSlotName;
+            itemInTargetSlot.currentSlot = currentItemSlotName;
             itemInTargetSlotImage.setName(currentItemSlotName + 'image');
         }
         this.scene.tweens.add({
@@ -84,7 +84,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             ease: 'Back.easeOut',
             duration: 500
         });
-        movedItem.slotName = targetSlotName;
+        movedItem.currentSlot = targetSlotName;
         movedItemImage.setName(targetSlotName + 'image');
         if (targetSlotName === 'belt' || currentItemSlotName === 'belt') {
             console.log('redrawing quickslots');
@@ -152,7 +152,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
     }
     _drawQuickSlots() {
         var _a;
-        const equippedBelt = belts[(_a = this.character.inventory.find(item => item.slotName === "belt")) === null || _a === void 0 ? void 0 : _a.itemId];
+        const equippedBelt = belts[(_a = this.character.inventory.find(item => item.currentSlot === "belt")) === null || _a === void 0 ? void 0 : _a.itemId];
         const quickSlotsNumber = equippedBelt ? equippedBelt.quickSlots + 1 : 1;
         for (let i = 0; i < quickSlotsNumber; i++) {
             this.inventoryDisplayGroup
@@ -186,21 +186,24 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
     _drawEquippedItems() {
         const displayObjects = this.inventoryDisplayGroup.getChildren();
         this.character.inventory.forEach(item => {
-            const slotImage = displayObjects.find(slot => slot.name === item.slotName);
+            const slotImage = displayObjects.find(slot => slot.name === item.currentSlot);
             const container = this.scene.add.container(slotImage.x + 32, slotImage.y + 32);
-            const image = this.scene.add.image(0, 0, item.itemId).setDisplaySize(64, 64);
-            const quantityText = this.scene.add.text(32, 32, item.quantity.toString(), {
-                font: '14px monospace',
-                color: '#000000',
-                backgroundColor: '#f0d191',
-                padding: {
-                    left: 2,
-                },
-            }).setOrigin(1, 1);
-            container.add([image, quantityText]);
+            const image = this.scene.add.image(0, 0, item.sprite.key, item.sprite.frame).setDisplaySize(64, 64);
+            if (item.quantity) {
+                const quantityText = this.scene.add.text(32, 32, item.quantity.toString(), {
+                    font: '14px monospace',
+                    color: '#000000',
+                    backgroundColor: '#f0d191',
+                    padding: {
+                        left: 2,
+                    },
+                }).setOrigin(1, 1);
+                container.add([quantityText]);
+            }
+            container.add([image]);
             container.setSize(64, 64)
                 .setScrollFactor(0)
-                .setName(item.slotName + 'image').setDepth(2)
+                .setName(item.currentSlot + 'image').setDepth(2)
                 .setInteractive();
             this.scene.input.setDraggable(container);
             container.on('drag', function (pointer, dragX, dragY) {

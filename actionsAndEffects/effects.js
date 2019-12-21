@@ -1,5 +1,4 @@
 import Player from "../entities/player.js";
-import { weapons } from "./items.js";
 export const effects = {
     armorUp: {
         effectId: 'armorUp',
@@ -263,7 +262,7 @@ export const effects = {
             var _a;
             let weapon;
             if (source instanceof Player) {
-                weapon = weapons[(_a = source.inventory.find(item => item.slotName === 'rightHand')) === null || _a === void 0 ? void 0 : _a.itemId] || { damage: 1 };
+                weapon = ((_a = source.inventory.find(item => item.currentSlot === 'rightHand')) === null || _a === void 0 ? void 0 : _a.specifics.damage) || { damage: 1 };
             }
             else {
                 weapon = source.weapon;

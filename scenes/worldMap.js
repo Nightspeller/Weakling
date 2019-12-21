@@ -51,7 +51,7 @@ export class WorldMapScene extends Phaser.Scene {
             .setDisplaySize(enemyObject['width'], enemyObject['height'])
             // .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, enemy, () => this.scene.start("Fight"));
+        this.physics.add.collider(this.player.worldImage, enemy, () => this.scene.start("Fight", this.player));
         const barracksObject = map.findObject("Objects", obj => obj.name === "Barracks");
         const barracks = this.physics.add
             .image(barracksObject['x'], barracksObject['y'], null)
@@ -78,6 +78,9 @@ export class WorldMapScene extends Phaser.Scene {
                 isDialogClosed = false;
                 this.modalDialog.showDialog(greetingDialog, this.player, {}, (param) => {
                     console.log('dialog closed', param);
+                    if (param === 'daggerObtained') {
+                        this.player.addItemToInventory('dagger-weapon');
+                    }
                     isDialogClosed = true;
                 });
             }
