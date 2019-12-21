@@ -69,8 +69,8 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             const originalSlotY = originalSlot.y;
             this.scene.tweens.add({
                 targets: itemInTargetSlotImage,
-                x: originalSlotX,
-                y: originalSlotY,
+                x: originalSlotX + 32,
+                y: originalSlotY + 32,
                 ease: 'Back.easeOut',
                 duration: 500
             });
@@ -79,8 +79,8 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         }
         this.scene.tweens.add({
             targets: movedItemImage,
-            x: targetSlotX,
-            y: targetSlotY,
+            x: targetSlotX + 32,
+            y: targetSlotY + 32,
             ease: 'Back.easeOut',
             duration: 500
         });
@@ -187,16 +187,29 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         const displayObjects = this.inventoryDisplayGroup.getChildren();
         this.character.inventory.forEach(item => {
             const slotImage = displayObjects.find(slot => slot.name === item.slotName);
-            const image = this.inventoryDisplayGroup
-                .create(slotImage.x, slotImage.y, item.itemId).setScrollFactor(0)
-                .setOrigin(0, 0).setDisplaySize(64, 64).setName(item.slotName + 'image').setDepth(2)
-                .setInteractive({ draggable: true });
-            image.on('drag', function (pointer, dragX, dragY) {
+            const container = this.scene.add.container(slotImage.x + 32, slotImage.y + 32);
+            const image = this.scene.add.image(0, 0, item.itemId).setDisplaySize(64, 64);
+            const quantityText = this.scene.add.text(32, 32, item.quantity.toString(), {
+                font: '14px monospace',
+                color: '#000000',
+                backgroundColor: '#f0d191',
+                padding: {
+                    left: 2,
+                },
+            }).setOrigin(1, 1);
+            container.add([image, quantityText]);
+            container.setSize(64, 64)
+                .setScrollFactor(0)
+                .setName(item.slotName + 'image').setDepth(2)
+                .setInteractive();
+            this.scene.input.setDraggable(container);
+            container.on('drag', function (pointer, dragX, dragY) {
+                console.log('dragging');
                 this.x = dragX;
                 this.y = dragY;
                 this.setDepth(3);
             });
-            image.on('dragend', function (pointer, something1, something2, dropped) {
+            container.on('dragend', function (pointer, something1, something2, dropped) {
                 this.setDepth(2);
                 if (!dropped) {
                     this.scene.tweens.add({
@@ -208,6 +221,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
                     });
                 }
             });
+            this.inventoryDisplayGroup.add(container);
         });
     }
     _drawMainWindow() {

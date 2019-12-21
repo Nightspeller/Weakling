@@ -3,7 +3,7 @@ export const weapons: { [key: string]: Weapon } = {
         weaponId: 'fist-weapon',
         damage: 10,
         slot: 'anyHand',
-        sprite: {key: 'fist', frame: null},
+        sprite: {key: 'fist-weapon', frame: null},
         size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
     }
 };
