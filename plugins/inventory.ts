@@ -234,7 +234,6 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             this.scene.input.setDraggable(container);
 
             container.on('drag', function (pointer, dragX, dragY) {
-                console.log('dragging');
                 this.x = dragX;
                 this.y = dragY;
                 this.setDepth(3);
