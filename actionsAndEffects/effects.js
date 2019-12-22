@@ -262,7 +262,7 @@ export const effects = {
             var _a;
             let weapon;
             if (source instanceof Player) {
-                weapon = ((_a = source.inventory.find(item => item.currentSlot === 'rightHand')) === null || _a === void 0 ? void 0 : _a.specifics.damage) || { damage: 1 };
+                weapon = ((_a = source.inventory.find(item => item.currentSlot === 'rightHand')) === null || _a === void 0 ? void 0 : _a.specifics) || { damage: 1 };
             }
             else {
                 weapon = source.weapon;
