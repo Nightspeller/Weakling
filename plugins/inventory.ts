@@ -1,6 +1,7 @@
 import Player from "../entities/player.js";
 import {belts} from "../actionsAndEffects/items.js";
 import Sprite = Phaser.GameObjects.Sprite;
+import player from "../entities/player.js";
 
 export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
     private inventoryDisplayGroup: Phaser.GameObjects.Group;
@@ -107,8 +108,15 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         movedItem.currentSlot = targetSlotName;
         movedItemImage.setName(targetSlotName + 'image');
         if (targetSlotName === 'belt' || currentItemSlotName === 'belt') {
-            console.log('redrawing quickslots');
-            //this._adjustQuickSlots();
+            if (targetSlotName === 'belt') {
+                this._adjustQuickSlots(movedItem.specifics.quickSlots, itemInTargetSlot?.specifics.quickSlots || 0);
+            } else {
+                if (itemInTargetSlot) {
+                    this._adjustQuickSlots(itemInTargetSlot.specifics.quickSlots, movedItem.specifics.quickSlots);
+                } else {
+                    this._adjustQuickSlots(0, movedItem.specifics.quickSlots);
+                }
+            }
         }
     }
 
@@ -176,24 +184,40 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
     }
 
     private _drawQuickSlots() {
-        const equippedBelt = belts[this.character.inventory.find(item => item.currentSlot === "belt")?.itemId];
-        const quickSlotsNumber = equippedBelt ? equippedBelt.quickSlots + 1 : 1;
-        for (let i = 0; i < quickSlotsNumber; i++) {
-            this.inventoryDisplayGroup
-                .create(this.options.inventoryX + 16 + 64 * i, this.options.inventoryY + this.options.inventoryHeight - 64 - 16, 'inventory-slot')
-                .setOrigin(0, 0).setDisplaySize(64, 64).setName(`quickSlot${i}`).setScrollFactor(0).setDepth(1)
-                .setInteractive({dropZone: true});
-        }
+        const additionalQuickSlotsNumber = this.character.inventory.find(item => item.currentSlot === "belt")?.specifics.quickSlots || 0;
+        this._adjustQuickSlots(additionalQuickSlotsNumber, -1);
     }
 
-    private _adjustQuickSlots() {
-        // todo: delete\add slots, remove items if needed
+    private _adjustQuickSlots(newQuickSlotsNumber, oldQuickSlotsNumber) {
+        // todo: solve inventory overflow!!!
         const displayObjects = this.inventoryDisplayGroup.getChildren();
-
-        for (let i = 0; i < displayObjects.length; i++) {
-            if (displayObjects[i].name.includes('quickSlot') && !displayObjects[i].name.includes('image')) {
-                displayObjects[i].destroy(true);
-                i--;
+        if (newQuickSlotsNumber < oldQuickSlotsNumber) {
+            for (let i = oldQuickSlotsNumber; i > newQuickSlotsNumber; i--) {
+                const itemToBeMoved = this.character.inventory.find(item => item.currentSlot === `quickSlot${i}`);
+                if (itemToBeMoved) {
+                    let itemMoved = false;
+                    for (let k = 0; k < 5; k++) {
+                        if (!itemMoved) {
+                            for (let j = 0; j < 5; j++) {
+                                const testedSlot = `backpack${k}_${j}`;
+                                if (!this.character.inventory.find(item => item.currentSlot === testedSlot)) {
+                                    this._placeItemInSlot(`quickSlot${i}`, testedSlot);
+                                    itemMoved = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                displayObjects.find(obj => obj.name === `quickSlot${i}`).destroy(true);
+            }
+        }
+        if (newQuickSlotsNumber > oldQuickSlotsNumber) {
+            for (let i = oldQuickSlotsNumber + 1; i < newQuickSlotsNumber + 1; i++) {
+                this.inventoryDisplayGroup
+                    .create(this.options.inventoryX + 16 + 64 * i, this.options.inventoryY + this.options.inventoryHeight - 64 - 16, 'inventory-slot')
+                    .setOrigin(0, 0).setDisplaySize(64, 64).setName(`quickSlot${i}`).setScrollFactor(0).setDepth(1)
+                    .setInteractive({dropZone: true});
             }
         }
     }

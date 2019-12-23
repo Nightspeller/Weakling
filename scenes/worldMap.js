@@ -46,7 +46,7 @@ export class WorldMapScene extends Phaser.Scene {
         this.physics.add.collider(this.player.worldImage, villagePortal, () => this.scene.start("Village"));
         const enemyObject = map.findObject("Objects", obj => obj.name === "Goblin");
         const enemy = this.physics.add
-            .image(enemyObject['x'], enemyObject['y'], 'enemies', 2)
+            .image(enemyObject['x'], enemyObject['y'], 'boar-avatar', 2)
             .setOrigin(0, 0)
             .setDisplaySize(enemyObject['width'], enemyObject['height'])
             // .setVisible(false)
