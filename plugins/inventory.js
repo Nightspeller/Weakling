@@ -17,6 +17,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             closeButtonHoverColor: 'red',
             textColor: 'white',
             letterAppearanceDelay: 10,
+            baseDepth: 10
         };
         this.inventoryDisplayGroup = scene.add.group();
         this.scene.load.image('doll', 'assets/images/interface/doll.png');
@@ -88,11 +89,11 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         movedItemImage.setName(targetSlotName + 'image');
         if (targetSlotName === 'belt' || currentItemSlotName === 'belt') {
             if (targetSlotName === 'belt') {
-                this._adjustQuickSlots(movedItem.specifics.quickSlots, ((_a = itemInTargetSlot) === null || _a === void 0 ? void 0 : _a.specifics.quickSlots) || 0);
+                this._adjustQuickSlots(movedItem.specifics.quickSlots || 0, ((_a = itemInTargetSlot) === null || _a === void 0 ? void 0 : _a.specifics.quickSlots) || 0);
             }
             else {
                 if (itemInTargetSlot) {
-                    this._adjustQuickSlots(itemInTargetSlot.specifics.quickSlots, movedItem.specifics.quickSlots);
+                    this._adjustQuickSlots(itemInTargetSlot.specifics.quickSlots || 0, movedItem.specifics.quickSlots);
                 }
                 else {
                     this._adjustQuickSlots(0, movedItem.specifics.quickSlots);
@@ -115,7 +116,8 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
                         .fillStyle(0xff0000, 1)
                         .fillRect(zone.x + zone.input.hitArea.x, zone.y + zone.input.hitArea.y, zone.input.hitArea.width, zone.input.hitArea.height));
                 };*/
-        this.inventoryDisplayGroup.create(this.options.inventoryX + 16, this.options.inventoryY + 20, 'doll').setOrigin(0, 0).setScale(0.75).setScrollFactor(0);
+        this.inventoryDisplayGroup.create(this.options.inventoryX + 16, this.options.inventoryY + 20, 'doll')
+            .setOrigin(0, 0).setScale(0.75).setScrollFactor(0).setDepth(this.options.baseDepth);
         const rightHand = this.scene.add.zone(this.options.inventoryX + 16, this.options.inventoryY + 20 + 58, 66, 66)
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('rightHand');
         const leftHand = this.scene.add.zone(this.options.inventoryX + 281, this.options.inventoryY + 246, 66, 66)
@@ -192,7 +194,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             for (let i = oldQuickSlotsNumber + 1; i < newQuickSlotsNumber + 1; i++) {
                 this.inventoryDisplayGroup
                     .create(this.options.inventoryX + 16 + 64 * i, this.options.inventoryY + this.options.inventoryHeight - 64 - 16, 'inventory-slot')
-                    .setOrigin(0, 0).setDisplaySize(64, 64).setName(`quickSlot${i}`).setScrollFactor(0).setDepth(1)
+                    .setOrigin(0, 0).setDisplaySize(64, 64).setName(`quickSlot${i}`).setScrollFactor(0).setDepth(this.options.baseDepth)
                     .setInteractive({ dropZone: true });
             }
         }
@@ -204,12 +206,13 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
                 const slotY = this.options.inventoryY + 20 + 64 * j;
                 this.inventoryDisplayGroup
                     .create(slotX, slotY, 'inventory-slot')
-                    .setOrigin(0, 0).setDisplaySize(64, 64).setName(`backpack${i}_${j}`).setScrollFactor(0).setDepth(1)
+                    .setOrigin(0, 0).setDisplaySize(64, 64).setName(`backpack${i}_${j}`).setScrollFactor(0).setDepth(this.options.baseDepth)
                     .setInteractive({ dropZone: true });
             }
         }
     }
     _drawEquippedItems() {
+        const self = this;
         const displayObjects = this.inventoryDisplayGroup.getChildren();
         this.character.inventory.forEach(item => {
             const slotImage = displayObjects.find(slot => slot.name === item.currentSlot);
@@ -229,16 +232,16 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             container.add([image]);
             container.setSize(64, 64)
                 .setScrollFactor(0)
-                .setName(item.currentSlot + 'image').setDepth(2)
+                .setName(item.currentSlot + 'image').setDepth(this.options.baseDepth + 1)
                 .setInteractive();
             this.scene.input.setDraggable(container);
             container.on('drag', function (pointer, dragX, dragY) {
                 this.x = dragX;
                 this.y = dragY;
-                this.setDepth(3);
+                this.setDepth(self.options.baseDepth + 2);
             });
             container.on('dragend', function (pointer, something1, something2, dropped) {
-                this.setDepth(2);
+                this.setDepth(self.options.baseDepth + 1);
                 if (!dropped) {
                     this.scene.tweens.add({
                         targets: this,
@@ -258,7 +261,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             .fillRect(this.options.inventoryX, this.options.inventoryY, this.options.inventoryWidth, this.options.inventoryHeight)
             .lineStyle(this.options.borderThickness, this.options.borderColor)
             .strokeRect(this.options.inventoryX, this.options.inventoryY, this.options.inventoryWidth, this.options.inventoryHeight)
-            .setScrollFactor(0).setInteractive();
+            .setScrollFactor(0).setInteractive().setDepth(this.options.baseDepth);
         this.inventoryDisplayGroup.add(inventoryGraphics);
     }
     _drawCloseButton() {
@@ -266,7 +269,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         const closeButtonY = this.options.inventoryY;
         const graphics = this.scene.add.graphics()
             .lineStyle(this.options.borderThickness, this.options.borderColor, this.options.borderAlpha)
-            .strokeRect(closeButtonX, closeButtonY, 20, 20).setScrollFactor(0);
+            .strokeRect(closeButtonX, closeButtonY, 20, 20).setScrollFactor(0).setDepth(this.options.baseDepth);
         this.inventoryDisplayGroup.add(graphics);
         const closeBtn = this.scene.add.text(closeButtonX, closeButtonY, 'X', {
             font: 'bold 16px Arial',
@@ -274,7 +277,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             fixedWidth: 20,
             fixedHeight: 20,
             align: 'center'
-        }).setScrollFactor(0).setInteractive();
+        }).setScrollFactor(0).setDepth(this.options.baseDepth).setInteractive();
         closeBtn.on('pointerover', () => closeBtn.setColor(this.options.closeButtonHoverColor));
         closeBtn.on('pointerout', () => closeBtn.setColor(this.options.closeButtonColor));
         closeBtn.on('pointerdown', () => {
