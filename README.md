@@ -1,5 +1,5 @@
 # Weakling
-HTML5 RPG game scratch built with Phaser 3 and typescript
+HTML5 RPG game sketch built with Phaser 3 and typescript
 
 This is very much work in progress game with 3 scenes available to explore - World Map, House and Fight - none of which are completed.
 
