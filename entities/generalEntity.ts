@@ -301,7 +301,7 @@ export default class GeneralEntity {
         this.recalculateCharacteristics();
     }
 
-    private recalculateCharacteristics() {
+    public recalculateCharacteristics() {
         this.characteristicsModifiers = {
             attributes: {
                 strength: 0,
@@ -326,8 +326,8 @@ export default class GeneralEntity {
             }
         };
         this.currentEffects.forEach((effect, i) => {
+            const target = effect.targetCharacteristic.split('.');
             if (effect.type === 'passive') {
-                let target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.characteristicsModifiers[target[0]][target[1]] = this.characteristicsModifiers[target[0]][target[1]] + effect.modifier.value;
                 }
@@ -336,7 +336,6 @@ export default class GeneralEntity {
                 }
             }
             if (effect.type === 'direct') {
-                let target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] + effect.modifier.value;
                 }
@@ -350,7 +349,16 @@ export default class GeneralEntity {
             Object.entries(value).forEach(([secondKey, value]) => {
                 this.currentCharacteristics[firstKey][secondKey] = this.baseCharacteristics[firstKey][secondKey] + this.characteristicsModifiers[firstKey][secondKey]
             })
-        })
+        });
+        this.applyItems();
+    }
+
+    public applyItems() {
+
+    }
+
+    public getAttackDamage() {
+        return 1;
     }
 
     private recalculateEffects() {
@@ -412,7 +420,9 @@ export default class GeneralEntity {
                 onLoop: function () { addEvent('onLoop') },
                 onYoyo: function () {  resolve() },
                 onRepeat: function () { addEvent('onRepeat') },*/
-                onComplete: function () { resolve() }
+                onComplete: function () {
+                    resolve()
+                }
             });
         })
     }

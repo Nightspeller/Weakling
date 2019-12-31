@@ -1,5 +1,4 @@
 import Player from "../entities/player.js";
-import {weapons} from "./items.js";
 
 export const effects: { [key: string]: Effect } = {
     armorUp: {
@@ -259,18 +258,13 @@ export const effects: { [key: string]: Effect } = {
             return hitChance >= hitRoll;
         },
         setModifier: function(source, target, action) {
-            let weapon;
-            if (source instanceof Player) {
-                 weapon = source.inventory.find(item => item.currentSlot === 'rightHand')?.specifics || {damage: 1};
-            } else {
-                weapon = source.weapon;
-            }
+            let damage = source.getAttackDamage();
             let penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
             penetration = penetration < 1 ? penetration : 1;
-            console.log(`%c${weapon.damage * penetration} damage is done. %c${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${penetration*100}%. Weapon attack power was ${weapon.damage}, thus final damage is ${weapon.damage * penetration}`, 'color: red', 'color: auto')
+            console.log(`%c${damage * penetration} damage is done. %c${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${penetration*100}%. Weapon attack power was ${damage}, thus final damage is ${damage * penetration}`, 'color: red', 'color: auto')
             this.modifier = {
                 type: 'value',
-                value: - (weapon.damage * penetration)
+                value: - (damage * penetration)
             };
         }
     },

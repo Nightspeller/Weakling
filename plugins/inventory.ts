@@ -1,7 +1,6 @@
 import Player from "../entities/player.js";
-import {belts} from "../actionsAndEffects/items.js";
 import Sprite = Phaser.GameObjects.Sprite;
-import player from "../entities/player.js";
+import Text = Phaser.GameObjects.Text;
 
 export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
     private inventoryDisplayGroup: Phaser.GameObjects.Group;
@@ -69,7 +68,19 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             this.scene.input.on('drop', (pointer, object, target) => {
                 const currentItemSlotName = object.name.split('image')[0];
                 const targetSlotName = target.name;
-                this._placeItemInSlot(currentItemSlotName, targetSlotName);
+                const movedItem = this.character.inventory.find(item => item.currentSlot === currentItemSlotName);
+                if (movedItem.slot.includes(targetSlotName) || targetSlotName.includes('backpack') || (movedItem.slot.includes('quickSlot') && targetSlotName.includes('quickSlot'))) {
+                    this._placeItemInSlot(currentItemSlotName, targetSlotName);
+                } else {
+                    const originalSlot = this.inventoryDisplayGroup.getChildren().find(slot => slot.name === currentItemSlotName) as Sprite;
+                    this.scene.tweens.add({
+                        targets: object,
+                        x: originalSlot.x + 32,
+                        y: originalSlot.y + 32,
+                        ease: 'Back.easeOut',
+                        duration: 500,
+                    });
+                }
             });
         }
     }
@@ -129,6 +140,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         this._drawQuickSlots();
         this._drawBackpack();
         this._drawEquippedItems();
+        this._drawCharacteristics();
     }
 
     private _drawDoll() {
@@ -151,7 +163,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         const neck = this.scene.add.zone(this.options.inventoryX + 202, this.options.inventoryY + 90, 66, 66)
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('neck');
         const backpack = this.scene.add.zone(this.options.inventoryX + 357, this.options.inventoryY + 20, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('backpack');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('bag');
         const ringLeft = this.scene.add.zone(this.options.inventoryX + 357, this.options.inventoryY + 246, 66, 66)
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('ringLeft');
         const ringRight = this.scene.add.zone(this.options.inventoryX + 86, this.options.inventoryY + 20 + 58, 66, 66)
@@ -169,20 +181,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         const boots = this.scene.add.zone(this.options.inventoryX + 210, this.options.inventoryY + 246 + 162, 66, 66)
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('boots');
 
-        this.inventoryDisplayGroup.add(rightHand);
-        this.inventoryDisplayGroup.add(leftHand);
-        this.inventoryDisplayGroup.add(belt);
-        this.inventoryDisplayGroup.add(head);
-        this.inventoryDisplayGroup.add(neck);
-        this.inventoryDisplayGroup.add(backpack);
-        this.inventoryDisplayGroup.add(ringLeft);
-        this.inventoryDisplayGroup.add(ringRight);
-        this.inventoryDisplayGroup.add(body);
-        this.inventoryDisplayGroup.add(cape);
-        this.inventoryDisplayGroup.add(gloves);
-        this.inventoryDisplayGroup.add(tail);
-        this.inventoryDisplayGroup.add(pants);
-        this.inventoryDisplayGroup.add(boots);
+        this.inventoryDisplayGroup.addMultiple([rightHand, leftHand, belt, head, neck, backpack, ringLeft, ringRight, body, cape, gloves, tail, pants, boots]);
     }
 
     private _drawQuickSlots() {
@@ -260,17 +259,17 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             container.add([image]);
             container.setSize(64, 64)
                 .setScrollFactor(0)
-                .setName(item.currentSlot + 'image').setDepth(this.options.baseDepth+1)
+                .setName(item.currentSlot + 'image').setDepth(this.options.baseDepth + 1)
                 .setInteractive();
             this.scene.input.setDraggable(container);
 
             container.on('drag', function (pointer, dragX, dragY) {
                 this.x = dragX;
                 this.y = dragY;
-                this.setDepth(self.options.baseDepth+2);
+                this.setDepth(self.options.baseDepth + 2);
             });
             container.on('dragend', function (pointer, something1, something2, dropped) {
-                this.setDepth(self.options.baseDepth+1);
+                this.setDepth(self.options.baseDepth + 1);
                 if (!dropped) {
                     this.scene.tweens.add({
                         targets: this,
@@ -280,6 +279,8 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
                         duration: 500,
                     });
                 }
+                self.character.recalculateCharacteristics();
+                self._drawCharacteristics();
             });
 
             this.inventoryDisplayGroup.add(container);
@@ -315,12 +316,38 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         closeBtn.on('pointerover', () => closeBtn.setColor(this.options.closeButtonHoverColor));
         closeBtn.on('pointerout', () => closeBtn.setColor(this.options.closeButtonColor));
         closeBtn.on('pointerdown', () => {
-            console.log('close btn clicked');
             this.inventoryDisplayGroup.clear(true, true);
             this.closeCallback?.call(this);
         });
 
         this.inventoryDisplayGroup.add(closeBtn);
+    }
+
+    private _drawCharacteristics() {
+        const textX = this.options.inventoryX + this.options.inventoryWidth - 20 - 64 * 5;
+        const textY = this.options.inventoryY + 20 + 64 * 5 + 20;
+        const text = `${this.character.name}
+HP: ${this.character.currentCharacteristics.parameters.currentHealth}/${this.character.currentCharacteristics.parameters.health}
+MP: ${this.character.currentCharacteristics.parameters.currentManna}/${this.character.currentCharacteristics.parameters.manna}
+EN: ${this.character.currentCharacteristics.parameters.currentEnergy}/${this.character.currentCharacteristics.parameters.energy}
+Strength: ${this.character.currentCharacteristics.attributes.strength}
+Agility: ${this.character.currentCharacteristics.attributes.agility}
+Intelligence: ${this.character.currentCharacteristics.attributes.intelligence}
+Armor: ${this.character.currentCharacteristics.defences.armor}
+Dodge: ${this.character.currentCharacteristics.defences.dodge}
+Resistance: 🔥${this.character.currentCharacteristics.defences.fireResistance}❄${this.character.currentCharacteristics.defences.coldResistance}⚡${this.character.currentCharacteristics.defences.electricityResistance}☣${this.character.currentCharacteristics.defences.acidResistance}☠${this.character.currentCharacteristics.defences.poisonResistance}✨${this.character.currentCharacteristics.defences.magicResistance}
+Initiative: ${this.character.currentCharacteristics.attributes.initiative}
+Damage: ${this.character.getAttackDamage()}`;
+        const textObject = this.inventoryDisplayGroup.getChildren().find(child => child.name === 'characteristicsText') as Text;
+        if (textObject) {
+            textObject.setText(text);
+        } else {
+            const characteristicsText = this.scene.add.text(textX, textY, text, {
+                font: '14px monospace',
+                color: '#000000',
+            }).setScrollFactor(0).setDepth(this.options.baseDepth).setName('characteristicsText');
+            this.inventoryDisplayGroup.add(characteristicsText);
+        }
     }
 
 

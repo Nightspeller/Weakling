@@ -45,9 +45,11 @@ export default class Player extends GeneralEntity {
         this.inventory = [];
         this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('fancy-belt');
+        this.addItemToInventory('allpowerful-necklace');
         this.addItemToInventory('minor-healing-potion');
         this.addItemToInventory('minor-healing-potion', 2);
-        this.addItemToInventory('fist-weapon').currentSlot = 'rightHand';
+        this.addItemToInventory('leather-armor').currentSlot = 'body';
+        this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
         this.actionPoints = {
             physical: 0,
             magical: 0,
@@ -56,6 +58,7 @@ export default class Player extends GeneralEntity {
         this.name = 'Weakling';
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.currentEffects = [];
+        this.recalculateCharacteristics();
     }
     addItemToInventory(itemId, quantity = 1) {
         // todo? might have to do deep copy...
@@ -79,6 +82,25 @@ export default class Player extends GeneralEntity {
             }
         }
         return null;
+    }
+    getAttackDamage() {
+        var _a, _b, _c, _d;
+        const rightHandDamage = ((_b = (_a = this.inventory.find(item => item.currentSlot === 'rightHand')) === null || _a === void 0 ? void 0 : _a.specifics) === null || _b === void 0 ? void 0 : _b.damage) || 1;
+        const leftHandDamage = ((_d = (_c = this.inventory.find(item => item.currentSlot === 'leftHand')) === null || _c === void 0 ? void 0 : _c.specifics) === null || _d === void 0 ? void 0 : _d.damage) / 2 || 0;
+        return rightHandDamage + leftHandDamage;
+    }
+    applyItems() {
+        this.inventory.forEach(item => {
+            var _a, _b;
+            if (!item.currentSlot.includes('backpack')) {
+                (_b = (_a = item.specifics) === null || _a === void 0 ? void 0 : _a.additionalCharacteristics) === null || _b === void 0 ? void 0 : _b.forEach(char => {
+                    Object.entries(char).forEach(([targetString, targetValue]) => {
+                        const target = targetString.split('.');
+                        this.currentCharacteristics[target[0]][target[1]] += targetValue;
+                    });
+                });
+            }
+        });
     }
     createAnimations() {
         const anims = this.scene.anims;

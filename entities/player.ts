@@ -52,9 +52,11 @@ export default class Player extends GeneralEntity {
         this.inventory = [];
         this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('fancy-belt');
+        this.addItemToInventory('allpowerful-necklace');
         this.addItemToInventory('minor-healing-potion');
         this.addItemToInventory('minor-healing-potion', 2);
-        this.addItemToInventory('fist-weapon').currentSlot = 'rightHand';
+        this.addItemToInventory('leather-armor').currentSlot = 'body';
+        this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
         this.actionPoints = {
             physical: 0,
             magical: 0,
@@ -65,6 +67,8 @@ export default class Player extends GeneralEntity {
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
 
         this.currentEffects = [];
+
+        this.recalculateCharacteristics();
     }
 
     public addItemToInventory(itemId, quantity = 1): Item {
@@ -90,6 +94,25 @@ export default class Player extends GeneralEntity {
             }
         }
         return null;
+    }
+
+    public getAttackDamage() {
+        const rightHandDamage = this.inventory.find(item => item.currentSlot === 'rightHand')?.specifics?.damage || 1;
+        const leftHandDamage = this.inventory.find(item => item.currentSlot === 'leftHand')?.specifics?.damage / 2 || 0;
+        return rightHandDamage + leftHandDamage;
+    }
+
+    public applyItems() {
+        this.inventory.forEach(item => {
+            if (!item.currentSlot.includes('backpack')) {
+                item.specifics?.additionalCharacteristics?.forEach(char => {
+                    Object.entries(char).forEach(([targetString, targetValue]) => {
+                        const target = targetString.split('.');
+                        this.currentCharacteristics[target[0]][target[1]] += targetValue;
+                    });
+                })
+            }
+        })
     }
 
     createAnimations() {

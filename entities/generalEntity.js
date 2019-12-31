@@ -250,8 +250,8 @@ export default class GeneralEntity {
             }
         };
         this.currentEffects.forEach((effect, i) => {
+            const target = effect.targetCharacteristic.split('.');
             if (effect.type === 'passive') {
-                let target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.characteristicsModifiers[target[0]][target[1]] = this.characteristicsModifiers[target[0]][target[1]] + effect.modifier.value;
                 }
@@ -260,7 +260,6 @@ export default class GeneralEntity {
                 }
             }
             if (effect.type === 'direct') {
-                let target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] + effect.modifier.value;
                 }
@@ -275,6 +274,12 @@ export default class GeneralEntity {
                 this.currentCharacteristics[firstKey][secondKey] = this.baseCharacteristics[firstKey][secondKey] + this.characteristicsModifiers[firstKey][secondKey];
             });
         });
+        this.applyItems();
+    }
+    applyItems() {
+    }
+    getAttackDamage() {
+        return 1;
     }
     recalculateEffects() {
         this.currentEffects = this.currentEffects.filter((effect, i) => {
@@ -327,7 +332,9 @@ export default class GeneralEntity {
                 onLoop: function () { addEvent('onLoop') },
                 onYoyo: function () {  resolve() },
                 onRepeat: function () { addEvent('onRepeat') },*/
-                onComplete: function () { resolve(); }
+                onComplete: function () {
+                    resolve();
+                }
             });
         });
     }

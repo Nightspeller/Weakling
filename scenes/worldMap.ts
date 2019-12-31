@@ -58,7 +58,7 @@ export class WorldMapScene extends Phaser.Scene {
 
         const enemyObject = map.findObject("Objects", obj => obj.name === "Goblin");
         const enemy = this.physics.add
-            .image(enemyObject['x'], enemyObject['y'], 'boar-avatar', 2)
+            .image(enemyObject['x'], enemyObject['y'], 'boar-avatar')
             .setOrigin(0, 0)
             .setDisplaySize(enemyObject['width'], enemyObject['height'])
             // .setVisible(false)

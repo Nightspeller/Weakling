@@ -39,7 +39,6 @@ export class Boar extends EnemyEntity {
             magical: 0,
             misc: 0
         };
-        this.weapon = { damage: 3 };
     }
     async aiTurn(disposition) {
         const currentAICharacter = this;
@@ -58,6 +57,9 @@ export class Boar extends EnemyEntity {
     startRound(roundType) {
         this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
         this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
+    }
+    getAttackDamage() {
+        return 3;
     }
 }
 //# sourceMappingURL=boar.js.map

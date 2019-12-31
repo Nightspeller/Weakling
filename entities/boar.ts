@@ -43,7 +43,6 @@ export class Boar extends EnemyEntity {
             magical: 0,
             misc: 0
         };
-        this.weapon = {damage: 3};
     }
 
     public async aiTurn(disposition: Disposition) {
@@ -64,5 +63,9 @@ export class Boar extends EnemyEntity {
     public startRound(roundType: 'preparation' | 'battle') {
         this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
         this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
+    }
+
+    public getAttackDamage() {
+        return 3;
     }
 }
