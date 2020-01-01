@@ -160,7 +160,21 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('pants');
         const boots = this.scene.add.zone(this.options.inventoryX + 210, this.options.inventoryY + 246 + 162, 66, 66)
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('boots');
-        this.inventoryDisplayGroup.addMultiple([rightHand, leftHand, belt, head, neck, backpack, ringLeft, ringRight, body, cape, gloves, tail, pants, boots]);
+        const slotNameText = this.scene.add.text(0, 0, '', {
+            font: '16px monospace',
+            color: '#000000',
+            backgroundColor: '#f0d191',
+            padding: { left: 2 }
+        }).setScrollFactor(0).setDepth(this.options.baseDepth + 1).setVisible(false);
+        const slots = [rightHand, leftHand, belt, head, neck, backpack, ringLeft, ringRight, body, cape, gloves, tail, pants, boots];
+        slots.forEach(slot => {
+            slot.on('pointerover', () => {
+                slotNameText.setText(slot.name[0].toUpperCase() + slot.name.slice(1)).setPosition(slot.getBottomLeft().x, slot.getBottomLeft().y).setVisible(true);
+            }).on('pointerout', () => {
+                slotNameText.setVisible(false);
+            });
+        });
+        this.inventoryDisplayGroup.addMultiple(slots);
     }
     _drawQuickSlots() {
         var _a;
