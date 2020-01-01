@@ -57,6 +57,7 @@ export default class Player extends GeneralEntity {
         this.addItemToInventory('minor-healing-potion', 2);
         this.addItemToInventory('leather-armor').currentSlot = 'body';
         this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
+        this.addItemToInventory('rangers-hat');
         this.actionPoints = {
             physical: 0,
             magical: 0,

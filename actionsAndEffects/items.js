@@ -74,6 +74,22 @@ export const items = {
             size: ['xs', 's', 'm'],
         }
     },
+    'rangers-hat': {
+        itemId: 'rangers-hat',
+        slot: ['head', 'backpack'],
+        sprite: { key: 'icon-item-set', frame: 112 },
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            additionalCharacteristics: [
+                { 'attributes.agility': 1 },
+                { 'attributes.initiative': 1 },
+                { 'defences.armor': 1 },
+            ],
+            size: ['xs', 's', 'm'],
+        }
+    },
     'minor-healing-potion': {
         itemId: 'minor-healing-potion',
         slot: ['quickSlot', 'backpack'],
