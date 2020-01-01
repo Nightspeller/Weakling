@@ -76,6 +76,7 @@ export class PreloadScene extends Phaser.Scene {
 
         // Interface
         this.load.image('interface', 'assets/images/interface/Interface.png');
+        this.load.image('debug-icon', 'assets/images/interface/debug-icon.png');
         this.load.spritesheet("action-points", "assets/images/interface/action-points.png", {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet("icons", 'assets/images/interface/icons-with-background.png', {frameWidth: 32, frameHeight: 32});
 

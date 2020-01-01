@@ -119,7 +119,9 @@ export class WorldMapScene extends Phaser.Scene {
 
         this.inventory.showOpenIcon(this.player);
 
-        const debugGraphics = this.add.graphics().setAlpha(0.25);
+        const debugButton = this.add.image(32,32,'debug-icon').setOrigin(0,0).setInteractive().setScrollFactor(0);
+        let debugModeOn = false;
+        const debugGraphics = this.add.graphics().setAlpha(0.25).setVisible(debugModeOn);
         layer2.renderDebug(debugGraphics, {
             tileColor: null,
             collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255),
@@ -129,6 +131,10 @@ export class WorldMapScene extends Phaser.Scene {
             tileColor: null,
             collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255),
             faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+        });
+        debugButton.on('pointerdown', () => {
+            debugModeOn = !debugModeOn;
+            debugGraphics.setVisible(debugModeOn);
         });
     }
 
