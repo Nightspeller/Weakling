@@ -2,6 +2,7 @@ import Player from "../entities/player.js";
 import {ModalDialogPlugin} from "../plugins/modal-dialog.js";
 import greetingDialog from "../dialogs/greetingDialog.js";
 import {InventoryPlugin} from "../plugins/inventory.js";
+import Trader from "../entities/trader.js";
 
 export class WorldMapScene extends Phaser.Scene {
     private player: Player;
@@ -107,19 +108,28 @@ export class WorldMapScene extends Phaser.Scene {
             .setOrigin(0, 0)
             .setDisplaySize(traderObject['width'], traderObject['height'])
             .setImmovable();
-        let traderEngaged = false;
+        const traderItems = [
+            {itemId: 'copper-pieces', quantity: 200},
+            {itemId: 'rope-belt', quantity: 1},
+            {itemId: 'dagger-weapon', quantity: 1},
+            {itemId: 'leather-armor', quantity: 1},
+        ];
+        const traderEntity = new Trader(traderItems);
         this.physics.add.collider(this.player.worldImage, trader, () => {
-            if (!traderEngaged) {
                 console.log('Trader engaged');
-                traderEngaged = true;
                 this.scene.pause('WorldMap');
-                const newScene = this.scene.run('Shop', this.player);
-            }
+                this.scene.run('Shop', {player: this.player, trader: traderEntity});
+        });
+        this.events.on('resume', fromScene => {
+            console.log('hi again!');
+            this.player.worldImage.y += 10;
+            // TODO: figure out proper way to stop player from sticky controls - cause scene pausing...
+            this.player.keys.up.isDown = false;
         });
 
         this.inventory.showOpenIcon(this.player);
 
-        const debugButton = this.add.image(32,32,'debug-icon').setOrigin(0,0).setInteractive().setScrollFactor(0);
+        const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0);
         let debugModeOn = false;
         const debugGraphics = this.add.graphics().setAlpha(0.25).setVisible(debugModeOn);
         layer2.renderDebug(debugGraphics, {

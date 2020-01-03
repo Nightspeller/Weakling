@@ -233,6 +233,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             const slotImage = displayObjects.find(slot => slot.name === item.currentSlot);
             const container = this.scene.add.container(slotImage.x + 32, slotImage.y + 32);
             const image = this.scene.add.image(0, 0, item.sprite.key, item.sprite.frame).setDisplaySize(64, 64);
+            container.add([image]);
             if (item.quantity) {
                 const quantityText = this.scene.add.text(32, 32, item.quantity.toString(), {
                     font: '14px monospace',
@@ -241,10 +242,9 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
                     padding: {
                         left: 2,
                     },
-                }).setOrigin(1, 1);
+                }).setOrigin(1, 1).setDepth(this.options.baseDepth);
                 container.add([quantityText]);
             }
-            container.add([image]);
             container.setSize(64, 64)
                 .setScrollFactor(0)
                 .setName(item.currentSlot + 'image').setDepth(this.options.baseDepth + 1)

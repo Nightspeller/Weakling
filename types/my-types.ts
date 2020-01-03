@@ -81,6 +81,8 @@ interface Belt {
 
 interface Item {
     itemId: string;
+    displayName: string;
+    description: string;
     slot: string[];
     sprite: {key: string; frame: number};
     stackable: boolean;
@@ -88,6 +90,8 @@ interface Item {
     currentSlot: string;
     quantity?: number;
     specifics?: any;
+    sellPrice: number;
+    buyPrice: number;
 }
 
 interface DialogOptions {

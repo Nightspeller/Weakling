@@ -51,6 +51,7 @@ export default class Player extends GeneralEntity {
         this.addItemToInventory('leather-armor').currentSlot = 'body';
         this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
         this.addItemToInventory('rangers-hat');
+        this.addItemToInventory('copper-pieces', 24);
         this.actionPoints = {
             physical: 0,
             magical: 0,
@@ -83,6 +84,17 @@ export default class Player extends GeneralEntity {
             }
         }
         return null;
+    }
+    removeItemFromInventory(item, quantity = 1) {
+        if (!this.inventory.includes(item) || quantity > item.quantity) {
+            throw 'Trying to remove non-existing item (or more items than possessed)!';
+        }
+        if (quantity === item.quantity || !item.quantity) {
+            this.inventory = this.inventory.filter(existingItem => existingItem !== item);
+        }
+        else {
+            item.quantity -= quantity;
+        }
     }
     getAttackDamage() {
         var _a, _b, _c, _d;
