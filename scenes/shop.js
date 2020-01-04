@@ -28,7 +28,6 @@ export class ShopScene extends Phaser.Scene {
     }
     create() {
         console.log('creating');
-        this.itemContainers = [];
         this._drawBackground();
         this._drawCloseButton();
         this._drawItems();
@@ -66,9 +65,29 @@ export class ShopScene extends Phaser.Scene {
         });
     }
     _drawItems() {
-        this.itemContainers.forEach(container => container.destroy(true, true));
-        this.player.inventory.forEach((item, index) => this._drawItemContainer(item, 32, 32 + 64 * index, true));
-        this.trader.inventory.forEach((item, index) => this._drawItemContainer(item, 32 + 360 + 16, 32 + 64 * index, false));
+        if (this.traderItemContainers && this.playerItemContainers) {
+            this.playerItemContainers.destroy(true);
+            this.traderItemContainers.destroy(true);
+        }
+        this.playerItemContainers = this.add.container(32, 32).setDepth(this.opts.baseDepth);
+        this.traderItemContainers = this.add.container(32 + 360 + 16, 32).setDepth(this.opts.baseDepth);
+        const playerItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.player.inventory.length * 64);
+        const traderItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.trader.inventory.length * 64);
+        this.playerItemContainers.setInteractive(playerItemContainersShape, Phaser.Geom.Rectangle.Contains);
+        this.traderItemContainers.setInteractive(traderItemContainersShape, Phaser.Geom.Rectangle.Contains);
+        this.player.inventory.forEach((item, index) => this._drawItemContainer(item, 0, 64 * index, true));
+        this.trader.inventory.forEach((item, index) => this._drawItemContainer(item, 0, 64 * index, false));
+        this.input.setTopOnly(false);
+        const playerOverflow = Phaser.Math.Clamp((this.player.inventory.length - 9) * 64, 0, (this.player.inventory.length - 9) * 64);
+        const traderOverflow = Phaser.Math.Clamp((this.trader.inventory.length - 9) * 64, 0, (this.trader.inventory.length - 9) * 64);
+        this.playerItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
+            this.y += deltaY * 3;
+            this.y = Phaser.Math.Clamp(this.y, 32 - playerOverflow, 32);
+        });
+        this.traderItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
+            this.y += deltaY * 3;
+            this.y = Phaser.Math.Clamp(this.y, 32 - traderOverflow, 32);
+        });
     }
     _drawItemContainer(item, x, y, toSell) {
         const containerShape = new Phaser.Geom.Rectangle(0, 0, 360, 64);
@@ -111,7 +130,9 @@ export class ShopScene extends Phaser.Scene {
         container.on('pointerdown', () => {
             if (!container.getData('focused')) {
                 console.log('showing item info', item.displayName);
-                const focusedContainer = this.itemContainers.find(itemContainer => itemContainer.getData('focused'));
+                let focusedContainer = this.playerItemContainers.getAll().find(itemContainer => itemContainer.getData('focused'));
+                if (!focusedContainer)
+                    focusedContainer = this.traderItemContainers.getAll().find(itemContainer => itemContainer.getData('focused'));
                 if (focusedContainer) {
                     focusedContainer.setData('focused', false);
                     focusedContainer.getByName('containerFocusedGraphics').setVisible(false);
@@ -130,13 +151,7 @@ export class ShopScene extends Phaser.Scene {
                 this._drawItems();
             }
         });
-        this.itemContainers.push(container);
-        /* this.add.text(x + 64, y + 16, item.description, {
-             color: 'black',
-             wordWrap: {
-                 width: 400 - 32 - 16 - 16 - 64
-             },
-         });*/
+        toSell ? this.playerItemContainers.add(container) : this.traderItemContainers.add(container);
     }
     _transferItem(item, selling) {
         if (selling) {

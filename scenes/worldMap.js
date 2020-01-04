@@ -98,6 +98,7 @@ export class WorldMapScene extends Phaser.Scene {
             { itemId: 'rope-belt', quantity: 1 },
             { itemId: 'dagger-weapon', quantity: 1 },
             { itemId: 'leather-armor', quantity: 1 },
+            { itemId: 'invisibility-cape', quantity: 1 },
         ];
         const traderEntity = new Trader(traderItems);
         this.physics.add.collider(this.player.worldImage, trader, () => {
