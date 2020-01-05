@@ -185,6 +185,19 @@ export const items = {
         sellPrice: 30,
         buyPrice: 60
     },
+    'basket': {
+        itemId: 'basket',
+        displayName: 'Basket',
+        description: 'Accurately made, sturdy baskets made by aunt Nahkha for sale',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 160 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 5,
+        buyPrice: 10
+    },
     'copper-pieces': {
         itemId: 'copper-pieces',
         displayName: 'Copper pieces',

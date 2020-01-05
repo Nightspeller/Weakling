@@ -1,9 +1,17 @@
 import Player from "../entities/player.js";
+import { elderFirstTimeDialog, elderGoodsObtainedDialog, elderSecondTimeDialog } from "../dialogs/elderGreetingDialog.js";
+import { ModalDialogPlugin } from "../plugins/modal-dialog.js";
+import { nahkhaAfterGoodsObtainedDialog, nahkhaAfterTheElderDialog, nahkhaBeforeTheElderDialog } from "../dialogs/nahkhaDialog.js";
+import { InventoryPlugin } from "../plugins/inventory.js";
+import { hargkakhAfterGoodsObtainedDialog, hargkakhFirstDialog, hargkakhSecondTryDialog } from "../dialogs/hargkakhDialog.js";
 export class VillageScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Village' });
     }
-    preload() { }
+    preload() {
+        this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
+        this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
+    }
     create() {
         const map = this.make.tilemap({ key: 'village' });
         const tileSet1 = map.addTilesetImage('main', 'base');
@@ -22,6 +30,7 @@ export class VillageScene extends Phaser.Scene {
         //layer2.setCollisionByProperty({collides: true});
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
         this.player = new Player(this, spawnPoint['x'], spawnPoint['y']);
+        this.inventory.showOpenIcon(this.player);
         this.physics.add.collider(this.player.worldImage, layer2);
         const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
         const worldMapPortal = this.physics.add
@@ -35,13 +44,77 @@ export class VillageScene extends Phaser.Scene {
         camera.startFollow(this.player.worldImage);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         camera.setDeadzone(200, 100);
-        /*const houseDoorObject = map.findObject("Objects", obj => obj.name === "House Door");
-        const houseDoor = this.physics.add
-            .image(houseDoorObject['x'], houseDoorObject['y'], null).setOrigin(0,0)
-            .setDisplaySize(houseDoorObject['width'],houseDoorObject['height'])
-            .setVisible(false)
+        const elderObject = map.findObject("Objects", obj => obj.name === "Elder");
+        const elder = this.physics.add
+            .image(elderObject['x'], elderObject['y'], 'stranger')
+            .setOrigin(0, 0)
+            .setDisplaySize(elderObject['width'], elderObject['height'])
             .setImmovable();
-        this.physics.add.collider(this.player.sprite, houseDoor, () => console.log('collided with the door') );*/
+        let isDialogClosed = true;
+        let elderDialogToTrigger = elderFirstTimeDialog;
+        let nahkhaDialogToTrigger = nahkhaBeforeTheElderDialog;
+        let hargkakhDialogToTrigger = hargkakhFirstDialog;
+        this.physics.add.collider(this.player.worldImage, elder, () => {
+            var _a;
+            if (isDialogClosed) {
+                isDialogClosed = false;
+                if (((_a = this.player.inventory.find(item => item.itemId === 'basket')) === null || _a === void 0 ? void 0 : _a.quantity) === 20) {
+                    elderDialogToTrigger = elderGoodsObtainedDialog;
+                }
+                this.modalDialog.showDialog(elderDialogToTrigger, this.player, {}, (param) => {
+                    console.log('dialog closed', param);
+                    isDialogClosed = true;
+                    if (param !== 'readyToGo') {
+                        elderDialogToTrigger = elderSecondTimeDialog;
+                        nahkhaDialogToTrigger = nahkhaAfterTheElderDialog;
+                    }
+                    else {
+                        elder.destroy(true);
+                    }
+                });
+            }
+        });
+        const nahkhaObject = map.findObject("Objects", obj => obj.name === "Nahkha");
+        const nahkha = this.physics.add
+            .image(nahkhaObject['x'], nahkhaObject['y'], 'trader')
+            .setOrigin(0, 0)
+            .setDisplaySize(nahkhaObject['width'], nahkhaObject['height'])
+            .setImmovable();
+        this.physics.add.collider(this.player.worldImage, nahkha, () => {
+            if (isDialogClosed) {
+                isDialogClosed = false;
+                this.modalDialog.showDialog(nahkhaDialogToTrigger, this.player, {}, (param) => {
+                    console.log('dialog closed', param);
+                    isDialogClosed = true;
+                    if (param === 'basketsObtained') {
+                        nahkhaDialogToTrigger = nahkhaAfterGoodsObtainedDialog;
+                        this.player.addItemToInventory('basket', 10);
+                    }
+                });
+            }
+        });
+        const hargkakhObject = map.findObject("Objects", obj => obj.name === "Hargkakh");
+        const hargkakh = this.physics.add
+            .image(hargkakhObject['x'], hargkakhObject['y'], 'stranger')
+            .setOrigin(0, 0)
+            .setDisplaySize(hargkakhObject['width'], hargkakhObject['height'])
+            .setImmovable();
+        this.physics.add.collider(this.player.worldImage, hargkakh, () => {
+            if (isDialogClosed) {
+                isDialogClosed = false;
+                this.modalDialog.showDialog(hargkakhDialogToTrigger, this.player, {}, (param) => {
+                    console.log('dialog closed', param);
+                    isDialogClosed = true;
+                    if (param === 'pickupFailure') {
+                        hargkakhDialogToTrigger = hargkakhSecondTryDialog;
+                    }
+                    if (param === 'mineralsObtained') {
+                        hargkakhDialogToTrigger = hargkakhAfterGoodsObtainedDialog;
+                        this.player.addItemToInventory('basket', 10);
+                    }
+                });
+            }
+        });
         const debugGraphics = this.add.graphics().setAlpha(0.25);
         layer2.renderDebug(debugGraphics, {
             tileColor: null,

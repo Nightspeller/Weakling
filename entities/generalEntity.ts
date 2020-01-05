@@ -326,8 +326,8 @@ export default class GeneralEntity {
             }
         };
         this.currentEffects.forEach((effect, i) => {
-            const target = effect.targetCharacteristic.split('.');
             if (effect.type === 'passive') {
+                const target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.characteristicsModifiers[target[0]][target[1]] = this.characteristicsModifiers[target[0]][target[1]] + effect.modifier.value;
                 }
@@ -336,6 +336,7 @@ export default class GeneralEntity {
                 }
             }
             if (effect.type === 'direct') {
+                const target = effect.targetCharacteristic.split('.');
                 if (effect.modifier.type === 'value') {
                     this.currentCharacteristics[target[0]][target[1]] = this.currentCharacteristics[target[0]][target[1]] + effect.modifier.value;
                 }
