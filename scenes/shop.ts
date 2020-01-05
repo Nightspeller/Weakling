@@ -107,11 +107,11 @@ export class ShopScene extends Phaser.Scene {
         const traderOverflow = Phaser.Math.Clamp((this.trader.inventory.length - 9) * 64, 0, (this.trader.inventory.length - 9) * 64);
 
         this.playerItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
-            this.y += deltaY * 3;
+            this.y -= deltaY * 5;
             this.y = Phaser.Math.Clamp(this.y, 32 - playerOverflow, 32);
         });
         this.traderItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
-            this.y += deltaY * 3;
+            this.y -= deltaY * 5;
             this.y = Phaser.Math.Clamp(this.y, 32 - traderOverflow, 32);
         });
     }
