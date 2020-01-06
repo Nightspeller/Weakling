@@ -109,6 +109,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
         this.load.tilemapTiledJSON('village', 'assets/tilemaps/village.json');
         this.load.tilemapTiledJSON('fight', 'assets/tilemaps/fight.json');
+        this.load.tilemapTiledJSON('hargkakhsCave', 'assets/tilemaps/hargkakhsCave.json');
     }
     create() {
         console.log('Preload done, calling WorldMap');

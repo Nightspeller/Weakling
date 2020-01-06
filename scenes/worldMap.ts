@@ -18,21 +18,27 @@ export class WorldMapScene extends Phaser.Scene {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
 
+    public init() {
+        this.player = new Player();
+    }
+
     public create() {
         const map = this.make.tilemap({key: 'map'});
         const tileSet1 = map.addTilesetImage('base', 'base');
         const tileSet2 = map.addTilesetImage('grass1', 'grass1');
         const tileSet3 = map.addTilesetImage('dirt1-dirt2', 'dirt1-dirt2');
         const tileSet4 = map.addTilesetImage('grass1-dirt2', 'grass1-dirt2');
+
         const baseLayer = map.createStaticLayer('Base Layer', [tileSet1, tileSet2, tileSet3, tileSet4], 0, 0);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1], 0, 0);
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1], 0, 0);
         layer2.setCollisionByProperty({collides: true});
         layer3.setCollisionByProperty({collides: true});
+        this.physics.world.setBounds(0,0, baseLayer.width, baseLayer.height);
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player = new Player(this, spawnPoint['x'], spawnPoint['y']);
+        this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
         this.physics.add.collider(this.player.worldImage, [layer2, layer3]);
 
         const camera = this.cameras.main;
@@ -127,8 +133,6 @@ export class WorldMapScene extends Phaser.Scene {
             // TODO: figure out proper way to stop player from sticky controls - cause scene pausing...
             this.player.keys.up.isDown = false;
         });
-
-        this.inventory.showOpenIcon(this.player);
 
         const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0);
         let debugModeOn = false;

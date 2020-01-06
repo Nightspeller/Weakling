@@ -6,14 +6,9 @@ import { items } from "../actionsAndEffects/items.js";
  * method when you're done with the player.
  */
 export default class Player extends GeneralEntity {
-    constructor(scene, x, y) {
+    constructor() {
         super();
-        this.scene = scene;
-        this.createAnimations();
-        this.worldImage = scene.physics.add.sprite(x, y, "martha", 1).setOrigin(0, 0);
         this.spriteParams = { texture: 'weakling', frame: null };
-        this.worldImage.anims.play("idle_down");
-        this.keys = scene.input.keyboard.createCursorKeys();
         this.speed = 200;
         this.baseCharacteristics = {
             attributes: {
@@ -175,6 +170,15 @@ export default class Player extends GeneralEntity {
     }
     freeze() {
         this.worldImage.body.moves = false;
+    }
+    prepareWorldImage(scene, x, y) {
+        this.scene = scene;
+        this.createAnimations();
+        this.worldImage = scene.physics.add.sprite(x, y, "martha", 1).setOrigin(0, 0);
+        this.worldImage.anims.play("idle_down");
+        this.keys = scene.input.keyboard.createCursorKeys();
+        this.scene['inventory'].showOpenIcon(this);
+        this.worldImage.body.setCollideWorldBounds(true);
     }
     update() {
         if (this.lastCursor

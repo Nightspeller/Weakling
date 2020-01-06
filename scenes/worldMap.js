@@ -11,6 +11,9 @@ export class WorldMapScene extends Phaser.Scene {
         this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
+    init() {
+        this.player = new Player();
+    }
     create() {
         const map = this.make.tilemap({ key: 'map' });
         const tileSet1 = map.addTilesetImage('base', 'base');
@@ -23,8 +26,9 @@ export class WorldMapScene extends Phaser.Scene {
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1], 0, 0);
         layer2.setCollisionByProperty({ collides: true });
         layer3.setCollisionByProperty({ collides: true });
+        this.physics.world.setBounds(0, 0, baseLayer.width, baseLayer.height);
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player = new Player(this, spawnPoint['x'], spawnPoint['y']);
+        this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
         this.physics.add.collider(this.player.worldImage, [layer2, layer3]);
         const camera = this.cameras.main;
         camera.startFollow(this.player.worldImage);
@@ -112,7 +116,6 @@ export class WorldMapScene extends Phaser.Scene {
             // TODO: figure out proper way to stop player from sticky controls - cause scene pausing...
             this.player.keys.up.isDown = false;
         });
-        this.inventory.showOpenIcon(this.player);
         const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0);
         let debugModeOn = false;
         const debugGraphics = this.add.graphics().setAlpha(0.25).setVisible(debugModeOn);

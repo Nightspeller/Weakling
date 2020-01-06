@@ -12,6 +12,14 @@ export class VillageScene extends Phaser.Scene {
         this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
+    init({ player }) {
+        if (player) {
+            this.player = player;
+        }
+        else {
+            this.player = new Player();
+        }
+    }
     create() {
         const map = this.make.tilemap({ key: 'village' });
         const tileSet1 = map.addTilesetImage('main', 'base');
@@ -27,10 +35,10 @@ export class VillageScene extends Phaser.Scene {
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
-        //layer2.setCollisionByProperty({collides: true});
+        layer2.setCollisionByProperty({ collides: true });
+        this.physics.world.setBounds(0, 0, layer1.width, layer1.height);
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player = new Player(this, spawnPoint['x'], spawnPoint['y']);
-        this.inventory.showOpenIcon(this.player);
+        this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
         this.physics.add.collider(this.player.worldImage, layer2);
         const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
         const worldMapPortal = this.physics.add
@@ -114,6 +122,17 @@ export class VillageScene extends Phaser.Scene {
                     }
                 });
             }
+        });
+        const hargkakhsCaveObject = map.findObject("Objects", obj => obj.name === "Hargkakh's Cave");
+        const hargkakhsCave = this.physics.add
+            .image(hargkakhsCaveObject['x'], hargkakhsCaveObject['y'], null)
+            .setVisible(false)
+            .setOrigin(0, 0)
+            .setDisplaySize(hargkakhsCaveObject['width'], hargkakhsCaveObject['height'])
+            .setImmovable();
+        this.physics.add.collider(this.player.worldImage, hargkakhsCave, () => {
+            this.scene.pause('WorldMap');
+            this.scene.start('HargkakhsCave', { player: this.player });
         });
         const debugGraphics = this.add.graphics().setAlpha(0.25);
         layer2.renderDebug(debugGraphics, {
