@@ -1,4 +1,6 @@
 import Player from "../entities/player.js";
+import {ModalDialogPlugin} from "../plugins/modal-dialog.js";
+import {InventoryPlugin} from "../plugins/inventory.js";
 
 export class HouseScene extends Phaser.Scene {
     private player: Player;
@@ -7,7 +9,18 @@ export class HouseScene extends Phaser.Scene {
         super({key: 'House'});
     }
 
-    public preload() { }
+    public preload() {
+        this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
+        this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
+    }
+
+    public init({player}) {
+        if (player) {
+            this.player = player;
+        } else {
+            this.player = new Player();
+        }
+    }
 
     public create() {
         const map = this.make.tilemap({key: 'house'});
@@ -20,7 +33,8 @@ export class HouseScene extends Phaser.Scene {
         //layer2.setCollisionByProperty({collides: true});
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player = new Player(this, spawnPoint['x'], spawnPoint['y']);
+        this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
+
         this.physics.add.collider(this.player.worldImage, layer2);
 
         const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");

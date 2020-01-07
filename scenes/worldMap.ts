@@ -53,7 +53,7 @@ export class WorldMapScene extends Phaser.Scene {
             .setDisplaySize(houseDoorObject['width'], houseDoorObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, houseDoor, () => this.scene.start("House"));
+        this.physics.add.collider(this.player.worldImage, houseDoor, () => this.scene.start("House", {player: this.player}));
 
         const villageObject = map.findObject("Objects", obj => obj.name === "Village");
         const villagePortal = this.physics.add
