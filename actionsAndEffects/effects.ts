@@ -1,5 +1,3 @@
-import Player from "../entities/player.js";
-
 export const effects: { [key: string]: Effect } = {
     armorUp: {
         effectId: 'armorUp',

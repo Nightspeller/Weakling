@@ -1,4 +1,4 @@
-import Player from "../entities/player";
+import {Player, playerInstance} from "../entities/player";
 import Trader from "../entities/trader";
 
 export class ShopScene extends Phaser.Scene {

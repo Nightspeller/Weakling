@@ -1,6 +1,6 @@
 import { Boar } from "./boar.js";
 import { effects } from "../actionsAndEffects/effects.js";
-import Player from "./player.js";
+import { Player } from "../entities/player.js";
 import EnemyEntity from "./enemyEntity.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location, scene) {

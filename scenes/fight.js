@@ -1,4 +1,4 @@
-import Player from "../entities/player.js";
+import { Player, playerInstance } from "../entities/player.js";
 import { PlayerActions } from "../actionsAndEffects/playerActions.js";
 import { Disposition } from "../entities/disposition.js";
 import { InventoryPlugin } from "../plugins/inventory.js";
@@ -6,12 +6,7 @@ export class FightScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Fight' });
     }
-    init(player) {
-        if (player) {
-            this.player = player;
-            this.player.scene = this;
-        }
-    }
+    init() { }
     preload() {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
@@ -27,11 +22,10 @@ export class FightScene extends Phaser.Scene {
         this.dispositionDisplayGroup = this.add.group();
         this.turnOrderDisplayGroup = this.add.group();
         this.actionInterfaceDisplayGroup = this.add.group();
-        if (!this.player)
-            this.player = new Player(this, 0, 0);
-        this.player2 = new Player(this, 0, 0);
-        this.player3 = new Player(this, 0, 0);
-        this.player4 = new Player(this, 0, 0);
+        this.player = playerInstance;
+        this.player2 = new Player();
+        this.player3 = new Player();
+        this.player4 = new Player();
         this.player.name = this.player.name + ' 1';
         this.player2.name = this.player2.name + ' 2';
         this.player3.name = this.player3.name + ' 3';

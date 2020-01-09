@@ -9,7 +9,6 @@ export default class GeneralEntity {
     public actions: string[];
     public position: string;
     public battleImage: Phaser.GameObjects.Sprite;
-    public worldImage: Phaser.GameObjects.Sprite & { body: Phaser.Physics.Arcade.Body };
     public entityInfoGroup: Phaser.GameObjects.Group;
     public effectInformationGroup: Phaser.GameObjects.Group;
     public currentEffects: Effect[];
@@ -27,7 +26,6 @@ export default class GeneralEntity {
 
     constructor() {
         this.spriteParams = {texture: null, frame: null};
-        this.worldImage = null;
         this.battleImage = null;
         this.level = null;
         this.actions = [];

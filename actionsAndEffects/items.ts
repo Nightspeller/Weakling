@@ -36,6 +36,24 @@ export const items: { [key: string]: Item } = {
         sellPrice: 15,
         buyPrice: 30
     },
+    'work-gloves': {
+        itemId: 'work-gloves',
+        displayName: 'Work gloves',
+        description: 'Rough-made and simple, but think and reliable gloves ideal for heavy-lifting',
+        slot: ['gloves', 'backpack'],
+        sprite: {key: 'icon-item-set', frame: 128},
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            additionalCharacteristics: [
+                {'attributes.strength': 1}
+            ],
+            size: ['xs', 's', 'm'],
+        },
+        sellPrice: 10,
+        buyPrice: 20
+    },
     'leather-armor': {
         itemId: 'leather-armor',
         displayName: 'Leather armor',

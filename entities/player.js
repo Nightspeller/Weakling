@@ -1,11 +1,6 @@
 import GeneralEntity from "./generalEntity.js";
 import { items } from "../actionsAndEffects/items.js";
-/**
- * A class that wraps up our top down player logic. It creates, animates and moves a sprite in
- * response to WASD keys. Call its update method from the scene's update and call its destroy
- * method when you're done with the player.
- */
-export default class Player extends GeneralEntity {
+export class Player extends GeneralEntity {
     constructor() {
         super();
         this.spriteParams = { texture: 'weakling', frame: null };
@@ -112,8 +107,8 @@ export default class Player extends GeneralEntity {
             }
         });
     }
-    createAnimations() {
-        const anims = this.scene.anims;
+    createAnimations(scene) {
+        const anims = scene.anims;
         anims.create({
             key: 'walk_down',
             frames: anims.generateFrameNames('martha', { start: 0, end: 2 }),
@@ -168,52 +163,55 @@ export default class Player extends GeneralEntity {
         this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
         this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
     }
-    freeze() {
-        this.worldImage.body.moves = false;
-    }
+    freeze() { }
     prepareWorldImage(scene, x, y) {
-        this.scene = scene;
-        this.createAnimations();
-        this.worldImage = scene.physics.add.sprite(x, y, "martha", 1).setOrigin(0, 0);
-        this.worldImage.anims.play("idle_down");
-        this.keys = scene.input.keyboard.createCursorKeys();
-        this.scene['inventory'].showOpenIcon(this);
-        this.worldImage.body.setCollideWorldBounds(true);
+        this.createAnimations(scene);
+        const worldImage = scene.physics.add.sprite(x, y, "martha", 1).setOrigin(0, 0);
+        worldImage.anims.play("idle_down");
+        const keys = scene.input.keyboard.addKeys('W,S,A,D,left,right,up,down');
+        scene['inventory'].showOpenIcon(this);
+        worldImage.body.setCollideWorldBounds(true);
+        return { worldImage, keys };
     }
-    update() {
-        if (this.lastCursor
-            && !this.keys.up.isDown && !this.keys.down.isDown
-            && !this.keys.left.isDown && !this.keys.right.isDown)
-            this.worldImage.play(`idle_${this.lastCursor}`, true);
-        if (this.keys.up.isDown) {
-            this.worldImage.body.setVelocityY(-this.speed);
-            this.worldImage.play('walk_up', true);
+    update(worldImage, keys) {
+        const up = keys.up.isDown || keys['W'].isDown;
+        const down = keys.down.isDown || keys['S'].isDown;
+        const right = keys.right.isDown || keys['D'].isDown;
+        const left = keys.left.isDown || keys['A'].isDown;
+        worldImage.body.setVelocity(0);
+        if (this.lastCursor && !up && !down && !right && !left) {
+            worldImage.play(`idle_${this.lastCursor}`, true);
+        }
+        if (up) {
+            worldImage.body.setVelocityY(-this.speed);
+        }
+        else if (down) {
+            worldImage.body.setVelocityY(this.speed);
+        }
+        if (right) {
+            worldImage.body.setVelocityX(this.speed);
+        }
+        else if (left) {
+            worldImage.body.setVelocityX(-this.speed);
+        }
+        if (up || (up && right) || (up && left)) {
+            worldImage.play('walk_up', true);
             this.lastCursor = 'up';
         }
-        else if (this.keys.down.isDown) {
-            this.worldImage.body.setVelocityY(this.speed);
-            this.worldImage.play('walk_down', true);
+        else if (down || (down && right) || (down && left)) {
+            worldImage.play('walk_down', true);
             this.lastCursor = 'down';
         }
-        else {
-            this.worldImage.body.setVelocityY(0);
-        }
-        if (this.keys.right.isDown) {
-            this.worldImage.body.setVelocityX(this.speed);
-            this.worldImage.play('walk_right', true);
+        if (right && !up && !down) {
+            worldImage.play('walk_right', true);
             this.lastCursor = 'right';
         }
-        else if (this.keys.left.isDown) {
-            this.worldImage.body.setVelocityX(-this.speed);
-            this.worldImage.play('walk_left', true);
+        else if (left && !up && !down) {
+            worldImage.play('walk_left', true);
             this.lastCursor = 'left';
         }
-        else {
-            this.worldImage.body.setVelocityX(0);
-        }
     }
-    destroy() {
-        this.worldImage.destroy();
-    }
+    destroy() { }
 }
+export const playerInstance = new Player();
 //# sourceMappingURL=player.js.map

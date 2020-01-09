@@ -1,9 +1,11 @@
-import Player from "../entities/player.js";
+import {Player, playerInstance} from "../entities/player.js";
 import {ModalDialogPlugin} from "../plugins/modal-dialog.js";
 import {InventoryPlugin} from "../plugins/inventory.js";
 
 export class HouseScene extends Phaser.Scene {
     private player: Player;
+    private playerImage: Phaser.GameObjects.Image;
+    private keys:  { [key: string]: any };
 
     constructor() {
         super({key: 'House'});
@@ -14,13 +16,7 @@ export class HouseScene extends Phaser.Scene {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
 
-    public init({player}) {
-        if (player) {
-            this.player = player;
-        } else {
-            this.player = new Player();
-        }
-    }
+    public init() { }
 
     public create() {
         const map = this.make.tilemap({key: 'house'});
@@ -33,9 +29,12 @@ export class HouseScene extends Phaser.Scene {
         //layer2.setCollisionByProperty({collides: true});
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
+        this.player = playerInstance;
+        const playerData = this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
+        this.playerImage = playerData.worldImage;
+        this.keys = playerData.keys;
 
-        this.physics.add.collider(this.player.worldImage, layer2);
+        this.physics.add.collider(this.playerImage, layer2);
 
         const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
         const worldMapPortal = this.physics.add
@@ -44,10 +43,10 @@ export class HouseScene extends Phaser.Scene {
             .setDisplaySize(worldMapObject['width'], worldMapObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, worldMapPortal, () => this.scene.start("WorldMap"));
+        this.physics.add.collider(this.playerImage, worldMapPortal, () => this.switchToScene("WorldMap"));
 
         const camera = this.cameras.main;
-        camera.startFollow(this.player.worldImage);
+        camera.startFollow(this.playerImage);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         /*const houseDoorObject = map.findObject("Objects", obj => obj.name === "House Door");
@@ -67,6 +66,25 @@ export class HouseScene extends Phaser.Scene {
     }
 
     public update() {
-        this.player.update();
+        this.player.update(this.playerImage, this.keys);
+    }
+
+    private switchToScene(sceneKey: string, data?: object, shouldSleep = true) {
+        console.log('Switching to', sceneKey);
+        this.events.off('resume');
+        this.events.on('resume', fromScene => {
+            console.log('Resuming', this.scene.key);
+            // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
+            // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
+            // still dont know how to fix properly..
+            // this event handler should not be here (it actually should not exist at all) but keeping it here for easier port of the fix..
+        });
+        Object.values(this.keys).forEach(key => key.isDown = false);
+        if (shouldSleep) {
+            this.scene.sleep(this.scene.key);
+        } else {
+            this.scene.pause(this.scene.key);
+        }
+        this.scene.run(sceneKey, data);
     }
 }

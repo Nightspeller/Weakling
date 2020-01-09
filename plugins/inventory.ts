@@ -1,4 +1,4 @@
-import Player from "../entities/player.js";
+import {Player} from "../entities/player.js";
 import Sprite = Phaser.GameObjects.Sprite;
 import Text = Phaser.GameObjects.Text;
 

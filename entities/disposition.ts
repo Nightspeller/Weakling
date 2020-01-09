@@ -1,7 +1,7 @@
 import {Boar} from "./boar.js";
 import GeneralEntity from "./generalEntity.js";
 import {effects} from "../actionsAndEffects/effects.js";
-import Player from "./player.js";
+import {Player, playerInstance} from "../entities/player.js";
 import generalEntity from "./generalEntity.js";
 import EnemyEntity from "./enemyEntity.js";
 import {FightScene} from "../scenes/fight.js";

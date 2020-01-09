@@ -1,4 +1,4 @@
-import Player from "../entities/player.js";
+import {Player} from "../entities/player.js";
 
 export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
     private timedEvent: Phaser.Time.TimerEvent;

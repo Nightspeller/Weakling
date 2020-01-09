@@ -1,4 +1,4 @@
-import Player from "../entities/player.js";
+import {Player, playerInstance} from "../entities/player.js";
 import {ModalDialogPlugin} from "../plugins/modal-dialog.js";
 import {InventoryPlugin} from "../plugins/inventory.js";
 
@@ -6,6 +6,8 @@ export class HargkakhsCaveScene extends Phaser.Scene {
     private player: Player;
     private modalDialog: ModalDialogPlugin;
     private inventory: InventoryPlugin;
+    private playerImage: Phaser.GameObjects.Image;
+    private keys:  { [key: string]: any };
 
     constructor() {
         super({key: 'HargkakhsCave'});
@@ -16,13 +18,7 @@ export class HargkakhsCaveScene extends Phaser.Scene {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
 
-    public init({player}) {
-        if (player) {
-            this.player = player;
-        } else {
-            this.player = new Player();
-        }
-    }
+    public init() { }
 
     public create() {
         const map = this.make.tilemap({key: 'hargkakhsCave'});
@@ -31,30 +27,47 @@ export class HargkakhsCaveScene extends Phaser.Scene {
         const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1], 304, 192);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1], 304, 192);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1], 304, 192);
-        const layer4 = map.createStaticLayer('EmptyChest', [tileSet1], 304, 192);
+        const layer4 = map.createStaticLayer('EmptyChest', [tileSet1], 304, 192).setVisible(false);
         layer2.setCollisionByProperty({collides: true});
         layer3.setCollisionByProperty({collides: true});
         layer4.setCollisionByProperty({collides: true});
         this.physics.world.setBounds(304, 192, layer1.width, layer1.height);
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player.prepareWorldImage(this, spawnPoint['x']+304, spawnPoint['y']+192);
+        this.player = playerInstance;
+        const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + 304, spawnPoint['y'] + 192);
+        this.playerImage = playerData.worldImage;
+        this.keys = playerData.keys;
 
-        this.physics.add.collider(this.player.worldImage, [layer2, layer3, layer4]);
+        this.physics.add.collider(this.playerImage, [layer2, layer3, layer4]);
 
         const camera = this.cameras.main;
-        camera.startFollow(this.player.worldImage);
+        camera.startFollow(this.playerImage);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         camera.setDeadzone(200, 100);
 
         const exitObject = map.findObject("Objects", obj => obj.name === "Exit");
         const exit = this.physics.add
-            .image(exitObject['x']+304, exitObject['y']+192, null)
+            .image(exitObject['x'] + 304, exitObject['y'] + 192, null)
             .setOrigin(0, 0)
             .setDisplaySize(exitObject['width'], exitObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, exit, () => this.scene.start("Village"));
+        this.physics.add.collider(this.playerImage, exit, () => this.switchToScene("Village"));
+
+        const chestObject = map.findObject("Objects", obj => obj.name === "Chest");
+        const chest = this.physics.add
+            .image(chestObject['x'] + 304, chestObject['y'] + 192, null)
+            .setOrigin(0, 0)
+            .setDisplaySize(chestObject['width'], chestObject['height'])
+            .setVisible(false)
+            .setImmovable();
+        this.physics.add.collider(this.playerImage, chest, () => {
+            layer4.setVisible(true);
+            this.player.addItemToInventory('fancy-belt');
+            this.player.addItemToInventory('work-gloves');
+            chest.destroy(true);
+        });
 
         const debugGraphics = this.add.graphics().setAlpha(0.25);
         layer2.renderDebug(debugGraphics, {
@@ -65,6 +78,25 @@ export class HargkakhsCaveScene extends Phaser.Scene {
     }
 
     public update() {
-        this.player.update();
+        this.player.update(this.playerImage, this.keys);
+    }
+
+    private switchToScene(sceneKey: string, data?: object, shouldSleep = true) {
+        console.log('Switching to', sceneKey);
+        this.events.off('resume');
+        this.events.on('resume', fromScene => {
+            console.log('Resuming', this.scene.key);
+            // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
+            // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
+            // still dont know how to fix properly..
+            // this event handler should not be here (it actually should not exist at all) but keeping it here for easier port of the fix..
+        });
+        Object.values(this.keys).forEach(key => key.isDown = false);
+        if (shouldSleep) {
+            this.scene.sleep(this.scene.key);
+        } else {
+            this.scene.pause(this.scene.key);
+        }
+        this.scene.run(sceneKey, data);
     }
 }

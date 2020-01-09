@@ -1,4 +1,4 @@
-import Player from "../entities/player.js";
+import { playerInstance } from "../entities/player.js";
 import { elderFirstTimeDialog, elderGoodsObtainedDialog, elderSecondTimeDialog } from "../dialogs/elderGreetingDialog.js";
 import { ModalDialogPlugin } from "../plugins/modal-dialog.js";
 import { nahkhaAfterGoodsObtainedDialog, nahkhaAfterTheElderDialog, nahkhaBeforeTheElderDialog } from "../dialogs/nahkhaDialog.js";
@@ -12,14 +12,7 @@ export class VillageScene extends Phaser.Scene {
         this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
-    init({ player }) {
-        if (player) {
-            this.player = player;
-        }
-        else {
-            this.player = new Player();
-        }
-    }
+    init() { }
     create() {
         const map = this.make.tilemap({ key: 'village' });
         const tileSet1 = map.addTilesetImage('main', 'base');
@@ -38,8 +31,11 @@ export class VillageScene extends Phaser.Scene {
         layer2.setCollisionByProperty({ collides: true });
         this.physics.world.setBounds(0, 0, layer1.width, layer1.height);
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
-        this.physics.add.collider(this.player.worldImage, layer2);
+        this.player = playerInstance;
+        const playerData = this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
+        this.playerImage = playerData.worldImage;
+        this.keys = playerData.keys;
+        this.physics.add.collider(this.playerImage, layer2);
         const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
         const worldMapPortal = this.physics.add
             .image(worldMapObject['x'], worldMapObject['y'], null)
@@ -47,9 +43,9 @@ export class VillageScene extends Phaser.Scene {
             .setDisplaySize(worldMapObject['width'], worldMapObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, worldMapPortal, () => this.scene.start("WorldMap"));
+        this.physics.add.collider(this.playerImage, worldMapPortal, () => this.switchToScene("WorldMap"));
         const camera = this.cameras.main;
-        camera.startFollow(this.player.worldImage);
+        camera.startFollow(this.playerImage);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         camera.setDeadzone(200, 100);
         const elderObject = map.findObject("Objects", obj => obj.name === "Elder");
@@ -62,7 +58,7 @@ export class VillageScene extends Phaser.Scene {
         let elderDialogToTrigger = elderFirstTimeDialog;
         let nahkhaDialogToTrigger = nahkhaBeforeTheElderDialog;
         let hargkakhDialogToTrigger = hargkakhFirstDialog;
-        this.physics.add.collider(this.player.worldImage, elder, () => {
+        this.physics.add.collider(this.playerImage, elder, () => {
             var _a;
             if (isDialogClosed) {
                 isDialogClosed = false;
@@ -88,7 +84,7 @@ export class VillageScene extends Phaser.Scene {
             .setOrigin(0, 0)
             .setDisplaySize(nahkhaObject['width'], nahkhaObject['height'])
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, nahkha, () => {
+        this.physics.add.collider(this.playerImage, nahkha, () => {
             if (isDialogClosed) {
                 isDialogClosed = false;
                 this.modalDialog.showDialog(nahkhaDialogToTrigger, this.player, {}, (param) => {
@@ -107,7 +103,7 @@ export class VillageScene extends Phaser.Scene {
             .setOrigin(0, 0)
             .setDisplaySize(hargkakhObject['width'], hargkakhObject['height'])
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, hargkakh, () => {
+        this.physics.add.collider(this.playerImage, hargkakh, () => {
             if (isDialogClosed) {
                 isDialogClosed = false;
                 this.modalDialog.showDialog(hargkakhDialogToTrigger, this.player, {}, (param) => {
@@ -130,10 +126,7 @@ export class VillageScene extends Phaser.Scene {
             .setOrigin(0, 0)
             .setDisplaySize(hargkakhsCaveObject['width'], hargkakhsCaveObject['height'])
             .setImmovable();
-        this.physics.add.collider(this.player.worldImage, hargkakhsCave, () => {
-            this.scene.pause('WorldMap');
-            this.scene.start('HargkakhsCave', { player: this.player });
-        });
+        this.physics.add.collider(this.playerImage, hargkakhsCave, () => this.switchToScene('HargkakhsCave'));
         const debugGraphics = this.add.graphics().setAlpha(0.25);
         layer2.renderDebug(debugGraphics, {
             tileColor: null,
@@ -142,7 +135,26 @@ export class VillageScene extends Phaser.Scene {
         });
     }
     update() {
-        this.player.update();
+        this.player.update(this.playerImage, this.keys);
+    }
+    switchToScene(sceneKey, data, shouldSleep = true) {
+        console.log('Switching to', sceneKey);
+        this.events.off('resume');
+        this.events.on('resume', fromScene => {
+            console.log('Resuming', this.scene.key);
+            // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
+            // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
+            // still dont know how to fix properly..
+            // this event handler should not be here (it actually should not exist at all) but keeping it here for easier port of the fix..
+        });
+        Object.values(this.keys).forEach(key => key.isDown = false);
+        if (shouldSleep) {
+            this.scene.sleep(this.scene.key);
+        }
+        else {
+            this.scene.pause(this.scene.key);
+        }
+        this.scene.run(sceneKey, data);
     }
 }
 //# sourceMappingURL=village.js.map

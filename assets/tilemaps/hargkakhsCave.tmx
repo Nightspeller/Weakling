@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="-1" width="6" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="3">
+<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="6" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="4">
  <editorsettings>
   <export target="hargkakhsCave.json" format="json"/>
  </editorsettings>
@@ -2946,5 +2946,6 @@
   <object id="2" name="Start" x="22.8182" y="206.636">
    <point/>
   </object>
+  <object id="3" name="Chest" x="159" y="32" width="33" height="32"/>
  </objectgroup>
 </map>

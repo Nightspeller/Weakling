@@ -1,7 +1,6 @@
 export default class GeneralEntity {
     constructor() {
         this.spriteParams = { texture: null, frame: null };
-        this.worldImage = null;
         this.battleImage = null;
         this.level = null;
         this.actions = [];
