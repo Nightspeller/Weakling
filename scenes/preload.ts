@@ -1,9 +1,13 @@
+import {Player, playerInstance} from "../entities/player.js";
+
 export class PreloadScene extends Phaser.Scene {
+    private player: Player;
     constructor() {
         super({key: 'Preload'});
     }
 
     preload() {
+        this.player = playerInstance;
         const progressBar = this.add.graphics();
         const progressBox = this.add.graphics();
         progressBox.fillStyle(0x222222, 0.8);
@@ -81,7 +85,12 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("icons", 'assets/images/interface/icons-with-background.png', {frameWidth: 32, frameHeight: 32});
 
         // World characters images
-        this.load.spritesheet("martha", "assets/images/characters/world-map/party/martha-pink.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("martha-pink", "assets/images/characters/world-map/party/martha-pink.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("martha-blond", "assets/images/characters/world-map/party/martha-blond.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("martha-green", "assets/images/characters/world-map/party/martha-green.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("jeremy-pink", "assets/images/characters/world-map/party/jeremy-pink.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("jeremy-blond", "assets/images/characters/world-map/party/jeremy-blond.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("jeremy-green", "assets/images/characters/world-map/party/jeremy-green.png", {frameWidth: 32, frameHeight: 32});
         this.load.spritesheet('solider', 'assets/images/characters/world-map/neutral/solider.png',{frameWidth: 32, frameHeight: 32});
         this.load.spritesheet('enemies', 'assets/images/characters/various-enemies.png', {frameWidth: 128, frameHeight: 128});
         this.load.spritesheet("stranger", "assets/images/characters/world-map/neutral/stranger.png", {frameWidth: 32, frameHeight: 32});
@@ -112,7 +121,59 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('hargkakhsCave', 'assets/tilemaps/hargkakhsCave.json');
     }
     create() {
+        this.createAnimations();
         console.log('Preload done, calling WorldMap');
         this.scene.start("WorldMap");
+    }
+
+    private createAnimations() {
+        this.anims.create({
+            key: 'walk_down',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 0, end: 2}),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'walk_up',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 9, end: 11}),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'walk_right',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 6, end: 8}),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'walk_left',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 3, end: 5}),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'idle_up',
+            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 10}],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'idle_down',
+            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 1}],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'idle_left',
+            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 4}],
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'idle_right',
+            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 7}],
+            frameRate: 10,
+            repeat: -1
+        });
     }
 }

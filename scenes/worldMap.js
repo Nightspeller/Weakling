@@ -43,10 +43,7 @@ export class WorldMapScene extends Phaser.Scene {
             .setDisplaySize(houseDoorObject['width'], houseDoorObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.playerImage, houseDoor, () => {
-            console.log('house collision detected');
-            this.switchToScene("House");
-        });
+        this.physics.add.collider(this.playerImage, houseDoor, () => this.switchToScene("House"));
         const villageObject = map.findObject("Objects", obj => obj.name === "Village");
         const villagePortal = this.physics.add
             .image(villageObject['x'], villageObject['y'], null)
@@ -88,7 +85,6 @@ export class WorldMapScene extends Phaser.Scene {
             if (isDialogClosed) {
                 isDialogClosed = false;
                 this.modalDialog.showDialog(greetingDialog, this.player, {}, (param) => {
-                    console.log('dialog closed', param);
                     if (param === 'daggerObtained') {
                         this.player.addItemToInventory('dagger-weapon');
                     }
@@ -114,6 +110,14 @@ export class WorldMapScene extends Phaser.Scene {
             player: this.player,
             trader: traderEntity
         }, false));
+        const chatPickerObject = map.findObject("Objects", obj => obj.name === "Character Picker");
+        const chatPicker = this.physics.add
+            .image(chatPickerObject['x'], chatPickerObject['y'], null)
+            .setOrigin(0, 0)
+            .setDisplaySize(chatPickerObject['width'], chatPickerObject['height'])
+            .setVisible(false)
+            .setImmovable();
+        this.physics.add.collider(this.playerImage, chatPicker, () => this.switchToScene('CharacterPicker', {}, false));
         const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0);
         let debugModeOn = false;
         const debugGraphics = this.add.graphics().setAlpha(0.25).setVisible(debugModeOn);

@@ -5,11 +5,13 @@ export class Player extends GeneralEntity {
     private lastCursor: string;
     public speed: number;
     public inventory: Item[];
+    public worldImageSpriteParams: { texture: string; frame: number };
 
     constructor() {
         super();
         this.spriteParams = {texture: 'weakling', frame: null};
         this.speed = 200;
+        this.worldImageSpriteParams = {texture: 'martha-pink', frame: 1};
         this.baseCharacteristics = {
             attributes: {
                 strength: 10,
@@ -118,58 +120,6 @@ export class Player extends GeneralEntity {
         })
     }
 
-    createAnimations(scene) {
-        const anims = scene.anims;
-        anims.create({
-            key: 'walk_down',
-            frames: anims.generateFrameNames('martha', {start: 0, end: 2}),
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: 'walk_up',
-            frames: anims.generateFrameNames('martha', {start: 9, end: 11}),
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: 'walk_right',
-            frames: anims.generateFrameNames('martha', {start: 6, end: 8}),
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: 'walk_left',
-            frames: anims.generateFrameNames('martha', {start: 3, end: 5}),
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: 'idle_up',
-            frames: [{key: 'martha', frame: 10}],
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: 'idle_down',
-            frames: [{key: 'martha', frame: 1}],
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: 'idle_left',
-            frames: [{key: 'martha', frame: 4}],
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: 'idle_right',
-            frames: [{key: 'martha', frame: 7}],
-            frameRate: 10,
-            repeat: -1
-        });
-    }
-
     public startRound(roundType: 'preparation' | 'battle') {
         this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
         this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
@@ -179,8 +129,7 @@ export class Player extends GeneralEntity {
     freeze() { }
 
     public prepareWorldImage(scene, x, y) {
-        this.createAnimations(scene);
-        const worldImage = scene.physics.add.sprite(x, y, "martha", 1).setOrigin(0, 0);
+        const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame).setOrigin(0, 0);
         worldImage.anims.play("idle_down");
         const keys = scene.input.keyboard.addKeys('W,S,A,D,left,right,up,down');
         scene['inventory'].showOpenIcon(this);

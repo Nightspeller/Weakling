@@ -1,13 +1,12 @@
 import {Player, playerInstance} from "../entities/player";
 import Trader from "../entities/trader";
+import {OverlayScene} from "./overlayScene.js";
 
-export class ShopScene extends Phaser.Scene {
+export class ShopScene extends OverlayScene {
     private player: Player;
     private trader: Trader;
-    private opts: any;
     private playerItemContainers: Phaser.GameObjects.Container;
     private traderItemContainers: Phaser.GameObjects.Container;
-
 
     constructor() {
         super({key: 'Shop'});
@@ -19,72 +18,16 @@ export class ShopScene extends Phaser.Scene {
     }
 
     public preload() {
-        console.log('preloading');
-        this.opts = {
-            backgroundColor: 0xf0d191,
-            backgroundAlpha: 1,
-            windowX: 16,
-            windowY: 16,
-            windowWidth: 32 * 24,
-            windowHeight: 32 * 19,
-
-            borderThickness: 3,
-            borderColor: 0x907748,
-            borderAlpha: 1,
-
-            baseDepth: 0,
-
-            closeButtonColor: 'darkgoldenrod',
-            closeButtonHoverColor: 'red',
-
-            textColor: 'white',
-            letterAppearanceDelay: 10
-        };
         this.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
     }
 
     public create() {
-        console.log('creating');
-
-        this._drawBackground();
-        this._drawCloseButton();
+        this.prepareOverlay('WorldMap');
         this._drawItems();
         this.events.on('wake', () => {
             console.log('awaken!');
             this._drawItems();
         })
-    }
-
-    private _drawBackground() {
-        this.add.graphics()
-            .fillStyle(this.opts.backgroundColor, this.opts.backgroundAlpha)
-            .fillRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
-            .lineStyle(this.opts.borderThickness, this.opts.borderColor)
-            .strokeRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
-            .setScrollFactor(0).setInteractive().setDepth(this.opts.baseDepth);
-    }
-
-    private _drawCloseButton() {
-        const closeButtonX = this.opts.windowX + this.opts.windowWidth - 20;
-        const closeButtonY = this.opts.windowY;
-        const graphics = this.add.graphics()
-            .lineStyle(this.opts.borderThickness, this.opts.borderColor, this.opts.borderAlpha)
-            .strokeRect(closeButtonX, closeButtonY, 20, 20).setScrollFactor(0).setDepth(this.opts.baseDepth);
-
-        const closeBtn = this.add.text(closeButtonX, closeButtonY, 'X', {
-            font: 'bold 16px Arial',
-            fill: this.opts.closeButtonColor,
-            fixedWidth: 20,
-            fixedHeight: 20,
-            align: 'center'
-        }).setScrollFactor(0).setDepth(this.opts.baseDepth).setInteractive();
-
-        closeBtn.on('pointerover', () => closeBtn.setColor(this.opts.closeButtonHoverColor));
-        closeBtn.on('pointerout', () => closeBtn.setColor(this.opts.closeButtonColor));
-        closeBtn.on('pointerdown', () => {
-            this.scene.resume('WorldMap');
-            this.scene.sleep('Shop');
-        });
     }
 
     private _drawItems() {
@@ -188,7 +131,6 @@ export class ShopScene extends Phaser.Scene {
                 this.player.removeItemFromInventory(item);
                 this.trader.removeItemFromInventory(tradersMoney, item.sellPrice);
                 this.trader.addItemToInventory(item.itemId);
-                // Remove gold from trader
             }
         } else {
             const playerMoney = this.player.inventory.find(item => item.itemId === 'copper-pieces');

@@ -94,6 +94,22 @@ interface Item {
     buyPrice: number;
 }
 
+interface OverlaySceneOptions {
+    backgroundColor?: number;
+    backgroundAlpha?: number;
+    windowX?: number;
+    windowY?: number;
+    windowWidth?: number;
+    windowHeight?: number;
+    borderThickness?: number;
+    borderColor?: number;
+    borderAlpha?: number;
+    baseDepth?: number;
+    closeButtonColor?: string;
+    closeButtonHoverColor?: string;
+    textColor?: string;
+}
+
 interface DialogOptions {
     borderThickness?: number;
     borderColor?: number;

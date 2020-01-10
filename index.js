@@ -5,6 +5,7 @@ import { FightScene } from "./scenes/fight.js";
 import { VillageScene } from "./scenes/village.js";
 import { ShopScene } from "./scenes/shop.js";
 import { HargkakhsCaveScene } from "./scenes/hargkakhsCave.js";
+import { CharacterPickerScene } from "./scenes/characterPicker.js";
 const zoom = 1;
 const gameConfig = {
     title: 'Sample',
@@ -22,7 +23,7 @@ const gameConfig = {
     },
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, WorldMapScene, HouseScene, FightScene, VillageScene, ShopScene, HargkakhsCaveScene]
+    scene: [PreloadScene, WorldMapScene, HouseScene, FightScene, VillageScene, ShopScene, HargkakhsCaveScene, CharacterPickerScene]
 };
 export const game = new Phaser.Game(gameConfig);
 //# sourceMappingURL=index.js.map
