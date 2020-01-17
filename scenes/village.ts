@@ -86,7 +86,7 @@ export class VillageScene extends Phaser.Scene {
         this.physics.add.collider(this.playerImage, elder, () => {
             if (isDialogClosed) {
                 isDialogClosed = false;
-                if (this.player.inventory.find(item => item.itemId === 'basket')?.quantity === 20) {
+                if (this.player.inventory.find(item => item.itemId === 'basket')?.quantity === 10 && this.player.inventory.find(item => item.itemId === 'minerals')?.quantity === 10) {
                     elderDialogToTrigger = elderGoodsObtainedDialog;
                 }
                 this.modalDialog.showDialog(elderDialogToTrigger, this.player, {}, (param) => {
@@ -130,6 +130,7 @@ export class VillageScene extends Phaser.Scene {
             .setDisplaySize(hargkakhObject['width'], hargkakhObject['height'])
             .setImmovable();
 
+        let keyGiven = false;
         this.physics.add.collider(this.playerImage, hargkakh, () => {
             if (isDialogClosed) {
                 isDialogClosed = false;
@@ -138,10 +139,14 @@ export class VillageScene extends Phaser.Scene {
                     isDialogClosed = true;
                     if (param === 'pickupFailure') {
                         hargkakhDialogToTrigger = hargkakhSecondTryDialog;
+                        if (!keyGiven) {
+                            this.player.addItemToInventory('copper-key').specifics.opens = 'hargkakhsChest';
+                            keyGiven = true;
+                        }
                     }
                     if (param === 'mineralsObtained') {
                         hargkakhDialogToTrigger = hargkakhAfterGoodsObtainedDialog;
-                        this.player.addItemToInventory('basket', 10);
+                        this.player.addItemToInventory('minerals', 10);
                     }
                 });
             }

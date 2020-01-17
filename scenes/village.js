@@ -59,10 +59,10 @@ export class VillageScene extends Phaser.Scene {
         let nahkhaDialogToTrigger = nahkhaBeforeTheElderDialog;
         let hargkakhDialogToTrigger = hargkakhFirstDialog;
         this.physics.add.collider(this.playerImage, elder, () => {
-            var _a;
+            var _a, _b;
             if (isDialogClosed) {
                 isDialogClosed = false;
-                if (((_a = this.player.inventory.find(item => item.itemId === 'basket')) === null || _a === void 0 ? void 0 : _a.quantity) === 20) {
+                if (((_a = this.player.inventory.find(item => item.itemId === 'basket')) === null || _a === void 0 ? void 0 : _a.quantity) === 10 && ((_b = this.player.inventory.find(item => item.itemId === 'minerals')) === null || _b === void 0 ? void 0 : _b.quantity) === 10) {
                     elderDialogToTrigger = elderGoodsObtainedDialog;
                 }
                 this.modalDialog.showDialog(elderDialogToTrigger, this.player, {}, (param) => {
@@ -103,6 +103,7 @@ export class VillageScene extends Phaser.Scene {
             .setOrigin(0, 0)
             .setDisplaySize(hargkakhObject['width'], hargkakhObject['height'])
             .setImmovable();
+        let keyGiven = false;
         this.physics.add.collider(this.playerImage, hargkakh, () => {
             if (isDialogClosed) {
                 isDialogClosed = false;
@@ -111,10 +112,14 @@ export class VillageScene extends Phaser.Scene {
                     isDialogClosed = true;
                     if (param === 'pickupFailure') {
                         hargkakhDialogToTrigger = hargkakhSecondTryDialog;
+                        if (!keyGiven) {
+                            this.player.addItemToInventory('copper-key').specifics.opens = 'hargkakhsChest';
+                            keyGiven = true;
+                        }
                     }
                     if (param === 'mineralsObtained') {
                         hargkakhDialogToTrigger = hargkakhAfterGoodsObtainedDialog;
-                        this.player.addItemToInventory('basket', 10);
+                        this.player.addItemToInventory('minerals', 10);
                     }
                 });
             }

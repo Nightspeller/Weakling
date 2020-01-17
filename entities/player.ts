@@ -49,7 +49,6 @@ export class Player extends GeneralEntity {
         this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
         this.addItemToInventory('wooden-sword-weapon');
         this.addItemToInventory('rangers-hat');
-        this.addItemToInventory('rangers-hat');
         this.addItemToInventory('copper-pieces', 240);
         this.actionPoints = {
             physical: 0,
@@ -131,7 +130,7 @@ export class Player extends GeneralEntity {
     public prepareWorldImage(scene, x, y) {
         const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame).setOrigin(0, 0);
         worldImage.anims.play("idle_down");
-        const keys = scene.input.keyboard.addKeys('W,S,A,D,left,right,up,down');
+        const keys = scene.input.keyboard.addKeys('W,S,A,D,left,right,up,down,space');
         scene['inventory'].showOpenIcon(this);
         worldImage.body.setCollideWorldBounds(true);
         return {worldImage, keys}

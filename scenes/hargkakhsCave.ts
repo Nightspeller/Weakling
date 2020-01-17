@@ -7,7 +7,9 @@ export class HargkakhsCaveScene extends Phaser.Scene {
     private modalDialog: ModalDialogPlugin;
     private inventory: InventoryPlugin;
     private playerImage: Phaser.GameObjects.Image;
-    private keys:  { [key: string]: any };
+    private keys: { [key: string]: any };
+    private layer4: Phaser.Tilemaps.StaticTilemapLayer;
+    private chest: Phaser.Physics.Arcade.Image;
 
     constructor() {
         super({key: 'HargkakhsCave'});
@@ -18,7 +20,8 @@ export class HargkakhsCaveScene extends Phaser.Scene {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
 
-    public init() { }
+    public init() {
+    }
 
     public create() {
         const map = this.make.tilemap({key: 'hargkakhsCave'});
@@ -27,10 +30,10 @@ export class HargkakhsCaveScene extends Phaser.Scene {
         const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1], 304, 192);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1], 304, 192);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1], 304, 192);
-        const layer4 = map.createStaticLayer('EmptyChest', [tileSet1], 304, 192).setVisible(false);
+        this.layer4 = map.createStaticLayer('EmptyChest', [tileSet1], 304, 192).setVisible(false);
         layer2.setCollisionByProperty({collides: true});
         layer3.setCollisionByProperty({collides: true});
-        layer4.setCollisionByProperty({collides: true});
+        this.layer4.setCollisionByProperty({collides: true});
         this.physics.world.setBounds(304, 192, layer1.width, layer1.height);
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
@@ -39,7 +42,7 @@ export class HargkakhsCaveScene extends Phaser.Scene {
         this.playerImage = playerData.worldImage;
         this.keys = playerData.keys;
 
-        this.physics.add.collider(this.playerImage, [layer2, layer3, layer4]);
+        this.physics.add.collider(this.playerImage, [layer2, layer3, this.layer4]);
 
         const camera = this.cameras.main;
         camera.startFollow(this.playerImage);
@@ -56,17 +59,13 @@ export class HargkakhsCaveScene extends Phaser.Scene {
         this.physics.add.collider(this.playerImage, exit, () => this.switchToScene("Village"));
 
         const chestObject = map.findObject("Objects", obj => obj.name === "Chest");
-        const chest = this.physics.add
+        this.chest = this.physics.add
             .image(chestObject['x'] + 304, chestObject['y'] + 192, null)
             .setOrigin(0, 0)
             .setDisplaySize(chestObject['width'], chestObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.playerImage, chest, () => {
-            layer4.setVisible(true);
-            this.player.addItemToInventory('fancy-belt');
-            this.player.addItemToInventory('work-gloves');
-            chest.destroy(true);
+        this.physics.add.overlap(this.playerImage, this.chest, () => {
         });
 
         const debugGraphics = this.add.graphics().setAlpha(0.25);
@@ -79,6 +78,16 @@ export class HargkakhsCaveScene extends Phaser.Scene {
 
     public update() {
         this.player.update(this.playerImage, this.keys);
+        if (this.chest.body?.embedded && this.keys.space.isDown) {
+            const key = this.player.inventory.find(item => item.specifics?.opens === 'hargkakhsChest');
+            if (key) {
+                this.layer4.setVisible(true);
+                this.player.addItemToInventory('fancy-belt');
+                this.player.addItemToInventory('work-gloves');
+                this.player.removeItemFromInventory(key);
+                this.chest.destroy(true);
+            }
+        }
     }
 
     private switchToScene(sceneKey: string, data?: object, shouldSleep = true) {
