@@ -62,6 +62,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('dirt1', 'assets/images/tilesets/dirt1.png');
         this.load.image('dirt2', 'assets/images/tilesets/dirt2.png');
         this.load.image('dirt4', 'assets/images/tilesets/dirt4.png');
+        this.load.image('water2', 'assets/images/tilesets/water2.png');
         this.load.image('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png');
         this.load.image('grass1-dirt2', 'assets/images/tilesets/grass1-dirt2.png');
         this.load.image('grass1-dirt4', 'assets/images/tilesets/grass1-dirt4.png');
@@ -80,6 +81,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("jeremy-blond", "assets/images/characters/world-map/party/jeremy-blond.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet("jeremy-green", "assets/images/characters/world-map/party/jeremy-green.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet('solider', 'assets/images/characters/world-map/neutral/solider.png', { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('fisherman', 'assets/images/characters/world-map/neutral/fisherman.png', { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet('enemies', 'assets/images/characters/various-enemies.png', { frameWidth: 128, frameHeight: 128 });
         this.load.spritesheet("stranger", "assets/images/characters/world-map/neutral/stranger.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet("trader", "assets/images/characters/world-map/neutral/trader.png", { frameWidth: 32, frameHeight: 32 });

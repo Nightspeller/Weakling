@@ -3,6 +3,7 @@ import {ModalDialogPlugin} from "../plugins/modal-dialog.js";
 import greetingDialog from "../dialogs/greetingDialog.js";
 import {InventoryPlugin} from "../plugins/inventory.js";
 import Trader from "../entities/trader.js";
+import {fishermanDialog} from "../dialogs/fishermanDialog.js";
 
 export class WorldMapScene extends Phaser.Scene {
     private player: Player;
@@ -29,9 +30,10 @@ export class WorldMapScene extends Phaser.Scene {
         const tileSet2 = map.addTilesetImage('grass1', 'grass1');
         const tileSet3 = map.addTilesetImage('dirt1-dirt2', 'dirt1-dirt2');
         const tileSet4 = map.addTilesetImage('grass1-dirt2', 'grass1-dirt2');
+        const tileSet5 = map.addTilesetImage('water2', 'water2');
 
         const baseLayer = map.createStaticLayer('Base Layer', [tileSet1, tileSet2, tileSet3, tileSet4], 0, 0);
-        const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1], 0, 0);
+        const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet5], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1], 0, 0);
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1], 0, 0);
         layer2.setCollisionByProperty({collides: true});
@@ -107,6 +109,22 @@ export class WorldMapScene extends Phaser.Scene {
                         this.player.addItemToInventory('dagger-weapon');
                     }
                     isDialogClosed = true;
+                });
+            }
+        });
+
+        const fishermanObject = map.findObject("Objects", obj => obj.name === "Fisherman");
+        const fisherman = this.physics.add
+            .image(fishermanObject['x'], fishermanObject['y'], 'fisherman', 7)
+            .setOrigin(0, 0)
+            .setDisplaySize(fishermanObject['width'], fishermanObject['height'])
+            .setImmovable();
+        let isFishermanDialogClosed = true;
+        this.physics.add.collider(this.playerImage, fisherman, () => {
+            if (isFishermanDialogClosed) {
+                isFishermanDialogClosed = false;
+                this.modalDialog.showDialog(fishermanDialog, this.player, {}, (param) => {
+                    isFishermanDialogClosed = true;
                 });
             }
         });
