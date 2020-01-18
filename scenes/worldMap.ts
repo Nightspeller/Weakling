@@ -4,6 +4,9 @@ import greetingDialog from "../dialogs/greetingDialog.js";
 import {InventoryPlugin} from "../plugins/inventory.js";
 import Trader from "../entities/trader.js";
 import {fishermanDialog} from "../dialogs/fishermanDialog.js";
+import {gregDialog} from "../dialogs/gregDialog.js";
+import Npc from "../entities/npc.js";
+import {bodgerDialog} from "../dialogs/bodgerDialog.js";
 
 export class WorldMapScene extends Phaser.Scene {
     private player: Player;
@@ -34,6 +37,7 @@ export class WorldMapScene extends Phaser.Scene {
 
         const baseLayer = map.createStaticLayer('Base Layer', [tileSet1, tileSet2, tileSet3, tileSet4], 0, 0);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet5], 0, 0);
+        const passable = map.createStaticLayer('Passable', [tileSet5], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1], 0, 0);
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1], 0, 0);
         layer2.setCollisionByProperty({collides: true});
@@ -112,6 +116,9 @@ export class WorldMapScene extends Phaser.Scene {
                 });
             }
         });
+
+        const greg = new Npc(this, 'Greg', map.findObject("Objects", obj => obj.name === "Greg"), 'fisherman', 1, gregDialog);
+        const bodger = new Npc(this, 'Bodger', map.findObject("Objects", obj => obj.name === "Bodger"), 'fisherman', 1, bodgerDialog);
 
         const fishermanObject = map.findObject("Objects", obj => obj.name === "Fisherman");
         const fisherman = this.physics.add
