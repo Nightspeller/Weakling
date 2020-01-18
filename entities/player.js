@@ -4,7 +4,7 @@ export class Player extends GeneralEntity {
     constructor() {
         super();
         this.spriteParams = { texture: 'weakling', frame: null };
-        this.speed = 200;
+        this.speed = 300; //TODO: village location experiences tile bleeding on other speeds, like 200 - need better fix for that..
         this.worldImageSpriteParams = { texture: 'martha-pink', frame: 1 };
         this.baseCharacteristics = {
             attributes: {
