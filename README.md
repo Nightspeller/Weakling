@@ -1,13 +1,22 @@
 # Weakling
 HTML5 RPG game sketch built with Phaser 3 and typescript
 
-This is very much work in progress game with 3 scenes available to explore - World Map, House and Fight - none of which are completed.
+This is very much work in progress game with a few locations available to explore - The city of Caltor, House, Village and Fight - none of which are completed.
 
-To check it out, please go to https://nightspeller.github.io/Weakling/ and try to poke around until you break something (or stuck at the house - there is no exit from there for now)
+Read more about it in this post: https://telegra.ph/Introducing-Weakling-12-23.
 
-To run it locally just checkout from the repo and use the web server of your choice to load index.html in your browser.
+To check it out, please go to https://nightspeller.github.io/Weakling/ and try to poke around until you break something :-)
 
-To compile you will need to do npm install and use typescript compiler to work with (and, well, compile) .ts files.
+To run it locally, just checkout from the repo and use the web server of your choice to load index.html in your browser.
+
+To compile it, you will need to do npm install and use typescript compiler to work with (and, well, compile) .ts files.
+
+If you want to know more about the development process, or even wish to join me, feel free to check out Trello board for more information:
+https://trello.com/b/71vXonBk/weakling
 
 All games assets are free to use under different free licenses (as far as i can say ._.), all the credit for it goes to their authors.
-UPD: ahaha not anymore - i stole the doll image from the heroes 3 xD. Can somebody draw one for me please >_<
+
+UPD: Oups..not anymore - I borrowed the doll image from the heroes 3 and a couple others, will definitely replace it in the future. 
+If you see any art which you believe is yours, and would like to be credited or it to be removed immediately - please create the issue request (or use any other way to contact me), I will do it with the highest priority.
+
+Can somebody draw replacements for me, please >_<
