@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="9">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="9">
  <editorsettings>
   <export target="village.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="main" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
-  <image source="../images/tilesets/main.png" width="256" height="4256"/>
- </tileset>
+ <tileset firstgid="1" source="base.tsx"/>
  <tileset firstgid="1065" name="flowers" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="../images/tilesets/flowers.png" width="256" height="192"/>
   <terraintypes>
-   <terrain name="Flowers" tile="-1"/>
+   <terrain name="Flowers" tile="14"/>
   </terraintypes>
   <tile id="5" terrain=",,,0"/>
   <tile id="6" terrain=",,0,0"/>

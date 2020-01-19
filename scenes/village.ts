@@ -33,7 +33,7 @@ export class VillageScene extends Phaser.Scene {
 
     public create() {
         const map = this.make.tilemap({key: 'village'});
-        const tileSet1 = map.addTilesetImage('main', 'base');
+        const tileSet1 = map.addTilesetImage('base', 'base');
         const tileSet2 = map.addTilesetImage('flowers', 'flowers');
         const tileSet3 = map.addTilesetImage('dirt1', 'dirt1');
         const tileSet4 = map.addTilesetImage('dirt2', 'dirt2');
