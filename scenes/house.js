@@ -12,12 +12,12 @@ export class HouseScene extends Phaser.Scene {
     init() { }
     create() {
         const map = this.make.tilemap({ key: 'house' });
-        const tileSet1 = map.addTilesetImage('[Base]BaseChip_pipo', 'base');
+        const tileSet1 = map.addTilesetImage('base', 'base');
         const tileSet2 = map.addTilesetImage('castle', 'castle');
         const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1, tileSet2], 0, 0);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet2], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2], 0, 0);
-        //layer2.setCollisionByProperty({collides: true});
+        layer2.setCollisionByProperty({ collides: true });
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
         this.player = playerInstance;
         const playerData = this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);

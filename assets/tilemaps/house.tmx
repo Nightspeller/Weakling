@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="3">
- <tileset firstgid="1" name="[Base]BaseChip_pipo" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
-  <image source="../images/tilesets/main.png" width="256" height="4256"/>
- </tileset>
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="3">
+ <editorsettings>
+  <export target="house.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="base.tsx"/>
  <tileset firstgid="1065" name="castle" tilewidth="32" tileheight="32" tilecount="152" columns="8">
   <image source="../images/tilesets/castle.png" width="256" height="608"/>
  </tileset>
