@@ -1,7 +1,7 @@
 import { Boar } from "./boar.js";
 import { effects } from "../actionsAndEffects/effects.js";
-import { Player } from "../entities/player.js";
 import EnemyEntity from "./enemyEntity.js";
+import { Adventurer } from "./adventurer.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location, scene) {
         this.scene = scene;
@@ -83,11 +83,11 @@ export class Disposition {
     }
     shouldContinueFight() {
         if (!this.enemyCharacters.some(char => char.isAlive)) {
-            console.log('Player party won the battle');
+            console.log('Adventurer party won the battle');
             this.scene.scene.start("WorldMap");
         }
         if (!this.playerCharacters.some(char => char.isAlive)) {
-            console.log('Player party lost the battle');
+            console.log('Adventurer party lost the battle');
             this.scene.scene.start("WorldMap");
         }
     }
@@ -100,7 +100,7 @@ export class Disposition {
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
             this._checkForTriggers(source, target, action);
             if (action.actionId === 'accessInventory') {
-                if (source instanceof Player) {
+                if (source instanceof Adventurer) {
                     this.scene.inventory.showInventory(source);
                 }
             }

@@ -1,11 +1,11 @@
-import {Player} from "../entities/player.js";
+import {Adventurer} from "../entities/adventurer.js";
 import Sprite = Phaser.GameObjects.Sprite;
 import Text = Phaser.GameObjects.Text;
 
 export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
     private inventoryDisplayGroup: Phaser.GameObjects.Group;
     private options: any;
-    private character: Player;
+    private character: Adventurer;
     private closeCallback: Function;
 
     constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
@@ -40,7 +40,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         this.scene.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
     }
 
-    public showOpenIcon(character: Player, options?: Object, closeCallback?: Function) {
+    public showOpenIcon(character: Adventurer, options?: Object, closeCallback?: Function) {
         const inventoryGraphics = this.scene.add.graphics().setScrollFactor(0)
             .fillStyle(this.options.backgroundColor, this.options.backgroundAlpha)
             .fillRect(this.options.inventoryIconX, this.options.inventoryIconY, 64, 64)
@@ -53,7 +53,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
         });
     }
 
-    public showInventory(character: Player, options?: Object, closeCallback?: Function) {
+    public showInventory(character: Adventurer, options?: Object, closeCallback?: Function) {
         console.log(character, options);
         this.character = character;
         this.options = {...this.options, ...options};

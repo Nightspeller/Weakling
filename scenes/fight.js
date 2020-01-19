@@ -1,7 +1,8 @@
-import { Player, playerInstance } from "../entities/player.js";
+import { playerInstance } from "../entities/player.js";
 import { PlayerActions } from "../actionsAndEffects/playerActions.js";
 import { Disposition } from "../entities/disposition.js";
 import { InventoryPlugin } from "../plugins/inventory.js";
+import { Adventurer } from "../entities/adventurer.js";
 export class FightScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Fight' });
@@ -23,14 +24,7 @@ export class FightScene extends Phaser.Scene {
         this.turnOrderDisplayGroup = this.add.group();
         this.actionInterfaceDisplayGroup = this.add.group();
         this.player = playerInstance;
-        this.player2 = new Player();
-        this.player3 = new Player();
-        this.player4 = new Player();
-        this.player.name = this.player.name + ' 1';
-        this.player2.name = this.player2.name + ' 2';
-        this.player3.name = this.player3.name + ' 3';
-        this.player4.name = this.player4.name + ' 4';
-        new Disposition([this.player, this.player2, this.player3, this.player4], ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar'], 'forrest', this);
+        new Disposition(this.player.party, ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar'], 'forrest', this);
         this.createAnimations();
     }
     drawDisposition(disposition) {
@@ -43,17 +37,17 @@ export class FightScene extends Phaser.Scene {
             (_b = disposition.playerCharactersPositions.backTop) === null || _b === void 0 ? void 0 : _b.draw(this, 64, 32 + 128),
             (_c = disposition.playerCharactersPositions.frontBottom) === null || _c === void 0 ? void 0 : _c.draw(this, 64 + 96 + 64, 32 + 96 + 96 + 128),
             (_d = disposition.playerCharactersPositions.backBottom) === null || _d === void 0 ? void 0 : _d.draw(this, 64, 32 + 96 + 96 + 128),
-        ]);
+        ].filter(item => item !== undefined));
         this.dispositionDisplayGroup.addMultiple([
             (_e = disposition.enemyCharactersPositions.frontTop) === null || _e === void 0 ? void 0 : _e.draw(this, 800 - 64 - 96 - 64 - 96, 32 + 128),
             (_f = disposition.enemyCharactersPositions.backTop) === null || _f === void 0 ? void 0 : _f.draw(this, 800 - 64 - 96, 32 + 128),
             (_g = disposition.enemyCharactersPositions.frontBottom) === null || _g === void 0 ? void 0 : _g.draw(this, 800 - 64 - 96 - 64 - 96, 32 + 96 + 96 + 128),
             (_h = disposition.enemyCharactersPositions.backBottom) === null || _h === void 0 ? void 0 : _h.draw(this, 800 - 64 - 96, 32 + 96 + 96 + 128),
-        ]);
+        ].filter(item => item !== undefined));
         this.drawTurnOrder(disposition);
         disposition.currentCharacter.drawMakingTurnGraphics(this);
         disposition.currentCharacter.drawActionPoints(this);
-        if (disposition.currentCharacter instanceof Player) {
+        if (disposition.currentCharacter instanceof Adventurer) {
             this.drawActionInterface(disposition);
         }
     }

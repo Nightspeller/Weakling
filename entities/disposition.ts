@@ -1,17 +1,17 @@
 import {Boar} from "./boar.js";
 import GeneralEntity from "./generalEntity.js";
 import {effects} from "../actionsAndEffects/effects.js";
-import {Player, playerInstance} from "../entities/player.js";
 import generalEntity from "./generalEntity.js";
 import EnemyEntity from "./enemyEntity.js";
 import {FightScene} from "../scenes/fight.js";
+import {Adventurer} from "./adventurer.js";
 
 export class Disposition {
     public playerCharacters: any[];
     public enemyCharacters: any[];
     public currentCharacter: GeneralEntity;
     public location: string;
-    public playerCharactersPositions: { frontTop: Player; frontBottom: Player; backTop: Player; backBottom: Player };
+    public playerCharactersPositions: { frontTop: Adventurer; frontBottom: Adventurer; backTop: Adventurer; backBottom: Adventurer };
     public enemyCharactersPositions: { frontTop: EnemyEntity; frontBottom: EnemyEntity; backTop: EnemyEntity; backBottom: EnemyEntity };
     public currentPhase: 'preparation' | 'battle';
     public turnOrder: generalEntity[];
@@ -105,11 +105,11 @@ export class Disposition {
 
     private shouldContinueFight() {
         if (!this.enemyCharacters.some(char => char.isAlive)) {
-            console.log('Player party won the battle');
+            console.log('Adventurer party won the battle');
             this.scene.scene.start("WorldMap");
         }
         if (!this.playerCharacters.some(char => char.isAlive)) {
-            console.log('Player party lost the battle');
+            console.log('Adventurer party lost the battle');
             this.scene.scene.start("WorldMap");
         }
     }
@@ -122,7 +122,7 @@ export class Disposition {
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
             this._checkForTriggers(source, target, action);
             if (action.actionId === 'accessInventory') {
-                if (source instanceof Player) {
+                if (source instanceof Adventurer) {
                     this.scene.inventory.showInventory(source);
                 }
             } else {

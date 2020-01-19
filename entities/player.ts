@@ -1,11 +1,11 @@
-import GeneralEntity from "./generalEntity.js";
-import {items} from "../actionsAndEffects/items.js";
+import {Adventurer} from "./adventurer.js";
+import {elderInstance} from "./elder.js";
 
-export class Player extends GeneralEntity {
+export class Player extends Adventurer {
     private lastCursor: string;
     public speed: number;
-    public inventory: Item[];
     public worldImageSpriteParams: { texture: string; frame: number };
+    public party: any[];
 
     constructor() {
         super();
@@ -39,7 +39,6 @@ export class Player extends GeneralEntity {
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
-        this.inventory = [];
         this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('fancy-belt');
         this.addItemToInventory('allpowerful-necklace');
@@ -50,11 +49,6 @@ export class Player extends GeneralEntity {
         this.addItemToInventory('wooden-sword-weapon');
         this.addItemToInventory('rangers-hat');
         this.addItemToInventory('copper-pieces', 240);
-        this.actionPoints = {
-            physical: 0,
-            magical: 0,
-            misc: 0
-        };
         this.name = 'Weakling';
 
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
@@ -62,70 +56,9 @@ export class Player extends GeneralEntity {
         this.currentEffects = [];
 
         this.recalculateCharacteristics();
+
+        this.party = [this];
     }
-
-    public addItemToInventory(itemId, quantity = 1): Item {
-        // todo? might have to do deep copy...
-        const item = {...items[itemId]};
-        if (item.stackable) {
-            item.quantity = quantity;
-            const existingItem = this.inventory.find(existingItem => existingItem.itemId === item.itemId);
-            if (existingItem) {
-                existingItem.quantity += item.quantity;
-                return existingItem;
-            }
-        }
-
-        for (let i = 0; i < 5; i++) {
-            for (let j = 0; j < 5; j++) {
-                const testedSlot = `backpack${i}_${j}`;
-                if (!this.inventory.find(item => item.currentSlot === testedSlot)) {
-                    item.currentSlot = testedSlot;
-                    this.inventory.push(item);
-                    return item;
-                }
-            }
-        }
-        return null;
-    }
-
-    public removeItemFromInventory(item: Item, quantity = 1) {
-        if (!this.inventory.includes(item) || quantity > item.quantity) {
-            throw 'Trying to remove non-existing item (or more items than possessed)!'
-        }
-        if (quantity === item.quantity || !item.quantity) {
-            this.inventory = this.inventory.filter(existingItem => existingItem !== item)
-        } else {
-            item.quantity -= quantity;
-        }
-    }
-
-    public getAttackDamage() {
-        const rightHandDamage = this.inventory.find(item => item.currentSlot === 'rightHand')?.specifics?.damage || 1;
-        const leftHandDamage = this.inventory.find(item => item.currentSlot === 'leftHand')?.specifics?.damage / 2 || 0;
-        return rightHandDamage + leftHandDamage;
-    }
-
-    public applyItems() {
-        this.inventory.forEach(item => {
-            if (!item.currentSlot.includes('backpack')) {
-                item.specifics?.additionalCharacteristics?.forEach(char => {
-                    Object.entries(char).forEach(([targetString, targetValue]) => {
-                        const target = targetString.split('.');
-                        this.currentCharacteristics[target[0]][target[1]] += targetValue;
-                    });
-                })
-            }
-        })
-    }
-
-    public startRound(roundType: 'preparation' | 'battle') {
-        this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
-        this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
-        this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
-    }
-
-    freeze() { }
 
     public prepareWorldImage(scene, x, y) {
         const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame).setOrigin(0, 0);
@@ -137,7 +70,6 @@ export class Player extends GeneralEntity {
     }
 
     update(worldImage, keys) {
-
         const up = keys.up.isDown || keys['W'].isDown;
         const down = keys.down.isDown || keys['S'].isDown;
         const right = keys.right.isDown || keys['D'].isDown;
@@ -175,8 +107,6 @@ export class Player extends GeneralEntity {
             this.lastCursor = 'left';
         }
     }
-
-    destroy() { }
 }
 
 export const playerInstance = new Player();

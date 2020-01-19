@@ -4,6 +4,7 @@ import { ModalDialogPlugin } from "../plugins/modal-dialog.js";
 import { nahkhaAfterGoodsObtainedDialog, nahkhaAfterTheElderDialog, nahkhaBeforeTheElderDialog } from "../dialogs/nahkhaDialog.js";
 import { InventoryPlugin } from "../plugins/inventory.js";
 import { hargkakhAfterGoodsObtainedDialog, hargkakhFirstDialog, hargkakhSecondTryDialog } from "../dialogs/hargkakhDialog.js";
+import { elderInstance } from "../entities/elder.js";
 export class VillageScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Village' });
@@ -26,6 +27,7 @@ export class VillageScene extends Phaser.Scene {
         const tileSet9 = map.addTilesetImage('grass1-dirt4', 'grass1-dirt4');
         const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
+        const passable = map.createStaticLayer('Passable', [tileSet1], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         layer2.setCollisionByProperty({ collides: true });
@@ -74,6 +76,7 @@ export class VillageScene extends Phaser.Scene {
                     }
                     else {
                         elder.destroy(true);
+                        this.player.party.push(elderInstance);
                     }
                 });
             }

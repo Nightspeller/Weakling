@@ -87,6 +87,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("trader", "assets/images/characters/world-map/neutral/trader.png", { frameWidth: 32, frameHeight: 32 });
         // Battle characters images
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
+        this.load.image('elder', 'assets/images/characters/battle/party/elder.png');
         this.load.image('boar-avatar', 'assets/images/characters/battle/enemies/boar.png');
         this.load.image("dead-character", "assets/images/characters/battle/dead-character.png");
         // Items

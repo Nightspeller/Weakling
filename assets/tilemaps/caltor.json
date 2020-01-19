@@ -99,8 +99,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":800,
-                 "y":3040
+                 "x":2464,
+                 "y":2656
                 }, 
                 {
                  "height":65,
@@ -839,6 +839,24 @@
                 }, 
                 {
                  "id":146,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":155,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":163,
                  "properties":[
                         {
                          "name":"collides",

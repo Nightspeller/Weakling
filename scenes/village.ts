@@ -12,6 +12,7 @@ import {
     hargkakhFirstDialog,
     hargkakhSecondTryDialog
 } from "../dialogs/hargkakhDialog.js";
+import {elderInstance} from "../entities/elder.js";
 
 export class VillageScene extends Phaser.Scene {
     private player: Player;
@@ -46,6 +47,7 @@ export class VillageScene extends Phaser.Scene {
 
         const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
+        const passable = map.createStaticLayer('Passable', [tileSet1], 0, 0);
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         layer2.setCollisionByProperty({collides: true});
@@ -97,6 +99,7 @@ export class VillageScene extends Phaser.Scene {
                         nahkhaDialogToTrigger = nahkhaAfterTheElderDialog;
                     } else {
                         elder.destroy(true);
+                        this.player.party.push(elderInstance);
                     }
                 });
             }

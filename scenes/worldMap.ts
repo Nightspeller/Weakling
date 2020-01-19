@@ -136,6 +136,8 @@ export class WorldMapScene extends Phaser.Scene {
             }
         });
 
+
+
         const traderObject = map.findObject("Objects", obj => obj.name === "Trader");
         const trader = this.physics.add
             .image(traderObject['x'], traderObject['y'], 'trader')
