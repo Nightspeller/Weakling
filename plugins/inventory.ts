@@ -1,6 +1,5 @@
 import {Adventurer} from "../entities/adventurer.js";
 import Sprite = Phaser.GameObjects.Sprite;
-import Text = Phaser.GameObjects.Text;
 
 export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
     private inventoryDisplayGroup: Phaser.GameObjects.Group;
@@ -352,7 +351,7 @@ Dodge: ${this.character.currentCharacteristics.defences.dodge}
 Resistance: 🔥${this.character.currentCharacteristics.defences.fireResistance}❄${this.character.currentCharacteristics.defences.coldResistance}⚡${this.character.currentCharacteristics.defences.electricityResistance}☣${this.character.currentCharacteristics.defences.acidResistance}☠${this.character.currentCharacteristics.defences.poisonResistance}✨${this.character.currentCharacteristics.defences.magicResistance}
 Initiative: ${this.character.currentCharacteristics.attributes.initiative}
 Damage: ${this.character.getAttackDamage()}`;
-        const textObject = this.inventoryDisplayGroup.getChildren().find(child => child.name === 'characteristicsText') as Text;
+        const textObject = this.inventoryDisplayGroup.getChildren().find(child => child.name === 'characteristicsText') as Phaser.GameObjects.Text;
         if (textObject) {
             textObject.setText(text);
         } else {
