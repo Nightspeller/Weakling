@@ -1,12 +1,9 @@
-import {Player, playerInstance} from "../entities/player.js";
 import {elderFirstTimeDialog, elderSecondTimeDialog} from "../dialogs/elderGreetingDialog.js";
-import {ModalDialogPlugin} from "../plugins/modal-dialog.js";
 import {
     nahkhaAfterGoodsObtainedDialog,
     nahkhaAfterTheElderDialog,
     nahkhaBeforeTheElderDialog
 } from "../dialogs/nahkhaDialog.js";
-import {InventoryPlugin} from "../plugins/inventory.js";
 import {
     hargkakhAfterGoodsObtainedDialog,
     hargkakhFirstDialog,
@@ -14,68 +11,32 @@ import {
 } from "../dialogs/hargkakhDialog.js";
 import {elderInstance} from "../entities/elder.js";
 import Npc from "../entities/npc.js";
+import {Location} from "../entities/location.js";
 
-export class VillageScene extends Phaser.Scene {
-    private player: Player;
-    private modalDialog: ModalDialogPlugin;
-    private inventory: InventoryPlugin;
-    private playerImage: Phaser.GameObjects.Image;
-    private keys: { [key: string]: any };
-
+export class VillageScene extends Location {
     constructor() {
         super({key: 'Village'});
     }
 
     public preload() {
-        this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
-        this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
+        this.preparePlugins();
     }
 
     public init() {
     }
 
     public create() {
-        const map = this.make.tilemap({key: 'village'});
-        const tileSet1 = map.addTilesetImage('base', 'base');
-        const tileSet2 = map.addTilesetImage('flowers', 'flowers');
-        const tileSet3 = map.addTilesetImage('dirt1', 'dirt1');
-        const tileSet4 = map.addTilesetImage('dirt2', 'dirt2');
-        const tileSet5 = map.addTilesetImage('dirt4', 'dirt4');
-        const tileSet6 = map.addTilesetImage('grass4', 'grass4');
-        const tileSet7 = map.addTilesetImage('grass1-dirt1', 'grass1-dirt1');
-        const tileSet8 = map.addTilesetImage('grass1-dirt2', 'grass1-dirt2');
-        const tileSet9 = map.addTilesetImage('grass1-dirt4', 'grass1-dirt4');
+        this.prepareMap('village');
+        const map = this.map;
 
-
-        const layer1 = map.createStaticLayer('Tile Layer 1', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
-        const layer2 = map.createStaticLayer('Tile Layer 2', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
-        const passable = map.createStaticLayer('Passable', [tileSet1], 0, 0);
-        const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
-        const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
-        layer2.setCollisionByProperty({collides: true});
-        this.physics.world.setBounds(0, 0, layer1.width, layer1.height);
-
-        const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
-        this.player = playerInstance;
-        const playerData = this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
-        this.playerImage = playerData.worldImage;
-        this.keys = playerData.keys;
-
-        this.physics.add.collider(this.playerImage, layer2);
-
-        const worldMapObject = map.findObject("Objects", obj => obj.name === "Caltor");
-        const worldMapPortal = this.physics.add
-            .image(worldMapObject['x'], worldMapObject['y'], null)
+        const caltorObject = map.findObject("Objects", obj => obj.name === "Caltor");
+        const caltorPortal = this.physics.add
+            .image(caltorObject['x'], caltorObject['y'], null)
             .setOrigin(0, 0)
-            .setDisplaySize(worldMapObject['width'], worldMapObject['height'])
+            .setDisplaySize(caltorObject['width'], caltorObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.playerImage, worldMapPortal, () => this.switchToScene("Caltor"));
-
-        const camera = this.cameras.main;
-        camera.startFollow(this.playerImage);
-        camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        camera.setDeadzone(200, 100);
+        this.physics.add.collider(this.playerImage, caltorPortal, () => this.switchToScene("Caltor"));
 
         const elder = new Npc(this, 'Elder', map.findObject("Objects", obj => obj.name === "Elder"), 'stranger', 1, elderFirstTimeDialog, (param) => {
             elder.setDialog(elderSecondTimeDialog, (param) => {
@@ -119,35 +80,9 @@ export class VillageScene extends Phaser.Scene {
             .setImmovable();
 
         this.physics.add.collider(this.playerImage, hargkakhsCave, () => this.switchToScene('HargkakhsCave'));
-
-        const debugGraphics = this.add.graphics().setAlpha(0.25);
-        layer2.renderDebug(debugGraphics, {
-            tileColor: null, // Color of non-colliding tiles
-            collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-            faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-        });
     }
 
     public update() {
-        this.player.update(this.playerImage, this.keys);
-    }
-
-    private switchToScene(sceneKey: string, data?: object, shouldSleep = true) {
-        console.log('Switching to', sceneKey);
-        this.events.off('resume');
-        this.events.on('resume', fromScene => {
-            console.log('Resuming', this.scene.key);
-            // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
-            // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
-            // still dont know how to fix properly..
-            // this event handler should not be here (it actually should not exist at all) but keeping it here for easier port of the fix..
-        });
-        Object.values(this.keys).forEach(key => key.isDown = false);
-        if (shouldSleep) {
-            this.scene.sleep(this.scene.key);
-        } else {
-            this.scene.pause(this.scene.key);
-        }
-        this.scene.run(sceneKey, data);
+        this.updatePlayer();
     }
 }

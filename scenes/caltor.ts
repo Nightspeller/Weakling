@@ -7,7 +7,6 @@ import {bodgerDialog} from "../dialogs/bodgerDialog.js";
 import {Location} from "../entities/location.js";
 
 export class CaltorScene extends Location {
-
     constructor() {
         super({key: 'Caltor'});
     }

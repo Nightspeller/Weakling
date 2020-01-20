@@ -32,6 +32,12 @@
          "id":3,
          "name":"Tile Layer 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"hasCollisions",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":25,

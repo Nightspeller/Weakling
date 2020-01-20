@@ -9,11 +9,11 @@ export class Location extends Phaser.Scene {
         this.load.scenePlugin('ModalDialogPlugin', ModalDialogPlugin, 'modalDialog', 'modalDialog');
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
-    prepareMap(mapKey) {
+    prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
         this.map = this.make.tilemap({ key: mapKey });
         this.player = playerInstance;
         const spawnPoint = this.map.findObject("Objects", obj => obj.name === "Start");
-        const playerData = this.player.prepareWorldImage(this, spawnPoint['x'], spawnPoint['y']);
+        const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + layerOffsetX, spawnPoint['y'] + layerOffsetY);
         this.playerImage = playerData.worldImage;
         this.keys = playerData.keys;
         const tilesets = [];
@@ -22,7 +22,7 @@ export class Location extends Phaser.Scene {
         });
         this.layers = [];
         this.map.layers.forEach(layer => {
-            const createdLayer = this.map.createStaticLayer(layer.name, tilesets, 0, 0);
+            const createdLayer = this.map.createStaticLayer(layer.name, tilesets, layerOffsetX, layerOffsetY);
             this.layers.push(createdLayer);
             // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
             if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'hasCollisions')) {
@@ -30,7 +30,7 @@ export class Location extends Phaser.Scene {
                 this.physics.add.collider(this.playerImage, createdLayer);
             }
         });
-        this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        this.physics.world.setBounds(layerOffsetX, layerOffsetY, this.map.widthInPixels, this.map.heightInPixels);
         const camera = this.cameras.main;
         camera.startFollow(this.playerImage);
         camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
