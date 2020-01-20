@@ -78,6 +78,26 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
                         const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
                         this._showLine(nextLine);
                     }
+                } else if (reply.checkInventory) {
+                    let allIsThere = true;
+                    reply.checkValue.forEach(requestedItem => {
+                        if (!this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity)) {
+                            allIsThere = false;
+                        }
+                    });
+                    if (allIsThere) {
+                        if (reply.checkInventory === 'remove') {
+                            reply.checkValue.forEach(requestedItem => {
+                                const item = this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity);
+                                this.player.removeItemFromInventory(item, requestedItem.quantity);
+                            });
+                        }
+                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                        this._showLine(nextLine);
+                    } else {
+                        const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
+                        this._showLine(nextLine);
+                    }
                 } else {
                     if (reply.successTriggers !== undefined) {
                         const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);

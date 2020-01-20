@@ -32,6 +32,12 @@
          "id":8,
          "name":"Tile Layer 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"hasCollisions",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":100,
@@ -60,6 +66,12 @@
          "id":9,
          "name":"Tile Layer 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"hasCollisions",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":100,

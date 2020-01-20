@@ -143,7 +143,8 @@ type Modifier = EffectModifier | ValueModifier;
 interface DialogReplay {
     text: string;
     checkCharacteristic?: string;
-    checkValue?: number;
+    checkInventory?: 'keep' | 'remove';
+    checkValue?: number | {itemId : string, quantity: number}[];
     successTriggers?: string;
     failureTriggers?: string;
     callbackParam?: string;

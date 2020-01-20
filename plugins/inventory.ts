@@ -45,9 +45,10 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             .fillStyle(this.options.backgroundColor, this.options.backgroundAlpha)
             .fillRect(this.options.inventoryIconX, this.options.inventoryIconY, 64, 64)
             .lineStyle(this.options.borderThickness, this.options.borderColor)
-            .strokeRect(this.options.inventoryIconX, this.options.inventoryIconY, 64, 64);
+            .strokeRect(this.options.inventoryIconX, this.options.inventoryIconY, 64, 64)
+            .setDepth(this.options.baseDepth-1);
         const inventoryIconImage = this.scene.add.image(this.options.inventoryIconX, this.options.inventoryIconY, 'bag-green')
-            .setOrigin(0, 0,).setScrollFactor(0).setScale(2).setInteractive();
+            .setOrigin(0, 0,).setScrollFactor(0).setScale(2).setInteractive().setDepth(this.options.baseDepth-1);
         inventoryIconImage.on('pointerdown', () => {
             this.showInventory(character, options, closeCallback);
         });
@@ -259,7 +260,7 @@ export class InventoryPlugin extends Phaser.Plugins.ScenePlugin {
             const container = this.scene.add.container(slotImage.x + 32, slotImage.y + 32);
             const image = this.scene.add.image(0, 0, item.sprite.key, item.sprite.frame).setDisplaySize(64, 64);
             container.add([image]);
-            if (item.quantity) {
+            if (item.quantity > 1) {
                 const quantityText = this.scene.add.text(32, 32, item.quantity.toString(), {
                     font: '14px monospace',
                     color: '#000000',

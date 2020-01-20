@@ -24,14 +24,14 @@ export class HouseScene extends Phaser.Scene {
         this.playerImage = playerData.worldImage;
         this.keys = playerData.keys;
         this.physics.add.collider(this.playerImage, layer2);
-        const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
+        const worldMapObject = map.findObject("Objects", obj => obj.name === "Caltor");
         const worldMapPortal = this.physics.add
             .image(worldMapObject['x'], worldMapObject['y'], null)
             .setOrigin(0, 0)
             .setDisplaySize(worldMapObject['width'], worldMapObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.playerImage, worldMapPortal, () => this.switchToScene("WorldMap"));
+        this.physics.add.collider(this.playerImage, worldMapPortal, () => this.switchToScene("Caltor"));
         const camera = this.cameras.main;
         camera.startFollow(this.playerImage);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);

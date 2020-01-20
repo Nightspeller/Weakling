@@ -1,5 +1,5 @@
 import {PreloadScene} from './scenes/preload.js';
-import {WorldMapScene} from "./scenes/worldMap.js";
+import {CaltorScene} from "./scenes/caltor.js";
 import {HouseScene} from "./scenes/house.js";
 import {FightScene} from "./scenes/fight.js";
 import {VillageScene} from "./scenes/village.js";
@@ -29,7 +29,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, WorldMapScene, HouseScene, FightScene, VillageScene, ShopScene, HargkakhsCaveScene, CharacterPickerScene]
+    scene: [PreloadScene, CaltorScene, HouseScene, FightScene, VillageScene, ShopScene, HargkakhsCaveScene, CharacterPickerScene]
 };
 
 export const game = new Phaser.Game(gameConfig);

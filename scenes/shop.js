@@ -11,7 +11,7 @@ export class ShopScene extends OverlayScene {
         this.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
     }
     create() {
-        this.prepareOverlay('WorldMap');
+        this.prepareOverlay('Caltor');
         this._drawItems();
         this.events.on('wake', () => {
             console.log('awaken!');

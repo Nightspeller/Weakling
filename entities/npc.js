@@ -1,23 +1,32 @@
 import { items } from "../actionsAndEffects/items.js";
 export default class Npc {
-    constructor(scene, name, position, texture, frame, dialog, items) {
+    constructor(scene, name, position, texture, frame, initDialog, initDialogCallback, items) {
         var _a;
         this.image = scene.physics.add
-            .image(position['x'], position['y'], 'fisherman', 1)
+            .image(position['x'], position['y'], texture, frame)
             .setOrigin(0, 0)
             .setDisplaySize(position['width'], position['height'])
             .setImmovable();
-        let isDialogClosed = true;
-        scene.physics.add.collider(scene.playerImage, this.image, () => {
-            if (isDialogClosed) {
-                isDialogClosed = false;
-                scene.modalDialog.showDialog(dialog, scene.player, {}, (param) => {
-                    isDialogClosed = true;
-                });
-            }
-        });
+        if (initDialog) {
+            this.dialog = initDialog;
+            this.dialogCallback = initDialogCallback || (() => { });
+            let isDialogClosed = true;
+            scene.physics.add.collider(scene.playerImage, this.image, () => {
+                if (isDialogClosed && this.dialog) {
+                    isDialogClosed = false;
+                    scene.modalDialog.showDialog(this.dialog, scene.player, {}, (param) => {
+                        isDialogClosed = true;
+                        this.dialogCallback(param);
+                    });
+                }
+            });
+        }
         this.inventory = [];
         (_a = items) === null || _a === void 0 ? void 0 : _a.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
+    }
+    setDialog(newDialog, newDialogCallback) {
+        this.dialog = newDialog;
+        this.dialogCallback = newDialogCallback || (() => { });
     }
     addItemToInventory(itemId, quantity = 1) {
         // todo? might have to do deep copy...

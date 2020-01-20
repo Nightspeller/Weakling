@@ -1,5 +1,5 @@
 import {Player, playerInstance} from "../entities/player.js";
-import {elderFirstTimeDialog, elderGoodsObtainedDialog, elderSecondTimeDialog} from "../dialogs/elderGreetingDialog.js";
+import {elderFirstTimeDialog, elderSecondTimeDialog} from "../dialogs/elderGreetingDialog.js";
 import {ModalDialogPlugin} from "../plugins/modal-dialog.js";
 import {
     nahkhaAfterGoodsObtainedDialog,
@@ -13,13 +13,14 @@ import {
     hargkakhSecondTryDialog
 } from "../dialogs/hargkakhDialog.js";
 import {elderInstance} from "../entities/elder.js";
+import Npc from "../entities/npc.js";
 
 export class VillageScene extends Phaser.Scene {
     private player: Player;
     private modalDialog: ModalDialogPlugin;
     private inventory: InventoryPlugin;
     private playerImage: Phaser.GameObjects.Image;
-    private keys:  { [key: string]: any };
+    private keys: { [key: string]: any };
 
     constructor() {
         super({key: 'Village'});
@@ -30,7 +31,8 @@ export class VillageScene extends Phaser.Scene {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
 
-    public init() { }
+    public init() {
+    }
 
     public create() {
         const map = this.make.tilemap({key: 'village'});
@@ -51,7 +53,7 @@ export class VillageScene extends Phaser.Scene {
         const layer3 = map.createStaticLayer('Tile Layer 3', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         const layer4 = map.createStaticLayer('Tile Layer 4', [tileSet1, tileSet2, tileSet3, tileSet4, tileSet5, tileSet6, tileSet7, tileSet8, tileSet9], 0, 0);
         layer2.setCollisionByProperty({collides: true});
-        this.physics.world.setBounds(0,0, layer1.width, layer1.height);
+        this.physics.world.setBounds(0, 0, layer1.width, layer1.height);
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Start");
         this.player = playerInstance;
@@ -61,97 +63,50 @@ export class VillageScene extends Phaser.Scene {
 
         this.physics.add.collider(this.playerImage, layer2);
 
-        const worldMapObject = map.findObject("Objects", obj => obj.name === "WorldMap");
+        const worldMapObject = map.findObject("Objects", obj => obj.name === "Caltor");
         const worldMapPortal = this.physics.add
             .image(worldMapObject['x'], worldMapObject['y'], null)
             .setOrigin(0, 0)
             .setDisplaySize(worldMapObject['width'], worldMapObject['height'])
             .setVisible(false)
             .setImmovable();
-        this.physics.add.collider(this.playerImage, worldMapPortal, () => this.switchToScene("WorldMap"));
+        this.physics.add.collider(this.playerImage, worldMapPortal, () => this.switchToScene("Caltor"));
 
         const camera = this.cameras.main;
         camera.startFollow(this.playerImage);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         camera.setDeadzone(200, 100);
 
-        const elderObject = map.findObject("Objects", obj => obj.name === "Elder");
-        const elder = this.physics.add
-            .image(elderObject['x'], elderObject['y'], 'stranger')
-            .setOrigin(0, 0)
-            .setDisplaySize(elderObject['width'], elderObject['height'])
-            .setImmovable();
-        let isDialogClosed = true;
-        let elderDialogToTrigger = elderFirstTimeDialog;
-        let nahkhaDialogToTrigger = nahkhaBeforeTheElderDialog;
-        let hargkakhDialogToTrigger = hargkakhFirstDialog;
-        this.physics.add.collider(this.playerImage, elder, () => {
-            if (isDialogClosed) {
-                isDialogClosed = false;
-                if (this.player.inventory.find(item => item.itemId === 'basket')?.quantity === 10 && this.player.inventory.find(item => item.itemId === 'minerals')?.quantity === 10) {
-                    elderDialogToTrigger = elderGoodsObtainedDialog;
+        const elder = new Npc(this, 'Elder', map.findObject("Objects", obj => obj.name === "Elder"), 'stranger', 1, elderFirstTimeDialog, (param) => {
+            elder.setDialog(elderSecondTimeDialog, (param) => {
+                if (param === 'readyToGo') {
+                    elder.image.destroy(true);
+                    this.player.party.push(elderInstance);
                 }
-                this.modalDialog.showDialog(elderDialogToTrigger, this.player, {}, (param) => {
-                    console.log('dialog closed', param);
-                    isDialogClosed = true;
-                    if (param !== 'readyToGo') {
-                        elderDialogToTrigger = elderSecondTimeDialog;
-                        nahkhaDialogToTrigger = nahkhaAfterTheElderDialog;
-                    } else {
-                        elder.destroy(true);
-                        this.player.party.push(elderInstance);
-                    }
-                });
-            }
+            });
+            nahkha.setDialog(nahkhaAfterTheElderDialog, (param) => {
+                if (param === 'basketsObtained') {
+                    nahkha.setDialog(nahkhaAfterGoodsObtainedDialog);
+                    this.player.addItemToInventory('basket', 10);
+                }
+            });
         });
 
-        const nahkhaObject = map.findObject("Objects", obj => obj.name === "Nahkha");
-        const nahkha = this.physics.add
-            .image(nahkhaObject['x'], nahkhaObject['y'], 'trader')
-            .setOrigin(0, 0)
-            .setDisplaySize(nahkhaObject['width'], nahkhaObject['height'])
-            .setImmovable();
+        const nahkha = new Npc(this, 'Nahkha', map.findObject("Objects", obj => obj.name === "Nahkha"), 'trader', 1, nahkhaBeforeTheElderDialog);
 
-        this.physics.add.collider(this.playerImage, nahkha, () => {
-            if (isDialogClosed) {
-                isDialogClosed = false;
-                this.modalDialog.showDialog(nahkhaDialogToTrigger, this.player, {}, (param) => {
-                    console.log('dialog closed', param);
-                    isDialogClosed = true;
-                    if (param === 'basketsObtained') {
-                        nahkhaDialogToTrigger = nahkhaAfterGoodsObtainedDialog;
-                        this.player.addItemToInventory('basket', 10);
-                    }
-                });
-            }
-        });
-
-        const hargkakhObject = map.findObject("Objects", obj => obj.name === "Hargkakh");
-        const hargkakh = this.physics.add
-            .image(hargkakhObject['x'], hargkakhObject['y'], 'stranger')
-            .setOrigin(0, 0)
-            .setDisplaySize(hargkakhObject['width'], hargkakhObject['height'])
-            .setImmovable();
-
-        let keyGiven = false;
-        this.physics.add.collider(this.playerImage, hargkakh, () => {
-            if (isDialogClosed) {
-                isDialogClosed = false;
-                this.modalDialog.showDialog(hargkakhDialogToTrigger, this.player, {}, (param) => {
-                    console.log('dialog closed', param);
-                    isDialogClosed = true;
-                    if (param === 'pickupFailure') {
-                        hargkakhDialogToTrigger = hargkakhSecondTryDialog;
-                        if (!keyGiven) {
-                            this.player.addItemToInventory('copper-key').specifics.opens = 'hargkakhsChest';
-                            keyGiven = true;
-                        }
-                    }
+        const hargkakh = new Npc(this, 'Hargkakh', map.findObject("Objects", obj => obj.name === "Hargkakh"), 'stranger', 1, hargkakhFirstDialog, (param) => {
+            if (param === 'pickupFailure') {
+                this.player.addItemToInventory('copper-key').specifics.opens = 'hargkakhsChest';
+                hargkakh.setDialog(hargkakhSecondTryDialog, (param) => {
                     if (param === 'mineralsObtained') {
-                        hargkakhDialogToTrigger = hargkakhAfterGoodsObtainedDialog;
+                        hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
                         this.player.addItemToInventory('minerals', 10);
                     }
                 });
+            }
+            if (param === 'mineralsObtained') {
+                hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
+                this.player.addItemToInventory('minerals', 10);
             }
         });
 

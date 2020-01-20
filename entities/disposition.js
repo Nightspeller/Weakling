@@ -84,11 +84,11 @@ export class Disposition {
     shouldContinueFight() {
         if (!this.enemyCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party won the battle');
-            this.scene.scene.start("WorldMap");
+            this.scene.scene.start("Caltor");
         }
         if (!this.playerCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party lost the battle');
-            this.scene.scene.start("WorldMap");
+            this.scene.scene.start("Caltor");
         }
     }
     processAction(source, target, action) {

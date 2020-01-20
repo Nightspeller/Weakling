@@ -22,7 +22,7 @@ export class ShopScene extends OverlayScene {
     }
 
     public create() {
-        this.prepareOverlay('WorldMap');
+        this.prepareOverlay('Caltor');
         this._drawItems();
         this.events.on('wake', () => {
             console.log('awaken!');

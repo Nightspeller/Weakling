@@ -101,7 +101,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("light-pillar-back", "assets/images/animations/light-pillar/light-pillar-yellow-back.png", { frameWidth: 192, frameHeight: 192 });
         this.load.spritesheet("light-pillar-front", "assets/images/animations/light-pillar/light-pillar-yellow-front.png", { frameWidth: 192, frameHeight: 192 });
         // Load the export Tiled JSON
-        this.load.tilemapTiledJSON('map', 'assets/tilemaps/caltor.json');
+        this.load.tilemapTiledJSON('caltor', 'assets/tilemaps/caltor.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
         this.load.tilemapTiledJSON('village', 'assets/tilemaps/village.json');
         this.load.tilemapTiledJSON('fight', 'assets/tilemaps/fight.json');
@@ -109,8 +109,8 @@ export class PreloadScene extends Phaser.Scene {
     }
     create() {
         this.createAnimations();
-        console.log('Preload done, calling WorldMap');
-        this.scene.start("WorldMap");
+        console.log('Preload done, calling Caltor');
+        this.scene.start("Caltor");
     }
     createAnimations() {
         this.anims.create({

@@ -49,7 +49,7 @@ export class Player extends Adventurer {
         this.party = [this];
     }
     prepareWorldImage(scene, x, y) {
-        const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame).setOrigin(0, 0);
+        const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame).setOrigin(0, 0).setDepth(1);
         worldImage.anims.play("idle_down");
         const keys = scene.input.keyboard.addKeys('W,S,A,D,left,right,up,down,space');
         scene['inventory'].showOpenIcon(this);

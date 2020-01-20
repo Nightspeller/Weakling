@@ -10,7 +10,7 @@ export class CharacterPickerScene extends OverlayScene {
     preload() {
     }
     create() {
-        this.prepareOverlay('WorldMap');
+        this.prepareOverlay('Caltor');
         this._drawCharacterOptions();
     }
     _drawCharacterOptions() {
@@ -89,7 +89,7 @@ export class CharacterPickerScene extends OverlayScene {
                     frameRate: 10,
                     repeat: -1
                 });
-                self.scene.get('WorldMap')['playerImage'].anims.play("idle_up");
+                self.scene.get('Caltor')['playerImage'].anims.play("idle_up");
                 self.closeScene();
             });
         });

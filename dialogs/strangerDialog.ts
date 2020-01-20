@@ -1,4 +1,4 @@
-export default [{
+export const strangerDialog: DialogTree = [{
     id: 'greetings',
     text: 'Hello there, my young friend. Came here to see the brand new dialog system in action? How do you like it? \n' +
         'Much better than it was last time we talked, dare I say. Portraits are still in development, but there are some other features to check out! ' +
@@ -34,6 +34,12 @@ export default [{
         checkValue: 10,
         successTriggers: 'daggerSuccess1',
         failureTriggers: 'daggerFailure',
+    }, {
+        text: '(Bargain) I will give you 10 copper pieces for it! And my wooden sword! Pleeeeease!',
+        checkInventory: 'remove',
+        checkValue: [{itemId :'copper-pieces', quantity: 10}, {itemId: 'wooden-sword-weapon', quantity: 1}],
+        successTriggers: 'daggerSuccess4',
+        failureTriggers: 'daggerBargainFailure'
     }]
 }, {
     id: 'capabilitiesShort',
@@ -56,6 +62,12 @@ export default [{
         checkValue: 10,
         successTriggers: 'daggerSuccess1',
         failureTriggers: 'daggerFailure'
+    }, {
+        text: '(Bargain) I will give you 10 copper pieces for it! And my wooden sword! Pleeeeease!',
+        checkInventory: 'remove',
+        checkValue: [{itemId :'copper-pieces', quantity: 10}, {itemId: 'wooden-sword-weapon', quantity: 1}],
+        successTriggers: 'daggerSuccess4',
+        failureTriggers: 'daggerBargainFailure'
     }]
 }, {
     id: 'daggerFailure',
@@ -65,6 +77,16 @@ export default [{
         successTriggers: 'capabilitiesShort',
     }, {
         text: 'Nah, who needs this stupid dagger anyway..',
+        callbackParam: 'fastEnd'
+    }]
+}, {
+    id: 'daggerBargainFailure',
+    text: '(Check failed) You don\'t seem to have what you offer.. Go bring 10 copper and a wooden sword and we will have a deal',
+    replies: [{
+        text: 'Double take!..',
+        successTriggers: 'capabilitiesShort',
+    }, {
+        text: 'I\'ll consider it..',
         callbackParam: 'fastEnd'
     }]
 }, {
@@ -86,6 +108,13 @@ export default [{
     text: 'Whaaat?! How did you manage.. Well.. It is yours..cheater!',
     replies: [{
         text: '-PPP',
+        callbackParam: 'daggerObtained'
+    }]
+}, {
+    id: 'daggerSuccess4',
+    text: 'Hmm you got yourself a deal.',
+    replies: [{
+        text: 'Nice!',
         callbackParam: 'daggerObtained'
     }]
 }] as DialogTree;

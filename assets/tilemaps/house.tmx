@@ -24,6 +24,6 @@
   <object id="1" name="Start" x="368" y="560">
    <point/>
   </object>
-  <object id="2" name="WorldMap" x="320" y="608" width="64" height="32"/>
+  <object id="2" name="Caltor" x="320" y="608" width="64" height="32"/>
  </objectgroup>
 </map>

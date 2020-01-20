@@ -45,8 +45,8 @@ export class Adventurer extends GeneralEntity {
     addItemToInventory(itemId, quantity = 1) {
         // todo? might have to do deep copy...
         const item = { ...items[itemId] };
+        item.quantity = quantity;
         if (item.stackable) {
-            item.quantity = quantity;
             const existingItem = this.inventory.find(existingItem => existingItem.itemId === item.itemId);
             if (existingItem) {
                 existingItem.quantity += item.quantity;

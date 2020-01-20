@@ -102,7 +102,7 @@
   <object id="1" name="Start" x="112" y="1200">
    <point/>
   </object>
-  <object id="3" name="WorldMap" x="64" y="1248" width="64" height="32"/>
+  <object id="3" name="Caltor" x="64" y="1248" width="64" height="32"/>
   <object id="4" name="Elder" x="864" y="224" width="32" height="32"/>
   <object id="6" name="Nahkha" x="832" y="544" width="32" height="32"/>
   <object id="7" name="Hargkakh" x="1344" y="64" width="32" height="32"/>
