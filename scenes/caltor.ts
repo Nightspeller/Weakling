@@ -45,15 +45,15 @@ export class CaltorScene extends Location {
             }
         }, 'Objects', null, null, 'overlap');
 
-        const stranger = new Npc(this, 'Stranger', this.map.findObject("Objects", obj => obj.name === "Stranger"), 'stranger', 1, strangerDialog, param => {
+        const stranger = new Npc(this, 'Stranger',  this.getMapObject("Stranger"), 'stranger', 1, strangerDialog, param => {
             if (param === 'daggerObtained') {
                 this.player.addItemToInventory('dagger-weapon');
             }
         });
 
-        const greg = new Npc(this, 'Greg', this.map.findObject("Objects", obj => obj.name === "Greg"), 'fisherman', 1, gregDialog);
-        const bodger = new Npc(this, 'Bodger', this.map.findObject("Objects", obj => obj.name === "Bodger"), 'fisherman', 1, bodgerDialog);
-        const fisherman = new Npc(this, 'Fisherman', this.map.findObject("Objects", obj => obj.name === "Fisherman"), 'fisherman', 7, fishermanDialog);
+        const greg = new Npc(this, 'Greg',  this.getMapObject("Greg"), 'fisherman', 1, gregDialog);
+        const bodger = new Npc(this, 'Bodger',  this.getMapObject("Bodger"), 'fisherman', 1, bodgerDialog);
+        const fisherman = new Npc(this, 'Fisherman',  this.getMapObject("Fisherman"), 'fisherman', 7, fishermanDialog);
 
         const traderEntity = new Trader([
             {itemId: 'copper-pieces', quantity: 200},
