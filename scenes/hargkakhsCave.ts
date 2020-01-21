@@ -8,7 +8,7 @@ export class HargkakhsCaveScene extends Location {
     }
 
     public preload() {
-       this.preparePlugins();
+        this.preparePlugins();
     }
 
     public init() {
@@ -19,24 +19,12 @@ export class HargkakhsCaveScene extends Location {
 
         this.layers.find(layer => layer.layer.name === 'EmptyChest').setVisible(false);
 
-        const exitObject = this.map.findObject("Objects", obj => obj.name === "Exit");
-        const exit = this.physics.add
-            .image(exitObject['x'] + 304, exitObject['y'] + 192, null)
-            .setOrigin(0, 0)
-            .setDisplaySize(exitObject['width'], exitObject['height'])
-            .setVisible(false)
-            .setImmovable();
-        this.physics.add.collider(this.playerImage, exit, () => this.switchToScene("Village"));
+        this.createTrigger('Exit', () => {
+            this.switchToScene('Village')
+        }, 'Objects', null, null, 'collide', 304, 192);
 
-        const chestObject = this.map.findObject("Objects", obj => obj.name === "Chest");
-        this.chest = this.physics.add
-            .image(chestObject['x'] + 304, chestObject['y'] + 192, null)
-            .setOrigin(0, 0)
-            .setDisplaySize(chestObject['width'], chestObject['height'])
-            .setVisible(false)
-            .setImmovable();
-        this.physics.add.overlap(this.playerImage, this.chest, () => {
-        });
+        this.chest = this.createTrigger('Chest', () => {
+        }, 'Objects', null, null, 'collide', 304, 192);
     }
 
     public update() {

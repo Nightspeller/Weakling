@@ -15,14 +15,9 @@ export class HouseScene extends Location {
     public create() {
         this.prepareMap('house');
 
-        const caltorObject = this.map.findObject("Objects", obj => obj.name === "Caltor");
-        const caltorPortal = this.physics.add
-            .image(caltorObject['x'], caltorObject['y'], null)
-            .setOrigin(0, 0)
-            .setDisplaySize(caltorObject['width'], caltorObject['height'])
-            .setVisible(false)
-            .setImmovable();
-        this.physics.add.collider(this.playerImage, caltorPortal, () => this.switchToScene("Caltor"));
+        this.createTrigger('Caltor', () => {
+            this.switchToScene('Caltor')
+        });
     }
 
     public update() {

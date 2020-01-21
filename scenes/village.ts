@@ -27,18 +27,12 @@ export class VillageScene extends Location {
 
     public create() {
         this.prepareMap('village');
-        const map = this.map;
 
-        const caltorObject = map.findObject("Objects", obj => obj.name === "Caltor");
-        const caltorPortal = this.physics.add
-            .image(caltorObject['x'], caltorObject['y'], null)
-            .setOrigin(0, 0)
-            .setDisplaySize(caltorObject['width'], caltorObject['height'])
-            .setVisible(false)
-            .setImmovable();
-        this.physics.add.collider(this.playerImage, caltorPortal, () => this.switchToScene("Caltor"));
+        this.createTrigger('Caltor', () => {
+            this.switchToScene('Caltor')
+        });
 
-        const elder = new Npc(this, 'Elder', map.findObject("Objects", obj => obj.name === "Elder"), 'stranger', 1, elderFirstTimeDialog, (param) => {
+        const elder = new Npc(this, 'Elder', this.getMapObject("Elder"), 'stranger', 1, elderFirstTimeDialog, (param) => {
             elder.setDialog(elderSecondTimeDialog, (param) => {
                 if (param === 'readyToGo') {
                     elder.image.destroy(true);
@@ -53,9 +47,9 @@ export class VillageScene extends Location {
             });
         });
 
-        const nahkha = new Npc(this, 'Nahkha', map.findObject("Objects", obj => obj.name === "Nahkha"), 'trader', 1, nahkhaBeforeTheElderDialog);
+        const nahkha = new Npc(this, 'Nahkha', this.getMapObject("Nahkha"), 'trader', 1, nahkhaBeforeTheElderDialog);
 
-        const hargkakh = new Npc(this, 'Hargkakh', map.findObject("Objects", obj => obj.name === "Hargkakh"), 'stranger', 1, hargkakhFirstDialog, (param) => {
+        const hargkakh = new Npc(this, 'Hargkakh', this.getMapObject("Hargkakh"), 'stranger', 1, hargkakhFirstDialog, (param) => {
             if (param === 'pickupFailure') {
                 this.player.addItemToInventory('copper-key').specifics.opens = 'hargkakhsChest';
                 hargkakh.setDialog(hargkakhSecondTryDialog, (param) => {
@@ -71,15 +65,9 @@ export class VillageScene extends Location {
             }
         });
 
-        const hargkakhsCaveObject = map.findObject("Objects", obj => obj.name === "Hargkakh's Cave");
-        const hargkakhsCave = this.physics.add
-            .image(hargkakhsCaveObject['x'], hargkakhsCaveObject['y'], null)
-            .setVisible(false)
-            .setOrigin(0, 0)
-            .setDisplaySize(hargkakhsCaveObject['width'], hargkakhsCaveObject['height'])
-            .setImmovable();
-
-        this.physics.add.collider(this.playerImage, hargkakhsCave, () => this.switchToScene('HargkakhsCave'));
+        this.createTrigger(`Hargkakh's Cave`, () => {
+            this.switchToScene('HargkakhsCave')
+        });
     }
 
     public update() {

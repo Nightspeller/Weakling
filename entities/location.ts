@@ -55,6 +55,29 @@ export class Location extends Phaser.Scene {
         this.createDebugButton();
     }
 
+    public createTrigger(objectName, callback, objectLayer= 'Objects', texture = null, frame = null, interaction: 'collide' | 'overlap' = 'collide', offsetX = 0, offsetY = 0) {
+        const object = this.getMapObject(objectName, objectLayer);
+        const trigger = this.physics.add
+            .image(object['x']+offsetX, object['y']+offsetY, texture, frame)
+            .setOrigin(0, 0)
+            .setDisplaySize(object['width'], object['height'])
+            .setImmovable();
+        if (texture === null) {
+            trigger.setVisible(false)
+        }
+        if (interaction === 'collide') {
+            this.physics.add.collider(this.playerImage, trigger, () => callback());
+        }
+        if (interaction === 'overlap') {
+            this.physics.add.overlap(this.playerImage, trigger, () => callback());
+        }
+        return trigger;
+    }
+
+    public getMapObject(objectName: string, objectLayer = 'Objects') {
+        return this.map.findObject(objectLayer, obj => obj.name === objectName)
+    }
+
     public updatePlayer() {
         this.player.update(this.playerImage, this.keys);
     }
