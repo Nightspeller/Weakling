@@ -22,7 +22,7 @@ export class CaltorScene extends Location {
         this.createTrigger(`Village`, () => {
             this.switchToScene('Village');
         });
-        this.createTrigger(`Goblin`, () => {
+        this.createTrigger(`Boars`, () => {
             this.switchToScene('Fight');
         }, 'Objects', 'boar-avatar');
         this.createTrigger(`Character Picker`, () => {
