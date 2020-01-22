@@ -4,9 +4,9 @@ export default class Npc {
     public inventory: Item[];
     public dialog: DialogTree;
     public image: Phaser.Physics.Arcade.Image;
-    private dialogCallback: Function;
+    private interactionCallback: Function;
 
-    constructor(scene, name: string, position, texture: string, frame: number, initDialog?: DialogTree, initDialogCallback?: Function, items?: any[]) {
+    constructor(scene, name: string, position: Phaser.GameObjects.GameObject, texture: string, frame: number, initDialog?: DialogTree, interactionCallback?: Function, items?: any[]) {
 
         this.image = scene.physics.add
             .image(position['x'], position['y'], texture, frame)
@@ -16,16 +16,22 @@ export default class Npc {
 
         if (initDialog) {
             this.dialog = initDialog;
-            this.dialogCallback = initDialogCallback || (() => {});
+            this.interactionCallback = interactionCallback || (() => {});
             let isDialogClosed = true;
             scene.physics.add.collider(scene.playerImage, this.image, () => {
                 if (isDialogClosed && this.dialog) {
                     isDialogClosed = false;
                     scene.modalDialog.showDialog(this.dialog, scene.player, {}, (param) => {
                         isDialogClosed = true;
-                        this.dialogCallback(param);
+                        this.interactionCallback(param);
                     });
                 }
+            });
+        } else {
+            scene.physics.add.collider(scene.playerImage, this.image, () => {
+                this.interactionCallback = interactionCallback || (() => {
+                });
+                this.interactionCallback();
             });
         }
 
@@ -33,9 +39,9 @@ export default class Npc {
         items?.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
     }
 
-    public setDialog(newDialog?: DialogTree, newDialogCallback?: Function) {
+    public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
         this.dialog = newDialog;
-        this.dialogCallback = newDialogCallback || (() => {});
+        this.interactionCallback = newInteractionCallback || (() => {});
     }
 
     public addItemToInventory(itemId, quantity = 1): Item {

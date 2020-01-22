@@ -1,5 +1,4 @@
 import { strangerDialog } from "../dialogs/strangerDialog.js";
-import Trader from "../entities/trader.js";
 import { fishermanDialog } from "../dialogs/fishermanDialog.js";
 import { gregDialog } from "../dialogs/gregDialog.js";
 import Npc from "../entities/npc.js";
@@ -41,24 +40,34 @@ export class CaltorScene extends Location {
             }
         });
         const greg = new Npc(this, 'Greg', this.getMapObject("Greg"), 'fisherman', 1, gregDialog);
-        const bodger = new Npc(this, 'Bodger', this.getMapObject("Bodger"), 'fisherman', 1, bodgerDialog);
+        const bodger = new Npc(this, 'Bodger', this.getMapObject("Bodger"), 'fisherman', 1, bodgerDialog, (param) => {
+            if (param === 'openShop') {
+                this.switchToScene('Shop', {
+                    player: this.player,
+                    trader: bodger
+                }, false);
+            }
+        }, [
+            { itemId: 'copper-pieces', quantity: 10 },
+            { itemId: 'dagger-weapon', quantity: 1 },
+            { itemId: 'leather-armor', quantity: 1 },
+        ]);
         const fisherman = new Npc(this, 'Fisherman', this.getMapObject("Fisherman"), 'fisherman', 7, fishermanDialog);
-        const traderEntity = new Trader([
+        const kasima = new Npc(this, 'Kasima', this.getMapObject('Trader'), 'trader', null, undefined, () => {
+            this.switchToScene('Shop', {
+                player: this.player,
+                trader: kasima
+            }, false);
+        }, [
             { itemId: 'copper-pieces', quantity: 200 },
             { itemId: 'rope-belt', quantity: 1 },
             { itemId: 'dagger-weapon', quantity: 1 },
             { itemId: 'leather-armor', quantity: 1 },
             { itemId: 'invisibility-cape', quantity: 1 },
         ]);
-        this.createTrigger(`Trader`, () => {
-            this.switchToScene('Shop', {
-                player: this.player,
-                trader: traderEntity
-            }, false);
-        }, 'Objects', 'trader');
     }
     update() {
         this.updatePlayer();
     }
 }
-//# sourceMappingURL=Caltor.js.map
+//# sourceMappingURL=caltor.js.map

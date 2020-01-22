@@ -13,8 +13,9 @@ export class ShopScene extends OverlayScene {
     create() {
         this.prepareOverlay('Caltor');
         this._drawItems();
-        this.events.on('wake', () => {
-            console.log('awaken!');
+        this.events.on('wake', (scene, { player, trader }) => {
+            this.player = player;
+            this.trader = trader;
             this._drawItems();
         });
     }

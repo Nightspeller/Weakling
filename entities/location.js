@@ -10,9 +10,10 @@ export class Location extends Phaser.Scene {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
     }
     prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
+        var _a;
         this.map = this.make.tilemap({ key: mapKey });
         this.player = playerInstance;
-        const spawnPoint = this.map.findObject("Objects", obj => obj.name === "Start");
+        const spawnPoint = this.getMapObject("Start");
         const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + layerOffsetX, spawnPoint['y'] + layerOffsetY);
         this.playerImage = playerData.worldImage;
         this.keys = playerData.keys;
@@ -29,6 +30,15 @@ export class Location extends Phaser.Scene {
                 createdLayer.setCollisionByProperty({ collides: true });
                 this.physics.add.collider(this.playerImage, createdLayer);
             }
+        });
+        (_a = this.map.getObjectLayer('Enemies')) === null || _a === void 0 ? void 0 : _a.objects.forEach(object => {
+            var _a, _b;
+            console.log(object.name, object.properties);
+            const enemyImage = (_a = object.properties.find(prop => prop.name === 'image')) === null || _a === void 0 ? void 0 : _a.value;
+            const enemies = JSON.parse((_b = object.properties.find(prop => prop.name === 'enemies')) === null || _b === void 0 ? void 0 : _b.value);
+            this.createTrigger(object.name, () => {
+                this.switchToScene('Fight', enemies);
+            }, 'Enemies', enemyImage, null, 'collide', layerOffsetX, layerOffsetY);
         });
         this.physics.world.setBounds(layerOffsetX, layerOffsetY, this.map.widthInPixels, this.map.heightInPixels);
         const camera = this.cameras.main;

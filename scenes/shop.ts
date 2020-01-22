@@ -1,10 +1,10 @@
 import {Player, playerInstance} from "../entities/player";
-import Trader from "../entities/trader";
 import {OverlayScene} from "./overlayScene.js";
+import Npc from "../entities/npc.js";
 
 export class ShopScene extends OverlayScene {
     private player: Player;
-    private trader: Trader;
+    private trader: Npc;
     private playerItemContainers: Phaser.GameObjects.Container;
     private traderItemContainers: Phaser.GameObjects.Container;
 
@@ -24,8 +24,9 @@ export class ShopScene extends OverlayScene {
     public create() {
         this.prepareOverlay('Caltor');
         this._drawItems();
-        this.events.on('wake', () => {
-            console.log('awaken!');
+        this.events.on('wake', (scene, {player, trader}) => {
+            this.player = player;
+            this.trader = trader;
             this._drawItems();
         })
     }

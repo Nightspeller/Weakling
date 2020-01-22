@@ -1,6 +1,6 @@
 import { items } from "../actionsAndEffects/items.js";
 export default class Npc {
-    constructor(scene, name, position, texture, frame, initDialog, initDialogCallback, items) {
+    constructor(scene, name, position, texture, frame, initDialog, interactionCallback, items) {
         var _a;
         this.image = scene.physics.add
             .image(position['x'], position['y'], texture, frame)
@@ -9,24 +9,31 @@ export default class Npc {
             .setImmovable();
         if (initDialog) {
             this.dialog = initDialog;
-            this.dialogCallback = initDialogCallback || (() => { });
+            this.interactionCallback = interactionCallback || (() => { });
             let isDialogClosed = true;
             scene.physics.add.collider(scene.playerImage, this.image, () => {
                 if (isDialogClosed && this.dialog) {
                     isDialogClosed = false;
                     scene.modalDialog.showDialog(this.dialog, scene.player, {}, (param) => {
                         isDialogClosed = true;
-                        this.dialogCallback(param);
+                        this.interactionCallback(param);
                     });
                 }
+            });
+        }
+        else {
+            scene.physics.add.collider(scene.playerImage, this.image, () => {
+                this.interactionCallback = interactionCallback || (() => {
+                });
+                this.interactionCallback();
             });
         }
         this.inventory = [];
         (_a = items) === null || _a === void 0 ? void 0 : _a.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
     }
-    setDialog(newDialog, newDialogCallback) {
+    setDialog(newDialog, newInteractionCallback) {
         this.dialog = newDialog;
-        this.dialogCallback = newDialogCallback || (() => { });
+        this.interactionCallback = newInteractionCallback || (() => { });
     }
     addItemToInventory(itemId, quantity = 1) {
         // todo? might have to do deep copy...

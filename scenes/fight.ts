@@ -11,19 +11,23 @@ export class FightScene extends Phaser.Scene {
     private map: Phaser.Tilemaps.Tilemap;
     private tileSet1: Phaser.Tilemaps.Tileset;
     private tileSet2: Phaser.Tilemaps.Tileset;
-    private interfaceLayer: Phaser.Tilemaps.StaticTilemapLayer;
-    private characterInfoGroup: Phaser.GameObjects.Group;
-    private enemiesGroup: Phaser.GameObjects.Group;
     private dispositionDisplayGroup: Phaser.GameObjects.Group;
     private turnOrderDisplayGroup: Phaser.GameObjects.Group;
     private actionInterfaceDisplayGroup: Phaser.GameObjects.Group;
     public inventory: InventoryPlugin;
+    private enemies: string[];
 
     constructor() {
         super({key: 'Fight'});
     }
 
-    public init() { }
+    public init(enemies) {
+        if (Object.keys(enemies).length !== 0) {
+            this.enemies = enemies.map(enemy => enemy.type);
+        } else {
+            this.enemies = ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar']
+        }
+    }
 
     public preload() {
         this.load.scenePlugin('InventoryPlugin', InventoryPlugin, 'inventory', 'inventory');
@@ -37,8 +41,6 @@ export class FightScene extends Phaser.Scene {
         const layer1 = this.map.createStaticLayer('Tile Layer 1', [this.tileSet1], 0, 0);
         const layer2 = this.map.createStaticLayer('Tile Layer 2', [this.tileSet1], 0, 0);
         const layer3 = this.map.createStaticLayer('Tile Layer 3', [this.tileSet1], 0, 0);
-        this.characterInfoGroup = this.add.group();
-        this.enemiesGroup = this.add.group();
         this.dispositionDisplayGroup = this.add.group();
         this.turnOrderDisplayGroup = this.add.group()
         this.actionInterfaceDisplayGroup = this.add.group();
@@ -47,7 +49,7 @@ export class FightScene extends Phaser.Scene {
 
         new Disposition(
             this.player.party,
-            ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar'],
+            this.enemies,
             'forrest',
             this);
 

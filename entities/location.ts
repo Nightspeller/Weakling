@@ -24,7 +24,7 @@ export class Location extends Phaser.Scene {
         this.map = this.make.tilemap({key: mapKey});
 
         this.player = playerInstance;
-        const spawnPoint = this.map.findObject("Objects", obj => obj.name === "Start");
+        const spawnPoint = this.getMapObject("Start");
         const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + layerOffsetX, spawnPoint['y'] + layerOffsetY);
         this.playerImage = playerData.worldImage;
         this.keys = playerData.keys;
@@ -43,6 +43,15 @@ export class Location extends Phaser.Scene {
                 createdLayer.setCollisionByProperty({collides: true});
                 this.physics.add.collider(this.playerImage, createdLayer);
             }
+        });
+
+        this.map.getObjectLayer('Enemies')?.objects.forEach(object => {
+            console.log(object.name, object.properties);
+            const enemyImage = object.properties.find(prop => prop.name === 'image')?.value;
+            const enemies = JSON.parse(object.properties.find(prop => prop.name === 'enemies')?.value)
+            this.createTrigger(object.name, () => {
+                this.switchToScene('Fight', enemies);
+            }, 'Enemies', enemyImage, null, 'collide', layerOffsetX, layerOffsetY);
         });
 
         this.physics.world.setBounds(layerOffsetX, layerOffsetY, this.map.widthInPixels, this.map.heightInPixels);
@@ -74,7 +83,7 @@ export class Location extends Phaser.Scene {
         return trigger;
     }
 
-    public getMapObject(objectName: string, objectLayer = 'Objects') {
+    public getMapObject(objectName: string, objectLayer = 'Objects'): Phaser.GameObjects.GameObject {
         return this.map.findObject(objectLayer, obj => obj.name === objectName)
     }
 
