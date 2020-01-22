@@ -2029,7 +2029,7 @@
     <property name="entrance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" name="Start" x="2319.33" y="2764">
+  <object id="3" name="Start" x="2400" y="2784">
    <point/>
   </object>
   <object id="4" name="Barracks" x="864" y="2880" width="64" height="64"/>

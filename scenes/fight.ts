@@ -22,7 +22,7 @@ export class FightScene extends Phaser.Scene {
     }
 
     public init(enemies) {
-        if (Object.keys(enemies).length !== 0) {
+        if (Array.isArray(enemies)) {
             this.enemies = enemies.map(enemy => enemy.type);
         } else {
             this.enemies = ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar']

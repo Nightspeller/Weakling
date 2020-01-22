@@ -8,7 +8,7 @@ export class FightScene extends Phaser.Scene {
         super({ key: 'Fight' });
     }
     init(enemies) {
-        if (Object.keys(enemies).length !== 0) {
+        if (Array.isArray(enemies)) {
             this.enemies = enemies.map(enemy => enemy.type);
         }
         else {
