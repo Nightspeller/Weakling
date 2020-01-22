@@ -12,7 +12,7 @@ export class FightScene extends Phaser.Scene {
             this.enemies = enemies.map(enemy => enemy.type);
         }
         else {
-            this.enemies = ['wildBoar', 'wildBoar', 'wildBoar', 'wildBoar'];
+            throw Error('No enemies were passed for Fight scene!');
         }
     }
     preload() {

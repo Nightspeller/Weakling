@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="14">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="16">
  <editorsettings>
   <export target="caltor.json" format="json"/>
  </editorsettings>
@@ -2019,11 +2019,6 @@
   </data>
  </layer>
  <objectgroup id="6" name="Objects">
-  <object id="1" name="Boars" x="2464" y="2656" width="64" height="64">
-   <properties>
-    <property name="Enemy" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="2" name="House Door" x="1792" y="3008" width="32" height="65">
    <properties>
     <property name="entrance" type="bool" value="true"/>
@@ -2040,5 +2035,13 @@
   <object id="11" name="Fisherman" x="2016" y="2912" width="32" height="32"/>
   <object id="12" name="Greg" x="2816" y="1568" width="32" height="32"/>
   <object id="13" name="Bodger" x="2688" y="2336" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="12" name="Enemies">
+  <object id="15" name="Boars" x="2464" y="2624" width="64" height="64">
+   <properties>
+    <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
+    <property name="image" value="boar-avatar"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

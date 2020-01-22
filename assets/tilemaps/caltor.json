@@ -98,23 +98,6 @@
          "name":"Objects",
          "objects":[
                 {
-                 "height":64,
-                 "id":1,
-                 "name":"Boars",
-                 "properties":[
-                        {
-                         "name":"Enemy",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":2464,
-                 "y":2656
-                }, 
-                {
                  "height":65,
                  "id":2,
                  "name":"House Door",
@@ -236,9 +219,42 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":12,
+         "name":"Enemies",
+         "objects":[
+                {
+                 "height":64,
+                 "id":15,
+                 "name":"Boars",
+                 "properties":[
+                        {
+                         "name":"enemies",
+                         "type":"string",
+                         "value":"[{\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}]"
+                        }, 
+                        {
+                         "name":"image",
+                         "type":"string",
+                         "value":"boar-avatar"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":2464,
+                 "y":2624
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":12,
- "nextobjectid":14,
+ "nextlayerid":13,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.1",
