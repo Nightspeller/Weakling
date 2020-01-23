@@ -1,6 +1,6 @@
-export const fishermanDialog: DialogTree = [{
+export const baelinDialog: DialogTree = [{
     id: 'greetings',
-    text: `Morning! Nice day for fishing, isn't it? Hu Hah!`,
+    text: `Mornin', nice day for fishing, ain't it? Hu Ha!`,
     replies: [{
         text: 'Splendid day for fishing it is indeed!',
         callbackParam: 'fastEnd'

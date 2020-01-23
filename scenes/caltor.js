@@ -1,5 +1,5 @@
 import { strangerDialog } from "../dialogs/strangerDialog.js";
-import { fishermanDialog } from "../dialogs/fishermanDialog.js";
+import { baelinDialog } from "../dialogs/baelinDialog.js";
 import { gregDialog } from "../dialogs/gregDialog.js";
 import Npc from "../entities/npc.js";
 import { bodgerDialog } from "../dialogs/bodgerDialog.js";
@@ -49,7 +49,7 @@ export class CaltorScene extends Location {
             { itemId: 'dagger-weapon', quantity: 1 },
             { itemId: 'leather-armor', quantity: 1 },
         ]);
-        const fisherman = new Npc(this, 'Fisherman', this.getMapObject("Fisherman"), 'fisherman', 7, fishermanDialog);
+        const baelin = new Npc(this, 'Baelin', this.getMapObject("Fisherman"), 'fisherman', 7, baelinDialog);
         const kasima = new Npc(this, 'Kasima', this.getMapObject('Trader'), 'trader', null, undefined, () => {
             this.switchToScene('Shop', {
                 player: this.player,
