@@ -58,6 +58,8 @@ export class CaltorScene extends Location {
             {itemId: 'copper-pieces', quantity: 10},
             {itemId: 'dagger-weapon', quantity: 1},
             {itemId: 'leather-armor', quantity: 1},
+            {itemId: 'leather-pants', quantity: 1},
+            {itemId: 'leather-boots', quantity: 1},
         ]);
         const baelin = new Npc(this, 'Baelin', this.getMapObject("Fisherman"), 'fisherman', 7, baelinDialog);
 
@@ -72,6 +74,7 @@ export class CaltorScene extends Location {
             {itemId: 'dagger-weapon', quantity: 1},
             {itemId: 'leather-armor', quantity: 1},
             {itemId: 'invisibility-cape', quantity: 1},
+            {itemId: 'leather-gloves', quantity: 1},
         ]);
     }
 

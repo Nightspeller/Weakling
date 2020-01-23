@@ -73,6 +73,63 @@ export const items: { [key: string]: Item } = {
         sellPrice: 10,
         buyPrice: 20
     },
+    'leather-pants': {
+        itemId: 'leather-pants',
+        displayName: 'Leather pants',
+        description: 'Basic leather pants',
+        slot: ['body', 'pants'],
+        sprite: {key: 'icon-item-set', frame: 123},
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            additionalCharacteristics: [
+                {'defences.armor': 1},
+                {'attributes.agility': 1}
+            ],
+            size: ['xs', 's', 'm'],
+        },
+        sellPrice: 7,
+        buyPrice: 14
+    },
+    'leather-boots': {
+        itemId: 'leather-boots',
+        displayName: 'Leather boots',
+        description: 'Basic leather boots',
+        slot: ['body', 'boots'],
+        sprite: {key: 'icon-item-set', frame: 130},
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            additionalCharacteristics: [
+                {'defences.dodge': 1},
+                {'parameters.energy': 1}
+            ],
+            size: ['xs', 's', 'm'],
+        },
+        sellPrice: 5,
+        buyPrice: 10
+    },
+    'leather-gloves': {
+        itemId: 'leather-gloves',
+        displayName: 'Leather gloves',
+        description: 'Basic leather gloves',
+        slot: ['body', 'gloves'],
+        sprite: {key: 'icon-item-set', frame: 128},
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            additionalCharacteristics: [
+                {'attributes.strength': 1},
+                {'parameters.health': 1}
+            ],
+            size: ['xs', 's', 'm'],
+        },
+        sellPrice: 5,
+        buyPrice: 10
+    },
     'allpowerful-necklace': {
         itemId: 'allpowerful-necklace',
         displayName: 'All-powerful necklace',
