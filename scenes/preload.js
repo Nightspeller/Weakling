@@ -90,6 +90,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('elder', 'assets/images/characters/battle/party/elder.png');
         this.load.image('boar-avatar', 'assets/images/characters/battle/enemies/boar.png');
         this.load.image("dead-character", "assets/images/characters/battle/dead-character.png");
+        this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png", { frameWidth: 231, frameHeight: 190 });
         // Items
         this.load.image("rope-belt", "assets/images/items/rope-belt.png");
         this.load.image("bag-green", "assets/images/items/bag-green.png");
@@ -100,6 +101,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", { frameWidth: 192, frameHeight: 192 });
         this.load.spritesheet("light-pillar-back", "assets/images/animations/light-pillar/light-pillar-yellow-back.png", { frameWidth: 192, frameHeight: 192 });
         this.load.spritesheet("light-pillar-front", "assets/images/animations/light-pillar/light-pillar-yellow-front.png", { frameWidth: 192, frameHeight: 192 });
+        this.load.spritesheet("wizard-attack1", "assets/images/characters/battle/enemies/Wizard/Attack1.png", { frameWidth: 231, frameHeight: 190 });
+        this.load.spritesheet("wizard-attack2", "assets/images/characters/battle/enemies/Wizard/Attack2.png", { frameWidth: 231, frameHeight: 190 });
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('caltor', 'assets/tilemaps/caltor.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
@@ -160,6 +163,24 @@ export class PreloadScene extends Phaser.Scene {
             frames: [{ key: this.player.worldImageSpriteParams.texture, frame: 7 }],
             frameRate: 10,
             repeat: -1
+        });
+        this.anims.create({
+            key: 'wizard_idle',
+            frames: this.anims.generateFrameNames('wizard-idle'),
+            frameRate: 5,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'wizard_attack1',
+            frames: this.anims.generateFrameNames('wizard-attack1'),
+            frameRate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'wizard_attack2',
+            frames: this.anims.generateFrameNames('wizard-attack2'),
+            frameRate: 10,
+            repeat: 0
         });
     }
 }

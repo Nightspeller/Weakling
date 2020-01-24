@@ -23,9 +23,11 @@ export default class GeneralEntity {
     private makingTurnGraphics: Phaser.GameObjects.Graphics;
     private actionPointsGroup: Phaser.GameObjects.Group;
     private characteristicsModifiers: any;
+    public animations: {[key: string]: string};
 
     constructor() {
         this.spriteParams = {texture: null, frame: null};
+        this.animations = {};
         this.battleImage = null;
         this.level = null;
         this.actions = [];
@@ -71,9 +73,12 @@ export default class GeneralEntity {
     public draw(scene: Phaser.Scene, x, y) {
         this.battleImage?.destroy();
         this.makingTurnGraphics?.destroy();
-        this.actionPointsGroup?.clear(true, true)
+        this.actionPointsGroup?.clear(true, true);
         if (this.isAlive) {
             this.battleImage = scene.add.sprite(x, y, this.spriteParams.texture, this.spriteParams.frame);
+            if (this.animations.idle) {
+                this.battleImage.anims.play(this.animations.idle, true)
+            }
         } else {
             this.battleImage = scene.add.sprite(x, y, 'dead-character');
         }
@@ -395,50 +400,66 @@ export default class GeneralEntity {
 
     public playMeleeAttackAnimation(scene: Phaser.Scene, target: GeneralEntity) {
         return new Promise((resolve, reject) => {
-            const prevX = this.battleImage.x;
-            const prevY = this.battleImage.y;
-            const enemyX = prevX < 400 ? target.battleImage.x - 96 : target.battleImage.x + 96;
-            const enemyY = target.battleImage.y;
+            if (this.animations?.attack) {
+                this.battleImage.anims.play(this.animations.attack, true);
+                this.battleImage.on('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                    this.battleImage.anims.play(this.animations.idle, true);
+                    resolve();
+                });
+            } else {
+                const prevX = this.battleImage.x;
+                const prevY = this.battleImage.y;
+                const enemyX = prevX < 400 ? target.battleImage.x - 96 : target.battleImage.x + 96;
+                const enemyY = target.battleImage.y;
 
-            scene.tweens.add({
-                targets: this.battleImage,
-                props: {
-                    x: {
-                        value: enemyX,
+                scene.tweens.add({
+                    targets: this.battleImage,
+                    props: {
+                        x: {
+                            value: enemyX,
+                        },
+                        y: {
+                            value: enemyY,
+                        }
                     },
-                    y: {
-                        value: enemyY,
+                    ease: 'Back.easeOut',
+                    duration: 500,
+                    yoyo: true,
+                    /*paused: true,
+                    onActive: function () { addEvent('onActive') },
+                    onStart: function () { addEvent('onStart') },
+                    onLoop: function () { addEvent('onLoop') },
+                    onYoyo: function () {  resolve() },
+                    onRepeat: function () { addEvent('onRepeat') },*/
+                    onComplete: function () {
+                        resolve()
                     }
-                },
-                ease: 'Back.easeOut',
-                duration: 500,
-                yoyo: true,
-                /*paused: true,
-                onActive: function () { addEvent('onActive') },
-                onStart: function () { addEvent('onStart') },
-                onLoop: function () { addEvent('onLoop') },
-                onYoyo: function () {  resolve() },
-                onRepeat: function () { addEvent('onRepeat') },*/
-                onComplete: function () {
-                    resolve()
-                }
-            });
+                });
+            }
         })
     }
 
     public playCastAnimation(scene: Phaser.Scene) {
         return new Promise((resolve, reject) => {
-            this.battleImage.setDepth(2);
-            scene.add.sprite(this.battleImage.getCenter().x, this.battleImage.getCenter().y, 'player').setDepth(1)
-                .play('light_pillar_animation_back').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
-                this.battleImage.setDepth(null);
-                sprite.destroy();
-                resolve();
-            });
-            scene.add.sprite(this.battleImage.getCenter().x, this.battleImage.getCenter().y, 'player').setDepth(3)
-                .play('light_pillar_animation_front').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
-                sprite.destroy();
-            });
+            if (this.animations?.buff) {
+                this.battleImage.anims.play(this.animations.buff, true);
+                this.battleImage.on('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                    this.battleImage.anims.play(this.animations.idle, true);
+                    resolve();
+                });
+            } else {
+                this.battleImage.setDepth(2);
+                scene.add.sprite(this.battleImage.getCenter().x, this.battleImage.getCenter().y, 'player').setDepth(1)
+                    .play('light_pillar_animation_back').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                    this.battleImage.setDepth(null);
+                    sprite.destroy();
+                    resolve();
+                });
+                scene.add.sprite(this.battleImage.getCenter().x, this.battleImage.getCenter().y, 'player').setDepth(3)
+                    .play('light_pillar_animation_front').on('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                    sprite.destroy();
+                });
+            }
         })
     }
 }

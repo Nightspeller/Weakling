@@ -77,10 +77,9 @@ export class FightScene extends Phaser.Scene {
 
         this.drawTurnOrder(disposition);
 
-        disposition.currentCharacter.drawMakingTurnGraphics(this);
-        disposition.currentCharacter.drawActionPoints(this);
-
         if (disposition.currentCharacter instanceof Adventurer) {
+            disposition.currentCharacter.drawMakingTurnGraphics(this);
+            disposition.currentCharacter.drawActionPoints(this);
             this.drawActionInterface(disposition)
         }
     }

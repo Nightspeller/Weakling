@@ -50,9 +50,9 @@ export class FightScene extends Phaser.Scene {
             (_h = disposition.enemyCharactersPositions.backBottom) === null || _h === void 0 ? void 0 : _h.draw(this, 800 - 64 - 96, 32 + 96 + 96 + 128),
         ].filter(item => item !== undefined));
         this.drawTurnOrder(disposition);
-        disposition.currentCharacter.drawMakingTurnGraphics(this);
-        disposition.currentCharacter.drawActionPoints(this);
         if (disposition.currentCharacter instanceof Adventurer) {
+            disposition.currentCharacter.drawMakingTurnGraphics(this);
+            disposition.currentCharacter.drawActionPoints(this);
             this.drawActionInterface(disposition);
         }
     }

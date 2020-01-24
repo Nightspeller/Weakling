@@ -5,6 +5,7 @@ import generalEntity from "./generalEntity.js";
 import EnemyEntity from "./enemyEntity.js";
 import {FightScene} from "../scenes/fight.js";
 import {Adventurer} from "./adventurer.js";
+import {Wizard} from "./wizard.js";
 
 export class Disposition {
     public playerCharacters: any[];
@@ -182,5 +183,6 @@ export class Disposition {
 }
 
 const enemiesList = {
-    wildBoar: Boar
+    wildBoar: Boar,
+    wizard: Wizard
 };

@@ -2,6 +2,7 @@ import { Boar } from "./boar.js";
 import { effects } from "../actionsAndEffects/effects.js";
 import EnemyEntity from "./enemyEntity.js";
 import { Adventurer } from "./adventurer.js";
+import { Wizard } from "./wizard.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location, scene) {
         this.scene = scene;
@@ -161,6 +162,7 @@ export class Disposition {
     }
 }
 const enemiesList = {
-    wildBoar: Boar
+    wildBoar: Boar,
+    wizard: Wizard
 };
 //# sourceMappingURL=disposition.js.map
