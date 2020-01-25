@@ -44,6 +44,20 @@ export class CaltorScene extends Location {
                     trader: bodger
                 }, false);
             }
+            if (param === 'goodsSold') {
+                this.player.addItemToInventory('copper-pieces', 100);
+                bodger.addItemToInventory('minerals', 10);
+                bodger.addItemToInventory('basket', 10);
+            }
+            if (param === 'goodsSoldAndOpenShop') {
+                this.player.addItemToInventory('copper-pieces', 100);
+                bodger.addItemToInventory('minerals', 10);
+                bodger.addItemToInventory('basket', 10);
+                this.switchToScene('Shop', {
+                    player: this.player,
+                    trader: bodger
+                }, false);
+            }
         }, [
             { itemId: 'copper-pieces', quantity: 10 },
             { itemId: 'dagger-weapon', quantity: 1 },
