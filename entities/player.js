@@ -2,7 +2,7 @@ import { Adventurer } from "./adventurer.js";
 export class Player extends Adventurer {
     constructor() {
         super();
-        this.spriteParams = { texture: 'weakling', frame: null };
+        this.spriteParams = { texture: 'weakling', frame: null, width: 96, height: 96 };
         this.speed = 300; //TODO: village location experiences tile bleeding on other speeds, like 200 - need better fix for that..
         this.worldImageSpriteParams = { texture: 'martha-pink', frame: 1 };
         this.baseCharacteristics = {
@@ -10,11 +10,11 @@ export class Player extends Adventurer {
                 strength: 10,
                 agility: 10,
                 intelligence: 10,
-                initiative: Phaser.Math.Between(0, 30)
+                initiative: 100
             },
             parameters: {
                 health: 5,
-                currentHealth: 5,
+                currentHealth: 1,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -44,15 +44,13 @@ export class Player extends Adventurer {
         this.addItemToInventory('copper-pieces', 240);
         this.name = 'Weakling';
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
-        this.currentEffects = [];
-        this.recalculateCharacteristics();
         this.party = [this];
     }
     prepareWorldImage(scene, x, y) {
-        const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame).setOrigin(0, 0).setDepth(1);
+        const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame);
+        worldImage.setOrigin(0, 0).setDepth(1);
         worldImage.anims.play("idle_down");
         const keys = scene.input.keyboard.addKeys('W,S,A,D,left,right,up,down,space');
-        scene['inventory'].showOpenIcon(this);
         worldImage.body.setCollideWorldBounds(true);
         return { worldImage, keys };
     }

@@ -19,12 +19,9 @@ export class HargkakhsCaveScene extends Location {
 
         this.layers.find(layer => layer.layer.name === 'EmptyChest').setVisible(false);
 
-        this.createTrigger('Exit', () => {
-            this.switchToScene('Village')
-        }, 'Objects', null, null, 'collide', 304, 192);
-
-        this.chest = this.createTrigger('Chest', () => {
-        }, 'Objects', null, null, 'collide', 304, 192);
+        this.chest = this.createTrigger({objectName: 'Chest', offsetX: 304, offsetY: 192});
+        /*'Chest', () => {
+        }, 'Objects', null, null, 'collide', 304, 192);*/
     }
 
     public update() {

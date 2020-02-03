@@ -1,11 +1,14 @@
 import {PreloadScene} from './scenes/preload.js';
 import {CaltorScene} from "./scenes/caltor.js";
 import {HouseScene} from "./scenes/house.js";
-import {FightScene} from "./scenes/fight.js";
 import {VillageScene} from "./scenes/village.js";
 import {ShopScene} from "./scenes/shop.js";
 import {HargkakhsCaveScene} from "./scenes/hargkakhsCave.js";
 import {CharacterPickerScene} from "./scenes/characterPicker.js";
+import {BattleScene} from "./battle/battle.js";
+import {DialogScene} from "./scenes/dialog.js";
+import {TavernScene} from "./scenes/tavern.js";
+import {InventoryScene} from "./scenes/inventory.js";
 
 const zoom = 1;
 
@@ -29,7 +32,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, CaltorScene, HouseScene, FightScene, VillageScene, ShopScene, HargkakhsCaveScene, CharacterPickerScene]
+    scene: [PreloadScene, CaltorScene, HouseScene, VillageScene, ShopScene, HargkakhsCaveScene, CharacterPickerScene, BattleScene, DialogScene, TavernScene, InventoryScene]
 };
 
 export const game = new Phaser.Game(gameConfig);

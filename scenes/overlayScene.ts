@@ -1,31 +1,33 @@
 export class OverlayScene extends Phaser.Scene {
     public opts: OverlaySceneOptions;
-    private parentSceneKey: string;
+    protected parentSceneKey: string;
 
     constructor({key: key}) {
         super({key: key});
     }
 
     public prepareOverlay(parentSceneKey, opts?: OverlaySceneOptions) {
-        this.opts = {...{
-            backgroundColor: 0xf0d191,
-            backgroundAlpha: 1,
-            windowX: 16,
-            windowY: 16,
-            windowWidth: 32 * 24,
-            windowHeight: 32 * 19,
+        this.opts = {
+            ...{
+                backgroundColor: 0xf0d191,
+                backgroundAlpha: 1,
+                windowX: 16,
+                windowY: 16,
+                windowWidth: 32 * 24,
+                windowHeight: 32 * 19,
 
-            borderThickness: 3,
-            borderColor: 0x907748,
-            borderAlpha: 1,
+                borderThickness: 3,
+                borderColor: 0x907748,
+                borderAlpha: 1,
 
-            baseDepth: 0,
+                baseDepth: 0,
 
-            closeButtonColor: 'darkgoldenrod',
-            closeButtonHoverColor: 'red',
+                closeButtonColor: 'darkgoldenrod',
+                closeButtonHoverColor: 'red',
 
-            textColor: 'white',
-        }, ...opts};
+                textColor: 'white',
+            }, ...opts
+        };
         this.parentSceneKey = parentSceneKey;
         this._drawBackground();
         this._drawCloseButton();
@@ -59,6 +61,7 @@ export class OverlayScene extends Phaser.Scene {
         closeBtn.on('pointerover', () => closeBtn.setColor(this.opts.closeButtonHoverColor));
         closeBtn.on('pointerout', () => closeBtn.setColor(this.opts.closeButtonColor));
         closeBtn.on('pointerdown', () => this.closeScene());
+        this.input.keyboard.on('keyup-' + 'ESC', () => this.closeScene());
     }
 
     public closeScene() {

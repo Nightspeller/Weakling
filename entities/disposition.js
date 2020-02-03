@@ -1,6 +1,5 @@
 import { Boar } from "./boar.js";
 import { effects } from "../actionsAndEffects/effects.js";
-import EnemyEntity from "./enemyEntity.js";
 import { Adventurer } from "./adventurer.js";
 import { Wizard } from "./wizard.js";
 export class Disposition {
@@ -13,26 +12,15 @@ export class Disposition {
             return enemy;
         });
         this.location = location;
-        this.playerCharactersPositions = {
-            frontTop: this.playerCharacters[0] || null,
-            backTop: this.playerCharacters[1] || null,
-            frontBottom: this.playerCharacters[2] || null,
-            backBottom: this.playerCharacters[3] || null,
-        };
-        this.enemyCharactersPositions = {
-            frontTop: this.enemyCharacters[0] || null,
-            backTop: this.enemyCharacters[1] || null,
-            frontBottom: this.enemyCharacters[2] || null,
-            backBottom: this.enemyCharacters[3] || null,
-        };
+        this.battleEnded = false;
+        this.scene.drawDisposition(this);
         this.startRound();
     }
     startRound() {
         this.currentPhase = this.currentPhase !== undefined ? 'battle' : 'preparation';
         console.log(`---------------------------%cSTART ${this.currentPhase} ROUND%c---------------------------`, 'color: red', 'color: auto');
-        [...this.playerCharacters, ...this.enemyCharacters].forEach(char => char.actedThisRound = false);
-        this.turnOrder = this.calculateTurnOrder();
-        this.turnOrder.forEach(char => char.startRound(this.currentPhase));
+        [...this.playerCharacters, ...this.enemyCharacters].forEach(char => char.startRound(this.currentPhase));
+        this.calculateTurnOrder();
         this.startTurn();
     }
     endRound() {
@@ -45,19 +33,25 @@ export class Disposition {
         this.startRound();
     }
     startTurn() {
+        var _a;
         this.currentCharacter = this.turnOrder[0];
-        //this.scene.inventory.showInventory(this.currentCharacter);
-        this.scene.drawDisposition(this);
-        if (this.currentCharacter instanceof EnemyEntity) {
-            this.aiTurn().then(() => {
-                this.endTurn();
-            });
+        console.log(`%cTurn started for ${(_a = this.currentCharacter) === null || _a === void 0 ? void 0 : _a.name}`, 'color: green');
+        this.currentCharacter.startTurn(this.scene);
+        if (this.currentCharacter instanceof Adventurer) {
+            this.scene.drawMakingTurnGraphics(this.currentCharacter);
+            this.scene.drawActionPoints(this.currentCharacter);
+            this.scene.drawActionInterface(this);
+        }
+        else {
+            this.currentCharacter.aiTurn(this).then(() => this.endTurn());
         }
     }
     endTurn() {
+        if (this.battleEnded)
+            return;
         console.log('%cTurn ended', 'color: green');
-        this.currentCharacter.actedThisRound = true;
-        this.turnOrder.shift();
+        this.currentCharacter.endTurn();
+        this.calculateTurnOrder();
         if (this.turnOrder.length !== 0) {
             this.startTurn();
         }
@@ -67,34 +61,36 @@ export class Disposition {
     }
     calculateTurnOrder() {
         if (this.currentPhase === 'preparation') {
-            return [...this.playerCharacters]
+            this.turnOrder = [...this.playerCharacters]
                 .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
                 .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
         else {
-            return [...this.playerCharacters, ...this.enemyCharacters]
+            this.turnOrder = [...this.playerCharacters, ...this.enemyCharacters]
                 .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
                 .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
-    }
-    async aiTurn() {
-        await this.currentCharacter.aiTurn(this);
+        this.scene.drawTurnOrder(this);
     }
     shouldContinueFight() {
+        //what if everybody are dead?
         if (!this.enemyCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party won the battle');
-            this.scene.scene.start("Caltor");
+            this.scene.exitBattle();
+            this.battleEnded = true;
         }
         if (!this.playerCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party lost the battle');
-            this.scene.scene.start("Caltor");
+            this.scene.exitBattle();
+            this.battleEnded = true;
         }
     }
     processAction(source, target, action) {
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         if (source.actionPoints[action.type] < action.actionCost) {
+            console.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
             return false;
         }
         else {
@@ -102,7 +98,7 @@ export class Disposition {
             this._checkForTriggers(source, target, action);
             if (action.actionId === 'accessInventory') {
                 if (source instanceof Adventurer) {
-                    this.scene.inventory.showInventory(source);
+                    this.scene.switchToScene('Inventory', {}, false);
                 }
             }
             else {
@@ -117,10 +113,14 @@ export class Disposition {
                     }
                 });
                 if (target.currentCharacteristics.parameters.currentHealth <= 0) {
+                    this.scene.playDeathAnimation(target);
                     target.isAlive = false;
+                    this.calculateTurnOrder();
                 }
                 if (source.currentCharacteristics.parameters.currentHealth <= 0) {
+                    this.scene.playDeathAnimation(source);
                     source.isAlive = false;
+                    this.calculateTurnOrder();
                 }
             }
         }

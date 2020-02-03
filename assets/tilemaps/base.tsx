@@ -601,6 +601,36 @@
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="246">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="247">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="254">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="255">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="262">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="263">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="264">
   <properties>
    <property name="collides" type="bool" value="true"/>
@@ -626,12 +656,32 @@
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="270">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="271">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="275">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="277">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="278">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="279">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -657,6 +707,16 @@
   </properties>
  </tile>
  <tile id="285">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="286">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="287">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>

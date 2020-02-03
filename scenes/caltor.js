@@ -4,6 +4,7 @@ import { gregDialog } from "../dialogs/gregDialog.js";
 import Npc from "../entities/npc.js";
 import { bodgerDialog } from "../dialogs/bodgerDialog.js";
 import { Location } from "../entities/location.js";
+import { announcementsDialog, announcementsEmptyDialog } from "../dialogs/announcementsDialog.js";
 export class CaltorScene extends Location {
     constructor() {
         super({ key: 'Caltor' });
@@ -15,22 +16,23 @@ export class CaltorScene extends Location {
     }
     create() {
         this.prepareMap('caltor');
-        this.createTrigger(`House Door`, () => {
-            this.switchToScene('House');
-        });
-        this.createTrigger(`Village`, () => {
-            this.switchToScene('Village');
-        });
-        this.createTrigger(`Character Picker`, () => {
-            this.switchToScene('CharacterPicker', {}, false);
+        this.createTrigger({
+            objectName: `Character Picker`,
+            callback: () => {
+                this.switchToScene('CharacterPicker', {}, false);
+            }
         });
         let layer4visible = true;
-        this.createTrigger(`Barracks`, () => {
-            if (layer4visible) {
-                this.layers.find(layer => layer.layer.name === 'Tile Layer 4').setVisible(false);
-                layer4visible = false;
+        this.createTrigger({
+            objectName: `Barracks`,
+            interaction: 'overlap',
+            callback: () => {
+                if (layer4visible) {
+                    this.layers.find(layer => layer.layer.name === 'Tile Layer 4').setVisible(false);
+                    layer4visible = false;
+                }
             }
-        }, 'Objects', null, null, 'overlap');
+        });
         const stranger = new Npc(this, 'Stranger', this.getMapObject("Stranger"), 'stranger', 1, strangerDialog, param => {
             if (param === 'daggerObtained') {
                 this.player.addItemToInventory('dagger-weapon');
@@ -66,6 +68,11 @@ export class CaltorScene extends Location {
             { itemId: 'leather-boots', quantity: 1 },
         ]);
         const baelin = new Npc(this, 'Baelin', this.getMapObject("Fisherman"), 'fisherman', 7, baelinDialog);
+        const announcementsDesk = new Npc(this, 'Announcements Desk', this.getMapObject("Announcements"), null, null, announcementsDialog, (param) => {
+            if (param === 'questAccepted') {
+                announcementsDesk.setDialog(announcementsEmptyDialog);
+            }
+        });
         const kasima = new Npc(this, 'Kasima', this.getMapObject('Trader'), 'trader', null, undefined, () => {
             this.switchToScene('Shop', {
                 player: this.player,

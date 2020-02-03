@@ -3,9 +3,9 @@ import { enemyActions } from "../actionsAndEffects/enemyActions.js";
 export class Boar extends EnemyEntity {
     constructor() {
         super();
-        this.spriteParams = { texture: 'boar-avatar', frame: null };
+        this.spriteParams = { texture: 'boar-avatar', frame: null, width: 96, height: 96 };
         this.level = 1;
-        this.actions = ['wildRush', 'enrage'];
+        this.availableActions = ['wildRush', 'enrage'];
         this.name = 'Wild Boar';
         this.baseCharacteristics = {
             attributes: {
@@ -34,11 +34,7 @@ export class Boar extends EnemyEntity {
             }
         };
         this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
-        this.actionPoints = {
-            physical: 1,
-            magical: 0,
-            misc: 0
-        };
+        this.actionPoints = { physical: 1, magical: 0, misc: 0 };
     }
     async aiTurn(disposition) {
         const currentAICharacter = this;
@@ -46,15 +42,16 @@ export class Boar extends EnemyEntity {
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
         if (action === 'enrage') {
-            await this.playCastAnimation(disposition.scene);
+            await disposition.scene.playCastAnimation(currentAICharacter);
             disposition.processAction(currentAICharacter, currentAICharacter, enemyActions[action]);
         }
         else {
-            await this.playMeleeAttackAnimation(disposition.scene, randomAlivePlayer);
+            await disposition.scene.playMeleeAttackAnimation(currentAICharacter, randomAlivePlayer);
             disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
         }
     }
     startRound(roundType) {
+        this.actedThisRound = false;
         this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
         this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
     }

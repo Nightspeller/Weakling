@@ -10,9 +10,6 @@ export class HouseScene extends Location {
     }
     create() {
         this.prepareMap('house');
-        this.createTrigger('Caltor', () => {
-            this.switchToScene('Caltor');
-        });
     }
     update() {
         this.updatePlayer();

@@ -11,11 +11,9 @@ export class HargkakhsCaveScene extends Location {
     create() {
         this.prepareMap('hargkakhsCave', 304, 192);
         this.layers.find(layer => layer.layer.name === 'EmptyChest').setVisible(false);
-        this.createTrigger('Exit', () => {
-            this.switchToScene('Village');
-        }, 'Objects', null, null, 'collide', 304, 192);
-        this.chest = this.createTrigger('Chest', () => {
-        }, 'Objects', null, null, 'collide', 304, 192);
+        this.chest = this.createTrigger({ objectName: 'Chest', offsetX: 304, offsetY: 192 });
+        /*'Chest', () => {
+        }, 'Objects', null, null, 'collide', 304, 192);*/
     }
     update() {
         var _a;

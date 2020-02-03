@@ -78,17 +78,6 @@
          "name":"Objects",
          "objects":[
                 {
-                 "height":16,
-                 "id":1,
-                 "name":"Exit",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":32,
-                 "y":240
-                }, 
-                {
                  "height":0,
                  "id":2,
                  "name":"Start",
@@ -97,8 +86,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":22.8182,
-                 "y":206.636
+                 "x":32,
+                 "y":192
                 }, 
                 {
                  "height":32,
@@ -116,18 +105,46 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"Waypoints",
+         "objects":[
+                {
+                 "height":16,
+                 "id":4,
+                 "name":"Exit",
+                 "properties":[
+                        {
+                         "name":"location",
+                         "type":"string",
+                         "value":"Village"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":32,
+                 "y":240
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":4,
+ "nextlayerid":7,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.1",
+ "tiledversion":"1.3.2",
  "tileheight":32,
  "tilesets":[
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images\/tilesets\/main.png",
+         "image":"..\/images\/tilesets\/base.png",
          "imageheight":4256,
          "imagewidth":256,
          "margin":0,

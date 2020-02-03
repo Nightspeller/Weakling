@@ -6,47 +6,8 @@ export class Adventurer extends GeneralEntity {
 
     constructor() {
         super();
-        this.spriteParams = {texture: null, frame: null};
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 0,
-                agility: 0,
-                intelligence: 0,
-                initiative: 0
-            },
-            parameters: {
-                health: 0,
-                currentHealth: 0,
-                manna: 0,
-                currentManna: 0,
-                energy: 0,
-                currentEnergy: 0,
-            },
-            defences: {
-                armor: 0,
-                dodge: 0,
-                fireResistance: 0,
-                coldResistance: 0,
-                acidResistance: 0,
-                electricityResistance: 0,
-                poisonResistance: 0,
-                magicResistance: 0,
-            }
-        };
-        this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
         this.inventory = [];
-        this.actionPoints = {
-            physical: 0,
-            magical: 0,
-            misc: 0
-        };
         this.name = 'Adventurer';
-
-        this.availableActions = [];
-
-        this.currentEffects = [];
-
-        this.recalculateCharacteristics();
     }
 
     public addItemToInventory(itemId, quantity = 1): Item {
@@ -105,12 +66,33 @@ export class Adventurer extends GeneralEntity {
     }
 
     public startRound(roundType: 'preparation' | 'battle') {
-        this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
-        this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
-        this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
+        if (roundType === 'preparation') {
+            this.isAlive = true;
+            this.actionPoints = {
+                physical: 0,
+                magical: 0,
+                misc: 0
+            };
+            if (this.currentCharacteristics.parameters.currentHealth === 0) {
+                this.currentCharacteristics.parameters.currentHealth = 1;
+            }
+            this.currentEffects = [];
+            this.recalculateCharacteristics();
+        }
+        if (this.isAlive) {
+            this.actedThisRound = false;
+            this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
+            this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
+            this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
+        }
     }
 
-    freeze() { }
+    public startTurn(scene) {
+    }
 
-    destroy() { }
+    freeze() {
+    }
+
+    destroy() {
+    }
 }

@@ -1,17 +1,20 @@
-import {Player} from "../entities/player.js";
+import {Player, playerInstance} from "../entities/player.js";
+import {OverlayScene} from "./overlayScene.js";
 
-export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
+export class DialogScene extends OverlayScene {
     private timedEvent: Phaser.Time.TimerEvent;
     private dialogDisplayGroup: Phaser.GameObjects.Group;
-    private options: DialogOptions;
     private closeCallback: Function;
     private dialogTree: any[];
     private player: Player;
+    public opts: DialogOptions;
 
-    constructor(scene: Phaser.Scene, pluginManager) {
-        super(scene, pluginManager);
+    constructor() {
+        super({key: 'Dialog'});
+    }
 
-        this.options = {
+    public init({dialogTree,  opts, closeCallback, prevScene}: { dialogTree: DialogTree, opts?: DialogOptions, closeCallback?: Function, prevScene: string }) {
+        this.opts = {
             borderThickness: 3,
             borderColor: 0x907748,
             borderAlpha: 1,
@@ -19,10 +22,10 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             backgroundColor: 0x303030,
             backgroundAlpha: 0.8,
 
-            dialogWidth: +scene.sys.game.config.width - 32 * 2,
-            dialogHeight: 250,
-            dialogX: 32,
-            dialogY: +scene.sys.game.config.height - 32 - 250,
+            windowWidth: +this.sys.game.config.width - 32 * 2,
+            windowHeight: 250,
+            windowX: 32,
+            windowY: +this.sys.game.config.height - 32 - 250,
 
             responseTextColor: 'darkgoldenrod',
             responseTextHoverColor: 'white',
@@ -33,41 +36,54 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             textColor: 'white',
             letterAppearanceDelay: 10,
         };
-
-        this.dialogDisplayGroup = scene.add.group();
+        this.dialogTree = dialogTree;
+        this.opts = {...this.opts, ...opts};
+        this.closeCallback = closeCallback;
+        this.player = playerInstance;
+        this.parentSceneKey = prevScene;
     }
 
-    public showDialog(dialogTree: DialogTree, player: Player, options?: DialogOptions, closeCallback?: Function) {
-        this.dialogTree = dialogTree;
-        this.options = {...this.options, ...options};
-        this.closeCallback = closeCallback;
-        this.player = player;
+    public preload() {
 
-        this._showLine(dialogTree[0])
+    }
+
+    public create() {
+        this.prepareOverlay(this.parentSceneKey, this.opts);
+        this.dialogDisplayGroup = this.add.group();
+        this._showDialog();
+        this.events.on('wake', (scene, {dialogTree, opts, closeCallback, prevScene}) => {
+            this.parentSceneKey = prevScene;
+            this.dialogTree = dialogTree;
+            this.opts = {...this.opts, ...opts};
+            this.closeCallback = closeCallback;
+            this._showDialog();
+        })
+    }
+
+    private _showDialog() {
+        this._showLine(this.dialogTree[0])
     }
 
     private _showLine(line) {
         this.dialogDisplayGroup.clear(true, true);
         this.timedEvent?.remove();
-        this._drawDialogWindow();
-
-        this._setText(line.text, this.options.letterAppearanceDelay > 0).then(() => {
+        this._setText(line.text, this.opts.letterAppearanceDelay > 0).then(() => {
             this._setReplies(line.replies)
         });
     }
 
     private _setReplies(replies) {
         replies.forEach((reply, index) => {
-            const replyX = this.options.dialogX + 25;
-            const replyY = this.options.dialogY + this.options.dialogHeight - 10 - 34 * replies.length + 34 * index;
-            const replyGameObject = this.scene.add.text(replyX, replyY, `${index + 1}. ${reply.text}`, {
-                color: this.options.responseTextColor,
+            const replyX = this.opts.windowX + 25;
+            const replyY = this.opts.windowY + this.opts.windowHeight - 10 - 34 * replies.length + 34 * index;
+            const replyGameObject = this.add.text(replyX, replyY, `${index + 1}. ${reply.text}`, {
+                color: this.opts.responseTextColor,
                 wordWrap: {
-                    width: this.options.dialogWidth - 50
+                    width: this.opts.windowWidth - 50
                 }
             }).setScrollFactor(0).setInteractive();
-            replyGameObject.on('pointerover', () => replyGameObject.setColor(this.options.responseTextHoverColor));
-            replyGameObject.on('pointerout', () => replyGameObject.setColor(this.options.responseTextColor));
+            replyGameObject.on('pointerover', () => replyGameObject.setColor(this.opts.responseTextHoverColor));
+            replyGameObject.on('pointerout', () => replyGameObject.setColor(this.opts.responseTextColor));
             replyGameObject.once('pointerdown', () => {
                 if (reply.checkCharacteristic !== undefined) {
                     const charToCheck = reply.checkCharacteristic.split('.');
@@ -103,7 +119,7 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
                         const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
                         this._showLine(nextLine);
                     } else {
-                        this._closeDialog(reply.callbackParam);
+                        this.closeScene(reply.callbackParam);
                     }
                 }
             });
@@ -111,77 +127,22 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
         })
     }
 
-    public boot() {
-        console.log('booting dialog plugin');
-        this.systems.events.on('shutdown', () => this._shutdown());
-        this.systems.events.on('destroy', () => this.destroy());
-    }
-
-    private _shutdown() {
-        console.log('shutting down dialog plugin');
-        // It appears that plugin does good enough just of clearing after itself, dunno if\why we need code below
-        this.timedEvent?.remove();
-        this.dialogDisplayGroup.destroy(true);
-    }
-
-    public destroy() {
-        console.log('destroying dialog plugin');
-        this._shutdown();
-    }
-
-    private _drawDialogWindow() {
-        const graphics = this.scene.add.graphics().setScrollFactor(0);
-
-        graphics.fillStyle(this.options.backgroundColor, this.options.backgroundAlpha);
-        graphics.fillRect(this.options.dialogX, this.options.dialogY, this.options.dialogWidth, this.options.dialogHeight);
-
-        graphics.lineStyle(this.options.borderThickness, this.options.borderColor, this.options.borderAlpha);
-        graphics.strokeRect(this.options.dialogX, this.options.dialogY, this.options.dialogWidth, this.options.dialogHeight);
-
-        this.dialogDisplayGroup.add(graphics);
-
-        this._createCloseButton();
-    }
-
-    private _createCloseButton() {
-        const closeButtonX = this.options.dialogX + this.options.dialogWidth - 20;
-        const closeButtonY = this.options.dialogY;
-        const graphics = this.scene.add.graphics().setScrollFactor(0);
-        graphics.lineStyle(this.options.borderThickness, this.options.borderColor, this.options.borderAlpha);
-        graphics.strokeRect(closeButtonX, closeButtonY, 20, 20);
-        this.dialogDisplayGroup.add(graphics);
-
-        const closeBtn = this.scene.add.text(closeButtonX, closeButtonY, 'X', {
-            font: 'bold 16px Arial',
-            fill: this.options.closeButtonColor,
-            fixedWidth: 20,
-            fixedHeight: 20,
-            align: 'center'
-        }).setScrollFactor(0).setInteractive();
-
-        closeBtn.on('pointerover', () => closeBtn.setColor(this.options.closeButtonHoverColor));
-        closeBtn.on('pointerout', () => closeBtn.setColor(this.options.closeButtonColor));
-        closeBtn.on('pointerdown', () => {
-            this._closeDialog('closeButtonClicked');
-        });
-
-        this.dialogDisplayGroup.add(closeBtn);
-    }
-
-    private _closeDialog(param?) {
+    public closeScene(param = 'fastEnd') {
         this.timedEvent?.remove();
         this.dialogDisplayGroup.clear(true, true);
         this.closeCallback?.call(this, param);
+        this.scene.resume(this.parentSceneKey);
+        this.scene.sleep(this.scene.key);
     }
 
     private _setText(text: string, animate: boolean) {
         return new Promise(resolve => {
-            const textX = this.options.dialogX + 25;
-            const textY = this.options.dialogY + 10;
-            const textGameObject = this.scene.add.text(textX, textY, '', {
-                color: this.options.textColor,
+            const textX = this.opts.windowX + 25;
+            const textY = this.opts.windowY + 10;
+            const textGameObject = this.add.text(textX, textY, '', {
+                color: this.opts.textColor,
                 wordWrap: {
-                    width: this.options.dialogWidth - 50
+                    width: this.opts.windowWidth - 50
                 }
             }).setScrollFactor(0);
             this.dialogDisplayGroup.add(textGameObject);
@@ -189,11 +150,11 @@ export class ModalDialogPlugin extends Phaser.Plugins.ScenePlugin {
             if (animate) {
                 let shownLettersCounter = 0;
                 if (this.timedEvent) this.timedEvent.remove();
-                let zone = this.scene.add.zone(this.options.dialogX, this.options.dialogY, this.options.dialogWidth, this.options.dialogHeight)
+                let zone = this.add.zone(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
                     .setOrigin(0, 0).setScrollFactor(0).setInteractive();
 
-                this.timedEvent = this.scene.time.addEvent({
-                    delay: this.options.letterAppearanceDelay,
+                this.timedEvent = this.time.addEvent({
+                    delay: this.opts.letterAppearanceDelay,
                     callback: () => {
                         textGameObject.setText(text.slice(0, shownLettersCounter));
                         if (text.length === shownLettersCounter) {

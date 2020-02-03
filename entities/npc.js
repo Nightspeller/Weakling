@@ -1,31 +1,36 @@
 import { items } from "../actionsAndEffects/items.js";
 export default class Npc {
-    constructor(scene, name, position, texture, frame, initDialog, interactionCallback, items) {
+    constructor(scene, name, mapObject, texture, frame, initDialog, interactionCallback, items) {
         var _a;
-        this.image = scene.physics.add
-            .image(position['x'], position['y'], texture, frame)
-            .setOrigin(0, 0)
-            .setDisplaySize(position['width'], position['height'])
-            .setImmovable();
+        this.name = name;
         if (initDialog) {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback || (() => { });
-            let isDialogClosed = true;
-            scene.physics.add.collider(scene.playerImage, this.image, () => {
-                if (isDialogClosed && this.dialog) {
-                    isDialogClosed = false;
-                    scene.modalDialog.showDialog(this.dialog, scene.player, {}, (param) => {
-                        isDialogClosed = true;
-                        this.interactionCallback(param);
-                    });
+            this.image = scene.createTrigger({
+                objectName: mapObject.name,
+                texture: texture,
+                frame: frame,
+                callback: () => {
+                    if (this.dialog) {
+                        scene.switchToScene('Dialog', {
+                            dialogTree: this.dialog,
+                            closeCallback: (param) => {
+                                this.interactionCallback(param);
+                            }
+                        }, false);
+                    }
                 }
             });
         }
         else {
-            scene.physics.add.collider(scene.playerImage, this.image, () => {
-                this.interactionCallback = interactionCallback || (() => {
-                });
-                this.interactionCallback();
+            this.image = scene.createTrigger({
+                objectName: mapObject.name,
+                texture: texture,
+                frame: frame,
+                callback: () => {
+                    this.interactionCallback = interactionCallback || (() => { });
+                    this.interactionCallback();
+                }
             });
         }
         this.inventory = [];

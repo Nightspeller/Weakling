@@ -9,14 +9,34 @@
             margin: 0;
             background: #414141;
         }
+
         canvas {
             display: block;
             margin: auto;
+        }
+
+        .intro {
+            color: white;
+            padding: 0 1rem;
+        }
+        a {
+            color: white;
         }
     </style>
     <script src="vendor/phaser.js"></script>
 </head>
 <body>
+<div id="game"></div>
+<section class="intro">
+    <h1>Hello adventurer!</h1>
+    <p>Welcome to the Weakling, an open source RPG game.</p>
+    <p>This is just the beginning and very much work in progress on it's early stage, but there are already a few things
+        you can do to explore it yourself!</p>
+    <p>Please, use <strong>WASD</strong> or <strong>Arrow Keys</strong> to navigate the world, and
+        <strong>Space</strong> to move between locations and interact with certain objects (highlighted with the purple
+        frame). Other actions are done with the mouse.</p>
+    <p>For more information and project-related links please read <a href="https://telegra.ph/Introducing-Weakling-12-23" target="_blank">an Introduction</a>. Thank you and enjoy!</p>
+</section>
 <script type="module" src="./index.js"></script>
 </body>
 </html>

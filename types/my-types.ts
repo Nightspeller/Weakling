@@ -45,6 +45,9 @@ interface Effect {
 interface SpriteParameters {
     texture: string;
     frame: number | string;
+    width?: number;
+    height?: number;
+    flip?: boolean;
 }
 
 interface Action {
@@ -65,7 +68,7 @@ interface Action {
 interface Weapon {
     weaponId: string;
     slot: 'any' | 'anyHand' | 'rightHand' | 'leftHand' | 'twoHands' | 'tail';
-    sprite: {key: string; frame: number};
+    sprite: { key: string; frame: number };
     damage: number;
     size: string[];
 }
@@ -84,7 +87,7 @@ interface Item {
     displayName: string;
     description: string;
     slot: string[];
-    sprite: {key: string; frame: number};
+    sprite: { key: string; frame: number };
     stackable: boolean;
     modified: boolean;
     currentSlot: string;
@@ -110,21 +113,9 @@ interface OverlaySceneOptions {
     textColor?: string;
 }
 
-interface DialogOptions {
-    borderThickness?: number;
-    borderColor?: number;
-    borderAlpha?: number;
-    backgroundColor?: number;
-    backgroundAlpha?: number;
-    closeButtonColor?: string;
-    closeButtonHoverColor?: string;
+interface DialogOptions extends OverlaySceneOptions{
     responseTextColor?: string;
     responseTextHoverColor?: string;
-    dialogY?: number;
-    dialogX?: number;
-    dialogHeight?: number;
-    dialogWidth?: number;
-    textColor?: string;
     letterAppearanceDelay?: number;
 }
 
@@ -138,13 +129,24 @@ interface ValueModifier {
     value: number;
 }
 
+interface TriggerParams {
+    objectLayer?: string,
+    objectName: string;
+    callback?: Function;
+    texture?: string;
+    frame?: number;
+    interaction?: 'collide' | 'overlap' | 'activate';
+    offsetX?: number;
+    offsetY?: number;
+}
+
 type Modifier = EffectModifier | ValueModifier;
 
 interface DialogReplay {
     text: string;
     checkCharacteristic?: string;
     checkInventory?: 'keep' | 'remove';
-    checkValue?: number | {itemId : string, quantity: number}[];
+    checkValue?: number | { itemId: string, quantity: number }[];
     successTriggers?: string;
     failureTriggers?: string;
     callbackParam?: string;

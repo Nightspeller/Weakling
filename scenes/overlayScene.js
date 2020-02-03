@@ -3,7 +3,8 @@ export class OverlayScene extends Phaser.Scene {
         super({ key: key });
     }
     prepareOverlay(parentSceneKey, opts) {
-        this.opts = { ...{
+        this.opts = {
+            ...{
                 backgroundColor: 0xf0d191,
                 backgroundAlpha: 1,
                 windowX: 16,
@@ -17,7 +18,8 @@ export class OverlayScene extends Phaser.Scene {
                 closeButtonColor: 'darkgoldenrod',
                 closeButtonHoverColor: 'red',
                 textColor: 'white',
-            }, ...opts };
+            }, ...opts
+        };
         this.parentSceneKey = parentSceneKey;
         this._drawBackground();
         this._drawCloseButton();
@@ -47,6 +49,7 @@ export class OverlayScene extends Phaser.Scene {
         closeBtn.on('pointerover', () => closeBtn.setColor(this.opts.closeButtonHoverColor));
         closeBtn.on('pointerout', () => closeBtn.setColor(this.opts.closeButtonColor));
         closeBtn.on('pointerdown', () => this.closeScene());
+        this.input.keyboard.on('keyup-' + 'ESC', () => this.closeScene());
     }
     closeScene() {
         this.scene.resume(this.parentSceneKey);

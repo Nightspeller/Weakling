@@ -85,6 +85,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('debug-icon', 'assets/images/interface/debug-icon.png');
         this.load.spritesheet("action-points", "assets/images/interface/action-points.png", {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet("icons", 'assets/images/interface/icons-with-background.png', {frameWidth: 32, frameHeight: 32});
+        this.load.image('doll', 'assets/images/interface/doll.png');
+        this.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
 
         // World characters images
         this.load.spritesheet("martha-pink", "assets/images/characters/world-map/party/martha-pink.png", {frameWidth: 32, frameHeight: 32});
@@ -103,7 +105,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
         this.load.image('elder', 'assets/images/characters/battle/party/elder.png');
         this.load.image('boar-avatar', 'assets/images/characters/battle/enemies/boar.png');
-        this.load.image("dead-character", "assets/images/characters/battle/dead-character.png");
+            this.load.image("dead-character", "assets/images/characters/battle/dead-character.png");
         this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png",{frameWidth: 231, frameHeight: 190});
 
         // Items
@@ -119,18 +121,22 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("light-pillar-front", "assets/images/animations/light-pillar/light-pillar-yellow-front.png", {frameWidth: 192, frameHeight: 192});
         this.load.spritesheet("wizard-attack1", "assets/images/characters/battle/enemies/Wizard/Attack1.png",{frameWidth: 231, frameHeight: 190});
         this.load.spritesheet("wizard-attack2", "assets/images/characters/battle/enemies/Wizard/Attack2.png",{frameWidth: 231, frameHeight: 190});
+        this.load.spritesheet("wizard-hit", "assets/images/characters/battle/enemies/Wizard/Hit.png",{frameWidth: 231, frameHeight: 190});
+        this.load.spritesheet("wizard-death", "assets/images/characters/battle/enemies/Wizard/Death.png",{frameWidth: 231, frameHeight: 190});
+        this.load.image("hit", "assets/images/animations/hit.png");
 
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('caltor', 'assets/tilemaps/caltor.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
+        this.load.tilemapTiledJSON('tavern', 'assets/tilemaps/tavern.json');
         this.load.tilemapTiledJSON('village', 'assets/tilemaps/village.json');
-        this.load.tilemapTiledJSON('fight', 'assets/tilemaps/fight.json');
+        this.load.tilemapTiledJSON('battle', 'assets/tilemaps/fight.json');
         this.load.tilemapTiledJSON('hargkakhsCave', 'assets/tilemaps/hargkakhsCave.json');
     }
     create() {
         this.createAnimations();
         console.log('Preload done, calling Caltor');
-        this.scene.start("Caltor");
+        this.scene.start("Caltor", [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}]);
     }
 
     private createAnimations() {
@@ -183,6 +189,27 @@ export class PreloadScene extends Phaser.Scene {
             repeat: -1
         });
         this.anims.create({
+            key: 'light_pillar_animation',
+            frames: this.anims.generateFrameNames('light-pillar'),
+            duration: 500,
+            showOnStart: true,
+            hideOnComplete: true
+        });
+        this.anims.create({
+            key: 'light_pillar_animation_back',
+            frames: this.anims.generateFrameNames('light-pillar-back'),
+            duration: 500,
+            showOnStart: true,
+            hideOnComplete: true
+        });
+        this.anims.create({
+            key: 'light_pillar_animation_front',
+            frames: this.anims.generateFrameNames('light-pillar-front'),
+            duration: 500,
+            showOnStart: true,
+            hideOnComplete: true
+        });
+        this.anims.create({
             key: 'wizard_idle',
             frames: this.anims.generateFrameNames('wizard-idle'),
             frameRate: 5,
@@ -197,6 +224,18 @@ export class PreloadScene extends Phaser.Scene {
         this.anims.create({
             key: 'wizard_attack2',
             frames: this.anims.generateFrameNames('wizard-attack2'),
+            frameRate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'wizard_hit',
+            frames: this.anims.generateFrameNames('wizard-hit'),
+            frameRate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'wizard_death',
+            frames: this.anims.generateFrameNames('wizard-death'),
             frameRate: 10,
             repeat: 0
         });

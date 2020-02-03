@@ -15,9 +15,6 @@ export class VillageScene extends Location {
     }
     create() {
         this.prepareMap('village');
-        this.createTrigger('Caltor', () => {
-            this.switchToScene('Caltor');
-        });
         const elder = new Npc(this, 'Elder', this.getMapObject("Elder"), 'stranger', 1, elderFirstTimeDialog, (param) => {
             elder.setDialog(elderSecondTimeDialog, (param) => {
                 if (param === 'readyToGo') {
@@ -47,9 +44,6 @@ export class VillageScene extends Location {
                 hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
                 this.player.addItemToInventory('minerals', 10);
             }
-        });
-        this.createTrigger(`Hargkakh's Cave`, () => {
-            this.switchToScene('HargkakhsCave');
         });
     }
     update() {

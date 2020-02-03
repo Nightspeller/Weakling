@@ -3,35 +3,39 @@ import {items} from "../actionsAndEffects/items.js";
 export default class Npc {
     public inventory: Item[];
     public dialog: DialogTree;
-    public image: Phaser.Physics.Arcade.Image;
     private interactionCallback: Function;
+    public name: string;
+    public image: Phaser.Physics.Arcade.Image;
 
-    constructor(scene, name: string, position: Phaser.GameObjects.GameObject, texture: string, frame: number, initDialog?: DialogTree, interactionCallback?: Function, items?: any[]) {
-
-        this.image = scene.physics.add
-            .image(position['x'], position['y'], texture, frame)
-            .setOrigin(0, 0)
-            .setDisplaySize(position['width'], position['height'])
-            .setImmovable();
-
+    constructor(scene, name: string, mapObject: Phaser.GameObjects.GameObject, texture: string, frame: number, initDialog?: DialogTree, interactionCallback?: Function, items?: any[]) {
+        this.name = name;
         if (initDialog) {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback || (() => {});
-            let isDialogClosed = true;
-            scene.physics.add.collider(scene.playerImage, this.image, () => {
-                if (isDialogClosed && this.dialog) {
-                    isDialogClosed = false;
-                    scene.modalDialog.showDialog(this.dialog, scene.player, {}, (param) => {
-                        isDialogClosed = true;
-                        this.interactionCallback(param);
-                    });
+            this.image = scene.createTrigger({
+                objectName: mapObject.name,
+                texture: texture,
+                frame: frame,
+                callback: () => {
+                    if (this.dialog) {
+                        scene.switchToScene('Dialog', {
+                            dialogTree: this.dialog,
+                            closeCallback: (param) => {
+                                this.interactionCallback(param);
+                            }
+                        }, false);
+                    }
                 }
             });
         } else {
-            scene.physics.add.collider(scene.playerImage, this.image, () => {
-                this.interactionCallback = interactionCallback || (() => {
-                });
-                this.interactionCallback();
+            this.image = scene.createTrigger({
+                objectName: mapObject.name,
+                texture: texture,
+                frame: frame,
+                callback: () => {
+                    this.interactionCallback = interactionCallback || (() => {});
+                    this.interactionCallback();
+                }
             });
         }
 
