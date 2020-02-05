@@ -236,6 +236,51 @@
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="72">
+  <properties>
+   <property name="collideSides" value="[&quot;left&quot;,&quot;up&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="73">
+  <properties>
+   <property name="collideSides" value="[&quot;up&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="74">
+  <properties>
+   <property name="collideSides" value="[&quot;up&quot;, &quot;right&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="80">
+  <properties>
+   <property name="collideSides" value="[&quot;left&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="82">
+  <properties>
+   <property name="collideSides" value="[&quot;right&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="88">
+  <properties>
+   <property name="collideSides" value="[&quot;left&quot;, &quot;down&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="89">
+  <properties>
+   <property name="collideSides" value="[&quot;down&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="90">
+  <properties>
+   <property name="collideSides" value="[&quot;right&quot;, &quot;down&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="95">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="96">
   <properties>
    <property name="collides" type="bool" value="true"/>
@@ -247,6 +292,11 @@
   </properties>
  </tile>
  <tile id="98">
+  <properties>
+   <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="103">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -264,6 +314,51 @@
  <tile id="106">
   <properties>
    <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="112">
+  <properties>
+   <property name="collideSides" value="[&quot;left&quot;, &quot;up&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="113">
+  <properties>
+   <property name="collideSides" value="[&quot;up&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="114">
+  <properties>
+   <property name="collideSides" value="[&quot;up&quot;, &quot;right&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="120">
+  <properties>
+   <property name="collideSides" value="[&quot;left&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="122">
+  <properties>
+   <property name="collideSides" value="[&quot;right&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="128">
+  <properties>
+   <property name="collideSides" value="[&quot;left&quot;, &quot;down&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="129">
+  <properties>
+   <property name="collideSides" value="[&quot;down&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="130">
+  <properties>
+   <property name="collideSides" value="[&quot;right&quot;, &quot;down&quot;]"/>
+  </properties>
+ </tile>
+ <tile id="135">
+  <properties>
+   <property name="collideSides" value="[&quot;up&quot;,&quot;right&quot;,&quot;left&quot;]"/>
   </properties>
  </tile>
  <tile id="136">
@@ -294,6 +389,11 @@
  <tile id="146">
   <properties>
    <property name="collides" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="151">
+  <properties>
+   <property name="collideSides" value="[&quot;down&quot;,&quot;right&quot;,&quot;left&quot;]"/>
   </properties>
  </tile>
  <tile id="155">

@@ -46,7 +46,11 @@ export class Location extends Phaser.Scene {
             // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
             if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'hasCollisions')) {
                 createdLayer.setCollisionByProperty({collides: true});
+                this.setSidesCollisions(createdLayer.layer);
                 this.physics.add.collider(this.playerImage, createdLayer);
+            }
+            if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'fringe')) {
+                createdLayer.setDepth(1);
             }
         });
 
@@ -106,6 +110,36 @@ export class Location extends Phaser.Scene {
 
         if (mapKey !== 'battle') this.createDebugButton();
     }
+
+    private setSidesCollisions(layer) {
+        for (let ty = 0; ty < layer.height; ty++) {
+            for (let tx = 0; tx < layer.width; tx++) {
+                const tile = layer.data[ty][tx];
+
+                if (!tile) continue;
+
+                if (tile.properties['collideSides']) {
+                    const directions = JSON.parse(tile.properties['collideSides']);
+                    if ((tx !== 0) && directions.includes('left') && !layer.data[ty][tx - 1].collideRight) {
+                        tile.setCollision(true, tile.collideRight, tile.collideUp, tile.collideDown, false);
+                        layer.data[ty][tx - 1].setCollision(layer.data[ty][tx - 1].collideLeft, true, layer.data[ty][tx - 1].collideUp, layer.data[ty][tx - 1].collideDown, false);
+                    }
+                    if ((tx !== layer.width-1) && directions.includes('right') && !layer.data[ty][tx + 1].collideLeft) {
+                        tile.setCollision(tile.collideLeft, true, tile.collideUp, tile.collideDown, false);
+                        layer.data[ty][tx + 1].setCollision(true, layer.data[ty][tx + 1].collideRight, layer.data[ty][tx + 1].collideUp, layer.data[ty][tx + 1].collideDown, false);
+                    }
+                    if ((ty !== 0) && directions.includes('up') && !layer.data[ty - 1][tx].collideDown) {
+                        tile.setCollision(tile.collideLeft, tile.collideRight, true, tile.collideDown, false);
+                        layer.data[ty - 1][tx].setCollision(layer.data[ty - 1][tx].collideLeft, layer.data[ty - 1][tx].collideRight, layer.data[ty - 1][tx].collideUp, true, false);
+                    }
+                    if ((ty !== layer.height-1) && directions.includes('down') && !layer.data[ty + 1][tx].collideUp) {
+                        tile.setCollision(tile.collideLeft, tile.collideRight, tile.collideUp, true, false);
+                        layer.data[ty + 1][tx].setCollision(layer.data[ty + 1][tx].collideLeft, layer.data[ty + 1][tx].collideRight, true, layer.data[ty + 1][tx].collideDown, false);
+                    }
+                }
+            }
+        }
+    };
 
     public showOpenInventoryIcon(opts?: Object, closeCallback?: Function) {
         const inventoryGraphics = this.add.graphics().setScrollFactor(0)

@@ -22,8 +22,9 @@ export class ShopScene extends OverlayScene {
     }
 
     public create() {
-        this.prepareOverlay('Caltor');
+        this.prepareOverlay('Caltor', {windowX: 0, windowY: 0});
         this._drawItems();
+        this.cameras.main.setViewport(16, 16, 800 - 32, 640 - 32);
         this.events.on('wake', (scene, {player, trader}) => {
             this.player = player;
             this.trader = trader;
@@ -36,8 +37,8 @@ export class ShopScene extends OverlayScene {
             this.playerItemContainers.destroy(true);
             this.traderItemContainers.destroy(true);
         }
-        this.playerItemContainers = this.add.container(32, 32).setDepth(this.opts.baseDepth);
-        this.traderItemContainers = this.add.container(32 + 360 + 16, 32).setDepth(this.opts.baseDepth);
+        this.playerItemContainers = this.add.container(16, 16).setDepth(this.opts.baseDepth);
+        this.traderItemContainers = this.add.container(16 + 360 + 16, 16).setDepth(this.opts.baseDepth);
 
         const playerItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.player.inventory.length * 64);
         const traderItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.trader.inventory.length * 64);
@@ -52,11 +53,11 @@ export class ShopScene extends OverlayScene {
 
         this.playerItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
             this.y -= deltaY * 5;
-            this.y = Phaser.Math.Clamp(this.y, 32 - playerOverflow, 32);
+            this.y = Phaser.Math.Clamp(this.y, 16 - playerOverflow, 16);
         });
         this.traderItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
             this.y -= deltaY * 5;
-            this.y = Phaser.Math.Clamp(this.y, 32 - traderOverflow, 32);
+            this.y = Phaser.Math.Clamp(this.y, 16 - traderOverflow, 16);
         });
     }
 
