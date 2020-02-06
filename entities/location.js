@@ -4,8 +4,10 @@ export class Location extends Phaser.Scene {
     constructor(sceneSettings) {
         super(sceneSettings);
         this.triggers = [];
+        this.cooldown = 0;
     }
-    preparePlugins() { }
+    preparePlugins() {
+    }
     prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
         var _a, _b, _c;
         this.map = this.make.tilemap({ key: mapKey });
@@ -57,8 +59,11 @@ export class Location extends Phaser.Scene {
             });
         });
         (_b = this.map.getObjectLayer('Waypoints')) === null || _b === void 0 ? void 0 : _b.objects.forEach(object => {
-            var _a;
+            var _a, _b;
             const toLocation = (_a = object.properties.find(prop => prop.name === 'location')) === null || _a === void 0 ? void 0 : _a.value;
+            let toCoordinates = (_b = object.properties.find(prop => prop.name === 'toCoordinates')) === null || _b === void 0 ? void 0 : _b.value;
+            if (toCoordinates)
+                toCoordinates = JSON.parse(toCoordinates);
             this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Waypoints',
@@ -68,7 +73,12 @@ export class Location extends Phaser.Scene {
                 offsetX: layerOffsetX,
                 offsetY: layerOffsetY,
                 callback: () => {
-                    this.switchToScene(toLocation);
+                    if (toLocation) {
+                        this.switchToScene(toLocation);
+                    }
+                    if (toCoordinates) {
+                        this.playerImage.setPosition(toCoordinates.x * 32 + layerOffsetX, toCoordinates.y * 32 + layerOffsetY);
+                    }
                 },
             });
         });
@@ -170,19 +180,24 @@ export class Location extends Phaser.Scene {
     }
     updatePlayer() {
         this.player.update(this.playerImage, this.keys);
-        this.triggers.forEach(trigger => {
-            if (trigger.type === 'activate') {
-                const image = trigger.image;
-                const callback = trigger.callback;
-                if (this.keys.space.isDown) {
-                    const bodies = this.physics.overlapRect(image.x, image.y, image.displayWidth + 2, image.displayHeight + 2);
-                    // @ts-ignore
-                    if (bodies.includes(this.playerImage.body) && bodies.includes(image.body)) {
-                        callback();
+        if (this.keys.space.isDown) {
+            if (this.cooldown === 0) {
+                this.cooldown = 50;
+                this.triggers.forEach(trigger => {
+                    if (trigger.type === 'activate') {
+                        const image = trigger.image;
+                        const callback = trigger.callback;
+                        const bodies = this.physics.overlapRect(image.x, image.y, image.displayWidth + 2, image.displayHeight + 2);
+                        // @ts-ignore
+                        if (bodies.includes(this.playerImage.body) && bodies.includes(image.body)) {
+                            callback();
+                        }
                     }
-                }
+                });
             }
-        });
+        }
+        if (this.cooldown !== 0)
+            this.cooldown--;
     }
     createDebugButton() {
         const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0);

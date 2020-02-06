@@ -9,6 +9,7 @@ import { BattleScene } from "./battle/battle.js";
 import { DialogScene } from "./scenes/dialog.js";
 import { TavernScene } from "./scenes/tavern.js";
 import { InventoryScene } from "./scenes/inventory.js";
+import { HermitsTowerScene } from "./scenes/hermitsTower.js";
 const zoom = 1;
 const gameConfig = {
     title: 'Sample',
@@ -26,7 +27,7 @@ const gameConfig = {
     },
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, CaltorScene, HouseScene, VillageScene, TavernScene, HargkakhsCaveScene, ShopScene, CharacterPickerScene, BattleScene, DialogScene, InventoryScene]
+    scene: [PreloadScene, CaltorScene, HouseScene, VillageScene, TavernScene, HargkakhsCaveScene, HermitsTowerScene, ShopScene, CharacterPickerScene, BattleScene, DialogScene, InventoryScene]
 };
 export const game = new Phaser.Game(gameConfig);
 //# sourceMappingURL=index.js.map
