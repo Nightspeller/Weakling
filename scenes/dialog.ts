@@ -73,6 +73,7 @@ export class DialogScene extends OverlayScene {
     }
 
     private _setReplies(replies) {
+        const keyCodes = ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"];
         replies.forEach((reply, index) => {
             const replyX = this.opts.windowX + 25;
             const replyY = this.opts.windowY + this.opts.windowHeight - 10 - 34 * replies.length + 34 * index;
@@ -85,54 +86,63 @@ export class DialogScene extends OverlayScene {
             replyGameObject.on('pointerover', () => replyGameObject.setColor(this.opts.responseTextHoverColor));
             replyGameObject.on('pointerout', () => replyGameObject.setColor(this.opts.responseTextColor));
             replyGameObject.once('pointerdown', () => {
-                if (reply.checkCharacteristic !== undefined) {
-                    const charToCheck = reply.checkCharacteristic.split('.');
-                    if (this.player.currentCharacteristics[charToCheck[0]][charToCheck[1]] >= reply.checkValue) {
-                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
-                        this._showLine(nextLine);
-                    } else {
-                        const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
-                        this._showLine(nextLine);
-                    }
-                } else if (reply.checkInventory) {
-                    let allIsThere = true;
-                    reply.checkValue.forEach(requestedItem => {
-                        if (!this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity)) {
-                            allIsThere = false;
-                        }
-                    });
-                    if (allIsThere) {
-                        if (reply.checkInventory === 'remove') {
-                            reply.checkValue.forEach(requestedItem => {
-                                const item = this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity);
-                                this.player.removeItemFromInventory(item, requestedItem.quantity);
-                            });
-                        }
-                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
-                        this._showLine(nextLine);
-                    } else {
-                        const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
-                        this._showLine(nextLine);
-                    }
-                } else {
-                    if (reply.successTriggers !== undefined) {
-                        const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
-                        this._showLine(nextLine);
-                    } else {
-                        this.closeScene(reply.callbackParam);
-                    }
-                }
+                this._replaySelected(reply);
+            });
+            this.input.keyboard.once('keyup-' + keyCodes[index + 1], () => {
+                keyCodes.forEach(keyCode => this.input.keyboard.off(`keyup-${keyCode}`));
+                this._replaySelected(reply)
             });
             this.dialogDisplayGroup.add(replyGameObject);
         })
     }
 
+    private _replaySelected(reply) {
+        if (reply.checkCharacteristic !== undefined) {
+            const charToCheck = reply.checkCharacteristic.split('.');
+            if (this.player.currentCharacteristics[charToCheck[0]][charToCheck[1]] >= reply.checkValue) {
+                const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                this._showLine(nextLine);
+            } else {
+                const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
+                this._showLine(nextLine);
+            }
+        } else if (reply.checkInventory) {
+            let allIsThere = true;
+            reply.checkValue.forEach(requestedItem => {
+                if (!this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity)) {
+                    allIsThere = false;
+                }
+            });
+            if (allIsThere) {
+                if (reply.checkInventory === 'remove') {
+                    reply.checkValue.forEach(requestedItem => {
+                        const item = this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity);
+                        this.player.removeItemFromInventory(item, requestedItem.quantity);
+                    });
+                }
+                const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                this._showLine(nextLine);
+            } else {
+                const nextLine = this.dialogTree.find(line => line.id === reply.failureTriggers);
+                this._showLine(nextLine);
+            }
+        } else {
+            if (reply.successTriggers !== undefined) {
+                const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
+                this._showLine(nextLine);
+            } else {
+                this.closeScene(reply.callbackParam);
+            }
+        }
+    }
+
     public closeScene(param = 'fastEnd') {
+        this.input.keyboard.off('keydown-SPACE');
+        ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"].forEach(keyCode => this.input.keyboard.off(`keyup-${keyCode}`));
         this.timedEvent?.remove();
         this.dialogDisplayGroup.clear(true, true);
         this.closeCallback?.call(this, param);
-        this.scene.resume(this.parentSceneKey);
-        this.scene.sleep(this.scene.key);
+        super.closeScene();
     }
 
     private _setText(text: string, animate: boolean) {
@@ -160,6 +170,7 @@ export class DialogScene extends OverlayScene {
                         if (text.length === shownLettersCounter) {
                             this.timedEvent.remove();
                             zone.destroy();
+                            this.input.keyboard.off('keydown-SPACE');
                             resolve();
                         } else {
                             shownLettersCounter++;
@@ -170,10 +181,18 @@ export class DialogScene extends OverlayScene {
 
                 zone.once('pointerdown', () => {
                     zone.destroy();
+                    this.input.keyboard.off('keydown-SPACE');
                     this.timedEvent.remove();
                     textGameObject.setText(text);
                     resolve();
                 });
+                this.input.keyboard.once('keydown-SPACE', () => {
+                    zone.destroy();
+                    this.timedEvent.remove();
+                    textGameObject.setText(text);
+                    resolve();
+                });
+                this.dialogDisplayGroup.add(zone);
             } else {
                 textGameObject.setText(text);
                 resolve();

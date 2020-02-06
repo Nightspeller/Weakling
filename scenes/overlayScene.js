@@ -52,6 +52,7 @@ export class OverlayScene extends Phaser.Scene {
         this.input.keyboard.on('keyup-' + 'ESC', () => this.closeScene());
     }
     closeScene() {
+        //console.log(`Switching from %c${this.scene.key}%c to %c${this.parentSceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): true`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
         this.scene.resume(this.parentSceneKey);
         this.scene.sleep(this.scene.key);
     }

@@ -115,6 +115,38 @@ export class Location extends Phaser.Scene {
             });
         });
 
+        this.map.getObjectLayer('Messages')?.objects.forEach(object => {
+            const text = object.properties.find(prop => prop.name === 'text')?.value;
+            const interaction = object.properties.find(prop => prop.name === 'interaction')?.value;
+            const singleUse = object.properties.find(prop => prop.name === 'singleUse')?.value;
+            const trigger = this.createTrigger({
+                objectName: object.name,
+                objectLayer: 'Messages',
+                texture: null,
+                frame: null,
+                interaction: interaction,
+                offsetX: layerOffsetX,
+                offsetY: layerOffsetY,
+                callback: () => {
+                    this.switchToScene('Dialog', {
+                        dialogTree: [{
+                            id: 'message',
+                            text: text,
+                            replies: [{
+                                text: '(End)',
+                                callbackParam: 'fastEnd'
+                            }]
+                        }],
+                        closeCallback: (param) => {
+                            if (singleUse) {
+                                trigger.destroy(true);
+                            }
+                        }
+                    }, false);
+                },
+            });
+        });
+
         this.physics.world.setBounds(layerOffsetX, layerOffsetY, this.map.widthInPixels, this.map.heightInPixels);
 
         if (mapKey !== 'battle') this.createDebugButton();
@@ -162,6 +194,10 @@ export class Location extends Phaser.Scene {
         inventoryIconImage.on('pointerdown', () => {
             this.switchToScene('Inventory', {opts, closeCallback}, false);
         });
+        this.input.keyboard.off('keyup-I');
+        this.input.keyboard.on('keyup-I', () => {
+            this.switchToScene('Inventory', {opts, closeCallback}, false);
+        })
     }
 
     public createTrigger(
@@ -213,7 +249,8 @@ export class Location extends Phaser.Scene {
         if (this.keys.space.isDown) {
             if (this.cooldown === 0) {
                 this.cooldown = 50;
-                this.triggers.forEach(trigger => {
+                for (let i = 0; i < this.triggers.length; i++) {
+                    const trigger = this.triggers[i];
                     if (trigger.type === 'activate') {
                         const image = trigger.image;
                         const callback = trigger.callback;
@@ -221,16 +258,17 @@ export class Location extends Phaser.Scene {
                         // @ts-ignore
                         if (bodies.includes(this.playerImage.body) && bodies.includes(image.body)) {
                             callback();
+                            break;
                         }
                     }
-                });
+                }
             }
         }
         if (this.cooldown !== 0) this.cooldown--;
     }
 
     public createDebugButton() {
-        const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0);
+        const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0).setDepth(100);
         let debugModeOn = false;
         const debugGraphics = this.add.graphics().setAlpha(0.25).setVisible(debugModeOn);
         this.layers.forEach(layer => {
@@ -246,15 +284,22 @@ export class Location extends Phaser.Scene {
             debugModeOn = !debugModeOn;
             debugGraphics.setVisible(debugModeOn);
         });
+        this.input.keyboard.off('keyup-F1');
+        this.input.keyboard.on('keyup-F1', () => {
+            debugModeOn = !debugModeOn;
+            debugGraphics.setVisible(debugModeOn);
+        })
     }
 
     public switchToScene(sceneKey: string, data: object = {}, shouldSleep = true) {
-        console.log(`Switching to ${sceneKey} from ${this.scene.key}. Should ${this.scene.key} turn off (sleep): ${shouldSleep}`);
+        //console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
         // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
         // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
         // still dont know how to fix properly..
         // this event handler should not be here (it actually should not exist at all) but keeping it here for easier port of the fix..
-        if (this.keys) Object.values(this.keys).forEach(key => key.isDown = false);
+        // NEW INFO - apparently this does the fix, though mechanisms changed since it was detected so not sure, keeping old solution just in case
+        this.input.keyboard.resetKeys();
+        //if (this.keys) Object.values(this.keys).forEach(key => key.isDown = false);
 
         if (shouldSleep) {
             this.scene.sleep(this.scene.key);
