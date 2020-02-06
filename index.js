@@ -26,7 +26,7 @@ const gameConfig = {
     },
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, CaltorScene, HouseScene, VillageScene, ShopScene, HargkakhsCaveScene, CharacterPickerScene, BattleScene, DialogScene, TavernScene, InventoryScene]
+    scene: [PreloadScene, CaltorScene, HouseScene, VillageScene, TavernScene, HargkakhsCaveScene, ShopScene, CharacterPickerScene, BattleScene, DialogScene, InventoryScene]
 };
 export const game = new Phaser.Game(gameConfig);
 //# sourceMappingURL=index.js.map

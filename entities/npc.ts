@@ -45,7 +45,7 @@ export default class Npc {
 
     public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
         this.dialog = newDialog;
-        this.interactionCallback = newInteractionCallback || (() => {});
+        if(newInteractionCallback) this.interactionCallback = newInteractionCallback;
     }
 
     public addItemToInventory(itemId, quantity = 1): Item {

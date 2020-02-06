@@ -88,6 +88,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('enemies', 'assets/images/characters/various-enemies.png', { frameWidth: 128, frameHeight: 128 });
         this.load.spritesheet("stranger", "assets/images/characters/world-map/neutral/stranger.png", { frameWidth: 32, frameHeight: 32 });
         this.load.spritesheet("trader", "assets/images/characters/world-map/neutral/trader.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet("bartender", "assets/images/characters/world-map/neutral/bartender.png", { frameWidth: 32, frameHeight: 32 });
         // Battle characters images
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
         this.load.image('elder', 'assets/images/characters/battle/party/elder.png');
@@ -120,7 +121,8 @@ export class PreloadScene extends Phaser.Scene {
     create() {
         this.createAnimations();
         console.log('Preload done, calling Caltor');
-        this.scene.start("Caltor", [{ "type": "wildBoar" }, { "type": "wizard" }, { "type": "wizard" }, { "type": "wildBoar" }]);
+        // For battle scene tests: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}]
+        this.scene.start("Caltor", { prevScene: this.scene.key });
     }
     createAnimations() {
         this.anims.create({

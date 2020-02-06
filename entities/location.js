@@ -5,8 +5,7 @@ export class Location extends Phaser.Scene {
         super(sceneSettings);
         this.triggers = [];
     }
-    preparePlugins() {
-    }
+    preparePlugins() { }
     prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
         var _a, _b, _c;
         this.map = this.make.tilemap({ key: mapKey });
@@ -141,6 +140,10 @@ export class Location extends Phaser.Scene {
     createTrigger({ objectName, callback = () => {
     }, objectLayer = 'Objects', texture = null, frame = null, interaction = 'activate', offsetX = 0, offsetY = 0 }) {
         const object = this.getMapObject(objectName, objectLayer);
+        if (!object) {
+            console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);
+            return;
+        }
         const trigger = this.physics.add
             .image(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
@@ -200,7 +203,7 @@ export class Location extends Phaser.Scene {
         });
     }
     switchToScene(sceneKey, data = {}, shouldSleep = true) {
-        console.log('Switching to', sceneKey);
+        console.log(`Switching to ${sceneKey} from ${this.scene.key}. Should ${this.scene.key} turn off (sleep): ${shouldSleep}`);
         // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
         // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
         // still dont know how to fix properly..

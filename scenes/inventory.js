@@ -240,7 +240,7 @@ export class InventoryScene extends OverlayScene {
             container.on('dragend', function (pointer, something1, something2, dropped) {
                 this.setDepth(scene.opts.baseDepth + 1);
                 if (!dropped) {
-                    this.tweens.add({
+                    scene.tweens.add({
                         targets: this,
                         x: this.input.dragStartX,
                         y: this.input.dragStartY,

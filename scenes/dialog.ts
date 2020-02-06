@@ -13,7 +13,7 @@ export class DialogScene extends OverlayScene {
         super({key: 'Dialog'});
     }
 
-    public init({dialogTree,  opts, closeCallback, prevScene}: { dialogTree: DialogTree, opts?: DialogOptions, closeCallback?: Function, prevScene: string }) {
+    public init({dialogTree, opts, closeCallback, prevScene}: { dialogTree: DialogTree, opts?: DialogOptions, closeCallback?: Function, prevScene: string }) {
         this.opts = {
             borderThickness: 3,
             borderColor: 0x907748,

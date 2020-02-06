@@ -117,4 +117,4 @@ export const strangerDialog: DialogTree = [{
         text: 'Nice!',
         callbackParam: 'daggerObtained'
     }]
-}] as DialogTree;
+}];

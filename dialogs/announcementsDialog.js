@@ -1,6 +1,6 @@
 export const announcementsDialog = [{
         id: 'firstAnnouncement',
-        text: `Help needed! Pigs are running wild on my fields and ruining my crops! 20 copper pieces to anybody who will chase the foul beasts away!`,
+        text: `Help needed! Boars are running wild on my fields and ruining my crops! 20 copper pieces to anybody who will chase the foul beasts away!`,
         replies: [{
                 text: 'Hmm..may be I should give it a try..',
                 callbackParam: 'questAccepted'

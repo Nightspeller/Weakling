@@ -194,7 +194,7 @@ export const items: { [key: string]: Item } = {
         stackable: true,
         modified: false,
         currentSlot: null,
-        quantity: 3,
+        quantity: null,
         specifics: {
             useEffects: [
                 {'parameters.currentHealth': 5}
@@ -202,6 +202,24 @@ export const items: { [key: string]: Item } = {
         },
         sellPrice: 2,
         buyPrice: 4
+    },
+    'beer': {
+        itemId: 'beer',
+        displayName: 'Beer',
+        description: 'Local beer.',
+        slot: ['quickSlot', 'backpack'],
+        sprite:  {key: 'icon-item-set', frame: 254},
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        quantity: null,
+        specifics: {
+            useEffects: [
+                {'parameters.currentHealth': 1}
+            ],
+        },
+        sellPrice: 2,
+        buyPrice: 3
     },
     'wooden-sword-weapon': {
         itemId: 'wooden-sword-weapon',

@@ -38,7 +38,8 @@ export default class Npc {
     }
     setDialog(newDialog, newInteractionCallback) {
         this.dialog = newDialog;
-        this.interactionCallback = newInteractionCallback || (() => { });
+        if (newInteractionCallback)
+            this.interactionCallback = newInteractionCallback;
     }
     addItemToInventory(itemId, quantity = 1) {
         // todo? might have to do deep copy...
