@@ -11,10 +11,12 @@ export class Location extends Phaser.Scene {
     prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
         var _a, _b, _c, _d;
         this.map = this.make.tilemap({ key: mapKey });
+        this.offsetX = layerOffsetX;
+        this.offsetY = layerOffsetY;
         this.player = playerInstance;
         const spawnPoint = this.getMapObject("Start");
         if (spawnPoint) {
-            const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + layerOffsetX, spawnPoint['y'] + layerOffsetY);
+            const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + this.offsetX, spawnPoint['y'] + this.offsetY);
             this.playerImage = playerData.worldImage;
             this.keys = playerData.keys;
             const camera = this.cameras.main;
@@ -29,7 +31,7 @@ export class Location extends Phaser.Scene {
         });
         this.layers = [];
         this.map.layers.forEach(layer => {
-            const createdLayer = this.map.createStaticLayer(layer.name, tilesets, layerOffsetX, layerOffsetY);
+            const createdLayer = this.map.createStaticLayer(layer.name, tilesets, this.offsetX, this.offsetY);
             this.layers.push(createdLayer);
             // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
             if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'hasCollisions')) {
@@ -51,8 +53,6 @@ export class Location extends Phaser.Scene {
                 texture: enemyImage,
                 frame: null,
                 interaction: 'activate',
-                offsetX: layerOffsetX,
-                offsetY: layerOffsetY,
                 callback: () => {
                     this.switchToScene('Battle', { enemies: enemies });
                 },
@@ -70,14 +70,12 @@ export class Location extends Phaser.Scene {
                 texture: null,
                 frame: null,
                 interaction: 'activate',
-                offsetX: layerOffsetX,
-                offsetY: layerOffsetY,
                 callback: () => {
                     if (toLocation) {
                         this.switchToScene(toLocation);
                     }
                     if (toCoordinates) {
-                        this.playerImage.setPosition(toCoordinates.x * 32 + layerOffsetX, toCoordinates.y * 32 + layerOffsetY);
+                        this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX, toCoordinates.y * 32 + this.offsetY);
                     }
                 },
             });
@@ -93,8 +91,6 @@ export class Location extends Phaser.Scene {
                 texture: item.sprite.key,
                 frame: item.sprite.frame,
                 interaction: 'activate',
-                offsetX: layerOffsetX,
-                offsetY: layerOffsetY,
                 callback: () => {
                     this.player.addItemToInventory(itemId, itemQuantity);
                     trigger.destroy(true);
@@ -112,8 +108,6 @@ export class Location extends Phaser.Scene {
                 texture: null,
                 frame: null,
                 interaction: interaction,
-                offsetX: layerOffsetX,
-                offsetY: layerOffsetY,
                 callback: () => {
                     this.switchToScene('Dialog', {
                         dialogTree: [{
@@ -133,7 +127,7 @@ export class Location extends Phaser.Scene {
                 },
             });
         });
-        this.physics.world.setBounds(layerOffsetX, layerOffsetY, this.map.widthInPixels, this.map.heightInPixels);
+        this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
         if (mapKey !== 'battle')
             this.createDebugButton();
     }
@@ -184,7 +178,7 @@ export class Location extends Phaser.Scene {
         });
     }
     createTrigger({ objectName, callback = () => {
-    }, objectLayer = 'Objects', texture = null, frame = null, interaction = 'activate', offsetX = 0, offsetY = 0 }) {
+    }, objectLayer = 'Objects', texture = null, frame = null, interaction = 'activate', offsetX = this.offsetX, offsetY = this.offsetY }) {
         const object = this.getMapObject(objectName, objectLayer);
         if (!object) {
             console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);

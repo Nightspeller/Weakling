@@ -1,6 +1,6 @@
 import {Location} from "../entities/location.js";
 import Npc from "../entities/npc.js";
-import {bartenderDialog, bartenderNoRumoresDialog} from "../dialogs/tavern/bartenderDialog.js";
+import {hermitDialog, hermitLastDialog} from "../dialogs/hermitsTower/hermitDialog.js";
 
 export class HermitsTowerScene extends Location {
     constructor() {
@@ -16,15 +16,11 @@ export class HermitsTowerScene extends Location {
 
     public create() {
         this.prepareMap('hermitsTower', 240);
-        /*const bartender = new Npc(this, 'Bartender', this.getMapObject("Bartender"), 'bartender', 1, bartenderDialog, param => {
-            if (param === 'beerAndRumorObtained') {
-                this.player.addItemToInventory('beer', 1);
-                bartender.setDialog(bartenderNoRumoresDialog)
-            }
+        const hermit = new Npc(this, 'Hermit', this.getMapObject("Hermit"), 'stranger', 1, hermitDialog, param => {
             if (param === 'openShop') {
                 this.switchToScene('Shop', {
                     player: this.player,
-                    trader: bartender
+                    trader: hermit
                 }, false)
             }
         }, [
@@ -33,7 +29,7 @@ export class HermitsTowerScene extends Location {
             {itemId: 'leather-armor', quantity: 1},
             {itemId: 'leather-pants', quantity: 1},
             {itemId: 'leather-boots', quantity: 1},
-        ]);*/
+        ]);
     }
 
     public update() {
