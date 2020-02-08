@@ -15,14 +15,14 @@ export class HargkakhsCaveScene extends Location {
     }
 
     public create() {
-        this.prepareMap('hargkakhsCave', 304, 192);
+        this.prepareMap('hargkakhsCave', 304, 128);
 
         this.layers.find(layer => layer.layer.name === 'EmptyChest').setVisible(false);
 
         this.chest = this.createTrigger({
             objectName: 'Chest',
             offsetX: 304,
-            offsetY: 192,
+            offsetY: 128,
             callback: () => {
                 const key = this.player.inventory.find(item => item.specifics?.opens === 'hargkakhsChest');
                 if (key) {

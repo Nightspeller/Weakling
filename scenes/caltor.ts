@@ -1,10 +1,10 @@
-import {strangerDialog} from "../dialogs/strangerDialog.js";
-import {baelinDialog} from "../dialogs/baelinDialog.js";
-import {gregDialog} from "../dialogs/gregDialog.js";
+import {strangerDialog} from "../dialogs/caltor/strangerDialog.js";
+import {baelinDialog} from "../dialogs/caltor/baelinDialog.js";
+import {gregDialog} from "../dialogs/caltor/gregDialog.js";
 import Npc from "../entities/npc.js";
-import {bodgerDialog} from "../dialogs/bodgerDialog.js";
+import {bodgerDialog} from "../dialogs/caltor/bodgerDialog.js";
 import {Location} from "../entities/location.js";
-import {announcementsDialog, announcementsEmptyDialog} from "../dialogs/announcementsDialog.js";
+import {announcementsDialog, announcementsEmptyDialog} from "../dialogs/caltor/announcementsDialog.js";
 
 export class CaltorScene extends Location {
     constructor() {

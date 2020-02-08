@@ -1,6 +1,6 @@
-import { elderFirstTimeDialog, elderSecondTimeDialog } from "../dialogs/elderGreetingDialog.js";
-import { nahkhaAfterGoodsObtainedDialog, nahkhaAfterTheElderDialog, nahkhaBeforeTheElderDialog } from "../dialogs/nahkhaDialog.js";
-import { hargkakhAfterGoodsObtainedDialog, hargkakhFirstDialog, hargkakhSecondTryDialog } from "../dialogs/hargkakhDialog.js";
+import { elderFirstTimeDialog, elderSecondTimeDialog } from "../dialogs/village/elderGreetingDialog.js";
+import { nahkhaAfterGoodsObtainedDialog, nahkhaAfterTheElderDialog, nahkhaBeforeTheElderDialog } from "../dialogs/village/nahkhaDialog.js";
+import { hargkakhAfterGoodsObtainedDialog, hargkakhFirstDialog, hargkakhSecondTryDialog } from "../dialogs/village/hargkakhDialog.js";
 import { elderInstance } from "../entities/elder.js";
 import Npc from "../entities/npc.js";
 import { Location } from "../entities/location.js";
