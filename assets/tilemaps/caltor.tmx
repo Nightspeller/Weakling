@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="48">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="49">
  <editorsettings>
   <export target="caltor.json" format="json"/>
  </editorsettings>
@@ -2050,12 +2050,12 @@
   <object id="9" name="Trader" x="2304" y="2656" width="32" height="32"/>
   <object id="10" name="Character Picker" x="2464" y="2816" width="32" height="32"/>
   <object id="12" name="Greg" x="2816" y="1568" width="32" height="32"/>
-  <object id="13" name="Bodger" x="2688" y="2336" width="32" height="32"/>
   <object id="22" name="Announcements" x="2848" y="2688" width="64" height="32"/>
   <object id="24" name="Start" x="2368" y="2720">
    <point/>
   </object>
   <object id="47" name="Baelin" gid="1921" x="2016" y="2944" width="32" height="32"/>
+  <object id="48" name="Bodger" gid="1914" x="2688" y="2368" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="14" name="Waypoints">
   <object id="18" name="Village" x="2368" y="3168" width="64" height="32">

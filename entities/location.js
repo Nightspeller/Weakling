@@ -88,8 +88,6 @@ export class Location extends Phaser.Scene {
             let texture = item.sprite.key;
             let frame = item.sprite.frame;
             if (object.gid) {
-                // Phaser and Tiled are very inconsistent when it comes to how they work with different types of objects.....
-                object.y -= 32;
                 const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Items');
                 texture = spriteParams.key;
                 frame = spriteParams.frame;
@@ -210,6 +208,11 @@ export class Location extends Phaser.Scene {
         if (texture === null) {
             trigger.setVisible(false);
         }
+        if (object['gid']) {
+            // Phaser and Tiled are very inconsistent when it comes to how they work with different types of objects.....
+            // TODO: fix once Tiled and\or phaser figure it out...
+            trigger.y -= 32;
+        }
         if (interaction === 'collide') {
             this.physics.add.collider(this.playerImage, trigger, () => callback());
         }
@@ -224,7 +227,10 @@ export class Location extends Phaser.Scene {
         return trigger;
     }
     getMapObject(objectName, objectLayer = 'Objects') {
-        return this.map.findObject(objectLayer, obj => obj.name === objectName);
+        const object = this.map.findObject(objectLayer, obj => obj.name === objectName);
+        if (!object)
+            console.log(`Object ${objectName} was not found on ${objectLayer} layer!`);
+        return object;
     }
     updatePlayer() {
         this.player.update(this.playerImage, this.keys);
@@ -234,13 +240,19 @@ export class Location extends Phaser.Scene {
                 for (let i = 0; i < this.triggers.length; i++) {
                     const trigger = this.triggers[i];
                     if (trigger.type === 'activate') {
-                        const image = trigger.image;
-                        const callback = trigger.callback;
-                        const bodies = this.physics.overlapRect(image.x, image.y, image.displayWidth + 2, image.displayHeight + 2);
-                        // @ts-ignore
-                        if (bodies.includes(this.playerImage.body) && bodies.includes(image.body)) {
-                            callback();
-                            break;
+                        //checking if player is looking at the trigger image
+                        if (((trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y) && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
+                            ((trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x) && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
+                            ((trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y) && [9, 10, 11].includes(Number(this.playerImage.frame.name))) ||
+                            ((trigger.image.getBottomRight().x === this.playerImage.getTopLeft().x && [3, 4, 5].includes(Number(this.playerImage.frame.name))))) {
+                            const image = trigger.image;
+                            const callback = trigger.callback;
+                            const bodies = this.physics.overlapRect(image.x, image.y, image.displayWidth + 2, image.displayHeight + 2);
+                            // @ts-ignore
+                            if (bodies.includes(this.playerImage.body) && bodies.includes(image.body)) {
+                                callback();
+                                break;
+                            }
                         }
                     }
                 }

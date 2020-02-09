@@ -64,8 +64,6 @@ export class CaltorScene extends Location {
         const bodger = new Npc({
             scene: this,
             mapObjectName: "Bodger",
-            texture: 'fisherman',
-            frame: 1,
             initDialog: bodgerDialog,
             items: [
                 {itemId: 'copper-pieces', quantity: 10},
