@@ -10,15 +10,15 @@ import { DialogScene } from "./scenes/dialog.js";
 import { TavernScene } from "./scenes/tavern.js";
 import { InventoryScene } from "./scenes/inventory.js";
 import { HermitsTowerScene } from "./scenes/hermitsTower.js";
-const zoom = 1;
+import { GAME_H, GAME_W, GAME_ZOOM } from "./config/constants.js";
 const gameConfig = {
-    title: 'Sample',
+    title: 'Weakling!',
     type: Phaser.AUTO,
-    width: 800 / zoom,
-    height: 640 / zoom,
+    width: GAME_W,
+    height: GAME_H,
     // @ts-ignore
     pixelArt: true,
-    zoom: zoom,
+    zoom: GAME_ZOOM,
     physics: {
         default: 'arcade',
         arcade: {
