@@ -16,20 +16,28 @@ export class HermitsTowerScene extends Location {
 
     public create() {
         this.prepareMap('hermitsTower', 240);
-        const hermit = new Npc(this, 'Hermit', this.getMapObject("Hermit"), 'stranger', 1, hermitDialog, param => {
-            if (param === 'openShop') {
-                this.switchToScene('Shop', {
-                    player: this.player,
-                    trader: hermit
-                }, false)
+        const hermit = new Npc({
+            scene: this,
+            mapObjectName: 'Hermit',
+            texture: 'stranger',
+            frame: 1,
+            initDialog: hermitDialog,
+            items: [
+                {itemId: 'copper-pieces', quantity: 10},
+                {itemId: 'dagger-weapon', quantity: 1},
+                {itemId: 'leather-armor', quantity: 1},
+                {itemId: 'leather-pants', quantity: 1},
+                {itemId: 'leather-boots', quantity: 1},
+            ],
+            interactionCallback: param => {
+                if (param === 'openShop') {
+                    this.switchToScene('Shop', {
+                        player: this.player,
+                        trader: hermit
+                    }, false)
+                }
             }
-        }, [
-            {itemId: 'copper-pieces', quantity: 10},
-            {itemId: 'dagger-weapon', quantity: 1},
-            {itemId: 'leather-armor', quantity: 1},
-            {itemId: 'leather-pants', quantity: 1},
-            {itemId: 'leather-boots', quantity: 1},
-        ]);
+        });
     }
 
     public update() {

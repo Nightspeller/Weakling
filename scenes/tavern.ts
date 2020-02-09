@@ -16,24 +16,32 @@ export class TavernScene extends Location {
 
     public create() {
         this.prepareMap('tavern');
-        const bartender = new Npc(this, 'Bartender', this.getMapObject("Bartender"), 'bartender', 1, bartenderDialog, param => {
-            if (param === 'beerAndRumorObtained') {
-                this.player.addItemToInventory('beer', 1);
-                bartender.setDialog(bartenderNoRumoresDialog)
+        const bartender = new Npc({
+            scene: this,
+            mapObjectName: 'Bartender',
+            texture: 'bartender',
+            frame: 1,
+            initDialog: bartenderDialog,
+            items: [
+                {itemId: 'copper-pieces', quantity: 10},
+                {itemId: 'dagger-weapon', quantity: 1},
+                {itemId: 'leather-armor', quantity: 1},
+                {itemId: 'leather-pants', quantity: 1},
+                {itemId: 'leather-boots', quantity: 1},
+            ],
+            interactionCallback: param => {
+                if (param === 'beerAndRumorObtained') {
+                    this.player.addItemToInventory('beer', 1);
+                    bartender.setDialog(bartenderNoRumoresDialog)
+                }
+                if (param === 'openShop') {
+                    this.switchToScene('Shop', {
+                        player: this.player,
+                        trader: bartender
+                    }, false)
+                }
             }
-            if (param === 'openShop') {
-                this.switchToScene('Shop', {
-                    player: this.player,
-                    trader: bartender
-                }, false)
-            }
-        }, [
-            {itemId: 'copper-pieces', quantity: 10},
-            {itemId: 'dagger-weapon', quantity: 1},
-            {itemId: 'leather-armor', quantity: 1},
-            {itemId: 'leather-pants', quantity: 1},
-            {itemId: 'leather-boots', quantity: 1},
-        ]);
+        });
     }
 
     public update() {

@@ -1,4 +1,5 @@
 import {items} from "../actionsAndEffects/items.js";
+import {Location} from "../entities/location.js";
 
 export default class Npc {
     public inventory: Item[];
@@ -7,11 +8,29 @@ export default class Npc {
     public name: string;
     public image: Phaser.Physics.Arcade.Image;
 
-    constructor(scene, name: string, mapObject: Phaser.GameObjects.GameObject, texture: string, frame: number, initDialog?: DialogTree, interactionCallback?: Function, items?: any[]) {
-        this.name = name;
+    constructor({
+                    scene,
+                    name,
+                    mapObjectName,
+                    mapObjectLayer = 'Objects',
+                    texture,
+                    frame,
+                    initDialog,
+                    items= [],
+                    interactionCallback= () => {}
+                }: NpcOptions
+    ) {
+        const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
+        this.name = name ? name : mapObject.name;
         if (initDialog) {
             this.dialog = initDialog;
-            this.interactionCallback = interactionCallback || (() => {});
+            this.interactionCallback = interactionCallback;
+            if (mapObject['gid'] && !texture) {
+                const params = scene.getSpriteParamsByObjectName(mapObject.name);
+                texture = params.key;
+                frame = params.frame as number;
+            }
+
             this.image = scene.createTrigger({
                 objectName: mapObject.name,
                 texture: texture,
@@ -33,7 +52,8 @@ export default class Npc {
                 texture: texture,
                 frame: frame,
                 callback: () => {
-                    this.interactionCallback = interactionCallback || (() => {});
+                    this.interactionCallback = interactionCallback || (() => {
+                    });
                     this.interactionCallback();
                 }
             });
@@ -45,7 +65,7 @@ export default class Npc {
 
     public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
         this.dialog = newDialog;
-        if(newInteractionCallback) this.interactionCallback = newInteractionCallback;
+        if (newInteractionCallback) this.interactionCallback = newInteractionCallback;
     }
 
     public addItemToInventory(itemId, quantity = 1): Item {

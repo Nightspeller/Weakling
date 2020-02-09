@@ -113,7 +113,7 @@ interface OverlaySceneOptions {
     textColor?: string;
 }
 
-interface DialogOptions extends OverlaySceneOptions{
+interface DialogOptions extends OverlaySceneOptions {
     responseTextColor?: string;
     responseTextHoverColor?: string;
     letterAppearanceDelay?: number;
@@ -138,6 +138,18 @@ interface TriggerParams {
     interaction?: 'collide' | 'overlap' | 'activate';
     offsetX?: number;
     offsetY?: number;
+}
+
+interface NpcOptions {
+    scene: any;
+    mapObjectName: string;
+    mapObjectLayer?: string;
+    name?: string;
+    texture?: string;
+    frame?: number;
+    initDialog?: DialogTree;
+    interactionCallback?: Function;
+    items?: any[];
 }
 
 type Modifier = EffectModifier | ValueModifier;

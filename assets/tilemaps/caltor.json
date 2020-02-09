@@ -203,17 +203,6 @@
                 }, 
                 {
                  "height":32,
-                 "id":11,
-                 "name":"Fisherman",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":2016,
-                 "y":2912
-                }, 
-                {
-                 "height":32,
                  "id":12,
                  "name":"Greg",
                  "rotation":0,
@@ -258,24 +247,18 @@
                  "y":2720
                 }, 
                 {
-                 "gid":1073742891,
+                 "gid":1921,
                  "height":32,
-                 "id":31,
-                 "name":"Crown",
-                 "properties":[
-                        {
-                         "name":"alpha",
-                         "type":"float",
-                         "value":0.5
-                        }],
+                 "id":47,
+                 "name":"Baelin",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":2432,
-                 "y":2656
+                 "x":2016,
+                 "y":2944
                 }],
-         "opacity":0.5,
+         "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -366,30 +349,9 @@
          "name":"Items",
          "objects":[
                 {
+                 "gid":1719,
                  "height":32,
-                 "id":25,
-                 "name":"Bodger's pants",
-                 "properties":[
-                        {
-                         "name":"itemId",
-                         "type":"string",
-                         "value":"leather-pants"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":1
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":2944,
-                 "y":2560
-                }, 
-                {
-                 "height":32,
-                 "id":30,
+                 "id":45,
                  "name":"Invisibility Cape",
                  "properties":[
                         {
@@ -407,6 +369,29 @@
                  "visible":true,
                  "width":32,
                  "x":2208,
+                 "y":2624
+                }, 
+                {
+                 "gid":1716,
+                 "height":32,
+                 "id":46,
+                 "name":"Bodger's pants",
+                 "properties":[
+                        {
+                         "name":"itemId",
+                         "type":"string",
+                         "value":"leather-pants"
+                        }, 
+                        {
+                         "name":"quantity",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2944,
                  "y":2592
                 }],
          "opacity":1,
@@ -536,7 +521,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":34,
+ "nextobjectid":48,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.2",
@@ -10824,6 +10809,32 @@
                          "value":true
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":16,
+         "firstgid":1593,
+         "image":"..\/images\/items\/icon-item-set.png",
+         "imageheight":640,
+         "imagewidth":512,
+         "margin":0,
+         "name":"icon-item-set",
+         "spacing":0,
+         "tilecount":320,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":1913,
+         "image":"..\/images\/characters\/world-map\/neutral\/fisherman.png",
+         "imageheight":128,
+         "imagewidth":96,
+         "margin":0,
+         "name":"fisherman",
+         "spacing":0,
+         "tilecount":12,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,

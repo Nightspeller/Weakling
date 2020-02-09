@@ -1,11 +1,17 @@
 import { items } from "../actionsAndEffects/items.js";
 export default class Npc {
-    constructor(scene, name, mapObject, texture, frame, initDialog, interactionCallback, items) {
+    constructor({ scene, name, mapObjectName, mapObjectLayer = 'Objects', texture, frame, initDialog, items = [], interactionCallback = () => { } }) {
         var _a;
-        this.name = name;
+        const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
+        this.name = name ? name : mapObject.name;
         if (initDialog) {
             this.dialog = initDialog;
-            this.interactionCallback = interactionCallback || (() => { });
+            this.interactionCallback = interactionCallback;
+            if (mapObject['gid'] && !texture) {
+                const params = scene.getSpriteParamsByObjectName(mapObject.name);
+                texture = params.key;
+                frame = params.frame;
+            }
             this.image = scene.createTrigger({
                 objectName: mapObject.name,
                 texture: texture,
@@ -28,7 +34,8 @@ export default class Npc {
                 texture: texture,
                 frame: frame,
                 callback: () => {
-                    this.interactionCallback = interactionCallback || (() => { });
+                    this.interactionCallback = interactionCallback || (() => {
+                    });
                     this.interactionCallback();
                 }
             });

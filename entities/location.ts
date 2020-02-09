@@ -100,11 +100,20 @@ export class Location extends Phaser.Scene {
             const itemId = object.properties.find(prop => prop.name === 'itemId')?.value;
             const itemQuantity = object.properties.find(prop => prop.name === 'quantity')?.value;
             const item = {...items[itemId]};
+            let texture = item.sprite.key;
+            let frame = item.sprite.frame;
+            if (object.gid) {
+                // Phaser and Tiled are very inconsistent when it comes to how they work with different types of objects.....
+                object.y -= 32;
+                const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Items');
+                texture = spriteParams.key;
+                frame = spriteParams.frame as number;
+            }
             const trigger = this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Items',
-                texture: item.sprite.key,
-                frame: item.sprite.frame,
+                texture: texture,
+                frame: frame,
                 interaction: 'activate',
                 callback: () => {
                     this.player.addItemToInventory(itemId, itemQuantity);
@@ -146,6 +155,16 @@ export class Location extends Phaser.Scene {
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
 
         if (mapKey !== 'battle') this.createDebugButton();
+    }
+
+    public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): Phaser.Types.GameObjects.Sprite.SpriteConfig {
+        const gid = this.getMapObject(objectName, objectLayer)['gid'];
+        for (let i = 0; i < this.map.tilesets.length; i++) {
+            const tileset = this.map.tilesets[i];
+            if (gid >= tileset.firstgid && gid < tileset.firstgid + tileset.total) {
+                return {key: tileset.name, frame: gid - tileset.firstgid}
+            }
+        }
     }
 
     private setSidesCollisions(layer) {

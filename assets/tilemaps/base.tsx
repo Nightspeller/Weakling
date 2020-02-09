@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.2" name="base" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
+<tileset version="1.2" tiledversion="2020.01.22" name="base" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
  <image source="../images/tilesets/base.png" width="256" height="4256"/>
  <tile id="8">
   <properties>
