@@ -9,10 +9,10 @@ import {BattleScene} from "../battle/battle.js";
 export class Disposition {
     public playerCharacters: Adventurer[];
     public enemyCharacters: EnemyEntity[];
-    public currentCharacter: GeneralEntity;
+    public currentCharacter: Adventurer | EnemyEntity;
     public location: string;
     public currentPhase: 'preparation' | 'battle';
-    public turnOrder: GeneralEntity[];
+    public turnOrder: (Adventurer | EnemyEntity)[];
     public scene: BattleScene;
     private battleEnded: boolean;
 
@@ -33,6 +33,7 @@ export class Disposition {
     public startRound() {
         this.currentPhase = this.currentPhase !== undefined ? 'battle' : 'preparation';
         console.log(`---------------------------%cSTART ${this.currentPhase} ROUND%c---------------------------`, 'color: red', 'color: auto');
+        this.log(`---------------------------START ${this.currentPhase} ROUND---------------------------`);
         [...this.playerCharacters, ...this.enemyCharacters].forEach(char => char.startRound(this.currentPhase));
         this.calculateTurnOrder();
         this.startTurn();
@@ -40,6 +41,7 @@ export class Disposition {
 
     public endRound() {
         console.log('---------------------------%cEND ROUND%c---------------------------', 'color: red', 'color: auto');
+        this.log('---------------------------END ROUND---------------------------');
         [...this.playerCharacters, ...this.enemyCharacters].forEach(char => {
             if (char.isAlive) {
                 char.endRound();
@@ -51,6 +53,7 @@ export class Disposition {
     private startTurn() {
         this.currentCharacter = this.turnOrder[0];
         console.log(`%cTurn started for ${this.currentCharacter?.name}`, 'color: green');
+        this.log(`Turn started for ${this.currentCharacter?.name}`);
         this.currentCharacter.startTurn(this.scene);
         if (this.currentCharacter instanceof Adventurer) {
             this.scene.drawMakingTurnGraphics(this.currentCharacter);
@@ -63,7 +66,8 @@ export class Disposition {
 
     public endTurn() {
         if (this.battleEnded) return;
-        console.log('%cTurn ended', 'color: green');
+        console.log(`%c${this.currentCharacter.name}'s turn ended`, 'color: green');
+        this.log(`${this.currentCharacter.name}'s turn ended`);
         this.currentCharacter.endTurn();
        this.calculateTurnOrder();
         if (this.turnOrder.length !== 0) {
@@ -92,11 +96,13 @@ export class Disposition {
         //what if everybody are dead?
         if (!this.enemyCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party won the battle');
+            this.log('Adventurer party won the battle');
             this.scene.exitBattle();
             this.battleEnded = true;
         }
         if (!this.playerCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party lost the battle');
+            this.log('Adventurer party lost the battle');
             this.scene.exitBattle();
             this.battleEnded = true;
         }
@@ -104,8 +110,10 @@ export class Disposition {
 
     public processAction(source: GeneralEntity, target: GeneralEntity, action: Action) {
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
+        this.log(`${source.name} tries to perform ${action.actionName} on ${target.name}`);
         if (source.actionPoints[action.type] < action.actionCost) {
             console.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
+            this.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
             return false;
         } else {
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
@@ -150,8 +158,10 @@ export class Disposition {
                     if (trigger.conditionId === effect.effectId) {
                         const triggerRoll = Math.random();
                         console.log(`Trigger probability of ${trigger.probability} vs trigger roll of ${triggerRoll}`);
+                        this.log(`Trigger probability of ${trigger.probability} vs trigger roll of ${triggerRoll}`);
                         if (triggerRoll < trigger.probability) {
                             console.log('Triggered!', 'applying new effects,', effect.modifier.value);
+                            this.log('Triggered! Applying new effects');
                             source.currentEffects.splice(index, 1);
                             index--;
                             sourceEffectsLength--;
@@ -166,11 +176,21 @@ export class Disposition {
                             }
                         } else {
                             console.log('Avoided!');
+                            this.log('Avoided!');
                         }
                     }
                 });
             }
         }
+    }
+
+    public log(entree: string) {
+        const logElement = document.getElementsByClassName('battle-log')[0];
+        // @ts-ignore
+        logElement.style.display = 'block';
+        const entreeElement = document.createElement('div');
+        entreeElement.innerText = entree;
+        logElement.appendChild(entreeElement);
     }
 }
 

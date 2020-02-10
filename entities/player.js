@@ -10,11 +10,11 @@ export class Player extends Adventurer {
                 strength: 10,
                 agility: 10,
                 intelligence: 10,
-                initiative: 100
+                initiative: Phaser.Math.Between(0, 30)
             },
             parameters: {
                 health: 5,
-                currentHealth: 1,
+                currentHealth: 5,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -31,7 +31,7 @@ export class Player extends Adventurer {
                 magicResistance: 10,
             }
         };
-        this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
+        this.addBaseModifiers();
         this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('fancy-belt');
         this.addItemToInventory('allpowerful-necklace');
@@ -42,6 +42,7 @@ export class Player extends Adventurer {
         this.addItemToInventory('wooden-sword-weapon');
         this.addItemToInventory('rangers-hat');
         this.addItemToInventory('copper-pieces', 240);
+        this.applyItems();
         this.name = 'Weakling';
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.party = [this];

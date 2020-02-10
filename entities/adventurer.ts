@@ -58,11 +58,15 @@ export class Adventurer extends GeneralEntity {
                 item.specifics?.additionalCharacteristics?.forEach(char => {
                     Object.entries(char).forEach(([targetString, targetValue]) => {
                         const target = targetString.split('.');
-                        this.currentCharacteristics[target[0]][target[1]] += targetValue;
+                        this.characteristicsModifiers[target[0]][target[1]].push({
+                            value: targetValue,
+                            source: item
+                        });
                     });
                 })
             }
-        })
+        });
+        this.recalculateCharacteristics();
     }
 
     public startRound(roundType: 'preparation' | 'battle') {

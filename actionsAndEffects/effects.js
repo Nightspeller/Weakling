@@ -242,29 +242,35 @@ export const effects = {
             const agility = source.currentCharacteristics.attributes.agility;
             const dodge = target.currentCharacteristics.defences.dodge;
             if (agility > dodge * 1.5) {
-                hitChance = 0.9;
+                hitChance = 90;
             }
             else if (agility < dodge * 0.5) {
-                hitChance = 0.1;
+                hitChance = 10;
             }
             else {
-                hitChance = 0.8 * (agility / dodge) - 0.3;
+                hitChance = Math.round(80 * (agility / dodge)) - 30;
             }
-            const hitRoll = Math.random();
-            hitChance >= hitRoll ?
-                console.log(`%cHit!   %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance * 100}%. Roll was ${1 - hitRoll}, for success had to be higher then ${1 - hitChance}`, 'color: red', 'color: auto')
-                :
-                    console.log(`%cMiss.. %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance * 100}%. Roll was ${1 - hitRoll}, for success had to be higher then ${1 - hitChance}`, 'color: red', 'color: auto');
+            const hitRoll = Phaser.Math.Between(0, 100);
+            if (hitChance >= hitRoll) {
+                console.log(`%cHit!   %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
+                log(`Hit!   ${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+            }
+            else {
+                console.log(`%cMiss.. %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
+                log(`Miss.. ${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+            }
             return hitChance >= hitRoll;
         },
         setModifier: function (source, target, action) {
-            let damage = source.getAttackDamage();
+            const damage = source.getAttackDamage();
             let penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
             penetration = penetration < 1 ? penetration : 1;
-            console.log(`%c${damage * penetration} damage is done. %c${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${penetration * 100}%. Weapon attack power was ${damage}, thus final damage is ${damage * penetration}`, 'color: red', 'color: auto');
+            const resultDamage = Math.round(damage * penetration);
+            console.log(`%c${resultDamage} damage is done. %c${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`, 'color: red', 'color: auto');
+            log(`${resultDamage} damage is done. ${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`);
             this.modifier = {
                 type: 'value',
-                value: -(damage * penetration)
+                value: -resultDamage
             };
         }
     },
@@ -307,4 +313,12 @@ export const effects = {
         },
     },
 };
+function log(entree) {
+    const logElement = document.getElementsByClassName('battle-log')[0];
+    // @ts-ignore
+    logElement.style.display = 'block';
+    const entreeElement = document.createElement('div');
+    entreeElement.innerText = entree;
+    logElement.appendChild(entreeElement);
+}
 //# sourceMappingURL=effects.js.map

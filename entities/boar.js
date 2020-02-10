@@ -12,7 +12,7 @@ export class Boar extends EnemyEntity {
                 strength: 10,
                 agility: 10,
                 intelligence: 1,
-                initiative: Phaser.Math.Between(0, 30)
+                initiative: Phaser.Math.Between(20, 30)
             },
             parameters: {
                 health: 20,
@@ -33,7 +33,7 @@ export class Boar extends EnemyEntity {
                 magicResistance: 0,
             }
         };
-        this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
+        this.addBaseModifiers();
         this.actionPoints = { physical: 1, magical: 0, misc: 0 };
     }
     async aiTurn(disposition) {

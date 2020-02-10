@@ -288,35 +288,23 @@ export class BattleScene extends Location {
         });
         this.characterInfoGroup.add(energy);
 
-        const strength = this.add.text(x + 8, y + 102, `Strength: ${char.currentCharacteristics.attributes.strength}`, {
-            font: '12px monospace',
-            fill: '#000000'
-        });
-        this.characterInfoGroup.add(strength);
+        let lastTextY = y+102;
+        const drawText = (group, subgroup) => {
+            let charString = char.currentCharacteristics[group][subgroup] + ' (';
+            charString+=char.characteristicsModifiers[group][subgroup].map(modifier => modifier.value).join(' + ')+')';
+            const text = this.add.text(x + 8, lastTextY, `${subgroup}: ${charString}`, {
+                font: '12px monospace',
+                fill: '#000000'
+            });
+            this.characterInfoGroup.add(text);
+            lastTextY+=14;
+        };
 
-        const agility = this.add.text(x + 8, y + 118, `Agility: ${char.currentCharacteristics.attributes.agility}`, {
-            font: '12px monospace',
-            fill: '#000000'
+        Object.entries(char.currentCharacteristics).forEach(([group, value]) => {
+            Object.entries(value).forEach(([subgroup, value]) => {
+                if (group !== 'parameters' && !subgroup.includes('Resistance')) drawText(group,subgroup);
+            })
         });
-        this.characterInfoGroup.add(agility);
-
-        const intelligence = this.add.text(x + 8, y + 134, `Intelligence: ${char.currentCharacteristics.attributes.intelligence}`, {
-            font: '12px monospace',
-            fill: '#000000'
-        });
-        this.characterInfoGroup.add(intelligence);
-
-        const armor = this.add.text(x + 8, y + 154, `Armor: ${char.currentCharacteristics.defences.armor}`, {
-            font: '12px monospace',
-            fill: '#000000'
-        });
-        this.characterInfoGroup.add(armor);
-
-        const dodge = this.add.text(x + 8, y + 170, `Dodge: ${char.currentCharacteristics.defences.dodge}`, {
-            font: '12px monospace',
-            fill: '#000000'
-        });
-        this.characterInfoGroup.add(dodge);
 
         const resistance = this.add.text(x + 8, y + 186, `Resistance: `, {font: '12px monospace', fill: '#000000'});
         this.characterInfoGroup.add(resistance);
@@ -330,12 +318,6 @@ export class BattleScene extends Location {
             `✨${char.currentCharacteristics.defences.magicResistance} `,
             {font: '14px monospace', fill: '#000000'});
         this.characterInfoGroup.add(resistanceDetails);
-
-        const initiative = this.add.text(x + 8, y + 218, `Initiative: ${char.currentCharacteristics.attributes.initiative}`, {
-            font: '12px monospace',
-            fill: '#000000'
-        });
-        this.characterInfoGroup.add(initiative);
 
         const actionPointsText = this.add.text(x + 8, y + 234, `Action points:`, {
             font: '12px monospace',
@@ -353,7 +335,9 @@ export class BattleScene extends Location {
                 this.characterInfoGroup.create(x + 8 + pointsDrawn * 16, y + 250, 'action-points', index + 3).setOrigin(0);
                 pointsDrawn++;
             }
-        })
+        });
+
+        this.characterInfoGroup.setDepth(2);
     }
 
     private static getCharacterPosition(isParty, positionIndex) {

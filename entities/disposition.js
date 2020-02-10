@@ -19,12 +19,14 @@ export class Disposition {
     startRound() {
         this.currentPhase = this.currentPhase !== undefined ? 'battle' : 'preparation';
         console.log(`---------------------------%cSTART ${this.currentPhase} ROUND%c---------------------------`, 'color: red', 'color: auto');
+        this.log(`---------------------------START ${this.currentPhase} ROUND---------------------------`);
         [...this.playerCharacters, ...this.enemyCharacters].forEach(char => char.startRound(this.currentPhase));
         this.calculateTurnOrder();
         this.startTurn();
     }
     endRound() {
         console.log('---------------------------%cEND ROUND%c---------------------------', 'color: red', 'color: auto');
+        this.log('---------------------------END ROUND---------------------------');
         [...this.playerCharacters, ...this.enemyCharacters].forEach(char => {
             if (char.isAlive) {
                 char.endRound();
@@ -33,9 +35,10 @@ export class Disposition {
         this.startRound();
     }
     startTurn() {
-        var _a;
+        var _a, _b;
         this.currentCharacter = this.turnOrder[0];
         console.log(`%cTurn started for ${(_a = this.currentCharacter) === null || _a === void 0 ? void 0 : _a.name}`, 'color: green');
+        this.log(`Turn started for ${(_b = this.currentCharacter) === null || _b === void 0 ? void 0 : _b.name}`);
         this.currentCharacter.startTurn(this.scene);
         if (this.currentCharacter instanceof Adventurer) {
             this.scene.drawMakingTurnGraphics(this.currentCharacter);
@@ -49,7 +52,8 @@ export class Disposition {
     endTurn() {
         if (this.battleEnded)
             return;
-        console.log('%cTurn ended', 'color: green');
+        console.log(`%c${this.currentCharacter.name}'s turn ended`, 'color: green');
+        this.log(`${this.currentCharacter.name}'s turn ended`);
         this.currentCharacter.endTurn();
         this.calculateTurnOrder();
         if (this.turnOrder.length !== 0) {
@@ -78,19 +82,23 @@ export class Disposition {
         //what if everybody are dead?
         if (!this.enemyCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party won the battle');
+            this.log('Adventurer party won the battle');
             this.scene.exitBattle();
             this.battleEnded = true;
         }
         if (!this.playerCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party lost the battle');
+            this.log('Adventurer party lost the battle');
             this.scene.exitBattle();
             this.battleEnded = true;
         }
     }
     processAction(source, target, action) {
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
+        this.log(`${source.name} tries to perform ${action.actionName} on ${target.name}`);
         if (source.actionPoints[action.type] < action.actionCost) {
             console.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
+            this.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
             return false;
         }
         else {
@@ -137,8 +145,10 @@ export class Disposition {
                     if (trigger.conditionId === effect.effectId) {
                         const triggerRoll = Math.random();
                         console.log(`Trigger probability of ${trigger.probability} vs trigger roll of ${triggerRoll}`);
+                        this.log(`Trigger probability of ${trigger.probability} vs trigger roll of ${triggerRoll}`);
                         if (triggerRoll < trigger.probability) {
                             console.log('Triggered!', 'applying new effects,', effect.modifier.value);
+                            this.log('Triggered! Applying new effects');
                             source.currentEffects.splice(index, 1);
                             index--;
                             sourceEffectsLength--;
@@ -154,11 +164,20 @@ export class Disposition {
                         }
                         else {
                             console.log('Avoided!');
+                            this.log('Avoided!');
                         }
                     }
                 });
             }
         }
+    }
+    log(entree) {
+        const logElement = document.getElementsByClassName('battle-log')[0];
+        // @ts-ignore
+        logElement.style.display = 'block';
+        const entreeElement = document.createElement('div');
+        entreeElement.innerText = entree;
+        logElement.appendChild(entreeElement);
     }
 }
 const enemiesList = {

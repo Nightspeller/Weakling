@@ -12,15 +12,15 @@ export class Wizard extends EnemyEntity {
                 strength: 10,
                 agility: 1,
                 intelligence: 1,
-                initiative: Phaser.Math.Between(0, 30)
+                initiative: Phaser.Math.Between(10, 20)
             },
             parameters: {
-                health: 20,
-                currentHealth: 1,
-                manna: 0,
-                currentManna: 0,
-                energy: 10,
-                currentEnergy: 10,
+                health: 10,
+                currentHealth: 10,
+                manna: 10,
+                currentManna: 10,
+                energy: 5,
+                currentEnergy: 5,
             },
             defences: {
                 armor: 12,
@@ -33,7 +33,7 @@ export class Wizard extends EnemyEntity {
                 magicResistance: 0,
             }
         };
-        this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
+        this.addBaseModifiers();
         this.actionPoints = { physical: 1, magical: 0, misc: 0 };
         this.animations.idle = 'wizard_idle';
         this.animations.attack = 'wizard_attack2';

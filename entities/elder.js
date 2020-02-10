@@ -29,7 +29,7 @@ export class Elder extends Adventurer {
                 magicResistance: 10,
             }
         };
-        this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
+        this.addBaseModifiers();
         this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('leather-armor').currentSlot = 'body';
         this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
@@ -37,7 +37,6 @@ export class Elder extends Adventurer {
         this.name = 'Elder Guarthh';
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.currentEffects = [];
-        this.recalculateCharacteristics();
     }
 }
 export const elderInstance = new Elder();

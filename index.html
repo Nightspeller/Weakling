@@ -8,6 +8,7 @@
         body {
             margin: 0;
             background: #414141;
+            color: white;
         }
 
         canvas {
@@ -16,17 +17,23 @@
         }
 
         .intro {
-            color: white;
             padding: 0 1rem;
         }
         a {
             color: white;
+        }
+        .battle-log {
+            padding: 0 1rem;
+            display: none;
         }
     </style>
     <script src="vendor/phaser.js"></script>
 </head>
 <body>
 <div id="game"></div>
+<div class="battle-log">
+    <h1>Battle Log:</h1>
+</div>
 <section class="intro">
     <h1>Hello adventurer!</h1>
     <p>Welcome to the Weakling, an open source RPG game.</p>
