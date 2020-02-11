@@ -95,9 +95,7 @@ export class BattleScene extends Location {
             if (char.spriteParams.flip) charImage.flipX = true;
             charImageContainer.add(charImage);
             this.playIdleAnimation(char);
-            const infoX = charImageContainer.x < 400 ? charImageContainer.x + BATTLE_CHAR_WIDTH / 2 : charImageContainer.x - BATTLE_CHAR_WIDTH / 2 - 32 * 8;
-            const infoY = 32;
-            charImage.on('pointerdown', () => this.drawCharInfo(char, infoX, infoY));
+            charImage.on('pointerdown', () => this.drawCharInfo(char));
         }
     }
 
@@ -242,8 +240,10 @@ export class BattleScene extends Location {
         this.effectInformationGroup.setDepth(2)
     }
 
-    private drawCharInfo(char: GeneralEntity, x, y) {
+    private drawCharInfo(char: GeneralEntity) {
         const charImageContainer = this.charImageMap.get(char);
+        const x = charImageContainer.x < 400 ? charImageContainer.x + BATTLE_CHAR_WIDTH / 2 : charImageContainer.x - BATTLE_CHAR_WIDTH / 2 - 32 * 8;
+        const y = 32;
         const charImage = charImageContainer.getByName('charImage') as Phaser.GameObjects.Sprite;
         charImage.setDepth(10).disableInteractive();
         this.characterInfoGroup = this.add.group();
@@ -288,21 +288,21 @@ export class BattleScene extends Location {
         });
         this.characterInfoGroup.add(energy);
 
-        let lastTextY = y+102;
+        let lastTextY = y + 102;
         const drawText = (group, subgroup) => {
             let charString = char.currentCharacteristics[group][subgroup] + ' (';
-            charString+=char.characteristicsModifiers[group][subgroup].map(modifier => modifier.value).join(' + ')+')';
+            charString += char.characteristicsModifiers[group][subgroup].map(modifier => modifier.value).join(' + ') + ')';
             const text = this.add.text(x + 8, lastTextY, `${subgroup}: ${charString}`, {
                 font: '12px monospace',
                 fill: '#000000'
             });
             this.characterInfoGroup.add(text);
-            lastTextY+=14;
+            lastTextY += 14;
         };
 
         Object.entries(char.currentCharacteristics).forEach(([group, value]) => {
             Object.entries(value).forEach(([subgroup, value]) => {
-                if (group !== 'parameters' && !subgroup.includes('Resistance')) drawText(group,subgroup);
+                if (group !== 'parameters' && !subgroup.includes('Resistance')) drawText(group, subgroup);
             })
         });
 
@@ -357,20 +357,15 @@ export class BattleScene extends Location {
     }
 
     public playMeleeAttackAnimation(char: GeneralEntity, target: GeneralEntity) {
-        console.log('playing meele animation');
         const charImageContainer = this.charImageMap.get(char);
         const charImage = charImageContainer.getByName('charImage') as Phaser.GameObjects.Sprite;
         const targetImageContainer = this.charImageMap.get(target);
-        const targetImage = targetImageContainer.getByName('charImage') as Phaser.GameObjects.Sprite;
         return new Promise((resolve, reject) => {
             if (char.animations?.attack) {
                 charImage.anims.play(char.animations.attack, true);
-                if (target.animations.hit) {
-                    targetImage.anims.play(target.animations.hit);
-                }
                 charImage.once('animationcomplete', (currentAnim, currentFrame, sprite) => {
                     charImage.anims.play(char.animations.idle, true);
-                    resolve();
+                    this.playHitAnimation(target).then(() => resolve());
                 });
             } else {
                 const prevX = charImageContainer.x;
@@ -470,7 +465,7 @@ export class BattleScene extends Location {
                 charImageContainer.setDepth(2);
                 this.add.sprite(charImageContainer.x, charImageContainer.y, null).setDepth(1)
                     .play('light_pillar_animation_back').once('animationcomplete', (currentAnim, currentFrame, sprite) => {
-                    charImage.setDepth(null);
+                    charImageContainer.setDepth(null);
                     sprite.destroy();
                     resolve();
                 });
@@ -566,7 +561,7 @@ export class BattleScene extends Location {
                                 const charImageContainer = scene.charImageMap.get(enemy);
                                 const charImage = charImageContainer.getByName('charImage') as Phaser.GameObjects.Sprite;
                                 charImageContainer.setDepth(10);
-                                charImage.off('pointerdown').setInteractive().once('pointerdown', () => {
+                                charImage.off('pointerdown').once('pointerdown', () => {
                                     removeOverlay();
                                     charImageContainer.setDepth(0);
                                     scene.playMeleeAttackAnimation(currentCharacter, enemy).then(() => {
@@ -581,7 +576,9 @@ export class BattleScene extends Location {
                             overlay.destroy();
                             zone.destroy();
                             disposition.enemyCharacters.forEach(enemy => {
-                                scene.charImageMap.get(enemy).setDepth(0).off('pointerdown');
+                                scene.charImageMap.get(enemy).setDepth(0)
+                                    .getByName('charImage').off('pointerdown')
+                                    .on('pointerdown', () => scene.drawCharInfo(enemy));
                             });
                             this.setBackgroundColor('#f0d191');
                         };

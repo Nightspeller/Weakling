@@ -6,7 +6,7 @@ export class Adventurer extends GeneralEntity {
         this.inventory = [];
         this.name = 'Adventurer';
     }
-    addItemToInventory(itemId, quantity = 1) {
+    addItemToInventory(itemId, quantity = 1, slot) {
         // todo? might have to do deep copy...
         const item = { ...items[itemId] };
         item.quantity = quantity;
@@ -17,16 +17,36 @@ export class Adventurer extends GeneralEntity {
                 return existingItem;
             }
         }
+        if (slot) {
+            this.inventory.push(item);
+            return this.putItemInSlot(item, slot);
+        }
+        this.inventory.push(item);
+        return this.moveItemToBackpack(item);
+    }
+    putItemInSlot(item, slot) {
+        if (!item.slot.includes(slot) && !slot.includes('backpack') && !slot.includes('quickSlot')) {
+            throw `Trying to put ${item.itemId} into ${slot} slot, while item can only be at ${item.slot}`;
+        }
+        const existingItemInSlot = this.inventory.find(inventoryItem => inventoryItem.currentSlot === slot);
+        if (existingItemInSlot) {
+            this.moveItemToBackpack(item);
+        }
+        item.currentSlot = slot;
+        this.applyItems();
+        return item;
+    }
+    moveItemToBackpack(item) {
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 5; j++) {
                 const testedSlot = `backpack${i}_${j}`;
                 if (!this.inventory.find(item => item.currentSlot === testedSlot)) {
                     item.currentSlot = testedSlot;
-                    this.inventory.push(item);
                     return item;
                 }
             }
         }
+        //todo: do something about inventory overflow
         return null;
     }
     removeItemFromInventory(item, quantity = 1) {
@@ -47,6 +67,11 @@ export class Adventurer extends GeneralEntity {
         return rightHandDamage + leftHandDamage;
     }
     applyItems() {
+        Object.entries(this.characteristicsModifiers).forEach(([group, value]) => {
+            Object.entries(value).forEach(([subgroup, value]) => {
+                this.characteristicsModifiers[group][subgroup] = this.characteristicsModifiers[group][subgroup].filter(modifier => !modifier.source.itemId);
+            });
+        });
         this.inventory.forEach(item => {
             var _a, _b;
             if (!item.currentSlot.includes('backpack')) {

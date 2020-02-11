@@ -72,7 +72,7 @@ export class InventoryScene extends OverlayScene {
                 ease: 'Back.easeOut',
                 duration: 500
             });
-            itemInTargetSlot.currentSlot = currentItemSlotName;
+            this.player.putItemInSlot(itemInTargetSlot, currentItemSlotName);
             itemInTargetSlotImage.setName(currentItemSlotName + 'image');
         }
         this.tweens.add({
@@ -82,7 +82,7 @@ export class InventoryScene extends OverlayScene {
             ease: 'Back.easeOut',
             duration: 500
         });
-        movedItem.currentSlot = targetSlotName;
+        this.player.putItemInSlot(movedItem, targetSlotName);
         movedItemImage.setName(targetSlotName + 'image');
         if (targetSlotName === 'belt' || currentItemSlotName === 'belt') {
             if (targetSlotName === 'belt') {
@@ -248,7 +248,6 @@ export class InventoryScene extends OverlayScene {
                         duration: 500,
                     });
                 }
-                scene.player.recalculateCharacteristics();
                 scene._drawCharacteristics();
             });
             this.inventoryDisplayGroup.add(container);

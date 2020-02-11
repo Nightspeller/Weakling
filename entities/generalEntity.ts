@@ -103,7 +103,11 @@ export default class GeneralEntity {
         Object.entries(this.characteristicsModifiers).forEach(([group, value]) => {
             Object.entries(value).forEach(([subgroup, value]) => {
                 this.currentCharacteristics[group][subgroup] = this.characteristicsModifiers[group][subgroup].reduce((acc, modifier) => {
-                    return acc + modifier.value;
+                    if (group === 'parameters' && subgroup.includes('current')) {
+                        const maxValue = this.currentCharacteristics.parameters[subgroup.split('current')[1].toLowerCase()];
+                        return Phaser.Math.Clamp(acc + modifier.value, 0, maxValue);
+                    }
+                    return (acc + modifier.value) > 0 ? (acc + modifier.value) : 0;
                 }, 0);
             })
         });

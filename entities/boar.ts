@@ -15,7 +15,7 @@ export class Boar extends EnemyEntity {
             attributes: {
                 strength: 10,
                 agility: 10,
-                intelligence: 1,
+                intelligence: 3,
                 initiative: Phaser.Math.Between(20, 30)
             },
             parameters: {

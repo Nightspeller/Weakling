@@ -11,7 +11,7 @@ export class InventoryScene extends OverlayScene {
         super({key: 'Inventory'});
     }
 
-    public init({opts, closeCallback,prevScene}: {opts?: OverlaySceneOptions, closeCallback?: Function, prevScene: string}) {
+    public init({opts, closeCallback, prevScene}: { opts?: OverlaySceneOptions, closeCallback?: Function, prevScene: string }) {
         this.player = playerInstance;
         this.opts = {backgroundAlpha: 0.8};
         this.opts = {...this.opts, ...opts};
@@ -84,7 +84,7 @@ export class InventoryScene extends OverlayScene {
                 ease: 'Back.easeOut',
                 duration: 500
             });
-            itemInTargetSlot.currentSlot = currentItemSlotName;
+            this.player.putItemInSlot(itemInTargetSlot, currentItemSlotName);
             itemInTargetSlotImage.setName(currentItemSlotName + 'image')
         }
         this.tweens.add({
@@ -94,7 +94,7 @@ export class InventoryScene extends OverlayScene {
             ease: 'Back.easeOut',
             duration: 500
         });
-        movedItem.currentSlot = targetSlotName;
+        this.player.putItemInSlot(movedItem, targetSlotName);
         movedItemImage.setName(targetSlotName + 'image');
         if (targetSlotName === 'belt' || currentItemSlotName === 'belt') {
             if (targetSlotName === 'belt') {
@@ -267,7 +267,6 @@ export class InventoryScene extends OverlayScene {
                         duration: 500,
                     });
                 }
-                scene.player.recalculateCharacteristics();
                 scene._drawCharacteristics();
             });
 

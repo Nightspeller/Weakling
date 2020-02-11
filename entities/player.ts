@@ -39,13 +39,13 @@ export class Player extends Adventurer {
         };
         this.addBaseModifiers();
 
-        this.addItemToInventory('rope-belt').currentSlot = 'belt';
+        this.addItemToInventory('rope-belt', 1, 'belt');
         this.addItemToInventory('fancy-belt');
         this.addItemToInventory('allpowerful-necklace');
         this.addItemToInventory('minor-healing-potion');
         this.addItemToInventory('minor-healing-potion', 2);
-        this.addItemToInventory('leather-armor').currentSlot = 'body';
-        this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
+        this.addItemToInventory('leather-armor', 1, 'body');
+        this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
         this.addItemToInventory('wooden-sword-weapon');
         this.addItemToInventory('rangers-hat');
         this.addItemToInventory('copper-pieces', 240);

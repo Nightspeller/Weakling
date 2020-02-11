@@ -10,8 +10,8 @@ export class Wizard extends EnemyEntity {
         this.baseCharacteristics = {
             attributes: {
                 strength: 10,
-                agility: 1,
-                intelligence: 1,
+                agility: 3,
+                intelligence: 10,
                 initiative: Phaser.Math.Between(10, 20)
             },
             parameters: {

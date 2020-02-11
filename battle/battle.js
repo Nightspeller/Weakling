@@ -76,9 +76,7 @@ export class BattleScene extends Location {
                 charImage.flipX = true;
             charImageContainer.add(charImage);
             this.playIdleAnimation(char);
-            const infoX = charImageContainer.x < 400 ? charImageContainer.x + BATTLE_CHAR_WIDTH / 2 : charImageContainer.x - BATTLE_CHAR_WIDTH / 2 - 32 * 8;
-            const infoY = 32;
-            charImage.on('pointerdown', () => this.drawCharInfo(char, infoX, infoY));
+            charImage.on('pointerdown', () => this.drawCharInfo(char));
         }
     }
     drawHealthAndManna(char) {
@@ -199,8 +197,10 @@ export class BattleScene extends Location {
         this.effectInformationGroup.add(this.add.text(x + 8, y + 8 + 12 + 8, `${effect.description} \nDuration: ${effect.durationLeft} / ${effect.baseDuration}`, { font: '12px monospace', fill: '#000000' }));
         this.effectInformationGroup.setDepth(2);
     }
-    drawCharInfo(char, x, y) {
+    drawCharInfo(char) {
         const charImageContainer = this.charImageMap.get(char);
+        const x = charImageContainer.x < 400 ? charImageContainer.x + BATTLE_CHAR_WIDTH / 2 : charImageContainer.x - BATTLE_CHAR_WIDTH / 2 - 32 * 8;
+        const y = 32;
         const charImage = charImageContainer.getByName('charImage');
         charImage.setDepth(10).disableInteractive();
         this.characterInfoGroup = this.add.group();
@@ -298,21 +298,16 @@ export class BattleScene extends Location {
         return isParty ? partyPositions[positionIndex] : enemyPositions[positionIndex];
     }
     playMeleeAttackAnimation(char, target) {
-        console.log('playing meele animation');
         const charImageContainer = this.charImageMap.get(char);
         const charImage = charImageContainer.getByName('charImage');
         const targetImageContainer = this.charImageMap.get(target);
-        const targetImage = targetImageContainer.getByName('charImage');
         return new Promise((resolve, reject) => {
             var _a;
             if ((_a = char.animations) === null || _a === void 0 ? void 0 : _a.attack) {
                 charImage.anims.play(char.animations.attack, true);
-                if (target.animations.hit) {
-                    targetImage.anims.play(target.animations.hit);
-                }
                 charImage.once('animationcomplete', (currentAnim, currentFrame, sprite) => {
                     charImage.anims.play(char.animations.idle, true);
-                    resolve();
+                    this.playHitAnimation(target).then(() => resolve());
                 });
             }
             else {
@@ -414,7 +409,7 @@ export class BattleScene extends Location {
                 charImageContainer.setDepth(2);
                 this.add.sprite(charImageContainer.x, charImageContainer.y, null).setDepth(1)
                     .play('light_pillar_animation_back').once('animationcomplete', (currentAnim, currentFrame, sprite) => {
-                    charImage.setDepth(null);
+                    charImageContainer.setDepth(null);
                     sprite.destroy();
                     resolve();
                 });
@@ -504,7 +499,7 @@ export class BattleScene extends Location {
                                 const charImageContainer = scene.charImageMap.get(enemy);
                                 const charImage = charImageContainer.getByName('charImage');
                                 charImageContainer.setDepth(10);
-                                charImage.off('pointerdown').setInteractive().once('pointerdown', () => {
+                                charImage.off('pointerdown').once('pointerdown', () => {
                                     removeOverlay();
                                     charImageContainer.setDepth(0);
                                     scene.playMeleeAttackAnimation(currentCharacter, enemy).then(() => {
@@ -519,7 +514,9 @@ export class BattleScene extends Location {
                             overlay.destroy();
                             zone.destroy();
                             disposition.enemyCharacters.forEach(enemy => {
-                                scene.charImageMap.get(enemy).setDepth(0).off('pointerdown');
+                                scene.charImageMap.get(enemy).setDepth(0)
+                                    .getByName('charImage').off('pointerdown')
+                                    .on('pointerdown', () => scene.drawCharInfo(enemy));
                             });
                             this.setBackgroundColor('#f0d191');
                         };
