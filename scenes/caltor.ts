@@ -34,7 +34,7 @@ export class CaltorScene extends Location {
             interaction: 'overlap',
             callback: () => {
                 if (layer4visible) {
-                    this.layers.find(layer => layer.layer.name === 'Tile Layer 4').setVisible(false);
+                    this.layers.find(layer => layer.layer.name === 'Barracks Roof').setVisible(false);
                     layer4visible = false
                 }
             }

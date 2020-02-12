@@ -125,6 +125,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("wizard-attack2", "assets/images/characters/battle/enemies/Wizard/Attack2.png",{frameWidth: 231, frameHeight: 190});
         this.load.spritesheet("wizard-hit", "assets/images/characters/battle/enemies/Wizard/Hit.png",{frameWidth: 231, frameHeight: 190});
         this.load.spritesheet("wizard-death", "assets/images/characters/battle/enemies/Wizard/Death.png",{frameWidth: 231, frameHeight: 190});
+        this.load.spritesheet("doors2-upscaled", "assets/images/tilesets/doors2-upscaled.png",{frameWidth: 32, frameHeight: 96});
         this.load.image("hit", "assets/images/animations/hit.png");
 
         // Load the export Tiled JSON
@@ -144,6 +145,12 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     private createAnimations() {
+        this.anims.create({
+            key: 'open_door',
+            frames: this.anims.generateFrameNames('doors2-upscaled', {start: 6, end: 8}),
+            frameRate: 10,
+            repeat: 0
+        });
         this.anims.create({
             key: 'walk_down',
             frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 0, end: 2}),

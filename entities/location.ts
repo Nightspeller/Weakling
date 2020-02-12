@@ -5,10 +5,10 @@ export class Location extends Phaser.Scene {
     public player: Player;
     public playerImage: Phaser.Physics.Arcade.Sprite;
     public keys: { [key: string]: any };
-    public layers: Phaser.Tilemaps.StaticTilemapLayer[];
+    public layers: (Phaser.Tilemaps.StaticTilemapLayer | Phaser.Tilemaps.DynamicTilemapLayer)[];
     public map: Phaser.Tilemaps.Tilemap;
     public prevSceneKey: string;
-    private triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' }[];
+    private triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' | 'activateOverlap' }[];
     private cooldown: number;
     private offsetX: number;
     private offsetY: number;
@@ -47,7 +47,13 @@ export class Location extends Phaser.Scene {
 
         this.layers = [];
         this.map.layers.forEach(layer => {
-            const createdLayer = this.map.createStaticLayer(layer.name, tilesets, this.offsetX, this.offsetY);
+            let createdLayer;
+            if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'dynamic' && prop.value === true)) {
+                createdLayer = this.map.createDynamicLayer(layer.name, tilesets, this.offsetX, this.offsetY);
+            } else {
+                createdLayer = this.map.createStaticLayer(layer.name, tilesets, this.offsetX, this.offsetY);
+            }
+            if (layer.alpha !== 1) createdLayer.setAlpha(layer.alpha);
             this.layers.push(createdLayer);
             // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
             if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'hasCollisions')) {
@@ -58,6 +64,29 @@ export class Location extends Phaser.Scene {
             if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'fringe')) {
                 createdLayer.setDepth(1);
             }
+        });
+
+        this.map.getObjectLayer('Doors/Doors Objects')?.objects.forEach(object => {
+            const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Doors/Doors Objects');
+            const texture = spriteParams.key;
+            const frame = spriteParams.frame as number;
+            // Todo: there must be a better way to do that but I am way too tired not to find it...
+            const trigger = this.createTrigger({
+                objectName: object.name,
+                objectLayer: 'Doors/Doors Objects',
+                texture: texture,
+                frame: frame,
+                interaction: 'activate',
+                callback: () => {
+                    trigger.disableBody();
+                    trigger.disableInteractive();
+                    this.layers.find(layer =>layer.layer.name === 'Doors/Doors Fringe').getTileAtWorldXY(trigger.x+ 16, trigger.y-16).setVisible(false);
+                    this.triggers = this.triggers.filter(triggerInArray => triggerInArray.image !== trigger);
+                    trigger.anims.play('open_door');
+                    trigger.y-=64;
+                    trigger.body.setOffset(0,64);
+                },
+            });
         });
 
         this.map.getObjectLayer('Enemies')?.objects.forEach(object => {
@@ -232,7 +261,7 @@ export class Location extends Phaser.Scene {
             return;
         }
         const trigger = this.physics.add
-            .image(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
+            .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
             .setDisplaySize(object['width'], object['height'])
             .setImmovable();
@@ -253,6 +282,9 @@ export class Location extends Phaser.Scene {
         if (interaction === 'activate') {
             this.physics.add.collider(this.playerImage, trigger);
         }
+        if (interaction === 'activateOverlap') {
+            this.physics.add.overlap(this.playerImage, trigger);
+        }
         //TODO: might need rework to support callback update...
         this.triggers.push({image: trigger, callback: callback, type: interaction});
         return trigger;
@@ -271,9 +303,9 @@ export class Location extends Phaser.Scene {
                 this.cooldown = 50;
                 for (let i = 0; i < this.triggers.length; i++) {
                     const trigger = this.triggers[i];
-                    if (trigger.type === 'activate') {
+                    if (trigger.type === 'activate' || trigger.type === 'activateOverlap') {
                         //checking if player is looking at the trigger image
-                        if (
+                        if ( trigger.type === 'activateOverlap' ||
                             ((trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y) && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
                             ((trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x) && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
                             ((trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y) && [9, 10, 11].includes(Number(this.playerImage.frame.name))) ||

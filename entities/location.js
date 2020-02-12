@@ -9,7 +9,7 @@ export class Location extends Phaser.Scene {
     preparePlugins() {
     }
     prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e;
         this.map = this.make.tilemap({ key: mapKey });
         this.offsetX = layerOffsetX;
         this.offsetY = layerOffsetY;
@@ -31,7 +31,15 @@ export class Location extends Phaser.Scene {
         });
         this.layers = [];
         this.map.layers.forEach(layer => {
-            const createdLayer = this.map.createStaticLayer(layer.name, tilesets, this.offsetX, this.offsetY);
+            let createdLayer;
+            if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'dynamic' && prop.value === true)) {
+                createdLayer = this.map.createDynamicLayer(layer.name, tilesets, this.offsetX, this.offsetY);
+            }
+            else {
+                createdLayer = this.map.createStaticLayer(layer.name, tilesets, this.offsetX, this.offsetY);
+            }
+            if (layer.alpha !== 1)
+                createdLayer.setAlpha(layer.alpha);
             this.layers.push(createdLayer);
             // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
             if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'hasCollisions')) {
@@ -43,7 +51,29 @@ export class Location extends Phaser.Scene {
                 createdLayer.setDepth(1);
             }
         });
-        (_a = this.map.getObjectLayer('Enemies')) === null || _a === void 0 ? void 0 : _a.objects.forEach(object => {
+        (_a = this.map.getObjectLayer('Doors/Doors Objects')) === null || _a === void 0 ? void 0 : _a.objects.forEach(object => {
+            const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Doors/Doors Objects');
+            const texture = spriteParams.key;
+            const frame = spriteParams.frame;
+            // Todo: there must be a better way to do that but I am way too tired not to find it...
+            const trigger = this.createTrigger({
+                objectName: object.name,
+                objectLayer: 'Doors/Doors Objects',
+                texture: texture,
+                frame: frame,
+                interaction: 'activate',
+                callback: () => {
+                    trigger.disableBody();
+                    trigger.disableInteractive();
+                    this.layers.find(layer => layer.layer.name === 'Doors/Doors Fringe').getTileAtWorldXY(trigger.x + 16, trigger.y - 16).setVisible(false);
+                    this.triggers = this.triggers.filter(triggerInArray => triggerInArray.image !== trigger);
+                    trigger.anims.play('open_door');
+                    trigger.y -= 64;
+                    trigger.body.setOffset(0, 64);
+                },
+            });
+        });
+        (_b = this.map.getObjectLayer('Enemies')) === null || _b === void 0 ? void 0 : _b.objects.forEach(object => {
             var _a, _b;
             const enemyImage = (_a = object.properties.find(prop => prop.name === 'image')) === null || _a === void 0 ? void 0 : _a.value;
             const enemies = JSON.parse((_b = object.properties.find(prop => prop.name === 'enemies')) === null || _b === void 0 ? void 0 : _b.value);
@@ -58,7 +88,7 @@ export class Location extends Phaser.Scene {
                 },
             });
         });
-        (_b = this.map.getObjectLayer('Waypoints')) === null || _b === void 0 ? void 0 : _b.objects.forEach(object => {
+        (_c = this.map.getObjectLayer('Waypoints')) === null || _c === void 0 ? void 0 : _c.objects.forEach(object => {
             var _a, _b;
             const toLocation = (_a = object.properties.find(prop => prop.name === 'location')) === null || _a === void 0 ? void 0 : _a.value;
             let toCoordinates = (_b = object.properties.find(prop => prop.name === 'toCoordinates')) === null || _b === void 0 ? void 0 : _b.value;
@@ -80,7 +110,7 @@ export class Location extends Phaser.Scene {
                 },
             });
         });
-        (_c = this.map.getObjectLayer('Items')) === null || _c === void 0 ? void 0 : _c.objects.forEach(object => {
+        (_d = this.map.getObjectLayer('Items')) === null || _d === void 0 ? void 0 : _d.objects.forEach(object => {
             var _a, _b;
             const itemId = (_a = object.properties.find(prop => prop.name === 'itemId')) === null || _a === void 0 ? void 0 : _a.value;
             const itemQuantity = (_b = object.properties.find(prop => prop.name === 'quantity')) === null || _b === void 0 ? void 0 : _b.value;
@@ -104,7 +134,7 @@ export class Location extends Phaser.Scene {
                 },
             });
         });
-        (_d = this.map.getObjectLayer('Messages')) === null || _d === void 0 ? void 0 : _d.objects.forEach(object => {
+        (_e = this.map.getObjectLayer('Messages')) === null || _e === void 0 ? void 0 : _e.objects.forEach(object => {
             var _a, _b, _c;
             const text = (_a = object.properties.find(prop => prop.name === 'text')) === null || _a === void 0 ? void 0 : _a.value;
             const interaction = (_b = object.properties.find(prop => prop.name === 'interaction')) === null || _b === void 0 ? void 0 : _b.value;
@@ -201,7 +231,7 @@ export class Location extends Phaser.Scene {
             return;
         }
         const trigger = this.physics.add
-            .image(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
+            .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
             .setDisplaySize(object['width'], object['height'])
             .setImmovable();
@@ -222,6 +252,9 @@ export class Location extends Phaser.Scene {
         if (interaction === 'activate') {
             this.physics.add.collider(this.playerImage, trigger);
         }
+        if (interaction === 'activateOverlap') {
+            this.physics.add.overlap(this.playerImage, trigger);
+        }
         //TODO: might need rework to support callback update...
         this.triggers.push({ image: trigger, callback: callback, type: interaction });
         return trigger;
@@ -239,9 +272,10 @@ export class Location extends Phaser.Scene {
                 this.cooldown = 50;
                 for (let i = 0; i < this.triggers.length; i++) {
                     const trigger = this.triggers[i];
-                    if (trigger.type === 'activate') {
+                    if (trigger.type === 'activate' || trigger.type === 'activateOverlap') {
                         //checking if player is looking at the trigger image
-                        if (((trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y) && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
+                        if (trigger.type === 'activateOverlap' ||
+                            ((trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y) && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
                             ((trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x) && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
                             ((trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y) && [9, 10, 11].includes(Number(this.playerImage.frame.name))) ||
                             ((trigger.image.getBottomRight().x === this.playerImage.getTopLeft().x && [3, 4, 5].includes(Number(this.playerImage.frame.name))))) {

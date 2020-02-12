@@ -135,7 +135,7 @@ interface TriggerParams {
     callback?: Function;
     texture?: string;
     frame?: number;
-    interaction?: 'collide' | 'overlap' | 'activate';
+    interaction?: 'collide' | 'overlap' | 'activate' | 'activateOverlap';
     offsetX?: number;
     offsetY?: number;
 }
