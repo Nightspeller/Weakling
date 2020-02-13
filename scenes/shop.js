@@ -85,7 +85,6 @@ export class ShopScene extends OverlayScene {
         container.setData('focused', false);
         container.on('pointerdown', () => {
             if (!container.getData('focused')) {
-                console.log('showing item info', item.displayName);
                 let focusedContainer = this.playerItemContainers.getAll().find(itemContainer => itemContainer.getData('focused'));
                 if (!focusedContainer)
                     focusedContainer = this.traderItemContainers.getAll().find(itemContainer => itemContainer.getData('focused'));
@@ -99,7 +98,6 @@ export class ShopScene extends OverlayScene {
                 container.setDepth(this.opts.baseDepth + 1);
             }
             else {
-                console.log('selling item', item.displayName);
                 container.setData('focused', false);
                 containerFocusedGraphics.setVisible(false);
                 container.setDepth(this.opts.baseDepth);
@@ -112,7 +110,7 @@ export class ShopScene extends OverlayScene {
     _transferItem(item, selling) {
         if (selling) {
             const tradersMoney = this.trader.inventory.find(item => item.itemId === 'copper-pieces');
-            if (tradersMoney.quantity > item.sellPrice) {
+            if (tradersMoney.quantity >= item.sellPrice) {
                 this.player.addItemToInventory('copper-pieces', item.sellPrice);
                 this.player.removeItemFromInventory(item);
                 this.trader.removeItemFromInventory(tradersMoney, item.sellPrice);
@@ -121,7 +119,7 @@ export class ShopScene extends OverlayScene {
         }
         else {
             const playerMoney = this.player.inventory.find(item => item.itemId === 'copper-pieces');
-            if (playerMoney.quantity > item.buyPrice) {
+            if (playerMoney.quantity >= item.buyPrice) {
                 this.player.addItemToInventory(item.itemId);
                 this.player.removeItemFromInventory(playerMoney, item.buyPrice);
                 this.trader.addItemToInventory('copper-pieces', item.buyPrice);

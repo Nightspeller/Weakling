@@ -1,5 +1,4 @@
 import {items} from "../actionsAndEffects/items.js";
-import {Location} from "../entities/location.js";
 
 export default class Npc {
     public inventory: Item[];
