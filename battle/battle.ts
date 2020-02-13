@@ -14,6 +14,7 @@ export class BattleScene extends Location {
     private charImageMap: Map<GeneralEntity, Phaser.GameObjects.Container>;
     private characterInfoGroup: Phaser.GameObjects.Group;
     private effectInformationGroup: Phaser.GameObjects.Group;
+    private enemyName: string;
 
     constructor() {
         super({key: 'Battle'});
@@ -22,6 +23,7 @@ export class BattleScene extends Location {
     public init(data) {
         if (Array.isArray(data.enemies)) {
             this.enemies = data.enemies.map(enemy => enemy.type);
+            this.enemyName = data.enemyName;
         } else {
             throw Error('No enemies were passed for Battle scene!');
         }
@@ -669,9 +671,9 @@ export class BattleScene extends Location {
     }
 
     public exitBattle() {
-        console.log('running', this.prevSceneKey)
-        this.scene.run(this.prevSceneKey);
-        console.log('removing Battle')
+        console.log('running', this.prevSceneKey);
+        this.scene.run(this.prevSceneKey, {defeatedEnemy: this.enemyName});
+        console.log('removing Battle');
         this.scene.stop('Battle');
     }
 

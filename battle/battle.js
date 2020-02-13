@@ -11,6 +11,7 @@ export class BattleScene extends Location {
     init(data) {
         if (Array.isArray(data.enemies)) {
             this.enemies = data.enemies.map(enemy => enemy.type);
+            this.enemyName = data.enemyName;
         }
         else {
             throw Error('No enemies were passed for Battle scene!');
@@ -594,7 +595,7 @@ export class BattleScene extends Location {
     }
     exitBattle() {
         console.log('running', this.prevSceneKey);
-        this.scene.run(this.prevSceneKey);
+        this.scene.run(this.prevSceneKey, { defeatedEnemy: this.enemyName });
         console.log('removing Battle');
         this.scene.stop('Battle');
     }

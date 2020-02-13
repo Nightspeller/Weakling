@@ -54,7 +54,7 @@
                  "height":22,
                  "id":6,
                  "name":"Tile Layer 2 Fringe",
-                 "opacity":1,
+                 "opacity":0.8,
                  "properties":[
                         {
                          "name":"fringe",
@@ -159,10 +159,15 @@
                  "height":22,
                  "id":12,
                  "name":"Doors Fringe",
-                 "opacity":1,
+                 "opacity":0.8,
                  "properties":[
                         {
                          "name":"dynamic",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"fringe",
                          "type":"bool",
                          "value":true
                         }],

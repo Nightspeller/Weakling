@@ -84,7 +84,7 @@ export class Location extends Phaser.Scene {
                 frame: null,
                 interaction: 'activate',
                 callback: () => {
-                    this.switchToScene('Battle', { enemies: enemies });
+                    this.switchToScene('Battle', { enemies: enemies, enemyName: object.name });
                 },
             });
         });
@@ -165,6 +165,12 @@ export class Location extends Phaser.Scene {
             });
         });
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
+        this.events.on('wake', (scene, data) => {
+            var _a;
+            if ((_a = data) === null || _a === void 0 ? void 0 : _a.defeatedEnemy) {
+                this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
+            }
+        });
         if (mapKey !== 'battle')
             this.createDebugButton();
     }
@@ -256,7 +262,7 @@ export class Location extends Phaser.Scene {
             this.physics.add.overlap(this.playerImage, trigger);
         }
         //TODO: might need rework to support callback update...
-        this.triggers.push({ image: trigger, callback: callback, type: interaction });
+        this.triggers.push({ image: trigger, callback: callback, type: interaction, name: objectName });
         return trigger;
     }
     getMapObject(objectName, objectLayer = 'Objects') {

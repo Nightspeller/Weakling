@@ -8,7 +8,7 @@ export class Location extends Phaser.Scene {
     public layers: (Phaser.Tilemaps.StaticTilemapLayer | Phaser.Tilemaps.DynamicTilemapLayer)[];
     public map: Phaser.Tilemaps.Tilemap;
     public prevSceneKey: string;
-    private triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' | 'activateOverlap' }[];
+    private triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' | 'activateOverlap', name: string }[];
     private cooldown: number;
     private offsetX: number;
     private offsetY: number;
@@ -99,7 +99,7 @@ export class Location extends Phaser.Scene {
                 frame: null,
                 interaction: 'activate',
                 callback: () => {
-                    this.switchToScene('Battle', {enemies: enemies});
+                    this.switchToScene('Battle', {enemies: enemies, enemyName: object.name});
                 },
             });
         });
@@ -180,6 +180,12 @@ export class Location extends Phaser.Scene {
         });
 
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
+
+        this.events.on('wake', (scene, data) => {
+            if (data?.defeatedEnemy) {
+                this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
+            }
+        });
 
         if (mapKey !== 'battle') this.createDebugButton();
     }
@@ -286,7 +292,7 @@ export class Location extends Phaser.Scene {
             this.physics.add.overlap(this.playerImage, trigger);
         }
         //TODO: might need rework to support callback update...
-        this.triggers.push({image: trigger, callback: callback, type: interaction});
+        this.triggers.push({image: trigger, callback: callback, type: interaction, name: objectName});
         return trigger;
     }
 
