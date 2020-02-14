@@ -1,5 +1,5 @@
 import {Player, playerInstance} from "../entities/player.js";
-import {items} from "../actionsAndEffects/items.js";
+import Item from "./item.js";
 
 export class Location extends Phaser.Scene {
     public player: Player;
@@ -128,7 +128,7 @@ export class Location extends Phaser.Scene {
         this.map.getObjectLayer('Items')?.objects.forEach(object => {
             const itemId = object.properties.find(prop => prop.name === 'itemId')?.value;
             const itemQuantity = object.properties.find(prop => prop.name === 'quantity')?.value;
-            const item = {...items[itemId]};
+            const item = new Item(itemId, itemQuantity);
             let texture = item.sprite.key;
             let frame = item.sprite.frame;
             if (object.gid) {

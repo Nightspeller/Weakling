@@ -1,5 +1,5 @@
 import GeneralEntity from "./generalEntity.js";
-import {items} from "../actionsAndEffects/items.js";
+import Item from "./item.js";
 
 export class Adventurer extends GeneralEntity {
     public inventory: Item[];
@@ -10,10 +10,13 @@ export class Adventurer extends GeneralEntity {
         this.name = 'Adventurer';
     }
 
-    public addItemToInventory(itemId, quantity = 1, slot?: string): Item {
-        // todo? might have to do deep copy...
-        const item = {...items[itemId]};
-        item.quantity = quantity;
+    public addItemToInventory(passedItem: string | Item, quantity = 1, slot?: string): Item {
+        let item;
+        if (typeof passedItem === "string") {
+            item = new Item(passedItem, quantity);
+        } else {
+            item = passedItem;
+        }
         if (item.stackable) {
             const existingItem = this.inventory.find(existingItem => existingItem.itemId === item.itemId);
             if (existingItem) {

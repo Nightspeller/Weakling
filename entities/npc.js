@@ -1,4 +1,4 @@
-import { items } from "../actionsAndEffects/items.js";
+import Item from "./item.js";
 export default class Npc {
     constructor({ scene, name, mapObjectName, mapObjectLayer = 'Objects', texture, frame, initDialog, items = [], interactionCallback = () => { } }) {
         var _a;
@@ -48,9 +48,14 @@ export default class Npc {
         if (newInteractionCallback)
             this.interactionCallback = newInteractionCallback;
     }
-    addItemToInventory(itemId, quantity = 1) {
-        // todo? might have to do deep copy...
-        const item = { ...items[itemId] };
+    addItemToInventory(passedItem, quantity = 1) {
+        let item;
+        if (typeof passedItem === "string") {
+            item = new Item(passedItem, quantity);
+        }
+        else {
+            item = passedItem;
+        }
         if (item.stackable) {
             item.quantity = quantity;
             const existingItem = this.inventory.find(existingItem => existingItem.itemId === item.itemId);

@@ -671,9 +671,8 @@ export class BattleScene extends Location {
     }
 
     public exitBattle() {
-        console.log('running', this.prevSceneKey);
+        console.log('Switching from the battle scene to ', this.prevSceneKey);
         this.scene.run(this.prevSceneKey, {defeatedEnemy: this.enemyName});
-        console.log('removing Battle');
         this.scene.stop('Battle');
     }
 

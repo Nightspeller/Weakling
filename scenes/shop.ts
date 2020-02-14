@@ -1,6 +1,7 @@
 import {Player, playerInstance} from "../entities/player";
 import {OverlayScene} from "./overlayScene.js";
 import Npc from "../entities/npc.js";
+import Item from "../entities/item.js";
 
 export class ShopScene extends OverlayScene {
     private player: Player;

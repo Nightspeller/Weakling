@@ -1,4 +1,4 @@
-import {items} from "../actionsAndEffects/items.js";
+import Item from "./item.js";
 
 export default class Npc {
     public inventory: Item[];
@@ -67,9 +67,13 @@ export default class Npc {
         if (newInteractionCallback) this.interactionCallback = newInteractionCallback;
     }
 
-    public addItemToInventory(itemId, quantity = 1): Item {
-        // todo? might have to do deep copy...
-        const item = {...items[itemId]};
+    public addItemToInventory(passedItem: string | Item, quantity = 1): Item {
+        let item;
+        if (typeof passedItem === "string") {
+            item = new Item(passedItem, quantity);
+        } else {
+            item = passedItem;
+        }
         if (item.stackable) {
             item.quantity = quantity;
             const existingItem = this.inventory.find(existingItem => existingItem.itemId === item.itemId);

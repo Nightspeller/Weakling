@@ -82,7 +82,7 @@ interface Belt {
     size: string[];
 }
 
-interface Item {
+interface ItemParams {
     itemId: string;
     displayName: string;
     description: string;

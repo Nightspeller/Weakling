@@ -1,4 +1,4 @@
-export const items: { [key: string]: Item } = {
+export const items: { [key: string]: ItemParams } = {
     'rope-belt': {
         itemId: 'rope-belt',
         displayName: 'Rope',
