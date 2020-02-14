@@ -170,6 +170,25 @@ export const effects: { [key: string]: Effect } = {
             };
         },
     },
+    heal: {
+        effectId: 'heal',
+        name: 'Healing',
+        description: 'Healing is done',
+        type: 'direct',
+        targetCharacteristic: 'parameters.currentHealth',
+        baseDuration: -1,
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
+        statusImage: {texture: null, frame: null},
+        applicationCheck: (source, target, action) => true,
+        setModifier: function (source, target, action) {
+            this.modifier = {
+                type: 'value',
+                value: 2
+            };
+        },
+    },
     trapped: {
         effectId: 'trapped',
         name: 'Trap prepared',

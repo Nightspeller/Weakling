@@ -1,6 +1,20 @@
 export class PlayerActions {
     constructor() {
         this.actions = [{
+                actionId: 'healingTouch',
+                phase: ['preparation', 'battle'],
+                type: 'magical',
+                actionName: 'Healing touch',
+                actionDescription: 'Primitive spell, which nevertheless does the trick - restores some health',
+                effect: [{
+                        effectId: 'heal',
+                        source: 'healingTouch',
+                        level: 1
+                    }],
+                target: 'party',
+                actionCost: 1,
+                noticeable: 0
+            }, {
                 actionId: 'warmUp',
                 phase: ['preparation', 'battle'],
                 type: 'physical',

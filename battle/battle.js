@@ -522,6 +522,41 @@ export class BattleScene extends Location {
                             this.setBackgroundColor('#f0d191');
                         };
                     }
+                    if (action.target === 'party') {
+                        this.setBackgroundColor('red');
+                        console.log('starting party member selection');
+                        let overlay = scene.add.graphics()
+                            .fillStyle(0x000000, 0.25)
+                            .fillRect(0, 0, 800, 640);
+                        let zone = scene.add.zone(0, 0, 800, 640).setOrigin(0, 0)
+                            .setInteractive().once('pointerdown', () => removeOverlay());
+                        disposition.playerCharacters.forEach(adventurer => {
+                            if (adventurer.isAlive) {
+                                const charImageContainer = scene.charImageMap.get(adventurer);
+                                const charImage = charImageContainer.getByName('charImage');
+                                charImageContainer.setDepth(10);
+                                charImage.off('pointerdown').once('pointerdown', () => {
+                                    removeOverlay();
+                                    charImageContainer.setDepth(0);
+                                    scene.playMeleeAttackAnimation(currentCharacter, adventurer).then(() => {
+                                        disposition.processAction(currentCharacter, adventurer, action);
+                                        scene.drawActionPoints(currentCharacter);
+                                        scene.drawActionInterface(disposition);
+                                    });
+                                });
+                            }
+                        });
+                        const removeOverlay = () => {
+                            overlay.destroy();
+                            zone.destroy();
+                            disposition.playerCharacters.forEach(adventurer => {
+                                scene.charImageMap.get(adventurer).setDepth(0)
+                                    .getByName('charImage').off('pointerdown')
+                                    .on('pointerdown', () => scene.drawCharInfo(adventurer));
+                            });
+                            this.setBackgroundColor('#f0d191');
+                        };
+                    }
                 });
             }
         });

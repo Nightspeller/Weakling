@@ -35,7 +35,7 @@ export class Elder extends Adventurer {
         this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
         this.addItemToInventory('copper-pieces', 15);
         this.name = 'Elder Guarthh';
-        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.currentEffects = [];
     }
 }
