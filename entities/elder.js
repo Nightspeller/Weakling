@@ -2,7 +2,7 @@ import { Adventurer } from "./adventurer.js";
 export class Elder extends Adventurer {
     constructor() {
         super();
-        this.spriteParams = { texture: 'elder', frame: null };
+        this.spriteParams = { texture: 'elder', frame: null, width: 96, height: 96 };
         this.baseCharacteristics = {
             attributes: {
                 strength: 5,
