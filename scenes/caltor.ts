@@ -130,12 +130,6 @@ export class CaltorScene extends Location {
                 }, false)
             }
         });
-
-        const testItem = new Item('allpowerful-necklace', 0, {
-            sellPrice: 500,
-            buyPrice: 1000,
-        });
-        console.log(testItem);
     }
 
     public update() {
