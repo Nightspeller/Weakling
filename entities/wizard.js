@@ -3,6 +3,17 @@ import { enemyActions } from "../actionsAndEffects/enemyActions.js";
 export class Wizard extends EnemyEntity {
     constructor() {
         super();
+        this.aiTurn = (disposition) => {
+            const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
+            const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
+            const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
+            if (action === 'enrage') {
+                return { action: enemyActions[action], target: this };
+            }
+            else {
+                return { action: enemyActions[action], target: randomAlivePlayer };
+            }
+        };
         this.spriteParams = { texture: 'wizard-idle', frame: 0, width: 231, height: 190, flip: true };
         this.level = 1;
         this.availableActions = ['wildRush', 'enrage'];
@@ -38,17 +49,6 @@ export class Wizard extends EnemyEntity {
         this.animations.buff = 'wizard_attack1';
         this.animations.death = 'wizard_death';
         this.animations.hit = 'wizard_hit';
-    }
-    aiTurn(disposition) {
-        const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
-        const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-        const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
-        if (action === 'enrage') {
-            return { action: enemyActions[action], target: this };
-        }
-        else {
-            return { action: enemyActions[action], target: randomAlivePlayer };
-        }
     }
     startRound(roundType) {
         super.startRound(roundType);

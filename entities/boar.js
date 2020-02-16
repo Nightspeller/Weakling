@@ -3,6 +3,17 @@ import { enemyActions } from "../actionsAndEffects/enemyActions.js";
 export class Boar extends EnemyEntity {
     constructor() {
         super();
+        this.aiTurn = (disposition) => {
+            const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
+            const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
+            const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
+            if (action === 'enrage') {
+                return { action: enemyActions[action], target: this };
+            }
+            else {
+                return { action: enemyActions[action], target: randomAlivePlayer };
+            }
+        };
         this.spriteParams = { texture: 'boar-avatar', frame: null, width: 96, height: 96 };
         this.level = 1;
         this.availableActions = ['wildRush', 'enrage'];
@@ -33,17 +44,6 @@ export class Boar extends EnemyEntity {
                 magicResistance: 0,
             }
         };
-    }
-    aiTurn(disposition) {
-        const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
-        const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-        const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
-        if (action === 'enrage') {
-            return { action: enemyActions[action], target: this };
-        }
-        else {
-            return { action: enemyActions[action], target: randomAlivePlayer };
-        }
     }
     startRound(roundType) {
         super.startRound(roundType);

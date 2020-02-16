@@ -45,7 +45,7 @@ export class Wizard extends EnemyEntity {
         this.animations.hit = 'wizard_hit';
     }
 
-    public aiTurn(disposition: Disposition): {action: Action, target: Adventurer | EnemyEntity} {
+    public aiTurn = (disposition: Disposition): {action: Action, target: Adventurer | EnemyEntity} => {
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
@@ -54,7 +54,7 @@ export class Wizard extends EnemyEntity {
         } else {
             return {action: enemyActions[action], target: randomAlivePlayer}
         }
-    }
+    };
 
     public startRound(roundType: 'preparation' | 'battle') {
         super.startRound(roundType);
