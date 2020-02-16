@@ -1,12 +1,11 @@
 import {Adventurer} from "../entities/adventurer.js";
 import EnemyEntity from "../entities/enemyEntity.js";
 import {ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH} from "../config/constants.js";
-import GeneralEntity from "../entities/generalEntity";
 import Rectangle = Phaser.Geom.Rectangle;
 
 export class CharacterDrawer {
-    private isParty: boolean;
-    position: { name: string; x: number; y: number };
+    private readonly isParty: boolean;
+    public position: { name: string; x: number; y: number };
     private scene: Phaser.Scene;
     public mainImage: Phaser.GameObjects.Sprite;
     private char: Adventurer | EnemyEntity;

@@ -1,9 +1,8 @@
 import {Disposition} from "../entities/disposition.js";
 import {PlayerActions} from "../actionsAndEffects/playerActions.js";
-import GeneralEntity from "../entities/generalEntity.js";
-import {BattleScene} from "./battle";
-import {Adventurer} from "../entities/adventurer";
-import EnemyEntity from "../entities/enemyEntity";
+import {BattleScene} from "./battle.js";
+import {Adventurer} from "../entities/adventurer.js";
+import EnemyEntity from "../entities/enemyEntity.js";
 
 export class ActionInterfaceDrawer {
     private readonly disposition: Disposition;

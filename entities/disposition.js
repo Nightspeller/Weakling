@@ -37,7 +37,34 @@ export class Disposition {
         this.currentCharacter = this.turnOrder[0];
         console.log(`%cTurn started for ${(_a = this.currentCharacter) === null || _a === void 0 ? void 0 : _a.name}`, 'color: green');
         this.log(`Turn started for ${(_b = this.currentCharacter) === null || _b === void 0 ? void 0 : _b.name}`);
-        this.scene.collectActions(this.currentCharacter);
+        this.startAction();
+    }
+    startAction() {
+        this.scene.collectActions(this.currentCharacter).then(({ action, target }) => {
+            if (action === 'END TURN') {
+                this.endTurn();
+            }
+            else {
+                const results = this.processAction(this.currentCharacter, target, action);
+                this.calculateTurnOrder();
+                this.scene.animateAction(this.currentCharacter, target, action, results).then(() => {
+                    this.shouldContinueBattle();
+                    if (!this.battleEnded) {
+                        if (!this.currentCharacter.isAlive) {
+                            this.endTurn();
+                        }
+                        else {
+                            if (results.attempted === false) {
+                                this.endTurn();
+                            }
+                            else {
+                                this.startAction();
+                            }
+                        }
+                    }
+                });
+            }
+        });
     }
     endTurn() {
         if (this.battleEnded)
@@ -86,16 +113,24 @@ export class Disposition {
     processAction(source, target, action) {
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         this.log(`${source.name} tries to perform ${action.actionName} on ${target.name}`);
+        let actionResults = {
+            attempted: false,
+            succeeded: false,
+            triggeredTraps: [],
+            sourceAlive: true,
+            targetAlive: true
+        };
         if (source.actionPoints[action.type] < action.actionCost) {
             console.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
             this.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
-            return false;
         }
         else {
+            actionResults.attempted = true;
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
-            this._checkForTriggers(source, target, action);
+            actionResults.triggeredTraps = this._checkForTriggers(source, target, action);
             if (action.actionId === 'accessInventory') {
                 if (source instanceof Adventurer) {
+                    actionResults.succeeded = true;
                     this.scene.switchToScene('Inventory', {}, false);
                 }
             }
@@ -108,26 +143,24 @@ export class Disposition {
                     if (effect.applicationCheck(source, target, action)) {
                         effect.setModifier(source, target, action);
                         target.applyEffect(effect);
+                        actionResults.succeeded = true;
                     }
                 });
                 if (target.currentCharacteristics.parameters.currentHealth <= 0) {
-                    this.scene.playAnimation(target, 'death');
                     target.isAlive = false;
+                    actionResults.targetAlive = false;
                 }
                 if (source.currentCharacteristics.parameters.currentHealth <= 0) {
-                    this.scene.playAnimation(source, 'death');
                     source.isAlive = false;
+                    actionResults.sourceAlive = false;
                 }
             }
         }
-        this.shouldContinueBattle();
-        if (!this.currentCharacter.isAlive) {
-            this.endTurn();
-        }
-        this.calculateTurnOrder();
+        return actionResults;
     }
     _checkForTriggers(source, target, action) {
         var _a;
+        let triggeredTraps = [];
         let sourceEffectsLength = source.currentEffects.length;
         for (let index = 0; index < sourceEffectsLength; index++) {
             let effect = source.currentEffects[index];
@@ -140,6 +173,7 @@ export class Disposition {
                         if (triggerRoll < trigger.probability) {
                             console.log('Triggered!', 'applying new effects,', effect.modifier.value);
                             this.log('Triggered! Applying new effects');
+                            triggeredTraps.push(effect);
                             source.currentEffects.splice(index, 1);
                             index--;
                             sourceEffectsLength--;
@@ -161,6 +195,7 @@ export class Disposition {
                 });
             }
         }
+        return triggeredTraps;
     }
     log(entree) {
         const logElement = document.getElementsByClassName('battle-log')[0];

@@ -72,24 +72,24 @@ export class BattleScene extends Location {
     public collectActions(char: Adventurer | EnemyEntity) {
         this.redrawAllCharacters();
         if (char instanceof Adventurer) {
-            this.actionInterfaceDrawer.drawActionInterface().then(({action, target}: { action: Action | 'END TURN', target: Adventurer | EnemyEntity }) => {
-                if (action === 'END TURN') {
-                    this.disposition.endTurn();
-                } else {
-                    this.playAnimation(char, action.animation, target).then(() => {
-                        this.disposition.processAction(char, target, action);
-                        if (char.isAlive) {
-                            this.collectActions(char);
-                        }
-                    })
-                }
-            });
+            return this.actionInterfaceDrawer.drawActionInterface()
         } else {
-            const aiResults = char.aiTurn(this.disposition);
-            this.playAnimation(char, aiResults.action.animation, aiResults.target).then(() => {
-                this.disposition.processAction(char, aiResults.target, aiResults.action);
-                this.disposition.endTurn();
-            });
+            return Promise.resolve(char.aiTurn(this.disposition));
+        }
+    }
+
+    public async animateAction(currentCharacter, target, action, {attempted, succeeded, triggeredTraps, sourceAlive, targetAlive}: { attempted: boolean; succeeded: boolean; triggeredTraps: Effect[], sourceAlive: boolean; targetAlive: boolean; }) {
+        if (attempted) {
+            await this.playAnimation(currentCharacter, action.animation, target);
+            if (!targetAlive) {
+                this.playAnimation(target, 'death')
+            }
+            if (!targetAlive) {
+                this.playAnimation(target, 'death')
+            }
+        }
+        if (succeeded && target !== currentCharacter) {
+            this.playAnimation(target, 'hit')
         }
     }
 
