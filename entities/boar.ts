@@ -55,10 +55,11 @@ export class Boar extends EnemyEntity {
         super.startRound(roundType);
         if (roundType === 'preparation') {
             this.actionPoints = {physical: 1, magical: 0, misc: 0};
+        } else {
+            this.actedThisRound = false;
+            this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
+            this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
         }
-        this.actedThisRound = false;
-        this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
-        this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
     }
 
     public getAttackDamage() {

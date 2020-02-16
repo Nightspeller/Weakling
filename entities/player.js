@@ -45,6 +45,7 @@ export class Player extends Adventurer {
         this.name = 'Weakling';
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.party = [this];
+        //this.party = [this, elderInstance];
     }
     prepareWorldImage(scene, x, y) {
         const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame);

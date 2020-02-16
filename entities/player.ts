@@ -1,4 +1,5 @@
 import {Adventurer} from "./adventurer.js";
+import {elderInstance} from "./elder.js";
 
 export class Player extends Adventurer {
     private lastCursor: string;
@@ -54,6 +55,7 @@ export class Player extends Adventurer {
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
 
         this.party = [this];
+        //this.party = [this, elderInstance];
     }
 
     public prepareWorldImage(scene, x, y) {

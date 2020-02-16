@@ -55,9 +55,11 @@ export class Wizard extends EnemyEntity {
         if (roundType === 'preparation') {
             this.actionPoints = { physical: 1, magical: 0, misc: 0 };
         }
-        this.actedThisRound = false;
-        this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
-        this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
+        else {
+            this.actedThisRound = false;
+            this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
+            this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
+        }
     }
     getAttackDamage() {
         return 3;

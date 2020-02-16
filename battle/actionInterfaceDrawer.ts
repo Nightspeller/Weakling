@@ -98,14 +98,14 @@ export class ActionInterfaceDrawer {
         if (target === 'enemy' || target === 'any') {
             this.disposition.enemyCharacters.forEach(char => {
                 const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.width, charImage.height).setDepth(4).setInteractive();
+                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive();
                 targetList.push({image: charImage, character: char, zone: zone});
             })
         }
         if (target === 'party' || target === 'any') {
             this.disposition.playerCharacters.forEach(char => {
                 const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.width, charImage.height).setDepth(4).setInteractive();
+                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive();
                 targetList.push({image: charImage, character: char, zone: zone});
             })
         }
@@ -113,7 +113,7 @@ export class ActionInterfaceDrawer {
             this.disposition.playerCharacters.forEach(char => {
                 if (char !== self) {
                     const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                    const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.width, charImage.height).setDepth(4).setInteractive();
+                    const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive();
                     targetList.push({image: charImage, character: char, zone: zone});
                 }
             })
