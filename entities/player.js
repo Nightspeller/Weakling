@@ -31,7 +31,6 @@ export class Player extends Adventurer {
                 magicResistance: 10,
             }
         };
-        this.addBaseModifiers();
         this.addItemToInventory('rope-belt', 1, 'belt');
         this.addItemToInventory('fancy-belt');
         this.addItemToInventory('allpowerful-necklace');

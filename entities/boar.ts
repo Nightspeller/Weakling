@@ -1,6 +1,7 @@
 import EnemyEntity from "./enemyEntity.js";
 import {Disposition} from "./disposition.js";
 import {enemyActions} from "../actionsAndEffects/enemyActions.js";
+import {Adventurer} from "./adventurer";
 
 export class Boar extends EnemyEntity {
     private weapon: { damage: number };
@@ -37,25 +38,24 @@ export class Boar extends EnemyEntity {
                 magicResistance: 0,
             }
         };
-        this.addBaseModifiers();
-        this.actionPoints = {physical: 1, magical: 0, misc: 0};
     }
 
-    public async aiTurn(disposition: Disposition) {
-        const currentAICharacter = this;
+    public aiTurn(disposition: Disposition): {action: Action, target: Adventurer | EnemyEntity} {
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
         if (action === 'enrage') {
-            await disposition.scene.playCastAnimation(currentAICharacter);
-            disposition.processAction(currentAICharacter, currentAICharacter, enemyActions[action]);
+            return {action: enemyActions[action], target: this}
         } else {
-            await disposition.scene.playMeleeAttackAnimation(currentAICharacter, randomAlivePlayer);
-            disposition.processAction(currentAICharacter, randomAlivePlayer, enemyActions[action]);
+            return {action: enemyActions[action], target: randomAlivePlayer}
         }
     }
 
     public startRound(roundType: 'preparation' | 'battle') {
+        super.startRound(roundType);
+        if (roundType === 'preparation') {
+            this.actionPoints = {physical: 1, magical: 0, misc: 0};
+        }
         this.actedThisRound = false;
         this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
         this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;

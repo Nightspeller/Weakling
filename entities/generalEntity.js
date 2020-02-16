@@ -126,13 +126,43 @@ export default class GeneralEntity {
             }
         });
     }
+    // Params are not properly displayed on first render
     startRound(roundType) {
+        if (roundType === 'preparation') {
+            this.characteristicsModifiers = {
+                attributes: {
+                    strength: [],
+                    agility: [],
+                    intelligence: [],
+                    initiative: []
+                },
+                parameters: {
+                    health: [],
+                    currentHealth: [],
+                    manna: [],
+                    currentManna: [],
+                    energy: [],
+                    currentEnergy: [],
+                },
+                defences: {
+                    armor: [],
+                    dodge: [],
+                    fireResistance: [],
+                    coldResistance: [],
+                    acidResistance: [],
+                    electricityResistance: [],
+                    poisonResistance: [],
+                    magicResistance: [],
+                }
+            };
+            this.actionPoints = { physical: 0, magical: 0, misc: 0 };
+            this.currentEffects = [];
+            this.addBaseModifiers();
+        }
     }
     endRound() {
         this.recalculateEffects();
         this.recalculateCharacteristics();
-    }
-    startTurn(scene) {
     }
     endTurn() {
         if (this.isAlive) {

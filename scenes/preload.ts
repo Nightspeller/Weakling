@@ -140,8 +140,8 @@ export class PreloadScene extends Phaser.Scene {
     create() {
         this.createAnimations();
         console.log('Preload done, calling Caltor');
-        //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-        this.scene.start("Caltor", {prevScene: this.scene.key});
+        this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
+        //this.scene.start("Caltor", {prevScene: this.scene.key});
     }
 
     private createAnimations() {

@@ -15,7 +15,8 @@ export class PlayerActions {
             }],
             target: 'party',
             actionCost: 1,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'meleeAttack',
         }, {
             actionId: 'warmUp',
             phase: ['preparation', 'battle'],
@@ -33,7 +34,8 @@ export class PlayerActions {
             }],
             target: 'self',
             actionCost: 0.5,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, {
             actionId: 'adjustArmor',
             phase: ['preparation', 'battle'],
@@ -51,7 +53,8 @@ export class PlayerActions {
             }],
             target: 'self',
             actionCost: 0.5,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, {
             actionId: 'setTrap',
             phase: ['preparation'],
@@ -65,7 +68,8 @@ export class PlayerActions {
             }],
             target: 'enemy',
             actionCost: 0.5,
-            noticeable: 0.1
+            noticeable: 0.1,
+            animation: 'meleeAttack',
         }, {
             actionId: 'meleeAttack',
             phase: ['battle'],
@@ -79,7 +83,8 @@ export class PlayerActions {
             }],
             target: 'enemy',
             actionCost: 1,
-            noticeable: 1
+            noticeable: 1,
+            animation: 'meleeAttack',
         }, {
             actionId: 'drainingSoil',
             phase: ['preparation'],
@@ -94,7 +99,8 @@ export class PlayerActions {
             target: 'enemy',
             actionCost: 0.5,
             noticeable: 0,
-            special: 'If the trap is on the way, trap gets cursed, both effects are +10%, if trap is placed on cursed land - gets cursed himself'
+            special: 'If the trap is on the way, trap gets cursed, both effects are +10%, if trap is placed on cursed land - gets cursed himself',
+            animation: 'meleeAttack',
         }, {
             actionId: 'fireProtection',
             phase: ['preparation', 'battle'],
@@ -108,7 +114,8 @@ export class PlayerActions {
             }],
             target: 'self',
             actionCost: 1.5,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, {
             actionId: 'swiftMind',
             phase: ['preparation', 'battle'],
@@ -126,7 +133,8 @@ export class PlayerActions {
             }],
             target: 'self',
             actionCost: 0.5,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, {
             actionId: 'drinkWeakHealthPotion',
             phase: ['preparation', 'battle'],
@@ -145,7 +153,8 @@ export class PlayerActions {
             }],
             target: 'self',
             actionCost: 0.5,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, {
             actionId: 'inspectEnemy',
             phase: ['preparation', 'battle'],
@@ -159,7 +168,8 @@ export class PlayerActions {
             }],
             target: 'enemy',
             actionCost: 0.5,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, {
             actionId: 'meditate',
             phase: ['preparation'],
@@ -177,7 +187,8 @@ export class PlayerActions {
             }],
             target: 'self',
             actionCost: 1,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, {
             actionId: 'accessInventory',
             phase: ['preparation', 'battle'],
@@ -191,12 +202,13 @@ export class PlayerActions {
             }],
             target: 'self',
             actionCost: 0.5,
-            noticeable: 0
+            noticeable: 0,
+            animation: 'castBuff',
         }, ]
     }
 
     getActionById(actionId) {
-        return this.actions.find(action => action.actionId === actionId);
+        return {...this.actions.find(action => action.actionId === actionId)};
     }
 
 }

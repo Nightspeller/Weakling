@@ -63,6 +63,7 @@ interface Action {
     special?: string;
     requires?: string;
     triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
+    animation: 'meleeAttack' | 'castAttack' | 'castBuff';
 }
 
 interface Weapon {

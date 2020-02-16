@@ -4,7 +4,6 @@ export class Adventurer extends GeneralEntity {
     constructor() {
         super();
         this.inventory = [];
-        this.name = 'Adventurer';
     }
     addItemToInventory(passedItem, quantity = 1, slot) {
         let item;
@@ -93,18 +92,13 @@ export class Adventurer extends GeneralEntity {
         this.recalculateCharacteristics();
     }
     startRound(roundType) {
+        super.startRound(roundType);
         if (roundType === 'preparation') {
             this.isAlive = true;
-            this.actionPoints = {
-                physical: 0,
-                magical: 0,
-                misc: 0
-            };
+            this.recalculateCharacteristics();
             if (this.currentCharacteristics.parameters.currentHealth === 0) {
                 this.currentCharacteristics.parameters.currentHealth = 1;
             }
-            this.currentEffects = [];
-            this.recalculateCharacteristics();
         }
         if (this.isAlive) {
             this.actedThisRound = false;
@@ -112,8 +106,6 @@ export class Adventurer extends GeneralEntity {
             this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
             this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
         }
-    }
-    startTurn(scene) {
     }
     freeze() {
     }

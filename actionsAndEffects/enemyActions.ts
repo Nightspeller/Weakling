@@ -16,7 +16,8 @@ export const enemyActions: {[key: string]: Action} = {
         triggers: [
             {conditionId: 'trapped', probability: 0.75, conditionDisplayName: 'Trapped'},
             {conditionId: 'cursedSoil', probability: 0.75, conditionDisplayName: 'Cursed Soil'}
-        ]
+        ],
+        animation: 'meleeAttack',
     },
     enrage: {
         actionId: 'enrage',
@@ -35,6 +36,7 @@ export const enemyActions: {[key: string]: Action} = {
         }],
         target: 'self',
         actionCost: 0.5,
-        noticeable: 1
+        noticeable: 1,
+        animation: 'castBuff',
     },
 };

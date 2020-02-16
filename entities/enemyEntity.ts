@@ -1,11 +1,11 @@
 import GeneralEntity from "./generalEntity.js";
 import {Disposition} from "./disposition";
+import {Adventurer} from "./adventurer";
 
 export default class EnemyEntity extends GeneralEntity{
+    public aiTurn: (disposition: Disposition) => {action: Action, target: Adventurer | EnemyEntity, animation: string};
 
     constructor() {
         super();
     }
-
-    public async aiTurn(disposition: Disposition) {};
 }

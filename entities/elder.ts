@@ -30,7 +30,6 @@ export class Elder extends Adventurer {
                 magicResistance: 10,
             }
         };
-        this.addBaseModifiers();
 
         this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('leather-armor').currentSlot = 'body';

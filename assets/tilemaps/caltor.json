@@ -118,7 +118,7 @@
                  "height":100,
                  "id":17,
                  "name":"Tile Layer 3 Fringe",
-                 "opacity":0.8,
+                 "opacity":1,
                  "properties":[
                         {
                          "name":"fringe",

@@ -13,8 +13,6 @@ export class Disposition {
         });
         this.location = location;
         this.battleEnded = false;
-        this.scene.drawDisposition(this);
-        this.startRound();
     }
     startRound() {
         this.currentPhase = this.currentPhase !== undefined ? 'battle' : 'preparation';
@@ -39,15 +37,7 @@ export class Disposition {
         this.currentCharacter = this.turnOrder[0];
         console.log(`%cTurn started for ${(_a = this.currentCharacter) === null || _a === void 0 ? void 0 : _a.name}`, 'color: green');
         this.log(`Turn started for ${(_b = this.currentCharacter) === null || _b === void 0 ? void 0 : _b.name}`);
-        this.currentCharacter.startTurn(this.scene);
-        if (this.currentCharacter instanceof Adventurer) {
-            this.scene.drawMakingTurnGraphics(this.currentCharacter);
-            this.scene.drawActionPoints(this.currentCharacter);
-            this.scene.drawActionInterface(this);
-        }
-        else {
-            this.currentCharacter.aiTurn(this).then(() => this.endTurn());
-        }
+        this.scene.drawCharStartTurn(this.currentCharacter);
     }
     endTurn() {
         if (this.battleEnded)
@@ -55,6 +45,7 @@ export class Disposition {
         console.log(`%c${this.currentCharacter.name}'s turn ended`, 'color: green');
         this.log(`${this.currentCharacter.name}'s turn ended`);
         this.currentCharacter.endTurn();
+        this.scene.drawCharEndTurn(this.currentCharacter);
         this.calculateTurnOrder();
         if (this.turnOrder.length !== 0) {
             this.startTurn();
@@ -76,9 +67,9 @@ export class Disposition {
                 .sort((a, b) => Math.random() - 1)
                 .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
         }
-        this.scene.drawTurnOrder(this);
+        this.scene.drawTurnOrder(this.turnOrder);
     }
-    shouldContinueFight() {
+    shouldContinueBattle() {
         //what if everybody are dead?
         if (!this.enemyCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party won the battle');
@@ -121,19 +112,21 @@ export class Disposition {
                     }
                 });
                 if (target.currentCharacteristics.parameters.currentHealth <= 0) {
-                    this.scene.playDeathAnimation(target);
+                    this.scene.playAnimation(target, 'death');
                     target.isAlive = false;
-                    this.calculateTurnOrder();
                 }
                 if (source.currentCharacteristics.parameters.currentHealth <= 0) {
-                    this.scene.playDeathAnimation(source);
+                    this.scene.playAnimation(source, 'death');
                     source.isAlive = false;
-                    this.calculateTurnOrder();
                 }
             }
         }
-        this.scene.drawDisposition(this);
-        this.shouldContinueFight();
+        //this.scene.drawDisposition(this);
+        this.shouldContinueBattle();
+        if (!this.currentCharacter.isAlive) {
+            this.endTurn();
+        }
+        this.calculateTurnOrder();
     }
     _checkForTriggers(source, target, action) {
         var _a;
