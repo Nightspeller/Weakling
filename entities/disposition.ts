@@ -52,7 +52,7 @@ export class Disposition {
         this.currentCharacter = this.turnOrder[0];
         console.log(`%cTurn started for ${this.currentCharacter?.name}`, 'color: green');
         this.log(`Turn started for ${this.currentCharacter?.name}`);
-        this.scene.drawCharStartTurn(this.currentCharacter);
+        this.scene.collectActions(this.currentCharacter);
     }
 
     public endTurn() {
@@ -60,7 +60,6 @@ export class Disposition {
         console.log(`%c${this.currentCharacter.name}'s turn ended`, 'color: green');
         this.log(`${this.currentCharacter.name}'s turn ended`);
         this.currentCharacter.endTurn();
-        this.scene.drawCharEndTurn(this.currentCharacter);
         this.calculateTurnOrder();
         if (this.turnOrder.length !== 0) {
             this.startTurn();
@@ -135,7 +134,6 @@ export class Disposition {
                 }
             }
         }
-        //this.scene.drawDisposition(this);
         this.shouldContinueBattle();
         if (!this.currentCharacter.isAlive) {
             this.endTurn();

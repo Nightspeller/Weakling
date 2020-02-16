@@ -69,10 +69,6 @@ export class BattleScene extends Location {
         })
     }
 
-    public drawCharStartTurn(char) {
-        this.collectActions(char);
-    }
-
     public collectActions(char: Adventurer | EnemyEntity) {
         this.redrawAllCharacters();
         if (char instanceof Adventurer) {
@@ -94,15 +90,6 @@ export class BattleScene extends Location {
                 this.disposition.processAction(char, aiResults.target, aiResults.action);
                 this.disposition.endTurn();
             });
-        }
-
-    }
-
-    public drawCharEndTurn(char) {
-        if (char instanceof Adventurer) {
-            const charDrawer = this.charToDrawerMap.get(char);
-            charDrawer.drawMakingTurnGraphics(false);
-            charDrawer.drawActionPoints(false);
         }
     }
 
