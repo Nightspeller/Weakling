@@ -8,10 +8,10 @@ export class Wizard extends EnemyEntity {
             const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
             const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
             if (action === 'enrage') {
-                return { action: enemyActions[action], target: this };
+                return { action: enemyActions[action], targets: [this] };
             }
             else {
-                return { action: enemyActions[action], target: randomAlivePlayer };
+                return { action: enemyActions[action], targets: [randomAlivePlayer] };
             }
         };
         this.spriteParams = { texture: 'wizard-idle', frame: 0, width: 231, height: 190, flip: true };

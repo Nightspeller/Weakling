@@ -53,7 +53,11 @@ export class ActionInterfaceDrawer {
                     button.on('pointerdown', function () {
                         if (action.target === 'self') {
                             self.displayContainer.removeAll(true);
-                            resolve({action: action, target: currentCharacter});
+                            resolve({action: action, targets: [currentCharacter]});
+                        }
+                        if (action.target === 'allEnemies') {
+                            self.displayContainer.removeAll(true);
+                            resolve({action: action, targets: disposition.enemyCharacters.filter(char => char.isAlive)});
                         }
                         if (['enemy', 'friend', 'any', 'party'].includes(action.target)) {
                             console.log(`starting ${action.target} target selection`);
@@ -81,7 +85,7 @@ export class ActionInterfaceDrawer {
                                     potentialTarget.zone.once('pointerdown', () => {
                                         removeOverlay();
                                         self.displayContainer.removeAll(true);
-                                        resolve({action, target: potentialTarget.character})
+                                        resolve({action, targets: [potentialTarget.character]})
                                     })
                                 }
                             });

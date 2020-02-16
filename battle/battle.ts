@@ -78,18 +78,23 @@ export class BattleScene extends Location {
         }
     }
 
-    public async animateAction(currentCharacter, target, action, {attempted, succeeded, triggeredTraps, sourceAlive, targetAlive}: { attempted: boolean; succeeded: boolean; triggeredTraps: Effect[], sourceAlive: boolean; targetAlive: boolean; }) {
+    public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: Effect[], source: Adventurer | EnemyEntity; targets: (Adventurer | EnemyEntity)[]; action: Action }) {
         if (attempted) {
-            await this.playAnimation(currentCharacter, action.animation, target);
-            if (!targetAlive) {
-                this.playAnimation(target, 'death')
+            await this.playAnimation(source, action.animation, targets[0]);
+            Promise.all(targets.map((target, index) => {
+                if (succeeded[index] && targets[index] !== source) {
+                    return this.playAnimation(targets[index], 'hit')
+                }
+            })).then(() => {
+                targets.forEach(target => {
+                    if (!target.isAlive) {
+                        this.playAnimation(target, 'death')
+                    }
+                });
+            });
+            if (!source.isAlive) {
+                this.playAnimation(source, 'death')
             }
-            if (!targetAlive) {
-                this.playAnimation(target, 'death')
-            }
-        }
-        if (succeeded && target !== currentCharacter) {
-            this.playAnimation(target, 'hit')
         }
     }
 

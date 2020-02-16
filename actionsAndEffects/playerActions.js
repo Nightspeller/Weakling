@@ -16,6 +16,25 @@ export class PlayerActions {
                 noticeable: 0,
                 animation: 'meleeAttack',
             }, {
+                actionId: 'dustStorm',
+                phase: ['battle'],
+                type: 'magical',
+                actionName: 'Dust storm',
+                actionDescription: 'One of a few aggressive spells Kobolds can master - used mostly to blind the enemy to run away',
+                effect: [{
+                        effectId: 'physicalDamage',
+                        source: 'dustStorm',
+                        level: 1
+                    }, {
+                        effectId: 'agilityDown',
+                        source: 'dustStorm',
+                        level: 1
+                    }],
+                target: 'allEnemies',
+                actionCost: 1,
+                noticeable: 0,
+                animation: 'meleeAttack',
+            }, {
                 actionId: 'warmUp',
                 phase: ['preparation', 'battle'],
                 type: 'physical',

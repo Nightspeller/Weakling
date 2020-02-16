@@ -8,10 +8,10 @@ export class Boar extends EnemyEntity {
             const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
             const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
             if (action === 'enrage') {
-                return { action: enemyActions[action], target: this };
+                return { action: enemyActions[action], targets: [this] };
             }
             else {
-                return { action: enemyActions[action], target: randomAlivePlayer };
+                return { action: enemyActions[action], targets: [randomAlivePlayer] };
             }
         };
         this.spriteParams = { texture: 'boar-avatar', frame: null, width: 96, height: 96 };

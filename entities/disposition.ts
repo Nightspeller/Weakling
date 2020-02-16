@@ -56,13 +56,13 @@ export class Disposition {
     }
 
     private startAction() {
-        this.scene.collectActions(this.currentCharacter).then(({action, target}: { action: Action | 'END TURN', target: Adventurer | EnemyEntity }) => {
+        this.scene.collectActions(this.currentCharacter).then(({action, targets}: { action: Action | 'END TURN', targets: (Adventurer | EnemyEntity)[] }) => {
             if (action === 'END TURN') {
                 this.endTurn();
             } else {
-                const results = this.processAction(this.currentCharacter, target, action);
+                const results = this.processAction(this.currentCharacter, targets, action);
                 this.calculateTurnOrder();
-                this.scene.animateAction(this.currentCharacter, target, action, results).then(() =>{
+                this.scene.animateAction(results).then(() => {
                     this.shouldContinueBattle();
                     if (!this.battleEnded) {
                         if (!this.currentCharacter.isAlive) {
@@ -73,7 +73,7 @@ export class Disposition {
                             } else {
                                 this.startAction();
                             }
-                        }    
+                        }
                     }
                 });
             }
@@ -124,16 +124,29 @@ export class Disposition {
         }
     }
 
-    public processAction(source: Adventurer | EnemyEntity, target: Adventurer | EnemyEntity, action: Action): { attempted: boolean; succeeded: boolean; triggeredTraps: Effect[], sourceAlive: boolean; targetAlive: boolean; } {
-        console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${target.name}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
-        this.log(`${source.name} tries to perform ${action.actionName} on ${target.name}`);
+    public processAction(
+        source: Adventurer | EnemyEntity,
+        targets: (Adventurer | EnemyEntity)[],
+        action: Action
+    ): {
+        attempted: boolean;
+        succeeded: boolean[];
+        triggeredTraps: Effect[],
+        source: Adventurer | EnemyEntity;
+        targets: (Adventurer | EnemyEntity)[];
+        action: Action;
+    } {
+        const targetsNames = targets.map(target => target.name).join(', ');
+        console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${targetsNames}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
+        this.log(`${source.name} tries to perform ${action.actionName} on ${targetsNames}`);
 
         let actionResults = {
             attempted: false,
-            succeeded: false,
+            succeeded: [],
             triggeredTraps: [],
-            sourceAlive: true,
-            targetAlive: true
+            source: source,
+            targets: targets,
+            action: action
         };
         if (source.actionPoints[action.type] < action.actionCost) {
             console.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
@@ -141,10 +154,10 @@ export class Disposition {
         } else {
             actionResults.attempted = true;
             source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
-            actionResults.triggeredTraps = this._checkForTriggers(source, target, action);
+            actionResults.triggeredTraps = this._checkForTriggers(source, action);
             if (action.actionId === 'accessInventory') {
                 if (source instanceof Adventurer) {
-                    actionResults.succeeded = true;
+                    actionResults.succeeded.push(true);
                     this.scene.switchToScene('Inventory', {}, false);
                 }
             } else {
@@ -153,26 +166,20 @@ export class Disposition {
                     effect.currentLevel = effectDescription.level;
                     effect.durationLeft = effect.baseDuration;
                     effect.source = effectDescription.source;
-                    if (effect.applicationCheck(source, target, action)) {
-                        effect.setModifier(source, target, action);
-                        target.applyEffect(effect);
-                        actionResults.succeeded = true;
-                    }
+                    targets.forEach((target, index) => {
+                        if (effect.applicationCheck(source, target, action)) {
+                            effect.setModifier(source, target, action);
+                            target.applyEffect(effect);
+                            actionResults.succeeded[index] = true;
+                        }
+                    });
                 });
-                if (target.currentCharacteristics.parameters.currentHealth <= 0) {
-                    target.isAlive = false;
-                    actionResults.targetAlive = false;
-                }
-                if (source.currentCharacteristics.parameters.currentHealth <= 0) {
-                    source.isAlive = false;
-                    actionResults.sourceAlive = false
-                }
             }
         }
         return actionResults;
     }
 
-    private _checkForTriggers(source: GeneralEntity, target: GeneralEntity, action: Action) {
+    private _checkForTriggers(source: GeneralEntity, action: Action) {
         let triggeredTraps = [];
         let sourceEffectsLength = source.currentEffects.length;
         for (let index = 0; index < sourceEffectsLength; index++) {

@@ -9,11 +9,11 @@ export class Elder extends Adventurer {
                 strength: 5,
                 agility: 10,
                 intelligence: 15,
-                initiative: Phaser.Math.Between(0, 30)
+                initiative: Phaser.Math.Between(0, 30) + 100
             },
             parameters: {
-                health: 5,
-                currentHealth: 5,
+                health: 50,
+                currentHealth: 50,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -37,7 +37,7 @@ export class Elder extends Adventurer {
         this.addItemToInventory('copper-pieces', 15);
         this.name = 'Elder Guarthh';
 
-        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
 
         this.currentEffects = [];
     }

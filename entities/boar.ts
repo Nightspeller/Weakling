@@ -40,14 +40,14 @@ export class Boar extends EnemyEntity {
         };
     }
 
-    public aiTurn = (disposition: Disposition): {action: Action, target: Adventurer | EnemyEntity} => {
+    public aiTurn = (disposition: Disposition): {action: Action, targets: (Adventurer | EnemyEntity)[]} => {
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
         if (action === 'enrage') {
-            return {action: enemyActions[action], target: this}
+            return {action: enemyActions[action], targets: [this]}
         } else {
-            return {action: enemyActions[action], target: randomAlivePlayer}
+            return {action: enemyActions[action], targets: [randomAlivePlayer]}
         }
     };
 

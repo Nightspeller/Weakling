@@ -105,7 +105,9 @@ export default class GeneralEntity {
                 this.currentCharacteristics[group][subgroup] = this.characteristicsModifiers[group][subgroup].reduce((acc, modifier) => {
                     if (group === 'parameters' && subgroup.includes('current')) {
                         const maxValue = this.currentCharacteristics.parameters[subgroup.split('current')[1].toLowerCase()];
-                        return Phaser.Math.Clamp(acc + modifier.value, 0, maxValue);
+                        const resultValue = Phaser.Math.Clamp(acc + modifier.value, 0, maxValue);
+                        if (subgroup === 'currentHealth' && resultValue === 0) this.isAlive = false;
+                        return resultValue;
                     }
                     return (acc + modifier.value) > 0 ? (acc + modifier.value) : 0;
                 }, 0);
@@ -144,10 +146,11 @@ export default class GeneralEntity {
             }
         });
     }
+
     // Params are not properly displayed on first render
 
     public startRound(roundType: 'preparation' | 'battle') {
-        if (roundType === 'preparation'){
+        if (roundType === 'preparation') {
             this.characteristicsModifiers = {
                 attributes: {
                     strength: [],
