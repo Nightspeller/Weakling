@@ -1,46 +1,34 @@
-import {Player, playerInstance} from "../characters/adventurers/player.js";
-import {OverlayScene} from "./overlayScene.js";
-import Sprite = Phaser.GameObjects.Sprite;
-
-export class InventoryScene extends OverlayScene {
-    private player: Player;
-    private closeCallback: Function;
-    private inventoryDisplayGroup: Phaser.GameObjects.Group;
-
+import { playerInstance } from "../characters/adventurers/player.js";
+import { GeneralOverlayScene } from "./generalOverlayScene.js";
+export class InventoryScene extends GeneralOverlayScene {
     constructor() {
-        super({key: 'Inventory'});
+        super({ key: 'Inventory' });
     }
-
-    public init({opts, closeCallback, prevScene}: { opts?: OverlaySceneOptions, closeCallback?: Function, prevScene: string }) {
+    init({ opts, closeCallback, prevScene }) {
         this.player = playerInstance;
-        this.opts = {backgroundAlpha: 0.8};
-        this.opts = {...this.opts, ...opts};
+        this.opts = { backgroundAlpha: 0.8 };
+        this.opts = { ...this.opts, ...opts };
         this.closeCallback = closeCallback;
         this.parentSceneKey = prevScene;
     }
-
-    public preload() {
-
+    preload() {
     }
-
-    public create() {
+    create() {
         this.prepareOverlay(this.parentSceneKey, this.opts);
         this.inventoryDisplayGroup = this.add.group();
         this.showInventory();
-        this.events.on('wake', (scene, {opts, closeCallback, prevScene}) => {
+        this.events.on('wake', (scene, { opts, closeCallback, prevScene }) => {
             this.parentSceneKey = prevScene;
-            this.opts = {...this.opts, ...opts};
+            this.opts = { ...this.opts, ...opts };
             this.closeCallback = closeCallback;
             this.showInventory();
-        })
+        });
     }
-
-    public showInventory() {
+    showInventory() {
         this._drawInventory();
         this._enableDragAndDrop();
     }
-
-    private _enableDragAndDrop() {
+    _enableDragAndDrop() {
         if (!this.input.eventNames().includes('drop')) {
             this.input.on('drop', (pointer, object, target) => {
                 const currentItemSlotName = object.name.split('image')[0];
@@ -48,8 +36,9 @@ export class InventoryScene extends OverlayScene {
                 const movedItem = this.player.inventory.find(item => item.currentSlot === currentItemSlotName);
                 if (movedItem.slot.includes(targetSlotName) || targetSlotName.includes('backpack') || (movedItem.slot.includes('quickSlot') && targetSlotName.includes('quickSlot'))) {
                     this._placeItemInSlot(currentItemSlotName, targetSlotName);
-                } else {
-                    const originalSlot = this.inventoryDisplayGroup.getChildren().find(slot => slot.name === currentItemSlotName) as Sprite;
+                }
+                else {
+                    const originalSlot = this.inventoryDisplayGroup.getChildren().find(slot => slot.name === currentItemSlotName);
                     this.tweens.add({
                         targets: object,
                         x: originalSlot.x + 32,
@@ -61,20 +50,19 @@ export class InventoryScene extends OverlayScene {
             });
         }
     }
-
-    private _placeItemInSlot(currentItemSlotName, targetSlotName) {
+    _placeItemInSlot(currentItemSlotName, targetSlotName) {
+        var _a;
         // TODO: optimize these cycles!!!
         const displayObjects = this.inventoryDisplayGroup.getChildren();
-        const targetSlot = displayObjects.find(slot => slot.name === targetSlotName) as Sprite;
+        const targetSlot = displayObjects.find(slot => slot.name === targetSlotName);
         const targetSlotX = targetSlot.x;
         const targetSlotY = targetSlot.y;
         const movedItem = this.player.inventory.find(item => item.currentSlot === currentItemSlotName);
         const movedItemImage = displayObjects.find(item => item.name === currentItemSlotName + 'image');
         const itemInTargetSlot = this.player.inventory.find(item => item.currentSlot === targetSlotName);
-
         if (itemInTargetSlot !== undefined) {
             const itemInTargetSlotImage = displayObjects.find(item => item.name === targetSlotName + 'image');
-            const originalSlot = displayObjects.find(slot => slot.name === currentItemSlotName) as Sprite;
+            const originalSlot = displayObjects.find(slot => slot.name === currentItemSlotName);
             const originalSlotX = originalSlot.x;
             const originalSlotY = originalSlot.y;
             this.tweens.add({
@@ -85,7 +73,7 @@ export class InventoryScene extends OverlayScene {
                 duration: 500
             });
             this.player.putItemInSlot(itemInTargetSlot, currentItemSlotName);
-            itemInTargetSlotImage.setName(currentItemSlotName + 'image')
+            itemInTargetSlotImage.setName(currentItemSlotName + 'image');
         }
         this.tweens.add({
             targets: movedItemImage,
@@ -98,18 +86,19 @@ export class InventoryScene extends OverlayScene {
         movedItemImage.setName(targetSlotName + 'image');
         if (targetSlotName === 'belt' || currentItemSlotName === 'belt') {
             if (targetSlotName === 'belt') {
-                this._adjustQuickSlots(movedItem.specifics.quickSlots || 0, itemInTargetSlot?.specifics.quickSlots || 0);
-            } else {
+                this._adjustQuickSlots(movedItem.specifics.quickSlots || 0, ((_a = itemInTargetSlot) === null || _a === void 0 ? void 0 : _a.specifics.quickSlots) || 0);
+            }
+            else {
                 if (itemInTargetSlot) {
                     this._adjustQuickSlots(itemInTargetSlot.specifics.quickSlots || 0, movedItem.specifics.quickSlots);
-                } else {
+                }
+                else {
                     this._adjustQuickSlots(0, movedItem.specifics.quickSlots);
                 }
             }
         }
     }
-
-    private _drawInventory() {
+    _drawInventory() {
         this.inventoryDisplayGroup.clear(true, true);
         this._drawDoll();
         this._drawQuickSlots();
@@ -117,52 +106,48 @@ export class InventoryScene extends OverlayScene {
         this._drawEquippedItems();
         this._drawCharacteristics();
     }
-
-    private _drawDoll() {
+    _drawDoll() {
         /*        const drawZone = (zone) => {
                     this.inventoryDisplayGroup.add(this.add.graphics()
                         .fillStyle(0xff0000, 1)
                         .fillRect(zone.x + zone.input.hitArea.x, zone.y + zone.input.hitArea.y, zone.input.hitArea.width, zone.input.hitArea.height));
                 };*/
-
         this.inventoryDisplayGroup.create(this.opts.windowX + 16, this.opts.windowY + 20, 'doll')
             .setOrigin(0, 0).setScale(0.75).setScrollFactor(0).setDepth(this.opts.baseDepth);
         const rightHand = this.add.zone(this.opts.windowX + 16, this.opts.windowY + 20 + 58, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('rightHand');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('rightHand');
         const leftHand = this.add.zone(this.opts.windowX + 281, this.opts.windowY + 246, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('leftHand');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('leftHand');
         const belt = this.add.zone(this.opts.windowX + 202, this.opts.windowY + 246, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('belt');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('belt');
         const head = this.add.zone(this.opts.windowX + 202, this.opts.windowY + 20, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('head');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('head');
         const neck = this.add.zone(this.opts.windowX + 202, this.opts.windowY + 90, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('neck');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('neck');
         const backpack = this.add.zone(this.opts.windowX + 357, this.opts.windowY + 20, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('bag');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('bag');
         const ringLeft = this.add.zone(this.opts.windowX + 357, this.opts.windowY + 246, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('ringLeft');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('ringLeft');
         const ringRight = this.add.zone(this.opts.windowX + 86, this.opts.windowY + 20 + 58, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('ringRight');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('ringRight');
         const body = this.add.zone(this.opts.windowX + 202, this.opts.windowY + 246 - 77, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('body');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('body');
         const cape = this.add.zone(this.opts.windowX + 287, this.opts.windowY + 246 + 80, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('cape');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('cape');
         const gloves = this.add.zone(this.opts.windowX + 16, this.opts.windowY + 78 + 80, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('gloves');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('gloves');
         const tail = this.add.zone(this.opts.windowX + 94, this.opts.windowY + 246 + 86, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('tail');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('tail');
         const pants = this.add.zone(this.opts.windowX + 208, this.opts.windowY + 246 + 82, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('pants');
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('pants');
         const boots = this.add.zone(this.opts.windowX + 210, this.opts.windowY + 246 + 162, 66, 66)
-            .setOrigin(0, 0).setScrollFactor(0).setInteractive({dropZone: true}).setName('boots');
-
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ dropZone: true }).setName('boots');
         const slotNameText = this.add.text(0, 0, '', {
             font: '16px monospace',
             color: '#000000',
             backgroundColor: '#f0d191',
-            padding: {left: 2}
+            padding: { left: 2 }
         }).setScrollFactor(0).setDepth(this.opts.baseDepth + 1).setVisible(false);
-
         const slots = [rightHand, leftHand, belt, head, neck, backpack, ringLeft, ringRight, body, cape, gloves, tail, pants, boots];
         slots.forEach(slot => {
             slot.on('pointerover', () => {
@@ -173,13 +158,12 @@ export class InventoryScene extends OverlayScene {
         });
         this.inventoryDisplayGroup.addMultiple(slots);
     }
-
-    private _drawQuickSlots() {
-        const additionalQuickSlotsNumber = this.player.inventory.find(item => item.currentSlot === "belt")?.specifics.quickSlots || 0;
+    _drawQuickSlots() {
+        var _a;
+        const additionalQuickSlotsNumber = ((_a = this.player.inventory.find(item => item.currentSlot === "belt")) === null || _a === void 0 ? void 0 : _a.specifics.quickSlots) || 0;
         this._adjustQuickSlots(additionalQuickSlotsNumber, -1);
     }
-
-    private _adjustQuickSlots(newQuickSlotsNumber, oldQuickSlotsNumber) {
+    _adjustQuickSlots(newQuickSlotsNumber, oldQuickSlotsNumber) {
         // todo: solve inventory overflow!!!
         const displayObjects = this.inventoryDisplayGroup.getChildren();
         if (newQuickSlotsNumber < oldQuickSlotsNumber) {
@@ -208,12 +192,11 @@ export class InventoryScene extends OverlayScene {
                 this.inventoryDisplayGroup
                     .create(this.opts.windowX + 16 + 64 * i, this.opts.windowY + this.opts.windowHeight - 64 - 16, 'inventory-slot')
                     .setOrigin(0, 0).setDisplaySize(64, 64).setName(`quickSlot${i}`).setScrollFactor(0).setDepth(this.opts.baseDepth)
-                    .setInteractive({dropZone: true});
+                    .setInteractive({ dropZone: true });
             }
         }
     }
-
-    private _drawBackpack() {
+    _drawBackpack() {
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 5; j++) {
                 const slotX = this.opts.windowX + this.opts.windowWidth - 20 - 64 * 5 + 64 * i;
@@ -221,16 +204,15 @@ export class InventoryScene extends OverlayScene {
                 this.inventoryDisplayGroup
                     .create(slotX, slotY, 'inventory-slot')
                     .setOrigin(0, 0).setDisplaySize(64, 64).setName(`backpack${i}_${j}`).setScrollFactor(0).setDepth(this.opts.baseDepth)
-                    .setInteractive({dropZone: true});
+                    .setInteractive({ dropZone: true });
             }
         }
     }
-
-    private _drawEquippedItems() {
+    _drawEquippedItems() {
         const scene = this;
         const displayObjects = this.inventoryDisplayGroup.getChildren();
         this.player.inventory.forEach(item => {
-            const slotImage = displayObjects.find(slot => slot.name === item.currentSlot) as Sprite;
+            const slotImage = displayObjects.find(slot => slot.name === item.currentSlot);
             const container = this.add.container(slotImage.x + 32, slotImage.y + 32);
             const image = this.add.image(0, 0, item.sprite.key, item.sprite.frame).setDisplaySize(64, 64);
             container.add([image]);
@@ -250,7 +232,6 @@ export class InventoryScene extends OverlayScene {
                 .setName(item.currentSlot + 'image').setDepth(this.opts.baseDepth + 1)
                 .setInteractive();
             this.input.setDraggable(container);
-
             container.on('drag', function (pointer, dragX, dragY) {
                 this.x = dragX;
                 this.y = dragY;
@@ -269,12 +250,10 @@ export class InventoryScene extends OverlayScene {
                 }
                 scene._drawCharacteristics();
             });
-
             this.inventoryDisplayGroup.add(container);
-        })
+        });
     }
-
-    private _drawCharacteristics() {
+    _drawCharacteristics() {
         const textX = this.opts.windowX + this.opts.windowWidth - 20 - 64 * 5;
         const textY = this.opts.windowY + 20 + 64 * 5 + 20;
         const text = `${this.player.name}
@@ -289,10 +268,11 @@ Dodge: ${this.player.currentCharacteristics.defences.dodge}
 Resistance: 🔥${this.player.currentCharacteristics.defences.fireResistance}❄${this.player.currentCharacteristics.defences.coldResistance}⚡${this.player.currentCharacteristics.defences.electricityResistance}☣${this.player.currentCharacteristics.defences.acidResistance}☠${this.player.currentCharacteristics.defences.poisonResistance}✨${this.player.currentCharacteristics.defences.magicResistance}
 Initiative: ${this.player.currentCharacteristics.attributes.initiative}
 Damage: ${this.player.getAttackDamage()}`;
-        const textObject = this.inventoryDisplayGroup.getChildren().find(child => child.name === 'characteristicsText') as Phaser.GameObjects.Text;
+        const textObject = this.inventoryDisplayGroup.getChildren().find(child => child.name === 'characteristicsText');
         if (textObject) {
             textObject.setText(text);
-        } else {
+        }
+        else {
             const characteristicsText = this.add.text(textX, textY, text, {
                 font: '14px monospace',
                 color: '#000000',
@@ -301,3 +281,4 @@ Damage: ${this.player.getAttackDamage()}`;
         }
     }
 }
+//# sourceMappingURL=inventory.js.map

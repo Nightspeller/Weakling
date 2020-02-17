@@ -1,4 +1,4 @@
-export class OverlayScene extends Phaser.Scene {
+export class GeneralOverlayScene extends Phaser.Scene {
     constructor({ key: key }) {
         super({ key: key });
     }
@@ -57,4 +57,4 @@ export class OverlayScene extends Phaser.Scene {
         this.scene.sleep(this.scene.key);
     }
 }
-//# sourceMappingURL=overlayScene.js.map
+//# sourceMappingURL=generalOverlayScene.js.map

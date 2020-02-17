@@ -1,7 +1,7 @@
 import {Player, playerInstance} from "../characters/adventurers/player.js";
-import {OverlayScene} from "./overlayScene.js";
+import {GeneralOverlayScene} from "./generalOverlayScene.js";
 
-export class CharacterPickerScene extends OverlayScene {
+export class CharacterPickerScene extends GeneralOverlayScene {
     private player: Player;
 
     constructor() {

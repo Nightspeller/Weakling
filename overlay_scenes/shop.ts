@@ -1,41 +1,57 @@
-import { OverlayScene } from "./overlayScene.js";
-export class ShopScene extends OverlayScene {
+import {Player, playerInstance} from "../characters/adventurers/player";
+import {GeneralOverlayScene} from "./generalOverlayScene.js";
+import Npc from "../entities/npc.js";
+import Item from "../entities/item.js";
+
+export class ShopScene extends GeneralOverlayScene {
+    private player: Player;
+    private trader: Npc;
+    private playerItemContainers: Phaser.GameObjects.Container;
+    private traderItemContainers: Phaser.GameObjects.Container;
+
     constructor() {
-        super({ key: 'Shop' });
+        super({key: 'Shop'});
     }
-    init({ player, trader }) {
+
+    public init({player, trader}) {
         this.player = player;
         this.trader = trader;
     }
-    preload() {
+
+    public preload() {
         this.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
     }
-    create() {
-        this.prepareOverlay('Caltor', { windowX: 0, windowY: 0 });
+
+    public create() {
+        this.prepareOverlay('Caltor', {windowX: 0, windowY: 0});
         this._drawItems();
         this.cameras.main.setViewport(16, 16, 800 - 32, 640 - 32);
-        this.events.on('wake', (scene, { player, trader }) => {
+        this.events.on('wake', (scene, {player, trader}) => {
             this.player = player;
             this.trader = trader;
             this._drawItems();
-        });
+        })
     }
-    _drawItems() {
+
+    private _drawItems() {
         if (this.traderItemContainers && this.playerItemContainers) {
             this.playerItemContainers.destroy(true);
             this.traderItemContainers.destroy(true);
         }
         this.playerItemContainers = this.add.container(16, 16).setDepth(this.opts.baseDepth);
         this.traderItemContainers = this.add.container(16 + 360 + 16, 16).setDepth(this.opts.baseDepth);
+
         const playerItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.player.inventory.length * 64);
         const traderItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.trader.inventory.length * 64);
         this.playerItemContainers.setInteractive(playerItemContainersShape, Phaser.Geom.Rectangle.Contains);
         this.traderItemContainers.setInteractive(traderItemContainersShape, Phaser.Geom.Rectangle.Contains);
+
         this.player.inventory.forEach((item, index) => this._drawItemContainer(item, 0, 64 * index, true));
         this.trader.inventory.forEach((item, index) => this._drawItemContainer(item, 0, 64 * index, false));
         this.input.setTopOnly(false);
         const playerOverflow = Phaser.Math.Clamp((this.player.inventory.length - 9) * 64, 0, (this.player.inventory.length - 9) * 64);
         const traderOverflow = Phaser.Math.Clamp((this.trader.inventory.length - 9) * 64, 0, (this.trader.inventory.length - 9) * 64);
+
         this.playerItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
             this.y -= deltaY * 5;
             this.y = Phaser.Math.Clamp(this.y, 16 - playerOverflow, 16);
@@ -45,9 +61,12 @@ export class ShopScene extends OverlayScene {
             this.y = Phaser.Math.Clamp(this.y, 16 - traderOverflow, 16);
         });
     }
-    _drawItemContainer(item, x, y, toSell) {
+
+    private _drawItemContainer(item: Item, x: number, y: number, toSell: boolean) {
+
         const containerShape = new Phaser.Geom.Rectangle(0, 0, 360, 64);
         const container = this.add.container(x, y).setInteractive(containerShape, Phaser.Geom.Rectangle.Contains);
+
         const slotImage = this.add.image(0, 0, 'inventory-slot').setDisplaySize(64, 64).setOrigin(0, 0);
         const itemImage = this.add.image(0, 0, item.sprite.key, item.sprite.frame).setDisplaySize(64, 64).setOrigin(0, 0);
         container.add([slotImage, itemImage]);
@@ -69,8 +88,7 @@ export class ShopScene extends OverlayScene {
         });
         let price = toSell ? item.sellPrice : item.buyPrice;
         let sellText = `${price.toString()} CP`;
-        if (item.quantity > 1)
-            sellText = `${(price * item.quantity).toString()} CP (${item.quantity} X ${price} CP)`;
+        if (item.quantity > 1) sellText = `${(price * item.quantity).toString()} CP (${item.quantity} X ${price} CP)`;
         const priceText = this.add.text(64, 16, sellText, {
             color: 'black',
             padding: {
@@ -85,19 +103,17 @@ export class ShopScene extends OverlayScene {
         container.setData('focused', false);
         container.on('pointerdown', () => {
             if (!container.getData('focused')) {
-                let focusedContainer = this.playerItemContainers.getAll().find(itemContainer => itemContainer.getData('focused'));
-                if (!focusedContainer)
-                    focusedContainer = this.traderItemContainers.getAll().find(itemContainer => itemContainer.getData('focused'));
+                let focusedContainer = this.playerItemContainers.getAll().find(itemContainer => itemContainer.getData('focused')) as Phaser.GameObjects.Container;
+                if (!focusedContainer) focusedContainer = this.traderItemContainers.getAll().find(itemContainer => itemContainer.getData('focused')) as Phaser.GameObjects.Container;
                 if (focusedContainer) {
                     focusedContainer.setData('focused', false);
-                    focusedContainer.getByName('containerFocusedGraphics').setVisible(false);
+                    (focusedContainer.getByName('containerFocusedGraphics') as Phaser.GameObjects.Container).setVisible(false);
                     focusedContainer.setDepth(this.opts.baseDepth);
                 }
                 container.setData('focused', true);
                 containerFocusedGraphics.setVisible(true);
                 container.setDepth(this.opts.baseDepth + 1);
-            }
-            else {
+            } else {
                 container.setData('focused', false);
                 containerFocusedGraphics.setVisible(false);
                 container.setDepth(this.opts.baseDepth);
@@ -107,7 +123,8 @@ export class ShopScene extends OverlayScene {
         });
         toSell ? this.playerItemContainers.add(container) : this.traderItemContainers.add(container);
     }
-    _transferItem(item, selling) {
+
+    private _transferItem(item: Item, selling: boolean) {
         if (selling) {
             const tradersMoney = this.trader.inventory.find(item => item.itemId === 'copper-pieces');
             if (tradersMoney.quantity >= item.sellPrice) {
@@ -116,8 +133,7 @@ export class ShopScene extends OverlayScene {
                 this.trader.removeItemFromInventory(tradersMoney, item.sellPrice);
                 this.trader.addItemToInventory(item.itemId);
             }
-        }
-        else {
+        } else {
             const playerMoney = this.player.inventory.find(item => item.itemId === 'copper-pieces');
             if (playerMoney.quantity >= item.buyPrice) {
                 this.player.addItemToInventory(item.itemId);
@@ -126,6 +142,6 @@ export class ShopScene extends OverlayScene {
                 this.trader.removeItemFromInventory(item);
             }
         }
+
     }
 }
-//# sourceMappingURL=shop.js.map

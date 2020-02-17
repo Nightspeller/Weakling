@@ -1,4 +1,4 @@
-export class OverlayScene extends Phaser.Scene {
+export class GeneralOverlayScene extends Phaser.Scene {
     public opts: OverlaySceneOptions;
     protected parentSceneKey: string;
 

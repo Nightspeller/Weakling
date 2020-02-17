@@ -1,6 +1,6 @@
 import { playerInstance } from "../characters/adventurers/player.js";
-import { OverlayScene } from "./overlayScene.js";
-export class DialogScene extends OverlayScene {
+import { GeneralOverlayScene } from "./generalOverlayScene.js";
+export class DialogScene extends GeneralOverlayScene {
     constructor() {
         super({ key: 'Dialog' });
     }

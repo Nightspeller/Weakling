@@ -1,6 +1,6 @@
 import { playerInstance } from "../characters/adventurers/player.js";
-import { OverlayScene } from "./overlayScene.js";
-export class CharacterPickerScene extends OverlayScene {
+import { GeneralOverlayScene } from "./generalOverlayScene.js";
+export class CharacterPickerScene extends GeneralOverlayScene {
     constructor() {
         super({ key: 'CharacterPicker' });
     }

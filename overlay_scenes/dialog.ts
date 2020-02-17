@@ -1,7 +1,7 @@
 import {Player, playerInstance} from "../characters/adventurers/player.js";
-import {OverlayScene} from "./overlayScene.js";
+import {GeneralOverlayScene} from "./generalOverlayScene.js";
 
-export class DialogScene extends OverlayScene {
+export class DialogScene extends GeneralOverlayScene {
     private timedEvent: Phaser.Time.TimerEvent;
     private dialogDisplayGroup: Phaser.GameObjects.Group;
     private closeCallback: Function;
