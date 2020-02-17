@@ -10,7 +10,7 @@ export class Wizard extends EnemyEntity {
         super();
         this.spriteParams = {texture: 'wizard-idle', frame: 0, width: 231, height: 190, flip: true};
         this.level = 1;
-        this.availableActions = ['wildRush', 'enrage'];
+        this.availableActions = ['magicMissile', 'swiftMind'];
         this.name = 'Wizard';
         this.baseCharacteristics = {
             attributes: {
@@ -48,8 +48,8 @@ export class Wizard extends EnemyEntity {
     public aiTurn = (disposition: Disposition): {action: Action, targets: (Adventurer | EnemyEntity)[]} => {
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-        const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
-        if (action === 'enrage') {
+        const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceUp') ? 'magicMissile' : 'swiftMind';
+        if (action === 'swiftMind') {
             return {action: enemyActions[action], targets: [this]}
         } else {
             return {action: enemyActions[action], targets: [randomAlivePlayer]}
@@ -59,10 +59,10 @@ export class Wizard extends EnemyEntity {
     public startRound(roundType: 'preparation' | 'battle') {
         super.startRound(roundType);
         if (roundType === 'preparation') {
-            this.actionPoints = {physical: 1, magical: 0, misc: 0};
+            this.actionPoints = {physical: 0, magical: 1, misc: 0};
         } else {
             this.actedThisRound = false;
-            this.actionPoints.physical + 1 <= 3 ? this.actionPoints.physical++ : this.actionPoints.physical = 3;
+            this.actionPoints.magical + 1 <= 3 ? this.actionPoints.magical++ : this.actionPoints.magical = 3;
             this.actionPoints.misc + 1 <= 3 ? this.actionPoints.misc++ : this.actionPoints.misc = 3;
         }
     }

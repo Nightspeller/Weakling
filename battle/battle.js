@@ -119,9 +119,14 @@ export class BattleScene extends Location {
                 .on('pointerout', () => charNameText.setVisible(false)));
         });
     }
-    exitBattle() {
+    exitBattle(isPartyWon) {
         console.log('Switching from the battle scene to ', this.prevSceneKey);
-        this.scene.run(this.prevSceneKey, { defeatedEnemy: this.enemyName });
+        if (isPartyWon === true) {
+            this.scene.run(this.prevSceneKey, { defeatedEnemy: this.enemyName });
+        }
+        else {
+            this.scene.run(this.prevSceneKey);
+        }
         this.scene.stop('Battle');
     }
     update() {

@@ -293,6 +293,51 @@ export const effects = {
             };
         }
     },
+    magicalDamage: {
+        effectId: 'magicalDamage',
+        name: null,
+        description: null,
+        type: 'direct',
+        targetCharacteristic: 'parameters.currentHealth',
+        baseDuration: null,
+        durationLeft: null,
+        currentLevel: null,
+        source: null,
+        statusImage: { texture: 'icons', frame: 0 },
+        applicationCheck: (source, target, action) => {
+            let hitChance;
+            const intelligence = source.currentCharacteristics.attributes.intelligence;
+            const magicResistance = target.currentCharacteristics.defences.magicResistance;
+            if (intelligence > magicResistance * 1.5) {
+                hitChance = 90;
+            }
+            else if (intelligence < magicResistance * 0.5) {
+                hitChance = 10;
+            }
+            else {
+                hitChance = Math.round(80 * (intelligence / magicResistance)) - 30;
+            }
+            const hitRoll = Phaser.Math.Between(0, 100);
+            if (hitChance >= hitRoll) {
+                console.log(`%cHit!   %c${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
+                log(`Hit!   ${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+            }
+            else {
+                console.log(`%cMiss.. %c${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
+                log(`Miss.. ${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+            }
+            return hitChance >= hitRoll;
+        },
+        setModifier: function (source, target, action) {
+            const damage = source.getAttackDamage();
+            console.log(`%c${damage}%c damage is done.`, 'color: red', 'color: auto');
+            log(`${damage} damage is done.`);
+            this.modifier = {
+                type: 'value',
+                value: -damage
+            };
+        }
+    },
     restoreManna: {
         effectId: 'restoreManna',
         name: 'Restore manna',

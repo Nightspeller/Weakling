@@ -113,13 +113,13 @@ export class Disposition {
         if (!this.enemyCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party won the battle');
             this.log('Adventurer party won the battle');
-            this.scene.exitBattle();
+            this.scene.exitBattle(true);
             this.battleEnded = true;
         }
         if (!this.playerCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party lost the battle');
             this.log('Adventurer party lost the battle');
-            this.scene.exitBattle();
+            this.scene.exitBattle(false);
             this.battleEnded = true;
         }
     }

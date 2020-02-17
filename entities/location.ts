@@ -1,5 +1,6 @@
 import {Player, playerInstance} from "../entities/player.js";
 import Item from "./item.js";
+import {GAME_W} from "../config/constants.js";
 
 export class Location extends Phaser.Scene {
     public player: Player;
@@ -233,11 +234,11 @@ export class Location extends Phaser.Scene {
     public showOpenInventoryIcon(opts?: Object, closeCallback?: Function) {
         const inventoryGraphics = this.add.graphics().setScrollFactor(0)
             .fillStyle(0xf0d191, 0.8)
-            .fillRect(+this.sys.game.config.width - 32 - 64, 32, 64, 64)
+            .fillRect(+GAME_W - 32 - 64, 32, 64, 64)
             .lineStyle(3, 0x907748)
-            .strokeRect(+this.sys.game.config.width - 32 - 64, 32, 64, 64)
+            .strokeRect(+GAME_W - 32 - 64, 32, 64, 64)
             .setDepth(10 - 1);
-        const inventoryIconImage = this.add.image(+this.sys.game.config.width - 32 - 64, 32, 'bag-green')
+        const inventoryIconImage = this.add.image(+GAME_W - 32 - 64, 32, 'bag-green')
             .setOrigin(0, 0,).setScrollFactor(0).setScale(2).setInteractive().setDepth(10 - 1);
         inventoryIconImage.on('pointerdown', () => {
             this.switchToScene('Inventory', {opts, closeCallback}, false);
