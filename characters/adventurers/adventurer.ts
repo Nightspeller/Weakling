@@ -77,7 +77,7 @@ export class Adventurer extends GeneralCharacter {
     public getAttackDamage() {
         const rightHandDamage = this.inventory.find(item => item.currentSlot === 'rightHand')?.specifics?.damage || 1;
         const leftHandDamage = this.inventory.find(item => item.currentSlot === 'leftHand')?.specifics?.damage / 2 || 0;
-        return rightHandDamage + leftHandDamage;
+        return Math.round(rightHandDamage + leftHandDamage);
     }
 
     public applyItems() {

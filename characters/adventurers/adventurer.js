@@ -69,7 +69,7 @@ export class Adventurer extends GeneralCharacter {
         var _a, _b, _c, _d;
         const rightHandDamage = ((_b = (_a = this.inventory.find(item => item.currentSlot === 'rightHand')) === null || _a === void 0 ? void 0 : _a.specifics) === null || _b === void 0 ? void 0 : _b.damage) || 1;
         const leftHandDamage = ((_d = (_c = this.inventory.find(item => item.currentSlot === 'leftHand')) === null || _c === void 0 ? void 0 : _c.specifics) === null || _d === void 0 ? void 0 : _d.damage) / 2 || 0;
-        return rightHandDamage + leftHandDamage;
+        return Math.round(rightHandDamage + leftHandDamage);
     }
     applyItems() {
         Object.entries(this.characteristicsModifiers).forEach(([group, value]) => {
