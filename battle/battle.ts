@@ -79,6 +79,7 @@ export class BattleScene extends Location {
     }
 
     public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: Effect[], source: Adventurer | EnemyEntity; targets: (Adventurer | EnemyEntity)[]; action: Action }) {
+        this.charToDrawerMap.get(source).drawActionPoints(true);
         if (attempted) {
             await this.playAnimation(source, action.animation, targets[0]);
             Promise.all(targets.map((target, index) => {
