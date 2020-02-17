@@ -11,6 +11,8 @@ To run it locally, just checkout from the repo and use the web server of your ch
 
 To compile it, you will need to do npm install and use typescript compiler to work with (and, well, compile) .ts files.
 
+If you are interested in learning Phaser 3, here is the general article where I covered some of resources I used to learn Phaser, as well as ones I use for the reference: https://telegra.ph/Phaser-3-Materials-and-learning-02-12
+
 If you want to know more about the development process, or even wish to join me, feel free to check out Trello board for more information:
 https://trello.com/b/71vXonBk/weakling
 
