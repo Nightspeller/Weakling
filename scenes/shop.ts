@@ -1,4 +1,4 @@
-import {Player, playerInstance} from "../entities/player";
+import {Player, playerInstance} from "../characters/adventurers/player";
 import {OverlayScene} from "./overlayScene.js";
 import Npc from "../entities/npc.js";
 import Item from "../entities/item.js";

@@ -1,20 +1,20 @@
-import {Player, playerInstance} from "../entities/player.js";
+import {Player, playerInstance} from "../characters/adventurers/player.js";
 import {PlayerActions} from "../actionsAndEffects/playerActions.js";
-import {Disposition} from "../entities/disposition.js";
-import GeneralEntity from "../entities/generalEntity.js";
+import {Disposition} from "./disposition.js";
+import GeneralCharacter from "../characters/generalCharacter.js";
 import {ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH} from "../config/constants.js";
 import Rectangle = Phaser.Geom.Rectangle;
-import {Location} from "../entities/location.js";
+import {GeneralLocation} from "../locations/generalLocation.js";
 import {CharacterDrawer} from "./characterDrawer.js";
-import {Adventurer} from "../entities/adventurer.js";
-import EnemyEntity from "../entities/enemyEntity";
+import {Adventurer} from "../characters/adventurers/adventurer.js";
+import GeneralEnemy from "../characters/enemies/generalEnemy";
 import {ActionInterfaceDrawer} from "./actionInterfaceDrawer.js";
 
-export class BattleScene extends Location {
+export class BattleScene extends GeneralLocation {
     private disposition: Disposition;
     private turnOrderDisplayContainer: Phaser.GameObjects.Container;
     private enemies: string[];
-    charToDrawerMap: Map<GeneralEntity, CharacterDrawer>;
+    charToDrawerMap: Map<GeneralCharacter, CharacterDrawer>;
     private characterInfoGroup: Phaser.GameObjects.Group;
     private effectInformationGroup: Phaser.GameObjects.Group;
     private enemyName: string;
@@ -69,7 +69,7 @@ export class BattleScene extends Location {
         })
     }
 
-    public collectActions(char: Adventurer | EnemyEntity) {
+    public collectActions(char: Adventurer | GeneralEnemy) {
         this.redrawAllCharacters();
         if (char instanceof Adventurer) {
             return this.actionInterfaceDrawer.drawActionInterface()
@@ -78,20 +78,19 @@ export class BattleScene extends Location {
         }
     }
 
-    public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: Effect[], source: Adventurer | EnemyEntity; targets: (Adventurer | EnemyEntity)[]; action: Action }) {
+    public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: Effect[], source: Adventurer | GeneralEnemy; targets: (Adventurer | GeneralEnemy)[]; action: Action }) {
         this.charToDrawerMap.get(source).drawActionPoints(true);
         if (attempted) {
             await this.playAnimation(source, action.animation, targets[0]);
-            Promise.all(targets.map((target, index) => {
+            await Promise.all(targets.map((target, index) => {
                 if (succeeded[index] && targets[index] !== source) {
                     return this.playAnimation(targets[index], 'hit')
                 }
-            })).then(() => {
-                targets.forEach(target => {
-                    if (!target.isAlive) {
-                        this.playAnimation(target, 'death')
-                    }
-                });
+            }));
+            targets.forEach(target => {
+                if (!target.isAlive) {
+                    this.playAnimation(target, 'death')
+                }
             });
             if (!source.isAlive) {
                 this.playAnimation(source, 'death')
@@ -99,7 +98,7 @@ export class BattleScene extends Location {
         }
     }
 
-    public async playAnimation(char: Adventurer | EnemyEntity, animation: string, target?) {
+    public async playAnimation(char: Adventurer | GeneralEnemy, animation: string, target?) {
         const charDrawer = this.charToDrawerMap.get(char);
         const targetDrawer = this.charToDrawerMap.get(target);
         switch (animation) {
@@ -121,7 +120,7 @@ export class BattleScene extends Location {
         }
     }
 
-    public drawTurnOrder(turnOrder: (Adventurer | EnemyEntity)[]) {
+    public drawTurnOrder(turnOrder: (Adventurer | GeneralEnemy)[]) {
         this.turnOrderDisplayContainer.removeAll(true);
         this.turnOrderDisplayContainer.add(this.add.graphics()
             .fillStyle(0xf0d191, 0.5)

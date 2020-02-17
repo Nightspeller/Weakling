@@ -1,10 +1,10 @@
-import { playerInstance } from "../entities/player.js";
-import { Disposition } from "../entities/disposition.js";
-import { Location } from "../entities/location.js";
+import { playerInstance } from "../characters/adventurers/player.js";
+import { Disposition } from "./disposition.js";
+import { GeneralLocation } from "../locations/generalLocation.js";
 import { CharacterDrawer } from "./characterDrawer.js";
-import { Adventurer } from "../entities/adventurer.js";
+import { Adventurer } from "../characters/adventurers/adventurer.js";
 import { ActionInterfaceDrawer } from "./actionInterfaceDrawer.js";
-export class BattleScene extends Location {
+export class BattleScene extends GeneralLocation {
     constructor() {
         super({ key: 'Battle' });
     }
@@ -54,16 +54,15 @@ export class BattleScene extends Location {
         this.charToDrawerMap.get(source).drawActionPoints(true);
         if (attempted) {
             await this.playAnimation(source, action.animation, targets[0]);
-            Promise.all(targets.map((target, index) => {
+            await Promise.all(targets.map((target, index) => {
                 if (succeeded[index] && targets[index] !== source) {
                     return this.playAnimation(targets[index], 'hit');
                 }
-            })).then(() => {
-                targets.forEach(target => {
-                    if (!target.isAlive) {
-                        this.playAnimation(target, 'death');
-                    }
-                });
+            }));
+            targets.forEach(target => {
+                if (!target.isAlive) {
+                    this.playAnimation(target, 'death');
+                }
             });
             if (!source.isAlive) {
                 this.playAnimation(source, 'death');

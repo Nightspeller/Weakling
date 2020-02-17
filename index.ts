@@ -1,15 +1,15 @@
 import {PreloadScene} from './scenes/preload.js';
-import {CaltorScene} from "./scenes/caltor.js";
-import {HouseScene} from "./scenes/house.js";
-import {VillageScene} from "./scenes/village.js";
+import {CaltorScene} from "./locations/caltor.js";
+import {HouseScene} from "./locations/house.js";
+import {VillageScene} from "./locations/village.js";
 import {ShopScene} from "./scenes/shop.js";
-import {HargkakhsCaveScene} from "./scenes/hargkakhsCave.js";
+import {HargkakhsCaveScene} from "./locations/hargkakhsCave.js";
 import {CharacterPickerScene} from "./scenes/characterPicker.js";
 import {BattleScene} from "./battle/battle.js";
 import {DialogScene} from "./scenes/dialog.js";
-import {TavernScene} from "./scenes/tavern.js";
+import {TavernScene} from "./locations/tavern.js";
 import {InventoryScene} from "./scenes/inventory.js";
-import {HermitsTowerScene} from "./scenes/hermitsTower.js";
+import {HermitsTowerScene} from "./locations/hermitsTower.js";
 import {GAME_H, GAME_W, GAME_ZOOM} from "./config/constants.js";
 
 const gameConfig: Phaser.Types.Core.GameConfig = {

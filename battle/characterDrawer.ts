@@ -1,5 +1,5 @@
-import {Adventurer} from "../entities/adventurer.js";
-import EnemyEntity from "../entities/enemyEntity.js";
+import {Adventurer} from "../characters/adventurers/adventurer.js";
+import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import {ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH} from "../config/constants.js";
 import Rectangle = Phaser.Geom.Rectangle;
 
@@ -8,7 +8,7 @@ export class CharacterDrawer {
     public position: { name: string; x: number; y: number };
     private scene: Phaser.Scene;
     public mainImage: Phaser.GameObjects.Sprite;
-    private char: Adventurer | EnemyEntity;
+    private char: Adventurer | GeneralEnemy;
     private parametersContainer: Phaser.GameObjects.Container;
     private actionPointsContainer: Phaser.GameObjects.Container;
     private effectIconsContainer: Phaser.GameObjects.Container;
@@ -16,7 +16,7 @@ export class CharacterDrawer {
     private characterInfoContainer: Phaser.GameObjects.Container;
     private makingTurnGraphics: Phaser.GameObjects.Graphics;
 
-    constructor(scene: Phaser.Scene, char: Adventurer | EnemyEntity, positionIndex: number) {
+    constructor(scene: Phaser.Scene, char: Adventurer | GeneralEnemy, positionIndex: number) {
         this.isParty = (char instanceof Adventurer);
         this.position = CharacterDrawer.getCharacterPosition(this.isParty, positionIndex);
         this.scene = scene;

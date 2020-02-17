@@ -1,4 +1,4 @@
-import {Player, playerInstance} from "../entities/player.js";
+import {Player, playerInstance} from "../characters/adventurers/player.js";
 import {OverlayScene} from "./overlayScene.js";
 
 export class DialogScene extends OverlayScene {

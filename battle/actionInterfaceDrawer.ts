@@ -1,8 +1,8 @@
-import {Disposition} from "../entities/disposition.js";
+import {Disposition} from "./disposition.js";
 import {PlayerActions} from "../actionsAndEffects/playerActions.js";
 import {BattleScene} from "./battle.js";
-import {Adventurer} from "../entities/adventurer.js";
-import EnemyEntity from "../entities/enemyEntity.js";
+import {Adventurer} from "../characters/adventurers/adventurer.js";
+import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import {GAME_W} from "../config/constants.js";
 
 export class ActionInterfaceDrawer {
@@ -98,8 +98,8 @@ export class ActionInterfaceDrawer {
         });
     }
 
-    private getPossibleTargets(target, self): { image: Phaser.GameObjects.Sprite, character: Adventurer | EnemyEntity, zone?: Phaser.GameObjects.Zone }[] {
-        const targetList: { image: Phaser.GameObjects.Sprite, character: Adventurer | EnemyEntity, zone?: Phaser.GameObjects.Zone }[] = [];
+    private getPossibleTargets(target, self): { image: Phaser.GameObjects.Sprite, character: Adventurer | GeneralEnemy, zone?: Phaser.GameObjects.Zone }[] {
+        const targetList: { image: Phaser.GameObjects.Sprite, character: Adventurer | GeneralEnemy, zone?: Phaser.GameObjects.Zone }[] = [];
         if (target === 'enemy' || target === 'any') {
             this.disposition.enemyCharacters.forEach(char => {
                 const charImage = this.scene.charToDrawerMap.get(char).mainImage;

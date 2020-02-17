@@ -1,4 +1,4 @@
-import {Player, playerInstance} from "../entities/player.js";
+import {Player, playerInstance} from "../characters/adventurers/player.js";
 
 export class PreloadScene extends Phaser.Scene {
     private player: Player;

@@ -1,4 +1,4 @@
-import { Adventurer } from "../entities/adventurer.js";
+import { Adventurer } from "../characters/adventurers/adventurer.js";
 import { ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH } from "../config/constants.js";
 var Rectangle = Phaser.Geom.Rectangle;
 export class CharacterDrawer {
