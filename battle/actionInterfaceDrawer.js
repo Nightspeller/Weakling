@@ -1,4 +1,5 @@
 import { PlayerActions } from "../actionsAndEffects/playerActions.js";
+import { GAME_W } from "../config/constants.js";
 export class ActionInterfaceDrawer {
     constructor(scene, disposition) {
         this.disposition = disposition;
@@ -28,12 +29,12 @@ export class ActionInterfaceDrawer {
                     }
                     if (action.type === 'magical') {
                         actionsOfType[1]++;
-                        buttonX = (800 - 64) / 3;
+                        buttonX = (GAME_W - 64) / 3;
                         buttonY = 30 * actionsOfType[1];
                     }
                     if (action.type === 'misc') {
                         actionsOfType[2]++;
-                        buttonX = (800 - 64) / 3 * 2;
+                        buttonX = (GAME_W - 64) / 3 * 2;
                         buttonY = 30 * actionsOfType[2];
                     }
                     const isAvailable = currentCharacter.actionPoints[action.type] >= action.actionCost;
@@ -128,7 +129,7 @@ export class ActionInterfaceDrawer {
         this.displayContainer.add(actionText);
         const border = this.scene.add.graphics()
             .lineStyle(1, 0x000000, 1)
-            .strokeRectShape(actionText.getBounds());
+            .strokeRect(actionText.x, actionText.y, actionText.width, actionText.height);
         this.displayContainer.add(border);
         let pointsDrawn = 0;
         const frames = { physical: 0, magical: 1, misc: 2 };
@@ -151,14 +152,13 @@ export class ActionInterfaceDrawer {
             align: 'center',
         }).setOrigin(0.5, 0.5).setInteractive();
         this.displayContainer.add(endTurnText);
-        //TODO: fix borders here and on buttons - getBounds is the problem - returns absolute position
         const border = this.scene.add.graphics()
             .lineStyle(1, 0x000000, 1)
-            .strokeRectShape(endTurnText.getBounds());
+            .strokeRect(endTurnText.getTopLeft().x, endTurnText.getTopLeft().y, endTurnText.width, endTurnText.height);
         this.displayContainer.add(border);
         endTurnText.once('pointerdown', () => {
             this.displayContainer.removeAll(true);
-            resolve({ action: 'END TURN', target: null });
+            resolve({ action: 'END TURN', targets: null });
         });
     }
 }

@@ -3,6 +3,7 @@ import {PlayerActions} from "../actionsAndEffects/playerActions.js";
 import {BattleScene} from "./battle.js";
 import {Adventurer} from "../entities/adventurer.js";
 import EnemyEntity from "../entities/enemyEntity.js";
+import {GAME_W} from "../config/constants.js";
 
 export class ActionInterfaceDrawer {
     private readonly disposition: Disposition;
@@ -38,12 +39,12 @@ export class ActionInterfaceDrawer {
                     }
                     if (action.type === 'magical') {
                         actionsOfType[1]++;
-                        buttonX = (800 - 64) / 3;
+                        buttonX = (GAME_W - 64) / 3;
                         buttonY = 30 * actionsOfType[1];
                     }
                     if (action.type === 'misc') {
                         actionsOfType[2]++;
-                        buttonX = (800 - 64) / 3 * 2;
+                        buttonX = (GAME_W - 64) / 3 * 2;
                         buttonY = 30 * actionsOfType[2];
                     }
 
@@ -155,7 +156,7 @@ export class ActionInterfaceDrawer {
 
         const border = this.scene.add.graphics()
             .lineStyle(1, 0x000000, 1)
-            .strokeRectShape(actionText.getBounds());
+            .strokeRect(actionText.x, actionText.y, actionText.width, actionText.height);
         this.displayContainer.add(border);
 
         let pointsDrawn = 0;
@@ -187,15 +188,14 @@ export class ActionInterfaceDrawer {
         ).setOrigin(0.5, 0.5).setInteractive();
         this.displayContainer.add(endTurnText);
 
-        //TODO: fix borders here and on buttons - getBounds is the problem - returns absolute position
         const border = this.scene.add.graphics()
             .lineStyle(1, 0x000000, 1)
-            .strokeRectShape(endTurnText.getBounds());
+            .strokeRect(endTurnText.getTopLeft().x, endTurnText.getTopLeft().y, endTurnText.width, endTurnText.height);
         this.displayContainer.add(border);
 
         endTurnText.once('pointerdown', () => {
             this.displayContainer.removeAll(true);
-            resolve({action: 'END TURN', target: null});
+            resolve({action: 'END TURN', targets: null});
         })
     }
 
