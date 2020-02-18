@@ -89,14 +89,14 @@ export class ActionInterfaceDrawer {
         if (target === 'enemy' || target === 'any') {
             this.disposition.enemyCharacters.forEach(char => {
                 const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive();
+                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive({ useHandCursor: true });
                 targetList.push({ image: charImage, character: char, zone: zone });
             });
         }
         if (target === 'party' || target === 'any') {
             this.disposition.playerCharacters.forEach(char => {
                 const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive();
+                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive({ useHandCursor: true });
                 targetList.push({ image: charImage, character: char, zone: zone });
             });
         }
@@ -104,7 +104,7 @@ export class ActionInterfaceDrawer {
             this.disposition.playerCharacters.forEach(char => {
                 if (char !== self) {
                     const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                    const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive();
+                    const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive({ useHandCursor: true });
                     targetList.push({ image: charImage, character: char, zone: zone });
                 }
             });
@@ -123,7 +123,7 @@ export class ActionInterfaceDrawer {
                 left: 2
             },
         });
-        actionText.setInteractive()
+        actionText.setInteractive({ useHandCursor: true })
             .on('pointerover', () => descriptionText.setText(action.actionDescription))
             .on('pointerout', () => descriptionText.setText(''));
         this.displayContainer.add(actionText);
@@ -150,7 +150,7 @@ export class ActionInterfaceDrawer {
             color: '#000000',
             backgroundColor: '#8ef000',
             align: 'center',
-        }).setOrigin(0.5, 0.5).setInteractive();
+        }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         this.displayContainer.add(endTurnText);
         const border = this.scene.add.graphics()
             .lineStyle(1, 0x000000, 1)

@@ -88,6 +88,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("icons", 'assets/images/interface/icons-with-background.png', {frameWidth: 32, frameHeight: 32});
         this.load.image('doll', 'assets/images/interface/doll.png');
         this.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
+        this.load.image('main-menu-background', 'assets/images/interface/main-menu-background.jpg');
 
         // World characters images
         this.load.spritesheet("martha-pink", "assets/images/characters/world-map/party/martha-pink.png", {frameWidth: 32, frameHeight: 32});
@@ -141,7 +142,7 @@ export class PreloadScene extends Phaser.Scene {
         this.createAnimations();
         console.log('Preload done, calling Caltor');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-        this.scene.start("Caltor", {prevScene: this.scene.key});
+        this.scene.start("MainMenu", {prevScene: this.scene.key});
     }
 
     private createAnimations() {

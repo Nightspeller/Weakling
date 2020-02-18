@@ -24,7 +24,7 @@ export class CharacterDrawer {
         const spriteParams = this.char.spriteParams;
         this.mainImage = this.scene.add.sprite(this.position.x, this.position.y, this.char.spriteParams.texture, this.char.spriteParams.frame)
             .setDisplaySize(spriteParams.width, spriteParams.height)
-            .setInteractive();
+            .setInteractive({ useHandCursor: true });
         if (spriteParams.flip)
             this.mainImage.flipX = true;
         this.mainImage.on('pointerdown', () => this.pointerDownCallback());
@@ -138,7 +138,7 @@ export class CharacterDrawer {
             overlay.destroy();
             zone.destroy();
             this.characterInfoContainer.removeAll(true);
-            this.mainImage.setDepth(0).setInteractive();
+            this.mainImage.setDepth(0).setInteractive({ useHandCursor: true });
         });
         const background = this.scene.add.graphics()
             .lineStyle(1, 0xff0000)
