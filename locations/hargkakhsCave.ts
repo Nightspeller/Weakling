@@ -17,23 +17,17 @@ export class HargkakhsCaveScene extends GeneralLocation {
     public create() {
         this.prepareMap('hargkakhsCave', 304, 128);
 
-        this.layers.find(layer => layer.layer.name === 'EmptyChest').setVisible(false);
-
-        this.chest = this.createTrigger({
-            objectName: 'Chest',
-            offsetX: 304,
-            offsetY: 128,
-            callback: () => {
-                const key = this.player.inventory.find(item => item.specifics?.opens === 'hargkakhsChest');
-                if (key) {
-                    this.layers.find(layer => layer.layer.name === 'EmptyChest').setVisible(true);
-                    this.player.addItemToInventory('fancy-belt');
-                    this.player.addItemToInventory('work-gloves');
-                    this.player.removeItemFromInventory(key);
-                    this.chest.destroy(true);
-                }
+        const chestTrigger = this.triggers.find(trigger => trigger.name === 'Chest');
+        const destroyCallback = chestTrigger.callback;
+        chestTrigger.callback = () => {
+            const key = this.player.inventory.find(item => item.specifics?.opens === 'hargkakhsChest');
+            if (key) {
+                destroyCallback();
+                this.player.addItemToInventory('fancy-belt');
+                this.player.addItemToInventory('work-gloves');
+                this.player.removeItemFromInventory(key);
             }
-        });
+        };
     }
 
     public update() {

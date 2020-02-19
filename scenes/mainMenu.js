@@ -13,8 +13,8 @@ export class MainMenuScene extends Phaser.Scene {
         const menuBackground = this.add.graphics()
             .lineStyle(3, 0x222222)
             .fillStyle(0x2A3E07)
-            .fillRect(GAME_W / 4, 100, GAME_W / 2, GAME_H - 200)
-            .strokeRect(GAME_W / 4, 100, GAME_W / 2, GAME_H - 200);
+            .fillRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300)
+            .strokeRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300);
         const subtitle = this.add.text(GAME_W / 2, GAME_H / 2 - 120, `Serg Nights' presents:`, {
             font: '14px monospace',
             fill: '#b5b5b5'
@@ -34,7 +34,7 @@ export class MainMenuScene extends Phaser.Scene {
             .strokeRect(startButtonText.getTopLeft().x, startButtonText.getTopLeft().y, startButtonText.width, startButtonText.height);
         startButtonText.once('pointerdown', () => {
             //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-            this.scene.start("Caltor", { prevScene: this.scene.key });
+            this.scene.start("WeaklingsCave", { prevScene: this.scene.key });
         });
         const optionsText = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20, 'Options', {
             font: '20px monospace',

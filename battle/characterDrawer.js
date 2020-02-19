@@ -23,8 +23,13 @@ export class CharacterDrawer {
     initializeMainImage() {
         const spriteParams = this.char.spriteParams;
         this.mainImage = this.scene.add.sprite(this.position.x, this.position.y, this.char.spriteParams.texture, this.char.spriteParams.frame)
-            .setDisplaySize(spriteParams.width, spriteParams.height)
-            .setInteractive({ useHandCursor: true });
+            .setDisplaySize(spriteParams.width, spriteParams.height);
+        this.clickableArea = new Rectangle(this.mainImage.getCenter().x - this.mainImage.getTopLeft().x - 48, this.mainImage.getCenter().y - this.mainImage.getTopLeft().y - 48, 96 / this.mainImage.scaleX, 96 / this.mainImage.scaleY);
+        this.mainImage.setInteractive({
+            hitArea: this.clickableArea,
+            hitAreaCallback: Rectangle.Contains,
+            useHandCursor: true
+        });
         if (spriteParams.flip)
             this.mainImage.flipX = true;
         this.mainImage.on('pointerdown', () => this.pointerDownCallback());

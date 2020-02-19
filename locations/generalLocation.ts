@@ -9,7 +9,7 @@ export class GeneralLocation extends Phaser.Scene {
     public layers: (Phaser.Tilemaps.StaticTilemapLayer | Phaser.Tilemaps.DynamicTilemapLayer)[];
     public map: Phaser.Tilemaps.Tilemap;
     public prevSceneKey: string;
-    private triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' | 'activateOverlap', name: string }[];
+    protected triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' | 'activateOverlap', name: string }[];
     private cooldown: number;
     private offsetX: number;
     private offsetY: number;
@@ -79,13 +79,31 @@ export class GeneralLocation extends Phaser.Scene {
                 frame: frame,
                 interaction: 'activate',
                 callback: () => {
-                    trigger.disableBody();
-                    trigger.disableInteractive();
-                    this.layers.find(layer =>layer.layer.name === 'Doors/Doors Fringe').getTileAtWorldXY(trigger.x+ 16, trigger.y-16).setVisible(false);
-                    this.triggers = this.triggers.filter(triggerInArray => triggerInArray.image !== trigger);
-                    trigger.anims.play('open_door');
-                    trigger.y-=64;
-                    trigger.body.setOffset(0,64);
+                    trigger.image.disableBody();
+                    trigger.image.disableInteractive();
+                    this.layers.find(layer =>layer.layer.name === 'Doors/Doors Fringe').getTileAtWorldXY(trigger.image.x+ 16, trigger.image.y-16).setVisible(false);
+                    this.triggers = this.triggers.filter(triggerInArray => triggerInArray.image !== trigger.image);
+                    trigger.image.anims.play('open_door');
+                    trigger.image.y-=64;
+                    trigger.image.body.setOffset(0,64);
+                },
+            });
+        });
+
+        this.map.getObjectLayer('Containers')?.objects.forEach(object => {
+            const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
+            const texture = spriteParams.key;
+            const frame = spriteParams.frame as number;
+            const openedFrame = object.properties.find(prop => prop.name === 'openedFrame')?.value;
+            const trigger = this.createTrigger({
+                objectName: object.name,
+                objectLayer: 'Containers',
+                texture: texture,
+                frame: frame,
+                interaction: 'activate',
+                callback: () => {
+                    trigger.image.setFrame(openedFrame);
+                    this.triggers = this.triggers.filter(triggerInArray => triggerInArray !== trigger);
                 },
             });
         });
@@ -145,7 +163,7 @@ export class GeneralLocation extends Phaser.Scene {
                 interaction: 'activate',
                 callback: () => {
                     this.player.addItemToInventory(itemId, itemQuantity);
-                    trigger.destroy(true);
+                    trigger.image.destroy(true);
                 },
             });
         });
@@ -172,7 +190,7 @@ export class GeneralLocation extends Phaser.Scene {
                         }],
                         closeCallback: (param) => {
                             if (singleUse) {
-                                trigger.destroy(true);
+                                trigger.image.destroy(true);
                             }
                         }
                     }, false);
@@ -267,33 +285,34 @@ export class GeneralLocation extends Phaser.Scene {
             console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);
             return;
         }
-        const trigger = this.physics.add
+        const triggerImage = this.physics.add
             .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
             .setDisplaySize(object['width'], object['height'])
             .setImmovable();
         if (texture === null) {
-            trigger.setVisible(false)
+            triggerImage.setVisible(false)
         }
         if (object['gid']) {
             // Phaser and Tiled are very inconsistent when it comes to how they work with different types of objects.....
             // TODO: fix once Tiled and\or phaser figure it out...
-            trigger.y -= 32;
+            triggerImage.y -= 32;
         }
         if (interaction === 'collide') {
-            this.physics.add.collider(this.playerImage, trigger, () => callback());
+            this.physics.add.collider(this.playerImage, triggerImage, () => callback());
         }
         if (interaction === 'overlap') {
-            this.physics.add.overlap(this.playerImage, trigger, () => callback());
+            this.physics.add.overlap(this.playerImage, triggerImage, () => callback());
         }
         if (interaction === 'activate') {
-            this.physics.add.collider(this.playerImage, trigger);
+            this.physics.add.collider(this.playerImage, triggerImage);
         }
         if (interaction === 'activateOverlap') {
-            this.physics.add.overlap(this.playerImage, trigger);
+            this.physics.add.overlap(this.playerImage, triggerImage);
         }
         //TODO: might need rework to support callback update...
-        this.triggers.push({image: trigger, callback: callback, type: interaction, name: objectName});
+        const trigger  = {image: triggerImage, callback: callback, type: interaction, name: objectName};
+        this.triggers.push(trigger);
         return trigger;
     }
 

@@ -26,7 +26,7 @@
         }, 
         {
          "compression":"",
-         "data":"YQQAAFsEAABbBAAAWwQAAFsEAABbBAAAWwQAAGIEAABlBAAAiQAAAGIAAABiAAAAYgAAAGIAAABiAAAAZQQAAGUEAACRAAAAagAAAGoAAABqAAAAagAAAGoAAABlBAAAZQQAADkAAABDAAAAxQIAAMUCAADFAgAAcAMAAGUEAABlBAAAbgMAAAAAAAAAAAAAAAAAAAAAAABdAwAAZQQAAGUEAAA0AAAAAAAAAAAAAAAAAAAAAAAAAGMDAABlBAAAZQQAAG0DAAAAAAAAAAAAAEYAAAAAAAAAAAAAAGUEAABlBAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZQQAAGUEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlBAAAZQQAAAAAAAAAAAAAQgAAAGEDAAB5AwAAegMAAGUEAABlBAAANAAAAAAAAAAAAAAAzQIAAIEDAACCAwAAZQQAAGkEAABcBAAAAAAAAFoEAABbBAAAWwQAAFsEAABqBAAA",
+         "data":"YQQAAFsEAABbBAAAWwQAAFsEAABbBAAAWwQAAGIEAABlBAAAiQAAAGIAAABiAAAAYgAAAGIAAABiAAAAZQQAAGUEAACRAAAAagAAAGoAAABqAAAAagAAAGoAAABlBAAAZQQAADkAAABDAAAAxQIAAMUCAADFAgAAcAMAAGUEAABlBAAAbgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZQQAAGUEAAA0AAAAAAAAAAAAAAAAAAAAAAAAAGMDAABlBAAAZQQAAG0DAAAAAAAAAAAAAEYAAAAAAAAAAAAAAGUEAABlBAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZQQAAGUEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlBAAAZQQAAAAAAAAAAAAAQgAAAGEDAAB5AwAAegMAAGUEAABlBAAANAAAAAAAAAAAAAAAzQIAAIEDAACCAwAAZQQAAGkEAABcBAAAAAAAAFoEAABbBAAAWwQAAFsEAABqBAAA",
          "encoding":"base64",
          "height":12,
          "id":2,
@@ -107,20 +107,6 @@
          "y":0
         }, 
         {
-         "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-         "encoding":"base64",
-         "height":12,
-         "id":4,
-         "name":"EmptyChest",
-         "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":8,
-         "x":0,
-         "y":0
-        }, 
-        {
          "draworder":"topdown",
          "id":5,
          "name":"Objects",
@@ -136,17 +122,6 @@
                  "width":0,
                  "x":64,
                  "y":320
-                }, 
-                {
-                 "height":32,
-                 "id":3,
-                 "name":"Chest",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":33,
-                 "x":191,
-                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -181,9 +156,38 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":10,
+         "name":"Containers",
+         "objects":[
+                {
+                 "gid":861,
+                 "height":32,
+                 "id":5,
+                 "name":"Chest",
+                 "properties":[
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":868
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":160
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":5,
+ "nextlayerid":11,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.2",
@@ -6584,6 +6588,60 @@
                 }, 
                 {
                  "id":951,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":989,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":990,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":991,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":997,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":998,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":999,
                  "properties":[
                         {
                          "name":"collides",

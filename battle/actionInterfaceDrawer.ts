@@ -4,6 +4,7 @@ import {BattleScene} from "./battle.js";
 import {Adventurer} from "../characters/adventurers/adventurer.js";
 import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import {GAME_W} from "../config/constants.js";
+import Rectangle = Phaser.Geom.Rectangle;
 
 export class ActionInterfaceDrawer {
     private readonly disposition: Disposition;
@@ -103,14 +104,18 @@ export class ActionInterfaceDrawer {
         if (target === 'enemy' || target === 'any') {
             this.disposition.enemyCharacters.forEach(char => {
                 const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive({useHandCursor: true});
+                const charClickableArea =  this.scene.charToDrawerMap.get(char).clickableArea;
+                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4)
+                    .setInteractive({useHandCursor: true, hitArea: charClickableArea, hitAreaCallback: Rectangle.Contains});
                 targetList.push({image: charImage, character: char, zone: zone});
             })
         }
         if (target === 'party' || target === 'any') {
             this.disposition.playerCharacters.forEach(char => {
                 const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive({useHandCursor: true});
+                const charClickableArea =  this.scene.charToDrawerMap.get(char).clickableArea;
+                const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4)
+                    .setInteractive({useHandCursor: true, hitArea: charClickableArea, hitAreaCallback: Rectangle.Contains});
                 targetList.push({image: charImage, character: char, zone: zone});
             })
         }
@@ -118,7 +123,9 @@ export class ActionInterfaceDrawer {
             this.disposition.playerCharacters.forEach(char => {
                 if (char !== self) {
                     const charImage = this.scene.charToDrawerMap.get(char).mainImage;
-                    const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4).setInteractive({useHandCursor: true});
+                    const charClickableArea =  this.scene.charToDrawerMap.get(char).clickableArea;
+                    const zone = this.scene.add.zone(charImage.x, charImage.y, charImage.displayWidth, charImage.displayHeight).setDepth(4)
+                        .setInteractive({useHandCursor: true, hitArea: charClickableArea, hitAreaCallback: Rectangle.Contains});
                     targetList.push({image: charImage, character: char, zone: zone});
                 }
             })
