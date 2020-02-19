@@ -26,7 +26,7 @@ export default class Npc {
                         }, false);
                     }
                 }
-            });
+            }).image;
         }
         else {
             this.image = scene.createTrigger({
@@ -38,7 +38,7 @@ export default class Npc {
                     });
                     this.interactionCallback();
                 }
-            });
+            }).image;
         }
         this.inventory = [];
         (_a = items) === null || _a === void 0 ? void 0 : _a.forEach(item => this.addItemToInventory(item.itemId, item.quantity));

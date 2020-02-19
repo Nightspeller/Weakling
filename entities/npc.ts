@@ -44,7 +44,7 @@ export default class Npc {
                         }, false);
                     }
                 }
-            });
+            }).image;
         } else {
             this.image = scene.createTrigger({
                 objectName: mapObject.name,
@@ -55,7 +55,7 @@ export default class Npc {
                     });
                     this.interactionCallback();
                 }
-            });
+            }).image;
         }
 
         this.inventory = [];
