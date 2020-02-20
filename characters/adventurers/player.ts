@@ -21,7 +21,7 @@ export class Player extends Adventurer {
             },
             parameters: {
                 health: 5,
-                currentHealth: 5,
+                currentHealth: 1,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -56,7 +56,7 @@ export class Player extends Adventurer {
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
 
         this.party = [this];
-        //this.party = [this, elderInstance];
+        this.party = [this, elderInstance];
     }
 
     public prepareWorldImage(scene, x, y) {

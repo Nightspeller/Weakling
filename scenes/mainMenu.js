@@ -33,7 +33,6 @@ export class MainMenuScene extends Phaser.Scene {
             .lineStyle(2, 0xffffff, 0.4)
             .strokeRect(startButtonText.getTopLeft().x, startButtonText.getTopLeft().y, startButtonText.width, startButtonText.height);
         startButtonText.once('pointerdown', () => {
-            //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
             this.scene.start("WeaklingsCave", { prevScene: this.scene.key });
         });
         const optionsText = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20, 'Options', {

@@ -1,4 +1,5 @@
 import { Adventurer } from "./adventurer.js";
+import { elderInstance } from "./elder.js";
 export class Player extends Adventurer {
     constructor() {
         super();
@@ -14,7 +15,7 @@ export class Player extends Adventurer {
             },
             parameters: {
                 health: 5,
-                currentHealth: 5,
+                currentHealth: 1,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -46,7 +47,7 @@ export class Player extends Adventurer {
         this.name = 'Weakling';
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
         this.party = [this];
-        //this.party = [this, elderInstance];
+        this.party = [this, elderInstance];
     }
     prepareWorldImage(scene, x, y) {
         const worldImage = scene.physics.add.sprite(x, y, this.worldImageSpriteParams.texture, this.worldImageSpriteParams.frame);
