@@ -228,6 +228,11 @@
                          "name":"location",
                          "type":"string",
                          "value":"Caltor"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": 75, \"y\": 98}"
                         }],
                  "rotation":0,
                  "type":"",

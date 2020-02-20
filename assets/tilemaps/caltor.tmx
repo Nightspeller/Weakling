@@ -2080,6 +2080,7 @@
   <object id="18" name="Village" x="2368" y="3168" width="64" height="32">
    <properties>
     <property name="location" value="Village"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 2, &quot;y&quot;: 38}"/>
    </properties>
   </object>
   <object id="19" name="House Door" x="1792" y="3008" width="32" height="64">

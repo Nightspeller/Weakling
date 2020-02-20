@@ -344,6 +344,11 @@
                          "name":"location",
                          "type":"string",
                          "value":"Village"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": 2, \"y\": 38}"
                         }],
                  "rotation":0,
                  "type":"",
