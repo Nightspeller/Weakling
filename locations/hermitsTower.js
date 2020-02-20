@@ -6,12 +6,13 @@ export class HermitsTowerScene extends GeneralLocation {
         super({ key: 'HermitsTower' });
     }
     preload() {
-        this.preparePlugins();
+        super.preload();
     }
-    init() {
+    init(data) {
+        super.init(data);
     }
     create() {
-        this.prepareMap('hermitsTower', 240);
+        super.create('hermitsTower', 240);
         const hermit = new Npc({
             scene: this,
             mapObjectName: 'Hermit',

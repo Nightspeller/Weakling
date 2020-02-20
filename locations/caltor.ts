@@ -13,14 +13,15 @@ export class CaltorScene extends GeneralLocation {
     }
 
     public preload() {
-        this.preparePlugins();
+        super.preload()
     }
 
-    public init() {
+    public init(data) {
+        super.init(data)
     }
 
     public create() {
-        this.prepareMap('caltor');
+        super.create('caltor');
 
         this.createTrigger({
             objectName: `Character Picker`,

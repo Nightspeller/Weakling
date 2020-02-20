@@ -35,11 +35,11 @@ export class BattleScene extends GeneralLocation {
     }
 
     public preload() {
-        this.preparePlugins();
+        super.preload();
     }
 
     public create() {
-        this.prepareMap('battle');
+        super.create('battle');
 
         this.turnOrderDisplayContainer = this.add.container(16, 16);
 

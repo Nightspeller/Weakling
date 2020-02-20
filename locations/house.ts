@@ -6,14 +6,15 @@ export class HouseScene extends GeneralLocation {
     }
 
     public preload() {
-        this.preparePlugins();
+       super.preload()
     }
 
-    public init() {
+    public init(data) {
+        super.init(data)
     }
 
     public create() {
-        this.prepareMap('house');
+        super.create('house');
     }
 
     public update() {

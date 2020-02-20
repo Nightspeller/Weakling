@@ -6,12 +6,13 @@ export class TavernScene extends GeneralLocation {
         super({ key: 'Tavern' });
     }
     preload() {
-        this.preparePlugins();
+        super.preload();
     }
-    init() {
+    init(data) {
+        super.init(data);
     }
     create() {
-        this.prepareMap('tavern');
+        super.create('tavern');
         const bartender = new Npc({
             scene: this,
             mapObjectName: 'Bartender',

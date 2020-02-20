@@ -10,12 +10,13 @@ export class CaltorScene extends GeneralLocation {
         super({ key: 'Caltor' });
     }
     preload() {
-        this.preparePlugins();
+        super.preload();
     }
-    init() {
+    init(data) {
+        super.init(data);
     }
     create() {
-        this.prepareMap('caltor');
+        super.create('caltor');
         this.createTrigger({
             objectName: `Character Picker`,
             callback: () => {

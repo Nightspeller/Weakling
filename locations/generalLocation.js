@@ -7,17 +7,25 @@ export class GeneralLocation extends Phaser.Scene {
         this.triggers = [];
         this.cooldown = 0;
     }
-    preparePlugins() {
+    preload() {
     }
-    prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
+    init(data) {
+        if (data.toCoordinates) {
+            this.startPoint = { x: data.toCoordinates.x * 32, y: data.toCoordinates.y * 32 };
+        }
+    }
+    create(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
         var _a, _b, _c, _d, _e, _f;
         this.map = this.make.tilemap({ key: mapKey });
         this.offsetX = layerOffsetX;
         this.offsetY = layerOffsetY;
         this.player = playerInstance;
-        const spawnPoint = this.getMapObject("Start");
-        if (spawnPoint) {
-            const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + this.offsetX, spawnPoint['y'] + this.offsetY);
+        if (!this.startPoint) {
+            const startObject = this.getMapObject("Start");
+            this.startPoint = { x: startObject['x'], y: startObject['y'] };
+        }
+        if (this.startPoint) {
+            const playerData = this.player.prepareWorldImage(this, this.startPoint['x'] + this.offsetX, this.startPoint['y'] + this.offsetY);
             this.playerImage = playerData.worldImage;
             this.keys = playerData.keys;
             const camera = this.cameras.main;
@@ -121,9 +129,9 @@ export class GeneralLocation extends Phaser.Scene {
                 interaction: 'activate',
                 callback: () => {
                     if (toLocation) {
-                        this.switchToScene(toLocation);
+                        this.switchToScene(toLocation, undefined, undefined, toCoordinates);
                     }
-                    if (toCoordinates) {
+                    else if (toCoordinates) {
                         this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX, toCoordinates.y * 32 + this.offsetY);
                     }
                 },
@@ -188,6 +196,9 @@ export class GeneralLocation extends Phaser.Scene {
             var _a;
             if ((_a = data) === null || _a === void 0 ? void 0 : _a.defeatedEnemy) {
                 this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
+            }
+            if (data.toCoordinates) {
+                this.playerImage.setPosition(data.toCoordinates.x * 32 + layerOffsetX, data.toCoordinates.y * 32 + layerOffsetY);
             }
         });
         if (mapKey !== 'battle')
@@ -344,7 +355,7 @@ export class GeneralLocation extends Phaser.Scene {
             debugGraphics.setVisible(debugModeOn);
         });
     }
-    switchToScene(sceneKey, data = {}, shouldSleep = true) {
+    switchToScene(sceneKey, data = {}, shouldSleep = true, toCoordinates = null) {
         //console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
         // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
         // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
@@ -359,7 +370,7 @@ export class GeneralLocation extends Phaser.Scene {
         else {
             this.scene.pause(this.scene.key);
         }
-        this.scene.run(sceneKey, { ...data, prevScene: this.scene.key });
+        this.scene.run(sceneKey, { ...data, prevScene: this.scene.key, toCoordinates: toCoordinates });
     }
 }
 //# sourceMappingURL=generalLocation.js.map

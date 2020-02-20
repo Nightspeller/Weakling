@@ -8,14 +8,15 @@ export class HargkakhsCaveScene extends GeneralLocation {
     }
 
     public preload() {
-        this.preparePlugins();
+        super.preload()
     }
 
-    public init() {
+    public init(data) {
+        super.init(data)
     }
 
     public create() {
-        this.prepareMap('hargkakhsCave', 304, 128);
+        super.create('hargkakhsCave', 304, 128);
 
         const chestTrigger = this.triggers.find(trigger => trigger.name === 'Chest');
         const destroyCallback = chestTrigger.callback;

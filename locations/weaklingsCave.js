@@ -4,12 +4,13 @@ export class WeaklingsCaveScene extends GeneralLocation {
         super({ key: 'WeaklingsCave' });
     }
     preload() {
-        this.preparePlugins();
+        super.preload();
     }
-    init() {
+    init(data) {
+        super.init(data);
     }
     create() {
-        this.prepareMap('weaklingsCave', 304, 128);
+        super.create('weaklingsCave', 304, 128);
         const chest1trigger = this.triggers.find(trigger => trigger.name === 'Chest 1');
         const destroyCallback = chest1trigger.callback;
         chest1trigger.callback = () => {

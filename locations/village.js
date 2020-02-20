@@ -9,12 +9,13 @@ export class VillageScene extends GeneralLocation {
         super({ key: 'Village' });
     }
     preload() {
-        this.preparePlugins();
+        super.preload();
     }
-    init() {
+    init(data) {
+        super.init(data);
     }
     create() {
-        this.prepareMap('village');
+        super.create('village');
         const elder = new Npc({
             scene: this,
             mapObjectName: 'Elder',

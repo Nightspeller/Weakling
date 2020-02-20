@@ -4,12 +4,13 @@ export class HouseScene extends GeneralLocation {
         super({ key: 'House' });
     }
     preload() {
-        this.preparePlugins();
+        super.preload();
     }
-    init() {
+    init(data) {
+        super.init(data);
     }
     create() {
-        this.prepareMap('house');
+        super.create('house');
     }
     update() {
         this.updatePlayer();

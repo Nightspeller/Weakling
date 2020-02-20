@@ -19,10 +19,10 @@ export class BattleScene extends GeneralLocation {
         this.prevSceneKey = data.prevScene;
     }
     preload() {
-        this.preparePlugins();
+        super.preload();
     }
     create() {
-        this.prepareMap('battle');
+        super.create('battle');
         this.turnOrderDisplayContainer = this.add.container(16, 16);
         this.player = playerInstance;
         this.charToDrawerMap = new Map();

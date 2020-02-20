@@ -13,6 +13,7 @@ export class GeneralLocation extends Phaser.Scene {
     private cooldown: number;
     private offsetX: number;
     private offsetY: number;
+    private startPoint: { x: number; y: number };
 
     constructor(sceneSettings) {
         super(sceneSettings);
@@ -20,18 +21,28 @@ export class GeneralLocation extends Phaser.Scene {
         this.cooldown = 0;
     }
 
-    public preparePlugins() {
+    preload() {
+
     }
 
-    public prepareMap(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
+    public init(data) {
+        if (data.toCoordinates) {
+            this.startPoint = {x: data.toCoordinates.x * 32, y: data.toCoordinates.y * 32};
+        }
+    }
+
+    public create(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
         this.map = this.make.tilemap({key: mapKey});
         this.offsetX = layerOffsetX;
         this.offsetY = layerOffsetY;
 
         this.player = playerInstance;
-        const spawnPoint = this.getMapObject("Start");
-        if (spawnPoint) {
-            const playerData = this.player.prepareWorldImage(this, spawnPoint['x'] + this.offsetX, spawnPoint['y'] + this.offsetY);
+        if (!this.startPoint) {
+            const startObject = this.getMapObject("Start");
+            this.startPoint = {x: startObject['x'], y: startObject['y']};
+        }
+        if (this.startPoint) {
+            const playerData = this.player.prepareWorldImage(this, this.startPoint['x'] + this.offsetX, this.startPoint['y'] + this.offsetY);
             this.playerImage = playerData.worldImage;
             this.keys = playerData.keys;
             const camera = this.cameras.main;
@@ -81,11 +92,11 @@ export class GeneralLocation extends Phaser.Scene {
                 callback: () => {
                     trigger.image.disableBody();
                     trigger.image.disableInteractive();
-                    this.layers.find(layer =>layer.layer.name === 'Doors/Doors Fringe').getTileAtWorldXY(trigger.image.x+ 16, trigger.image.y-16).setVisible(false);
+                    this.layers.find(layer => layer.layer.name === 'Doors/Doors Fringe').getTileAtWorldXY(trigger.image.x + 16, trigger.image.y - 16).setVisible(false);
                     this.triggers = this.triggers.filter(triggerInArray => triggerInArray.image !== trigger.image);
                     trigger.image.anims.play('open_door');
-                    trigger.image.y-=64;
-                    trigger.image.body.setOffset(0,64);
+                    trigger.image.y -= 64;
+                    trigger.image.body.setOffset(0, 64);
                 },
             });
         });
@@ -135,9 +146,8 @@ export class GeneralLocation extends Phaser.Scene {
                 interaction: 'activate',
                 callback: () => {
                     if (toLocation) {
-                        this.switchToScene(toLocation);
-                    }
-                    if (toCoordinates) {
+                        this.switchToScene(toLocation, undefined, undefined, toCoordinates);
+                    } else if (toCoordinates) {
                         this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX, toCoordinates.y * 32 + this.offsetY);
                     }
                 },
@@ -203,6 +213,9 @@ export class GeneralLocation extends Phaser.Scene {
         this.events.on('wake', (scene, data) => {
             if (data?.defeatedEnemy) {
                 this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
+            }
+            if (data.toCoordinates) {
+                this.playerImage.setPosition(data.toCoordinates.x * 32 + layerOffsetX, data.toCoordinates.y * 32 + layerOffsetY);
             }
         });
 
@@ -311,7 +324,7 @@ export class GeneralLocation extends Phaser.Scene {
             this.physics.add.overlap(this.playerImage, triggerImage);
         }
         //TODO: might need rework to support callback update...
-        const trigger  = {image: triggerImage, callback: callback, type: interaction, name: objectName};
+        const trigger = {image: triggerImage, callback: callback, type: interaction, name: objectName};
         this.triggers.push(trigger);
         return trigger;
     }
@@ -331,7 +344,7 @@ export class GeneralLocation extends Phaser.Scene {
                     const trigger = this.triggers[i];
                     if (trigger.type === 'activate' || trigger.type === 'activateOverlap') {
                         //checking if player is looking at the trigger image
-                        if ( trigger.type === 'activateOverlap' ||
+                        if (trigger.type === 'activateOverlap' ||
                             ((trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y) && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
                             ((trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x) && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
                             ((trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y) && [9, 10, 11].includes(Number(this.playerImage.frame.name))) ||
@@ -377,7 +390,7 @@ export class GeneralLocation extends Phaser.Scene {
         })
     }
 
-    public switchToScene(sceneKey: string, data: object = {}, shouldSleep = true) {
+    public switchToScene(sceneKey: string, data: object = {}, shouldSleep = true, toCoordinates: { x: number, y: number } = null) {
         //console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
         // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
         // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
@@ -392,6 +405,6 @@ export class GeneralLocation extends Phaser.Scene {
         } else {
             this.scene.pause(this.scene.key);
         }
-        this.scene.run(sceneKey, {...data, prevScene: this.scene.key});
+        this.scene.run(sceneKey, {...data, prevScene: this.scene.key, toCoordinates: toCoordinates});
     }
 }
