@@ -1,4 +1,5 @@
 import { GeneralLocation } from "./generalLocation.js";
+import { introDialog } from "../dialogs/introDialog.js";
 export class WeaklingsCaveScene extends GeneralLocation {
     constructor() {
         super({ key: 'WeaklingsCave' });
@@ -17,6 +18,10 @@ export class WeaklingsCaveScene extends GeneralLocation {
             destroyCallback();
             this.player.addItemToInventory('fancy-belt');
         };
+        this.switchToScene('Dialog', {
+            dialogTree: introDialog,
+            closeCallback: (param) => { }
+        }, false);
     }
     update() {
         this.updatePlayer();

@@ -55,7 +55,7 @@
   </layer>
  </group>
  <objectgroup id="5" name="Objects">
-  <object id="2" name="Start" x="128" y="160">
+  <object id="2" name="Start" x="96" y="128">
    <point/>
   </object>
  </objectgroup>

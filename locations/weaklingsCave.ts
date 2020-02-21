@@ -1,4 +1,5 @@
 import {GeneralLocation} from "./generalLocation.js";
+import {introDialog} from "../dialogs/introDialog.js";
 
 export class WeaklingsCaveScene extends GeneralLocation {
     private chest: Phaser.Physics.Arcade.Image;
@@ -23,7 +24,12 @@ export class WeaklingsCaveScene extends GeneralLocation {
         chest1trigger.callback = () => {
             destroyCallback();
             this.player.addItemToInventory('fancy-belt');
-        }
+        };
+
+        this.switchToScene('Dialog', {
+            dialogTree: introDialog,
+            closeCallback: (param) => {}
+        }, false);
     }
 
     public update() {

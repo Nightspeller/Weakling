@@ -15,7 +15,7 @@ export class Player extends Adventurer {
             },
             parameters: {
                 health: 5,
-                currentHealth: 1,
+                currentHealth: 5,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
