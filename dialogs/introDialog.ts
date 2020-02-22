@@ -37,3 +37,15 @@ export const introDialog: DialogTree = [{
         callbackParam: 'fastEnd'
     }]
 }];
+
+export const chestDialog: DialogTree =  [{
+    id: 'obtained',
+    text: `    Besides of the regular set of clothes, you take out a worn-off but still pretty sturdy leather jacket, a present from uncle Hargkakh for the coming of age and a cool looking ranger's hat - something Mitikhha made for you a little while ago. 
+    You are also taking 10 copper coins - not a small amount for young Kobold, which you intend to spend on a present for her once you get to Caltor.
+    
+    (Click the Inventory icon at the top right corner, or use the "I" key, to see and equip the items.)`,
+    replies: [{
+        text: '(End)',
+        callbackParam: 'fastEnd'
+    }]
+}];

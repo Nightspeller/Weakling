@@ -1,5 +1,5 @@
 import {GeneralLocation} from "./generalLocation.js";
-import {introDialog} from "../dialogs/introDialog.js";
+import {chestDialog, introDialog} from "../dialogs/introDialog.js";
 
 export class WeaklingsCaveScene extends GeneralLocation {
     private chest: Phaser.Physics.Arcade.Image;
@@ -26,6 +26,10 @@ export class WeaklingsCaveScene extends GeneralLocation {
             this.player.addItemToInventory('leather-armor');
             this.player.addItemToInventory('rangers-hat');
             this.player.addItemToInventory('copper-pieces', 10);
+            this.switchToScene('Dialog', {
+                dialogTree: chestDialog,
+                closeCallback: (param) => {}
+            }, false);
         };
 
         this.switchToScene('Dialog', {

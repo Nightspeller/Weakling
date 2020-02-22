@@ -8,7 +8,7 @@ export class Player extends Adventurer {
     constructor() {
         super();
         this.spriteParams = {texture: 'weakling', frame: null, width: 96, height: 96};
-        this.worldImageSpriteParams = {texture: 'martha-pink', frame: 1};
+        this.worldImageSpriteParams = {texture: 'jeremy-green', frame: 1};
         this.baseCharacteristics = {
             attributes: {
                 strength: 10,
