@@ -5,5 +5,5 @@ export const ACTION_POINT_HEIGHT = 16;
 export const aspectRatio = 16 / 9;
 export const GAME_H = 640;
 export const GAME_W = 800;
-export const GAME_ZOOM = 1;
+export const GAME_ZOOM = 1.5;
 //# sourceMappingURL=constants.js.map
