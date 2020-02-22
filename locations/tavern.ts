@@ -46,6 +46,6 @@ export class TavernScene extends GeneralLocation {
     }
 
     public update() {
-        this.updatePlayer();
+        super.update();
     }
 }

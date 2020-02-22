@@ -37,7 +37,7 @@ export class HermitsTowerScene extends GeneralLocation {
         });
     }
     update() {
-        this.updatePlayer();
+        super.update();
     }
 }
 //# sourceMappingURL=hermitsTower.js.map

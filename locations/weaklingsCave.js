@@ -16,7 +16,9 @@ export class WeaklingsCaveScene extends GeneralLocation {
         const destroyCallback = chest1trigger.callback;
         chest1trigger.callback = () => {
             destroyCallback();
-            this.player.addItemToInventory('fancy-belt');
+            this.player.addItemToInventory('leather-armor');
+            this.player.addItemToInventory('rangers-hat');
+            this.player.addItemToInventory('copper-pieces', 10);
         };
         this.switchToScene('Dialog', {
             dialogTree: introDialog,
@@ -24,7 +26,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
         }, false);
     }
     update() {
-        this.updatePlayer();
+        super.update();
     }
 }
 //# sourceMappingURL=weaklingsCave.js.map

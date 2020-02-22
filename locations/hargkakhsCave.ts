@@ -32,6 +32,6 @@ export class HargkakhsCaveScene extends GeneralLocation {
     }
 
     public update() {
-        this.updatePlayer();
+        super.update();
     }
 }

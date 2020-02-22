@@ -13,7 +13,7 @@ export class HouseScene extends GeneralLocation {
         super.create('house');
     }
     update() {
-        this.updatePlayer();
+        super.update();
     }
 }
 //# sourceMappingURL=house.js.map

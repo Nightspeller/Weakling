@@ -5,9 +5,15 @@ export class GeneralLocation extends Phaser.Scene {
     constructor(sceneSettings) {
         super(sceneSettings);
         this.triggers = [];
-        this.cooldown = 0;
+        this.spaceBarCooldown = 0;
+        this.playerSpeed = 300; //TODO: village location experiences tile bleeding on other speeds, like 200 - need better fix for that..
     }
     preload() {
+        this.load.scenePlugin({
+            key: 'AnimatedTiles',
+            url: './plugins/AnimatedTiles.js',
+            systemKey: 'animatedTiles',
+        });
     }
     init(data) {
         if (data.toCoordinates) {
@@ -20,14 +26,16 @@ export class GeneralLocation extends Phaser.Scene {
         this.offsetX = layerOffsetX;
         this.offsetY = layerOffsetY;
         this.player = playerInstance;
-        if (!this.startPoint) {
+        if (!this.startPoint && this.getMapObject("Start")) {
             const startObject = this.getMapObject("Start");
             this.startPoint = { x: startObject['x'], y: startObject['y'] };
         }
         if (this.startPoint) {
-            const playerData = this.player.prepareWorldImage(this, this.startPoint['x'] + this.offsetX, this.startPoint['y'] + this.offsetY);
-            this.playerImage = playerData.worldImage;
-            this.keys = playerData.keys;
+            this.playerImage = this.physics.add.sprite(this.startPoint['x'] + this.offsetX, this.startPoint['y'] + this.offsetY, this.player.worldImageSpriteParams.texture, this.player.worldImageSpriteParams.frame);
+            this.playerImage.setOrigin(0, 0).setDepth(1);
+            this.playerImage.anims.play("idle_down");
+            this.playerImage.setCollideWorldBounds(true);
+            this.keys = this.input.keyboard.addKeys('W,S,A,D,left,right,up,down,space');
             const camera = this.cameras.main;
             camera.startFollow(this.playerImage);
             camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
@@ -191,6 +199,7 @@ export class GeneralLocation extends Phaser.Scene {
                 },
             });
         });
+        this.sys['animatedTiles'].init(this.map);
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
         this.events.on('wake', (scene, data) => {
             var _a;
@@ -302,11 +311,11 @@ export class GeneralLocation extends Phaser.Scene {
             console.log(`Object ${objectName} was not found on ${objectLayer} layer!`);
         return object;
     }
-    updatePlayer() {
-        this.player.update(this.playerImage, this.keys);
+    update() {
+        this.updatePlayer();
         if (this.keys.space.isDown) {
-            if (this.cooldown === 0) {
-                this.cooldown = 50;
+            if (this.spaceBarCooldown === 0) {
+                this.spaceBarCooldown = 50;
                 for (let i = 0; i < this.triggers.length; i++) {
                     const trigger = this.triggers[i];
                     if (trigger.type === 'activate' || trigger.type === 'activateOverlap') {
@@ -329,8 +338,8 @@ export class GeneralLocation extends Phaser.Scene {
                 }
             }
         }
-        if (this.cooldown !== 0)
-            this.cooldown--;
+        if (this.spaceBarCooldown !== 0)
+            this.spaceBarCooldown--;
     }
     createDebugButton() {
         const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0).setDepth(100);
@@ -371,6 +380,44 @@ export class GeneralLocation extends Phaser.Scene {
             this.scene.pause(this.scene.key);
         }
         this.scene.run(sceneKey, { ...data, prevScene: this.scene.key, toCoordinates: toCoordinates });
+    }
+    updatePlayer() {
+        const up = this.keys.up.isDown || this.keys['W'].isDown;
+        const down = this.keys.down.isDown || this.keys['S'].isDown;
+        const right = this.keys.right.isDown || this.keys['D'].isDown;
+        const left = this.keys.left.isDown || this.keys['A'].isDown;
+        this.playerImage.setVelocity(0);
+        if (this.lastCursor && !up && !down && !right && !left) {
+            this.playerImage.play(`idle_${this.lastCursor}`, true);
+        }
+        if (up) {
+            this.playerImage.setVelocityY(-this.playerSpeed);
+        }
+        else if (down) {
+            this.playerImage.setVelocityY(this.playerSpeed);
+        }
+        if (right) {
+            this.playerImage.setVelocityX(this.playerSpeed);
+        }
+        else if (left) {
+            this.playerImage.setVelocityX(-this.playerSpeed);
+        }
+        if (up || (up && right) || (up && left)) {
+            this.playerImage.play('walk_up', true);
+            this.lastCursor = 'up';
+        }
+        else if (down || (down && right) || (down && left)) {
+            this.playerImage.play('walk_down', true);
+            this.lastCursor = 'down';
+        }
+        if (right && !up && !down) {
+            this.playerImage.play('walk_right', true);
+            this.lastCursor = 'right';
+        }
+        else if (left && !up && !down) {
+            this.playerImage.play('walk_left', true);
+            this.lastCursor = 'left';
+        }
     }
 }
 //# sourceMappingURL=generalLocation.js.map

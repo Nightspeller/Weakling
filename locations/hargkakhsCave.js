@@ -24,7 +24,7 @@ export class HargkakhsCaveScene extends GeneralLocation {
         };
     }
     update() {
-        this.updatePlayer();
+        super.update();
     }
 }
 //# sourceMappingURL=hargkakhsCave.js.map

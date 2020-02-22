@@ -41,7 +41,7 @@ export class TavernScene extends GeneralLocation {
         });
     }
     update() {
-        this.updatePlayer();
+        super.update();
     }
 }
 //# sourceMappingURL=tavern.js.map

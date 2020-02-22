@@ -68,7 +68,7 @@ export class VillageScene extends GeneralLocation {
         });
     }
     update() {
-        this.updatePlayer();
+        super.update();
     }
 }
 //# sourceMappingURL=village.js.map

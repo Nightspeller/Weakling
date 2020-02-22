@@ -120,7 +120,7 @@ export class CaltorScene extends GeneralLocation {
         });
     }
     update() {
-        this.updatePlayer();
+        super.update();
     }
 }
 //# sourceMappingURL=caltor.js.map
