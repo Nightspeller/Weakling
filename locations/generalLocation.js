@@ -1,6 +1,6 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import Item from "../entities/item.js";
-import { GAME_W } from "../config/constants.js";
+import { DEBUG, GAME_W } from "../config/constants.js";
 export class GeneralLocation extends Phaser.Scene {
     constructor(sceneSettings) {
         super(sceneSettings);
@@ -209,8 +209,11 @@ export class GeneralLocation extends Phaser.Scene {
             if (data.toCoordinates) {
                 this.playerImage.setPosition(data.toCoordinates.x * 32 + layerOffsetX, data.toCoordinates.y * 32 + layerOffsetY);
             }
+            if (this.objectsHighlightBorders)
+                this.objectsHighlightBorders.clear(true, true);
         });
-        if (mapKey !== 'battle')
+        this.setupObjectHighlighting();
+        if (mapKey !== 'battle' && DEBUG)
             this.createDebugButton();
     }
     getSpriteParamsByObjectName(objectName, objectLayer = 'Objects') {
@@ -418,6 +421,24 @@ export class GeneralLocation extends Phaser.Scene {
             this.playerImage.play('walk_left', true);
             this.lastCursor = 'left';
         }
+    }
+    setupObjectHighlighting() {
+        this.objectsHighlightBorders = this.add.group();
+        this.input.keyboard.on('keydown-SHIFT', (event) => {
+            event.preventDefault();
+            if (this.objectsHighlightBorders.getLength() === 0) {
+                this.triggers.forEach(trigger => {
+                    const border = this.add.graphics()
+                        .lineStyle(2, 0xca5d8f)
+                        .strokeRectShape(trigger.image.getBounds());
+                    this.objectsHighlightBorders.add(border);
+                });
+            }
+        });
+        this.input.keyboard.on('keyup-SHIFT', (event) => {
+            event.preventDefault();
+            this.objectsHighlightBorders.clear(true, true);
+        });
     }
 }
 //# sourceMappingURL=generalLocation.js.map

@@ -1,5 +1,6 @@
 import { Adventurer } from "./adventurer.js";
 import { elderInstance } from "./elder.js";
+import { DEBUG } from "../../config/constants.js";
 export class Player extends Adventurer {
     constructor() {
         super();
@@ -31,16 +32,18 @@ export class Player extends Adventurer {
                 magicResistance: 10,
             }
         };
-        //this.addItemToInventory('rope-belt', 1, 'belt');
-        /* this.addItemToInventory('fancy-belt');
-         this.addItemToInventory('allpowerful-necklace');
-         this.addItemToInventory('minor-healing-potion');
-         this.addItemToInventory('minor-healing-potion', 2);
-         this.addItemToInventory('leather-armor', 1, 'body');
-         this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
-         this.addItemToInventory('wooden-sword-weapon');
-         this.addItemToInventory('rangers-hat');*/
-        /*this.addItemToInventory('copper-pieces', 10);*/
+        if (DEBUG) {
+            this.addItemToInventory('copper-pieces', 1000);
+            this.addItemToInventory('allpowerful-necklace');
+            /*this.addItemToInventory('rope-belt', 1, 'belt');
+            this.addItemToInventory('fancy-belt');`
+            this.addItemToInventory('minor-healing-potion');
+            this.addItemToInventory('minor-healing-potion', 2);
+            this.addItemToInventory('leather-armor', 1, 'body');
+            this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
+            this.addItemToInventory('wooden-sword-weapon');
+            this.addItemToInventory('rangers-hat');*/
+        }
         this.addBaseModifiers();
         this.applyItems();
         this.name = 'Weakling';

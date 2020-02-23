@@ -11,7 +11,7 @@ import {TavernScene} from "./locations/tavern.js";
 import {InventoryScene} from "./overlay_scenes/inventory.js";
 import {HermitsTowerScene} from "./locations/hermitsTower.js";
 import {MainMenuScene} from "./scenes/mainMenu.js";
-import {GAME_H, GAME_W, GAME_ZOOM} from "./config/constants.js";
+import {DEBUG, GAME_H, GAME_W, GAME_ZOOM} from "./config/constants.js";
 import {WeaklingsCaveScene} from "./locations/weaklingsCave.js";
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
@@ -28,7 +28,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            debug: DEBUG,
         },
     },
 

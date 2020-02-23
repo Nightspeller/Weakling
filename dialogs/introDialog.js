@@ -31,7 +31,8 @@ export const introDialog = [{
             }]
     }, {
         id: 'intro_5',
-        text: `(Use W A S D or Arrow Keys (↑ → ↓ ←) to move around, Space to move between locations and interact with objects and characters)`,
+        text: `    (Use W A S D or Arrow Keys (↑ → ↓ ←) to move around, Space to move between locations and interact with objects and characters.
+    Press and hold "Shift" to highlight interact-able objects and characters.)`,
         replies: [{
                 text: '(End)',
                 callbackParam: 'fastEnd'
