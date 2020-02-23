@@ -737,12 +737,12 @@
         {
          "columns":8,
          "firstgid":49,
-         "image":"..\/images\/tilesets\/base.png",
-         "imageheight":4256,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images\/tilesets\/base-extruded.png",
+         "imageheight":4522,
+         "imagewidth":272,
+         "margin":1,
          "name":"base",
-         "spacing":0,
+         "spacing":2,
          "tilecount":1064,
          "tileheight":32,
          "tiles":[

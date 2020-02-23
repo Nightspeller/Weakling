@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.2" name="base-addition" tilewidth="32" tileheight="32" tilecount="768" columns="12">
- <image source="../images/tilesets/base-addition.png" width="384" height="2048"/>
+<tileset version="1.2" tiledversion="1.3.2" name="base-addition" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="768" columns="12">
+ <image source="../images/tilesets/extruded/base-addition-extruded.png" width="408" height="2176"/>
  <tile id="12">
   <properties>
    <property name="collides" type="bool" value="true"/>

@@ -1,6 +1,6 @@
 import {Player, playerInstance} from "../characters/adventurers/player.js";
 import Item from "../entities/item.js";
-import {DEBUG, GAME_W} from "../config/constants.js";
+import {DEBUG, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED} from "../config/constants.js";
 
 export class GeneralLocation extends Phaser.Scene {
     public player: Player;
@@ -22,7 +22,7 @@ export class GeneralLocation extends Phaser.Scene {
         super(sceneSettings);
         this.triggers = [];
         this.spaceBarCooldown = 0;
-        this.playerSpeed = 300; //TODO: village location experiences tile bleeding on other speeds, like 200 - need better fix for that..
+        this.playerSpeed = PLAYER_WORLD_SPEED;
     }
 
     preload() {
@@ -237,9 +237,13 @@ export class GeneralLocation extends Phaser.Scene {
                 this.playerImage.setPosition(data.toCoordinates.x * 32 + layerOffsetX, data.toCoordinates.y * 32 + layerOffsetY);
             }
             if (this.objectsHighlightBorders) this.objectsHighlightBorders.clear(true, true);
+
+            this.playerSpeed = PLAYER_WORLD_SPEED;
         });
 
         this.setupObjectHighlighting();
+
+        this.setupRunKey();
 
         if (mapKey !== 'battle' && DEBUG) this.createDebugButton();
     }
@@ -487,5 +491,15 @@ export class GeneralLocation extends Phaser.Scene {
             event.preventDefault();
             this.objectsHighlightBorders.clear(true, true);
         });
+    }
+
+    private setupRunKey() {
+        this.input.keyboard.on('keyup-Q', () => {
+            if (this.playerSpeed === PLAYER_RUN_WORLD_SPEED) {
+                this.playerSpeed = PLAYER_WORLD_SPEED;
+            } else {
+                this.playerSpeed = PLAYER_RUN_WORLD_SPEED;
+            }
+        })
     }
 }

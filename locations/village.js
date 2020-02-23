@@ -4,6 +4,7 @@ import { hargkakhAfterGoodsObtainedDialog, hargkakhFirstDialog, hargkakhSecondTr
 import { elderInstance } from "../characters/adventurers/elder.js";
 import Npc from "../entities/npc.js";
 import { GeneralLocation } from "./generalLocation.js";
+import { introVillageDialog } from "../dialogs/introDialog.js";
 export class VillageScene extends GeneralLocation {
     constructor() {
         super({ key: 'Village' });
@@ -16,6 +17,10 @@ export class VillageScene extends GeneralLocation {
     }
     create() {
         super.create('village');
+        this.switchToScene('Dialog', {
+            dialogTree: introVillageDialog,
+            closeCallback: (param) => { }
+        }, false);
         const elder = new Npc({
             scene: this,
             mapObjectName: 'Elder',

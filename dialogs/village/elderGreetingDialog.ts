@@ -1,7 +1,7 @@
 export const elderFirstTimeDialog: DialogTree = [{
     id: 'greetings',
     text: `Oh, here you are! I'v been looking for you! What was it this time? Collecting your rocks and herbs? Sneaking into the Dungeon? How many times did I tell you to keep away from` +
-        `that place.. One day it will get you into trouble and who will be taking the goods to the Caltor then? It is important for the whole villadge, you know. I am not that young anymore to go alone, and who knows how soon you will have to do it all by yourself..`,
+        `that place.. One day it will get you into trouble and who will be there to help me then? It is important for the whole villadge, you know. I am not that young anymore to go alone, and who knows how soon you will have to do Caltor trips all by yourself..`,
     replies: [{
         text: 'I am sorry Guarthh, I just got carried away.. Did you know that if you squeeze sour grass over the blackolite pouder..',
         successTriggers: 'greetings2',

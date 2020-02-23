@@ -12,6 +12,7 @@ import {
 import {elderInstance} from "../characters/adventurers/elder.js";
 import Npc from "../entities/npc.js";
 import {GeneralLocation} from "./generalLocation.js";
+import {introVillageDialog} from "../dialogs/introDialog.js";
 
 export class VillageScene extends GeneralLocation {
     constructor() {
@@ -28,6 +29,11 @@ export class VillageScene extends GeneralLocation {
 
     public create() {
         super.create('village');
+
+        this.switchToScene('Dialog', {
+            dialogTree: introVillageDialog,
+            closeCallback: (param) => {}
+        }, false);
 
         const elder = new Npc({
             scene: this,

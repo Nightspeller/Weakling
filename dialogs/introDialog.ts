@@ -50,3 +50,22 @@ export const chestDialog: DialogTree =  [{
         callbackParam: 'fastEnd'
     }]
 }];
+
+export const introVillageDialog: DialogTree =  [{
+    id: 'introVillage1',
+    text: `    The sun is very high already indeed, and it's soft and warm light in combination with the fresh mountain breeze throws a chilling impulse through your body - such a splendid late morning!
+    You stay here for just a little bit longer to fully inhale and slowly exhale a couple times, listen to the birds singing, to tree's leafs whisper in the wind, to admire the peaceful scenery of Village's fields just one level down the cliffs.`,
+    replies: [{
+        text: '(Continue)',
+        successTriggers: 'introVillage2'
+    }]
+}, {
+    id: 'introVillage2',
+    text: `    You spend a minute more, thinking that it would be a prefect day to grab some snacks, climb even higher and from there observe the whole village, the forests surrounding your home mountains, probably, if the sky stays that clear and brightm you can even see the towers of Caltor right from there!
+    Caltor! That's right! Now is not the time to relax and gaze around - you need to go meet the Elder, and sooner - the better!
+    (Use "Q" to switch to running and back to walking)`,
+    replies: [{
+        text: '(End)',
+        callbackParam: 'fastEnd'
+    }]
+}];

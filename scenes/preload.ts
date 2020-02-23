@@ -2,6 +2,7 @@ import {Player, playerInstance} from "../characters/adventurers/player.js";
 
 export class PreloadScene extends Phaser.Scene {
     private player: Player;
+
     constructor() {
         super({key: 'Preload'});
     }
@@ -64,15 +65,22 @@ export class PreloadScene extends Phaser.Scene {
             assetText.destroy();
         });
 
+        const tilesetConfig = {
+            frameWidth: 32,
+            frameHeight: 32,
+            margin: 1,
+            spacing: 2
+        };
+
         // Tilesets
-        this.load.spritesheet('base', 'assets/images/tilesets/base.png', {frameWidth: 32, frameHeight: 32});
-        this.load.image('base-addition', 'assets/images/tilesets/base-addition.png');
+        this.load.spritesheet('base', 'assets/images/tilesets/extruded/base-extruded.png', tilesetConfig);
+        this.load.spritesheet('base-addition', 'assets/images/tilesets/extruded/base-addition-extruded.png', tilesetConfig);
         this.load.image('dirt1-dirt2', 'assets/images/tilesets/dirt1-dirt2.png');
         this.load.image('grass1', 'assets/images/tilesets/grass1.png');
         this.load.image('grass4', 'assets/images/tilesets/grass4.png');
         this.load.image('dirt1', 'assets/images/tilesets/dirt1.png');
         this.load.image('dirt2', 'assets/images/tilesets/dirt2.png');
-        this.load.image('dirt4', 'assets/images/tilesets/dirt4.png');
+        this.load.spritesheet('dirt4', 'assets/images/tilesets/extruded/dirt4-extruded.png', tilesetConfig);
         this.load.image('water2', 'assets/images/tilesets/water2.png');
         this.load.image('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png');
         this.load.image('grass1-dirt2', 'assets/images/tilesets/grass1-dirt2.png');
@@ -84,49 +92,126 @@ export class PreloadScene extends Phaser.Scene {
         // Interface
         this.load.image('interface', 'assets/images/interface/Interface.png');
         this.load.image('debug-icon', 'assets/images/interface/debug-icon.png');
-        this.load.spritesheet("action-points", "assets/images/interface/action-points.png", {frameWidth: 16, frameHeight: 16});
-        this.load.spritesheet("icons", 'assets/images/interface/icons-with-background.png', {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("action-points", "assets/images/interface/action-points.png", {
+            frameWidth: 16,
+            frameHeight: 16
+        });
+        this.load.spritesheet("icons", 'assets/images/interface/icons-with-background.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
         this.load.image('doll', 'assets/images/interface/doll.png');
         this.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
         this.load.image('main-menu-background', 'assets/images/interface/main-menu-background.jpg');
 
         // World characters images
-        this.load.spritesheet("martha-pink", "assets/images/characters/world-map/party/martha-pink.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet("martha-blond", "assets/images/characters/world-map/party/martha-blond.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet("martha-green", "assets/images/characters/world-map/party/martha-green.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet("jeremy-pink", "assets/images/characters/world-map/party/jeremy-pink.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet("jeremy-blond", "assets/images/characters/world-map/party/jeremy-blond.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet("jeremy-green", "assets/images/characters/world-map/party/jeremy-green.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet('solider', 'assets/images/characters/world-map/neutral/solider.png',{frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet('fisherman', 'assets/images/characters/world-map/neutral/fisherman.png',{frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet('enemies', 'assets/images/characters/various-enemies.png', {frameWidth: 128, frameHeight: 128});
-        this.load.spritesheet("stranger", "assets/images/characters/world-map/neutral/stranger.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet("trader", "assets/images/characters/world-map/neutral/trader.png", {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet("bartender", "assets/images/characters/world-map/neutral/bartender.png", {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("martha-pink", "assets/images/characters/world-map/party/martha-pink.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("martha-blond", "assets/images/characters/world-map/party/martha-blond.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("martha-green", "assets/images/characters/world-map/party/martha-green.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("jeremy-pink", "assets/images/characters/world-map/party/jeremy-pink.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("jeremy-blond", "assets/images/characters/world-map/party/jeremy-blond.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("jeremy-green", "assets/images/characters/world-map/party/jeremy-green.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('solider', 'assets/images/characters/world-map/neutral/solider.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('fisherman', 'assets/images/characters/world-map/neutral/fisherman.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('enemies', 'assets/images/characters/various-enemies.png', {
+            frameWidth: 128,
+            frameHeight: 128
+        });
+        this.load.spritesheet("stranger", "assets/images/characters/world-map/neutral/stranger.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("trader", "assets/images/characters/world-map/neutral/trader.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("bartender", "assets/images/characters/world-map/neutral/bartender.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
 
         // Battle characters images
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
         this.load.image('elder', 'assets/images/characters/battle/party/elder.png');
         this.load.image('boar-avatar', 'assets/images/characters/battle/enemies/boar.png');
         this.load.image("dead-character", "assets/images/characters/battle/dead-character.png");
-        this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png",{frameWidth: 231, frameHeight: 190});
+        this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png", {
+            frameWidth: 231,
+            frameHeight: 190
+        });
 
         // Items
         this.load.image("rope-belt", "assets/images/items/rope-belt.png");
         this.load.image("bag-green", "assets/images/items/bag-green.png");
         this.load.image("allpowerful-necklace", "assets/images/items/allpowerful-necklace.png");
-        this.load.spritesheet("potion-sheet", "assets/images/items/potion-sheet.png",{frameWidth: 64, frameHeight: 64, spacing: 1, margin:1});
-        this.load.spritesheet("icon-item-set", "assets/images/items/icon-item-set.png",{frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("potion-sheet", "assets/images/items/potion-sheet.png", {
+            frameWidth: 64,
+            frameHeight: 64,
+            spacing: 1,
+            margin: 1
+        });
+        this.load.spritesheet("icon-item-set", "assets/images/items/icon-item-set.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
 
         // Animations
-        this.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", {frameWidth: 192, frameHeight: 192});
-        this.load.spritesheet("light-pillar-back", "assets/images/animations/light-pillar/light-pillar-yellow-back.png", {frameWidth: 192, frameHeight: 192});
-        this.load.spritesheet("light-pillar-front", "assets/images/animations/light-pillar/light-pillar-yellow-front.png", {frameWidth: 192, frameHeight: 192});
-        this.load.spritesheet("wizard-attack1", "assets/images/characters/battle/enemies/Wizard/Attack1.png",{frameWidth: 231, frameHeight: 190});
-        this.load.spritesheet("wizard-attack2", "assets/images/characters/battle/enemies/Wizard/Attack2.png",{frameWidth: 231, frameHeight: 190});
-        this.load.spritesheet("wizard-hit", "assets/images/characters/battle/enemies/Wizard/Hit.png",{frameWidth: 231, frameHeight: 190});
-        this.load.spritesheet("wizard-death", "assets/images/characters/battle/enemies/Wizard/Death.png",{frameWidth: 231, frameHeight: 190});
-        this.load.spritesheet("doors2-upscaled", "assets/images/tilesets/doors2-upscaled.png",{frameWidth: 32, frameHeight: 96});
+        this.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", {
+            frameWidth: 192,
+            frameHeight: 192
+        });
+        this.load.spritesheet("light-pillar-back", "assets/images/animations/light-pillar/light-pillar-yellow-back.png", {
+            frameWidth: 192,
+            frameHeight: 192
+        });
+        this.load.spritesheet("light-pillar-front", "assets/images/animations/light-pillar/light-pillar-yellow-front.png", {
+            frameWidth: 192,
+            frameHeight: 192
+        });
+        this.load.spritesheet("wizard-attack1", "assets/images/characters/battle/enemies/Wizard/Attack1.png", {
+            frameWidth: 231,
+            frameHeight: 190
+        });
+        this.load.spritesheet("wizard-attack2", "assets/images/characters/battle/enemies/Wizard/Attack2.png", {
+            frameWidth: 231,
+            frameHeight: 190
+        });
+        this.load.spritesheet("wizard-hit", "assets/images/characters/battle/enemies/Wizard/Hit.png", {
+            frameWidth: 231,
+            frameHeight: 190
+        });
+        this.load.spritesheet("wizard-death", "assets/images/characters/battle/enemies/Wizard/Death.png", {
+            frameWidth: 231,
+            frameHeight: 190
+        });
+        this.load.spritesheet("doors2-upscaled", "assets/images/tilesets/doors2-upscaled.png", {
+            frameWidth: 32,
+            frameHeight: 96
+        });
         this.load.image("hit", "assets/images/animations/hit.png");
 
         // Load the export Tiled JSON
@@ -139,6 +224,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('hargkakhsCave', 'assets/tilemaps/hargkakhsCave.json');
         this.load.tilemapTiledJSON('weaklingsCave', 'assets/tilemaps/weaklingsCave.json');
     }
+
     create() {
         this.createAnimations();
         console.log('Preload done, calling Caltor');
