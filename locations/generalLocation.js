@@ -202,8 +202,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.sys['animatedTiles'].init(this.map);
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
         this.events.on('wake', (scene, data) => {
-            var _a;
-            if ((_a = data) === null || _a === void 0 ? void 0 : _a.defeatedEnemy) {
+            if (data === null || data === void 0 ? void 0 : data.defeatedEnemy) {
                 this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
             }
             if (data.toCoordinates) {

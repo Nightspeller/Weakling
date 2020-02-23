@@ -51,7 +51,6 @@ export class InventoryScene extends GeneralOverlayScene {
         }
     }
     _placeItemInSlot(currentItemSlotName, targetSlotName) {
-        var _a;
         // TODO: optimize these cycles!!!
         const displayObjects = this.inventoryDisplayGroup.getChildren();
         const targetSlot = displayObjects.find(slot => slot.name === targetSlotName);
@@ -86,7 +85,7 @@ export class InventoryScene extends GeneralOverlayScene {
         movedItemImage.setName(targetSlotName + 'image');
         if (targetSlotName === 'belt' || currentItemSlotName === 'belt') {
             if (targetSlotName === 'belt') {
-                this._adjustQuickSlots(movedItem.specifics.quickSlots || 0, ((_a = itemInTargetSlot) === null || _a === void 0 ? void 0 : _a.specifics.quickSlots) || 0);
+                this._adjustQuickSlots(movedItem.specifics.quickSlots || 0, (itemInTargetSlot === null || itemInTargetSlot === void 0 ? void 0 : itemInTargetSlot.specifics.quickSlots) || 0);
             }
             else {
                 if (itemInTargetSlot) {

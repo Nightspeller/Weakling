@@ -1,7 +1,6 @@
 import Item from "./item.js";
 export default class Npc {
     constructor({ scene, name, mapObjectName, mapObjectLayer = 'Objects', texture, frame, initDialog, items = [], interactionCallback = () => { } }) {
-        var _a;
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
         if (initDialog) {
@@ -41,7 +40,7 @@ export default class Npc {
             }).image;
         }
         this.inventory = [];
-        (_a = items) === null || _a === void 0 ? void 0 : _a.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
+        items === null || items === void 0 ? void 0 : items.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
     }
     setDialog(newDialog, newInteractionCallback) {
         this.dialog = newDialog;
