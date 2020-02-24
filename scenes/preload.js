@@ -151,6 +151,7 @@ export class PreloadScene extends Phaser.Scene {
         // Items
         this.load.image("rope-belt", "assets/images/items/rope-belt.png");
         this.load.image("bag-green", "assets/images/items/bag-green.png");
+        this.load.image("spear-weapon", "assets/images/items/spear-weapon.png");
         this.load.image("allpowerful-necklace", "assets/images/items/allpowerful-necklace.png");
         this.load.spritesheet("potion-sheet", "assets/images/items/potion-sheet.png", {
             frameWidth: 64,

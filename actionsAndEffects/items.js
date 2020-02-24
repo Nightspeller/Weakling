@@ -276,6 +276,25 @@ export const items = {
         sellPrice: 5,
         buyPrice: 10
     },
+    'spear-weapon': {
+        itemId: 'spear-weapon',
+        displayName: 'Wooden spear',
+        description: 'Wooden spear with the stone tip - main weapon of Kobolds',
+        slot: ['rightHand', 'backpack'],
+        sprite: { key: 'spear-weapon', frame: null },
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            damage: 10,
+            additionalCharacteristics: [
+                { 'defences.dodge': 2 }
+            ],
+            size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
+        },
+        sellPrice: 5,
+        buyPrice: 10
+    },
     'invisibility-cape': {
         itemId: 'invisibility-cape',
         displayName: 'Invisibility cloak',

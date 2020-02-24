@@ -29,6 +29,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
         chest2trigger.callback = () => {
             destroy2Callback();
             this.player.addItemToInventory('trap-kit');
+            this.player.addItemToInventory('spear-weapon');
             this.switchToScene('Dialog', {
                 dialogTree: chest2Dialog,
                 closeCallback: (param) => { }
