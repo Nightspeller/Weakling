@@ -239,6 +239,7 @@ export class GeneralLocation extends Phaser.Scene {
             if (this.objectsHighlightBorders) this.objectsHighlightBorders.clear(true, true);
 
             this.playerSpeed = PLAYER_WORLD_SPEED;
+            this.playerImage.play(`idle_${this.lastCursor}`);
         });
 
         this.setupObjectHighlighting();
