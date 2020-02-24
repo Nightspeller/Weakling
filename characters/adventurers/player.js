@@ -35,6 +35,8 @@ export class Player extends Adventurer {
         if (DEBUG) {
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
+            this.addItemToInventory('leather-armor', 1, 'body');
+            this.addItemToInventory('trap-kit');
             /*this.addItemToInventory('rope-belt', 1, 'belt');
             this.addItemToInventory('fancy-belt');`
             this.addItemToInventory('minor-healing-potion');
@@ -47,9 +49,19 @@ export class Player extends Adventurer {
         this.addBaseModifiers();
         this.applyItems();
         this.name = 'Weakling';
-        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
         this.party = [this];
         this.party = [this, elderInstance];
+    }
+    getAvailableActions() {
+        let combinedActions = [...this.availableActions];
+        this.inventory.forEach(item => {
+            var _a, _b;
+            if (((_a = item.specifics) === null || _a === void 0 ? void 0 : _a.additionalActions) && !item.currentSlot.includes('backpack')) {
+                combinedActions = [...combinedActions, ...(_b = item.specifics) === null || _b === void 0 ? void 0 : _b.additionalActions];
+            }
+        });
+        return [...new Set(combinedActions)];
     }
 }
 export const playerInstance = new Player();

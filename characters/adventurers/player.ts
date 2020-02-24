@@ -40,6 +40,8 @@ export class Player extends Adventurer {
         if (DEBUG) {
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
+            this.addItemToInventory('leather-armor', 1, 'body');
+            this.addItemToInventory('trap-kit');
             /*this.addItemToInventory('rope-belt', 1, 'belt');
             this.addItemToInventory('fancy-belt');`
             this.addItemToInventory('minor-healing-potion');
@@ -53,10 +55,20 @@ export class Player extends Adventurer {
         this.applyItems();
         this.name = 'Weakling';
 
-        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'fireProtection', 'drainingSoil', 'setTrap', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
 
         this.party = [this];
         this.party = [this, elderInstance];
+    }
+
+    public getAvailableActions() {
+        let combinedActions = [...this.availableActions];
+        this.inventory.forEach(item => {
+            if (item.specifics?.additionalActions && !item.currentSlot.includes('backpack')) {
+                combinedActions = [...combinedActions, ...item.specifics?.additionalActions]
+            }
+        });
+        return [...new Set(combinedActions)];
     }
 }
 

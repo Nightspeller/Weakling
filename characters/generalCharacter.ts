@@ -5,7 +5,7 @@ export default class GeneralCharacter {
     public baseCharacteristics: CharacteristicsSet;
     public currentCharacteristics: CharacteristicsSet;
     public currentEffects: Effect[];
-    public availableActions: any[];
+    public availableActions: string[];
     public actedThisRound: boolean;
     public isAlive: boolean;
     public characteristicsModifiers: any;
@@ -199,5 +199,9 @@ export default class GeneralCharacter {
         if (this.isAlive) {
             this.actedThisRound = true;
         }
+    }
+
+    public getAvailableActions() {
+        return this.availableActions;
     }
 }

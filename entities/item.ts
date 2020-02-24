@@ -14,7 +14,7 @@ export default class Item {
     public sellPrice: number;
     public buyPrice: number;
 
-    constructor(itemId: string, quantity= 1, options= {}) {
+    constructor(itemId: string, quantity = 1, options = {}) {
         let itemParams = {};
         if (itemId) {
             itemParams = JSON.parse(JSON.stringify(items[itemId]));

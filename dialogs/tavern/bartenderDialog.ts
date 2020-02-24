@@ -1,6 +1,6 @@
 export const bartenderDialog: DialogTree = [{
     id: 'greetings',
-    text: 'Welcome to the [Tavern Name]! Food or drink, soft bad or pleasant music - we have it all. Interested in something? Stick around and you will learn all the local news in no time.',
+    text: 'Welcome to the Tipsy Dragon! Food or drink, soft bad or pleasant music - we have it all. Interested in something? Stick around and you will learn all the local news in no time.',
     replies: [{
         text: `Thank you! So, what's on the menu?`,
         callbackParam: 'openShop'
@@ -36,7 +36,7 @@ export const bartenderDialog: DialogTree = [{
     }]
 }, {
     id: 'noMoneyNoRumors',
-    text: `(Not enough gold) Running low today, I see... Well, I can't give you beer for free, but I can give you a free advice - there is an announcements board right outside of the [tavern name]. You can see if somebody needs help. Come back once you get a coin to spare.`,
+    text: `(Not enough gold) Running low today, I see... Well, I can't give you beer for free, but I can give you a free advice - there is an announcements board right outside of the Tipsy Dragon. You can see if somebody needs help. Come back once you get a coin to spare.`,
     replies: [{
         text: 'Thanks for the advice',
         callbackParam: 'fastEnd'

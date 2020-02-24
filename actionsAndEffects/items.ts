@@ -68,6 +68,7 @@ export const items: { [key: string]: ItemParams } = {
                 {'defences.armor': 2},
                 {'defences.dodge': 1}
             ],
+            additionalActions: ['adjustArmor'],
             size: ['xs', 's', 'm'],
         },
         sellPrice: 10,
@@ -202,6 +203,22 @@ export const items: { [key: string]: ItemParams } = {
         },
         sellPrice: 2,
         buyPrice: 4
+    },
+    'trap-kit': {
+        itemId: 'trap-kit',
+        displayName: 'Trap kit',
+        description: 'Simple trap kit',
+        slot: ['quickSlot', 'backpack'],
+        sprite: {key: 'icon-item-set', frame: 174},
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        quantity: null,
+        specifics: {
+            additionalActions: ['setTrap']
+        },
+        sellPrice: 5,
+        buyPrice: 10
     },
     'beer': {
         itemId: 'beer',

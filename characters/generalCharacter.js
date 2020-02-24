@@ -181,5 +181,8 @@ export default class GeneralCharacter {
             this.actedThisRound = true;
         }
     }
+    getAvailableActions() {
+        return this.availableActions;
+    }
 }
 //# sourceMappingURL=generalCharacter.js.map

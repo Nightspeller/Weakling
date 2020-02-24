@@ -14,7 +14,7 @@ export class ActionInterfaceDrawer {
             let self = this;
             let scene = this.scene;
             const currentCharacter = disposition.currentCharacter;
-            const availableActions = currentCharacter.availableActions;
+            const availableActions = currentCharacter.getAvailableActions();
             const actions = new PlayerActions();
             let actionsOfType = [0, 0, 0];
             let buttonX;
