@@ -105,4 +105,21 @@ export const magicalActions: { [key: string]: ActionData } = {
         triggers: [],
         animation: 'meleeAttack',
     },
+    fireball: {
+        actionId: 'fireball',
+        phase: ['battle'],
+        type: 'magical',
+        actionName: 'Fireball',
+        actionDescription: 'Throws fireball to the enemies, damaging all of them',
+        effect: [{
+            effectId: 'magicalDamage',
+            source: 'fireball',
+            level: 1
+        }],
+        target: 'allEnemies',
+        actionCost: 2,
+        noticeable: 1,
+        triggers: [],
+        animation: 'meleeAttack',
+    },
 };

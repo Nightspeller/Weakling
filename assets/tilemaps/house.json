@@ -196,9 +196,43 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":12,
+         "name":"Items",
+         "objects":[
+                {
+                 "gid":2229,
+                 "height":32,
+                 "id":4,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"itemId",
+                         "type":"string",
+                         "value":"smoldering-ring"
+                        }, 
+                        {
+                         "name":"quantity",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":32,
+                 "y":160
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":12,
- "nextobjectid":4,
+ "nextlayerid":13,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.2",
@@ -207,7 +241,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images\/tilesets\/base-extruded.png",
+         "image":"..\/images\/tilesets\/extruded\/base-extruded.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -6868,7 +6902,7 @@
         {
          "columns":12,
          "firstgid":1233,
-         "image":"..\/images\/tilesets\/base-addition-extruded.png",
+         "image":"..\/images\/tilesets\/extruded\/base-addition-extruded.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,
@@ -10347,6 +10381,19 @@
                          "value":true
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":16,
+         "firstgid":2097,
+         "image":"..\/images\/items\/icon-item-set.png",
+         "imageheight":640,
+         "imagewidth":512,
+         "margin":0,
+         "name":"icon-item-set",
+         "spacing":0,
+         "tilecount":320,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,

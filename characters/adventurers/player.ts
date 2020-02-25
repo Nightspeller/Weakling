@@ -18,8 +18,8 @@ export class Player extends Adventurer {
                 initiative: Phaser.Math.Between(0, 30)
             },
             parameters: {
-                health: 5,
-                currentHealth: 5,
+                health: 50,
+                currentHealth: 50,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -42,6 +42,7 @@ export class Player extends Adventurer {
             this.addItemToInventory('allpowerful-necklace');
             this.addItemToInventory('leather-armor', 1, 'body');
             this.addItemToInventory('trap-kit');
+            this.addItemToInventory('smoldering-ring',1, 'ringRight');
             /*this.addItemToInventory('rope-belt', 1, 'belt');
             this.addItemToInventory('fancy-belt');`
             this.addItemToInventory('minor-healing-potion');
