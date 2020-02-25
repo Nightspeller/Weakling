@@ -1,5 +1,5 @@
 import { Boar } from "../characters/enemies/boar.js";
-import { effects } from "../actionsAndEffects/effects.js";
+import { effects } from "../data/effects.js";
 import { Adventurer } from "../characters/adventurers/adventurer.js";
 import { Wizard } from "../characters/enemies/wizard.js";
 export class Disposition {

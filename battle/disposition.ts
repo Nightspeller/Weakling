@@ -1,6 +1,6 @@
 import {Boar} from "../characters/enemies/boar.js";
 import GeneralCharacter from "../characters/generalCharacter.js";
-import {effects} from "../actionsAndEffects/effects.js";
+import {effects} from "../data/effects.js";
 import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import {Adventurer} from "../characters/adventurers/adventurer.js";
 import {Wizard} from "../characters/enemies/wizard.js";
@@ -56,7 +56,7 @@ export class Disposition {
     }
 
     private startAction() {
-        this.scene.collectActions(this.currentCharacter).then(({action, targets}: { action: Action | 'END TURN', targets: (Adventurer | GeneralEnemy)[] }) => {
+        this.scene.collectActions(this.currentCharacter).then(({action, targets}: { action: ActionData | 'END TURN', targets: (Adventurer | GeneralEnemy)[] }) => {
             if (action === 'END TURN') {
                 this.endTurn();
             } else {
@@ -127,14 +127,14 @@ export class Disposition {
     public processAction(
         source: Adventurer | GeneralEnemy,
         targets: (Adventurer | GeneralEnemy)[],
-        action: Action
+        action: ActionData
     ): {
         attempted: boolean;
         succeeded: boolean[];
         triggeredTraps: Effect[],
         source: Adventurer | GeneralEnemy;
         targets: (Adventurer | GeneralEnemy)[];
-        action: Action;
+        action: ActionData;
     } {
         const targetsNames = targets.map(target => target.name).join(', ');
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${targetsNames}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
@@ -179,7 +179,7 @@ export class Disposition {
         return actionResults;
     }
 
-    private _checkForTriggers(source: GeneralCharacter, action: Action) {
+    private _checkForTriggers(source: GeneralCharacter, action: ActionData) {
         let triggeredTraps = [];
         let sourceEffectsLength = source.currentEffects.length;
         for (let index = 0; index < sourceEffectsLength; index++) {

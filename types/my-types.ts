@@ -50,7 +50,7 @@ interface SpriteParameters {
     flip?: boolean;
 }
 
-interface Action {
+interface ActionData {
     phase: ('preparation' | 'battle')[];
     effect: { effectId: string; source: string; level: number }[];
     actionId: string;
@@ -83,7 +83,7 @@ interface Belt {
     size: string[];
 }
 
-interface ItemParams {
+interface ItemData {
     itemId: string;
     displayName: string;
     description: string;

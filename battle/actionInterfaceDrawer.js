@@ -1,5 +1,5 @@
-import { PlayerActions } from "../actionsAndEffects/playerActions.js";
 import { GAME_W } from "../config/constants.js";
+import Action from "../entities/action.js";
 export class ActionInterfaceDrawer {
     constructor(scene, disposition) {
         this.disposition = disposition;
@@ -15,12 +15,11 @@ export class ActionInterfaceDrawer {
             let scene = this.scene;
             const currentCharacter = disposition.currentCharacter;
             const availableActions = currentCharacter.getAvailableActions();
-            const actions = new PlayerActions();
             let actionsOfType = [0, 0, 0];
             let buttonX;
             let buttonY;
             availableActions.sort().forEach(actionId => {
-                const action = actions.getActionById(actionId);
+                const action = new Action(actionId, currentCharacter);
                 if (action.phase.includes(disposition.currentPhase)) {
                     if (action.type === 'physical') {
                         actionsOfType[0]++;

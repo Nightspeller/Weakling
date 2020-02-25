@@ -1,4 +1,4 @@
-import {items} from "../actionsAndEffects/items.js";
+import {itemsData} from "../data/itemsData.js";
 
 export default class Item {
     public itemId: string;
@@ -17,7 +17,7 @@ export default class Item {
     constructor(itemId: string, quantity = 1, options = {}) {
         let itemParams = {};
         if (itemId) {
-            itemParams = JSON.parse(JSON.stringify(items[itemId]));
+            itemParams = JSON.parse(JSON.stringify(itemsData[itemId]));
         }
         itemParams = {...itemParams, ...options, quantity: quantity};
         Object.entries(itemParams).forEach(([key, value]) => this[key] = value);

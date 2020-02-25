@@ -1,10 +1,9 @@
 import {Disposition} from "./disposition.js";
-import {PlayerActions} from "../actionsAndEffects/playerActions.js";
 import {BattleScene} from "./battle.js";
 import {Adventurer} from "../characters/adventurers/adventurer.js";
 import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import {GAME_W} from "../config/constants.js";
-import Rectangle = Phaser.Geom.Rectangle;
+import Action from "../entities/action.js";
 
 export class ActionInterfaceDrawer {
     private readonly disposition: Disposition;
@@ -26,12 +25,11 @@ export class ActionInterfaceDrawer {
             let scene = this.scene;
             const currentCharacter = disposition.currentCharacter;
             const availableActions = currentCharacter.getAvailableActions();
-            const actions = new PlayerActions();
             let actionsOfType = [0, 0, 0];
             let buttonX;
             let buttonY;
             availableActions.sort().forEach(actionId => {
-                const action = actions.getActionById(actionId);
+                const action = new Action(actionId, currentCharacter);
                 if (action.phase.includes(disposition.currentPhase)) {
                     if (action.type === 'physical') {
                         actionsOfType[0]++;
@@ -130,7 +128,7 @@ export class ActionInterfaceDrawer {
         return targetList;
     }
 
-    private drawActionInterfaceButton(action: Action, buttonX: number, buttonY: number, isAvailable: boolean) {
+    private drawActionInterfaceButton(action: ActionData, buttonX: number, buttonY: number, isAvailable: boolean) {
         const descriptionText = this.scene.add.text(
             buttonX,
             buttonY,

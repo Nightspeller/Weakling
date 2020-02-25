@@ -1,7 +1,7 @@
 import GeneralEnemy from "./generalEnemy.js";
 import {Disposition} from "../../battle/disposition.js";
-import {enemyActions} from "../../actionsAndEffects/enemyActions.js";
 import {Adventurer} from "../adventurers/adventurer.js";
+import Action from "../../entities/action.js";
 
 export class Wizard extends GeneralEnemy {
     private weapon: { damage: number };
@@ -48,14 +48,14 @@ export class Wizard extends GeneralEnemy {
         this.animations.hit = 'wizard_hit';
     }
 
-    public aiTurn = (disposition: Disposition): {action: Action, targets: (Adventurer | GeneralEnemy)[]} => {
+    public aiTurn = (disposition: Disposition): {action: ActionData, targets: (Adventurer | GeneralEnemy)[]} => {
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceUp') ? 'magicMissile' : 'swiftMind';
         if (action === 'swiftMind') {
-            return {action: enemyActions[action], targets: [this]}
+            return {action: new Action(action, this), targets: [this]}
         } else {
-            return {action: enemyActions[action], targets: [randomAlivePlayer]}
+            return {action: new Action(action, this), targets: [randomAlivePlayer]}
         }
     };
 

@@ -1,5 +1,5 @@
 import GeneralEnemy from "./generalEnemy.js";
-import { enemyActions } from "../../actionsAndEffects/enemyActions.js";
+import Action from "../../entities/action.js";
 export class Wizard extends GeneralEnemy {
     constructor() {
         super();
@@ -8,10 +8,10 @@ export class Wizard extends GeneralEnemy {
             const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
             const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceUp') ? 'magicMissile' : 'swiftMind';
             if (action === 'swiftMind') {
-                return { action: enemyActions[action], targets: [this] };
+                return { action: new Action(action, this), targets: [this] };
             }
             else {
-                return { action: enemyActions[action], targets: [randomAlivePlayer] };
+                return { action: new Action(action, this), targets: [randomAlivePlayer] };
             }
         };
         this.spriteParams = { texture: 'wizard-idle', frame: 0, width: 231, height: 190, flip: true };

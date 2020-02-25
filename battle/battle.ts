@@ -1,9 +1,6 @@
-import {Player, playerInstance} from "../characters/adventurers/player.js";
-import {PlayerActions} from "../actionsAndEffects/playerActions.js";
+import {playerInstance} from "../characters/adventurers/player.js";
 import {Disposition} from "./disposition.js";
 import GeneralCharacter from "../characters/generalCharacter.js";
-import {ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH} from "../config/constants.js";
-import Rectangle = Phaser.Geom.Rectangle;
 import {GeneralLocation} from "../locations/generalLocation.js";
 import {CharacterDrawer} from "./characterDrawer.js";
 import {Adventurer} from "../characters/adventurers/adventurer.js";
@@ -78,7 +75,7 @@ export class BattleScene extends GeneralLocation {
         }
     }
 
-    public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: Effect[], source: Adventurer | GeneralEnemy; targets: (Adventurer | GeneralEnemy)[]; action: Action }) {
+    public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: Effect[], source: Adventurer | GeneralEnemy; targets: (Adventurer | GeneralEnemy)[]; action: ActionData }) {
         this.charToDrawerMap.get(source).drawActionPoints(true);
         if (attempted) {
             await this.playAnimation(source, action.animation, targets[0]);

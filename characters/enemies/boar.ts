@@ -1,7 +1,7 @@
 import GeneralEnemy from "./generalEnemy.js";
 import {Disposition} from "../../battle/disposition.js";
-import {enemyActions} from "../../actionsAndEffects/enemyActions.js";
 import {Adventurer} from "../adventurers/adventurer.js";
+import Action from "../../entities/action.js";
 
 export class Boar extends GeneralEnemy {
     private weapon: { damage: number };
@@ -42,14 +42,14 @@ export class Boar extends GeneralEnemy {
         this.actionPointsIncrement = {physical: 1, magical: 0, misc: 1};
     }
 
-    public aiTurn = (disposition: Disposition): {action: Action, targets: (Adventurer | GeneralEnemy)[]} => {
+    public aiTurn = (disposition: Disposition): {action: ActionData, targets: (Adventurer | GeneralEnemy)[]} => {
         const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
         const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
         const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
         if (action === 'enrage') {
-            return {action: enemyActions[action], targets: [this]}
+            return {action: new Action(action, this), targets: [this]}
         } else {
-            return {action: enemyActions[action], targets: [randomAlivePlayer]}
+            return {action: new Action(action, this), targets: [randomAlivePlayer]}
         }
     };
 
