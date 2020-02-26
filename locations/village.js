@@ -5,6 +5,7 @@ import { elderInstance } from "../characters/adventurers/elder.js";
 import Npc from "../entities/npc.js";
 import { GeneralLocation } from "./generalLocation.js";
 import { introVillageDialog } from "../dialogs/introDialog.js";
+import { mitikhhaDialog, mitikhhaSecondDialog } from "../dialogs/village/mitikhhaDialog.js";
 export class VillageScene extends GeneralLocation {
     constructor() {
         super({ key: 'Village' });
@@ -40,6 +41,14 @@ export class VillageScene extends GeneralLocation {
                         this.player.addItemToInventory('basket', 10);
                     }
                 });
+            }
+        });
+        const mitikhha = new Npc({
+            scene: this,
+            mapObjectName: 'Mitikhha',
+            initDialog: mitikhhaDialog,
+            interactionCallback: (param) => {
+                mitikhha.setDialog(mitikhhaSecondDialog);
             }
         });
         const nahkha = new Npc({

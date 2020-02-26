@@ -139,6 +139,10 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        this.load.spritesheet("female20-3", "assets/images/characters/world-map/neutral/female20-3.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
         // Battle characters images
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
         this.load.image('elder', 'assets/images/characters/battle/party/elder.png');
