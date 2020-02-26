@@ -51,7 +51,9 @@ export const chest1Dialog = [{
     }];
 export const chest2Dialog = [{
         id: 'obtained',
-        text: `    In this chest you store your trap kits - helpful when hunting small and medium sized animals in the mountains and forests surrounding your village.`,
+        text: `    In this chest you store your trap kits - helpful when hunting small and medium sized animals in the mountains and forests surrounding your village.
+    
+    (Open your inventory ("I") and equip trap kit in the quick slot to use traps in battle)`,
         replies: [{
                 text: '(End)',
                 callbackParam: 'fastEnd'

@@ -1,11 +1,12 @@
-import { elderFirstTimeDialog, elderSecondTimeDialog } from "../dialogs/village/elderGreetingDialog.js";
-import { nahkhaAfterGoodsObtainedDialog, nahkhaAfterTheElderDialog, nahkhaBeforeTheElderDialog } from "../dialogs/village/nahkhaDialog.js";
-import { hargkakhAfterGoodsObtainedDialog, hargkakhFirstDialog, hargkakhSecondTryDialog } from "../dialogs/village/hargkakhDialog.js";
+import { elderFirstTimeDialog, elderSecondTimeDialog } from "../data/dialogs/village/elderGreetingDialog.js";
+import { nahkhaAfterGoodsObtainedDialog, nahkhaAfterTheElderDialog, nahkhaBeforeTheElderDialog } from "../data/dialogs/village/nahkhaDialog.js";
+import { hargkakhAfterGoodsObtainedDialog, hargkakhFirstDialog, hargkakhSecondTryDialog } from "../data/dialogs/village/hargkakhDialog.js";
 import { elderInstance } from "../characters/adventurers/elder.js";
 import Npc from "../entities/npc.js";
 import { GeneralLocation } from "./generalLocation.js";
-import { introVillageDialog } from "../dialogs/introDialog.js";
-import { mitikhhaDialog, mitikhhaSecondDialog } from "../dialogs/village/mitikhhaDialog.js";
+import { introVillageDialog } from "../data/dialogs/introDialog.js";
+import { mitikhhaDialog, mitikhhaSecondDialog } from "../data/dialogs/village/mitikhhaDialog.js";
+import { DEBUG } from "../config/constants.js";
 export class VillageScene extends GeneralLocation {
     constructor() {
         super({ key: 'Village' });
@@ -18,10 +19,13 @@ export class VillageScene extends GeneralLocation {
     }
     create() {
         super.create('village');
-        this.switchToScene('Dialog', {
-            dialogTree: introVillageDialog,
-            closeCallback: (param) => { }
-        }, false);
+        if (!DEBUG) {
+            this.switchToScene('Dialog', {
+                dialogTree: introVillageDialog,
+                closeCallback: (param) => {
+                }
+            }, false);
+        }
         const elder = new Npc({
             scene: this,
             mapObjectName: 'Elder',

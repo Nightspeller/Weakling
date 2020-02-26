@@ -1,6 +1,6 @@
 import { GeneralLocation } from "./generalLocation.js";
 import Npc from "../entities/npc.js";
-import { hermitDialog } from "../dialogs/hermitsTower/hermitDialog.js";
+import { hermitDialog } from "../data/dialogs/hermitsTower/hermitDialog.js";
 export class HermitsTowerScene extends GeneralLocation {
     constructor() {
         super({ key: 'HermitsTower' });

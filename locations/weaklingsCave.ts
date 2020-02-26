@@ -1,5 +1,6 @@
 import {GeneralLocation} from "./generalLocation.js";
-import {chest1Dialog, chest2Dialog, introDialog} from "../dialogs/introDialog.js";
+import {chest1Dialog, chest2Dialog, introDialog} from "../data/dialogs/introDialog.js";
+import {DEBUG} from "../config/constants.js";
 
 export class WeaklingsCaveScene extends GeneralLocation {
     private chest: Phaser.Physics.Arcade.Image;
@@ -44,10 +45,12 @@ export class WeaklingsCaveScene extends GeneralLocation {
             }, false);
         };
 
-        this.switchToScene('Dialog', {
-            dialogTree: introDialog,
-            closeCallback: (param) => {}
-        }, false);
+        if (!DEBUG) {
+            this.switchToScene('Dialog', {
+                dialogTree: introDialog,
+                closeCallback: (param) => {}
+            }, false);
+        }
     }
 
     public update() {

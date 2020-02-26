@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="18">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="20">
  <editorsettings>
   <export target="village.json" format="json"/>
  </editorsettings>
@@ -146,6 +146,15 @@
   <object id="6" name="Nahkha" x="832" y="544" width="32" height="32"/>
   <object id="7" name="Hargkakh" x="1472" y="32" width="32" height="32"/>
   <object id="17" name="Mitikhha" gid="2218" x="1216" y="416" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="19" name="Messages">
+  <object id="19" x="32" y="672" width="128" height="128">
+   <properties>
+    <property name="interaction" value="overlap"/>
+    <property name="singleUse" type="bool" value="true"/>
+    <property name="text" value="Hmm.. These boars look peaceful from here, but I am sure that if I try to hunt them they will chase me up to the tree and will not let me down for at least several hours..like last time..."/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="Waypoints">
   <object id="10" name="Caltor" x="64" y="1248" width="64" height="32">

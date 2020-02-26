@@ -1,6 +1,6 @@
 import {GeneralLocation} from "./generalLocation.js";
 import Npc from "../entities/npc.js";
-import {bartenderDialog, bartenderNoRumoresDialog} from "../dialogs/tavern/bartenderDialog.js";
+import {bartenderDialog, bartenderNoRumoresDialog} from "../data/dialogs/tavern/bartenderDialog.js";
 
 export class TavernScene extends GeneralLocation {
     constructor() {
