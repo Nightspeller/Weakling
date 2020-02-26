@@ -67,7 +67,7 @@ export default class GeneralCharacter {
     applyEffect(effect) {
         const existingEffectIndex = this.currentEffects.findIndex(elem => (elem.source === effect.source && elem.effectId === effect.effectId));
         if (existingEffectIndex !== -1) {
-            this.currentEffects[existingEffectIndex].currentLevel = effect.currentLevel;
+            this.currentEffects[existingEffectIndex].strength = effect.strength;
             this.currentEffects[existingEffectIndex].durationLeft = effect.baseDuration;
         }
         else {

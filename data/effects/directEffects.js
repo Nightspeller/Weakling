@@ -1,175 +1,4 @@
-export const effects = {
-    armorUp: {
-        effectId: 'armorUp',
-        name: 'Armor up',
-        description: `Armor is increased`,
-        type: 'passive',
-        targetCharacteristic: 'defences.armor',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 119 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: +33
-            };
-        },
-    },
-    dodgeUp: {
-        effectId: 'dodgeUp',
-        name: 'Dodge up',
-        description: 'Dodge is increased',
-        type: 'passive',
-        targetCharacteristic: 'defences.dodge',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 60 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: +33
-            };
-        },
-    },
-    strengthUp: {
-        effectId: 'strengthUp',
-        name: 'Strength up',
-        description: 'Strength is increased',
-        type: 'passive',
-        targetCharacteristic: 'attributes.strength',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 20 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: +33
-            };
-        },
-    },
-    agilityUp: {
-        effectId: 'agilityUp',
-        name: 'Agility up',
-        description: 'Agility is increased',
-        type: 'passive',
-        targetCharacteristic: 'attributes.agility',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 124 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: +33
-            };
-        },
-    },
-    intelligenceUp: {
-        effectId: 'intelligenceUp',
-        name: 'Intelligence up',
-        description: 'Intelligence is increased',
-        type: 'passive',
-        targetCharacteristic: 'attributes.intelligence',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 19 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: +33
-            };
-        },
-    },
-    intelligenceDown: {
-        effectId: 'intelligenceDown',
-        name: 'Intelligence down',
-        description: 'Intelligence is decreased',
-        type: 'passive',
-        targetCharacteristic: 'attributes.intelligence',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 62 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: -33
-            };
-        },
-    },
-    agilityDown: {
-        effectId: 'agilityDown',
-        name: 'Agility down',
-        description: 'Agility is decreased',
-        type: 'passive',
-        targetCharacteristic: 'attributes.agility',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 35 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: -33
-            };
-        },
-    },
-    initiativeUp: {
-        effectId: 'initiativeUp',
-        name: 'Initiative up',
-        description: 'Initiative is increased',
-        type: 'passive',
-        targetCharacteristic: 'attributes.initiative',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 36 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: +33
-            };
-        },
-    },
-    fireResistanceUp: {
-        effectId: 'fireResistanceUp',
-        name: 'Fire resistance up',
-        description: 'Fire resistance is increased',
-        type: 'passive',
-        targetCharacteristic: 'defences.fireResistance',
-        baseDuration: 3,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 57 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'percent',
-                value: +33
-            };
-        },
-    },
+export const directEffects = {
     heal: {
         effectId: 'heal',
         name: 'Healing',
@@ -178,51 +7,14 @@ export const effects = {
         targetCharacteristic: 'parameters.currentHealth',
         baseDuration: -1,
         durationLeft: null,
-        currentLevel: null,
+        strength: null,
         source: null,
         statusImage: { texture: null, frame: null },
         applicationCheck: (source, target, action) => true,
         setModifier: function (source, target, action) {
             this.modifier = {
                 type: 'value',
-                value: 2
-            };
-        },
-    },
-    trapped: {
-        effectId: 'trapped',
-        name: 'Trap prepared',
-        description: 'Trap is set on the character\'s path',
-        type: 'conditional',
-        targetCharacteristic: 'parameters.currentHealth',
-        baseDuration: -1,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 174 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'effect',
-                value: ['pureDamage']
-            };
-        },
-    },
-    cursedSoil: {
-        effectId: 'cursedSoil',
-        name: 'Cursed soil',
-        description: 'The soil is cursed on the character\'s path',
-        type: 'conditional',
-        baseDuration: -1,
-        durationLeft: null,
-        currentLevel: null,
-        source: null,
-        statusImage: { texture: 'icons', frame: 283 },
-        applicationCheck: (source, target, action) => true,
-        setModifier: function (source, target, action) {
-            this.modifier = {
-                type: 'effect',
-                value: ['pureDamage', 'agilityDown']
+                value: 2 * 10 * this.strength
             };
         },
     },
@@ -234,14 +26,14 @@ export const effects = {
         targetCharacteristic: 'parameters.currentHealth',
         baseDuration: null,
         durationLeft: null,
-        currentLevel: null,
+        strength: null,
         source: null,
         statusImage: { texture: 'icons', frame: 0 },
         applicationCheck: (source, target, action) => true,
         setModifier: function (source, target, action) {
             this.modifier = {
                 type: 'value',
-                value: -5
+                value: -5 * this.strength
             };
         }
     },
@@ -253,7 +45,7 @@ export const effects = {
         targetCharacteristic: 'parameters.currentHealth',
         baseDuration: null,
         durationLeft: null,
-        currentLevel: null,
+        strength: null,
         source: null,
         statusImage: { texture: 'icons', frame: 0 },
         applicationCheck: (source, target, action) => {
@@ -301,7 +93,7 @@ export const effects = {
         targetCharacteristic: 'parameters.currentHealth',
         baseDuration: null,
         durationLeft: null,
-        currentLevel: null,
+        strength: null,
         source: null,
         statusImage: { texture: 'icons', frame: 0 },
         applicationCheck: (source, target, action) => {
@@ -346,14 +138,14 @@ export const effects = {
         targetCharacteristic: 'parameters.currentManna',
         baseDuration: null,
         durationLeft: null,
-        currentLevel: null,
+        strength: null,
         source: null,
         statusImage: { texture: 'icons', frame: 0 },
         applicationCheck: (source, target, action) => true,
         setModifier: function (source, target, action) {
             this.modifier = {
                 type: 'value',
-                value: +2
+                value: +2 * this.strength
             };
         },
     },
@@ -365,14 +157,14 @@ export const effects = {
         targetCharacteristic: 'parameters.currentEnergy',
         baseDuration: null,
         durationLeft: null,
-        currentLevel: null,
+        strength: null,
         source: null,
         statusImage: { texture: 'icons', frame: 0 },
         applicationCheck: (source, target, action) => true,
         setModifier: function (source, target, action) {
             this.modifier = {
                 type: 'value',
-                value: +3
+                value: +3 * this.strength
             };
         },
     },
@@ -385,4 +177,4 @@ function log(entree) {
     entreeElement.innerText = entree;
     logElement.appendChild(entreeElement);
 }
-//# sourceMappingURL=effects.js.map
+//# sourceMappingURL=directEffects.js.map

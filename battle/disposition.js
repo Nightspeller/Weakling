@@ -1,7 +1,7 @@
 import { Boar } from "../characters/enemies/boar.js";
-import { effects } from "../data/effects.js";
 import { Adventurer } from "../characters/adventurers/adventurer.js";
 import { Wizard } from "../characters/enemies/wizard.js";
+import Effect from "../entities/effect.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location, scene) {
         this.scene = scene;
@@ -123,8 +123,8 @@ export class Disposition {
             action: action
         };
         if (source.actionPoints[action.type] < action.actionCost) {
-            console.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
-            this.log(`Action was not performed because ${source.actionPoints[action.type]} is not enough - ${action.actionCost} is needed.`);
+            console.log(`Action was not performed because ${source.actionPoints[action.type]} ${action.type} action points is not enough - ${action.actionCost} is needed.`);
+            this.log(`Action was not performed because ${source.actionPoints[action.type]} ${action.type} action points is not enough - ${action.actionCost} is needed.`);
         }
         else {
             actionResults.attempted = true;
@@ -137,11 +137,7 @@ export class Disposition {
                 }
             }
             else {
-                action.effect.forEach(effectDescription => {
-                    const effect = { ...effects[effectDescription.effectId] };
-                    effect.currentLevel = effectDescription.level;
-                    effect.durationLeft = effect.baseDuration;
-                    effect.source = effectDescription.source;
+                action.effects.forEach(effect => {
                     targets.forEach((target, index) => {
                         if (effect.applicationCheck(source, target, action)) {
                             effect.setModifier(source, target, action);
@@ -175,8 +171,8 @@ export class Disposition {
                             sourceEffectsLength--;
                             if (effect.modifier.type === 'effect') {
                                 effect.modifier.value.forEach(effectOfTheTrigger => {
-                                    const trapEffect = { ...effects[effectOfTheTrigger] };
-                                    trapEffect.durationLeft = trapEffect.baseDuration;
+                                    const trapEffect = new Effect(effectOfTheTrigger);
+                                    trapEffect.strength = effect.strength;
                                     trapEffect.source = effect.source;
                                     trapEffect.setModifier();
                                     source.applyEffect(trapEffect);

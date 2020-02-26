@@ -9,11 +9,11 @@ export class Elder extends Adventurer {
                 strength: 5,
                 agility: 10,
                 intelligence: 15,
-                initiative: Phaser.Math.Between(0, 30) + 100
+                initiative: Phaser.Math.Between(0, 30) + 10
             },
             parameters: {
-                health: 50,
-                currentHealth: 50,
+                health: 15,
+                currentHealth: 15,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -31,15 +31,17 @@ export class Elder extends Adventurer {
             }
         };
 
-        this.addItemToInventory('rope-belt').currentSlot = 'belt';
+/*        this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('leather-armor').currentSlot = 'body';
         this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
-        this.addItemToInventory('copper-pieces', 15);
+        this.addItemToInventory('copper-pieces', 15);*/
         this.name = 'Elder Guarthh';
 
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
+    }
 
-        this.currentEffects = [];
+    public getAttackDamage() {
+        return 5;
     }
 }
 

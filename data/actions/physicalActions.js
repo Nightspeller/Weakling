@@ -5,14 +5,12 @@ export const physicalActions = {
         type: 'physical',
         actionName: 'Warm up',
         actionDescription: 'Sets you in your best physical shape for the upcoming battle',
-        effect: [{
+        effectsDescriptions: [{
                 effectId: 'strengthUp',
-                source: 'warmUp',
-                level: 1
+                strength: 1
             }, {
                 effectId: 'agilityUp',
-                source: 'warmUp',
-                level: 1
+                strength: 1
             }],
         target: 'self',
         actionCost: 0.5,
@@ -25,14 +23,12 @@ export const physicalActions = {
         type: 'physical',
         actionName: 'Adjust armor',
         actionDescription: 'Making sure that your gear is in perfect shape and does not get in a way',
-        effect: [{
+        effectsDescriptions: [{
                 effectId: 'armorUp',
-                source: 'adjustArmor',
-                level: 1
+                strength: 1
             }, {
                 effectId: 'dodgeUp',
-                source: 'adjustArmor',
-                level: 1
+                strength: 1
             }],
         target: 'self',
         actionCost: 0.5,
@@ -45,10 +41,9 @@ export const physicalActions = {
         type: 'physical',
         actionName: 'Set a trap',
         actionDescription: 'Sets a trap on the most likely way of the selected opponent',
-        effect: [{
+        effectsDescriptions: [{
                 effectId: 'trapped',
-                source: 'setTrap',
-                level: 1
+                strength: 1
             }],
         target: 'enemy',
         actionCost: 0.5,
@@ -61,10 +56,9 @@ export const physicalActions = {
         type: 'physical',
         actionName: 'Melee attack',
         actionDescription: 'Hits the opponent with equipped melee weapon',
-        effect: [{
+        effectsDescriptions: [{
                 effectId: 'physicalDamage',
-                source: 'meleeAttack',
-                level: 1
+                strength: 1
             }],
         target: 'enemy',
         actionCost: 1,
@@ -77,10 +71,9 @@ export const physicalActions = {
         type: 'physical',
         actionName: 'Wild rush',
         actionDescription: 'Character rushes to attack it\'s target',
-        effect: [{
+        effectsDescriptions: [{
                 effectId: 'physicalDamage',
-                source: 'wildRush',
-                level: 1
+                strength: 1
             }],
         target: 'enemy',
         actionCost: 1,

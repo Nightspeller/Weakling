@@ -6,14 +6,12 @@ export const miscActions: { [key: string]: ActionData } = {
         actionName: 'Drink weak health potion',
         requires: 'weakHealthPotion',
         actionDescription: 'Drink weak health potion to restore some hp ',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'health',
-            source: '',
-            level: 10
+            strength: 1
         }, {
             effectId: 'saturation',
-            source: '',
-            level: 1
+            strength: 1
         }],
         target: 'self',
         actionCost: 0.5,
@@ -26,10 +24,9 @@ export const miscActions: { [key: string]: ActionData } = {
         type: 'misc',
         actionName: 'Inspect enemy',
         actionDescription: 'Spend some time learning about your enemy to make better decisions later',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'intelligence',
-            source: '',
-            level: 1
+            strength: 1
         }],
         target: 'enemy',
         actionCost: 0.5,
@@ -42,14 +39,12 @@ export const miscActions: { [key: string]: ActionData } = {
         type: 'misc',
         actionName: 'Meditate',
         actionDescription: 'Clear your mind, balance and expand your energies',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'restoreManna',
-            source: 'meditate',
-            level: 1
+            strength: 1
         }, {
             effectId: 'restoreEnergy',
-            source: 'meditate',
-            level: 1
+            strength: 1
         }],
         target: 'self',
         actionCost: 1,
@@ -62,10 +57,9 @@ export const miscActions: { [key: string]: ActionData } = {
         type: 'misc',
         actionName: 'Access inventory',
         actionDescription: 'Sometimes even in the heat of the battle you absolutely have to do it',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'openInventory',
-            source: 'accessInventory',
-            level: 1
+            strength: 1
         }],
         target: 'self',
         actionCost: 0.5,
@@ -78,14 +72,12 @@ export const miscActions: { [key: string]: ActionData } = {
         type: 'misc',
         actionName: 'Enrage',
         actionDescription: 'Character gets really angry, loosing the ability to think straight, but gaining extra strength',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'strengthUp',
-            source: 'enrage',
-            level: 1
+            strength: 1
         }, {
             effectId: 'intelligenceDown',
-            source: 'enrage',
-            level: 1
+            strength: 1
         }],
         target: 'self',
         actionCost: 0.5,

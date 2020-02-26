@@ -1,6 +1,6 @@
 import {itemsData} from "../data/itemsData.js";
 
-export default class Item {
+export default class Item implements ItemData{
     public itemId: string;
     public displayName: string;
     public description: string;

@@ -145,7 +145,7 @@ export class CharacterDrawer {
         })
     }
 
-    private drawEffectInformation(effect: Effect, x: number, y: number) {
+    private drawEffectInformation(effect: EffectData, x: number, y: number) {
         this.effectInformationContainer.removeAll(true);
         const textStyle = {font: 'bold 12px monospace', fill: '#000000'};
         const background = this.scene.add.graphics()

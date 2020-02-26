@@ -4,7 +4,7 @@ export default class GeneralCharacter {
     public name: string;
     public baseCharacteristics: CharacteristicsSet;
     public currentCharacteristics: CharacteristicsSet;
-    public currentEffects: Effect[];
+    public currentEffects: EffectData[];
     public availableActions: string[];
     public actedThisRound: boolean;
     public isAlive: boolean;
@@ -80,10 +80,10 @@ export default class GeneralCharacter {
         this.actionPointsIncrement = {physical: 0, magical: 0, misc: 0};
     }
 
-    public applyEffect(effect: Effect) {
+    public applyEffect(effect: EffectData) {
         const existingEffectIndex = this.currentEffects.findIndex(elem => (elem.source === effect.source && elem.effectId === effect.effectId));
         if (existingEffectIndex !== -1) {
-            this.currentEffects[existingEffectIndex].currentLevel = effect.currentLevel;
+            this.currentEffects[existingEffectIndex].strength = effect.strength;
             this.currentEffects[existingEffectIndex].durationLeft = effect.baseDuration;
         } else {
             if (effect.type !== "conditional") {

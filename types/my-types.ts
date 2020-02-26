@@ -25,16 +25,27 @@ interface CharacteristicsSet {
     }
 }
 
-interface Effect {
+type Modifier = EffectModifier | ValueModifier;
+
+interface EffectModifier {
+    type: 'effect';
+    value: string[];
+}
+
+interface ValueModifier {
+    type: 'percent' | 'value';
+    value: number;
+}
+
+interface EffectData {
     effectId: string;
     name: string;
     description: string;
-    type: 'direct' | 'passive' | 'conditional'
+    type: 'direct' | 'passive' | 'conditional';
     targetCharacteristic?: string;
     baseDuration: number;
     durationLeft: number;
-    currentLevel: number;
-    modifierValue?: number;
+    strength: 1 | 2 | 3 | 4 | 5;
     modifier?: Modifier;
     source: string;
     statusImage: SpriteParameters;
@@ -52,7 +63,8 @@ interface SpriteParameters {
 
 interface ActionData {
     phase: ('preparation' | 'battle')[];
-    effect: { effectId: string; source: string; level: number }[];
+    effectsDescriptions: { effectId: string; strength: 1 | 2 | 3 | 4 | 5 }[];
+    effects?: EffectData[];
     actionId: string;
     actionCost: number;
     actionDescription: string;
@@ -120,16 +132,6 @@ interface DialogOptions extends OverlaySceneOptions {
     letterAppearanceDelay?: number;
 }
 
-interface EffectModifier {
-    type: 'effect';
-    value: string[];
-}
-
-interface ValueModifier {
-    type: 'percent' | 'value';
-    value: number;
-}
-
 interface TriggerParams {
     objectLayer?: string,
     objectName: string;
@@ -152,8 +154,6 @@ interface NpcOptions {
     interactionCallback?: Function;
     items?: any[];
 }
-
-type Modifier = EffectModifier | ValueModifier;
 
 interface DialogReplay {
     text: string;

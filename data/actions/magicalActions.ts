@@ -5,10 +5,9 @@ export const magicalActions: { [key: string]: ActionData } = {
         type: 'magical',
         actionName: 'Healing touch',
         actionDescription: 'Primitive spell, which nevertheless does the trick - restores some health',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'heal',
-            source: 'healingTouch',
-            level: 1
+            strength: 1
         }],
         target: 'party',
         actionCost: 1,
@@ -21,14 +20,12 @@ export const magicalActions: { [key: string]: ActionData } = {
         type: 'magical',
         actionName: 'Dust storm',
         actionDescription: 'One of a few aggressive spells Kobolds can master - used mostly to blind the enemy to run away',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'physicalDamage',
-            source: 'dustStorm',
-            level: 1
+            strength: 1
         }, {
             effectId: 'agilityDown',
-            source: 'dustStorm',
-            level: 1
+            strength: 1
         }],
         target: 'allEnemies',
         actionCost: 1,
@@ -41,10 +38,9 @@ export const magicalActions: { [key: string]: ActionData } = {
         type: 'magical',
         actionName: 'Draining soil',
         actionDescription: 'Puts the curse on the most likely way of the selected opponent',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'cursedSoil',
-            source: 'drainingSoil',
-            level: 1
+            strength: 1
         }],
         target: 'enemy',
         actionCost: 0.5,
@@ -58,10 +54,9 @@ export const magicalActions: { [key: string]: ActionData } = {
         type: 'magical',
         actionName: 'Fire protection',
         actionDescription: 'Creates the sphere of protection against the fire around the target',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'fireResistanceUp',
-            source: 'fireProtection',
-            level: 1
+            strength: 1
         }],
         target: 'self',
         actionCost: 1.5,
@@ -74,14 +69,12 @@ export const magicalActions: { [key: string]: ActionData } = {
         type: 'magical',
         actionName: 'Swift mind',
         actionDescription: 'You think faster, allowing you to consider more options and quicker react on what is happening',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'intelligenceUp',
-            source: 'swiftMind',
-            level: 1
+            strength: 1
         }, {
             effectId: 'initiativeUp',
-            source: 'swiftMind',
-            level: 1
+            strength: 1
         }],
         target: 'self',
         actionCost: 0.5,
@@ -94,10 +87,9 @@ export const magicalActions: { [key: string]: ActionData } = {
         type: 'magical',
         actionName: 'Magic Missile',
         actionDescription: 'One of the most basic, yet one of the most important spells in the spellbook of any wizard.',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'magicalDamage',
-            source: 'magicMissile',
-            level: 1
+            strength: 1
         }],
         target: 'enemy',
         actionCost: 1,
@@ -111,10 +103,9 @@ export const magicalActions: { [key: string]: ActionData } = {
         type: 'magical',
         actionName: 'Fireball',
         actionDescription: 'Throws fireball to the enemies, damaging all of them',
-        effect: [{
+        effectsDescriptions: [{
             effectId: 'magicalDamage',
-            source: 'fireball',
-            level: 1
+            strength: 1
         }],
         target: 'allEnemies',
         actionCost: 2,

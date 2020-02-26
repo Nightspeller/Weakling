@@ -75,10 +75,14 @@ export class BattleScene extends GeneralLocation {
         }
     }
 
-    public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: Effect[], source: Adventurer | GeneralEnemy; targets: (Adventurer | GeneralEnemy)[]; action: ActionData }) {
+    public async animateAction({attempted, succeeded, triggeredTraps, source, targets, action}: { attempted: boolean; succeeded: boolean[]; triggeredTraps: EffectData[], source: Adventurer | GeneralEnemy; targets: (Adventurer | GeneralEnemy)[]; action: ActionData }) {
         this.charToDrawerMap.get(source).drawActionPoints(true);
         if (attempted) {
-            await this.playAnimation(source, action.animation, targets[0]);
+            if (targets.length === 1) {
+                await this.playAnimation(source, action.animation, targets[0]);
+            } else {
+                await this.playAnimation(source, action.animation);
+            }
             await Promise.all(targets.map((target, index) => {
                 if (succeeded[index] && targets[index] !== source) {
                     return this.playAnimation(targets[index], 'hit')
@@ -97,13 +101,17 @@ export class BattleScene extends GeneralLocation {
 
     public async playAnimation(char: Adventurer | GeneralEnemy, animation: string, target?) {
         const charDrawer = this.charToDrawerMap.get(char);
-        const targetDrawer = this.charToDrawerMap.get(target);
+        let targetDrawer = this.charToDrawerMap.get(target);
         switch (animation) {
             case 'idle':
                 await charDrawer.playIdleAnimation();
                 break;
             case 'meleeAttack':
-                await charDrawer.playMeleeAttackAnimation(targetDrawer.position.x, targetDrawer.position.y);
+                if (targetDrawer) {
+                    await charDrawer.playMeleeAttackAnimation(targetDrawer.position.x, targetDrawer.position.y);
+                } else {
+                    await charDrawer.playMeleeAttackAnimation(600, 320);
+                }
                 break;
             case 'castBuff':
                 await charDrawer.playCastAnimation();
