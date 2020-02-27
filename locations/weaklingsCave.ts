@@ -3,8 +3,6 @@ import {chest1Dialog, chest2Dialog, introDialog} from "../data/dialogs/introDial
 import {DEBUG} from "../config/constants.js";
 
 export class WeaklingsCaveScene extends GeneralLocation {
-    private chest: Phaser.Physics.Arcade.Image;
-
     constructor() {
         super({key: 'WeaklingsCave'});
     }
@@ -45,6 +43,13 @@ export class WeaklingsCaveScene extends GeneralLocation {
                 speakerName: 'Narrator',
                 closeCallback: (param) => {}
             }, false);
+        };
+
+        const secretTrigger = this.triggers.find(trigger => trigger.name === 'Sourgrass');
+        const secretDestroyCallback = secretTrigger.callback;
+        secretTrigger.callback = () => {
+            secretDestroyCallback();
+            this.player.addItemToInventory('sourgrass');
         };
 
         if (!DEBUG) {

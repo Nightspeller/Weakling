@@ -6879,12 +6879,12 @@
         {
          "columns":8,
          "firstgid":1065,
-         "image":"..\/images\/tilesets\/castle.png",
-         "imageheight":672,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/castle.png",
+         "imageheight":714,
+         "imagewidth":272,
+         "margin":1,
          "name":"castle",
-         "spacing":0,
+         "spacing":2,
          "tilecount":168,
          "tileheight":32,
          "tiles":[

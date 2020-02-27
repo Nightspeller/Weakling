@@ -8,7 +8,7 @@ export class GeneralLocation extends Phaser.Scene {
     public layers: (Phaser.Tilemaps.StaticTilemapLayer | Phaser.Tilemaps.DynamicTilemapLayer)[];
     public map: Phaser.Tilemaps.Tilemap;
     public prevSceneKey: string;
-    protected triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' | 'activateOverlap', name: string }[];
+    protected triggers: { image: Phaser.Physics.Arcade.Image, callback: Function, type: 'overlap' | 'collide' | 'activate' | 'activateOverlap', name: string, isSecret?: boolean }[];
     private spaceBarCooldown: number;
     private offsetX: number;
     private offsetY: number;
@@ -326,6 +326,9 @@ export class GeneralLocation extends Phaser.Scene {
             console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);
             return;
         }
+        // @ts-ignore
+        const isSecret = !!object.properties.find(prop => prop.name === 'secret' && prop.value === true);
+
         const triggerImage = this.physics.add
             .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
@@ -352,7 +355,7 @@ export class GeneralLocation extends Phaser.Scene {
             this.physics.add.overlap(this.playerImage, triggerImage);
         }
         //TODO: might need rework to support callback update...
-        const trigger = {image: triggerImage, callback: callback, type: interaction, name: objectName};
+        const trigger = {image: triggerImage, callback: callback, type: interaction, name: objectName, isSecret: isSecret};
         this.triggers.push(trigger);
         return trigger;
     }
@@ -481,10 +484,12 @@ export class GeneralLocation extends Phaser.Scene {
             event.preventDefault();
             if (this.objectsHighlightBorders.getLength() === 0) {
                 this.triggers.forEach(trigger => {
-                    const border = this.add.graphics()
-                        .lineStyle(2, 0xca5d8f)
-                        .strokeRectShape(trigger.image.getBounds());
-                    this.objectsHighlightBorders.add(border);
+                    if (trigger.image.active && !trigger.isSecret) {
+                        const border = this.add.graphics()
+                            .lineStyle(2, 0xca5d8f)
+                            .strokeRectShape(trigger.image.getBounds());
+                        this.objectsHighlightBorders.add(border);
+                    }
                 })
             }
         });

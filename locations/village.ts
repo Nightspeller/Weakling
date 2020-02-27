@@ -42,9 +42,7 @@ export class VillageScene extends GeneralLocation {
 
         const elder = new Npc({
             scene: this,
-            mapObjectName: 'Elder',
-            texture: 'stranger',
-            frame: 1,
+            mapObjectName: 'Elder Guarthh',
             initDialog: elderFirstTimeDialog,
             interactionCallback: (param) => {
                 elder.setDialog(elderSecondTimeDialog, (param) => {
@@ -74,16 +72,12 @@ export class VillageScene extends GeneralLocation {
         const nahkha = new Npc({
             scene: this,
             mapObjectName: 'Nahkha',
-            texture: 'trader',
-            frame: 1,
             initDialog: nahkhaBeforeTheElderDialog
         });
 
         const hargkakh = new Npc({
             scene: this,
             mapObjectName: 'Hargkakh',
-            texture: 'stranger',
-            frame: 1,
             initDialog: hargkakhFirstDialog,
             interactionCallback: (param) => {
                 if (param === 'pickupFailure') {

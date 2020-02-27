@@ -21,14 +21,14 @@ export default class Npc {
     ) {
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
+        if (mapObject['gid'] && !texture) {
+            const params = scene.getSpriteParamsByObjectName(mapObject.name);
+            texture = params.key;
+            frame = params.frame as number;
+        }
         if (initDialog) {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback;
-            if (mapObject['gid'] && !texture) {
-                const params = scene.getSpriteParamsByObjectName(mapObject.name);
-                texture = params.key;
-                frame = params.frame as number;
-            }
 
             this.image = scene.createTrigger({
                 objectName: mapObject.name,

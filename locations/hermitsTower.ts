@@ -20,8 +20,6 @@ export class HermitsTowerScene extends GeneralLocation {
         const hermit = new Npc({
             scene: this,
             mapObjectName: 'Hermit',
-            texture: 'stranger',
-            frame: 1,
             initDialog: hermitDialog,
             items: [
                 {itemId: 'copper-pieces', quantity: 10},

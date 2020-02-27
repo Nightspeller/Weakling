@@ -1,4 +1,17 @@
 export const backpackItems: { [key: string]: ItemData } = {
+    'sourgrass': {
+        itemId: 'sourgrass',
+        displayName: 'Sourgrass',
+        description: 'Common grass growing in this area. Consumed by herbivore animals, and sometimes as a spice by humans.',
+        slot: ['backpack'],
+        sprite: {key: 'icon-item-set', frame: 189},
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: { },
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'basket': {
         itemId: 'basket',
         displayName: 'Basket',

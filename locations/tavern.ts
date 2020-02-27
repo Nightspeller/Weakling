@@ -1,6 +1,7 @@
 import {GeneralLocation} from "./generalLocation.js";
 import Npc from "../entities/npc.js";
 import {bartenderDialog, bartenderNoRumoresDialog} from "../data/dialogs/tavern/bartenderDialog.js";
+import {farmerJoeDialog} from "../data/dialogs/tavern/farmerJoeDialog.js";
 
 export class TavernScene extends GeneralLocation {
     constructor() {
@@ -20,8 +21,6 @@ export class TavernScene extends GeneralLocation {
         const bartender = new Npc({
             scene: this,
             mapObjectName: 'Bartender',
-            texture: 'bartender',
-            frame: 1,
             initDialog: bartenderDialog,
             items: [
                 {itemId: 'copper-pieces', quantity: 10},
@@ -41,6 +40,15 @@ export class TavernScene extends GeneralLocation {
                         trader: bartender
                     }, false)
                 }
+            }
+        });
+
+        const farmerJoe = new Npc({
+            scene: this,
+            mapObjectName: 'Farmer Joe',
+            initDialog: farmerJoeDialog,
+            interactionCallback: param => {
+
             }
         });
     }

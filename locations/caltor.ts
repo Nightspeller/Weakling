@@ -45,8 +45,6 @@ export class CaltorScene extends GeneralLocation {
         const stranger = new Npc({
             scene: this,
             mapObjectName: "Stranger",
-            texture: 'stranger',
-            frame: 1,
             initDialog: strangerDialog,
             interactionCallback: param => {
                 if (param === 'daggerObtained') {
@@ -58,8 +56,6 @@ export class CaltorScene extends GeneralLocation {
         const greg = new Npc({
             scene: this,
             mapObjectName: "Greg",
-            texture: 'fisherman',
-            frame: 1,
             initDialog: gregDialog
         });
 
@@ -114,9 +110,7 @@ export class CaltorScene extends GeneralLocation {
 
         const kasima = new Npc({
             scene: this,
-            name: 'Kasima',
-            mapObjectName: 'Trader',
-            texture: 'trader',
+            mapObjectName: 'Kasima',
             items: [
                 {itemId: 'copper-pieces', quantity: 200},
                 {itemId: 'rope-belt', quantity: 1},

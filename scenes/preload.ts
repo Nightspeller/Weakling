@@ -73,21 +73,21 @@ export class PreloadScene extends Phaser.Scene {
         };
 
         // Tilesets
-        this.load.spritesheet('base', 'assets/images/tilesets/extruded/base-extruded.png', tilesetConfig);
-        this.load.spritesheet('base-addition', 'assets/images/tilesets/extruded/base-addition-extruded.png', tilesetConfig);
+        this.load.spritesheet('base', 'assets/images-extruded/tilesets/base.png', tilesetConfig);
+        this.load.spritesheet('base-addition', 'assets/images-extruded/tilesets/base-addition.png', tilesetConfig);
         this.load.image('dirt1-dirt2', 'assets/images/tilesets/dirt1-dirt2.png');
         this.load.image('grass1', 'assets/images/tilesets/grass1.png');
         this.load.image('grass4', 'assets/images/tilesets/grass4.png');
         this.load.image('dirt1', 'assets/images/tilesets/dirt1.png');
         this.load.image('dirt2', 'assets/images/tilesets/dirt2.png');
-        this.load.spritesheet('dirt4', 'assets/images/tilesets/extruded/dirt4-extruded.png', tilesetConfig);
+        this.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
         this.load.image('water2', 'assets/images/tilesets/water2.png');
         this.load.image('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png');
         this.load.image('grass1-dirt2', 'assets/images/tilesets/grass1-dirt2.png');
         this.load.image('grass1-dirt4', 'assets/images/tilesets/grass1-dirt4.png');
         this.load.image('wall-up', 'assets/images/tilesets/wall-up.png');
         this.load.image('flowers', 'assets/images/tilesets/flowers.png');
-        this.load.image('castle', 'assets/images/tilesets/castle.png');
+        this.load.spritesheet('castle', 'assets/images-extruded/tilesets/castle.png', tilesetConfig);
 
         // Interface
         this.load.image('interface', 'assets/images/interface/Interface.png');
@@ -125,38 +125,14 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
-        this.load.spritesheet("jeremy-green", "assets/images/characters/world-map/party/jeremy-green.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet('solider', 'assets/images/characters/world-map/neutral/solider.png', {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet('fisherman', 'assets/images/characters/world-map/neutral/fisherman.png', {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet('enemies', 'assets/images/characters/various-enemies.png', {
-            frameWidth: 128,
-            frameHeight: 128
-        });
-        this.load.spritesheet("stranger", "assets/images/characters/world-map/neutral/stranger.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("trader", "assets/images/characters/world-map/neutral/trader.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("bartender", "assets/images/characters/world-map/neutral/bartender.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("female20-3", "assets/images/characters/world-map/neutral/female20-3.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
+        this.load.spritesheet("jeremy-green", "assets/images-extruded/characters/world-map/party/jeremy-green.png", tilesetConfig);
+        this.load.spritesheet('male13-1', 'assets/images-extruded/characters/world-map/neutral/male13-1.png', tilesetConfig);
+        this.load.spritesheet('male14-2', 'assets/images-extruded/characters/world-map/neutral/male14-2.png', tilesetConfig);
+        this.load.spritesheet("male17-3", "assets/images-extruded/characters/world-map/neutral/male17-3.png", tilesetConfig);
+        this.load.spritesheet("male17-4", "assets/images-extruded/characters/world-map/neutral/male17-4.png", tilesetConfig);
+        this.load.spritesheet("female19-1", "assets/images-extruded/characters/world-map/neutral/female19-1.png", tilesetConfig);
+        this.load.spritesheet("male12-1", "assets/images-extruded/characters/world-map/neutral/male12-1.png", tilesetConfig);
+        this.load.spritesheet("female20-3", "assets/images-extruded/characters/world-map/neutral/female20-3.png", tilesetConfig);
 
         // Battle characters images
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');

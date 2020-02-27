@@ -29,7 +29,7 @@
                 }, 
                 {
                  "compression":"",
-                 "data":"YQQAAFsEAABbBAAAWwQAAFsEAABbBAAAWwQAAGIEAABlBAAAiQAAAGIAAABiAAAAYgAAAGIAAABiAAAAZQQAAGUEAACRAAAAagAAAGoAAABqAAAAagAAAGoAAABlBAAAZQQAAHkDAAB6AwAAxQIAAPoCAADFAgAAaQMAAGUEAABlBAAAgQMAAIIDAAAAAAAAAAAAAAAAAAAAAAAAZQQAAGUEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlBAAAZQQAAG8DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGUEAABlBAAAAAAAAAAAAAAAAAAAAAAAAAAAAACoAwAAZQQAAGUEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGwDAABlBAAAZQQAAAAAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAGUEAABlBAAAzQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZQQAAGkEAABbBAAAWwQAAFsEAABcBAAAAAAAAFoEAABqBAAA",
+                 "data":"YQQAAFsEAABbBAAAWwQAAFsEAABbBAAAWwQAAGIEAABlBAAAiQAAAGIAAABiAAAAYgAAAGIAAABiAAAAZQQAAGUEAACRAAAAagAAAGoAAABqAAAAagAAAGoAAABlBAAAZQQAAHkDAAB6AwAAxQIAAPoCAADFAgAAaQMAAGUEAABlBAAAgQMAAIIDAAAAAAAAAAAAAAAAAAAAAAAAZQQAAGUEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlBAAAZQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGUEAABlBAAAAAAAAAAAAAAAAAAAAAAAAAAAAACoAwAAZQQAAGUEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGwDAABlBAAAZQQAAAAAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAGUEAABlBAAAzQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZQQAAGkEAABbBAAAWwQAAFsEAABcBAAAAAAAAFoEAABqBAAA",
                  "encoding":"base64",
                  "height":12,
                  "id":2,
@@ -244,6 +244,29 @@
                  "width":32,
                  "x":192,
                  "y":224
+                }, 
+                {
+                 "gid":879,
+                 "height":32,
+                 "id":8,
+                 "name":"Sourgrass",
+                 "properties":[
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":876
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":32,
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -252,7 +275,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":7,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.2",

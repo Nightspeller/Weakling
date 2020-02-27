@@ -18,8 +18,8 @@ export class Player extends Adventurer {
                 initiative: Phaser.Math.Between(0, 30)
             },
             parameters: {
-                health: 50,
-                currentHealth: 50,
+                health: 5,
+                currentHealth: 5,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -38,6 +38,8 @@ export class Player extends Adventurer {
         };
 
         if (DEBUG) {
+            this.baseCharacteristics.parameters.health = 50;
+            this.baseCharacteristics.parameters.currentHealth = 50;
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
             this.addItemToInventory('leather-armor', 1, 'body');
@@ -59,7 +61,7 @@ export class Player extends Adventurer {
         this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'swiftMind', 'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
 
         this.party = [this];
-        this.party = [this, elderInstance];
+        if (DEBUG) this.party = [this, elderInstance];
     }
 
     public getAvailableActions() {

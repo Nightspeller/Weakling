@@ -3,14 +3,14 @@ export default class Npc {
     constructor({ scene, name, mapObjectName, mapObjectLayer = 'Objects', texture, frame, initDialog, items = [], interactionCallback = () => { } }) {
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
+        if (mapObject['gid'] && !texture) {
+            const params = scene.getSpriteParamsByObjectName(mapObject.name);
+            texture = params.key;
+            frame = params.frame;
+        }
         if (initDialog) {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback;
-            if (mapObject['gid'] && !texture) {
-                const params = scene.getSpriteParamsByObjectName(mapObject.name);
-                texture = params.key;
-                frame = params.frame;
-            }
             this.image = scene.createTrigger({
                 objectName: mapObject.name,
                 texture: texture,

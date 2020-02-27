@@ -281,6 +281,8 @@ export class GeneralLocation extends Phaser.Scene {
             console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);
             return;
         }
+        // @ts-ignore
+        const isSecret = !!object.properties.find(prop => prop.name === 'secret' && prop.value === true);
         const triggerImage = this.physics.add
             .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
@@ -307,7 +309,7 @@ export class GeneralLocation extends Phaser.Scene {
             this.physics.add.overlap(this.playerImage, triggerImage);
         }
         //TODO: might need rework to support callback update...
-        const trigger = { image: triggerImage, callback: callback, type: interaction, name: objectName };
+        const trigger = { image: triggerImage, callback: callback, type: interaction, name: objectName, isSecret: isSecret };
         this.triggers.push(trigger);
         return trigger;
     }
@@ -431,10 +433,12 @@ export class GeneralLocation extends Phaser.Scene {
             event.preventDefault();
             if (this.objectsHighlightBorders.getLength() === 0) {
                 this.triggers.forEach(trigger => {
-                    const border = this.add.graphics()
-                        .lineStyle(2, 0xca5d8f)
-                        .strokeRectShape(trigger.image.getBounds());
-                    this.objectsHighlightBorders.add(border);
+                    if (trigger.image.active && !trigger.isSecret) {
+                        const border = this.add.graphics()
+                            .lineStyle(2, 0xca5d8f)
+                            .strokeRectShape(trigger.image.getBounds());
+                        this.objectsHighlightBorders.add(border);
+                    }
                 });
             }
         });

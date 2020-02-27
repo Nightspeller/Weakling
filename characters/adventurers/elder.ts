@@ -1,4 +1,5 @@
 import {Adventurer} from "./adventurer.js";
+import {DEBUG} from "../../config/constants.js";
 
 export class Elder extends Adventurer {
     constructor() {
@@ -12,8 +13,8 @@ export class Elder extends Adventurer {
                 initiative: Phaser.Math.Between(0, 30) + 10
             },
             parameters: {
-                health: 15,
-                currentHealth: 15,
+                health: 5,
+                currentHealth: 5,
                 manna: 5,
                 currentManna: 5,
                 energy: 10,
@@ -30,6 +31,11 @@ export class Elder extends Adventurer {
                 magicResistance: 10,
             }
         };
+
+        if (DEBUG) {
+            this.baseCharacteristics.parameters.health = 50;
+            this.baseCharacteristics.parameters.currentHealth = 50;
+        }
 
 /*        this.addItemToInventory('rope-belt').currentSlot = 'belt';
         this.addItemToInventory('leather-armor').currentSlot = 'body';
