@@ -4,7 +4,7 @@ export class DialogScene extends GeneralOverlayScene {
     constructor() {
         super({ key: 'Dialog' });
     }
-    init({ dialogTree, opts, closeCallback, prevScene }) {
+    init({ dialogTree, opts, closeCallback, prevScene, speakerName }) {
         this.opts = {
             borderThickness: 3,
             borderColor: 0x907748,
@@ -22,6 +22,7 @@ export class DialogScene extends GeneralOverlayScene {
             textColor: 'white',
             letterAppearanceDelay: 10,
         };
+        this.speakerName = speakerName;
         this.dialogTree = dialogTree;
         this.opts = { ...this.opts, ...opts };
         this.closeCallback = closeCallback;
@@ -34,9 +35,10 @@ export class DialogScene extends GeneralOverlayScene {
         this.prepareOverlay(this.parentSceneKey, this.opts);
         this.dialogDisplayGroup = this.add.group();
         this._showDialog();
-        this.events.on('wake', (scene, { dialogTree, opts, closeCallback, prevScene }) => {
+        this.events.on('wake', (scene, { dialogTree, opts, closeCallback, prevScene, speakerName }) => {
             this.parentSceneKey = prevScene;
             this.dialogTree = dialogTree;
+            this.speakerName = speakerName;
             this.opts = { ...this.opts, ...opts };
             this.closeCallback = closeCallback;
             this._showDialog();
@@ -48,6 +50,7 @@ export class DialogScene extends GeneralOverlayScene {
     _showLine(line) {
         var _a;
         this.dialogDisplayGroup.clear(true, true);
+        this._showName();
         (_a = this.timedEvent) === null || _a === void 0 ? void 0 : _a.remove();
         this._setText(line.text, this.opts.letterAppearanceDelay > 0).then(() => {
             this._setReplies(line.replies);
@@ -182,6 +185,18 @@ export class DialogScene extends GeneralOverlayScene {
                 resolve();
             }
         });
+    }
+    _showName() {
+        if (this.speakerName) {
+            const name = this.add.text(this.opts.windowX + 5, this.opts.windowY - 20, this.speakerName).setDepth(this.opts.baseDepth + 1);
+            const nameBackground = this.add.graphics()
+                .fillStyle(this.opts.backgroundColor, this.opts.backgroundAlpha)
+                .fillRect(this.opts.windowX, this.opts.windowY - 25, name.width + 10, name.height + 10)
+                .lineStyle(this.opts.borderThickness, this.opts.borderColor)
+                .strokeRect(this.opts.windowX, this.opts.windowY - 25, name.width + 10, name.height + 10)
+                .setScrollFactor(0).setDepth(this.opts.baseDepth);
+            this.dialogDisplayGroup.addMultiple([name, nameBackground]);
+        }
     }
 }
 //# sourceMappingURL=dialog.js.map

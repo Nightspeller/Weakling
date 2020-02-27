@@ -22,6 +22,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
             this.player.addItemToInventory('copper-pieces', 10);
             this.switchToScene('Dialog', {
                 dialogTree: chest1Dialog,
+                speakerName: 'Narrator',
                 closeCallback: (param) => { }
             }, false);
         };
@@ -33,12 +34,14 @@ export class WeaklingsCaveScene extends GeneralLocation {
             this.player.addItemToInventory('spear-weapon');
             this.switchToScene('Dialog', {
                 dialogTree: chest2Dialog,
+                speakerName: 'Narrator',
                 closeCallback: (param) => { }
             }, false);
         };
-        if (!DEBUG) {
+        if (DEBUG) {
             this.switchToScene('Dialog', {
                 dialogTree: introDialog,
+                speakerName: 'Narrator',
                 closeCallback: (param) => { }
             }, false);
         }

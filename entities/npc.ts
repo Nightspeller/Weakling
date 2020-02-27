@@ -38,6 +38,7 @@ export default class Npc {
                     if (this.dialog) {
                         scene.switchToScene('Dialog', {
                             dialogTree: this.dialog,
+                            speakerName: this.name,
                             closeCallback: (param) => {
                                 this.interactionCallback(param);
                             }

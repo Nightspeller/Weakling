@@ -148,7 +148,7 @@
   <object id="17" name="Mitikhha" gid="2218" x="1216" y="416" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="19" name="Messages">
-  <object id="19" x="32" y="672" width="128" height="128">
+  <object id="19" name="Narrator" x="32" y="672" width="128" height="128">
    <properties>
     <property name="interaction" value="overlap"/>
     <property name="singleUse" type="bool" value="true"/>

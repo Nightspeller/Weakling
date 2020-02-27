@@ -215,6 +215,7 @@ export class GeneralLocation extends Phaser.Scene {
                                 callbackParam: 'fastEnd'
                             }]
                         }],
+                        speakerName: object.name,
                         closeCallback: (param) => {
                             if (singleUse) {
                                 trigger.image.destroy(true);
