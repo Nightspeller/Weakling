@@ -134,7 +134,7 @@ export class GeneralLocation extends Phaser.Scene {
                 objectLayer: 'Waypoints',
                 texture: null,
                 frame: null,
-                interaction: 'activate',
+                interaction: 'activateOverlap',
                 callback: () => {
                     if (toLocation) {
                         this.switchToScene(toLocation, undefined, undefined, toCoordinates);
