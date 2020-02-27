@@ -47,7 +47,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
             }, false);
         };
 
-        if (DEBUG) {
+        if (!DEBUG) {
             this.switchToScene('Dialog', {
                 dialogTree: introDialog,
                 speakerName: 'Narrator',
