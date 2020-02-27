@@ -122,7 +122,7 @@ export class GeneralLocation extends Phaser.Scene {
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
             const texture = spriteParams.key;
             const frame = spriteParams.frame as number;
-            const openedFrame = object.properties.find(prop => prop.name === 'openedFrame')?.value;
+            const openedFrame = object.properties?.find(prop => prop.name === 'openedFrame')?.value;
             const trigger = this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Containers',
@@ -137,7 +137,7 @@ export class GeneralLocation extends Phaser.Scene {
         });
 
         this.map.getObjectLayer('Enemies')?.objects.forEach(object => {
-            const enemyImage = object.properties.find(prop => prop.name === 'image')?.value;
+            const enemyImage = object.properties?.find(prop => prop.name === 'image')?.value;
             const enemies = JSON.parse(object.properties.find(prop => prop.name === 'enemies')?.value);
             this.createTrigger({
                 objectName: object.name,
@@ -152,8 +152,8 @@ export class GeneralLocation extends Phaser.Scene {
         });
 
         this.map.getObjectLayer('Waypoints')?.objects.forEach(object => {
-            const toLocation = object.properties.find(prop => prop.name === 'location')?.value;
-            let toCoordinates = object.properties.find(prop => prop.name === 'toCoordinates')?.value;
+            const toLocation = object.properties?.find(prop => prop.name === 'location')?.value;
+            let toCoordinates = object.properties?.find(prop => prop.name === 'toCoordinates')?.value;
             if (toCoordinates) toCoordinates = JSON.parse(toCoordinates);
             this.createTrigger({
                 objectName: object.name,
@@ -172,8 +172,8 @@ export class GeneralLocation extends Phaser.Scene {
         });
 
         this.map.getObjectLayer('Items')?.objects.forEach(object => {
-            const itemId = object.properties.find(prop => prop.name === 'itemId')?.value;
-            const itemQuantity = object.properties.find(prop => prop.name === 'quantity')?.value;
+            const itemId = object.properties?.find(prop => prop.name === 'itemId')?.value;
+            const itemQuantity = object.properties?.find(prop => prop.name === 'quantity')?.value;
             const item = new Item(itemId, itemQuantity);
             let texture = item.sprite.key;
             let frame = item.sprite.frame;
@@ -196,9 +196,9 @@ export class GeneralLocation extends Phaser.Scene {
         });
 
         this.map.getObjectLayer('Messages')?.objects.forEach(object => {
-            const text = object.properties.find(prop => prop.name === 'text')?.value;
-            const interaction = object.properties.find(prop => prop.name === 'interaction')?.value;
-            const singleUse = object.properties.find(prop => prop.name === 'singleUse')?.value;
+            const text = object.properties?.find(prop => prop.name === 'text')?.value;
+            const interaction = object.properties?.find(prop => prop.name === 'interaction')?.value;
+            const singleUse = object.properties?.find(prop => prop.name === 'singleUse')?.value;
             const trigger = this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Messages',
@@ -327,7 +327,7 @@ export class GeneralLocation extends Phaser.Scene {
             return;
         }
         // @ts-ignore
-        const isSecret = !!object.properties.find(prop => prop.name === 'secret' && prop.value === true);
+        const isSecret = !!object.properties?.find(prop => prop.name === 'secret' && prop.value === true);
 
         const triggerImage = this.physics.add
             .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)

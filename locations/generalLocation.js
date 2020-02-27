@@ -91,11 +91,11 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_b = this.map.getObjectLayer('Containers')) === null || _b === void 0 ? void 0 : _b.objects.forEach(object => {
-            var _a;
+            var _a, _b;
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
             const texture = spriteParams.key;
             const frame = spriteParams.frame;
-            const openedFrame = (_a = object.properties.find(prop => prop.name === 'openedFrame')) === null || _a === void 0 ? void 0 : _a.value;
+            const openedFrame = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'openedFrame')) === null || _b === void 0 ? void 0 : _b.value;
             const trigger = this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Containers',
@@ -109,9 +109,9 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_c = this.map.getObjectLayer('Enemies')) === null || _c === void 0 ? void 0 : _c.objects.forEach(object => {
-            var _a, _b;
-            const enemyImage = (_a = object.properties.find(prop => prop.name === 'image')) === null || _a === void 0 ? void 0 : _a.value;
-            const enemies = JSON.parse((_b = object.properties.find(prop => prop.name === 'enemies')) === null || _b === void 0 ? void 0 : _b.value);
+            var _a, _b, _c;
+            const enemyImage = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'image')) === null || _b === void 0 ? void 0 : _b.value;
+            const enemies = JSON.parse((_c = object.properties.find(prop => prop.name === 'enemies')) === null || _c === void 0 ? void 0 : _c.value);
             this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Enemies',
@@ -124,9 +124,9 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_d = this.map.getObjectLayer('Waypoints')) === null || _d === void 0 ? void 0 : _d.objects.forEach(object => {
-            var _a, _b;
-            const toLocation = (_a = object.properties.find(prop => prop.name === 'location')) === null || _a === void 0 ? void 0 : _a.value;
-            let toCoordinates = (_b = object.properties.find(prop => prop.name === 'toCoordinates')) === null || _b === void 0 ? void 0 : _b.value;
+            var _a, _b, _c, _d;
+            const toLocation = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'location')) === null || _b === void 0 ? void 0 : _b.value;
+            let toCoordinates = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'toCoordinates')) === null || _d === void 0 ? void 0 : _d.value;
             if (toCoordinates)
                 toCoordinates = JSON.parse(toCoordinates);
             this.createTrigger({
@@ -146,9 +146,9 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_e = this.map.getObjectLayer('Items')) === null || _e === void 0 ? void 0 : _e.objects.forEach(object => {
-            var _a, _b;
-            const itemId = (_a = object.properties.find(prop => prop.name === 'itemId')) === null || _a === void 0 ? void 0 : _a.value;
-            const itemQuantity = (_b = object.properties.find(prop => prop.name === 'quantity')) === null || _b === void 0 ? void 0 : _b.value;
+            var _a, _b, _c, _d;
+            const itemId = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'itemId')) === null || _b === void 0 ? void 0 : _b.value;
+            const itemQuantity = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'quantity')) === null || _d === void 0 ? void 0 : _d.value;
             const item = new Item(itemId, itemQuantity);
             let texture = item.sprite.key;
             let frame = item.sprite.frame;
@@ -170,10 +170,10 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_f = this.map.getObjectLayer('Messages')) === null || _f === void 0 ? void 0 : _f.objects.forEach(object => {
-            var _a, _b, _c;
-            const text = (_a = object.properties.find(prop => prop.name === 'text')) === null || _a === void 0 ? void 0 : _a.value;
-            const interaction = (_b = object.properties.find(prop => prop.name === 'interaction')) === null || _b === void 0 ? void 0 : _b.value;
-            const singleUse = (_c = object.properties.find(prop => prop.name === 'singleUse')) === null || _c === void 0 ? void 0 : _c.value;
+            var _a, _b, _c, _d, _e, _f;
+            const text = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'text')) === null || _b === void 0 ? void 0 : _b.value;
+            const interaction = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'interaction')) === null || _d === void 0 ? void 0 : _d.value;
+            const singleUse = (_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'singleUse')) === null || _f === void 0 ? void 0 : _f.value;
             const trigger = this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Messages',
@@ -276,13 +276,14 @@ export class GeneralLocation extends Phaser.Scene {
     }
     createTrigger({ objectName, callback = () => {
     }, objectLayer = 'Objects', texture = null, frame = null, interaction = 'activate', offsetX = this.offsetX, offsetY = this.offsetY }) {
+        var _a;
         const object = this.getMapObject(objectName, objectLayer);
         if (!object) {
             console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);
             return;
         }
         // @ts-ignore
-        const isSecret = !!object.properties.find(prop => prop.name === 'secret' && prop.value === true);
+        const isSecret = !!((_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'secret' && prop.value === true));
         const triggerImage = this.physics.add
             .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
