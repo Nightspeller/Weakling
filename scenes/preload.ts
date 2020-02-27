@@ -228,6 +228,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('battle', 'assets/tilemaps/fight.json');
         this.load.tilemapTiledJSON('hargkakhsCave', 'assets/tilemaps/hargkakhsCave.json');
         this.load.tilemapTiledJSON('weaklingsCave', 'assets/tilemaps/weaklingsCave.json');
+        this.load.tilemapTiledJSON('eldersCave', 'assets/tilemaps/eldersCave.json');
     }
 
     create() {

@@ -13,6 +13,7 @@ import { HermitsTowerScene } from "./locations/hermitsTower.js";
 import { MainMenuScene } from "./scenes/mainMenu.js";
 import { DEBUG, GAME_H, GAME_W, GAME_ZOOM } from "./config/constants.js";
 import { WeaklingsCaveScene } from "./locations/weaklingsCave.js";
+import { EldersCaveScene } from "./locations/eldersCave.js";
 const gameConfig = {
     title: 'Weakling!',
     type: Phaser.AUTO,
@@ -29,7 +30,7 @@ const gameConfig = {
     },
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, MainMenuScene, CaltorScene, HouseScene, VillageScene, TavernScene, HargkakhsCaveScene, WeaklingsCaveScene, HermitsTowerScene, ShopScene, CharacterPickerScene, BattleScene, DialogScene, InventoryScene]
+    scene: [PreloadScene, MainMenuScene, CaltorScene, HouseScene, VillageScene, TavernScene, HargkakhsCaveScene, WeaklingsCaveScene, EldersCaveScene, HermitsTowerScene, ShopScene, CharacterPickerScene, BattleScene, DialogScene, InventoryScene]
 };
 export const game = new Phaser.Game(gameConfig);
 //# sourceMappingURL=index.js.map
