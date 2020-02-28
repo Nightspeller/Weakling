@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="25">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="26">
  <editorsettings>
   <export target="village.json" format="json"/>
  </editorsettings>
@@ -61,6 +61,7 @@
  <tileset firstgid="2229" source="male17-4.tsx"/>
  <tileset firstgid="2241" source="female19-1.tsx"/>
  <tileset firstgid="2253" source="male17-3.tsx"/>
+ <tileset firstgid="2265" source="female19-3.tsx"/>
  <group id="14" name="Layer 1">
   <layer id="1" name="Below player" width="50" height="40">
    <data encoding="base64">

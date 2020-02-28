@@ -224,6 +224,18 @@
                  "width":0,
                  "x":96,
                  "y":352
+                }, 
+                {
+                 "gid":1939,
+                 "height":32,
+                 "id":5,
+                 "name":"Liatsh",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":128,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -299,7 +311,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":4,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.2",
@@ -10425,6 +10437,19 @@
                          "value":true
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":1929,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female19-3.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"female19-3",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,
