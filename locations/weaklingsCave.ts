@@ -18,6 +18,9 @@ export class WeaklingsCaveScene extends GeneralLocation {
     public create() {
         super.create('weaklingsCave', 304, 128);
 
+        const bgMusic = this.sound.add('keys-for-success', {loop: true, volume: 0.3});
+        bgMusic.play();
+
         const chest1trigger = this.triggers.find(trigger => trigger.name === 'Chest 1');
         const destroyCallback = chest1trigger.callback;
         chest1trigger.callback = () => {
@@ -28,7 +31,8 @@ export class WeaklingsCaveScene extends GeneralLocation {
             this.switchToScene('Dialog', {
                 dialogTree: chest1Dialog,
                 speakerName: 'Narrator',
-                closeCallback: (param) => {}
+                closeCallback: (param) => {
+                }
             }, false);
         };
 
@@ -41,7 +45,8 @@ export class WeaklingsCaveScene extends GeneralLocation {
             this.switchToScene('Dialog', {
                 dialogTree: chest2Dialog,
                 speakerName: 'Narrator',
-                closeCallback: (param) => {}
+                closeCallback: (param) => {
+                }
             }, false);
         };
 
@@ -56,7 +61,8 @@ export class WeaklingsCaveScene extends GeneralLocation {
             this.switchToScene('Dialog', {
                 dialogTree: introDialog,
                 speakerName: 'Narrator',
-                closeCallback: (param) => {}
+                closeCallback: (param) => {
+                }
             }, false);
         }
     }

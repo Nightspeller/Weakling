@@ -53,7 +53,7 @@ export class MainMenuScene extends Phaser.Scene {
             .strokeRect(startButtonText.getTopLeft().x, startButtonText.getTopLeft().y, startButtonText.width, startButtonText.height);
 
         startButtonText.once('pointerdown', () => {
-            this.scene.start("WeaklingsCave", {prevScene: this.scene.key});
+            this.scene.start("Intro", {prevScene: this.scene.key});
         });
 
         const optionsText = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20,

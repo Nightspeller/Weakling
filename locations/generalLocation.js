@@ -41,6 +41,7 @@ export class GeneralLocation extends Phaser.Scene {
             camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
             camera.setDeadzone(200, 100);
             this.showOpenInventoryIcon();
+            this.showToggleSoundIcon();
         }
         const tilesets = [];
         this.map.tilesets.forEach(tileset => {
@@ -258,14 +259,20 @@ export class GeneralLocation extends Phaser.Scene {
     }
     ;
     showOpenInventoryIcon(opts, closeCallback) {
+        const topMenuBackgroundGraphics = this.add.graphics().setScrollFactor(0)
+            .fillStyle(0xf0d191, 0.8)
+            .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 16, 16, 128, 64)
+            .lineStyle(3, 0x907748)
+            .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 16, 16, 128, 64)
+            .setDepth(10 - 1);
         const inventoryGraphics = this.add.graphics().setScrollFactor(0)
             .fillStyle(0xf0d191, 0.8)
-            .fillRect(+GAME_W - 32 - 64, 32, 64, 64)
+            .fillRect(+GAME_W - 32 - 32, 32, 32, 32)
             .lineStyle(3, 0x907748)
-            .strokeRect(+GAME_W - 32 - 64, 32, 64, 64)
+            .strokeRect(+GAME_W - 32 - 32, 32, 32, 32)
             .setDepth(10 - 1);
-        const inventoryIconImage = this.add.image(+GAME_W - 32 - 64, 32, 'bag-green')
-            .setOrigin(0, 0).setScrollFactor(0).setScale(2).setInteractive().setDepth(10 - 1);
+        const inventoryIconImage = this.add.image(+GAME_W - 32 - 32, 32, 'bag-green')
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ useHandCursor: true }).setDepth(10 - 1);
         inventoryIconImage.on('pointerdown', () => {
             this.switchToScene('Inventory', { opts, closeCallback }, false);
         });
@@ -310,7 +317,13 @@ export class GeneralLocation extends Phaser.Scene {
             this.physics.add.overlap(this.playerImage, triggerImage);
         }
         //TODO: might need rework to support callback update...
-        const trigger = { image: triggerImage, callback: callback, type: interaction, name: objectName, isSecret: isSecret };
+        const trigger = {
+            image: triggerImage,
+            callback: callback,
+            type: interaction,
+            name: objectName,
+            isSecret: isSecret
+        };
         this.triggers.push(trigger);
         return trigger;
     }
@@ -455,6 +468,37 @@ export class GeneralLocation extends Phaser.Scene {
             }
             else {
                 this.playerSpeed = PLAYER_RUN_WORLD_SPEED;
+            }
+        });
+    }
+    showToggleSoundIcon() {
+        const soundGraphics = this.add.graphics().setScrollFactor(0)
+            .fillStyle(0xf0d191, 0.8)
+            .fillRect(+GAME_W - 32 - 32 - 32 - 32, 32, 32, 32)
+            .lineStyle(3, 0x907748)
+            .strokeRect(+GAME_W - 32 - 32 - 32 - 32, 32, 32, 32)
+            .setDepth(10 - 1);
+        const inventoryIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32, 32, 'icon-item-set', 179)
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ useHandCursor: true }).setDepth(10 - 1);
+        inventoryIconImage.on('pointerdown', () => {
+            if (window['IS_SOUND_ON'] || window['IS_SOUND_ON'] === undefined) {
+                this.sound.pauseAll();
+                window['IS_SOUND_ON'] = false;
+            }
+            else {
+                this.sound.resumeAll();
+                window['IS_SOUND_ON'] = true;
+            }
+        });
+        this.input.keyboard.off('keyup-M');
+        this.input.keyboard.on('keyup-M', () => {
+            if (window['IS_SOUND_ON'] || window['IS_SOUND_ON'] === undefined) {
+                this.sound.pauseAll();
+                window['IS_SOUND_ON'] = false;
+            }
+            else {
+                this.sound.resumeAll();
+                window['IS_SOUND_ON'] = true;
             }
         });
     }

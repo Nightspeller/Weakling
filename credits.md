@@ -11,4 +11,7 @@ Graphics:
 - Wizard - Luizmelo - https://luizmelo.itch.io/wizard-pack
 - Interface doll and slots - Heroes 3 - will be replaced, but, for now, thanks 3DO!
 
+Audio:
+- Music by Darren Curtis - https://www.darrencurtismusic.com
+
 The list is not complete, I am going to update it! If you want to be added or your information updated - please let me know!
