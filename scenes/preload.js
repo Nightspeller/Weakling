@@ -64,7 +64,7 @@ export class PreloadScene extends Phaser.Scene {
         // Tilesets
         this.load.spritesheet('base', 'assets/images-extruded/tilesets/base.png', tilesetConfig);
         this.load.spritesheet('base-addition', 'assets/images-extruded/tilesets/base-addition.png', tilesetConfig);
-        this.load.image('dirt1-dirt2', 'assets/images/tilesets/dirt1-dirt2.png');
+        this.load.spritesheet('dirt1-dirt2', 'assets/images-extruded/tilesets/dirt1-dirt2.png', tilesetConfig);
         this.load.image('grass1', 'assets/images/tilesets/grass1.png');
         this.load.image('grass4', 'assets/images/tilesets/grass4.png');
         this.load.image('dirt1', 'assets/images/tilesets/dirt1.png');
@@ -75,7 +75,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('grass1-dirt2', 'assets/images/tilesets/grass1-dirt2.png');
         this.load.image('grass1-dirt4', 'assets/images/tilesets/grass1-dirt4.png');
         this.load.image('wall-up', 'assets/images/tilesets/wall-up.png');
-        this.load.image('flowers', 'assets/images/tilesets/flowers.png');
+        this.load.spritesheet('flowers', 'assets/images-extruded/tilesets/flowers.png', tilesetConfig);
         this.load.spritesheet('castle', 'assets/images-extruded/tilesets/castle.png', tilesetConfig);
         // Interface
         this.load.image('interface', 'assets/images/interface/Interface.png');

@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="26">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="27">
  <editorsettings>
   <export target="village.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="base.tsx"/>
- <tileset firstgid="1065" name="flowers" tilewidth="32" tileheight="32" tilecount="48" columns="8">
-  <image source="../images/tilesets/flowers.png" width="256" height="192"/>
-  <terraintypes>
-   <terrain name="Flowers" tile="14"/>
-  </terraintypes>
-  <tile id="5" terrain=",,,0"/>
-  <tile id="6" terrain=",,0,0"/>
-  <tile id="7" terrain=",,0,"/>
-  <tile id="13" terrain=",0,,0"/>
-  <tile id="15" terrain="0,,0,"/>
-  <tile id="21" terrain=",0,,"/>
-  <tile id="22" terrain="0,0,,"/>
-  <tile id="23" terrain="0,,,"/>
-  <tile id="28" terrain="0,0,0,"/>
-  <tile id="29" terrain="0,0,,0"/>
-  <tile id="36" terrain="0,,0,0"/>
-  <tile id="37" terrain=",0,0,0"/>
- </tileset>
+ <tileset firstgid="1065" source="flowers.tsx"/>
  <tileset firstgid="1113" name="grass1-dirt4" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="../images/tilesets/grass1-dirt4.png" width="256" height="192"/>
   <terraintypes>
@@ -190,6 +173,12 @@
   <object id="20" name="Elder's Cave" x="1088" y="576" width="32" height="32">
    <properties>
     <property name="location" value="EldersCave"/>
+   </properties>
+  </object>
+  <object id="26" name="BetweenVillageAndDungeon" x="1568" y="352" width="32" height="64">
+   <properties>
+    <property name="location" value="BetweenVillageAndDungeon"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 1, &quot;y&quot;: 7}"/>
    </properties>
   </object>
  </objectgroup>

@@ -7382,12 +7382,12 @@
         {
          "columns":8,
          "firstgid":1113,
-         "image":"..\/images\/tilesets\/dirt1-dirt2.png",
-         "imageheight":192,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/dirt1-dirt2.png",
+         "imageheight":204,
+         "imagewidth":272,
+         "margin":1,
          "name":"dirt1-dirt2",
-         "spacing":0,
+         "spacing":2,
          "terrains":[
                 {
                  "name":"Dirt",

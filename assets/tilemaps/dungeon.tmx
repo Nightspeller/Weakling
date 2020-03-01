@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="-1" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="4">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="5">
  <editorsettings>
   <export target="dungeon.json" format="json"/>
  </editorsettings>
@@ -60,6 +60,14 @@
  <objectgroup id="2" name="Objects">
   <object id="1" name="Start" x="96" y="960">
    <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="Waypoints">
+  <object id="4" name="Dungeon" x="64" y="992" width="64" height="32">
+   <properties>
+    <property name="location" value="BetweenVillageAndDungeon"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 26, &quot;y&quot;: 1}"/>
+   </properties>
   </object>
  </objectgroup>
  <objectgroup id="11" name="Containers">
