@@ -18,7 +18,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
     public create() {
         super.create('weaklingsCave', 304, 128);
 
-        const bgMusic = this.sound.add('keys-for-success', {loop: true, volume: 0.3});
+        const bgMusic = this.sound.add('keys-for-success', {loop: true, volume: 0.1});
         bgMusic['soundType'] = 'music';
         bgMusic.play();
 
@@ -66,7 +66,6 @@ export class WeaklingsCaveScene extends GeneralLocation {
                 }
             }, false);
         }
-        console.log(this.sound)
     }
 
     public update() {

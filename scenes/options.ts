@@ -58,6 +58,18 @@ export class OptionsScene extends Phaser.Scene {
             optionsInstance.toggleEffects();
             effectsToggle.setText(`Effects are ${optionsInstance.isEffectsOn ? 'ON' : 'OFF'}`)
         });*/
+
+        const restartButton = this.add.text(GAME_W / 2, GAME_H * 2 / 3 - 30,
+            'Restart the game',
+            {
+                font: '20px monospace',
+                fill: '#ca0000'
+            }
+        ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
+        restartButton.on('pointerdown', () => {
+            window.location.reload();
+        });
+
         const backButton = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20,
             'Back to menu',
             {

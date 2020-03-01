@@ -13,7 +13,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
     }
     create() {
         super.create('weaklingsCave', 304, 128);
-        const bgMusic = this.sound.add('keys-for-success', { loop: true, volume: 0.3 });
+        const bgMusic = this.sound.add('keys-for-success', { loop: true, volume: 0.1 });
         bgMusic['soundType'] = 'music';
         bgMusic.play();
         const chest1trigger = this.triggers.find(trigger => trigger.name === 'Chest 1');
@@ -57,7 +57,6 @@ export class WeaklingsCaveScene extends GeneralLocation {
                 }
             }, false);
         }
-        console.log(this.sound);
     }
     update() {
         super.update();
