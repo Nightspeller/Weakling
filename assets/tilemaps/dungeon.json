@@ -183,7 +183,7 @@
                 {
                  "height":32,
                  "id":4,
-                 "name":"Dungeon",
+                 "name":"BetweenVillageAndDungeon",
                  "properties":[
                         {
                          "name":"location",

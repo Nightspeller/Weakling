@@ -63,7 +63,7 @@
   </object>
  </objectgroup>
  <objectgroup id="12" name="Waypoints">
-  <object id="4" name="Dungeon" x="64" y="992" width="64" height="32">
+  <object id="4" name="BetweenVillageAndDungeon" x="64" y="992" width="64" height="32">
    <properties>
     <property name="location" value="BetweenVillageAndDungeon"/>
     <property name="toCoordinates" value="{&quot;x&quot;: 26, &quot;y&quot;: 1}"/>
