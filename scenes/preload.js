@@ -190,6 +190,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('weaklingsCave', 'assets/tilemaps/weaklingsCave.json');
         this.load.tilemapTiledJSON('eldersCave', 'assets/tilemaps/eldersCave.json');
         this.load.tilemapTiledJSON('dungeon', 'assets/tilemaps/dungeon.json');
+        this.load.tilemapTiledJSON('betweenVillageAndDungeon', 'assets/tilemaps/betweenVillageAndDungeon.json');
         // Audio
         this.load.audio('intro', [
             'assets/audio/intro.ogg',
