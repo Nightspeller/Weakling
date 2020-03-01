@@ -49,7 +49,7 @@ export class OptionsScene extends Phaser.Scene {
         restartButton.on('pointerdown', () => {
             window.location.reload();
         });
-        const backButton = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20, 'Back to menu', {
+        const backButton = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20, 'Back to game', {
             font: '20px monospace',
             fill: '#ffffff'
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });

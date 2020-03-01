@@ -71,7 +71,7 @@ export class OptionsScene extends Phaser.Scene {
         });
 
         const backButton = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20,
-            'Back to menu',
+            'Back to game',
             {
                 font: '20px monospace',
                 fill: '#ffffff'
