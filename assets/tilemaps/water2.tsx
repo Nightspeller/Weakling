@@ -2,7 +2,7 @@
 <tileset version="1.2" tiledversion="1.3.2" name="water2" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="384" columns="64">
  <image source="../images-extruded/tilesets/water2.png" width="2176" height="204"/>
  <terraintypes>
-  <terrain name="New Terrain" tile="70"/>
+  <terrain name="Water" tile="70"/>
  </terraintypes>
  <tile id="0">
   <properties>
