@@ -30,13 +30,13 @@ export class OptionsScene extends Phaser.Scene {
             }
         ).setOrigin(0.5, 0.5);
         const titleAudio = this.add.text(GAME_W / 2, GAME_H / 2 - 50,
-            'Audio',
+            'Audio:',
             {
                 font: '20px monospace',
                 fill: '#ffffff'
             }
         ).setOrigin(0.5, 0.5);
-        const musicToggle = this.add.text(GAME_W / 2, GAME_H / 2 + 10,
+        const musicToggle = this.add.text(GAME_W / 2, GAME_H / 2,
             `Music is ${optionsInstance.isMusicOn ? 'ON' : 'OFF'}`,
             {
                 font: '20px monospace',
