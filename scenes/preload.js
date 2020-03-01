@@ -70,7 +70,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('dirt1', 'assets/images/tilesets/dirt1.png');
         this.load.image('dirt2', 'assets/images/tilesets/dirt2.png');
         this.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
-        this.load.image('water2', 'assets/images/tilesets/water2.png');
+        this.load.spritesheet('water2', 'assets/images-extruded/tilesets/water2.png', tilesetConfig);
         this.load.image('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png');
         this.load.image('grass1-dirt2', 'assets/images/tilesets/grass1-dirt2.png');
         this.load.image('grass1-dirt4', 'assets/images/tilesets/grass1-dirt4.png');
