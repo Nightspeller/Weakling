@@ -65,7 +65,8 @@ export class MainMenuScene extends Phaser.Scene {
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
         optionsText.on('pointerdown', () => {
-            alert('For now, it seems like the only option is to Let it begin. :-)')
+            this.scene.pause(this.scene.key);
+            this.scene.run('Options', {prevScene: this.scene.key});
         })
     }
 }

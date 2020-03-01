@@ -23,6 +23,7 @@ export class InventoryScene extends GeneralOverlayScene {
             this.closeCallback = closeCallback;
             this.showInventory();
         });
+        this.input.keyboard.on('keyup-' + 'I', () => this.closeScene());
     }
     showInventory() {
         this._drawInventory();

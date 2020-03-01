@@ -1,4 +1,5 @@
 import {Player, playerInstance} from "../characters/adventurers/player.js";
+import {optionsInstance} from "../config/optionsConfig.js";
 
 export class PreloadScene extends Phaser.Scene {
     private player: Player;
@@ -206,6 +207,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('hargkakhsCave', 'assets/tilemaps/hargkakhsCave.json');
         this.load.tilemapTiledJSON('weaklingsCave', 'assets/tilemaps/weaklingsCave.json');
         this.load.tilemapTiledJSON('eldersCave', 'assets/tilemaps/eldersCave.json');
+        this.load.tilemapTiledJSON('dungeon', 'assets/tilemaps/dungeon.json');
 
         // Audio
         this.load.audio('intro', [
@@ -219,6 +221,7 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     create() {
+        optionsInstance.setSoundManager(this);
         this.createAnimations();
         console.log('Preload done, calling Main Menu');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});

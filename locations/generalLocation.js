@@ -104,7 +104,8 @@ export class GeneralLocation extends Phaser.Scene {
                 frame: frame,
                 interaction: 'activate',
                 callback: () => {
-                    trigger.image.setFrame(openedFrame);
+                    if (openedFrame)
+                        trigger.image.setFrame(openedFrame);
                     this.triggers = this.triggers.filter(triggerInArray => triggerInArray !== trigger);
                 },
             });
@@ -481,25 +482,15 @@ export class GeneralLocation extends Phaser.Scene {
         const inventoryIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32, 32, 'icon-item-set', 179)
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({ useHandCursor: true }).setDepth(10 - 1);
         inventoryIconImage.on('pointerdown', () => {
-            if (window['IS_SOUND_ON'] || window['IS_SOUND_ON'] === undefined) {
-                this.sound.pauseAll();
-                window['IS_SOUND_ON'] = false;
-            }
-            else {
-                this.sound.resumeAll();
-                window['IS_SOUND_ON'] = true;
-            }
+            this.switchToScene('Options', {}, false);
         });
-        this.input.keyboard.off('keyup-M');
-        this.input.keyboard.on('keyup-M', () => {
-            if (window['IS_SOUND_ON'] || window['IS_SOUND_ON'] === undefined) {
-                this.sound.pauseAll();
-                window['IS_SOUND_ON'] = false;
-            }
-            else {
-                this.sound.resumeAll();
-                window['IS_SOUND_ON'] = true;
-            }
+        this.input.keyboard.off('keyup-O');
+        this.input.keyboard.on('keyup-O', () => {
+            this.switchToScene('Options', {}, false);
+        });
+        this.input.keyboard.off('keyup-ESC');
+        this.input.keyboard.on('keyup-ESC', () => {
+            this.switchToScene('Options', {}, false);
         });
     }
 }

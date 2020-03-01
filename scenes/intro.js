@@ -7,6 +7,7 @@ export class IntroScene extends Phaser.Scene {
     }
     create() {
         const bgMusic = this.sound.add('intro', { loop: true, volume: 0.3 });
+        bgMusic['soundType'] = 'music';
         bgMusic.play();
         const title = this.add.text(GAME_W / 2, GAME_H / 2 - 70, 'Still... Stay still... Calm... Stay calm... \n\n' +
             'You do not have to go, you do not have to do anything at all...\n\n' +
@@ -21,18 +22,31 @@ export class IntroScene extends Phaser.Scene {
             font: '14px monospace',
             fill: '#ffffff'
         }).setOrigin(0.5, 0.5);
-        const showHim = this.add.text(GAME_W / 2, GAME_H / 2 + 200, 'Show him.', {
+        const showHimVillage = this.add.text(GAME_W / 2, GAME_H / 2 + 200, 'Show him that lovely morning at the Village', {
             font: '14px monospace',
             fill: '#ffffff',
             backgroundColor: '#222222',
             padding: 10,
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
-        const border = this.add.graphics()
+        const border1 = this.add.graphics()
             .lineStyle(2, 0xffffff, 0.4)
-            .strokeRect(showHim.getTopLeft().x, showHim.getTopLeft().y, showHim.width, showHim.height);
-        showHim.once('pointerdown', () => {
+            .strokeRect(showHimVillage.getTopLeft().x, showHimVillage.getTopLeft().y, showHimVillage.width, showHimVillage.height);
+        showHimVillage.once('pointerdown', () => {
             bgMusic.stop();
             this.scene.start("WeaklingsCave", { prevScene: this.scene.key });
+        });
+        const showHimDungeon = this.add.text(GAME_W / 2, GAME_H / 2 + 250, 'Show him the dungeon', {
+            font: '14px monospace',
+            fill: '#ffffff',
+            backgroundColor: '#222222',
+            padding: 10,
+        }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
+        const border2 = this.add.graphics()
+            .lineStyle(2, 0xffffff, 0.4)
+            .strokeRect(showHimDungeon.getTopLeft().x, showHimDungeon.getTopLeft().y, showHimDungeon.width, showHimDungeon.height);
+        showHimDungeon.once('pointerdown', () => {
+            bgMusic.stop();
+            this.scene.start("Dungeon", { prevScene: this.scene.key });
         });
     }
 }

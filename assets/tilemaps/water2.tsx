@@ -414,7 +414,7 @@
    <frame tileid="125" duration="250"/>
   </animation>
  </tile>
- <tile id="70">
+ <tile id="70" terrain="0,0,0,0">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
