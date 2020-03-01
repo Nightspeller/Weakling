@@ -144,10 +144,10 @@
   <object id="51" name="Kasima" gid="1938" x="2304" y="2688" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="14" name="Waypoints">
-  <object id="18" name="Village" x="2368" y="3168" width="64" height="32">
+  <object id="18" name="BetweenVillageAndCaltor" x="2368" y="3168" width="64" height="32">
    <properties>
-    <property name="location" value="Village"/>
-    <property name="toCoordinates" value="{&quot;x&quot;: 2, &quot;y&quot;: 38}"/>
+    <property name="location" value="BetweenVillageAndCaltor"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 5, &quot;y&quot;: 1}"/>
    </properties>
   </object>
   <object id="19" name="House Door" x="1792" y="3008" width="32" height="64">

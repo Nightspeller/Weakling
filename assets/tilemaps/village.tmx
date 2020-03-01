@@ -144,10 +144,10 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="Waypoints">
-  <object id="10" name="Caltor" x="64" y="1248" width="64" height="32">
+  <object id="10" name="BetweenVillageAndCaltor" x="64" y="1248" width="64" height="32">
    <properties>
-    <property name="location" value="Caltor"/>
-    <property name="toCoordinates" value="{&quot;x&quot;: 75, &quot;y&quot;: 98}"/>
+    <property name="location" value="BetweenVillageAndCaltor"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 56, &quot;y&quot;: 1}"/>
    </properties>
   </object>
   <object id="11" name="Hargkakh's Cave" x="1280" y="768" width="32" height="32">

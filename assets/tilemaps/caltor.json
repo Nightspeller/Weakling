@@ -405,17 +405,17 @@
                 {
                  "height":32,
                  "id":18,
-                 "name":"Village",
+                 "name":"BetweenVillageAndCaltor",
                  "properties":[
                         {
                          "name":"location",
                          "type":"string",
-                         "value":"Village"
+                         "value":"BetweenVillageAndCaltor"
                         }, 
                         {
                          "name":"toCoordinates",
                          "type":"string",
-                         "value":"{\"x\": 2, \"y\": 38}"
+                         "value":"{\"x\": 5, \"y\": 1}"
                         }],
                  "rotation":0,
                  "type":"",
