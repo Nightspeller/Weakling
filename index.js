@@ -19,6 +19,7 @@ import { DungeonScene } from "./locations/dungeon.js";
 import { OptionsScene } from "./scenes/options.js";
 import { BetweenVillageAndDungeonScene } from "./locations/betweenVillageAndDungeon.js";
 import { BetweenVillageAndCaltorScene } from "./locations/betweenVillageAndCaltor.js";
+import { NahkhasCaveScene } from "./locations/nahkhasCave.js";
 const gameConfig = {
     title: 'Weakling!',
     type: Phaser.AUTO,
@@ -35,7 +36,17 @@ const gameConfig = {
     },
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene, MainMenuScene, OptionsScene, IntroScene, BetweenVillageAndDungeonScene, BetweenVillageAndCaltorScene, DungeonScene, CaltorScene, HouseScene, VillageScene, TavernScene, HargkakhsCaveScene, WeaklingsCaveScene, EldersCaveScene, HermitsTowerScene, ShopScene, CharacterPickerScene, BattleScene, DialogScene, InventoryScene]
+    scene: [PreloadScene,
+        MainMenuScene,
+        OptionsScene,
+        IntroScene,
+        BetweenVillageAndDungeonScene,
+        BetweenVillageAndCaltorScene,
+        DungeonScene,
+        CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CharacterPickerScene,
+        VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene,
+        ShopScene, BattleScene, DialogScene, InventoryScene
+    ]
 };
 export const game = new Phaser.Game(gameConfig);
 //# sourceMappingURL=index.js.map

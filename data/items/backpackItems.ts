@@ -12,12 +12,25 @@ export const backpackItems: { [key: string]: ItemData } = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'primula-flower': {
+        itemId: 'primula-flower',
+        displayName: 'Primula',
+        description: 'Beautiful blue flower',
+        slot: ['backpack'],
+        sprite: {key: 'base', frame: 54},
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: { },
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'basket': {
         itemId: 'basket',
         displayName: 'Basket',
         description: 'Accurately made, sturdy baskets made by aunt Nahkha for sale',
         slot: ['backpack'],
-        sprite: {key: 'icon-item-set', frame: 160},
+        sprite: {key: 'base', frame: 876},
         stackable: true,
         modified: false,
         currentSlot: null,
