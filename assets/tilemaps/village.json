@@ -7296,14 +7296,72 @@
         {
          "columns":8,
          "firstgid":1161,
-         "image":"..\/images\/tilesets\/grass1-dirt2.png",
-         "imageheight":192,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/grass1-dirt2.png",
+         "imageheight":204,
+         "imagewidth":272,
+         "margin":1,
          "name":"grass1-dirt2",
-         "spacing":0,
+         "spacing":2,
+         "terrains":[
+                {
+                 "name":"Dirt on grass",
+                 "tile":0
+                }],
          "tilecount":48,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":5,
+                 "terrain":[-1, -1, -1, 0]
+                }, 
+                {
+                 "id":6,
+                 "terrain":[-1, -1, 0, 0]
+                }, 
+                {
+                 "id":7,
+                 "terrain":[-1, -1, 0, -1]
+                }, 
+                {
+                 "id":13,
+                 "terrain":[-1, 0, -1, 0]
+                }, 
+                {
+                 "id":14,
+                 "terrain":[0, 0, 0, 0]
+                }, 
+                {
+                 "id":15,
+                 "terrain":[0, -1, 0, -1]
+                }, 
+                {
+                 "id":21,
+                 "terrain":[-1, 0, -1, -1]
+                }, 
+                {
+                 "id":22,
+                 "terrain":[0, 0, -1, -1]
+                }, 
+                {
+                 "id":23,
+                 "terrain":[0, -1, -1, -1]
+                }, 
+                {
+                 "id":28,
+                 "terrain":[0, 0, 0, -1]
+                }, 
+                {
+                 "id":29,
+                 "terrain":[0, 0, -1, 0]
+                }, 
+                {
+                 "id":36,
+                 "terrain":[0, -1, 0, 0]
+                }, 
+                {
+                 "id":37,
+                 "terrain":[-1, 0, 0, 0]
+                }],
          "tilewidth":32
         }, 
         {

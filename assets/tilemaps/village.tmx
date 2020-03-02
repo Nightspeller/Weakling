@@ -23,9 +23,7 @@
   <tile id="36" terrain="0,,0,0"/>
   <tile id="37" terrain=",0,0,0"/>
  </tileset>
- <tileset firstgid="1161" name="grass1-dirt2" tilewidth="32" tileheight="32" tilecount="48" columns="8">
-  <image source="../images/tilesets/grass1-dirt2.png" width="256" height="192"/>
- </tileset>
+ <tileset firstgid="1161" source="grass1-dirt2.tsx"/>
  <tileset firstgid="1209" source="dirt4.tsx"/>
  <tileset firstgid="1257" name="grass4" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="../images/tilesets/grass4.png" width="256" height="192"/>
