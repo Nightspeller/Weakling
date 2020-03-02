@@ -12,6 +12,7 @@ export class Adventurer extends GeneralCharacter {
     }
 
     public addItemToInventory(passedItem: string | Item, quantity = 1, slot?: string): Item {
+        if (typeof quantity !== "number") throw 'addItemToInventory received quantity not as a number';
         let item;
         if (typeof passedItem === "string") {
             item = new Item(passedItem, quantity);

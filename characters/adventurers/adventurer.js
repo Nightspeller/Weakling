@@ -8,6 +8,8 @@ export class Adventurer extends GeneralCharacter {
         this.actionPointsIncrement = { physical: 1, magical: 1, misc: 1 };
     }
     addItemToInventory(passedItem, quantity = 1, slot) {
+        if (typeof quantity !== "number")
+            throw 'addItemToInventory received quantity not as a number';
         let item;
         if (typeof passedItem === "string") {
             item = new Item(passedItem, quantity);

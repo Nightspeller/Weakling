@@ -148,9 +148,10 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_e = this.map.getObjectLayer('Items')) === null || _e === void 0 ? void 0 : _e.objects.forEach(object => {
-            var _a, _b, _c, _d;
+            var _a, _b, _c, _d, _e, _f;
             const itemId = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'itemId')) === null || _b === void 0 ? void 0 : _b.value;
             const itemQuantity = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'quantity')) === null || _d === void 0 ? void 0 : _d.value;
+            const keepImage = (_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'keepImage')) === null || _f === void 0 ? void 0 : _f.value;
             const item = new Item(itemId, itemQuantity);
             let texture = item.sprite.key;
             let frame = item.sprite.frame;
@@ -167,7 +168,12 @@ export class GeneralLocation extends Phaser.Scene {
                 interaction: 'activate',
                 callback: () => {
                     this.player.addItemToInventory(itemId, itemQuantity);
-                    trigger.image.destroy(true);
+                    if (!keepImage) {
+                        trigger.image.destroy(true);
+                    }
+                    else {
+                        this.triggers = this.triggers.filter(arrayElem => arrayElem !== trigger);
+                    }
                 },
             });
         });

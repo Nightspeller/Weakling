@@ -7,6 +7,7 @@ import { GeneralLocation } from "./generalLocation.js";
 import { introVillageDialog } from "../data/dialogs/introDialog.js";
 import { mitikhhaDialog, mitikhhaSecondDialog } from "../data/dialogs/village/mitikhhaDialog.js";
 import { DEBUG } from "../config/constants.js";
+import { tarethDialog, tarethSecondDialog } from "../data/dialogs/village/tarethDialog.js";
 export class VillageScene extends GeneralLocation {
     constructor() {
         super({ key: 'Village' });
@@ -51,6 +52,14 @@ export class VillageScene extends GeneralLocation {
             initDialog: mitikhhaDialog,
             interactionCallback: (param) => {
                 mitikhha.setDialog(mitikhhaSecondDialog);
+            }
+        });
+        const tareth = new Npc({
+            scene: this,
+            mapObjectName: 'Tareth',
+            initDialog: tarethDialog,
+            interactionCallback: (param) => {
+                tareth.setDialog(tarethSecondDialog);
             }
         });
         const nahkha = new Npc({

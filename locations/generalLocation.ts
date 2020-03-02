@@ -175,6 +175,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.map.getObjectLayer('Items')?.objects.forEach(object => {
             const itemId = object.properties?.find(prop => prop.name === 'itemId')?.value;
             const itemQuantity = object.properties?.find(prop => prop.name === 'quantity')?.value;
+            const keepImage = object.properties?.find(prop => prop.name === 'keepImage')?.value;
             const item = new Item(itemId, itemQuantity);
             let texture = item.sprite.key;
             let frame = item.sprite.frame;
@@ -191,7 +192,11 @@ export class GeneralLocation extends Phaser.Scene {
                 interaction: 'activate',
                 callback: () => {
                     this.player.addItemToInventory(itemId, itemQuantity);
-                    trigger.image.destroy(true);
+                    if (!keepImage) {
+                        trigger.image.destroy(true);
+                    } else {
+                        this.triggers = this.triggers.filter(arrayElem => arrayElem !== trigger)
+                    }
                 },
             });
         });

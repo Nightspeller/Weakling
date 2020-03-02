@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="27">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="28">
  <editorsettings>
   <export target="village.json" format="json"/>
  </editorsettings>
@@ -43,6 +43,7 @@
  <tileset firstgid="2241" source="female19-1.tsx"/>
  <tileset firstgid="2253" source="male17-3.tsx"/>
  <tileset firstgid="2265" source="female19-3.tsx"/>
+ <tileset firstgid="2277" source="male10-1.tsx"/>
  <group id="14" name="Layer 1">
   <layer id="1" name="Below player" width="50" height="40">
    <data encoding="base64">
@@ -131,6 +132,7 @@
   <object id="22" name="Hargkakh" gid="2230" x="1472" y="64" width="32" height="32"/>
   <object id="23" name="Nahkha" gid="2242" x="832" y="576" width="32" height="32"/>
   <object id="24" name="Elder Guarthh" gid="2254" x="1312" y="384" width="32" height="32"/>
+  <object id="27" name="Tareth" gid="2278" x="992" y="480" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="19" name="Messages">
   <object id="19" name="Narrator" x="32" y="672" width="128" height="128">
