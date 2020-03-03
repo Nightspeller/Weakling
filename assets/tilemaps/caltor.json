@@ -559,14 +559,14 @@
                          "value":"activate"
                         }, 
                         {
+                         "name":"messageId",
+                         "type":"string",
+                         "value":"caltor_waymark"
+                        }, 
+                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
-                        }, 
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"West - to the fort.\nEast - to the fields and tavern.\nNorth - to Honeywood."
                         }],
                  "rotation":0,
                  "type":"",
@@ -586,14 +586,14 @@
                          "value":"activate"
                         }, 
                         {
+                         "name":"messageId",
+                         "type":"string",
+                         "value":"caltor_honeywoodSign"
+                        }, 
+                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
-                        }, 
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"Welcome to Honeywood!\nPopulation: no idea - numbers are hard."
                         }],
                  "rotation":0,
                  "type":"",

@@ -1,6 +1,7 @@
 import {Player, playerInstance} from "../characters/adventurers/player.js";
 import Item from "../entities/item.js";
 import {DEBUG, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED} from "../config/constants.js";
+import {messages} from "../data/messages.js";
 
 export class GeneralLocation extends Phaser.Scene {
     public player: Player;
@@ -202,7 +203,8 @@ export class GeneralLocation extends Phaser.Scene {
         });
 
         this.map.getObjectLayer('Messages')?.objects.forEach(object => {
-            const text = object.properties?.find(prop => prop.name === 'text')?.value;
+            const messageId = object.properties?.find(prop => prop.name === 'messageId')?.value;
+            const messageText = messages[messageId];
             const interaction = object.properties?.find(prop => prop.name === 'interaction')?.value;
             const singleUse = object.properties?.find(prop => prop.name === 'singleUse')?.value;
             const trigger = this.createTrigger({
@@ -215,7 +217,7 @@ export class GeneralLocation extends Phaser.Scene {
                     this.switchToScene('Dialog', {
                         dialogTree: [{
                             id: 'message',
-                            text: text,
+                            text: messageText,
                             replies: [{
                                 text: '(End)',
                                 callbackParam: 'fastEnd'

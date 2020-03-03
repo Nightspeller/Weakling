@@ -1,6 +1,7 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import Item from "../entities/item.js";
 import { DEBUG, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED } from "../config/constants.js";
+import { messages } from "../data/messages.js";
 export class GeneralLocation extends Phaser.Scene {
     constructor(sceneSettings) {
         super(sceneSettings);
@@ -179,7 +180,8 @@ export class GeneralLocation extends Phaser.Scene {
         });
         (_f = this.map.getObjectLayer('Messages')) === null || _f === void 0 ? void 0 : _f.objects.forEach(object => {
             var _a, _b, _c, _d, _e, _f;
-            const text = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'text')) === null || _b === void 0 ? void 0 : _b.value;
+            const messageId = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'messageId')) === null || _b === void 0 ? void 0 : _b.value;
+            const messageText = messages[messageId];
             const interaction = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'interaction')) === null || _d === void 0 ? void 0 : _d.value;
             const singleUse = (_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'singleUse')) === null || _f === void 0 ? void 0 : _f.value;
             const trigger = this.createTrigger({
@@ -192,7 +194,7 @@ export class GeneralLocation extends Phaser.Scene {
                     this.switchToScene('Dialog', {
                         dialogTree: [{
                                 id: 'message',
-                                text: text,
+                                text: messageText,
                                 replies: [{
                                         text: '(End)',
                                         callbackParam: 'fastEnd'

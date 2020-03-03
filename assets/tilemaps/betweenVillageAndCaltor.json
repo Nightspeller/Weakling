@@ -344,14 +344,14 @@
                          "value":"activate"
                         }, 
                         {
+                         "name":"messageId",
+                         "type":"string",
+                         "value":"betweenVillageAndCaltor_waymark"
+                        }, 
+                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
-                        }, 
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"West - to Caltor.\nEast - to Mundriv forerst.\nNorth - to Alahai Mountains (don't step on Kobolds!).\nSouth - to Great Planes."
                         }],
                  "rotation":0,
                  "type":"",
@@ -371,14 +371,14 @@
                          "value":"activate"
                         }, 
                         {
+                         "name":"messageId",
+                         "type":"string",
+                         "value":"betweenVillageAndCaltor_grave"
+                        }, 
+                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
-                        }, 
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"Here lays the great hero of Caltor, defender of the weak and protector of destitute.\nYou, who comes here to moan his fall, can take his weapon and wield it with honor.\nBut only to continue his brave deeds can it be used, for once you betray his great legacy, the sword will leave you forever. "
                         }],
                  "rotation":0,
                  "type":"",

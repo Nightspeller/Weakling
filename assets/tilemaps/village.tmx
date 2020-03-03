@@ -169,18 +169,17 @@
   <object id="19" name="Narrator" x="32" y="672" width="128" height="128">
    <properties>
     <property name="interaction" value="overlap"/>
+    <property name="messageId" value="village_boarWarning"/>
     <property name="secret" type="bool" value="true"/>
     <property name="singleUse" type="bool" value="true"/>
-    <property name="text" value="Hmm.. These boars look peaceful from here, but I am sure that if I try to hunt them they will chase me up to the tree and will not let me down for at least several hours..like last time..."/>
    </properties>
   </object>
   <object id="28" name="Place of memory" x="1312" y="1088" width="192" height="192">
    <properties>
     <property name="interaction" value="overlap"/>
+    <property name="messageId" value="village_placeOfMemory"/>
     <property name="secret" type="bool" value="true"/>
     <property name="singleUse" type="bool" value="true"/>
-    <property name="text">It is always quiet and peaceful here, for this is a place where ancestors of the your village are resting in peace. 
-Auntie Nahkha keeps an eye on it clearing the leaves and planting blue Primulas as a sign of memory and gratitute to those who came before us. </property>
    </properties>
   </object>
  </objectgroup>

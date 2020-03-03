@@ -450,6 +450,11 @@
                          "value":"overlap"
                         }, 
                         {
+                         "name":"messageId",
+                         "type":"string",
+                         "value":"village_boarWarning"
+                        }, 
+                        {
                          "name":"secret",
                          "type":"bool",
                          "value":true
@@ -458,11 +463,6 @@
                          "name":"singleUse",
                          "type":"bool",
                          "value":true
-                        }, 
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"Hmm.. These boars look peaceful from here, but I am sure that if I try to hunt them they will chase me up to the tree and will not let me down for at least several hours..like last time..."
                         }],
                  "rotation":0,
                  "type":"",
@@ -482,6 +482,11 @@
                          "value":"overlap"
                         }, 
                         {
+                         "name":"messageId",
+                         "type":"string",
+                         "value":"village_placeOfMemory"
+                        }, 
+                        {
                          "name":"secret",
                          "type":"bool",
                          "value":true
@@ -490,11 +495,6 @@
                          "name":"singleUse",
                          "type":"bool",
                          "value":true
-                        }, 
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"It is always quiet and peaceful here, for this is a place where ancestors of the your village are resting in peace. \nAuntie Nahkha keeps an eye on it clearing the leaves and planting blue Primulas as a sign of memory and gratitute to those who came before us. "
                         }],
                  "rotation":0,
                  "type":"",

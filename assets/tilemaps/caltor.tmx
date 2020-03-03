@@ -185,18 +185,15 @@
   <object id="27" name="Waymark" x="2336" y="3040" width="32" height="32">
    <properties>
     <property name="interaction" value="activate"/>
+    <property name="messageId" value="caltor_waymark"/>
     <property name="singleUse" type="bool" value="false"/>
-    <property name="text">West - to the fort.
-East - to the fields and tavern.
-North - to Honeywood.</property>
    </properties>
   </object>
   <object id="29" name="Honeywood sign" x="2432" y="2048" width="32" height="32">
    <properties>
     <property name="interaction" value="activate"/>
+    <property name="messageId" value="caltor_honeywoodSign"/>
     <property name="singleUse" type="bool" value="false"/>
-    <property name="text">Welcome to Honeywood!
-Population: no idea - numbers are hard.</property>
    </properties>
   </object>
  </objectgroup>
