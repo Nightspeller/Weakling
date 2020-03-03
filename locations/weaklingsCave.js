@@ -20,9 +20,9 @@ export class WeaklingsCaveScene extends GeneralLocation {
         const destroyCallback = chest1trigger.callback;
         chest1trigger.callback = () => {
             destroyCallback();
+            this.player.addItemToInventory('copper-pieces', 10);
             this.player.addItemToInventory('leather-armor');
             this.player.addItemToInventory('rangers-hat');
-            this.player.addItemToInventory('copper-pieces', 10);
             this.switchToScene('Dialog', {
                 dialogTree: chest1Dialog,
                 speakerName: 'Narrator',
