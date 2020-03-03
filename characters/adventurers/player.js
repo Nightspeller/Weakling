@@ -39,6 +39,7 @@ export class Player extends Adventurer {
             this.addItemToInventory('allpowerful-necklace');
             this.addItemToInventory('leather-armor', 1, 'body');
             this.addItemToInventory('trap-kit');
+            this.addItemToInventory('spirit-sword');
             this.addItemToInventory('smoldering-ring', 1, 'ringRight');
             /*this.addItemToInventory('rope-belt', 1, 'belt');
             this.addItemToInventory('fancy-belt');`

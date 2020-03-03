@@ -37,6 +37,25 @@ export const handsItems = {
         sellPrice: 5,
         buyPrice: 10
     },
+    'spirit-sword': {
+        itemId: 'spirit-sword',
+        displayName: 'Spirit sword',
+        description: 'The sword left by the great hero, the protector of poor and weak - it can be used only for the good deeds.',
+        slot: ['rightHand', 'leftHand', 'backpack'],
+        sprite: { key: 'icon-item-set', frame: 84 },
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            damage: 15,
+            additionalCharacteristics: [
+                { 'defences.magicResistance': 5 }
+            ],
+            size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
+        },
+        sellPrice: 50,
+        buyPrice: 100
+    },
     'spear-weapon': {
         itemId: 'spear-weapon',
         displayName: 'Wooden spear',
