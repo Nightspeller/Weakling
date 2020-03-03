@@ -1,5 +1,6 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import { optionsInstance } from "../config/optionsConfig.js";
+import { DEBUG } from "../config/constants.js";
 export class PreloadScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Preload' });
@@ -92,26 +93,11 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
         this.load.image('main-menu-background', 'assets/images/interface/main-menu-background.jpg');
         // World characters images
-        this.load.spritesheet("martha-pink", "assets/images/characters/world-map/party/martha-pink.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("martha-blond", "assets/images/characters/world-map/party/martha-blond.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("martha-green", "assets/images/characters/world-map/party/martha-green.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("jeremy-pink", "assets/images/characters/world-map/party/jeremy-pink.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
-        this.load.spritesheet("jeremy-blond", "assets/images/characters/world-map/party/jeremy-blond.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
+        this.load.spritesheet("martha-pink", "assets/images-extruded/characters/world-map/party/martha-pink.png", tilesetConfig);
+        this.load.spritesheet("martha-blond", "assets/images-extruded/characters/world-map/party/martha-blond.png", tilesetConfig);
+        this.load.spritesheet("martha-green", "assets/images-extruded/characters/world-map/party/martha-green.png", tilesetConfig);
+        this.load.spritesheet("jeremy-pink", "assets/images-extruded/characters/world-map/party/jeremy-pink.png", tilesetConfig);
+        this.load.spritesheet("jeremy-blond", "assets/images-extruded/characters/world-map/party/jeremy-blond.png", tilesetConfig);
         this.load.spritesheet("jeremy-green", "assets/images-extruded/characters/world-map/party/jeremy-green.png", tilesetConfig);
         this.load.spritesheet('male10-1', 'assets/images-extruded/characters/world-map/neutral/male10-1.png', tilesetConfig);
         this.load.spritesheet('male13-1', 'assets/images-extruded/characters/world-map/neutral/male13-1.png', tilesetConfig);
@@ -206,6 +192,8 @@ export class PreloadScene extends Phaser.Scene {
     }
     create() {
         optionsInstance.setSoundManager(this);
+        if (DEBUG)
+            optionsInstance.toggleMusic();
         this.createAnimations();
         console.log('Preload done, calling Main Menu');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
@@ -226,7 +214,7 @@ export class PreloadScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'walk_up',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 9, end: 11 }),
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 18, end: 20 }),
             frameRate: 10,
             repeat: -1
         });
@@ -238,13 +226,33 @@ export class PreloadScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'walk_left',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 3, end: 5 }),
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 12, end: 14 }),
             frameRate: 10,
             repeat: -1
         });
         this.anims.create({
+            key: 'attack_down',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 3, end: 5 }),
+            frameRate: 5
+        });
+        this.anims.create({
+            key: 'attack_up',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 21, end: 23 }),
+            frameRate: 5
+        });
+        this.anims.create({
+            key: 'attack_right',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 9, end: 11 }),
+            frameRate: 5
+        });
+        this.anims.create({
+            key: 'attack_left',
+            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, { start: 15, end: 17 }),
+            frameRate: 5
+        });
+        this.anims.create({
             key: 'idle_up',
-            frames: [{ key: this.player.worldImageSpriteParams.texture, frame: 10 }],
+            frames: [{ key: this.player.worldImageSpriteParams.texture, frame: 19 }],
             frameRate: 10,
             repeat: -1
         });
@@ -256,7 +264,7 @@ export class PreloadScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'idle_left',
-            frames: [{ key: this.player.worldImageSpriteParams.texture, frame: 4 }],
+            frames: [{ key: this.player.worldImageSpriteParams.texture, frame: 13 }],
             frameRate: 10,
             repeat: -1
         });

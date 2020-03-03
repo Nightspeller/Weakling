@@ -41,6 +41,10 @@ export class CharacterPickerScene extends GeneralOverlayScene {
                 anims.remove('idle_down');
                 anims.remove('idle_left');
                 anims.remove('idle_right');
+                anims.remove('attack_up');
+                anims.remove('attack_down');
+                anims.remove('attack_left');
+                anims.remove('attack_right');
                 anims.create({
                     key: 'walk_down',
                     frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 0, end: 2 }),
@@ -49,7 +53,7 @@ export class CharacterPickerScene extends GeneralOverlayScene {
                 });
                 anims.create({
                     key: 'walk_up',
-                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 9, end: 11 }),
+                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 18, end: 20 }),
                     frameRate: 10,
                     repeat: -1
                 });
@@ -61,13 +65,13 @@ export class CharacterPickerScene extends GeneralOverlayScene {
                 });
                 anims.create({
                     key: 'walk_left',
-                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 3, end: 5 }),
+                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 12, end: 14 }),
                     frameRate: 10,
                     repeat: -1
                 });
                 anims.create({
                     key: 'idle_up',
-                    frames: [{ key: self.player.worldImageSpriteParams.texture, frame: 10 }],
+                    frames: [{ key: self.player.worldImageSpriteParams.texture, frame: 19 }],
                     frameRate: 10,
                     repeat: -1
                 });
@@ -79,7 +83,7 @@ export class CharacterPickerScene extends GeneralOverlayScene {
                 });
                 anims.create({
                     key: 'idle_left',
-                    frames: [{ key: self.player.worldImageSpriteParams.texture, frame: 4 }],
+                    frames: [{ key: self.player.worldImageSpriteParams.texture, frame: 13 }],
                     frameRate: 10,
                     repeat: -1
                 });
@@ -88,6 +92,26 @@ export class CharacterPickerScene extends GeneralOverlayScene {
                     frames: [{ key: self.player.worldImageSpriteParams.texture, frame: 7 }],
                     frameRate: 10,
                     repeat: -1
+                });
+                anims.create({
+                    key: 'attack_down',
+                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 3, end: 5 }),
+                    frameRate: 5
+                });
+                anims.create({
+                    key: 'attack_up',
+                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 21, end: 23 }),
+                    frameRate: 5
+                });
+                anims.create({
+                    key: 'attack_right',
+                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 9, end: 11 }),
+                    frameRate: 5
+                });
+                anims.create({
+                    key: 'attack_left',
+                    frames: anims.generateFrameNames(self.player.worldImageSpriteParams.texture, { start: 15, end: 17 }),
+                    frameRate: 5
                 });
                 self.scene.get('Caltor')['playerImage'].anims.play("idle_up");
                 self.closeScene();

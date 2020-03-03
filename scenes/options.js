@@ -1,5 +1,6 @@
 import { GAME_H, GAME_W } from "../config/constants.js";
 import { optionsInstance } from "../config/optionsConfig.js";
+var Rectangle = Phaser.Geom.Rectangle;
 export class OptionsScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Options' });
@@ -10,11 +11,17 @@ export class OptionsScene extends Phaser.Scene {
     preload() {
     }
     create() {
+        const optionsZone = this.add.zone(0, 0, GAME_W, GAME_H).setOrigin(0, 0).setInteractive();
         const optionsBackground = this.add.graphics()
             .lineStyle(3, 0x222222)
             .fillStyle(0x2A3E07)
             .fillRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300)
-            .strokeRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300);
+            .strokeRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300)
+            .setInteractive({
+            hitArea: new Rectangle(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300),
+            hitAreaCallback: Rectangle.Contains
+        });
+        optionsBackground.on('pointerdown', (pointer, x, y, event) => event.stopPropagation());
         const title = this.add.text(GAME_W / 2, GAME_H / 2 - 120, 'Options', {
             font: '30px monospace',
             fill: '#ffffff'
@@ -53,19 +60,15 @@ export class OptionsScene extends Phaser.Scene {
             font: '20px monospace',
             fill: '#ffffff'
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
-        backButton.on('pointerdown', () => {
-            this.scene.stop(this.scene.key);
-            this.scene.run(this.parentSceneKey);
-        });
-        this.input.keyboard.on('keyup-O', () => {
-            this.scene.stop(this.scene.key);
-            this.scene.run(this.parentSceneKey);
-        });
-        this.input.keyboard.on('keyup-ESC', () => {
-            this.scene.stop(this.scene.key);
-            this.scene.run(this.parentSceneKey);
-        });
+        backButton.on('pointerdown', () => this._close());
+        this.input.keyboard.on('keyup-O', () => this._close());
+        this.input.keyboard.on('keyup-ESC', () => this._close());
+        optionsZone.once('pointerdown', () => this._close());
         this.scene.bringToTop('Options');
+    }
+    _close() {
+        this.scene.stop(this.scene.key);
+        this.scene.run(this.parentSceneKey);
     }
 }
 //# sourceMappingURL=options.js.map

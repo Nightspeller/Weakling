@@ -8,6 +8,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.triggers = [];
         this.spaceBarCooldown = 0;
         this.playerSpeed = PLAYER_WORLD_SPEED;
+        this.lastCursor = 'down';
     }
     preload() {
         this.load.scenePlugin({
@@ -225,6 +226,7 @@ export class GeneralLocation extends Phaser.Scene {
             this.playerImage.play(`idle_${this.lastCursor}`);
         });
         this.setupObjectHighlighting();
+        this.setupAttackKey();
         this.setupRunKey();
         if (mapKey !== 'battle' && DEBUG)
             this.createDebugButton();
@@ -352,10 +354,10 @@ export class GeneralLocation extends Phaser.Scene {
                     if (trigger.type === 'activate' || trigger.type === 'activateOverlap') {
                         //checking if player is looking at the trigger image
                         if (trigger.type === 'activateOverlap' ||
-                            ((trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y) && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
-                            ((trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x) && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
-                            ((trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y) && [9, 10, 11].includes(Number(this.playerImage.frame.name))) ||
-                            ((trigger.image.getBottomRight().x === this.playerImage.getTopLeft().x && [3, 4, 5].includes(Number(this.playerImage.frame.name))))) {
+                            (trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
+                            (trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
+                            (trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y && [18, 19, 20].includes(Number(this.playerImage.frame.name))) ||
+                            (trigger.image.getBottomRight().x === this.playerImage.getTopLeft().x && [12, 13, 14].includes(Number(this.playerImage.frame.name)))) {
                             const image = trigger.image;
                             const callback = trigger.callback;
                             const bodies = this.physics.overlapRect(image.x, image.y, image.displayWidth + 2, image.displayHeight + 2);
@@ -418,36 +420,39 @@ export class GeneralLocation extends Phaser.Scene {
         const right = this.keys.right.isDown || this.keys['D'].isDown;
         const left = this.keys.left.isDown || this.keys['A'].isDown;
         this.playerImage.setVelocity(0);
-        if (this.lastCursor && !up && !down && !right && !left) {
-            this.playerImage.play(`idle_${this.lastCursor}`, true);
-        }
-        if (up) {
-            this.playerImage.setVelocityY(-this.playerSpeed);
-        }
-        else if (down) {
-            this.playerImage.setVelocityY(this.playerSpeed);
-        }
-        if (right) {
-            this.playerImage.setVelocityX(this.playerSpeed);
-        }
-        else if (left) {
-            this.playerImage.setVelocityX(-this.playerSpeed);
-        }
-        if (up || (up && right) || (up && left)) {
-            this.playerImage.play('walk_up', true);
-            this.lastCursor = 'up';
-        }
-        else if (down || (down && right) || (down && left)) {
-            this.playerImage.play('walk_down', true);
-            this.lastCursor = 'down';
-        }
-        if (right && !up && !down) {
-            this.playerImage.play('walk_right', true);
-            this.lastCursor = 'right';
-        }
-        else if (left && !up && !down) {
-            this.playerImage.play('walk_left', true);
-            this.lastCursor = 'left';
+        const isAttackAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getCurrentKey().includes('attack');
+        if (!isAttackAnimPlaying) {
+            if (this.lastCursor && !up && !down && !right && !left) {
+                this.playerImage.play(`idle_${this.lastCursor}`, true);
+            }
+            if (up) {
+                this.playerImage.setVelocityY(-this.playerSpeed);
+            }
+            else if (down) {
+                this.playerImage.setVelocityY(this.playerSpeed);
+            }
+            if (right) {
+                this.playerImage.setVelocityX(this.playerSpeed);
+            }
+            else if (left) {
+                this.playerImage.setVelocityX(-this.playerSpeed);
+            }
+            if (up || (up && right) || (up && left)) {
+                this.playerImage.play('walk_up', true);
+                this.lastCursor = 'up';
+            }
+            else if (down || (down && right) || (down && left)) {
+                this.playerImage.play('walk_down', true);
+                this.lastCursor = 'down';
+            }
+            if (right && !up && !down) {
+                this.playerImage.play('walk_right', true);
+                this.lastCursor = 'right';
+            }
+            else if (left && !up && !down) {
+                this.playerImage.play('walk_left', true);
+                this.lastCursor = 'left';
+            }
         }
     }
     setupObjectHighlighting() {
@@ -471,6 +476,7 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
     setupRunKey() {
+        this.input.keyboard.off('keyup-Q');
         this.input.keyboard.on('keyup-Q', () => {
             if (this.playerSpeed === PLAYER_RUN_WORLD_SPEED) {
                 this.playerSpeed = PLAYER_WORLD_SPEED;
@@ -499,6 +505,16 @@ export class GeneralLocation extends Phaser.Scene {
         this.input.keyboard.off('keyup-ESC');
         this.input.keyboard.on('keyup-ESC', () => {
             this.switchToScene('Options', {}, false);
+        });
+    }
+    setupAttackKey() {
+        this.input.keyboard.off('keydown-E');
+        this.input.keyboard.on('keydown-E', () => {
+            const isWalkAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getCurrentKey().includes('walk');
+            const isAttackAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getCurrentKey().includes('attack');
+            if (!isWalkAnimPlaying && !isAttackAnimPlaying) {
+                this.playerImage.anims.play(`attack_${this.lastCursor}`, true);
+            }
         });
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="34">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="36">
  <editorsettings>
   <export target="village.json" format="json"/>
  </editorsettings>
@@ -174,12 +174,12 @@
     <property name="singleUse" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="28" name="Place of memory" x="1312" y="1088" width="192" height="192">
+  <object id="28" name="Place of memory" x="1440" y="1088" width="32" height="32">
    <properties>
-    <property name="interaction" value="overlap"/>
+    <property name="interaction" value="activate"/>
     <property name="messageId" value="village_placeOfMemory"/>
-    <property name="secret" type="bool" value="true"/>
-    <property name="singleUse" type="bool" value="true"/>
+    <property name="secret" type="bool" value="false"/>
+    <property name="singleUse" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>
@@ -224,6 +224,16 @@
   <object id="29" name="Nahkha's Cave" x="800" y="512" width="32" height="32">
    <properties>
     <property name="location" value="NahkhasCave"/>
+   </properties>
+  </object>
+  <object id="34" name="Stone steps down" x="864" y="800" width="32" height="32">
+   <properties>
+    <property name="toCoordinates" value="{&quot;x&quot;: 28, &quot;y&quot;: 27}"/>
+   </properties>
+  </object>
+  <object id="35" name="Stone steps up" x="896" y="832" width="32" height="32">
+   <properties>
+    <property name="toCoordinates" value="{&quot;x&quot;: 27, &quot;y&quot;: 24}"/>
    </properties>
   </object>
  </objectgroup>
