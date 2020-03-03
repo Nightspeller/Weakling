@@ -679,7 +679,7 @@
                         {
                          "name":"enemies",
                          "type":"string",
-                         "value":"[{\"type\": \"wildBoar\"}, {\"type\": \"wizard\"}, {\"type\": \"wizard\"}, {\"type\": \"wildBoar\"}]"
+                         "value":"[{\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}]"
                         }, 
                         {
                          "name":"image",

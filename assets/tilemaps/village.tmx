@@ -230,7 +230,7 @@
  <objectgroup id="9" name="Enemies">
   <object id="9" name="Boars" x="64" y="704" width="64" height="64">
    <properties>
-    <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wizard&quot;}, {&quot;type&quot;: &quot;wizard&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
+    <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
     <property name="image" value="boar-avatar"/>
    </properties>
   </object>
