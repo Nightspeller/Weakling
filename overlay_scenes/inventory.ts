@@ -347,24 +347,28 @@ Actions: ${this.player.getAvailableActions().join(', ')}
         const description = this.add.text(5, name.getBottomLeft().y + 10, item.description, textStyle).setOrigin(0, 0);
         descriptionContainer.add(description);
 
-        const slots = this.add.text(5, description.getBottomLeft().y + 10, `Can be at:\n${item.slot.filter(slot => slot !== 'backpack').join(', ')}`, textStyle).setOrigin(0, 0);
+        const slots = this.add.text(5, description.getBottomLeft().y + 10, `Can be at: ${item.slot.filter(slot => slot !== 'backpack').join(', ')}`, textStyle).setOrigin(0, 0);
         descriptionContainer.add(slots);
 
         let lastTextPosition = slots.getBottomLeft().y;
+        if (item.specifics?.damage) {
+            const damage = this.add.text(5, lastTextPosition + 10, `Damage: ${item.specifics.damage}`, textStyle).setOrigin(0, 0);
+            descriptionContainer.add(damage);
+            lastTextPosition = damage.getBottomLeft().y;
+        }
         if (item.specifics?.additionalActions) {
-            const actions = this.add.text(5, lastTextPosition + 10, `Provides action:\n${item.specifics.additionalActions.join(', ')}`, textStyle).setOrigin(0, 0);
+            const actions = this.add.text(5, lastTextPosition + 10, `Provides actions: ${item.specifics.additionalActions.join(', ')}`, textStyle).setOrigin(0, 0);
             descriptionContainer.add(actions);
             lastTextPosition = actions.getBottomLeft().y;
         }
         if (item.specifics?.additionalCharacteristics) {
-            let charText = '';
-            item.specifics.additionalCharacteristics.forEach(char => {
-                Object.entries(char).forEach(([name, value]) => {
-                    name = name.split('.')[1];
-                    name = name[0].toUpperCase() + name.slice(1);
-                    charText += `${name}: ${value}\n`
-                })
-            });
+            const charText = item.specifics.additionalCharacteristics.map(char => {
+                let name = Object.keys(char)[0];
+                let value = Object.values(char)[0];
+                name = name.split('.')[1];
+                name = name[0].toUpperCase() + name.slice(1);
+                return `${name}: ${value}`
+            }).join('\n');
             const characteristics = this.add.text(5, lastTextPosition + 10, `Characteristics:\n${charText}`, textStyle).setOrigin(0, 0);
             descriptionContainer.add(characteristics);
             lastTextPosition = characteristics.getBottomLeft().y;
