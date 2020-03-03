@@ -49,4 +49,7 @@ const gameConfig = {
     ]
 };
 export const game = new Phaser.Game(gameConfig);
+document.getElementById('game').addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+}, false);
 //# sourceMappingURL=index.js.map

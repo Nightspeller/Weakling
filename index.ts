@@ -55,3 +55,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 };
 
 export const game = new Phaser.Game(gameConfig);
+
+document.getElementById('game').addEventListener("contextmenu", function(e){
+    e.preventDefault();
+}, false);

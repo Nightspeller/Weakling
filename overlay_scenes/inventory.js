@@ -1,5 +1,6 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import { GeneralOverlayScene } from "./generalOverlayScene.js";
+import { GAME_H, GAME_W, INVENTORY_ITEM_DESCRIPTION_H, INVENTORY_ITEM_DESCRIPTION_W } from "../config/constants.js";
 export class InventoryScene extends GeneralOverlayScene {
     constructor() {
         super({ key: 'Inventory' });
@@ -250,6 +251,11 @@ export class InventoryScene extends GeneralOverlayScene {
                 }
                 scene._drawCharacteristics();
             });
+            container.on('pointerdown', (pointer) => {
+                if (pointer.rightButtonDown()) {
+                    this._showItemDescriptionAndActions(container, item);
+                }
+            });
             this.inventoryDisplayGroup.add(container);
         });
     }
@@ -267,7 +273,10 @@ Armor: ${this.player.currentCharacteristics.defences.armor}
 Dodge: ${this.player.currentCharacteristics.defences.dodge}
 Resistance: 🔥${this.player.currentCharacteristics.defences.fireResistance}❄${this.player.currentCharacteristics.defences.coldResistance}⚡${this.player.currentCharacteristics.defences.electricityResistance}☣${this.player.currentCharacteristics.defences.acidResistance}☠${this.player.currentCharacteristics.defences.poisonResistance}✨${this.player.currentCharacteristics.defences.magicResistance}
 Initiative: ${this.player.currentCharacteristics.attributes.initiative}
-Damage: ${this.player.getAttackDamage()}`;
+Damage: ${this.player.getAttackDamage()}
+
+Actions: ${this.player.getAvailableActions().join(', ')}
+`;
         const textObject = this.inventoryDisplayGroup.getChildren().find(child => child.name === 'characteristicsText');
         if (textObject) {
             textObject.setText(text);
@@ -276,9 +285,66 @@ Damage: ${this.player.getAttackDamage()}`;
             const characteristicsText = this.add.text(textX, textY, text, {
                 font: '14px monospace',
                 color: '#000000',
+                wordWrap: {
+                    width: 32 * 10,
+                },
             }).setScrollFactor(0).setDepth(this.opts.baseDepth).setName('characteristicsText');
             this.inventoryDisplayGroup.add(characteristicsText);
         }
+    }
+    _showItemDescriptionAndActions(container, item) {
+        var _a, _b;
+        const outerZone = this.add.zone(0, 0, GAME_W, GAME_H).setOrigin(0, 0).setDepth(this.opts.baseDepth + 1).setInteractive();
+        const containerX = container.x < GAME_W / 2 ? container.x + 32 : container.x - 32 - INVENTORY_ITEM_DESCRIPTION_W;
+        const containerY = container.y < GAME_H / 2 ? container.y - 32 : container.y + 32 - INVENTORY_ITEM_DESCRIPTION_H;
+        const descriptionContainer = this.add.container(containerX, containerY).setDepth(this.opts.baseDepth + 2);
+        outerZone.once('pointerdown', (pointer, eventX, eventY, event) => {
+            event.stopPropagation();
+            outerZone.destroy(true);
+            descriptionContainer.destroy(true);
+        });
+        const background = this.add.graphics()
+            .fillStyle(this.opts.backgroundColor, 1)
+            .fillRect(0, 0, INVENTORY_ITEM_DESCRIPTION_W, INVENTORY_ITEM_DESCRIPTION_H)
+            .lineStyle(2, 0x000000)
+            .strokeRect(0, 0, INVENTORY_ITEM_DESCRIPTION_W, INVENTORY_ITEM_DESCRIPTION_H);
+        descriptionContainer.add(background);
+        const textStyle = {
+            font: '14px monospace',
+            color: '#000000',
+            wordWrap: {
+                width: INVENTORY_ITEM_DESCRIPTION_W,
+            },
+        };
+        const name = this.add.text(5, 5, item.displayName, textStyle).setOrigin(0, 0);
+        descriptionContainer.add(name);
+        name.setFontStyle('bold');
+        const description = this.add.text(5, name.getBottomLeft().y + 10, item.description, textStyle).setOrigin(0, 0);
+        descriptionContainer.add(description);
+        const slots = this.add.text(5, description.getBottomLeft().y + 10, `Can be at:\n${item.slot.filter(slot => slot !== 'backpack').join(', ')}`, textStyle).setOrigin(0, 0);
+        descriptionContainer.add(slots);
+        let lastTextPosition = slots.getBottomLeft().y;
+        if ((_a = item.specifics) === null || _a === void 0 ? void 0 : _a.additionalActions) {
+            const actions = this.add.text(5, lastTextPosition + 10, `Provides action:\n${item.specifics.additionalActions.join(', ')}`, textStyle).setOrigin(0, 0);
+            descriptionContainer.add(actions);
+            lastTextPosition = actions.getBottomLeft().y;
+        }
+        if ((_b = item.specifics) === null || _b === void 0 ? void 0 : _b.additionalCharacteristics) {
+            let charText = '';
+            item.specifics.additionalCharacteristics.forEach(char => {
+                Object.entries(char).forEach(([name, value]) => {
+                    name = name.split('.')[1];
+                    name = name[0].toUpperCase() + name.slice(1);
+                    charText += `${name}: ${value}\n`;
+                });
+            });
+            const characteristics = this.add.text(5, lastTextPosition + 10, `Characteristics:\n${charText}`, textStyle).setOrigin(0, 0);
+            descriptionContainer.add(characteristics);
+            lastTextPosition = characteristics.getBottomLeft().y;
+        }
+        const price = this.add.text(5, lastTextPosition + 10, `Sell price, for 1: ${item.sellPrice} copper\nBuy price, for 1: ${item.buyPrice} copper`, textStyle).setOrigin(0, 0);
+        descriptionContainer.add(price);
+        lastTextPosition = price.getBottomLeft().y;
     }
 }
 //# sourceMappingURL=inventory.js.map
