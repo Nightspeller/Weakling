@@ -48,6 +48,8 @@ export class WeaklingsCaveScene extends GeneralLocation {
         secretTrigger.callback = () => {
             secretDestroyCallback();
             this.player.addItemToInventory('sourgrass');
+            this.player.addItemToInventory('pinky-pie-sapling');
+            this.player.addItemToInventory('yellow-fingers-sapling');
         };
         if (!DEBUG) {
             this.switchToScene('Dialog', {

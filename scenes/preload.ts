@@ -107,10 +107,10 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('main-menu-background', 'assets/images/interface/main-menu-background.jpg');
 
         // World characters images
-        this.load.spritesheet("martha-pink", "assets/images-extruded/characters/world-map/party/martha-pink.png",tilesetConfig);
+        this.load.spritesheet("martha-pink", "assets/images-extruded/characters/world-map/party/martha-pink.png", tilesetConfig);
         this.load.spritesheet("martha-blond", "assets/images-extruded/characters/world-map/party/martha-blond.png", tilesetConfig);
         this.load.spritesheet("martha-green", "assets/images-extruded/characters/world-map/party/martha-green.png", tilesetConfig);
-        this.load.spritesheet("jeremy-pink", "assets/images-extruded/characters/world-map/party/jeremy-pink.png",tilesetConfig);
+        this.load.spritesheet("jeremy-pink", "assets/images-extruded/characters/world-map/party/jeremy-pink.png", tilesetConfig);
         this.load.spritesheet("jeremy-blond", "assets/images-extruded/characters/world-map/party/jeremy-blond.png", tilesetConfig);
         this.load.spritesheet("jeremy-green", "assets/images-extruded/characters/world-map/party/jeremy-green.png", tilesetConfig);
         this.load.spritesheet('male10-1', 'assets/images-extruded/characters/world-map/neutral/male10-1.png', tilesetConfig);
@@ -200,14 +200,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('betweenVillageAndCaltor', 'assets/tilemaps/betweenVillageAndCaltor.json');
 
         // Audio
-        this.load.audio('intro', [
-            'assets/audio/intro.ogg',
-            'assets/audio/intro.mp3'
-        ]);
-        this.load.audio('keys-for-success', [
-            'assets/audio/keys-for-success.mp3',
-            'assets/audio/keys-for-success.ogg'
-        ]);
+        this.load.audio('intro', ['assets/audio/intro.ogg', 'assets/audio/intro.mp3']);
+        this.load.audio('keys-for-success', ['assets/audio/keys-for-success.mp3', 'assets/audio/keys-for-success.ogg']);
     }
 
     create() {

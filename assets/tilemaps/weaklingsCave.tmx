@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="9">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="9">
  <editorsettings>
   <export target="weaklingsCave.json" format="json"/>
  </editorsettings>

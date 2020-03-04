@@ -107,7 +107,7 @@
                 }, 
                 {
                  "compression":"",
-                 "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIgUAAAAAAAAAAAAAAAAAACIFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4FAAAAAAAAAAAAAAAAAAAuBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcwUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                 "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIgUAAAAAAAAAAAAAAAAAACIFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4FAAAAAAAAAAAAAAAAAAAuBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                  "encoding":"base64",
                  "height":12,
                  "id":6,
@@ -148,6 +148,109 @@
          "name":"Layer 2",
          "opacity":1,
          "type":"group",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":12,
+         "name":"Items",
+         "objects":[
+                {
+                 "gid":1395,
+                 "height":32,
+                 "id":3,
+                 "name":"Yellow Fingers Sapling",
+                 "properties":[
+                        {
+                         "name":"itemId",
+                         "type":"string",
+                         "value":"yellow-fingers-sapling"
+                        }, 
+                        {
+                         "name":"quantity",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":288
+                }, 
+                {
+                 "gid":1395,
+                 "height":32,
+                 "id":5,
+                 "name":"Pinky Pie Sapling",
+                 "properties":[
+                        {
+                         "name":"itemId",
+                         "type":"string",
+                         "value":"pinky-pie-sapling"
+                        }, 
+                        {
+                         "name":"quantity",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":256
+                }, 
+                {
+                 "gid":1395,
+                 "height":32,
+                 "id":6,
+                 "name":"Rocky Rose Sapling",
+                 "properties":[
+                        {
+                         "name":"itemId",
+                         "type":"string",
+                         "value":"rocky-rose-sapling"
+                        }, 
+                        {
+                         "name":"quantity",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":224
+                }, 
+                {
+                 "gid":1395,
+                 "height":32,
+                 "id":7,
+                 "name":"Primula Sapling",
+                 "properties":[
+                        {
+                         "name":"itemId",
+                         "type":"string",
+                         "value":"primula-sapling"
+                        }, 
+                        {
+                         "name":"quantity",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":192
+                }],
+         "opacity":1,
+         "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
@@ -208,17 +311,17 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":12,
- "nextobjectid":3,
+ "nextlayerid":13,
+ "nextobjectid":8,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.2",
+ "tiledversion":"1.3.3",
  "tileheight":32,
  "tilesets":[
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images\/tilesets\/extruded\/base-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -7734,7 +7837,7 @@
         {
          "columns":12,
          "firstgid":1161,
-         "image":"..\/images\/tilesets\/extruded\/base-addition-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base-addition.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,
@@ -10335,6 +10438,19 @@
                          "value":true
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":16,
+         "firstgid":1929,
+         "image":"..\/images\/items\/icon-item-set.png",
+         "imageheight":640,
+         "imagewidth":512,
+         "margin":0,
+         "name":"icon-item-set",
+         "spacing":0,
+         "tilecount":320,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,

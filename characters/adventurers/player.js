@@ -41,14 +41,18 @@ export class Player extends Adventurer {
             this.addItemToInventory('trap-kit');
             this.addItemToInventory('spirit-sword');
             this.addItemToInventory('smoldering-ring', 1, 'ringRight');
-            /*this.addItemToInventory('rope-belt', 1, 'belt');
-            this.addItemToInventory('fancy-belt');`
-            this.addItemToInventory('minor-healing-potion');
-            this.addItemToInventory('minor-healing-potion', 2);
-            this.addItemToInventory('leather-armor', 1, 'body');
-            this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
-            this.addItemToInventory('wooden-sword-weapon');
-            this.addItemToInventory('rangers-hat');*/
+            /*            this.addItemToInventory('pinky-pie-sapling');
+                        this.addItemToInventory('yellow-fingers-sapling');
+                        this.addItemToInventory('primula-sapling');
+                        this.addItemToInventory('rocky-rose-sapling');
+                        this.addItemToInventory('rope-belt', 1, 'belt');
+                        this.addItemToInventory('fancy-belt');`
+                        this.addItemToInventory('minor-healing-potion');
+                        this.addItemToInventory('minor-healing-potion', 2);
+                        this.addItemToInventory('leather-armor', 1, 'body');
+                        this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
+                        this.addItemToInventory('wooden-sword-weapon');
+                        this.addItemToInventory('rangers-hat');*/
         }
         this.addBaseModifiers();
         this.applyItems();

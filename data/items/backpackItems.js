@@ -25,6 +25,105 @@ export const backpackItems = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'rocky-rose-flower': {
+        itemId: 'rocky-rose-flower',
+        displayName: 'Rocky Rose flower',
+        description: 'The flower of Rocky Rose',
+        slot: ['backpack'],
+        sprite: { key: 'base', frame: 172 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'yellow-fingers-flower': {
+        itemId: 'yellow-fingers-flower',
+        displayName: 'Yellow Fingers flower',
+        description: 'The flower of Yellow Fingers flower',
+        slot: ['backpack'],
+        sprite: { key: 'base', frame: 55 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'pinky-pie-flower': {
+        itemId: 'pinky-pie-flower',
+        displayName: 'Pinky Pie flower',
+        description: 'The flower of Pinky Pie flower',
+        slot: ['backpack'],
+        sprite: { key: 'base', frame: 53 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'primula-sapling': {
+        itemId: 'primula-sapling',
+        displayName: 'Primula sapling',
+        description: 'The sapling of blue Primula',
+        slot: ['backpack'],
+        sprite: { key: 'base-addition', frame: 234 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'primula-flower'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'rocky-rose-sapling': {
+        itemId: 'rocky-rose-sapling',
+        displayName: 'Rocky Rose sapling',
+        description: 'The sapling of Rocky Rose',
+        slot: ['backpack'],
+        sprite: { key: 'base-addition', frame: 234 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'rocky-rose-flower'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'yellow-fingers-sapling': {
+        itemId: 'yellow-fingers-sapling',
+        displayName: 'Yellow Fingers sapling',
+        description: 'The sapling of Yellow Fingers flower',
+        slot: ['backpack'],
+        sprite: { key: 'base-addition', frame: 234 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'yellow-fingers-flower'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'pinky-pie-sapling': {
+        itemId: 'pinky-pie-sapling',
+        displayName: 'Pinky Pie sapling',
+        description: 'The sapling of Pinky Pie flower',
+        slot: ['backpack'],
+        sprite: { key: 'base-addition', frame: 234 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'pinky-pie-flower'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'basket': {
         itemId: 'basket',
         displayName: 'Basket',
