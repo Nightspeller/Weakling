@@ -243,7 +243,7 @@ export class GeneralLocation extends Phaser.Scene {
             if (data?.defeatedEnemy) {
                 this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
             }
-            if (data.toCoordinates) {
+            if (data?.toCoordinates) {
                 this.playerImage.setPosition(data.toCoordinates.x * 32 + layerOffsetX, data.toCoordinates.y * 32 + layerOffsetY);
             }
             if (this.objectsHighlightBorders) this.objectsHighlightBorders.clear(true, true);
