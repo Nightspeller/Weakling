@@ -124,6 +124,118 @@ export const backpackItems = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'carrot-seeds': {
+        itemId: 'carrot-seeds',
+        displayName: 'Carrot seeds',
+        description: 'The seeds of the carrots',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 198 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'carrot'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'carrot': {
+        itemId: 'carrot',
+        displayName: 'Carrot',
+        description: 'Nice grown carrot',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 230 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'cabbage-seeds': {
+        itemId: 'cabbage-seeds',
+        displayName: 'Cabbage seeds',
+        description: 'The seeds of the cabbage',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 198 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'cabbage'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'cabbage': {
+        itemId: 'cabbage',
+        displayName: 'Cabbage',
+        description: 'Nice grown cabbage',
+        slot: ['backpack'],
+        sprite: { key: 'base', frame: 167 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'pumpkin-seeds': {
+        itemId: 'pumpkin-seeds',
+        displayName: 'Pumpkin seeds',
+        description: 'The seeds of the pumpkin',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 198 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'pumpkin'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'pumpkin': {
+        itemId: 'pumpkin',
+        displayName: 'Pumpkin',
+        description: 'Nice grown pumpkin',
+        slot: ['backpack'],
+        sprite: { key: 'base', frame: 166 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'strawberry-seeds': {
+        itemId: 'strawberry-seeds',
+        displayName: 'Strawberry seeds',
+        description: 'The seeds of the strawberry',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 198 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {
+            plantable: 'strawberry'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'strawberry': {
+        itemId: 'strawberry',
+        displayName: 'Strawberry',
+        description: 'Nice grown pumpkin',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 228 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'basket': {
         itemId: 'basket',
         displayName: 'Basket',

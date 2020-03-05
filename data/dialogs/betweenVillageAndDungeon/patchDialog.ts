@@ -20,30 +20,10 @@ export const firstTimePatchDialog: DialogTree = [{
 }];
 
 export const secondTimePatchDialog: DialogTree = [{
-    id: 'patch1',
-    text: `What are we going to do today?`,
-    replies: [{
-        text: `Let's plant something`,
-        successTriggers: 'selectPlants'
-    }, {
-        text: `Let's collect crops`,
-        successTriggers: 'collectPlants'
-    }, {
-        text: `No, today you simply don't have time for that`,
-        callbackParam: 'fastEnd'
-    }]
-}, {
     id: 'selectPlants',
     text: `Based on what seeds and saplings you have with you, you could plant:`,
     replies: [{
         text: `No, today you simply don't have time for that`,
-        callbackParam: 'fastEnd'
-    }]
-}, {
-    id: 'collectPlants',
-    text: `This is what is currently grown up:`,
-    replies: [{
-        text: `Never mind`,
         callbackParam: 'fastEnd'
     }]
 }];

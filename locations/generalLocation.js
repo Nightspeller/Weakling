@@ -185,12 +185,13 @@ export class GeneralLocation extends Phaser.Scene {
             const messageText = messages[messageId];
             const interaction = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'interaction')) === null || _d === void 0 ? void 0 : _d.value;
             const singleUse = (_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'singleUse')) === null || _f === void 0 ? void 0 : _f.value;
-            const trigger = this.createTrigger({
+            this.createTrigger({
                 objectName: object.name,
                 objectLayer: 'Messages',
                 texture: null,
                 frame: null,
                 interaction: interaction,
+                singleUse: singleUse,
                 callback: () => {
                     this.switchToScene('Dialog', {
                         dialogTree: [{
@@ -202,11 +203,6 @@ export class GeneralLocation extends Phaser.Scene {
                                     }]
                             }],
                         speakerName: object.name,
-                        closeCallback: (param) => {
-                            if (singleUse) {
-                                trigger.image.destroy(true);
-                            }
-                        }
                     }, false);
                 },
             });
@@ -293,8 +289,8 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
     createTrigger({ objectName, callback = () => {
-    }, objectLayer = 'Objects', texture = null, frame = null, interaction = 'activate', offsetX = this.offsetX, offsetY = this.offsetY }) {
-        var _a;
+    }, objectLayer = 'Objects', texture = null, frame = null, interaction = 'activate', offsetX = this.offsetX, offsetY = this.offsetY, singleUse = false }) {
+        var _a, _b;
         const object = this.getMapObject(objectName, objectLayer);
         if (!object) {
             console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);
@@ -302,6 +298,9 @@ export class GeneralLocation extends Phaser.Scene {
         }
         // @ts-ignore
         const isSecret = !!((_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'secret' && prop.value === true));
+        // @ts-ignore
+        const isSingleUseMapObject = !!((_b = object.properties) === null || _b === void 0 ? void 0 : _b.find(prop => prop.name === 'singleUse' && prop.value === true));
+        singleUse = singleUse || isSingleUseMapObject;
         const triggerImage = this.physics.add
             .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
             .setOrigin(0, 0)
@@ -315,11 +314,32 @@ export class GeneralLocation extends Phaser.Scene {
             // TODO: fix once Tiled and\or phaser figure it out...
             triggerImage.y -= 32;
         }
+        //TODO: might need rework to support callback update...
+        const trigger = {
+            image: triggerImage,
+            callback: callback,
+            type: interaction,
+            name: objectName,
+            isSecret: isSecret,
+            singleUse: singleUse,
+        };
         if (interaction === 'collide') {
-            this.physics.add.collider(this.playerImage, triggerImage, () => callback());
+            this.physics.add.collider(this.playerImage, triggerImage, () => {
+                callback();
+                if (singleUse) {
+                    trigger.image.destroy(true);
+                    this.triggers = this.triggers.filter(tr => tr !== trigger);
+                }
+            });
         }
         if (interaction === 'overlap') {
-            this.physics.add.overlap(this.playerImage, triggerImage, () => callback());
+            this.physics.add.overlap(this.playerImage, triggerImage, () => {
+                callback();
+                if (singleUse) {
+                    trigger.image.destroy(true);
+                    this.triggers = this.triggers.filter(tr => tr !== trigger);
+                }
+            });
         }
         if (interaction === 'activate') {
             this.physics.add.collider(this.playerImage, triggerImage);
@@ -327,14 +347,6 @@ export class GeneralLocation extends Phaser.Scene {
         if (interaction === 'activateOverlap') {
             this.physics.add.overlap(this.playerImage, triggerImage);
         }
-        //TODO: might need rework to support callback update...
-        const trigger = {
-            image: triggerImage,
-            callback: callback,
-            type: interaction,
-            name: objectName,
-            isSecret: isSecret
-        };
         this.triggers.push(trigger);
         return trigger;
     }
@@ -349,7 +361,8 @@ export class GeneralLocation extends Phaser.Scene {
         if (this.keys.space.isDown) {
             if (this.spaceBarCooldown === 0) {
                 this.spaceBarCooldown = 50;
-                for (let i = 0; i < this.triggers.length; i++) {
+                let triggersLength = this.triggers.length;
+                for (let i = 0; i < triggersLength; i++) {
                     const trigger = this.triggers[i];
                     if (trigger.type === 'activate' || trigger.type === 'activateOverlap') {
                         //checking if player is looking at the trigger image
@@ -364,6 +377,12 @@ export class GeneralLocation extends Phaser.Scene {
                             // @ts-ignore
                             if (bodies.includes(this.playerImage.body) && bodies.includes(image.body)) {
                                 callback();
+                                if (trigger.singleUse) {
+                                    trigger.image.destroy(true);
+                                    this.triggers.splice(i, 1);
+                                    i--;
+                                    triggersLength--;
+                                }
                                 break;
                             }
                         }

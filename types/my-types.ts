@@ -141,6 +141,7 @@ interface TriggerParams {
     interaction?: 'collide' | 'overlap' | 'activate' | 'activateOverlap';
     offsetX?: number;
     offsetY?: number;
+    singleUse?: boolean;
 }
 
 interface NpcOptions {

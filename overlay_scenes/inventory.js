@@ -321,9 +321,12 @@ Actions: ${this.player.getAvailableActions().join(', ')}
         name.setFontStyle('bold');
         const description = this.add.text(5, name.getBottomLeft().y + 10, item.description, textStyle).setOrigin(0, 0);
         descriptionContainer.add(description);
-        const slots = this.add.text(5, description.getBottomLeft().y + 10, `Can be at: ${item.slot.filter(slot => slot !== 'backpack').join(', ')}`, textStyle).setOrigin(0, 0);
-        descriptionContainer.add(slots);
-        let lastTextPosition = slots.getBottomLeft().y;
+        let lastTextPosition = description.getBottomLeft().y;
+        if (JSON.stringify(item.slot) !== JSON.stringify(['backpack'])) {
+            const slots = this.add.text(5, description.getBottomLeft().y + 10, `Equip at: ${item.slot.filter(slot => slot !== 'backpack').join(', ')}`, textStyle).setOrigin(0, 0);
+            descriptionContainer.add(slots);
+            lastTextPosition = slots.getBottomLeft().y;
+        }
         if ((_a = item.specifics) === null || _a === void 0 ? void 0 : _a.damage) {
             const damage = this.add.text(5, lastTextPosition + 10, `Damage: ${item.specifics.damage}`, textStyle).setOrigin(0, 0);
             descriptionContainer.add(damage);

@@ -16,6 +16,7 @@ import {introVillageDialog} from "../data/dialogs/introDialog.js";
 import {mitikhhaDialog, mitikhhaSecondDialog} from "../data/dialogs/village/mitikhhaDialog.js";
 import {DEBUG} from "../config/constants.js";
 import {tarethDialog, tarethSecondDialog} from "../data/dialogs/village/tarethDialog.js";
+import {keithDialog, keithNoApologyDialog, keithShopAgainDialog} from "../data/dialogs/village/keithDialog.js";
 
 export class VillageScene extends GeneralLocation {
     constructor() {
@@ -77,6 +78,35 @@ export class VillageScene extends GeneralLocation {
             interactionCallback: (param) => {
                 tareth.setDialog(tarethSecondDialog);
             }
+        });
+
+        const keith = new Npc({
+            scene: this,
+            mapObjectName: 'Farmer Keith',
+            initDialog: keithDialog,
+            interactionCallback: (param) => {
+                if (param === 'noApology') {
+                    keith.setDialog(keithNoApologyDialog);
+                }
+                if (param === 'openShop') {
+                    this.switchToScene('Shop', {
+                        player: this.player,
+                        trader: keith
+                    }, false);
+                    keith.setDialog(keithShopAgainDialog);
+                }
+            },
+            items:[
+                {itemId: 'copper-pieces', quantity: 30},
+                {itemId: 'carrot-seeds', quantity: 5},
+                {itemId: 'carrot', quantity: 3},
+                {itemId: 'strawberry-seeds', quantity: 3},
+                {itemId: 'strawberry', quantity: 5},
+                {itemId: 'pumpkin-seeds', quantity: 5},
+                {itemId: 'pumpkin', quantity: 3},
+                {itemId: 'cabbage-seeds', quantity: 5},
+                {itemId: 'cabbage', quantity: 3},
+            ]
         });
 
         const nahkha = new Npc({

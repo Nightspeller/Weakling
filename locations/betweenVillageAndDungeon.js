@@ -15,26 +15,26 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
     create() {
         super.create('betweenVillageAndDungeon');
         let currentDialog = firstTimePatchDialog;
-        const patchImage = this.createTrigger({
+        //TODO: place plants on the proper places in array and field when some of them are collected and some are not
+        this.createTrigger({
             objectName: 'Your patch',
             callback: () => {
                 const plantables = this.player.inventory.filter(item => { var _a; return (_a = item.specifics) === null || _a === void 0 ? void 0 : _a.plantable; });
                 const updatedDialog = JSON.parse(JSON.stringify(currentDialog));
-                plantables.forEach(plantable => {
-                    updatedDialog[1].replies.unshift({
-                        text: plantable.displayName,
-                        callbackParam: { itemId: plantable.itemId, resultId: plantable.specifics.plantable }
+                const dialogLineToModify = currentDialog === firstTimePatchDialog ? 1 : 0;
+                if (this.planted.length < 9) {
+                    plantables.forEach(plantable => {
+                        updatedDialog[dialogLineToModify].replies.unshift({
+                            text: plantable.displayName,
+                            callbackParam: { itemId: plantable.itemId, resultId: plantable.specifics.plantable }
+                        });
                     });
-                });
-                if (this.planted.length !== 0) {
-                    this.planted.forEach(plant => {
-                        if (plant.grown) {
-                            updatedDialog[2].replies.unshift({
-                                text: itemsData[plant.plantId].displayName,
-                                callbackParam: { itemId: plant.plantId, tileIndex: plant.tileIndex }
-                            });
-                        }
-                    });
+                }
+                else {
+                    updatedDialog[dialogLineToModify].replies[0] = {
+                        text: "It seems like your patch is fully utilized - collect existing crops before planting new.",
+                        callbackParam: 'fastEnd'
+                    };
                 }
                 this.switchToScene('Dialog', {
                     dialogTree: updatedDialog,
@@ -48,20 +48,15 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
                                 plantId: param.resultId,
                                 plantedAt: Date.now(),
                                 grown: false,
-                                tileIndex: this.planted.length
+                                tileIndex: this.planted.length // <------ this is wrong, must put to first empty spot!
                             };
                             this.planted.push(plant);
                             this.drawPlant(plant);
                         }
-                        if (param.tileIndex !== undefined) {
-                            this.player.addItemToInventory(param.itemId);
-                            this.planted = this.planted.filter(plant => plant.tileIndex !== param.tileIndex);
-                            this.erasePlant(param.tileIndex);
-                        }
                     }
                 }, false);
             }
-        }).image;
+        });
     }
     update() {
         super.update();
@@ -75,8 +70,22 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
     drawPlant(plant) {
         const x = plant.tileIndex % 3;
         const y = (plant.tileIndex - x) / 3;
-        const tile = plant.grown ? itemsData[plant.plantId].sprite.frame + 1 : 157;
-        this.map.putTileAt(tile, 12 + x, 15 + y, true, 'Patch Plants');
+        if (plant.grown) {
+            this.erasePlant(plant.tileIndex);
+            this.createTrigger({
+                objectName: `Patch ${x},${y}`,
+                texture: itemsData[plant.plantId].sprite.key,
+                frame: itemsData[plant.plantId].sprite.frame,
+                singleUse: true,
+                callback: () => {
+                    this.player.addItemToInventory(plant.plantId);
+                    this.planted = this.planted.filter(plantInList => plantInList.tileIndex !== plant.tileIndex);
+                },
+            });
+        }
+        else {
+            this.map.putTileAt(157, 12 + x, 15 + y, true, 'Patch Plants');
+        }
     }
     erasePlant(tileIndex) {
         const x = tileIndex % 3;
