@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="37">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="37">
  <editorsettings>
   <export target="village.json" format="json"/>
  </editorsettings>
@@ -127,28 +127,28 @@
   </layer>
  </group>
  <objectgroup id="20" name="Items">
-  <object id="30" name="Primula 1" gid="55" x="736" y="832" width="32" height="32">
+  <object id="30" name="Primula 1" type="Item" gid="55" x="736" y="832" width="32" height="32">
    <properties>
     <property name="itemId" value="primula-flower"/>
     <property name="quantity" type="int" value="1"/>
     <property name="secret" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="31" name="Primula 2" gid="55" x="736" y="864" width="32" height="32">
+  <object id="31" name="Primula 2" type="Item" gid="55" x="736" y="864" width="32" height="32">
    <properties>
     <property name="itemId" value="primula-flower"/>
     <property name="quantity" type="int" value="1"/>
     <property name="secret" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="32" name="Primula 3" gid="55" x="704" y="864" width="32" height="32">
+  <object id="32" name="Primula 3" type="Item" gid="55" x="704" y="864" width="32" height="32">
    <properties>
     <property name="itemId" value="primula-flower"/>
     <property name="quantity" type="int" value="1"/>
     <property name="secret" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="33" name="Primula 4" gid="55" x="704" y="832" width="32" height="32">
+  <object id="33" name="Primula 4" type="Item" gid="55" x="704" y="832" width="32" height="32">
    <properties>
     <property name="itemId" value="primula-flower"/>
     <property name="quantity" type="int" value="1"/>
@@ -160,15 +160,16 @@
   <object id="1" name="Start" x="1504" y="608">
    <point/>
   </object>
-  <object id="17" name="Mitikhha" gid="2218" x="1216" y="416" width="32" height="32"/>
-  <object id="22" name="Hargkakh" gid="2230" x="1408" y="96" width="32" height="32"/>
-  <object id="23" name="Nahkha" gid="2242" x="832" y="576" width="32" height="32"/>
-  <object id="24" name="Elder Guarthh" gid="2254" x="1312" y="384" width="32" height="32"/>
-  <object id="27" name="Tareth" gid="2278" x="992" y="480" width="32" height="32"/>
-  <object id="36" name="Farmer Keith" gid="2610" x="960" y="864" width="32" height="32"/>
+  <object id="17" name="Mitikhha" type="NPC" gid="2218" x="1216" y="416" width="32" height="32"/>
+  <object id="22" name="Hargkakh" type="NPC" gid="2230" x="1408" y="96" width="32" height="32"/>
+  <object id="23" name="Nahkha" type="NPC" gid="2242" x="832" y="576" width="32" height="32"/>
+  <object id="24" name="Elder Guarthh" type="NPC" gid="2254" x="1312" y="384" width="32" height="32"/>
+  <object id="27" name="Tareth" type="NPC" gid="2278" x="992" y="480" width="32" height="32"/>
+  <object id="36" name="Farmer Keith" type="NPC" gid="2610" x="960" y="864" width="32" height="32"/>
  </objectgroup>
+ <objectgroup id="21" name="NPCs"/>
  <objectgroup id="19" name="Messages">
-  <object id="19" name="Narrator" x="32" y="672" width="128" height="128">
+  <object id="19" name="Boar-ning" type="Message" x="32" y="672" width="128" height="128">
    <properties>
     <property name="interaction" value="overlap"/>
     <property name="messageId" value="village_boarWarning"/>
@@ -176,7 +177,7 @@
     <property name="singleUse" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="28" name="Place of memory" x="1440" y="1088" width="32" height="32">
+  <object id="28" name="Place of memory" type="Message" x="1440" y="1088" width="32" height="32">
    <properties>
     <property name="interaction" value="activate"/>
     <property name="messageId" value="village_placeOfMemory"/>
@@ -186,61 +187,61 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="Waypoints">
-  <object id="10" name="BetweenVillageAndCaltor" x="64" y="1248" width="64" height="32">
+  <object id="10" name="BetweenVillageAndCaltor" type="Waypoint" x="64" y="1248" width="64" height="32">
    <properties>
     <property name="location" value="BetweenVillageAndCaltor"/>
     <property name="toCoordinates" value="{&quot;x&quot;: 56, &quot;y&quot;: 1}"/>
    </properties>
   </object>
-  <object id="11" name="Hargkakh's Cave" x="1280" y="768" width="32" height="32">
+  <object id="11" name="Hargkakh's Cave" type="Waypoint" x="1280" y="768" width="32" height="32">
    <properties>
     <property name="location" value="HargkakhsCave"/>
    </properties>
   </object>
-  <object id="12" name="Shortcup to the top of the cliff" x="1536" y="1120" width="32" height="32">
+  <object id="12" name="Shortcup to the top of the cliff" type="Waypoint" x="1536" y="1120" width="32" height="32">
    <properties>
     <property name="toCoordinates" value="{&quot;x&quot;: 48, &quot;y&quot;: 30}"/>
    </properties>
   </object>
-  <object id="13" name="Shortcup to the graveyard" x="1536" y="992" width="64" height="32">
+  <object id="13" name="Shortcup to the graveyard" type="Waypoint" x="1536" y="992" width="64" height="32">
    <properties>
     <property name="toCoordinates" value="{&quot;x&quot;: 48, &quot;y&quot;: 36}"/>
    </properties>
   </object>
-  <object id="14" name="Weakling's Cave" x="1504" y="576" width="32" height="32">
+  <object id="14" name="Weakling's Cave" type="Waypoint" x="1504" y="576" width="32" height="32">
    <properties>
     <property name="location" value="WeaklingsCave"/>
    </properties>
   </object>
-  <object id="20" name="Elder's Cave" x="1088" y="576" width="32" height="32">
+  <object id="20" name="Elder's Cave" type="Waypoint" x="1088" y="576" width="32" height="32">
    <properties>
     <property name="location" value="EldersCave"/>
    </properties>
   </object>
-  <object id="26" name="BetweenVillageAndDungeon" x="1568" y="352" width="32" height="64">
+  <object id="26" name="BetweenVillageAndDungeon" type="Waypoint" x="1568" y="352" width="32" height="64">
    <properties>
     <property name="location" value="BetweenVillageAndDungeon"/>
     <property name="toCoordinates" value="{&quot;x&quot;: 1, &quot;y&quot;: 7}"/>
    </properties>
   </object>
-  <object id="29" name="Nahkha's Cave" x="800" y="512" width="32" height="32">
+  <object id="29" name="Nahkha's Cave" type="Waypoint" x="800" y="512" width="32" height="32">
    <properties>
     <property name="location" value="NahkhasCave"/>
    </properties>
   </object>
-  <object id="34" name="Stone steps down" x="864" y="800" width="32" height="32">
+  <object id="34" name="Stone steps down" type="Waypoint" x="864" y="800" width="32" height="32">
    <properties>
     <property name="toCoordinates" value="{&quot;x&quot;: 28, &quot;y&quot;: 27}"/>
    </properties>
   </object>
-  <object id="35" name="Stone steps up" x="896" y="832" width="32" height="32">
+  <object id="35" name="Stone steps up" type="Waypoint" x="896" y="832" width="32" height="32">
    <properties>
     <property name="toCoordinates" value="{&quot;x&quot;: 27, &quot;y&quot;: 24}"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="9" name="Enemies">
-  <object id="9" name="Boars" x="64" y="704" width="64" height="64">
+  <object id="9" name="Boars" type="Enemy" x="64" y="704" width="64" height="64">
    <properties>
     <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
     <property name="image" value="boar-avatar"/>
