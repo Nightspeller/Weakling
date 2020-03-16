@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Enemy" color="#a2000f">
+  <property name="enemies" type="string" default="[{&quot;type&quot;: &quot;wildBoar&quot;}]"/>
+  <property name="image" type="string" default="boar-avatar"/>
+ </objecttype>
+ <objecttype name="Item" color="#2ca903">
+  <property name="itemId" type="string"/>
+  <property name="quantity" type="int" default="0"/>
+  <property name="secret" type="bool" default="false"/>
+ </objecttype>
+ <objecttype name="Message" color="#a49d12">
+  <property name="interaction" type="string" default="activate"/>
+  <property name="messageId" type="string"/>
+  <property name="secret" type="bool" default="false"/>
+  <property name="singleUse" type="bool" default="false"/>
+ </objecttype>
+ <objecttype name="NPC" color="#a200a3"/>
+ <objecttype name="Waypoint" color="#0435a4">
+  <property name="location" type="string"/>
+  <property name="toCoordinates" type="string" default="{&quot;x&quot;: 0, &quot;y&quot;:0}"/>
+ </objecttype>
+</objecttypes>
