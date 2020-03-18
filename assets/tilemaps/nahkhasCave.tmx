@@ -59,25 +59,25 @@
   </layer>
  </group>
  <objectgroup id="12" name="Items">
-  <object id="3" name="Yellow Fingers Sapling" gid="1395" x="256" y="288" width="32" height="32">
+  <object id="3" name="Yellow Fingers Sapling" type="Item" gid="1395" x="256" y="288" width="32" height="32">
    <properties>
     <property name="itemId" value="yellow-fingers-sapling"/>
     <property name="quantity" type="int" value="1"/>
    </properties>
   </object>
-  <object id="5" name="Pinky Pie Sapling" gid="1395" x="256" y="256" width="32" height="32">
+  <object id="5" name="Pinky Pie Sapling" type="Item" gid="1395" x="256" y="256" width="32" height="32">
    <properties>
     <property name="itemId" value="pinky-pie-sapling"/>
     <property name="quantity" type="int" value="1"/>
    </properties>
   </object>
-  <object id="6" name="Rocky Rose Sapling" gid="1395" x="256" y="224" width="32" height="32">
+  <object id="6" name="Rocky Rose Sapling" type="Item" gid="1395" x="256" y="224" width="32" height="32">
    <properties>
     <property name="itemId" value="rocky-rose-sapling"/>
     <property name="quantity" type="int" value="1"/>
    </properties>
   </object>
-  <object id="7" name="Primula Sapling" gid="1395" x="256" y="192" width="32" height="32">
+  <object id="7" name="Primula Sapling" type="Item" gid="1395" x="256" y="192" width="32" height="32">
    <properties>
     <property name="itemId" value="primula-sapling"/>
     <property name="quantity" type="int" value="1"/>
@@ -90,7 +90,7 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="Waypoints">
-  <object id="2" name="Village" x="32" y="352" width="32" height="32">
+  <object id="2" name="Village" type="Waypoint" x="32" y="352" width="32" height="32">
    <properties>
     <property name="location" value="Village"/>
     <property name="toCoordinates" value="{&quot;x&quot;: 25, &quot;y&quot;: 17}"/>

@@ -1,10 +1,10 @@
 import Item from "./item.js";
 export default class Npc {
-    constructor({ scene, name, mapObjectName, mapObjectLayer = 'Objects', texture, frame, initDialog, items = [], interactionCallback = () => { } }) {
+    constructor({ scene, name, mapObjectName, mapObjectLayer = 'NPCs', texture, frame, initDialog, items = [], interactionCallback = () => { } }) {
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
         if (mapObject['gid'] && !texture) {
-            const params = scene.getSpriteParamsByObjectName(mapObject.name);
+            const params = scene.getSpriteParamsByObjectName(mapObject.name, mapObjectLayer);
             texture = params.key;
             frame = params.frame;
         }
@@ -13,6 +13,7 @@ export default class Npc {
             this.interactionCallback = interactionCallback;
             this.image = scene.createTrigger({
                 objectName: mapObject.name,
+                objectLayer: mapObjectLayer,
                 texture: texture,
                 frame: frame,
                 callback: () => {
@@ -31,6 +32,7 @@ export default class Npc {
         else {
             this.image = scene.createTrigger({
                 objectName: mapObject.name,
+                objectLayer: mapObjectLayer,
                 texture: texture,
                 frame: frame,
                 callback: () => {

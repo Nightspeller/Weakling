@@ -296,30 +296,41 @@
                  "width":0,
                  "x":704,
                  "y":576
-                }, 
-                {
-                 "gid":2098,
-                 "height":32,
-                 "id":8,
-                 "name":"Bartender",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":704,
-                 "y":288
-                }, 
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":18,
+         "name":"NPCs",
+         "objects":[
                 {
                  "gid":2127,
                  "height":32,
-                 "id":12,
+                 "id":13,
                  "name":"Farmer Joe",
                  "rotation":0,
-                 "type":"",
+                 "type":"NPC",
                  "visible":true,
                  "width":32,
                  "x":352,
                  "y":448
+                }, 
+                {
+                 "gid":2098,
+                 "height":32,
+                 "id":14,
+                 "name":"Bartender",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":32,
+                 "x":704,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -343,7 +354,7 @@
                          "value":"Caltor"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Waypoint",
                  "visible":true,
                  "width":32,
                  "x":704,
@@ -355,17 +366,17 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":18,
- "nextobjectid":13,
+ "nextlayerid":19,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.2",
+ "tiledversion":"1.3.3",
  "tileheight":32,
  "tilesets":[
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images\/tilesets\/extruded\/base-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -7026,7 +7037,7 @@
         {
          "columns":12,
          "firstgid":1233,
-         "image":"..\/images\/tilesets\/extruded\/base-addition-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base-addition.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,

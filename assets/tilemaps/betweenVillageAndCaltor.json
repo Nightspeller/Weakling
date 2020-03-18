@@ -239,7 +239,7 @@
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Item",
                  "visible":true,
                  "width":32,
                  "x":1312,
@@ -294,7 +294,7 @@
                          "value":"{\"x\": 75, \"y\": 98}"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Waypoint",
                  "visible":true,
                  "width":64,
                  "x":160,
@@ -316,7 +316,7 @@
                          "value":"{\"x\": 3, \"y\": 38}"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Waypoint",
                  "visible":true,
                  "width":64,
                  "x":1792,
@@ -354,7 +354,7 @@
                          "value":false
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Message",
                  "visible":true,
                  "width":32,
                  "x":1344,
@@ -381,7 +381,7 @@
                          "value":false
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Message",
                  "visible":true,
                  "width":32,
                  "x":672,
@@ -397,13 +397,13 @@
  "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.2",
+ "tiledversion":"1.3.3",
  "tileheight":32,
  "tilesets":[
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images\/tilesets\/extruded\/base-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -7041,7 +7041,7 @@
         {
          "columns":8,
          "firstgid":1065,
-         "image":"..\/images\/tilesets\/extruded\/dirt4-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/dirt4.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -7183,7 +7183,7 @@
         {
          "columns":12,
          "firstgid":1161,
-         "image":"..\/images\/tilesets\/extruded\/base-addition-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base-addition.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,

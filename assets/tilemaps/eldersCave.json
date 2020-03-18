@@ -224,14 +224,25 @@
                  "width":0,
                  "x":96,
                  "y":352
-                }, 
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":17,
+         "name":"NPCs",
+         "objects":[
                 {
                  "gid":1939,
                  "height":32,
-                 "id":5,
+                 "id":6,
                  "name":"Liatsh",
                  "rotation":0,
-                 "type":"",
+                 "type":"NPC",
                  "visible":true,
                  "width":32,
                  "x":128,
@@ -264,7 +275,7 @@
                          "value":"{\"x\": 34, \"y\": 19}"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Waypoint",
                  "visible":true,
                  "width":32,
                  "x":96,
@@ -298,7 +309,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Item",
                  "visible":true,
                  "width":32,
                  "x":160,
@@ -310,17 +321,17 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":17,
- "nextobjectid":6,
+ "nextlayerid":18,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.2",
+ "tiledversion":"1.3.3",
  "tileheight":32,
  "tilesets":[
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images\/tilesets\/extruded\/base-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -7836,7 +7847,7 @@
         {
          "columns":12,
          "firstgid":1161,
-         "image":"..\/images\/tilesets\/extruded\/base-addition-extruded.png",
+         "image":"..\/images-extruded\/tilesets\/base-addition.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,

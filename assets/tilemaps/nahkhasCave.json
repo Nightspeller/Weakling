@@ -174,7 +174,7 @@
                          "value":1
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Item",
                  "visible":true,
                  "width":32,
                  "x":256,
@@ -197,7 +197,7 @@
                          "value":1
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Item",
                  "visible":true,
                  "width":32,
                  "x":256,
@@ -220,7 +220,7 @@
                          "value":1
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Item",
                  "visible":true,
                  "width":32,
                  "x":256,
@@ -243,7 +243,7 @@
                          "value":1
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Item",
                  "visible":true,
                  "width":32,
                  "x":256,
@@ -299,7 +299,7 @@
                          "value":"{\"x\": 25, \"y\": 17}"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Waypoint",
                  "visible":true,
                  "width":32,
                  "x":32,

@@ -18,7 +18,7 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
     init(data) {
-        if (data.toCoordinates) {
+        if (data.toCoordinates && data.toCoordinates.x !== -1) {
             this.startPoint = { x: data.toCoordinates.x * 32, y: data.toCoordinates.y * 32 };
         }
     }

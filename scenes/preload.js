@@ -67,9 +67,9 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('base-addition', 'assets/images-extruded/tilesets/base-addition.png', tilesetConfig);
         this.load.spritesheet('dirt1-dirt2', 'assets/images-extruded/tilesets/dirt1-dirt2.png', tilesetConfig);
         this.load.image('grass1', 'assets/images/tilesets/grass1.png');
-        this.load.image('grass4', 'assets/images/tilesets/grass4.png');
-        this.load.image('dirt1', 'assets/images/tilesets/dirt1.png');
-        this.load.image('dirt2', 'assets/images/tilesets/dirt2.png');
+        this.load.spritesheet('grass4', 'assets/images-extruded/tilesets/grass4.png', tilesetConfig);
+        this.load.spritesheet('dirt1', 'assets/images-extruded/tilesets/dirt1.png', tilesetConfig);
+        this.load.spritesheet('dirt2', 'assets/images-extruded/tilesets/dirt2.png', tilesetConfig);
         this.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
         this.load.spritesheet('water2', 'assets/images-extruded/tilesets/water2.png', tilesetConfig);
         this.load.image('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png');
@@ -192,7 +192,7 @@ export class PreloadScene extends Phaser.Scene {
         console.log('Preload done, calling Main Menu');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
         if (DEBUG) {
-            this.scene.start("WeaklingsCave", { prevScene: this.scene.key });
+            this.scene.start("Caltor", { prevScene: this.scene.key });
         }
         else {
             this.scene.start("MainMenu", { prevScene: this.scene.key });
