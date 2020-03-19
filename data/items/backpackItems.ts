@@ -226,7 +226,7 @@ export const backpackItems: { [key: string]: ItemData } = {
     'strawberry': {
         itemId: 'strawberry',
         displayName: 'Strawberry',
-        description: 'Nice grown pumpkin',
+        description: 'Nice grown strawberry',
         slot: ['backpack'],
         sprite: {key: 'icon-item-set', frame: 228},
         stackable: true,

@@ -1,4 +1,6 @@
 import {GeneralLocation} from "./generalLocation.js";
+import Npc from "../entities/npc.js";
+import {graveDialog} from "../data/dialogs/betweenVillageAndCaltor/graveDialog.js";
 
 export class BetweenVillageAndCaltorScene extends GeneralLocation {
     constructor() {
@@ -15,6 +17,15 @@ export class BetweenVillageAndCaltorScene extends GeneralLocation {
 
     public create() {
         super.create('betweenVillageAndCaltor');
+
+        const grave = new Npc({
+            scene: this,
+            mapObjectName: 'Grave',
+            initDialog: graveDialog,
+            interactionCallback: (param) => {
+
+            }
+        });
     }
 
     public update() {
