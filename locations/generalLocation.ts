@@ -70,6 +70,7 @@ export class GeneralLocation extends Phaser.Scene {
             camera.setDeadzone(200, 100);
             this.showOpenInventoryIcon();
             this.showToggleSoundIcon();
+            this.showToggleQuestLogIcon();
         }
 
         const tilesets = [];
@@ -300,9 +301,9 @@ export class GeneralLocation extends Phaser.Scene {
     public showOpenInventoryIcon(opts?: Object, closeCallback?: Function) {
         const topMenuBackgroundGraphics = this.add.graphics().setScrollFactor(0)
             .fillStyle(0xf0d191, 0.8)
-            .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 16, 16, 128, 64)
+            .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 16, 16, 64 * 3, 64)
             .lineStyle(3, 0x907748)
-            .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 16, 16, 128, 64)
+            .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 16, 16, 64 * 3, 64)
             .setDepth(10 - 1);
 
         const inventoryGraphics = this.add.graphics().setScrollFactor(0)
@@ -593,5 +594,23 @@ export class GeneralLocation extends Phaser.Scene {
                 this.playerImage.anims.play(`attack_${this.lastCursor}`, true);
             }
         })
+    }
+
+    private showToggleQuestLogIcon() {
+        const questLogGraphics = this.add.graphics().setScrollFactor(0)
+            .fillStyle(0xf0d191, 0.8)
+            .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
+            .lineStyle(3, 0x907748)
+            .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
+            .setDepth(10 - 1);
+        const questLogIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 'icon-item-set', 216)
+            .setOrigin(0, 0,).setScrollFactor(0).setInteractive({useHandCursor: true}).setDepth(10 - 1);
+        questLogIconImage.on('pointerdown', () => {
+            this.switchToScene('QuestLog', {}, false);
+        });
+        this.input.keyboard.off('keyup-J');
+        this.input.keyboard.on('keyup-J', () => {
+            this.switchToScene('QuestLog', {}, false);
+        });
     }
 }

@@ -71,11 +71,13 @@ export class CaltorScene extends GeneralLocation {
                     this.player.addItemToInventory('copper-pieces', 100);
                     bodger.addItemToInventory('minerals', 10);
                     bodger.addItemToInventory('basket', 10);
+                    this.player.updateQuest('bigCaltorTrip', { questState: { state: 'goodsSold', descriptions: [0, 1, 2, 3, 4, 5] } });
                 }
                 if (param === 'goodsSoldAndOpenShop') {
                     this.player.addItemToInventory('copper-pieces', 100);
                     bodger.addItemToInventory('minerals', 10);
                     bodger.addItemToInventory('basket', 10);
+                    this.player.updateQuest('bigCaltorTrip', { questState: { state: 'goodsSold', descriptions: [0, 1, 2, 3, 4, 5] } });
                     this.switchToScene('Shop', {
                         player: this.player,
                         trader: bodger

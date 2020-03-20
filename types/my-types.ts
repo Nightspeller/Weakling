@@ -144,6 +144,14 @@ interface TriggerParams {
     singleUse?: boolean;
 }
 
+interface Quest {
+    questId: string;
+    questName: string;
+    questDescriptions: string[];
+    questReward: { items: {itemId: string; quantity: number}[], xp: number }
+    questState:  {state: string, descriptions: number[]};
+}
+
 interface NpcOptions {
     scene: any;
     mapObjectName: string;

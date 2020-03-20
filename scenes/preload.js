@@ -194,7 +194,7 @@ export class PreloadScene extends Phaser.Scene {
         console.log('Preload done, calling Main Menu');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
         if (DEBUG) {
-            this.scene.start("BetweenVillageAndCaltor", { prevScene: this.scene.key });
+            this.scene.start("Village", { prevScene: this.scene.key });
         }
         else {
             this.scene.start("MainMenu", { prevScene: this.scene.key });

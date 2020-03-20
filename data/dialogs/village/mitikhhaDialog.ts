@@ -15,3 +15,12 @@ export const mitikhhaSecondDialog: DialogTree = [{
         callbackParam: 'fastEnd'
     }]
 }];
+
+export const mitikhhaWelcomeBackDialog: DialogTree = [{
+    id: 'greetings',
+    text: `You are finally back! I was worried sick! What took you so long! Come to our cave right away and tell me everything what has happen!`,
+    replies: [{
+        text: 'It was really long day...',
+        callbackParam: 'fastEnd'
+    }]
+}];

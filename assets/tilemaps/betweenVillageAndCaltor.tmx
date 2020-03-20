@@ -91,7 +91,7 @@
  </objectgroup>
  <objectgroup id="12" name="Containers"/>
  <objectgroup id="4" name="Objects">
-  <object id="8" name="Start" x="928" y="640">
+  <object id="8" name="Start" x="1824" y="96">
    <point/>
   </object>
  </objectgroup>
@@ -119,6 +119,6 @@
   </object>
  </objectgroup>
  <objectgroup id="18" name="NPCs">
-  <object id="7" name="Grave" gid="1800" x="672" y="320" width="32" height="32"/>
+  <object id="7" name="Grave" type="NPC" gid="1800" x="672" y="320" width="32" height="32"/>
  </objectgroup>
 </map>

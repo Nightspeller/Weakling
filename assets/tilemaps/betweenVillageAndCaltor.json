@@ -276,8 +276,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":928,
-                 "y":640
+                 "x":1824,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -389,7 +389,7 @@
                  "id":7,
                  "name":"Grave",
                  "rotation":0,
-                 "type":"",
+                 "type":"NPC",
                  "visible":true,
                  "width":32,
                  "x":672,

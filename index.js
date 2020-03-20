@@ -20,6 +20,7 @@ import { OptionsScene } from "./scenes/options.js";
 import { BetweenVillageAndDungeonScene } from "./locations/betweenVillageAndDungeon.js";
 import { BetweenVillageAndCaltorScene } from "./locations/betweenVillageAndCaltor.js";
 import { NahkhasCaveScene } from "./locations/nahkhasCave.js";
+import { QuestLogScene } from "./overlay_scenes/questLog.js";
 const gameConfig = {
     title: 'Weakling!',
     type: Phaser.AUTO,
@@ -45,7 +46,7 @@ const gameConfig = {
         DungeonScene,
         CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CharacterPickerScene,
         VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene,
-        ShopScene, BattleScene, DialogScene, InventoryScene
+        ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene
     ]
 };
 export const game = new Phaser.Game(gameConfig);

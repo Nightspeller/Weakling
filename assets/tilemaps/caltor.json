@@ -699,12 +699,12 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images\/tilesets\/grass1.png",
-         "imageheight":192,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/grass1.png",
+         "imageheight":204,
+         "imagewidth":272,
+         "margin":1,
          "name":"grass1",
-         "spacing":0,
+         "spacing":2,
          "terrains":[
                 {
                  "name":"Grass1",
@@ -722,47 +722,47 @@
                  "terrain":[-1, -1, 0, 0]
                 }, 
                 {
-                 "id":7,
+                 "id":8,
                  "terrain":[-1, -1, 0, -1]
                 }, 
                 {
-                 "id":13,
+                 "id":14,
                  "terrain":[-1, 0, -1, 0]
                 }, 
                 {
-                 "id":14,
+                 "id":16,
                  "terrain":[0, 0, 0, 0]
                 }, 
                 {
-                 "id":15,
+                 "id":17,
                  "terrain":[0, -1, 0, -1]
                 }, 
                 {
-                 "id":21,
+                 "id":24,
                  "terrain":[-1, 0, -1, -1]
                 }, 
                 {
-                 "id":22,
+                 "id":25,
                  "terrain":[0, 0, -1, -1]
                 }, 
                 {
-                 "id":23,
+                 "id":26,
                  "terrain":[0, -1, -1, -1]
                 }, 
                 {
-                 "id":28,
+                 "id":32,
                  "terrain":[0, 0, 0, -1]
                 }, 
                 {
-                 "id":29,
+                 "id":33,
                  "terrain":[0, 0, -1, 0]
                 }, 
                 {
-                 "id":36,
+                 "id":41,
                  "terrain":[0, -1, 0, 0]
                 }, 
                 {
-                 "id":37,
+                 "id":42,
                  "terrain":[-1, 0, 0, 0]
                 }],
          "tilewidth":32
@@ -7416,7 +7416,7 @@
          "spacing":2,
          "terrains":[
                 {
-                 "name":"Dirt",
+                 "name":"Dirt 1 - Dirt 2",
                  "tile":14
                 }],
          "tilecount":48,
@@ -11662,8 +11662,66 @@
          "margin":1,
          "name":"dirt1",
          "spacing":2,
+         "terrains":[
+                {
+                 "name":"Dirt 1",
+                 "tile":14
+                }],
          "tilecount":48,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":5,
+                 "terrain":[-1, -1, -1, 0]
+                }, 
+                {
+                 "id":6,
+                 "terrain":[-1, -1, 0, 0]
+                }, 
+                {
+                 "id":7,
+                 "terrain":[-1, -1, 0, -1]
+                }, 
+                {
+                 "id":13,
+                 "terrain":[-1, 0, -1, 0]
+                }, 
+                {
+                 "id":14,
+                 "terrain":[0, 0, 0, 0]
+                }, 
+                {
+                 "id":15,
+                 "terrain":[0, -1, 0, -1]
+                }, 
+                {
+                 "id":21,
+                 "terrain":[-1, 0, -1, -1]
+                }, 
+                {
+                 "id":22,
+                 "terrain":[0, 0, -1, -1]
+                }, 
+                {
+                 "id":23,
+                 "terrain":[0, -1, -1, -1]
+                }, 
+                {
+                 "id":28,
+                 "terrain":[0, 0, 0, -1]
+                }, 
+                {
+                 "id":29,
+                 "terrain":[0, 0, -1, 0]
+                }, 
+                {
+                 "id":36,
+                 "terrain":[0, -1, 0, 0]
+                }, 
+                {
+                 "id":37,
+                 "terrain":[-1, 0, 0, 0]
+                }],
          "tilewidth":32
         }, 
         {

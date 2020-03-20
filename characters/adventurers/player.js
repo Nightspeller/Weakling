@@ -1,11 +1,13 @@
 import { Adventurer } from "./adventurer.js";
 import { elderInstance } from "./elder.js";
 import { DEBUG } from "../../config/constants.js";
+import { questsData } from "../../data/quests/questsData.js";
 export class Player extends Adventurer {
     constructor() {
         super();
         this.spriteParams = { texture: 'weakling', frame: null, width: 96, height: 96 };
         this.worldImageSpriteParams = { texture: 'jeremy-green', frame: 1 };
+        this.quests = [];
         this.baseCharacteristics = {
             attributes: {
                 strength: 10,
@@ -61,6 +63,7 @@ export class Player extends Adventurer {
         this.party = [this];
         if (DEBUG)
             this.party = [this, elderInstance];
+        this.addQuest(questsData['bigCaltorTrip']);
     }
     getAvailableActions() {
         let combinedActions = [...this.availableActions];
@@ -71,6 +74,29 @@ export class Player extends Adventurer {
             }
         });
         return [...new Set(combinedActions)];
+    }
+    addQuest(quest) {
+        if (!this.quests.find(existingQuest => existingQuest.questId === quest.questId)) {
+            this.quests.push(quest);
+        }
+        else {
+            throw new Error('Trying to add quest which is already added');
+        }
+    }
+    updateQuest(questId, params) {
+        let questToUpdateIndex = this.quests.findIndex(existingQuest => existingQuest.questId === questId);
+        if (questToUpdateIndex === -1) {
+            throw "Trying update non-existing or not obtained quest";
+        }
+        else {
+            this.quests[questToUpdateIndex] = { ...this.quests[questToUpdateIndex], ...params };
+        }
+    }
+    getQuestById(questId) {
+        return this.quests.find(quest => quest.questId === questId);
+    }
+    getQuests() {
+        return this.quests;
     }
 }
 export const playerInstance = new Player();
