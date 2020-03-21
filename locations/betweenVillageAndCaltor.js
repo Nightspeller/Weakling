@@ -18,6 +18,7 @@ export class BetweenVillageAndCaltorScene extends GeneralLocation {
             mapObjectName: 'Grave',
             initDialog: graveDialog,
             interactionCallback: (param) => {
+                this.player.addQuest('theSelflessSpirit');
             }
         });
     }

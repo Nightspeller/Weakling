@@ -2,6 +2,7 @@ Thank you everybody for letting me to use your works, I really appreciate it!
 
 Engine:
 - Phaser 3 - https://phaser.io
+- Tiled map editor - great tool, with even better author - https://www.mapeditor.org/
 
 Graphics:
 - Main tileset and animations - Pipoya - https://pipoya.itch.io

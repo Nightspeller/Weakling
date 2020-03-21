@@ -63,7 +63,7 @@ export class Player extends Adventurer {
         this.party = [this];
         if (DEBUG)
             this.party = [this, elderInstance];
-        this.addQuest(questsData['bigCaltorTrip']);
+        this.addQuest('bigCaltorTrip');
     }
     getAvailableActions() {
         let combinedActions = [...this.availableActions];
@@ -75,13 +75,12 @@ export class Player extends Adventurer {
         });
         return [...new Set(combinedActions)];
     }
-    addQuest(quest) {
-        if (!this.quests.find(existingQuest => existingQuest.questId === quest.questId)) {
-            this.quests.push(quest);
-        }
-        else {
-            throw new Error('Trying to add quest which is already added');
-        }
+    addQuest(questId) {
+        if (!this.quests.find(existingQuest => existingQuest.questId === questId)) {
+            this.quests.push(questsData[questId]);
+        } /*else {
+            throw new Error('Trying to add quest which is already added')
+        }*/
     }
     updateQuest(questId, params) {
         let questToUpdateIndex = this.quests.findIndex(existingQuest => existingQuest.questId === questId);

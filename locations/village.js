@@ -9,7 +9,6 @@ import { mitikhhaDialog, mitikhhaSecondDialog, mitikhhaWelcomeBackDialog } from 
 import { DEBUG } from "../config/constants.js";
 import { tarethDialog, tarethSecondDialog } from "../data/dialogs/village/tarethDialog.js";
 import { keithDialog, keithNoApologyDialog, keithShopAgainDialog } from "../data/dialogs/village/keithDialog.js";
-import { questsData } from "../data/quests/questsData.js";
 export class VillageScene extends GeneralLocation {
     constructor() {
         super({ key: 'Village' });
@@ -70,7 +69,7 @@ export class VillageScene extends GeneralLocation {
             initDialog: tarethDialog,
             interactionCallback: (param) => {
                 tareth.setDialog(tarethSecondDialog, () => { });
-                this.player.addQuest(questsData['helpTheTareth']);
+                this.player.addQuest('helpTheTareth');
             }
         });
         const keith = new Npc({

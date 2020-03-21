@@ -89,7 +89,7 @@ export class VillageScene extends GeneralLocation {
             initDialog: tarethDialog,
             interactionCallback: (param) => {
                 tareth.setDialog(tarethSecondDialog, () => {});
-                this.player.addQuest(questsData['helpTheTareth']);
+                this.player.addQuest('helpTheTareth');
             }
         });
 

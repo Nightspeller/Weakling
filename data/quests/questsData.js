@@ -18,6 +18,17 @@ export const questsData = {
         questDescriptions: [`Your friend, Tareth, struggles with the task he got from the Elder - he needs to carry harvested supplies to the stockpile, but the baskets are too heavy. You don't have time to do it for him, so there must be other way to help him.`],
         questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
         questState: { state: 'started', descriptions: [0] }
+    },
+    'theSelflessSpirit': {
+        questId: 'theSelflessSpirit',
+        questName: 'The Selfless Spirit',
+        questDescriptions: [`You found the grave of a brave hero, with the spirit sword next to it. The engraving says:\n
+    Here lays the great hero of Caltor,
+    Defender of the weak and protector of destitute.
+    Call his name, glorify his deeds, moan his fall, swear his oath
+    And be blessed with his power to continue his course.`],
+        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
+        questState: { state: 'started', descriptions: [0] }
     }
 };
 //# sourceMappingURL=questsData.js.map
