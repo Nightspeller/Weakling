@@ -170,6 +170,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image("hit", "assets/images/animations/hit.png");
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('caltor', 'assets/tilemaps/caltor.json');
+        this.load.tilemapTiledJSON('crypt', 'assets/tilemaps/crypt.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
         this.load.tilemapTiledJSON('tavern', 'assets/tilemaps/tavern.json');
         this.load.tilemapTiledJSON('hermitsTower', 'assets/tilemaps/hermitsTower.json');

@@ -16,7 +16,7 @@ export class HermitsTowerScene extends GeneralLocation {
     }
 
     public create() {
-        super.create('hermitsTower', 240);
+        super.create('hermitsTower');
         const hermit = new Npc({
             scene: this,
             mapObjectName: 'Hermit',

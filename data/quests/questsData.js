@@ -29,6 +29,13 @@ export const questsData = {
     And be blessed with his power to continue his course.`],
         questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
         questState: { state: 'started', descriptions: [0] }
+    },
+    'boarsAtTheFields': {
+        questId: 'boarsAtTheFields',
+        questName: `Boars at the Fields`,
+        questDescriptions: [`You read the announcement on the board near the tavern, that help is needed to get rid of the boars ravaging farmer Joe's fields.`],
+        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
+        questState: { state: 'started', descriptions: [0] }
     }
 };
 //# sourceMappingURL=questsData.js.map

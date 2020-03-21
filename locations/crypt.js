@@ -1,7 +1,7 @@
 import { GeneralLocation } from "./generalLocation.js";
-export class NahkhasCaveScene extends GeneralLocation {
+export class CryptScene extends GeneralLocation {
     constructor() {
-        super({ key: 'NahkhasCave' });
+        super({ key: 'Crypt' });
     }
     preload() {
         super.preload();
@@ -10,10 +10,10 @@ export class NahkhasCaveScene extends GeneralLocation {
         super.init(data);
     }
     create() {
-        super.create('nahkhasCave');
+        super.create('crypt');
     }
     update() {
         super.update();
     }
 }
-//# sourceMappingURL=nahkhasCave.js.map
+//# sourceMappingURL=crypt.js.map

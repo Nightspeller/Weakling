@@ -12,7 +12,7 @@ export class HermitsTowerScene extends GeneralLocation {
         super.init(data);
     }
     create() {
-        super.create('hermitsTower', 240);
+        super.create('hermitsTower');
         const hermit = new Npc({
             scene: this,
             mapObjectName: 'Hermit',

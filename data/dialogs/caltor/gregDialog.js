@@ -4,9 +4,17 @@ export const gregDialog = [{
     You see, my bucket got a hole in it, and without it I cant water my crops! Could you please help me with it, I will reward you however I can.`,
         replies: [{
                 text: 'Accept',
-                callbackParam: 'fastEnd'
+                callbackParam: 'accept'
             }, {
                 text: 'Decline',
+                callbackParam: 'decline'
+            }]
+    }];
+export const gregQuestAcceptedDialog = [{
+        id: 'greetings',
+        text: `    Thank you for agreeing to help me, adventurer! I will be waiting for your return!`,
+        replies: [{
+                text: `Don't worry, I will be back soon!`,
                 callbackParam: 'fastEnd'
             }]
     }];

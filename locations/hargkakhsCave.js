@@ -10,7 +10,7 @@ export class HargkakhsCaveScene extends GeneralLocation {
         super.init(data);
     }
     create() {
-        super.create('hargkakhsCave', 304, 128);
+        super.create('hargkakhsCave');
         const chestTrigger = this.triggers.find(trigger => trigger.name === 'Chest');
         const destroyCallback = chestTrigger.callback;
         chestTrigger.callback = () => {

@@ -17,7 +17,7 @@ export class EldersCaveScene extends GeneralLocation {
     }
 
     public create() {
-        super.create('eldersCave', 304-32*6, 128);
+        super.create('eldersCave');
         const liatsh = new Npc({
             scene: this,
             mapObjectName: 'Liatsh',

@@ -12,7 +12,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
         super.init(data);
     }
     create() {
-        super.create('weaklingsCave', 304, 128);
+        super.create('weaklingsCave');
         const bgMusic = this.sound.add('keys-for-success', { loop: true, volume: 0.1 });
         bgMusic['soundType'] = 'music';
         bgMusic.play();

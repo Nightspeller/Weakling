@@ -1,6 +1,6 @@
 import { strangerDialog } from "../data/dialogs/caltor/strangerDialog.js";
 import { baelinDialog } from "../data/dialogs/caltor/baelinDialog.js";
-import { gregDialog } from "../data/dialogs/caltor/gregDialog.js";
+import { gregDialog, gregQuestAcceptedDialog } from "../data/dialogs/caltor/gregDialog.js";
 import Npc from "../entities/npc.js";
 import { bodgerDialog } from "../data/dialogs/caltor/bodgerDialog.js";
 import { GeneralLocation } from "./generalLocation.js";
@@ -47,7 +47,13 @@ export class CaltorScene extends GeneralLocation {
         const greg = new Npc({
             scene: this,
             mapObjectName: "Greg",
-            initDialog: gregDialog
+            initDialog: gregDialog,
+            interactionCallback: param => {
+                if (param === 'accept') {
+                    this.player.addQuest('gregsBucket');
+                    greg.setDialog(gregQuestAcceptedDialog);
+                }
+            }
         });
         const bodger = new Npc({
             scene: this,
@@ -94,6 +100,7 @@ export class CaltorScene extends GeneralLocation {
             interactionCallback: (param) => {
                 if (param === 'questAccepted') {
                     announcementsDesk.setDialog(announcementsEmptyDialog);
+                    this.player.addQuest('boarsAtTheFields');
                 }
             }
         });

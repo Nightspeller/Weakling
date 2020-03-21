@@ -1,6 +1,6 @@
 import {Player, playerInstance} from "../characters/adventurers/player.js";
 import Item from "../entities/item.js";
-import {DEBUG, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED} from "../config/constants.js";
+import {DEBUG, GAME_H, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED} from "../config/constants.js";
 import {messages} from "../data/messages.js";
 
 export class GeneralLocation extends Phaser.Scene {
@@ -41,11 +41,11 @@ export class GeneralLocation extends Phaser.Scene {
         }
     }
 
-    public create(mapKey, layerOffsetX = 0, layerOffsetY = 0) {
+    public create(mapKey) {
         this.map = this.make.tilemap({key: mapKey});
-        this.offsetX = layerOffsetX;
-        this.offsetY = layerOffsetY;
-
+        console.log(this.map);
+        this.offsetX = this.map.widthInPixels < GAME_W ? (GAME_W - this.map.widthInPixels) / 2 : 0;
+        this.offsetY = this.map.heightInPixels < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
         this.player = playerInstance;
         if (!this.startPoint && this.getMapObject("Start")) {
             const startObject = this.getMapObject("Start");
@@ -241,7 +241,7 @@ export class GeneralLocation extends Phaser.Scene {
                 this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
             }
             if (data?.toCoordinates) {
-                this.playerImage.setPosition(data.toCoordinates.x * 32 + layerOffsetX, data.toCoordinates.y * 32 + layerOffsetY);
+                this.playerImage.setPosition(data.toCoordinates.x * 32 + this.offsetX, data.toCoordinates.y * 32 + this.offsetY);
             }
             if (this.objectsHighlightBorders) this.objectsHighlightBorders.clear(true, true);
 

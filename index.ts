@@ -21,6 +21,7 @@ import {BetweenVillageAndDungeonScene} from "./locations/betweenVillageAndDungeo
 import {BetweenVillageAndCaltorScene} from "./locations/betweenVillageAndCaltor.js";
 import {NahkhasCaveScene} from "./locations/nahkhasCave.js";
 import {QuestLogScene} from "./overlay_scenes/questLog.js";
+import {CryptScene} from "./locations/crypt.js";
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
     title: 'Weakling!',
@@ -49,7 +50,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
         BetweenVillageAndDungeonScene,
         BetweenVillageAndCaltorScene,
         DungeonScene,
-        CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CharacterPickerScene,
+        CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CharacterPickerScene, CryptScene,
         VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene,
         ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene
     ]
