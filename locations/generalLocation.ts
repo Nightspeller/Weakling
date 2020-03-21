@@ -43,9 +43,9 @@ export class GeneralLocation extends Phaser.Scene {
 
     public create(mapKey) {
         this.map = this.make.tilemap({key: mapKey});
-        console.log(this.map);
         this.offsetX = this.map.widthInPixels < GAME_W ? (GAME_W - this.map.widthInPixels) / 2 : 0;
         this.offsetY = this.map.heightInPixels < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
+
         this.player = playerInstance;
         if (!this.startPoint && this.getMapObject("Start")) {
             const startObject = this.getMapObject("Start");
@@ -512,6 +512,8 @@ export class GeneralLocation extends Phaser.Scene {
             } else if (left) {
                 this.playerImage.setVelocityX(-this.playerSpeed);
             }
+
+            this.playerImage.body.velocity.normalize().scale(this.playerSpeed);
 
             if (up || (up && right) || (up && left)) {
                 this.playerImage.play('walk_up', true);
