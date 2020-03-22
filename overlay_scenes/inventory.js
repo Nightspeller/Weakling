@@ -190,10 +190,21 @@ export class InventoryScene extends GeneralOverlayScene {
         }
         if (newQuickSlotsNumber > oldQuickSlotsNumber) {
             for (let i = oldQuickSlotsNumber + 1; i < newQuickSlotsNumber + 1; i++) {
-                this.inventoryDisplayGroup
+                const quickSlot = this.inventoryDisplayGroup
                     .create(this.opts.windowX + 16 + 64 * i, this.opts.windowY + this.opts.windowHeight - 64 - 16, 'inventory-slot')
                     .setOrigin(0, 0).setDisplaySize(64, 64).setName(`quickSlot${i}`).setScrollFactor(0).setDepth(this.opts.baseDepth)
                     .setInteractive({ dropZone: true });
+                const slotNameText = this.add.text(quickSlot.getBottomLeft().x, quickSlot.getBottomLeft().y, `Quick Slot ${i + 1}`, {
+                    font: '16px monospace',
+                    color: '#000000',
+                    backgroundColor: '#f0d191',
+                    padding: { left: 2 }
+                }).setScrollFactor(0).setDepth(this.opts.baseDepth + 1).setVisible(false);
+                quickSlot.on('pointerover', () => {
+                    slotNameText.setVisible(true);
+                }).on('pointerout', () => {
+                    slotNameText.setVisible(false);
+                });
             }
         }
     }
