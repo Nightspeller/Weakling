@@ -15,7 +15,7 @@ export class InventoryScene extends GeneralOverlayScene {
     preload() {
     }
     create() {
-        this.prepareOverlay(this.parentSceneKey, this.opts);
+        super.create(this.parentSceneKey, this.opts);
         this.inventoryDisplayGroup = this.add.group();
         this.showInventory();
         this.events.on('wake', (scene, { opts, closeCallback, prevScene }) => {

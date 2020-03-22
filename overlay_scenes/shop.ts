@@ -23,7 +23,7 @@ export class ShopScene extends GeneralOverlayScene {
     }
 
     public create() {
-        this.prepareOverlay('Caltor', {windowX: 0, windowY: 0});
+        super.create('Caltor', {windowX: 0, windowY: 0});
         this._drawItems();
         this.cameras.main.setViewport(16, 16, 800 - 32, 640 - 32);
         this.events.on('wake', (scene, {player, trader}) => {

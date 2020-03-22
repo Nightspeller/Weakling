@@ -20,7 +20,7 @@ export class QuestLogScene extends GeneralOverlayScene {
     }
 
     public create() {
-        this.prepareOverlay(this.parentSceneKey);
+        super.create(this.parentSceneKey);
         this.questLogDisplayGroup = this.add.group();
         this._drawQuestLog();
         this.events.on('wake', (scene, {prevScene}) => {

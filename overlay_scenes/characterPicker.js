@@ -10,7 +10,7 @@ export class CharacterPickerScene extends GeneralOverlayScene {
     preload() {
     }
     create() {
-        this.prepareOverlay('Caltor');
+        super.create('Caltor');
         this._drawCharacterOptions();
     }
     _drawCharacterOptions() {

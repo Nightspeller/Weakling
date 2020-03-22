@@ -32,7 +32,7 @@ export class DialogScene extends GeneralOverlayScene {
     preload() {
     }
     create() {
-        this.prepareOverlay(this.parentSceneKey, this.opts);
+        super.create(this.parentSceneKey, this.opts);
         this.dialogDisplayGroup = this.add.group();
         this._showDialog();
         this.events.on('wake', (scene, { dialogTree, opts, closeCallback, prevScene, speakerName }) => {

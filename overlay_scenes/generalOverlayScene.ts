@@ -6,7 +6,7 @@ export class GeneralOverlayScene extends Phaser.Scene {
         super({key: key});
     }
 
-    public prepareOverlay(parentSceneKey, opts?: OverlaySceneOptions) {
+    public create(parentSceneKey: string, opts?: OverlaySceneOptions) {
         this.opts = {
             ...{
                 backgroundColor: 0xf0d191,
