@@ -45,7 +45,7 @@ export class GeneralOverlayScene extends Phaser.Scene {
             fixedWidth: 20,
             fixedHeight: 20,
             align: 'center'
-        }).setScrollFactor(0).setDepth(this.opts.baseDepth).setInteractive();
+        }).setScrollFactor(0).setDepth(this.opts.baseDepth).setInteractive({ useHandCursor: true });
         closeBtn.on('pointerover', () => closeBtn.setColor(this.opts.closeButtonHoverColor));
         closeBtn.on('pointerout', () => closeBtn.setColor(this.opts.closeButtonColor));
         closeBtn.on('pointerdown', () => this.closeScene());
