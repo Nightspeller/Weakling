@@ -254,6 +254,9 @@ export class InventoryScene extends GeneralOverlayScene {
                 .setInteractive();
             this.input.setDraggable(container);
 
+            container.on('dragstart', function (pointer, dragX, dragY) {
+                scene._highlightValidSlots(item.slot, true);
+            });
             container.on('drag', function (pointer, dragX, dragY) {
                 this.x = dragX;
                 this.y = dragY;
@@ -271,6 +274,7 @@ export class InventoryScene extends GeneralOverlayScene {
                     });
                 }
                 scene._drawCharacteristics();
+                scene._highlightValidSlots(item.slot, false);
             });
 
             container.on('pointerdown', (pointer) => {
@@ -281,6 +285,29 @@ export class InventoryScene extends GeneralOverlayScene {
 
             this.inventoryDisplayGroup.add(container);
         })
+    }
+
+    private _highlightValidSlots(slotNames: string[], showHighlight: boolean) {
+        const displayObjects = this.inventoryDisplayGroup.getChildren();
+        let slotsToHighlight = [];
+        slotNames.filter(nameOfSlotToHighlight => nameOfSlotToHighlight !== 'backpack')
+            .forEach(nameOfSlotToHighlight => {
+                slotsToHighlight = [...slotsToHighlight, ...displayObjects.filter(slot => slot.name.includes(nameOfSlotToHighlight) && !slot.name.includes('image'))]
+            });
+
+        if (showHighlight) {
+            slotsToHighlight.forEach(slotZone => {
+                this.inventoryDisplayGroup.add(
+                    this.add.graphics()
+                        .lineStyle(3, 0xff0000)
+                        .strokeRect(slotZone.x, slotZone.y, 66, 66).setName('highlightFrame')
+                );
+            })
+        } else {
+            displayObjects.filter(obj => obj.name === 'highlightFrame').forEach(obj => {
+                obj.destroy(true);
+            })
+        }
     }
 
     private _drawCharacteristics() {
@@ -309,7 +336,7 @@ Actions: ${this.player.getAvailableActions().join(', ')}
                 font: '14px monospace',
                 color: '#000000',
                 wordWrap: {
-                    width: 32*10,
+                    width: 32 * 10,
                 },
             }).setScrollFactor(0).setDepth(this.opts.baseDepth).setName('characteristicsText');
             this.inventoryDisplayGroup.add(characteristicsText);
