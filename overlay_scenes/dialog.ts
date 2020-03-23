@@ -21,20 +21,20 @@ export class DialogScene extends GeneralOverlayScene {
             borderAlpha: 1,
 
             backgroundColor: 0x303030,
-            backgroundAlpha: 0.8,
+            backgroundAlpha: 1,
 
             windowWidth: +this.sys.game.config.width - 32 * 2,
             windowHeight: 250,
             windowX: 32,
             windowY: +this.sys.game.config.height - 32 - 250,
 
-            responseTextColor: 'darkgoldenrod',
+            responseTextColor: '#47340c',
             responseTextHoverColor: 'white',
 
-            closeButtonColor: 'darkgoldenrod',
-            closeButtonHoverColor: 'red',
+            //closeButtonColor: 'darkgoldenrod',
+            //closeButtonHoverColor: 'red',
 
-            textColor: 'white',
+            textColor: 'black',
             letterAppearanceDelay: 10,
         };
         this.speakerName = speakerName;

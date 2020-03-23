@@ -11,11 +11,11 @@ export class GeneralOverlayScene extends Phaser.Scene {
                 windowY: 16,
                 windowWidth: 32 * 24,
                 windowHeight: 32 * 19,
-                borderThickness: 3,
+                borderThickness: 2,
                 borderColor: 0x907748,
                 borderAlpha: 1,
                 baseDepth: 0,
-                closeButtonColor: 'darkgoldenrod',
+                closeButtonColor: '#2d2d2d',
                 closeButtonHoverColor: 'red',
                 textColor: 'white',
             }, ...opts
@@ -25,16 +25,19 @@ export class GeneralOverlayScene extends Phaser.Scene {
         this._drawCloseButton();
     }
     _drawBackground() {
-        this.add.graphics()
-            .fillStyle(this.opts.backgroundColor, this.opts.backgroundAlpha)
-            .fillRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
-            .lineStyle(this.opts.borderThickness, this.opts.borderColor)
-            .strokeRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
-            .setScrollFactor(0).setDepth(this.opts.baseDepth);
+        this.add.image(this.opts.windowX, this.opts.windowY, 'interface-24x19')
+            .setDisplaySize(this.opts.windowWidth, this.opts.windowHeight).setAlpha(this.opts.backgroundAlpha)
+            .setOrigin(0).setScrollFactor(0).setDepth(this.opts.baseDepth);
+        /* this.add.graphics()
+             .fillStyle(this.opts.backgroundColor, this.opts.backgroundAlpha)
+             .fillRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
+             .lineStyle(this.opts.borderThickness, this.opts.borderColor)
+             .strokeRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
+             .setScrollFactor(0).setDepth(this.opts.baseDepth);*/
     }
     _drawCloseButton() {
-        const closeButtonX = this.opts.windowX + this.opts.windowWidth - 20;
-        const closeButtonY = this.opts.windowY;
+        const closeButtonX = this.opts.windowX + this.opts.windowWidth - 24;
+        const closeButtonY = this.opts.windowY + 4;
         this.add.graphics()
             .lineStyle(this.opts.borderThickness, this.opts.borderColor, this.opts.borderAlpha)
             .strokeRect(closeButtonX, closeButtonY, 20, 20)
