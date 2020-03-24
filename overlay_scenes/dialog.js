@@ -16,7 +16,7 @@ export class DialogScene extends GeneralOverlayScene {
             windowX: 32,
             windowY: +this.sys.game.config.height - 32 - 250,
             responseTextColor: '#47340c',
-            responseTextHoverColor: 'white',
+            responseTextHoverColor: 'black',
             //closeButtonColor: 'darkgoldenrod',
             //closeButtonHoverColor: 'red',
             textColor: 'black',
