@@ -12,6 +12,19 @@ export const backpackItems = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'apple': {
+        itemId: 'apple',
+        displayName: 'Apple',
+        description: `It is an apple. That's about it.`,
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 224 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'primula-flower': {
         itemId: 'primula-flower',
         displayName: 'Primula',

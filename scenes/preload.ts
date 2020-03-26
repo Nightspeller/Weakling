@@ -118,14 +118,21 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("jeremy-blond", "assets/images-extruded/characters/world-map/party/jeremy-blond.png", tilesetConfig);
         this.load.spritesheet("jeremy-green", "assets/images-extruded/characters/world-map/party/jeremy-green.png", tilesetConfig);
         this.load.spritesheet('male10-1', 'assets/images-extruded/characters/world-map/neutral/male10-1.png', tilesetConfig);
+        this.load.spritesheet("male12-1", "assets/images-extruded/characters/world-map/neutral/male12-1.png", tilesetConfig);
         this.load.spritesheet('male13-1', 'assets/images-extruded/characters/world-map/neutral/male13-1.png', tilesetConfig);
         this.load.spritesheet('male14-2', 'assets/images-extruded/characters/world-map/neutral/male14-2.png', tilesetConfig);
         this.load.spritesheet("male17-3", "assets/images-extruded/characters/world-map/neutral/male17-3.png", tilesetConfig);
         this.load.spritesheet("male17-4", "assets/images-extruded/characters/world-map/neutral/male17-4.png", tilesetConfig);
         this.load.spritesheet("female19-1", "assets/images-extruded/characters/world-map/neutral/female19-1.png", tilesetConfig);
         this.load.spritesheet("female19-3", "assets/images-extruded/characters/world-map/neutral/female19-3.png", tilesetConfig);
-        this.load.spritesheet("male12-1", "assets/images-extruded/characters/world-map/neutral/male12-1.png", tilesetConfig);
         this.load.spritesheet("female20-3", "assets/images-extruded/characters/world-map/neutral/female20-3.png", tilesetConfig);
+        this.load.spritesheet("female20-3", "assets/images-extruded/characters/world-map/neutral/female20-3.png", tilesetConfig);
+        this.load.spritesheet("cat-1", "assets/images-extruded/characters/world-map/neutral/cat-1.png", tilesetConfig);
+        this.load.spritesheet("cat-2", "assets/images-extruded/characters/world-map/neutral/cat-2.png", tilesetConfig);
+        this.load.spritesheet("cat-3", "assets/images-extruded/characters/world-map/neutral/cat-3.png", tilesetConfig);
+        this.load.spritesheet("dog-1", "assets/images-extruded/characters/world-map/neutral/dog-1.png", tilesetConfig);
+        this.load.spritesheet("dog-2", "assets/images-extruded/characters/world-map/neutral/dog-2.png", tilesetConfig);
+        this.load.spritesheet("dog-3", "assets/images-extruded/characters/world-map/neutral/dog-3.png", tilesetConfig);
 
         // Battle characters images
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
@@ -203,6 +210,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('dungeon', 'assets/tilemaps/dungeon.json');
         this.load.tilemapTiledJSON('betweenVillageAndDungeon', 'assets/tilemaps/betweenVillageAndDungeon.json');
         this.load.tilemapTiledJSON('betweenVillageAndCaltor', 'assets/tilemaps/betweenVillageAndCaltor.json');
+        this.load.tilemapTiledJSON('backCave', 'assets/tilemaps/backCave.json');
+        this.load.tilemapTiledJSON('greatPlains', 'assets/tilemaps/greatPlains.json');
 
         // Audio
         this.load.audio('intro', ['assets/audio/intro.ogg', 'assets/audio/intro.mp3']);
@@ -217,7 +226,7 @@ export class PreloadScene extends Phaser.Scene {
         console.log('Preload done, calling Main Menu');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
         if (DEBUG) {
-            this.scene.start("Village", {prevScene: this.scene.key});
+            this.scene.start("Caltor", {prevScene: this.scene.key});
         } else {
             this.scene.start("MainMenu", {prevScene: this.scene.key});
         }

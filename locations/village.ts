@@ -21,7 +21,7 @@ import {
 import {DEBUG} from "../config/constants.js";
 import {tarethDialog, tarethSecondDialog} from "../data/dialogs/village/tarethDialog.js";
 import {keithDialog, keithNoApologyDialog, keithShopAgainDialog} from "../data/dialogs/village/keithDialog.js";
-import {questsData} from "../data/quests/questsData.js";
+import {whiskersDialog} from "../data/dialogs/village/whiskersDialog.js";
 
 export class VillageScene extends GeneralLocation {
     constructor() {
@@ -80,6 +80,14 @@ export class VillageScene extends GeneralLocation {
             initDialog: mitikhhaDialog,
             interactionCallback: (param) => {
                 mitikhha.setDialog(mitikhhaSecondDialog);
+            }
+        });
+
+        const whiskers = new Npc({
+            scene: this,
+            mapObjectName: 'Whiskers',
+            initDialog: whiskersDialog,
+            interactionCallback: (param) => {
             }
         });
 
