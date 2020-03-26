@@ -54,8 +54,8 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
         DungeonScene,
         CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CharacterPickerScene, CryptScene,
         VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene, BackCaveScene,
-        ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene,
-        GreatPlainsScene
+        GreatPlainsScene,
+        ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene
     ]
 };
 
