@@ -3,7 +3,7 @@ export const bootsItems = {
         itemId: 'leather-boots',
         displayName: 'Leather boots',
         description: 'Basic leather boots',
-        slot: ['body', 'boots'],
+        slot: ['boots', 'backpack'],
         sprite: { key: 'icon-item-set', frame: 130 },
         stackable: false,
         modified: false,

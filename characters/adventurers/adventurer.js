@@ -25,8 +25,13 @@ export class Adventurer extends GeneralCharacter {
             }
         }
         if (slot) {
-            this.inventory.push(item);
-            return this.putItemInSlot(item, slot);
+            if (this.inventory.find(existingItem => existingItem.currentSlot === slot)) {
+                throw `Trying to add item to the ${slot} slot, which is already occupied`;
+            }
+            else {
+                this.inventory.push(item);
+                return this.putItemInSlot(item, slot);
+            }
         }
         this.inventory.push(item);
         return this.moveItemToBackpack(item);
@@ -66,6 +71,7 @@ export class Adventurer extends GeneralCharacter {
         else {
             item.quantity -= quantity;
         }
+        this.applyItems();
     }
     getAttackDamage() {
         var _a, _b, _c, _d;

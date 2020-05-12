@@ -48,19 +48,32 @@ export class Player extends Adventurer {
             this.addItemToInventory('leather-armor', 1, 'body');
             this.addItemToInventory('trap-kit');
             this.addItemToInventory('spirit-sword');
+            this.addItemToInventory('mirror-of-travel');
             this.addItemToInventory('smoldering-ring', 1, 'ringRight');
-            /*            this.addItemToInventory('pinky-pie-sapling');
+            this.addItemToInventory('rope-belt', 1, 'belt');
+            this.addItemToInventory('fancy-belt');
+            this.addItemToInventory('primula-flower');
+            this.addItemToInventory('pinky-pie-sapling', 3);
+            this.addItemToInventory('yellow-fingers-sapling', 3);
+            /*            this.addItemToInventory('minor-healing-potion');
+                        this.addItemToInventory('minor-healing-potion', 2);
+                        this.addItemToInventory('pinky-pie-sapling');
                         this.addItemToInventory('yellow-fingers-sapling');
                         this.addItemToInventory('primula-sapling');
                         this.addItemToInventory('rocky-rose-sapling');
-                        this.addItemToInventory('rope-belt', 1, 'belt');
-                        this.addItemToInventory('fancy-belt');`
+                        this.addItemToInventory('fancy-belt');
                         this.addItemToInventory('minor-healing-potion');
                         this.addItemToInventory('minor-healing-potion', 2);
                         this.addItemToInventory('leather-armor', 1, 'body');
                         this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
                         this.addItemToInventory('wooden-sword-weapon');
                         this.addItemToInventory('rangers-hat');*/
+
+            this.addQuest('theSelflessSpirit');
+            this.updateQuest('theSelflessSpirit', 'falseNameLearned');
+            this.updateQuest('theSelflessSpirit', 'falseNameCalled');
+            //this.updateQuest('theSelflessSpirit', 'trueNameLearned');
+            //this.updateQuest('theSelflessSpirit', 'trueNameCalled');
         }
         this.addBaseModifiers();
         this.applyItems();
@@ -86,25 +99,22 @@ export class Player extends Adventurer {
 
     public addQuest(questId) {
         if (!this.quests.find(existingQuest => existingQuest.questId === questId)) {
-            this.quests.push(questsData[questId]);
-        } /*else {
-            throw new Error('Trying to add quest which is already added')
-        }*/
+            this.quests.unshift(questsData[questId]);
+        } else {
+            console.log('Trying to add quest which is already added');
+        }
     }
 
-    public updateQuest(
-        questId: string,
-        params: {
-            questName?: string,
-            questDescriptions?: string[],
-            questReward?: any,
-            questState?: {state: string; descriptions: number[]}
-        }) {
+    public updateQuest(questId: string, state: string) {
         let questToUpdateIndex = this.quests.findIndex(existingQuest => existingQuest.questId === questId);
         if (questToUpdateIndex === -1) {
-            throw "Trying update non-existing or not obtained quest"
+            console.log("Trying update non-existing or not obtained quest");
         } else {
-            this.quests[questToUpdateIndex] = {...this.quests[questToUpdateIndex], ...params};
+            if (this.quests[questToUpdateIndex].currentStates.includes(state)) {
+                console.log("Trying to add state which is already added.");
+            } else {
+                this.quests[questToUpdateIndex].currentStates.push(state);
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-{ "compressionlevel":-1,
+{ "compressionlevel":0,
  "editorsettings":
     {
      "export":
@@ -79,7 +79,7 @@
          "layers":[
                 {
                  "compression":"",
-                 "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwFAAAAAAAAAAAAAAAAAADkBAAA5QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAEAADxBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                 "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwFAAAAAAAAAAAAAAAAAADkBAAA5QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAEAADxBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                  "encoding":"base64",
                  "height":12,
                  "id":8,
@@ -216,16 +216,21 @@
                  "name":"Chest 1",
                  "properties":[
                         {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"copper-pieces\", \"quantity\": 10}, {\"itemId\": \"leather-armor\", \"quantity\": 1}, {\"itemId\": \"rangers-hat\", \"quantity\": 1}]"
+                        }, 
+                        {
                          "name":"openedFrame",
                          "type":"int",
                          "value":868
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":192,
-                 "y":160
+                 "y":128
                 }, 
                 {
                  "gid":861,
@@ -234,16 +239,21 @@
                  "name":"Chest 2",
                  "properties":[
                         {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"trap-kit\", \"quantity\": 1}, {\"itemId\": \"spear-weapon\", \"quantity\": 1}]"
+                        }, 
+                        {
                          "name":"openedFrame",
                          "type":"int",
                          "value":868
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":192,
-                 "y":224
+                 "y":192
                 }, 
                 {
                  "gid":879,
@@ -251,6 +261,11 @@
                  "id":8,
                  "name":"Sourgrass",
                  "properties":[
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"sourgrass\", \"quantity\": 1}]"
+                        }, 
                         {
                          "name":"openedFrame",
                          "type":"int",
@@ -262,10 +277,38 @@
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":32,
+                 "y":192
+                }, 
+                {
+                 "gid":70,
+                 "height":32,
+                 "id":9,
+                 "name":"Fire 1",
+                 "properties":[
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"coal\", \"quantity\": 3}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":69
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":96,
                  "y":224
                 }],
          "opacity":1,
@@ -275,10 +318,10 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":9,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"2020.04.10",
  "tileheight":32,
  "tilesets":[
         {
@@ -289,6 +332,7 @@
          "imagewidth":272,
          "margin":1,
          "name":"base",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":1064,
          "tileheight":32,

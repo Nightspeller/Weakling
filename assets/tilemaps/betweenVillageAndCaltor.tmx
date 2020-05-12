@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="23">
+<map version="1.2" tiledversion="2020.04.10" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="23">
  <editorsettings>
   <export target="betweenVillageAndCaltor.json" format="json"/>
  </editorsettings>
@@ -80,79 +80,69 @@
   </data>
   </layer>
  </group>
- <objectgroup id="11" name="Items">
-  <object id="5" name="Secret stash" type="Item" gid="46" x="1312" y="96" width="32" height="32">
+ <objectgroup id="11" name="Containers">
+  <object id="5" name="Secret stash" type="Container" gid="46" x="1312" y="64" width="32" height="32">
    <properties>
-    <property name="itemId" value="copper-pieces"/>
-    <property name="keepImage" type="bool" value="true"/>
-    <property name="quantity" type="int" value="8"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;copper-pieces&quot;, &quot;quantity&quot;: 8}]"/>
+    <property name="openedFrame" type="int" value="45"/>
     <property name="secret" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="12" name="Apple 1" type="Item" gid="982" x="1440" y="416" width="32" height="32">
+  <object id="12" name="Apple 1" type="Container" gid="982" x="1440" y="384" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
+    <property name="openedFrame" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="13" name="Apple 2" type="Item" gid="2147484630" x="1472" y="416" width="32" height="32">
+  <object id="13" name="Apple 2" type="Container" gid="2147484630" x="1472" y="384" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="14" name="Apple 5" type="Item" gid="982" x="1440" y="512" width="32" height="32">
+  <object id="14" name="Apple 5" type="Container" gid="982" x="1440" y="480" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
+    <property name="openedFrame" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="15" name="Apple 9" type="Item" gid="982" x="1632" y="608" width="32" height="32">
+  <object id="15" name="Apple 9" type="Container" gid="982" x="1632" y="576" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="16" name="Apple 4" type="Item" gid="982" x="1728" y="416" width="32" height="32">
+  <object id="16" name="Apple 4" type="Container" gid="982" x="1728" y="384" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="17" name="Apple 7" type="Item" gid="2147484630" x="1760" y="512" width="32" height="32">
+  <object id="17" name="Apple 7" type="Container" gid="2147484630" x="1760" y="480" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="18" name="Apple 3" type="Item" gid="2147484630" x="1568" y="416" width="32" height="32">
+  <object id="18" name="Apple 3" type="Container" gid="2147484630" x="1568" y="384" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="19" name="Apple 10" type="Item" gid="982" x="1728" y="608" width="32" height="32">
+  <object id="19" name="Apple 10" type="Container" gid="982" x="1728" y="576" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="20" name="Apple 8" type="Item" gid="2147484630" x="1472" y="608" width="32" height="32">
+  <object id="20" name="Apple 8" type="Container" gid="2147484630" x="1472" y="576" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="21" name="Apple 6" type="Item" gid="982" x="1536" y="512" width="32" height="32">
+  <object id="21" name="Apple 6" type="Container" gid="982" x="1536" y="480" width="32" height="32">
    <properties>
-    <property name="itemId" value="apple"/>
-    <property name="quantity" type="int" value="2"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;apple&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="12" name="Containers"/>
  <objectgroup id="4" name="Objects">
-  <object id="8" name="Start" x="1824" y="96">
+  <object id="8" name="Start" x="704" y="320">
    <point/>
   </object>
  </objectgroup>
@@ -193,6 +183,6 @@
   </object>
  </objectgroup>
  <objectgroup id="18" name="NPCs">
-  <object id="7" name="Grave" type="NPC" gid="1800" x="672" y="320" width="32" height="32"/>
+  <object id="7" name="Grave" type="NPC" gid="1800" x="672" y="288" width="32" height="32"/>
  </objectgroup>
 </map>

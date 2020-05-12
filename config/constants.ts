@@ -20,5 +20,5 @@ export const PLAYER_RUN_WORLD_SPEED = 250;
 
 // Inventory
 
-export const INVENTORY_ITEM_DESCRIPTION_W = 32*10;
-export const INVENTORY_ITEM_DESCRIPTION_H = 32*11;
+export const INVENTORY_ITEM_DESCRIPTION_W = 32 * 10;
+export const INVENTORY_ITEM_DESCRIPTION_H = 32 * 11;

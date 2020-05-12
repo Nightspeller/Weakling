@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="6">
+<map version="1.2" tiledversion="2020.04.10" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="6">
  <editorsettings>
   <export target="hargkakhsCave.json" format="json"/>
  </editorsettings>
@@ -55,8 +55,9 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="Containers">
-  <object id="5" name="Chest" gid="861" x="192" y="160" width="32" height="32">
+  <object id="5" name="Chest" type="Container" gid="861" x="192" y="128" width="32" height="32">
    <properties>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;fancy-belt&quot;, &quot;quantity&quot;: 1}, {&quot;itemId&quot;: &quot;work-gloves&quot;, &quot;quantity&quot;: 1}]"/>
     <property name="openedFrame" type="int" value="868"/>
    </properties>
   </object>

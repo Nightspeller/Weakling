@@ -23,7 +23,7 @@ export class GeneralLocation extends Phaser.Scene {
         }
     }
     create(mapKey) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e;
         this.map = this.make.tilemap({ key: mapKey });
         this.offsetX = this.map.widthInPixels < GAME_W ? (GAME_W - this.map.widthInPixels) / 2 : 0;
         this.offsetY = this.map.heightInPixels < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
@@ -37,6 +37,7 @@ export class GeneralLocation extends Phaser.Scene {
             this.playerImage.setOrigin(0, 0).setDepth(1);
             this.playerImage.anims.play("idle_down");
             this.playerImage.setCollideWorldBounds(true);
+            this.playerImage.body.setSize(16, 16).setOffset(8, 16);
             this.keys = this.input.keyboard.addKeys('W,S,A,D,left,right,up,down,space');
             const camera = this.cameras.main;
             camera.startFollow(this.playerImage);
@@ -53,7 +54,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.layers = [];
         this.map.layers.forEach(layer => {
             let createdLayer;
-            if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'dynamic' && prop.value === true)) {
+            if (Array.isArray(layer.properties) && layer.properties.find((prop) => (prop === null || prop === void 0 ? void 0 : prop.name) === 'dynamic' && prop.value === true)) {
                 createdLayer = this.map.createDynamicLayer(layer.name, tilesets, this.offsetX, this.offsetY);
             }
             else {
@@ -63,12 +64,12 @@ export class GeneralLocation extends Phaser.Scene {
                 createdLayer.setAlpha(layer.alpha);
             this.layers.push(createdLayer);
             // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
-            if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'hasCollisions')) {
+            if (Array.isArray(layer.properties) && layer.properties.find((prop) => prop.name === 'hasCollisions')) {
                 createdLayer.setCollisionByProperty({ collides: true });
                 this.setSidesCollisions(createdLayer.layer);
                 this.physics.add.collider(this.playerImage, createdLayer);
             }
-            if (Array.isArray(layer.properties) && layer.properties.find(prop => prop.name === 'fringe')) {
+            if (Array.isArray(layer.properties) && layer.properties.find((prop) => prop.name === 'fringe')) {
                 createdLayer.setDepth(1);
             }
         });
@@ -78,8 +79,11 @@ export class GeneralLocation extends Phaser.Scene {
             const frame = spriteParams.frame;
             // Todo: there must be a better way to do that but I am way too tired not to find it...
             const trigger = this.createTrigger({
-                objectName: object.name,
-                objectLayer: 'Doors/Doors Objects',
+                name: object.name,
+                triggerX: object.x,
+                triggerY: object.y,
+                triggerW: object.width,
+                triggerH: object.height,
                 texture: texture,
                 frame: frame,
                 interaction: 'activate',
@@ -95,31 +99,49 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_b = this.map.getObjectLayer('Containers')) === null || _b === void 0 ? void 0 : _b.objects.forEach(object => {
-            var _a, _b;
+            var _a, _b, _c, _d, _e, _f;
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
             const texture = spriteParams.key;
             const frame = spriteParams.frame;
             const openedFrame = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'openedFrame')) === null || _b === void 0 ? void 0 : _b.value;
+            const isSecret = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'secret')) === null || _d === void 0 ? void 0 : _d.value;
+            const items = JSON.parse((_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'items')) === null || _f === void 0 ? void 0 : _f.value);
             const trigger = this.createTrigger({
-                objectName: object.name,
-                objectLayer: 'Containers',
+                name: object.name,
+                triggerX: object.x,
+                triggerY: object.y,
+                triggerW: object.width,
+                triggerH: object.height,
                 texture: texture,
                 frame: frame,
                 interaction: 'activate',
+                isSecret: isSecret,
                 callback: () => {
-                    if (openedFrame)
+                    items.forEach(item => this.player.addItemToInventory(item.itemId, item.quantity));
+                    if (openedFrame === -1 || openedFrame === undefined) {
+                        trigger.image.destroy(true);
+                    }
+                    else {
                         trigger.image.setFrame(openedFrame);
+                    }
                     this.triggers = this.triggers.filter(triggerInArray => triggerInArray !== trigger);
                 },
             });
+            if (object.flippedHorizontal)
+                trigger.image.flipX = true;
+            if (object.flippedVertical)
+                trigger.image.flipY = true;
         });
         (_c = this.map.getObjectLayer('Enemies')) === null || _c === void 0 ? void 0 : _c.objects.forEach(object => {
             var _a, _b, _c;
             const enemyImage = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'image')) === null || _b === void 0 ? void 0 : _b.value;
             const enemies = JSON.parse((_c = object.properties.find(prop => prop.name === 'enemies')) === null || _c === void 0 ? void 0 : _c.value);
             this.createTrigger({
-                objectName: object.name,
-                objectLayer: 'Enemies',
+                name: object.name,
+                triggerX: object.x,
+                triggerY: object.y,
+                triggerW: object.width,
+                triggerH: object.height,
                 texture: enemyImage,
                 frame: null,
                 interaction: 'activate',
@@ -135,10 +157,11 @@ export class GeneralLocation extends Phaser.Scene {
             if (toCoordinates)
                 toCoordinates = JSON.parse(toCoordinates);
             this.createTrigger({
-                objectName: object.name,
-                objectLayer: 'Waypoints',
-                texture: null,
-                frame: null,
+                name: object.name,
+                triggerX: object.x,
+                triggerY: object.y,
+                triggerW: object.width,
+                triggerH: object.height,
                 interaction: 'activateOverlap',
                 callback: () => {
                     if (toLocation) {
@@ -150,47 +173,18 @@ export class GeneralLocation extends Phaser.Scene {
                 },
             });
         });
-        (_e = this.map.getObjectLayer('Items')) === null || _e === void 0 ? void 0 : _e.objects.forEach(object => {
-            var _a, _b, _c, _d, _e, _f;
-            const itemId = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'itemId')) === null || _b === void 0 ? void 0 : _b.value;
-            const itemQuantity = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'quantity')) === null || _d === void 0 ? void 0 : _d.value;
-            const keepImage = (_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'keepImage')) === null || _f === void 0 ? void 0 : _f.value;
-            const item = new Item(itemId, itemQuantity);
-            let texture = item.sprite.key;
-            let frame = item.sprite.frame;
-            if (object.gid) {
-                const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Items');
-                texture = spriteParams.key;
-                frame = spriteParams.frame;
-            }
-            const trigger = this.createTrigger({
-                objectName: object.name,
-                objectLayer: 'Items',
-                texture: texture,
-                frame: frame,
-                interaction: 'activate',
-                callback: () => {
-                    this.player.addItemToInventory(itemId, itemQuantity);
-                    if (!keepImage) {
-                        trigger.image.destroy(true);
-                    }
-                    else {
-                        this.triggers = this.triggers.filter(arrayElem => arrayElem !== trigger);
-                    }
-                },
-            });
-        });
-        (_f = this.map.getObjectLayer('Messages')) === null || _f === void 0 ? void 0 : _f.objects.forEach(object => {
+        (_e = this.map.getObjectLayer('Messages')) === null || _e === void 0 ? void 0 : _e.objects.forEach(object => {
             var _a, _b, _c, _d, _e, _f;
             const messageId = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'messageId')) === null || _b === void 0 ? void 0 : _b.value;
             const messageText = messages[messageId];
             const interaction = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'interaction')) === null || _d === void 0 ? void 0 : _d.value;
             const singleUse = (_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'singleUse')) === null || _f === void 0 ? void 0 : _f.value;
             this.createTrigger({
-                objectName: object.name,
-                objectLayer: 'Messages',
-                texture: null,
-                frame: null,
+                name: object.name,
+                triggerX: object.x,
+                triggerY: object.y,
+                triggerW: object.width,
+                triggerH: object.height,
                 interaction: interaction,
                 singleUse: singleUse,
                 callback: () => {
@@ -210,6 +204,37 @@ export class GeneralLocation extends Phaser.Scene {
         });
         this.sys['animatedTiles'].init(this.map);
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
+        this.events.on('resume', (scene, data) => {
+            if (data === null || data === void 0 ? void 0 : data.droppedItems) {
+                data.droppedItems.forEach(droppedItem => {
+                    const itemId = droppedItem.itemId;
+                    const itemQuantity = droppedItem.quantity;
+                    const item = new Item(itemId, itemQuantity);
+                    let texture = item.sprite.key;
+                    let frame = item.sprite.frame;
+                    // TODO: name must be unique
+                    this.createTrigger({
+                        name: item.displayName,
+                        triggerX: this.playerImage.x,
+                        triggerY: this.playerImage.y,
+                        triggerW: 32,
+                        triggerH: 32,
+                        offsetX: 0,
+                        offsetY: 0,
+                        texture: texture,
+                        frame: frame,
+                        interaction: 'activate',
+                        singleUse: true,
+                        callback: () => {
+                            this.player.addItemToInventory(itemId, itemQuantity);
+                        },
+                    });
+                });
+            }
+            if (data === null || data === void 0 ? void 0 : data.switchToScene) {
+                this.switchToScene(data.switchToScene, data.data);
+            }
+        });
         this.events.on('wake', (scene, data) => {
             if (data === null || data === void 0 ? void 0 : data.defeatedEnemy) {
                 this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
@@ -289,38 +314,22 @@ export class GeneralLocation extends Phaser.Scene {
             this.switchToScene('Inventory', { opts, closeCallback }, false);
         });
     }
-    createTrigger({ objectName, callback = () => {
-    }, objectLayer = 'Objects', texture = null, frame = null, interaction = 'activate', offsetX = this.offsetX, offsetY = this.offsetY, singleUse = false }) {
-        var _a, _b;
-        const object = this.getMapObject(objectName, objectLayer);
-        if (!object) {
-            console.log(`Object ${objectName} is not found on ${objectLayer} layer of the map`, this.map);
-            return;
-        }
-        // @ts-ignore
-        const isSecret = !!((_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'secret' && prop.value === true));
-        // @ts-ignore
-        const isSingleUseMapObject = !!((_b = object.properties) === null || _b === void 0 ? void 0 : _b.find(prop => prop.name === 'singleUse' && prop.value === true));
-        singleUse = singleUse || isSingleUseMapObject;
+    createTrigger({ name, triggerX, triggerY, triggerW, triggerH, callback = () => {
+    }, texture = null, frame = null, interaction = 'activate', offsetX = this.offsetX, offsetY = this.offsetY, isSecret = false, singleUse = false }) {
         const triggerImage = this.physics.add
-            .sprite(object['x'] + offsetX, object['y'] + offsetY, texture, frame)
+            .sprite(triggerX + offsetX, triggerY + offsetY, texture, frame)
             .setOrigin(0, 0)
-            .setDisplaySize(object['width'], object['height'])
+            .setDisplaySize(triggerW, triggerH)
             .setImmovable();
         if (texture === null) {
             triggerImage.setVisible(false);
-        }
-        if (object['gid']) {
-            // Phaser and Tiled are very inconsistent when it comes to how they work with different types of objects.....
-            // TODO: fix once Tiled and\or phaser figure it out...
-            triggerImage.y -= 32;
         }
         //TODO: might need rework to support callback update...
         const trigger = {
             image: triggerImage,
             callback: callback,
             type: interaction,
-            name: objectName,
+            name: name,
             isSecret: isSecret,
             singleUse: singleUse,
         };
@@ -366,12 +375,12 @@ export class GeneralLocation extends Phaser.Scene {
                 for (let i = 0; i < triggersLength; i++) {
                     const trigger = this.triggers[i];
                     if (trigger.type === 'activate' || trigger.type === 'activateOverlap') {
-                        //checking if player is looking at the trigger image
+                        //checking if player is looking at the trigger image, adjustments are done in order to reflect the fact that physical body is smaller than the image
                         if (trigger.type === 'activateOverlap' ||
                             (trigger.image.getTopLeft().y === this.playerImage.getBottomRight().y && [0, 1, 2].includes(Number(this.playerImage.frame.name))) ||
-                            (trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
-                            (trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y && [18, 19, 20].includes(Number(this.playerImage.frame.name))) ||
-                            (trigger.image.getBottomRight().x === this.playerImage.getTopLeft().x && [12, 13, 14].includes(Number(this.playerImage.frame.name)))) {
+                            (trigger.image.getTopLeft().x === this.playerImage.getBottomRight().x - 8 && [6, 7, 8].includes(Number(this.playerImage.frame.name))) ||
+                            (trigger.image.getBottomRight().y === this.playerImage.getTopLeft().y + 16 && [18, 19, 20].includes(Number(this.playerImage.frame.name))) ||
+                            (trigger.image.getBottomRight().x === this.playerImage.getTopLeft().x + 8 && [12, 13, 14].includes(Number(this.playerImage.frame.name)))) {
                             const image = trigger.image;
                             const callback = trigger.callback;
                             const bodies = this.physics.overlapRect(image.x, image.y, image.displayWidth + 2, image.displayHeight + 2);
@@ -397,24 +406,27 @@ export class GeneralLocation extends Phaser.Scene {
     createDebugButton() {
         const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0).setDepth(100);
         let debugModeOn = false;
-        const debugGraphics = this.add.graphics().setAlpha(0.25).setVisible(debugModeOn);
+        const debugGraphicsGroup = this.add.group();
         this.layers.forEach(layer => {
-            if (Array.isArray(layer.layer.properties) && layer.layer.properties.find(prop => prop.name === 'hasCollisions')) {
+            const debugGraphics = this.add.graphics().setAlpha(0.25);
+            if (Array.isArray(layer.layer.properties) && layer.layer.properties.find((prop) => prop.name === 'hasCollisions')) {
                 layer.renderDebug(debugGraphics, {
                     tileColor: null,
                     collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255),
                     faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
                 });
             }
+            debugGraphicsGroup.add(debugGraphics);
         });
+        debugGraphicsGroup.setVisible(debugModeOn);
         debugButton.on('pointerdown', () => {
             debugModeOn = !debugModeOn;
-            debugGraphics.setVisible(debugModeOn);
+            debugGraphicsGroup.setVisible(debugModeOn);
         });
         this.input.keyboard.off('keyup-F1');
         this.input.keyboard.on('keyup-F1', () => {
             debugModeOn = !debugModeOn;
-            debugGraphics.setVisible(debugModeOn);
+            debugGraphicsGroup.setVisible(debugModeOn);
         });
     }
     switchToScene(sceneKey, data = {}, shouldSleep = true, toCoordinates = null) {
@@ -426,6 +438,9 @@ export class GeneralLocation extends Phaser.Scene {
         // NEW INFO - apparently this does the fix, though mechanisms changed since it was detected so not sure, keeping old solution just in case
         this.input.keyboard.resetKeys();
         //if (this.keys) Object.values(this.keys).forEach(key => key.isDown = false);
+        if (sceneKey === this.scene.key) {
+            throw new Error(`Trying to switch to scene while already being there: ${sceneKey}`);
+        }
         if (shouldSleep) {
             this.scene.sleep(this.scene.key);
         }

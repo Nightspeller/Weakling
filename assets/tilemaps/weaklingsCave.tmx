@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="9">
+<map version="1.2" tiledversion="2020.04.10" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="10">
  <editorsettings>
   <export target="weaklingsCave.json" format="json"/>
  </editorsettings>
@@ -32,7 +32,7 @@
  <group id="11" name="Layer 2">
   <layer id="8" name="Below player" width="8" height="12">
    <data encoding="base64">
-   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwFAAAAAAAAAAAAAAAAAADkBAAA5QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAEAADxBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwFAAAAAAAAAAAAAAAAAADkBAAA5QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAEAADxBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   </data>
   </layer>
   <layer id="3" name="Collisions" width="8" height="12">
@@ -68,19 +68,29 @@
   </object>
  </objectgroup>
  <objectgroup id="13" name="Containers">
-  <object id="5" name="Chest 1" gid="861" x="192" y="160" width="32" height="32">
+  <object id="5" name="Chest 1" type="Container" gid="861" x="192" y="128" width="32" height="32">
    <properties>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;copper-pieces&quot;, &quot;quantity&quot;: 10}, {&quot;itemId&quot;: &quot;leather-armor&quot;, &quot;quantity&quot;: 1}, {&quot;itemId&quot;: &quot;rangers-hat&quot;, &quot;quantity&quot;: 1}]"/>
     <property name="openedFrame" type="int" value="868"/>
    </properties>
   </object>
-  <object id="6" name="Chest 2" gid="861" x="192" y="224" width="32" height="32">
+  <object id="6" name="Chest 2" type="Container" gid="861" x="192" y="192" width="32" height="32">
    <properties>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;trap-kit&quot;, &quot;quantity&quot;: 1}, {&quot;itemId&quot;: &quot;spear-weapon&quot;, &quot;quantity&quot;: 1}]"/>
     <property name="openedFrame" type="int" value="868"/>
    </properties>
   </object>
-  <object id="8" name="Sourgrass" gid="879" x="32" y="224" width="32" height="32">
+  <object id="8" name="Sourgrass" type="Container" gid="879" x="32" y="192" width="32" height="32">
    <properties>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;sourgrass&quot;, &quot;quantity&quot;: 1}]"/>
     <property name="openedFrame" type="int" value="876"/>
+    <property name="secret" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="9" name="Fire 1" type="Container" gid="70" x="96" y="224" width="32" height="32">
+   <properties>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;coal&quot;, &quot;quantity&quot;: 3}]"/>
+    <property name="openedFrame" type="int" value="69"/>
     <property name="secret" type="bool" value="true"/>
    </properties>
   </object>

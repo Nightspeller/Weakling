@@ -22,25 +22,32 @@ export class QuestLogScene extends GeneralOverlayScene {
         this.input.keyboard.on('keyup-J', () => this.closeScene());
     }
     _drawQuestLog() {
-        var _a;
         this.questLogDisplayGroup.clear(true, true);
         const quests = this.player.getQuests();
         const textOptions = {
             color: 'black',
             wordWrap: { width: 360 }
         };
-        const firstQuestDescription = (_a = quests[0]) === null || _a === void 0 ? void 0 : _a.questState.descriptions.map(descriptionIndex => quests[0].questDescriptions[descriptionIndex]).join('\n\n');
-        const questDescription = this.add.text(GAME_W / 2, 32, firstQuestDescription, textOptions);
+        const questDescription = this.add.text(GAME_W / 2, 32, this._getQuestDescriptionText(quests[0]), textOptions);
         this.questLogDisplayGroup.add(questDescription);
         quests.forEach((quest, index) => {
             const questName = this.add.text(32, 32 + 20 * index, quest.questName, textOptions);
             this.questLogDisplayGroup.add(questName);
-            const questDescriptionText = quests[index].questState.descriptions.map(descriptionIndex => quests[index].questDescriptions[descriptionIndex]).join('\n\n');
+            const questDescriptionText = this._getQuestDescriptionText(quests[index]);
             questName.setInteractive({ useHandCursor: true });
             questName.on('pointerdown', () => {
                 questDescription.setText(questDescriptionText);
             });
         });
+    }
+    _getQuestDescriptionText(quest) {
+        let description = '';
+        quest.currentStates.forEach(state => {
+            if (quest.availableStates[state] !== '') {
+                description += quest.availableStates[state] + '\n\n';
+            }
+        });
+        return description;
     }
 }
 //# sourceMappingURL=questLog.js.map

@@ -65,6 +65,7 @@ export class PreloadScene extends Phaser.Scene {
         // Tilesets
         this.load.spritesheet('base', 'assets/images-extruded/tilesets/base.png', tilesetConfig);
         this.load.spritesheet('base-addition', 'assets/images-extruded/tilesets/base-addition.png', tilesetConfig);
+        this.load.spritesheet('houses', 'assets/images-extruded/tilesets/houses.png', tilesetConfig);
         this.load.spritesheet('dirt1-dirt2', 'assets/images-extruded/tilesets/dirt1-dirt2.png', tilesetConfig);
         this.load.spritesheet('grass1', 'assets/images-extruded/tilesets/grass1.png', tilesetConfig);
         this.load.spritesheet('grass2', 'assets/images-extruded/tilesets/grass2.png', tilesetConfig);
@@ -182,6 +183,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('crypt', 'assets/tilemaps/crypt.json');
         this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
         this.load.tilemapTiledJSON('tavern', 'assets/tilemaps/tavern.json');
+        this.load.tilemapTiledJSON('booksStore', 'assets/tilemaps/booksStore.json');
         this.load.tilemapTiledJSON('hermitsTower', 'assets/tilemaps/hermitsTower.json');
         this.load.tilemapTiledJSON('village', 'assets/tilemaps/village.json');
         this.load.tilemapTiledJSON('battle', 'assets/tilemaps/fight.json');
@@ -206,7 +208,7 @@ export class PreloadScene extends Phaser.Scene {
         console.log('Preload done, calling Main Menu');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
         if (DEBUG) {
-            this.scene.start("Caltor", { prevScene: this.scene.key });
+            this.scene.start("BooksStore", { prevScene: this.scene.key });
         }
         else {
             this.scene.start("MainMenu", { prevScene: this.scene.key });

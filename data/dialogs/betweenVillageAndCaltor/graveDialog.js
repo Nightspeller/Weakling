@@ -19,4 +19,68 @@ export const graveDialog = [{
                 callbackParam: 'fastEnd'
             }]
     }];
+export const graveDialogWithFalseName = [{
+        id: 'grave1',
+        text: `    The engraving says:
+    
+    Here lays the great hero of Caltor, 
+    Defender of the weak and protector of destitute.
+    Call his name, glorify his deeds, moan his fall, swear his oath 
+    And be blessed with his power to continue his course.`,
+        replies: [{
+                text: `The name of this hero is Jeremy von Caltor`,
+                callbackParam: 'falseNameCalled'
+            }, {
+                text: `(Leave)`,
+                callbackParam: 'fastEnd'
+            }]
+    }];
+export const graveDialogWithTrueName = [{
+        id: 'grave1',
+        text: `    The engraving says:
+    
+    Here lays the great hero of Caltor, 
+    Defender of the weak and protector of destitute.
+    Call his name, glorify his deeds, moan his fall, swear his oath 
+    And be blessed with his power to continue his course.`,
+        replies: [{
+                text: `The name of this hero is Jeremaya the Bandit`,
+                callbackParam: 'trueNameCalled'
+            }, {
+                text: `(Leave)`,
+                callbackParam: 'fastEnd'
+            }]
+    }];
+export const graveDialogWithGlorification = [{
+        id: 'grave1',
+        text: `    The engraving says:
+    
+    Here lays the great hero of Caltor, 
+    Defender of the weak and protector of destitute.
+    Call his name, glorify his deeds, moan his fall, swear his oath 
+    And be blessed with his power to continue his course.`,
+        replies: [{
+                text: `The deeds of sir Jeremaya are glorified on the central square of Caltor.`,
+                callbackParam: 'deedsGlorified'
+            }, {
+                text: `(Leave)`,
+                callbackParam: 'fastEnd'
+            }]
+    }];
+export const readyToTakeTheOath = [{
+        id: 'grave1',
+        text: `    The engraving says:
+    
+    Here lays the great hero of Caltor, 
+    Defender of the weak and protector of destitute.
+    Call his name, glorify his deeds, moan his fall, swear his oath 
+    And be blessed with his power to continue his course.`,
+        replies: [{
+                text: `Sir Jeremaya, your good name was called and glorified, your death is moaned. Now, let me take the oath and continue your course`,
+                callbackParam: 'oathTaken'
+            }, {
+                text: `(Leave)`,
+                callbackParam: 'fastEnd'
+            }]
+    }];
 //# sourceMappingURL=graveDialog.js.map

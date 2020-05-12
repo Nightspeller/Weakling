@@ -5,7 +5,11 @@ import Npc from "../entities/npc.js";
 import {bodgerDialog} from "../data/dialogs/caltor/bodgerDialog.js";
 import {GeneralLocation} from "./generalLocation.js";
 import {announcementsDialog, announcementsEmptyDialog} from "../data/dialogs/caltor/announcementsDialog.js";
-import Item from "../entities/item.js";
+import {
+    fountainChangedDialog,
+    fountainSignDialog,
+    fountainVandalDialog
+} from "../data/dialogs/caltor/fountainSignDialog.js";
 
 export class CaltorScene extends GeneralLocation {
     constructor() {
@@ -23,16 +27,26 @@ export class CaltorScene extends GeneralLocation {
     public create() {
         super.create('caltor');
 
+        const charPickerMapObject = this.getMapObject(`Character Picker`);
         this.createTrigger({
-            objectName: `Character Picker`,
+            name: charPickerMapObject.name,
+            triggerX: charPickerMapObject.x,
+            triggerY: charPickerMapObject.y,
+            triggerW: charPickerMapObject.width,
+            triggerH: charPickerMapObject.height,
             callback: () => {
                 this.switchToScene('CharacterPicker', {}, false)
             }
         });
 
         let layer4visible = true;
+        const barracksMapObject = this.getMapObject(`Barracks`);
         this.createTrigger({
-            objectName: `Barracks`,
+            name: barracksMapObject.name,
+            triggerX: barracksMapObject.x,
+            triggerY: barracksMapObject.y,
+            triggerW: barracksMapObject.width,
+            triggerH: barracksMapObject.height,
             interaction: 'overlap',
             callback: () => {
                 if (layer4visible) {
@@ -87,13 +101,13 @@ export class CaltorScene extends GeneralLocation {
                     this.player.addItemToInventory('copper-pieces', 100);
                     bodger.addItemToInventory('minerals', 10);
                     bodger.addItemToInventory('basket', 10);
-                    this.player.updateQuest('bigCaltorTrip', {questState: {state: 'goodsSold', descriptions: [0,1,2,3,4,5]}});
+                    this.player.updateQuest('bigCaltorTrip', 'goodsSold');
                 }
                 if (param === 'goodsSoldAndOpenShop') {
                     this.player.addItemToInventory('copper-pieces', 100);
                     bodger.addItemToInventory('minerals', 10);
                     bodger.addItemToInventory('basket', 10);
-                    this.player.updateQuest('bigCaltorTrip', {questState: {state: 'goodsSold', descriptions: [0,1,2,3,4,5]}});
+                    this.player.updateQuest('bigCaltorTrip', 'goodsSold');
                     this.switchToScene('Shop', {
                         player: this.player,
                         trader: bodger
@@ -132,6 +146,31 @@ export class CaltorScene extends GeneralLocation {
                     player: this.player,
                     trader: kasima
                 }, false)
+            }
+        });
+
+        const fountain = new Npc({
+            scene: this,
+            mapObjectName: 'Fountain sign',
+            initDialog: fountainSignDialog,
+            interactionCallback: () => {
+                if (this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('started')) {
+                    this.player.updateQuest('theSelflessSpirit', 'falseNameLearned');
+                }
+            }
+        });
+
+        this.events.on('wake', (scene) => {
+            if (this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('trueNameLearned') &&
+                !this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('deedsGlorified')
+            ) {
+                fountain.setDialog(fountainVandalDialog, (param) => {
+                    if (param === 'fountainVandalized') {
+                        this.player.updateQuest('theSelflessSpirit', 'deedsGlorified');
+                        fountain.setDialog(fountainChangedDialog, () => {
+                        });
+                    }
+                })
             }
         });
     }

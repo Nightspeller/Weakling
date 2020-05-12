@@ -145,8 +145,10 @@ export class DialogScene extends GeneralOverlayScene {
         ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"].forEach(keyCode => this.input.keyboard.off(`keyup-${keyCode}`));
         this.timedEvent?.remove();
         this.dialogDisplayGroup.clear(true, true);
-        this.closeCallback?.call(this, param);
         super.closeScene();
+        if (this.closeCallback) {
+            this.closeCallback(param);
+        }
     }
 
     private _setText(text: string, animate: boolean) {

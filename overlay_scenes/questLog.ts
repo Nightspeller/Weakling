@@ -37,19 +37,26 @@ export class QuestLogScene extends GeneralOverlayScene {
             color: 'black',
             wordWrap: {width: 360}
         };
-        const firstQuestDescription = quests[0]?.questState.descriptions.map(descriptionIndex => quests[0].questDescriptions[descriptionIndex]).join('\n\n');
-        const questDescription = this.add.text(GAME_W / 2, 32, firstQuestDescription, textOptions);
+        const questDescription = this.add.text(GAME_W / 2, 32, this._getQuestDescriptionText(quests[0]), textOptions);
         this.questLogDisplayGroup.add(questDescription);
         quests.forEach((quest, index) => {
             const questName = this.add.text(32, 32 + 20 * index, quest.questName, textOptions);
             this.questLogDisplayGroup.add(questName);
-            const questDescriptionText = quests[index].questState.descriptions.map(descriptionIndex => quests[index].questDescriptions[descriptionIndex]).join('\n\n');
+            const questDescriptionText = this._getQuestDescriptionText(quests[index]);
             questName.setInteractive({useHandCursor: true});
             questName.on('pointerdown', () => {
                 questDescription.setText(questDescriptionText);
             })
         })
+    }
 
-
+    private _getQuestDescriptionText(quest: Quest) {
+        let description = '';
+        quest.currentStates.forEach(state => {
+            if (quest.availableStates[state] !== '') {
+                description += quest.availableStates[state] + '\n\n'
+            }
+        })
+        return description
     }
 }

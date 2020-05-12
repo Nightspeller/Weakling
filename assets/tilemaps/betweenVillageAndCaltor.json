@@ -1,4 +1,4 @@
-{ "compressionlevel":-1,
+{ "compressionlevel":0,
  "editorsettings":
     {
      "export":
@@ -210,7 +210,7 @@
         {
          "draworder":"topdown",
          "id":11,
-         "name":"Items",
+         "name":"Containers",
          "objects":[
                 {
                  "gid":46,
@@ -219,19 +219,14 @@
                  "name":"Secret stash",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"copper-pieces"
+                         "value":"[{\"itemId\": \"copper-pieces\", \"quantity\": 8}]"
                         }, 
                         {
-                         "name":"keepImage",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"quantity",
+                         "name":"openedFrame",
                          "type":"int",
-                         "value":8
+                         "value":45
                         }, 
                         {
                          "name":"secret",
@@ -239,11 +234,11 @@
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1312,
-                 "y":96
+                 "y":64
                 }, 
                 {
                  "gid":982,
@@ -252,21 +247,21 @@
                  "name":"Apple 1",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }, 
                         {
-                         "name":"quantity",
+                         "name":"openedFrame",
                          "type":"int",
-                         "value":2
+                         "value":-1
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1440,
-                 "y":416
+                 "y":384
                 }, 
                 {
                  "gid":2147484630,
@@ -275,21 +270,16 @@
                  "name":"Apple 2",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1472,
-                 "y":416
+                 "y":384
                 }, 
                 {
                  "gid":982,
@@ -298,21 +288,21 @@
                  "name":"Apple 5",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }, 
                         {
-                         "name":"quantity",
+                         "name":"openedFrame",
                          "type":"int",
-                         "value":2
+                         "value":-1
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1440,
-                 "y":512
+                 "y":480
                 }, 
                 {
                  "gid":982,
@@ -321,21 +311,16 @@
                  "name":"Apple 9",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1632,
-                 "y":608
+                 "y":576
                 }, 
                 {
                  "gid":982,
@@ -344,21 +329,16 @@
                  "name":"Apple 4",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1728,
-                 "y":416
+                 "y":384
                 }, 
                 {
                  "gid":2147484630,
@@ -367,21 +347,16 @@
                  "name":"Apple 7",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1760,
-                 "y":512
+                 "y":480
                 }, 
                 {
                  "gid":2147484630,
@@ -390,21 +365,16 @@
                  "name":"Apple 3",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1568,
-                 "y":416
+                 "y":384
                 }, 
                 {
                  "gid":982,
@@ -413,21 +383,16 @@
                  "name":"Apple 10",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1728,
-                 "y":608
+                 "y":576
                 }, 
                 {
                  "gid":2147484630,
@@ -436,21 +401,16 @@
                  "name":"Apple 8",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1472,
-                 "y":608
+                 "y":576
                 }, 
                 {
                  "gid":982,
@@ -459,33 +419,17 @@
                  "name":"Apple 6",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"apple"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":2
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":1536,
-                 "y":512
+                 "y":480
                 }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":12,
-         "name":"Containers",
-         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -506,8 +450,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1824,
-                 "y":96
+                 "x":704,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -672,7 +616,7 @@
                  "visible":true,
                  "width":32,
                  "x":672,
-                 "y":320
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -684,7 +628,7 @@
  "nextobjectid":23,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"2020.04.10",
  "tileheight":32,
  "tilesets":[
         {
@@ -695,6 +639,7 @@
          "imagewidth":272,
          "margin":1,
          "name":"base",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":1064,
          "tileheight":32,
@@ -10432,6 +10377,7 @@
          "imagewidth":408,
          "margin":1,
          "name":"base-addition",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":768,
          "tileheight":32,

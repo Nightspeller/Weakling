@@ -1,4 +1,4 @@
-{ "compressionlevel":-1,
+{ "compressionlevel":0,
  "editorsettings":
     {
      "export":
@@ -196,7 +196,7 @@
                          "visible":true,
                          "width":32,
                          "x":992,
-                         "y":512
+                         "y":480
                         }, 
                         {
                          "gid":512,
@@ -208,7 +208,7 @@
                          "visible":true,
                          "width":32,
                          "x":1056,
-                         "y":416
+                         "y":384
                         }, 
                         {
                          "gid":512,
@@ -220,7 +220,7 @@
                          "visible":true,
                          "width":32,
                          "x":1184,
-                         "y":512
+                         "y":480
                         }],
                  "opacity":1,
                  "type":"objectgroup",
@@ -318,7 +318,7 @@
                  "visible":true,
                  "width":32,
                  "x":352,
-                 "y":448
+                 "y":416
                 }, 
                 {
                  "gid":2098,
@@ -330,7 +330,7 @@
                  "visible":true,
                  "width":32,
                  "x":704,
-                 "y":288
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -370,7 +370,7 @@
  "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"2020.05.07",
  "tileheight":32,
  "tilesets":[
         {
@@ -381,6 +381,7 @@
          "imagewidth":272,
          "margin":1,
          "name":"base",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":1064,
          "tileheight":32,
@@ -9999,6 +10000,7 @@
          "imagewidth":408,
          "margin":1,
          "name":"base-addition",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":768,
          "tileheight":32,
@@ -17803,6 +17805,7 @@
          "imagewidth":102,
          "margin":1,
          "name":"male12-1",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":12,
          "tileheight":32,
@@ -17816,6 +17819,7 @@
          "imagewidth":102,
          "margin":1,
          "name":"male14-2",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":12,
          "tileheight":32,
@@ -17829,6 +17833,7 @@
          "imagewidth":102,
          "margin":1,
          "name":"male13-1",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":12,
          "tileheight":32,

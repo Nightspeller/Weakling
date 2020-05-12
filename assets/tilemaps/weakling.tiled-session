@@ -1,0 +1,250 @@
+{
+    "activeFile": "weaklingsCave.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "exportAsImage.drawTileGrid": false,
+    "exportAsImage.includeBackgroundColor": false,
+    "exportAsImage.useCurrentScale": true,
+    "exportAsImage.visibleLayersOnly": true,
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/serjn/WebstormProjects/weakling/assets/images/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1126.5454545454545,
+                "y": 785.0909090909091
+            }
+        },
+        "C:/Users/serjn/WebstormProjects/weakling/assets/stash/tilesets/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx": {
+            "scale": 2,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 1511.5,
+                "y": 289.75
+            }
+        },
+        "backCave.tmx": {
+            "scale": 3.265625,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 208.22966507177028,
+                "y": 160
+            }
+        },
+        "betweenVillageAndCaltor.json": {
+            "scale": 1.0706967213114753,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 944.2449760765551,
+                "y": 400.20669856459335
+            }
+        },
+        "betweenVillageAndCaltor.tmx": {
+            "scale": 1,
+            "selectedLayer": 16,
+            "viewCenter": {
+                "x": 956,
+                "y": 559.5
+            }
+        },
+        "betweenVillageAndDungeon.tmx": {
+            "scale": 1,
+            "selectedLayer": 14,
+            "viewCenter": {
+                "x": 759,
+                "y": 421.5
+            }
+        },
+        "booksStore.tmx": {
+            "scale": 4.403645833333333,
+            "selectedLayer": 17,
+            "viewCenter": {
+                "x": 160.09461856889416,
+                "y": 128.1892371377883
+            }
+        },
+        "caltor.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 2107,
+                "y": 2605.5
+            }
+        },
+        "crypt.tmx": {
+            "scale": 4.403645833333333,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 160.09461856889416,
+                "y": 192
+            }
+        },
+        "dungeon.tmx": {
+            "scale": 3,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 176.66666666666669,
+                "y": 751.1666666666666
+            }
+        },
+        "eldersCave.tmx": {
+            "scale": 3.9505580357142858,
+            "selectedLayer": 12,
+            "viewCenter": {
+                "x": 240.72548521061108,
+                "y": 201.87021498997092
+            }
+        },
+        "fight.tmx": {
+            "scale": 2.3595625,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 400.70987736073954,
+                "y": 320.1864752470002
+            }
+        },
+        "hargkakhsCave.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 138.90909090909093,
+                "y": 228.2727272727273
+            }
+        },
+        "hermitsTower.tmx": {
+            "scale": 3,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 144.16666666666663,
+                "y": 575.6666666666666
+            }
+        },
+        "house.tmx": {
+            "scale": 2.3595625,
+            "selectedLayer": 14,
+            "viewCenter": {
+                "x": 383.7575821788997,
+                "y": 319.97457155722725
+            }
+        },
+        "interface.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 384.5,
+                "y": 304
+            }
+        },
+        "map1.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 662.25,
+                "y": 358.25
+            }
+        },
+        "nahkhasCave.json": {
+            "scale": 4.6089843749999995,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 160.1220442410374,
+                "y": 192.12475633528265
+            }
+        },
+        "nahkhasCave.tmx": {
+            "scale": 4.6089843749999995,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 159.79659293160438,
+                "y": 191.79930502584963
+            }
+        },
+        "tavern.tmx": {
+            "scale": 2,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 491,
+                "y": 348.25
+            }
+        },
+        "test.tmx": {
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 217.16666666666666,
+                "y": 242
+            }
+        },
+        "village.tmx": {
+            "scale": 2,
+            "selectedLayer": 15,
+            "viewCenter": {
+                "x": 799.75,
+                "y": 640
+            }
+        },
+        "village2.tmx": {
+            "scale": 1.1566482843137254,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 784.5946017535031,
+                "y": 640.64418721691
+            }
+        },
+        "weaklingsCave.tmx": {
+            "scale": 4.6089843749999995,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 128.0108483769811,
+                "y": 191.90778879566068
+            }
+        }
+    },
+    "frame.defaultDuration": 100,
+    "map.fixedSize": true,
+    "map.height": 8,
+    "map.lastUsedExportFilter": "JSON map files (*.json)",
+    "map.layerDataFormat": 1,
+    "map.orientation": 1,
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 10,
+    "openFiles": [
+        "hermitsTower.tmx",
+        "house.tmx",
+        "interface.tmx",
+        "nahkhasCave.tmx",
+        "weaklingsCave.tmx",
+        "village.tmx"
+    ],
+    "project": "weakling.tiled-project",
+    "property.type": "string",
+    "recentFiles": [
+        "betweenVillageAndDungeon.tmx",
+        "hermitsTower.tmx",
+        "house.tmx",
+        "interface.tmx",
+        "nahkhasCave.tmx",
+        "village.tmx",
+        "weaklingsCave.tmx",
+        "base.tsx",
+        "male17-3.tsx",
+        "hargkakhsCave.tmx",
+        "crypt.tmx",
+        "booksStore.tmx"
+    ],
+    "tileset.embedInMap": false,
+    "tileset.lastUsedExportFilter": "All Files (*)",
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    },
+    "tileset.transparentColor": "#ff00ff",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
+}

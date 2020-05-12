@@ -34,24 +34,19 @@ export class VillageScene extends GeneralLocation {
             mapObjectName: 'Elder Guarthh',
             initDialog: elderFirstTimeDialog,
             interactionCallback: (param) => {
-                this.player.updateQuest('bigCaltorTrip', { questState: { state: 'talkedWithElder', descriptions: [0, 1] } });
+                this.player.updateQuest('bigCaltorTrip', 'talkedToElder');
                 elder.setDialog(elderSecondTimeDialog, (param) => {
                     if (param === 'readyToGo') {
                         elder.image.destroy(true);
                         this.player.party.push(elderInstance);
-                        this.player.updateQuest('bigCaltorTrip', { questState: { state: 'readyToGo', descriptions: [0, 1, 2, 3, 4] } });
+                        this.player.updateQuest('bigCaltorTrip', 'readyToGo');
                     }
                 });
                 nahkha.setDialog(nahkhaAfterTheElderDialog, (param) => {
                     if (param === 'basketsObtained') {
                         nahkha.setDialog(nahkhaAfterGoodsObtainedDialog);
                         this.player.addItemToInventory('basket', 10);
-                        if (this.player.getQuestById('bigCaltorTrip').questState.state === 'someGoodsObtained') {
-                            this.player.updateQuest('bigCaltorTrip', { questState: { state: 'allGoodsObtained', descriptions: [0, 1, 2, 3] } });
-                        }
-                        else {
-                            this.player.updateQuest('bigCaltorTrip', { questState: { state: 'someGoodsObtained', descriptions: [0, 1, 3] } });
-                        }
+                        this.player.updateQuest('bigCaltorTrip', 'basketsObtained');
                     }
                 });
             }
@@ -122,31 +117,25 @@ export class VillageScene extends GeneralLocation {
                     this.player.addItemToInventory('copper-key').specifics.opens = 'hargkakhsChest';
                     hargkakh.setDialog(hargkakhSecondTryDialog, (param) => {
                         if (param === 'mineralsObtained') {
-                            mineralsObtainedFromHargkakh();
+                            hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
+                            this.player.addItemToInventory('minerals', 10);
+                            this.player.updateQuest('bigCaltorTrip', 'mineralsObtained');
                         }
                     });
                 }
                 if (param === 'mineralsObtained') {
-                    mineralsObtainedFromHargkakh();
+                    hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
+                    this.player.addItemToInventory('minerals', 10);
+                    this.player.updateQuest('bigCaltorTrip', 'mineralsObtained');
                 }
             }
         });
-        const mineralsObtainedFromHargkakh = () => {
-            hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
-            this.player.addItemToInventory('minerals', 10);
-            if (this.player.getQuestById('bigCaltorTrip').questState.state === 'someGoodsObtained') {
-                this.player.updateQuest('bigCaltorTrip', { questState: { state: 'allGoodsObtained', descriptions: [0, 1, 3, 2] } });
-            }
-            else {
-                this.player.updateQuest('bigCaltorTrip', { questState: { state: 'someGoodsObtained', descriptions: [0, 1, 2] } });
-            }
-        };
         this.events.on('wake', (scene) => {
-            if (this.player.getQuestById('bigCaltorTrip').questState.state === 'goodsSold') {
+            if (this.player.getQuestById('bigCaltorTrip').currentStates.includes('goodsSold')) {
                 mitikhha.setDialog(mitikhhaWelcomeBackDialog, () => {
                     mitikhha.image.destroy(true);
                 });
-                this.player.updateQuest('bigCaltorTrip', { questState: { state: 'someGoodsObtained', descriptions: [0, 1, 2, 3, 4, 5, 6] } });
+                this.player.updateQuest('bigCaltorTrip', 'completed');
             }
         });
     }

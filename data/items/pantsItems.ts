@@ -3,7 +3,7 @@ export const pantsItems: { [key: string]: ItemData } = {
         itemId: 'leather-pants',
         displayName: 'Leather pants',
         description: 'Basic leather pants',
-        slot: ['body', 'pants'],
+        slot: ['pants', 'backpack'],
         sprite: {key: 'icon-item-set', frame: 123},
         stackable: false,
         modified: false,

@@ -1,4 +1,4 @@
-{ "compressionlevel":-1,
+{ "compressionlevel":0,
  "editorsettings":
     {
      "export":
@@ -214,18 +214,28 @@
          "name":"Containers",
          "objects":[
                 {
-                 "gid":1362,
+                 "gid":66,
                  "height":32,
                  "id":2,
-                 "name":"",
+                 "name":"Secret stash",
                  "properties":[
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"rope\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":65
+                        }, 
                         {
                          "name":"secret",
                          "type":"bool",
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":0,
@@ -241,7 +251,7 @@
  "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"2020.04.10",
  "tileheight":32,
  "tilesets":[
         {
@@ -252,6 +262,7 @@
          "imagewidth":272,
          "margin":1,
          "name":"base",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":1064,
          "tileheight":32,
@@ -9918,6 +9929,7 @@
          "imagewidth":408,
          "margin":1,
          "name":"base-addition",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":768,
          "tileheight":32,

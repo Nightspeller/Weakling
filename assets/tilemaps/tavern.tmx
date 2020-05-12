@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="15">
+<map version="1.2" tiledversion="2020.05.07" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="15">
  <editorsettings>
   <export target="tavern.json" format="json"/>
  </editorsettings>
@@ -74,9 +74,9 @@
  </group>
  <group id="10" name="Doors">
   <objectgroup id="14" name="Doors Objects">
-   <object id="5" name="Door 1" gid="512" x="992" y="512" width="32" height="32"/>
-   <object id="6" name="Door 3" gid="512" x="1056" y="416" width="32" height="32"/>
-   <object id="7" name="Door 2" gid="512" x="1184" y="512" width="32" height="32"/>
+   <object id="5" name="Door 1" gid="512" x="992" y="480" width="32" height="32"/>
+   <object id="6" name="Door 3" gid="512" x="1056" y="384" width="32" height="32"/>
+   <object id="7" name="Door 2" gid="512" x="1184" y="480" width="32" height="32"/>
   </objectgroup>
   <layer id="11" name="Doors Collisions" width="40" height="22">
    <properties>
@@ -102,8 +102,8 @@
   </object>
  </objectgroup>
  <objectgroup id="18" name="NPCs">
-  <object id="13" name="Farmer Joe" type="NPC" gid="2127" x="352" y="448" width="32" height="32"/>
-  <object id="14" name="Bartender" type="NPC" gid="2098" x="704" y="288" width="32" height="32"/>
+  <object id="13" name="Farmer Joe" type="NPC" gid="2127" x="352" y="416" width="32" height="32"/>
+  <object id="14" name="Bartender" type="NPC" gid="2098" x="704" y="256" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="3" name="Waypoints">
   <object id="2" name="Caltor" type="Waypoint" x="704" y="672" width="32" height="32">

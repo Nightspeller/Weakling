@@ -130,7 +130,7 @@ export class BattleScene extends GeneralLocation {
         });
     }
     exitBattle(isPartyWon) {
-        console.log('Switching from the battle scene to ', this.prevSceneKey);
+        console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'} Switching from the battle scene to ${this.prevSceneKey}. Name of object to remove: ${this.enemyName}`);
         if (isPartyWon === true) {
             this.scene.run(this.prevSceneKey, { defeatedEnemy: this.enemyName });
         }

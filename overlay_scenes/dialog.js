@@ -124,13 +124,15 @@ export class DialogScene extends GeneralOverlayScene {
         }
     }
     closeScene(param = 'fastEnd') {
-        var _a, _b;
+        var _a;
         this.input.keyboard.off('keydown-SPACE');
         ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"].forEach(keyCode => this.input.keyboard.off(`keyup-${keyCode}`));
         (_a = this.timedEvent) === null || _a === void 0 ? void 0 : _a.remove();
         this.dialogDisplayGroup.clear(true, true);
-        (_b = this.closeCallback) === null || _b === void 0 ? void 0 : _b.call(this, param);
         super.closeScene();
+        if (this.closeCallback) {
+            this.closeCallback(param);
+        }
     }
     _setText(text, animate) {
         return new Promise(resolve => {

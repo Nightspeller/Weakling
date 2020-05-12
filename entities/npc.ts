@@ -7,17 +7,19 @@ export default class Npc {
     public name: string;
     public image: Phaser.Physics.Arcade.Image;
 
-    constructor({
-                    scene,
-                    name,
-                    mapObjectName,
-                    mapObjectLayer = 'NPCs',
-                    texture,
-                    frame,
-                    initDialog,
-                    items= [],
-                    interactionCallback= () => {}
-                }: NpcOptions
+    constructor(
+        {
+            scene,
+            name,
+            mapObjectName,
+            mapObjectLayer = 'NPCs',
+            texture,
+            frame,
+            initDialog,
+            items = [],
+            interactionCallback = () => {
+            }
+        }: NpcOptions
     ) {
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
@@ -31,8 +33,11 @@ export default class Npc {
             this.interactionCallback = interactionCallback;
 
             this.image = scene.createTrigger({
-                objectName: mapObject.name,
-                objectLayer: mapObjectLayer,
+                name: mapObject.name,
+                triggerX: mapObject.x,
+                triggerY: mapObject.y,
+                triggerW: mapObject.width,
+                triggerH: mapObject.height,
                 texture: texture,
                 frame: frame,
                 callback: () => {
@@ -49,8 +54,11 @@ export default class Npc {
             }).image;
         } else {
             this.image = scene.createTrigger({
-                objectName: mapObject.name,
-                objectLayer: mapObjectLayer,
+                name: mapObject.name,
+                triggerX: mapObject.x,
+                triggerY: mapObject.y,
+                triggerW: mapObject.width,
+                triggerH: mapObject.height,
                 texture: texture,
                 frame: frame,
                 callback: () => {

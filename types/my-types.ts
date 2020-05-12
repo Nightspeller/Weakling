@@ -133,8 +133,11 @@ interface DialogOptions extends OverlaySceneOptions {
 }
 
 interface TriggerParams {
-    objectLayer?: string,
-    objectName: string;
+    name,
+    triggerX,
+    triggerY,
+    triggerW,
+    triggerH,
     callback?: Function;
     texture?: string;
     frame?: number;
@@ -142,14 +145,15 @@ interface TriggerParams {
     offsetX?: number;
     offsetY?: number;
     singleUse?: boolean;
+    isSecret?: boolean;
 }
 
 interface Quest {
     questId: string;
     questName: string;
-    questDescriptions: string[];
     questReward: { items: {itemId: string; quantity: number}[], xp: number }
-    questState:  {state: string, descriptions: number[]};
+    availableStates: {[key: string]: string}
+    currentStates: string[];
 }
 
 interface NpcOptions {

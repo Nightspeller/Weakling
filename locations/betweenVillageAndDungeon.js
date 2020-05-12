@@ -16,8 +16,13 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
         super.create('betweenVillageAndDungeon');
         let currentDialog = firstTimePatchDialog;
         //TODO: place plants on the proper places in array and field when some of them are collected and some are not
+        const patchMapObject = this.getMapObject(`Your patch`);
         this.createTrigger({
-            objectName: 'Your patch',
+            name: patchMapObject.name,
+            triggerX: patchMapObject.x,
+            triggerY: patchMapObject.y,
+            triggerW: patchMapObject.width,
+            triggerH: patchMapObject.height,
             callback: () => {
                 const plantables = this.player.inventory.filter(item => { var _a; return (_a = item.specifics) === null || _a === void 0 ? void 0 : _a.plantable; });
                 const updatedDialog = JSON.parse(JSON.stringify(currentDialog));
@@ -72,8 +77,13 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
         const y = (plant.tileIndex - x) / 3;
         if (plant.grown) {
             this.erasePlant(plant.tileIndex);
-            this.createTrigger({
-                objectName: `Patch ${x},${y}`,
+            const mapObject = this.getMapObject(`Patch ${x},${y}`);
+            const trigger = this.createTrigger({
+                name: mapObject.name,
+                triggerX: mapObject.x,
+                triggerY: mapObject.y,
+                triggerW: mapObject.width,
+                triggerH: mapObject.height,
                 texture: itemsData[plant.plantId].sprite.key,
                 frame: itemsData[plant.plantId].sprite.frame,
                 singleUse: true,
@@ -82,6 +92,11 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
                     this.planted = this.planted.filter(plantInList => plantInList.tileIndex !== plant.tileIndex);
                 },
             });
+            // TODO: something weird is happening when create this trigger - it is displaced from requested position, thus immediate correction is needed.
+            // it started when system was reworked to use createTrigger from coords and not mapObjects
+            setTimeout(() => {
+                trigger.image.setPosition(mapObject.x, mapObject.y);
+            }, 0);
         }
         else {
             this.map.putTileAt(157, 12 + x, 15 + y, true, 'Patch Plants');

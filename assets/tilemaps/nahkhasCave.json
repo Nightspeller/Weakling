@@ -1,4 +1,4 @@
-{ "compressionlevel":-1,
+{ "compressionlevel":0,
  "editorsettings":
     {
      "export":
@@ -155,7 +155,7 @@
         {
          "draworder":"topdown",
          "id":12,
-         "name":"Items",
+         "name":"Containers",
          "objects":[
                 {
                  "gid":1395,
@@ -164,17 +164,12 @@
                  "name":"Yellow Fingers Sapling",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"yellow-fingers-sapling"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":1
+                         "value":"[{\"itemId\": \"yellow-fingers-sapling\", \"quantity\": 1}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":256,
@@ -187,17 +182,12 @@
                  "name":"Pinky Pie Sapling",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"pinky-pie-sapling"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":1
+                         "value":"[{\"itemId\": \"pinky-pie-sapling\", \"quantity\": 1}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":256,
@@ -210,17 +200,12 @@
                  "name":"Rocky Rose Sapling",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"rocky-rose-sapling"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":1
+                         "value":"[{\"itemId\": \"rocky-rose-sapling\", \"quantity\": 1}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":256,
@@ -233,22 +218,19 @@
                  "name":"Primula Sapling",
                  "properties":[
                         {
-                         "name":"itemId",
+                         "name":"items",
                          "type":"string",
-                         "value":"primula-sapling"
-                        }, 
-                        {
-                         "name":"quantity",
-                         "type":"int",
-                         "value":1
+                         "value":"[{\"itemId\": \"primula-sapling\", \"quantity\": 1}]"
                         }],
                  "rotation":0,
-                 "type":"Item",
+                 "type":"Container",
                  "visible":true,
                  "width":32,
                  "x":256,
                  "y":192
                 }],
+         "offsetx":0,
+         "offsety":-32,
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -315,7 +297,7 @@
  "nextobjectid":8,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"2020.04.10",
  "tileheight":32,
  "tilesets":[
         {
@@ -326,6 +308,7 @@
          "imagewidth":272,
          "margin":1,
          "name":"base",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":1064,
          "tileheight":32,
@@ -10799,6 +10782,7 @@
          "imagewidth":408,
          "margin":1,
          "name":"base-addition",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":768,
          "tileheight":32,
@@ -17725,6 +17709,7 @@
          "imagewidth":512,
          "margin":0,
          "name":"icon-item-set",
+         "objectalignment":"topleft",
          "spacing":0,
          "tilecount":320,
          "tileheight":32,

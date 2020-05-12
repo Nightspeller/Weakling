@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "phaser": "^3.22.0",
+    "phaser": "^3.23.0",
     "typescript": "^3.8.3"
   }
 }

@@ -1,6 +1,7 @@
 import Item from "./item.js";
 export default class Npc {
-    constructor({ scene, name, mapObjectName, mapObjectLayer = 'NPCs', texture, frame, initDialog, items = [], interactionCallback = () => { } }) {
+    constructor({ scene, name, mapObjectName, mapObjectLayer = 'NPCs', texture, frame, initDialog, items = [], interactionCallback = () => {
+    } }) {
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
         if (mapObject['gid'] && !texture) {
@@ -12,8 +13,11 @@ export default class Npc {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback;
             this.image = scene.createTrigger({
-                objectName: mapObject.name,
-                objectLayer: mapObjectLayer,
+                name: mapObject.name,
+                triggerX: mapObject.x,
+                triggerY: mapObject.y,
+                triggerW: mapObject.width,
+                triggerH: mapObject.height,
                 texture: texture,
                 frame: frame,
                 callback: () => {
@@ -31,8 +35,11 @@ export default class Npc {
         }
         else {
             this.image = scene.createTrigger({
-                objectName: mapObject.name,
-                objectLayer: mapObjectLayer,
+                name: mapObject.name,
+                triggerX: mapObject.x,
+                triggerY: mapObject.y,
+                triggerW: mapObject.width,
+                triggerH: mapObject.height,
                 texture: texture,
                 frame: frame,
                 callback: () => {

@@ -24,6 +24,14 @@ import {QuestLogScene} from "./overlay_scenes/questLog.js";
 import {CryptScene} from "./locations/crypt.js";
 import {BackCaveScene} from "./locations/backCave.js";
 import {GreatPlainsScene} from "./locations/greatPlains.js";
+import {BooksStoreScene} from "./locations/booksStore.js";
+
+export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
+    BetweenVillageAndCaltorScene,
+    DungeonScene,
+    CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CryptScene, BooksStoreScene,
+    VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene, BackCaveScene,
+    GreatPlainsScene];
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
     title: 'Weakling!',
@@ -49,13 +57,8 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
         MainMenuScene,
         OptionsScene,
         IntroScene,
-        BetweenVillageAndDungeonScene,
-        BetweenVillageAndCaltorScene,
-        DungeonScene,
-        CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CharacterPickerScene, CryptScene,
-        VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene, BackCaveScene,
-        GreatPlainsScene,
-        ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene
+        ...LOCATION_SCENES,
+        CharacterPickerScene, ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene
     ]
 };
 

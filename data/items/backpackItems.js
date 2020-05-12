@@ -1,4 +1,43 @@
 export const backpackItems = {
+    'mirror-of-travel': {
+        itemId: 'mirror-of-travel',
+        displayName: 'Mirror of travel',
+        description: 'Powerful magic artifact allowing user to travel to the distant lands in a blink of an eye',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 177 },
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 100,
+        buyPrice: 200
+    },
+    'jeremaya-book': {
+        itemId: 'jeremaya-book',
+        displayName: 'The biography of Jeremaya the Bandit',
+        description: 'The book contains the description of life and deeds of Jeremaya the Bandit, all the way up to his departure from Caltor.',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 213 },
+        stackable: false,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 50,
+        buyPrice: 100
+    },
+    'coal': {
+        itemId: 'coal',
+        displayName: 'Coal',
+        description: 'A piece of coal which can be used for alchemy or just to paint something on the wall.',
+        slot: ['backpack'],
+        sprite: { key: 'base', frame: 69 },
+        stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'sourgrass': {
         itemId: 'sourgrass',
         displayName: 'Sourgrass',
@@ -6,6 +45,19 @@ export const backpackItems = {
         slot: ['backpack'],
         sprite: { key: 'icon-item-set', frame: 189 },
         stackable: true,
+        modified: false,
+        currentSlot: null,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'rope': {
+        itemId: 'rope',
+        displayName: 'Rope',
+        description: 'Long and strong rope - best friend of any adventurer.',
+        slot: ['backpack'],
+        sprite: { key: 'icon-item-set', frame: 173 },
+        stackable: false,
         modified: false,
         currentSlot: null,
         specifics: {},

@@ -3,11 +3,13 @@ import {GeneralOverlayScene} from "./generalOverlayScene.js";
 import Sprite = Phaser.GameObjects.Sprite;
 import Item from "../entities/item.js";
 import {GAME_H, GAME_W, INVENTORY_ITEM_DESCRIPTION_H, INVENTORY_ITEM_DESCRIPTION_W} from "../config/constants.js";
+import {LOCATION_SCENES} from "../index.js";
 
 export class InventoryScene extends GeneralOverlayScene {
     private player: Player;
     private closeCallback: Function;
     private inventoryDisplayGroup: Phaser.GameObjects.Group;
+    private droppedItems: Item[];
 
     constructor() {
         super({key: 'Inventory'});
@@ -28,11 +30,13 @@ export class InventoryScene extends GeneralOverlayScene {
     public create() {
         super.create(this.parentSceneKey, this.opts);
         this.inventoryDisplayGroup = this.add.group();
+        this.droppedItems = [];
         this.showInventory();
         this.events.on('wake', (scene, {opts, closeCallback, prevScene}) => {
             this.parentSceneKey = prevScene;
             this.opts = {...this.opts, ...opts};
             this.closeCallback = closeCallback;
+            this.droppedItems = [];
             this.showInventory();
         });
         this.input.keyboard.on('keyup-' + 'I', () => this.closeScene());
@@ -76,19 +80,26 @@ export class InventoryScene extends GeneralOverlayScene {
         const itemInTargetSlot = this.player.inventory.find(item => item.currentSlot === targetSlotName);
 
         if (itemInTargetSlot !== undefined) {
-            const itemInTargetSlotImage = displayObjects.find(item => item.name === targetSlotName + 'image');
-            const originalSlot = displayObjects.find(slot => slot.name === currentItemSlotName) as Sprite;
-            const originalSlotX = originalSlot.x;
-            const originalSlotY = originalSlot.y;
-            this.tweens.add({
-                targets: itemInTargetSlotImage,
-                x: originalSlotX + 32,
-                y: originalSlotY + 32,
-                ease: 'Back.easeOut',
-                duration: 500
-            });
-            this.player.putItemInSlot(itemInTargetSlot, currentItemSlotName);
-            itemInTargetSlotImage.setName(currentItemSlotName + 'image')
+            let slotNameToCompare = currentItemSlotName;
+            if (currentItemSlotName.includes('quickSlot')) slotNameToCompare = 'quickSlot'
+            if (currentItemSlotName.includes('backpack')) slotNameToCompare = 'backpack'
+            if (!itemInTargetSlot.slot.includes(slotNameToCompare)) {
+                this._moveItemToBackpack(itemInTargetSlot);
+            } else {
+                const itemInTargetSlotImage = displayObjects.find(item => item.name === targetSlotName + 'image');
+                const originalSlot = displayObjects.find(slot => slot.name === currentItemSlotName) as Sprite;
+                const originalSlotX = originalSlot.x;
+                const originalSlotY = originalSlot.y;
+                this.tweens.add({
+                    targets: itemInTargetSlotImage,
+                    x: originalSlotX + 32,
+                    y: originalSlotY + 32,
+                    ease: 'Back.easeOut',
+                    duration: 500
+                });
+                this.player.putItemInSlot(itemInTargetSlot, currentItemSlotName);
+                itemInTargetSlotImage.setName(currentItemSlotName + 'image')
+            }
         }
         this.tweens.add({
             targets: movedItemImage,
@@ -182,6 +193,22 @@ export class InventoryScene extends GeneralOverlayScene {
         this._adjustQuickSlots(additionalQuickSlotsNumber, -1);
     }
 
+    private _moveItemToBackpack(item: Item) {
+        let itemMoved = false;
+        for (let k = 0; k < 5; k++) {
+            if (!itemMoved) {
+                for (let j = 0; j < 5; j++) {
+                    const testedSlot = `backpack${k}_${j}`;
+                    if (!this.player.inventory.find(item => item.currentSlot === testedSlot)) {
+                        this._placeItemInSlot(item.currentSlot, testedSlot);
+                        itemMoved = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     private _adjustQuickSlots(newQuickSlotsNumber, oldQuickSlotsNumber) {
         // todo: solve inventory overflow!!!
         const displayObjects = this.inventoryDisplayGroup.getChildren();
@@ -189,19 +216,7 @@ export class InventoryScene extends GeneralOverlayScene {
             for (let i = oldQuickSlotsNumber; i > newQuickSlotsNumber; i--) {
                 const itemToBeMoved = this.player.inventory.find(item => item.currentSlot === `quickSlot${i}`);
                 if (itemToBeMoved) {
-                    let itemMoved = false;
-                    for (let k = 0; k < 5; k++) {
-                        if (!itemMoved) {
-                            for (let j = 0; j < 5; j++) {
-                                const testedSlot = `backpack${k}_${j}`;
-                                if (!this.player.inventory.find(item => item.currentSlot === testedSlot)) {
-                                    this._placeItemInSlot(`quickSlot${i}`, testedSlot);
-                                    itemMoved = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                    this._moveItemToBackpack(itemToBeMoved);
                 }
                 displayObjects.find(obj => obj.name === `quickSlot${i}`).destroy(true);
             }
@@ -213,7 +228,7 @@ export class InventoryScene extends GeneralOverlayScene {
                     .setOrigin(0, 0).setDisplaySize(64, 64).setName(`quickSlot${i}`).setScrollFactor(0).setDepth(this.opts.baseDepth)
                     .setInteractive({dropZone: true});
 
-                const slotNameText = this.add.text(quickSlot.getBottomLeft().x, quickSlot.getBottomLeft().y, `Quick Slot ${i+1}`, {
+                const slotNameText = this.add.text(quickSlot.getBottomLeft().x, quickSlot.getBottomLeft().y, `Quick Slot ${i + 1}`, {
                     font: '16px monospace',
                     color: '#000000',
                     backgroundColor: '#f0d191',
@@ -361,6 +376,7 @@ Actions: ${this.player.getAvailableActions().join(', ')}
         const containerX = container.x < GAME_W / 2 ? container.x + 32 : container.x - 32 - INVENTORY_ITEM_DESCRIPTION_W;
         const containerY = container.y < GAME_H / 2 ? container.y - 32 : container.y + 32 - INVENTORY_ITEM_DESCRIPTION_H;
         const descriptionContainer = this.add.container(containerX, containerY).setDepth(this.opts.baseDepth + 2);
+        this.inventoryDisplayGroup.add(descriptionContainer);
         outerZone.once('pointerdown', (pointer, eventX, eventY, event) => {
             event.stopPropagation();
             outerZone.destroy(true);
@@ -381,10 +397,20 @@ Actions: ${this.player.getAvailableActions().join(', ')}
             },
         };
 
+        const dropItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 32-5, 5, 'icon-item-set', 205).setOrigin(0,0);
+        dropItemButton.setInteractive({useHandCursor: true});
+        dropItemButton.once('pointerdown', (pointer, eventX, eventY, event) => {
+            this._dropItem(item);
+            event.stopPropagation();
+            outerZone.destroy(true);
+            descriptionContainer.destroy(true);
+        });
+        descriptionContainer.add(dropItemButton);
+
         const name = this.add.text(5, 5, item.displayName, textStyle).setOrigin(0, 0);
         descriptionContainer.add(name);
         name.setFontStyle('bold');
-        const description = this.add.text(5, name.getBottomLeft().y + 10, item.description, textStyle).setOrigin(0, 0);
+        const description = this.add.text(5, name.getBottomLeft().y + 15, item.description, textStyle).setOrigin(0, 0);
         descriptionContainer.add(description);
 
         let lastTextPosition = description.getBottomLeft().y;
@@ -420,5 +446,61 @@ Actions: ${this.player.getAvailableActions().join(', ')}
         const price = this.add.text(5, lastTextPosition + 10, `Sell price, for 1: ${item.sellPrice} copper\nBuy price, for 1: ${item.buyPrice} copper`, textStyle).setOrigin(0, 0);
         descriptionContainer.add(price);
         lastTextPosition = price.getBottomLeft().y;
+
+        if (item.itemId === 'mirror-of-travel') {
+            const travelButton = this.add.text(5, lastTextPosition + 10, `Fast travel`, textStyle).setOrigin(0, 0);
+            travelButton.setInteractive({useHandCursor: true});
+            descriptionContainer.add(travelButton);
+            lastTextPosition = travelButton.getBottomLeft().y;
+
+            travelButton.once('pointerdown', () => {
+                const outerZone = this.add.zone(0, 0, GAME_W, GAME_H).setOrigin(0, 0).setDepth(this.opts.baseDepth + 1).setInteractive();
+                const locationsDialogContainer = this.add.container(0, 0).setDepth(this.opts.baseDepth + 3);
+                this.inventoryDisplayGroup.add(locationsDialogContainer);
+
+                outerZone.once('pointerdown', (pointer, eventX, eventY, event) => {
+                    event.stopPropagation();
+                    outerZone.destroy(true);
+                    locationsDialogContainer.destroy(true);
+                });
+
+                const background = this.add.graphics();
+                locationsDialogContainer.add(background);
+
+                let lastButtonPosition = 5;
+                LOCATION_SCENES.forEach(location => {
+                    const locationName = location.name.split('Scene')[0];
+                    const locationButton = this.add.text(5, lastButtonPosition + 10, locationName, textStyle).setOrigin(0, 0);
+                    locationButton.setInteractive({useHandCursor: true});
+                    locationsDialogContainer.add(locationButton);
+                    lastButtonPosition = locationButton.getBottomLeft().y;
+
+                    locationButton.once('pointerdown', () => {
+                        this.closeScene({switchToScene: locationName});
+                    })
+                })
+                locationsDialogContainer.setPosition(GAME_W / 2 - INVENTORY_ITEM_DESCRIPTION_W / 2, GAME_H / 2 - lastButtonPosition / 2);
+                background.fillStyle(this.opts.backgroundColor, 1)
+                    .fillRect(0, 0, INVENTORY_ITEM_DESCRIPTION_W, lastButtonPosition + 15)
+                    .lineStyle(2, 0x000000)
+                    .strokeRect(0, 0, INVENTORY_ITEM_DESCRIPTION_W, lastButtonPosition + 15);
+
+            })
+        }
+    }
+
+    private _dropItem(item: Item) {
+        this.player.removeItemFromInventory(item, item.quantity);
+        const droppedItemImage = this.inventoryDisplayGroup.getChildren().find(image => image.name === item.currentSlot + 'image');
+        droppedItemImage.destroy(true);
+        if (item.currentSlot === 'belt') {
+            this._adjustQuickSlots(0, item?.specifics.quickSlots || 0);
+        }
+        this._drawCharacteristics();
+        this.droppedItems.push(item);
+    }
+
+    public closeScene(switchParam?) {
+        super.closeScene({...switchParam, droppedItems: this.droppedItems});
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.3" name="base-addition" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="768" columns="12">
+<tileset version="1.2" tiledversion="2020.04.10" name="base-addition" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="768" columns="12" objectalignment="topleft">
  <image source="../images-extruded/tilesets/base-addition.png" width="408" height="2176"/>
  <tile id="0">
   <properties>
