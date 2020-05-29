@@ -1,4 +1,5 @@
 import { backpackItems } from "./items/backpackItems.js";
+import { vesselsAndIngredients } from "./items/vesselsAndIngredients.js";
 import { bagItems } from "./items/bagItems.js";
 import { beltItems } from "./items/beltItems.js";
 import { bodyItems } from "./items/bodyItems.js";
@@ -14,6 +15,7 @@ import { ringsItems } from "./items/ringsItems.js";
 import { tailItems } from "./items/tailItems.js";
 export const itemsData = {
     ...backpackItems,
+    ...vesselsAndIngredients,
     ...bagItems,
     ...beltItems,
     ...bodyItems,

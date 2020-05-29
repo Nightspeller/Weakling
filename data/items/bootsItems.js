@@ -1,13 +1,13 @@
+import { backpackSlotNames, containerSlotNames } from "./itemSlots.js";
 export const bootsItems = {
     'leather-boots': {
         itemId: 'leather-boots',
         displayName: 'Leather boots',
         description: 'Basic leather boots',
-        slot: ['boots', 'backpack'],
+        possibleSlots: ['boots', ...backpackSlotNames, ...containerSlotNames],
         sprite: { key: 'icon-item-set', frame: 130 },
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             additionalCharacteristics: [
                 { 'defences.dodge': 1 },

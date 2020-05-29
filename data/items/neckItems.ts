@@ -1,13 +1,14 @@
+import {backpackSlotNames, containerSlotNames} from "./itemSlots.js";
+
 export const neckItems: { [key: string]: ItemData } = {
     'allpowerful-necklace': {
         itemId: 'allpowerful-necklace',
         displayName: 'All-powerful necklace',
         description: 'Unbelievably rare and powerful artifact, which improves it\'s owner in pretty much every way',
-        slot: ['neck', 'backpack'],
+        possibleSlots: ['neck', ...backpackSlotNames, ...containerSlotNames],
         sprite: {key: 'allpowerful-necklace', frame: null},
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             additionalCharacteristics: [
                 {'attributes.strength': 10},

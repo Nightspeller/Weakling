@@ -46,22 +46,26 @@ export class Player extends Adventurer {
             this.addItemToInventory('smoldering-ring', 1, 'ringRight');
             this.addItemToInventory('rope-belt', 1, 'belt');
             this.addItemToInventory('fancy-belt');
-            this.addItemToInventory('primula-flower');
+            this.addItemToInventory('primula-flower', 4);
             this.addItemToInventory('pinky-pie-sapling', 3);
             this.addItemToInventory('yellow-fingers-sapling', 3);
-            /*            this.addItemToInventory('minor-healing-potion');
-                        this.addItemToInventory('minor-healing-potion', 2);
-                        this.addItemToInventory('pinky-pie-sapling');
-                        this.addItemToInventory('yellow-fingers-sapling');
-                        this.addItemToInventory('primula-sapling');
-                        this.addItemToInventory('rocky-rose-sapling');
-                        this.addItemToInventory('fancy-belt');
-                        this.addItemToInventory('minor-healing-potion');
-                        this.addItemToInventory('minor-healing-potion', 2);
-                        this.addItemToInventory('leather-armor', 1, 'body');
-                        this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
-                        this.addItemToInventory('wooden-sword-weapon');
-                        this.addItemToInventory('rangers-hat');*/
+            this.addItemToInventory('carrot', 3);
+            this.addItemToInventory('small-weak-healing-potion', 2);
+            this.addItemToInventory('pinky-pie-sapling');
+            this.addItemToInventory('yellow-fingers-sapling');
+            this.addItemToInventory('primula-sapling');
+            this.addItemToInventory('rocky-rose-sapling');
+            this.addItemToInventory('fancy-belt');
+            this.addItemToInventory('sourgrass', 6);
+            this.addItemToInventory('small-weak-healing-potion', 2);
+            this.addItemToInventory('leather-armor', 1);
+            this.addItemToInventory('small-bottle', 3);
+            this.addItemToInventory('medium-bottle', 3);
+            this.addItemToInventory('big-bottle', 3);
+            this.addItemToInventory('giant-bottle', 3);
+            this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
+            this.addItemToInventory('rocky-rose-flower', 6);
+            this.addItemToInventory('hargkakhs-key');
             this.addQuest('theSelflessSpirit');
             this.updateQuest('theSelflessSpirit', 'falseNameLearned');
             this.updateQuest('theSelflessSpirit', 'falseNameCalled');
@@ -76,16 +80,6 @@ export class Player extends Adventurer {
         if (DEBUG)
             this.party = [this, elderInstance];
         this.addQuest('bigCaltorTrip');
-    }
-    getAvailableActions() {
-        let combinedActions = [...this.availableActions];
-        this.inventory.forEach(item => {
-            var _a, _b;
-            if (((_a = item.specifics) === null || _a === void 0 ? void 0 : _a.additionalActions) && !item.currentSlot.includes('backpack')) {
-                combinedActions = [...combinedActions, ...(_b = item.specifics) === null || _b === void 0 ? void 0 : _b.additionalActions];
-            }
-        });
-        return [...new Set(combinedActions)];
     }
     addQuest(questId) {
         if (!this.quests.find(existingQuest => existingQuest.questId === questId)) {

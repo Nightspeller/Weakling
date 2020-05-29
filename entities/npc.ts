@@ -1,4 +1,5 @@
 import Item from "./item.js";
+import {Trigger} from "./trigger.js";
 
 export default class Npc {
     public inventory: Item[];
@@ -32,7 +33,8 @@ export default class Npc {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback;
 
-            this.image = scene.createTrigger({
+            this.image = new Trigger({
+                scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
                 triggerY: mapObject.y,
@@ -53,7 +55,8 @@ export default class Npc {
                 }
             }).image;
         } else {
-            this.image = scene.createTrigger({
+            this.image = new Trigger({
+                scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
                 triggerY: mapObject.y,

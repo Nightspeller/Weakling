@@ -1,13 +1,14 @@
+import {backpackSlotNames, containerSlotNames} from "./itemSlots.js";
+
 export const handsItems: { [key: string]: ItemData } = {
     'wooden-sword-weapon': {
         itemId: 'wooden-sword-weapon',
         displayName: 'Wooden sword',
         description: 'Usually used for training rather than real fight, it is still better than nothing.',
-        slot: ['rightHand', 'leftHand', 'backpack'],
+        possibleSlots: ['rightHand', 'leftHand', ...backpackSlotNames, ...containerSlotNames],
         sprite: {key: 'icon-item-set', frame: 80},
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             damage: 5,
             additionalCharacteristics: [
@@ -22,11 +23,10 @@ export const handsItems: { [key: string]: ItemData } = {
         itemId: 'dagger-weapon',
         displayName: 'Iron dagger',
         description: 'Simple, but quick to draw and use weapon, more common for street fights rather than epic battles.',
-        slot: ['rightHand', 'leftHand', 'backpack'],
+        possibleSlots: ['rightHand', 'leftHand', ...backpackSlotNames, ...containerSlotNames],
         sprite: {key: 'icon-item-set', frame: 87},
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             damage: 10,
             additionalCharacteristics: [
@@ -41,11 +41,10 @@ export const handsItems: { [key: string]: ItemData } = {
         itemId: 'spirit-sword',
         displayName: 'Spirit sword',
         description: 'The sword left by the great hero, the protector of poor and weak - it can be used only for the good deeds.',
-        slot: ['rightHand', 'leftHand', 'backpack'],
+        possibleSlots: ['rightHand', 'leftHand', ...backpackSlotNames, ...containerSlotNames],
         sprite: {key: 'icon-item-set', frame: 84},
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             damage: 15,
             additionalCharacteristics: [
@@ -60,11 +59,10 @@ export const handsItems: { [key: string]: ItemData } = {
         itemId: 'spear-weapon',
         displayName: 'Wooden spear',
         description: 'Wooden spear with the stone tip - main weapon of Kobolds',
-        slot: ['rightHand', 'backpack'],
+        possibleSlots: ['rightHand', ...backpackSlotNames, ...containerSlotNames],
         sprite: {key: 'spear-weapon', frame: null},
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             damage: 10,
             additionalCharacteristics: [

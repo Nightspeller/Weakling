@@ -113,14 +113,15 @@ export class DialogScene extends GeneralOverlayScene {
         } else if (reply.checkInventory) {
             let allIsThere = true;
             reply.checkValue.forEach(requestedItem => {
-                if (!this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity)) {
+                const item = this.player.getInventoryItemById(requestedItem.itemId);
+                if (item === undefined || item.quantity < requestedItem.quantity) {
                     allIsThere = false;
                 }
             });
             if (allIsThere) {
                 if (reply.checkInventory === 'remove') {
                     reply.checkValue.forEach(requestedItem => {
-                        const item = this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity);
+                        const item = this.player.getInventoryItemById(requestedItem.itemId);
                         this.player.removeItemFromInventory(item, requestedItem.quantity);
                     });
                 }
@@ -208,7 +209,7 @@ export class DialogScene extends GeneralOverlayScene {
 
     private _showName() {
         if (this.speakerName) {
-            const name = this.add.text(this.opts.windowX+5, this.opts.windowY - 20, this.speakerName).setDepth(this.opts.baseDepth+1);
+            const name = this.add.text(this.opts.windowX + 5, this.opts.windowY - 20, this.speakerName).setDepth(this.opts.baseDepth + 1);
             const nameBackground = this.add.graphics()
                 .fillStyle(this.opts.backgroundColor, this.opts.backgroundAlpha)
                 .fillRect(this.opts.windowX, this.opts.windowY - 25, name.width + 10, name.height + 10)

@@ -9,7 +9,7 @@ import {CharacterPickerScene} from "./overlay_scenes/characterPicker.js";
 import {BattleScene} from "./battle/battle.js";
 import {DialogScene} from "./overlay_scenes/dialog.js";
 import {TavernScene} from "./locations/tavern.js";
-import {InventoryScene} from "./overlay_scenes/inventory.js";
+import {InventoryScene} from "./overlay_scenes/item-manupulators/inventory.js";
 import {HermitsTowerScene} from "./locations/hermitsTower.js";
 import {MainMenuScene} from "./scenes/mainMenu.js";
 import {WeaklingsCaveScene} from "./locations/weaklingsCave.js";
@@ -25,6 +25,8 @@ import {CryptScene} from "./locations/crypt.js";
 import {BackCaveScene} from "./locations/backCave.js";
 import {GreatPlainsScene} from "./locations/greatPlains.js";
 import {BooksStoreScene} from "./locations/booksStore.js";
+import {AlchemyStandScene} from "./overlay_scenes/item-manupulators/alchemyStandOverlay.js";
+import {ContainerOverlayScene} from "./overlay_scenes/item-manupulators/containerOverlayScene.js";
 
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
     BetweenVillageAndCaltorScene,
@@ -58,7 +60,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
         OptionsScene,
         IntroScene,
         ...LOCATION_SCENES,
-        CharacterPickerScene, ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene
+        CharacterPickerScene, ShopScene, BattleScene, DialogScene, InventoryScene, QuestLogScene, AlchemyStandScene, ContainerOverlayScene
     ]
 };
 

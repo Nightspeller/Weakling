@@ -1,13 +1,30 @@
+import { backpackSlotNames, containerSlotNames, quickSlotNames } from "./itemSlots.js";
 export const quickSlotItems = {
-    'minor-healing-potion': {
-        itemId: 'minor-healing-potion',
-        displayName: 'Minor healing potion',
-        description: 'Very basic healing potion.',
-        slot: ['quickSlot', 'backpack'],
-        sprite: { key: 'potion-sheet', frame: 0 },
+    'medium-weak-strength-potion': {
+        itemId: 'medium-weak-strength-potion',
+        displayName: 'Medium weak strength potion',
+        description: 'Very basic strength potion, medium size.',
+        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
+        sprite: { key: 'icon-item-set', frame: 157 },
         stackable: true,
         modified: false,
-        currentSlot: null,
+        quantity: null,
+        specifics: {
+            useEffects: [
+                { 'attributes.strength': 2 }
+            ],
+        },
+        sellPrice: 2,
+        buyPrice: 4
+    },
+    'small-weak-healing-potion': {
+        itemId: 'small-weak-healing-potion',
+        displayName: 'Minor weak healing potion',
+        description: 'Very basic healing potion.',
+        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
+        sprite: { key: 'icon-item-set', frame: 352 },
+        stackable: true,
+        modified: false,
         quantity: null,
         specifics: {
             useEffects: [
@@ -17,15 +34,65 @@ export const quickSlotItems = {
         sellPrice: 2,
         buyPrice: 4
     },
+    'medium-weak-healing-potion': {
+        itemId: 'medium-weak-healing-potion',
+        displayName: 'Medium weak healing potion',
+        description: 'Very basic healing potion, medium size.',
+        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
+        sprite: { key: 'icon-item-set', frame: 156 },
+        stackable: true,
+        modified: false,
+        quantity: null,
+        specifics: {
+            useEffects: [
+                { 'parameters.currentHealth': 10 }
+            ],
+        },
+        sellPrice: 2,
+        buyPrice: 4
+    },
+    'big-weak-healing-potion': {
+        itemId: 'big-weak-healing-potion',
+        displayName: 'Big weak healing potion',
+        description: 'Very basic healing potion, big size.',
+        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
+        sprite: { key: 'icon-item-set', frame: 144 },
+        stackable: true,
+        modified: false,
+        quantity: null,
+        specifics: {
+            useEffects: [
+                { 'parameters.currentHealth': 15 }
+            ],
+        },
+        sellPrice: 2,
+        buyPrice: 4
+    },
+    'giant-weak-healing-potion': {
+        itemId: 'giant-weak-healing-potion',
+        displayName: 'Giant weak healing potion',
+        description: 'Very basic healing potion, giant size.',
+        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
+        sprite: { key: 'icon-item-set', frame: 308 },
+        stackable: true,
+        modified: false,
+        quantity: null,
+        specifics: {
+            useEffects: [
+                { 'parameters.currentHealth': 20 }
+            ],
+        },
+        sellPrice: 2,
+        buyPrice: 4
+    },
     'trap-kit': {
         itemId: 'trap-kit',
         displayName: 'Trap kit',
         description: 'Simple trap kit',
-        slot: ['quickSlot', 'backpack'],
+        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
         sprite: { key: 'icon-item-set', frame: 174 },
         stackable: true,
         modified: false,
-        currentSlot: null,
         quantity: null,
         specifics: {
             additionalActions: ['setTrap']
@@ -37,11 +104,10 @@ export const quickSlotItems = {
         itemId: 'beer',
         displayName: 'Beer',
         description: 'Local beer.',
-        slot: ['quickSlot', 'backpack'],
+        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
         sprite: { key: 'icon-item-set', frame: 254 },
         stackable: true,
         modified: false,
-        currentSlot: null,
         quantity: null,
         specifics: {
             useEffects: [

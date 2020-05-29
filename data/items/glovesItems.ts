@@ -1,13 +1,14 @@
+import {backpackSlotNames, containerSlotNames} from "./itemSlots.js";
+
 export const glovesItems: { [key: string]: ItemData } = {
     'work-gloves': {
         itemId: 'work-gloves',
         displayName: 'Work gloves',
         description: 'Rough-made and simple, but think and reliable gloves ideal for heavy-lifting',
-        slot: ['gloves', 'backpack'],
+        possibleSlots: ['gloves', ...backpackSlotNames, ...containerSlotNames],
         sprite: {key: 'icon-item-set', frame: 128},
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             additionalCharacteristics: [
                 {'attributes.strength': 1}
@@ -21,11 +22,10 @@ export const glovesItems: { [key: string]: ItemData } = {
         itemId: 'leather-gloves',
         displayName: 'Leather gloves',
         description: 'Basic leather gloves',
-        slot: ['body', 'gloves'],
+        possibleSlots: ['gloves', ...backpackSlotNames, ...containerSlotNames],
         sprite: {key: 'icon-item-set', frame: 128},
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             additionalCharacteristics: [
                 {'attributes.strength': 1},

@@ -88,10 +88,10 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('dirt2', 'assets/images-extruded/tilesets/dirt2.png', tilesetConfig);
         this.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
         this.load.spritesheet('water2', 'assets/images-extruded/tilesets/water2.png', tilesetConfig);
-        this.load.image('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png');
+        this.load.spritesheet('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png', tilesetConfig);
         this.load.spritesheet('grass1-dirt2', 'assets/images-extruded/tilesets/grass1-dirt2.png', tilesetConfig);
-        this.load.image('grass1-dirt4', 'assets/images/tilesets/grass1-dirt4.png');
-        this.load.image('wall-up', 'assets/images/tilesets/wall-up.png');
+        this.load.spritesheet('grass1-dirt4', 'assets/images-extruded/tilesets/grass1-dirt4.png', tilesetConfig);
+        this.load.spritesheet('wall-up', 'assets/images-extruded/tilesets/wall-up.png', tilesetConfig);
         this.load.spritesheet('flowers', 'assets/images-extruded/tilesets/flowers.png', tilesetConfig);
         this.load.spritesheet('castle', 'assets/images-extruded/tilesets/castle.png', tilesetConfig);
 
@@ -156,10 +156,7 @@ export class PreloadScene extends Phaser.Scene {
             spacing: 1,
             margin: 1
         });
-        this.load.spritesheet("icon-item-set", "assets/images/items/icon-item-set.png", {
-            frameWidth: 32,
-            frameHeight: 32
-        });
+        this.load.spritesheet("icon-item-set", "assets/images-extruded/items/icon-item-set.png", tilesetConfig);
 
         // Animations
         this.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", {
@@ -197,23 +194,23 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image("hit", "assets/images/animations/hit.png");
 
         // Load the export Tiled JSON
-        this.load.tilemapTiledJSON('caltor', 'assets/tilemaps/caltor.json');
-        this.load.tilemapTiledJSON('crypt', 'assets/tilemaps/crypt.json');
-        this.load.tilemapTiledJSON('house', 'assets/tilemaps/house.json');
-        this.load.tilemapTiledJSON('tavern', 'assets/tilemaps/tavern.json');
-        this.load.tilemapTiledJSON('booksStore', 'assets/tilemaps/booksStore.json');
-        this.load.tilemapTiledJSON('hermitsTower', 'assets/tilemaps/hermitsTower.json');
-        this.load.tilemapTiledJSON('village', 'assets/tilemaps/village.json');
-        this.load.tilemapTiledJSON('battle', 'assets/tilemaps/fight.json');
-        this.load.tilemapTiledJSON('hargkakhsCave', 'assets/tilemaps/hargkakhsCave.json');
-        this.load.tilemapTiledJSON('weaklingsCave', 'assets/tilemaps/weaklingsCave.json');
-        this.load.tilemapTiledJSON('eldersCave', 'assets/tilemaps/eldersCave.json');
-        this.load.tilemapTiledJSON('nahkhasCave', 'assets/tilemaps/nahkhasCave.json');
-        this.load.tilemapTiledJSON('dungeon', 'assets/tilemaps/dungeon.json');
-        this.load.tilemapTiledJSON('betweenVillageAndDungeon', 'assets/tilemaps/betweenVillageAndDungeon.json');
-        this.load.tilemapTiledJSON('betweenVillageAndCaltor', 'assets/tilemaps/betweenVillageAndCaltor.json');
-        this.load.tilemapTiledJSON('backCave', 'assets/tilemaps/backCave.json');
-        this.load.tilemapTiledJSON('greatPlains', 'assets/tilemaps/greatPlains.json');
+        this.load.tilemapTiledJSON('caltor', 'assets/exported-maps/caltor.json');
+        this.load.tilemapTiledJSON('crypt', 'assets/exported-maps/crypt.json');
+        this.load.tilemapTiledJSON('house', 'assets/exported-maps/house.json');
+        this.load.tilemapTiledJSON('tavern', 'assets/exported-maps/tavern.json');
+        this.load.tilemapTiledJSON('booksStore', 'assets/exported-maps/booksStore.json');
+        this.load.tilemapTiledJSON('hermitsTower', 'assets/exported-maps/hermitsTower.json');
+        this.load.tilemapTiledJSON('village', 'assets/exported-maps/village.json');
+        this.load.tilemapTiledJSON('battle', 'assets/exported-maps/fight.json');
+        this.load.tilemapTiledJSON('hargkakhsCave', 'assets/exported-maps/hargkakhsCave.json');
+        this.load.tilemapTiledJSON('weaklingsCave', 'assets/exported-maps/weaklingsCave.json');
+        this.load.tilemapTiledJSON('eldersCave', 'assets/exported-maps/eldersCave.json');
+        this.load.tilemapTiledJSON('nahkhasCave', 'assets/exported-maps/nahkhasCave.json');
+        this.load.tilemapTiledJSON('dungeon', 'assets/exported-maps/dungeon.json');
+        this.load.tilemapTiledJSON('betweenVillageAndDungeon', 'assets/exported-maps/betweenVillageAndDungeon.json');
+        this.load.tilemapTiledJSON('betweenVillageAndCaltor', 'assets/exported-maps/betweenVillageAndCaltor.json');
+        this.load.tilemapTiledJSON('backCave', 'assets/exported-maps/backCave.json');
+        this.load.tilemapTiledJSON('greatPlains', 'assets/exported-maps/greatPlains.json');
 
         // Audio
         this.load.audio('intro', ['assets/audio/intro.ogg', 'assets/audio/intro.mp3']);
@@ -228,7 +225,7 @@ export class PreloadScene extends Phaser.Scene {
         console.log('Preload done, calling Main Menu');
         //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
         if (DEBUG) {
-            this.scene.start("BooksStore", {prevScene: this.scene.key});
+            this.scene.start("Village", {prevScene: this.scene.key});
         } else {
             this.scene.start("MainMenu", {prevScene: this.scene.key});
         }

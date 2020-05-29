@@ -1,13 +1,13 @@
+import { backpackSlotNames, containerSlotNames } from "./itemSlots.js";
 export const headItems = {
     'rangers-hat': {
         itemId: 'rangers-hat',
         displayName: 'Ranger\'s hat',
         description: 'Classic ranger\'s hat - provides very little protection, but does not get in a way',
-        slot: ['head', 'backpack'],
+        possibleSlots: ['head', ...backpackSlotNames, ...containerSlotNames],
         sprite: { key: 'icon-item-set', frame: 112 },
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             additionalCharacteristics: [
                 { 'attributes.agility': 1 },

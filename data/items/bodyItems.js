@@ -1,13 +1,13 @@
+import { backpackSlotNames, containerSlotNames } from "./itemSlots.js";
 export const bodyItems = {
     'leather-armor': {
         itemId: 'leather-armor',
         displayName: 'Leather armor',
         description: 'Basic leather armor',
-        slot: ['body', 'backpack'],
+        possibleSlots: ['body', ...backpackSlotNames, ...containerSlotNames],
         sprite: { key: 'icon-item-set', frame: 118 },
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             additionalCharacteristics: [
                 { 'defences.armor': 2 },

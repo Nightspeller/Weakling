@@ -19,7 +19,10 @@ export const questsData = {
         questName: 'Help the Tareth',
         questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
         availableStates: {
-            started: `Your friend, Tareth, struggles with the task he got from the Elder - he needs to carry harvested supplies to the stockpile, but the baskets are too heavy. You don't have time to do it for him, so there must be other way to help him.`
+            started: `Your friend, Tareth, struggles with the task he got from the Elder - he needs to carry harvested supplies to the stockpile, but the baskets are too heavy. You don't have time to do it for him, so there must be other way to help him.`,
+            potionToMake: `I might be able to help if I make some empowering potion for poor Tareth.`,
+            potionGiven: `I gave the potion to Tareth, let's hope this time it will work!`,
+            completed: 'Strength potion worked like a charm! Tareth does look a little bit more orange though, but that must be the sun.'
         },
         currentStates: ['started']
     },

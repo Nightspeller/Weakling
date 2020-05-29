@@ -1,13 +1,13 @@
+import { backpackSlotNames, containerSlotNames } from "./itemSlots.js";
 export const capeItems = {
     'invisibility-cape': {
         itemId: 'invisibility-cape',
         displayName: 'Invisibility cloak',
         description: 'Once per battle allows you to become invisible for your enemies',
-        slot: ['cape', 'backpack'],
+        possibleSlots: ['cape', ...backpackSlotNames, ...containerSlotNames],
         sprite: { key: 'icon-item-set', frame: 126 },
         stackable: false,
         modified: false,
-        currentSlot: null,
         specifics: {
             skills: ['invisibility'],
             additionalCharacteristics: [

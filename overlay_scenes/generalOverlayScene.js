@@ -58,7 +58,7 @@ export class GeneralOverlayScene extends Phaser.Scene {
         console.log(`Switching from %c${this.scene.key}%c to %c${this.parentSceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): true`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
         console.log(switchParam);
         this.scene.run(this.parentSceneKey, switchParam);
-        this.scene.sleep(this.scene.key);
+        this.scene.stop(this.scene.key);
     }
 }
 //# sourceMappingURL=generalOverlayScene.js.map

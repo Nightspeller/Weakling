@@ -7,7 +7,7 @@ import { GeneralLocation } from "./generalLocation.js";
 import { introVillageDialog } from "../data/dialogs/introDialog.js";
 import { mitikhhaDialog, mitikhhaSecondDialog, mitikhhaWelcomeBackDialog } from "../data/dialogs/village/mitikhhaDialog.js";
 import { DEBUG } from "../config/constants.js";
-import { tarethDialog, tarethSecondDialog } from "../data/dialogs/village/tarethDialog.js";
+import { tarethDialog, tarethDoneDialog, tarethSecondDialog } from "../data/dialogs/village/tarethDialog.js";
 import { keithDialog, keithNoApologyDialog, keithShopAgainDialog } from "../data/dialogs/village/keithDialog.js";
 import { whiskersDialog } from "../data/dialogs/village/whiskersDialog.js";
 export class VillageScene extends GeneralLocation {
@@ -71,7 +71,17 @@ export class VillageScene extends GeneralLocation {
             mapObjectName: 'Tareth',
             initDialog: tarethDialog,
             interactionCallback: (param) => {
-                tareth.setDialog(tarethSecondDialog, () => { });
+                tareth.setDialog(tarethSecondDialog, (param) => {
+                    if (param === 'potionGiven') {
+                        tareth.setDialog(tarethDoneDialog, (param) => {
+                            this.player.updateQuest('helpTheTareth', 'completed');
+                        });
+                        this.player.updateQuest('helpTheTareth', 'potionGiven');
+                    }
+                    else {
+                        this.player.updateQuest('helpTheTareth', 'potionToMake');
+                    }
+                });
                 this.player.addQuest('helpTheTareth');
             }
         });
@@ -114,7 +124,7 @@ export class VillageScene extends GeneralLocation {
             initDialog: hargkakhFirstDialog,
             interactionCallback: (param) => {
                 if (param === 'pickupFailure') {
-                    this.player.addItemToInventory('copper-key').specifics.opens = 'hargkakhsChest';
+                    this.player.addItemToInventory('hargkakhs-key');
                     hargkakh.setDialog(hargkakhSecondTryDialog, (param) => {
                         if (param === 'mineralsObtained') {
                             hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);

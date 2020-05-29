@@ -6,6 +6,7 @@ import { bodgerDialog } from "../data/dialogs/caltor/bodgerDialog.js";
 import { GeneralLocation } from "./generalLocation.js";
 import { announcementsDialog, announcementsEmptyDialog } from "../data/dialogs/caltor/announcementsDialog.js";
 import { fountainChangedDialog, fountainSignDialog, fountainVandalDialog } from "../data/dialogs/caltor/fountainSignDialog.js";
+import { Trigger } from "../entities/trigger.js";
 export class CaltorScene extends GeneralLocation {
     constructor() {
         super({ key: 'Caltor' });
@@ -19,7 +20,8 @@ export class CaltorScene extends GeneralLocation {
     create() {
         super.create('caltor');
         const charPickerMapObject = this.getMapObject(`Character Picker`);
-        this.createTrigger({
+        new Trigger({
+            scene: this,
             name: charPickerMapObject.name,
             triggerX: charPickerMapObject.x,
             triggerY: charPickerMapObject.y,
@@ -31,7 +33,8 @@ export class CaltorScene extends GeneralLocation {
         });
         let layer4visible = true;
         const barracksMapObject = this.getMapObject(`Barracks`);
-        this.createTrigger({
+        new Trigger({
+            scene: this,
             name: barracksMapObject.name,
             triggerX: barracksMapObject.x,
             triggerY: barracksMapObject.y,

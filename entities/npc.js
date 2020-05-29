@@ -1,4 +1,5 @@
 import Item from "./item.js";
+import { Trigger } from "./trigger.js";
 export default class Npc {
     constructor({ scene, name, mapObjectName, mapObjectLayer = 'NPCs', texture, frame, initDialog, items = [], interactionCallback = () => {
     } }) {
@@ -12,7 +13,8 @@ export default class Npc {
         if (initDialog) {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback;
-            this.image = scene.createTrigger({
+            this.image = new Trigger({
+                scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
                 triggerY: mapObject.y,
@@ -34,7 +36,8 @@ export default class Npc {
             }).image;
         }
         else {
-            this.image = scene.createTrigger({
+            this.image = new Trigger({
+                scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
                 triggerY: mapObject.y,

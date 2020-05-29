@@ -1,4 +1,5 @@
 import {backpackItems} from "./items/backpackItems.js";
+import {vesselsAndIngredients} from "./items/vesselsAndIngredients.js";
 import {bagItems} from "./items/bagItems.js";
 import {beltItems} from "./items/beltItems.js";
 import {bodyItems} from "./items/bodyItems.js";
@@ -16,6 +17,7 @@ import {tailItems} from "./items/tailItems.js";
 
 export const itemsData: { [key: string]: ItemData } = {
     ...backpackItems,
+    ...vesselsAndIngredients,
     ...bagItems,
     ...beltItems,
     ...bodyItems,

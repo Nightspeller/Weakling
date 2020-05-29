@@ -10,6 +10,7 @@ import {
     fountainSignDialog,
     fountainVandalDialog
 } from "../data/dialogs/caltor/fountainSignDialog.js";
+import {Trigger} from "../entities/trigger.js";
 
 export class CaltorScene extends GeneralLocation {
     constructor() {
@@ -28,7 +29,8 @@ export class CaltorScene extends GeneralLocation {
         super.create('caltor');
 
         const charPickerMapObject = this.getMapObject(`Character Picker`);
-        this.createTrigger({
+        new Trigger({
+            scene: this,
             name: charPickerMapObject.name,
             triggerX: charPickerMapObject.x,
             triggerY: charPickerMapObject.y,
@@ -41,7 +43,8 @@ export class CaltorScene extends GeneralLocation {
 
         let layer4visible = true;
         const barracksMapObject = this.getMapObject(`Barracks`);
-        this.createTrigger({
+        new Trigger({
+            scene: this,
             name: barracksMapObject.name,
             triggerX: barracksMapObject.x,
             triggerY: barracksMapObject.y,

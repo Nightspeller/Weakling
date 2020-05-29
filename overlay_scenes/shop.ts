@@ -8,14 +8,16 @@ export class ShopScene extends GeneralOverlayScene {
     private trader: Npc;
     private playerItemContainers: Phaser.GameObjects.Container;
     private traderItemContainers: Phaser.GameObjects.Container;
+    private prevScene: string;
 
     constructor() {
         super({key: 'Shop'});
     }
 
-    public init({player, trader}) {
+    public init({player, trader, prevScene}) {
         this.player = player;
         this.trader = trader;
+        this.prevScene = prevScene;
     }
 
     public preload() {
@@ -23,7 +25,7 @@ export class ShopScene extends GeneralOverlayScene {
     }
 
     public create() {
-        super.create('Caltor', {windowX: 0, windowY: 0});
+        super.create(this.prevScene, {windowX: 0, windowY: 0});
         this._drawItems();
         this.cameras.main.setViewport(16, 16, 800 - 32, 640 - 32);
         this.events.on('wake', (scene, {player, trader}) => {
@@ -41,15 +43,15 @@ export class ShopScene extends GeneralOverlayScene {
         this.playerItemContainers = this.add.container(16, 16).setDepth(this.opts.baseDepth);
         this.traderItemContainers = this.add.container(16 + 360 + 16, 16).setDepth(this.opts.baseDepth);
 
-        const playerItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.player.inventory.length * 64);
+        const playerItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.player.getAllItems().size * 64);
         const traderItemContainersShape = new Phaser.Geom.Rectangle(0, 0, 360, this.trader.inventory.length * 64);
         this.playerItemContainers.setInteractive(playerItemContainersShape, Phaser.Geom.Rectangle.Contains);
         this.traderItemContainers.setInteractive(traderItemContainersShape, Phaser.Geom.Rectangle.Contains);
 
-        this.player.inventory.forEach((item, index) => this._drawItemContainer(item, 0, 64 * index, true));
+        [...this.player.getAllItems().values()].forEach((item, index) => this._drawItemContainer(item, 0, 64 * index, true));
         this.trader.inventory.forEach((item, index) => this._drawItemContainer(item, 0, 64 * index, false));
         this.input.setTopOnly(false);
-        const playerOverflow = Phaser.Math.Clamp((this.player.inventory.length - 9) * 64, 0, (this.player.inventory.length - 9) * 64);
+        const playerOverflow = Phaser.Math.Clamp((this.player.getAllItems().size - 9) * 64, 0, (this.player.getAllItems().size - 9) * 64);
         const traderOverflow = Phaser.Math.Clamp((this.trader.inventory.length - 9) * 64, 0, (this.trader.inventory.length - 9) * 64);
 
         this.playerItemContainers.on('wheel', function (pointer, deltaX, deltaY, deltaZ) {
@@ -134,8 +136,8 @@ export class ShopScene extends GeneralOverlayScene {
                 this.trader.addItemToInventory(item.itemId);
             }
         } else {
-            const playerMoney = this.player.inventory.find(item => item.itemId === 'copper-pieces');
-            if (playerMoney.quantity >= item.buyPrice) {
+            const playerMoney = this.player.getInventoryItemById('copper-pieces');
+            if (playerMoney?.quantity >= item.buyPrice) {
                 this.player.addItemToInventory(item.itemId);
                 this.player.removeItemFromInventory(playerMoney, item.buyPrice);
                 this.trader.addItemToInventory('copper-pieces', item.buyPrice);

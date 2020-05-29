@@ -1,6 +1,7 @@
 import { GeneralLocation } from "./generalLocation.js";
 import { firstTimePatchDialog, secondTimePatchDialog } from "../data/dialogs/betweenVillageAndDungeon/patchDialog.js";
 import { itemsData } from "../data/itemsData.js";
+import { Trigger } from "../entities/trigger.js";
 export class BetweenVillageAndDungeonScene extends GeneralLocation {
     constructor() {
         super({ key: 'BetweenVillageAndDungeon' });
@@ -17,14 +18,15 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
         let currentDialog = firstTimePatchDialog;
         //TODO: place plants on the proper places in array and field when some of them are collected and some are not
         const patchMapObject = this.getMapObject(`Your patch`);
-        this.createTrigger({
+        new Trigger({
+            scene: this,
             name: patchMapObject.name,
             triggerX: patchMapObject.x,
             triggerY: patchMapObject.y,
             triggerW: patchMapObject.width,
             triggerH: patchMapObject.height,
             callback: () => {
-                const plantables = this.player.inventory.filter(item => { var _a; return (_a = item.specifics) === null || _a === void 0 ? void 0 : _a.plantable; });
+                const plantables = [...this.player.getAllItems().values()].filter(item => { var _a; return (_a = item.specifics) === null || _a === void 0 ? void 0 : _a.plantable; });
                 const updatedDialog = JSON.parse(JSON.stringify(currentDialog));
                 const dialogLineToModify = currentDialog === firstTimePatchDialog ? 1 : 0;
                 if (this.planted.length < 9) {
@@ -78,7 +80,8 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
         if (plant.grown) {
             this.erasePlant(plant.tileIndex);
             const mapObject = this.getMapObject(`Patch ${x},${y}`);
-            const trigger = this.createTrigger({
+            const trigger = new Trigger({
+                scene: this,
                 name: mapObject.name,
                 triggerX: mapObject.x,
                 triggerY: mapObject.y,

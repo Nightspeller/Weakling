@@ -94,14 +94,15 @@ export class DialogScene extends GeneralOverlayScene {
         else if (reply.checkInventory) {
             let allIsThere = true;
             reply.checkValue.forEach(requestedItem => {
-                if (!this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity)) {
+                const item = this.player.getInventoryItemById(requestedItem.itemId);
+                if (item === undefined || item.quantity < requestedItem.quantity) {
                     allIsThere = false;
                 }
             });
             if (allIsThere) {
                 if (reply.checkInventory === 'remove') {
                     reply.checkValue.forEach(requestedItem => {
-                        const item = this.player.inventory.find(inventoryItem => inventoryItem.itemId === requestedItem.itemId && inventoryItem.quantity >= requestedItem.quantity);
+                        const item = this.player.getInventoryItemById(requestedItem.itemId);
                         this.player.removeItemFromInventory(item, requestedItem.quantity);
                     });
                 }
