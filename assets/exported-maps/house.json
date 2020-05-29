@@ -265,6 +265,11 @@
                  "name":"Ring",
                  "properties":[
                         {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"smoldering-ring\", \"quantity\": 1}]"
@@ -288,7 +293,7 @@
  "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.05.07",
+ "tiledversion":"2020.05.27",
  "tileheight":32,
  "tilesets":[
         {
@@ -16840,12 +16845,12 @@
         {
          "columns":8,
          "firstgid":2001,
-         "image":"..\/images\/tilesets\/wall-up.png",
-         "imageheight":384,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/wall-up.png",
+         "imageheight":408,
+         "imagewidth":272,
+         "margin":1,
          "name":"wall-up",
-         "spacing":0,
+         "spacing":2,
          "tilecount":96,
          "tileheight":32,
          "tiles":[

@@ -164,6 +164,11 @@
                  "name":"Yellow Fingers Sapling",
                  "properties":[
                         {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"yellow-fingers-sapling\", \"quantity\": 1}]"
@@ -181,6 +186,11 @@
                  "id":5,
                  "name":"Pinky Pie Sapling",
                  "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
                         {
                          "name":"items",
                          "type":"string",
@@ -200,6 +210,11 @@
                  "name":"Rocky Rose Sapling",
                  "properties":[
                         {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"rocky-rose-sapling\", \"quantity\": 1}]"
@@ -217,6 +232,11 @@
                  "id":7,
                  "name":"Primula Sapling",
                  "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
                         {
                          "name":"items",
                          "type":"string",
@@ -297,7 +317,7 @@
  "nextobjectid":8,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.04.10",
+ "tiledversion":"2020.05.27",
  "tileheight":32,
  "tilesets":[
         {
@@ -9899,12 +9919,12 @@
         {
          "columns":8,
          "firstgid":1065,
-         "image":"..\/images\/tilesets\/wall-up.png",
-         "imageheight":384,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/wall-up.png",
+         "imageheight":408,
+         "imagewidth":272,
+         "margin":1,
          "name":"wall-up",
-         "spacing":0,
+         "spacing":2,
          "tilecount":96,
          "tileheight":32,
          "tiles":[
@@ -17704,14 +17724,14 @@
         {
          "columns":16,
          "firstgid":1929,
-         "image":"..\/images\/items\/icon-item-set.png",
-         "imageheight":640,
-         "imagewidth":512,
-         "margin":0,
+         "image":"..\/images-extruded\/items\/icon-item-set.png",
+         "imageheight":782,
+         "imagewidth":544,
+         "margin":1,
          "name":"icon-item-set",
          "objectalignment":"topleft",
-         "spacing":0,
-         "tilecount":320,
+         "spacing":2,
+         "tilecount":368,
          "tileheight":32,
          "tilewidth":32
         }],

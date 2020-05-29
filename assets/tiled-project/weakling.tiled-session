@@ -278,12 +278,15 @@
             "scaleInDock": 1
         },
         "tilemaps/caltor.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 4,
+            "scale": 0.75,
+            "selectedLayer": 19,
             "viewCenter": {
-                "x": 2262,
-                "y": 2319
+                "x": 2304,
+                "y": 2366
             }
+        },
+        "tilemaps/castle.tsx": {
+            "scaleInDock": 1
         },
         "tilemaps/cat-1.tsx": {
             "scaleInDock": 1
@@ -301,6 +304,14 @@
         },
         "tilemaps/dirt4.tsx": {
             "scaleInDock": 1
+        },
+        "tilemaps/eldersCave.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 251.33333333333334,
+                "y": 253.16666666666663
+            }
         },
         "tilemaps/female19-1.tsx": {
             "dynamicWrapping": true,
@@ -330,6 +341,14 @@
         "tilemaps/grass4.tsx": {
             "scaleInDock": 1
         },
+        "tilemaps/hermitsTower.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 55.33333333333326,
+                "y": 533.6666666666667
+            }
+        },
         "tilemaps/houses.tsx": {
             "scaleInDock": 1
         },
@@ -342,18 +361,40 @@
         "tilemaps/male10-1.tsx": {
             "scaleInDock": 1
         },
+        "tilemaps/male12-1.tsx": {
+            "scaleInDock": 1
+        },
+        "tilemaps/male13-1.tsx": {
+            "scaleInDock": 1
+        },
         "tilemaps/male17-3.tsx": {
             "scaleInDock": 1
         },
         "tilemaps/male17-4.tsx": {
             "scaleInDock": 1
         },
-        "tilemaps/village.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 3,
+        "tilemaps/nahkhasCave.tmx": {
+            "scale": 3.78515625,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 885.3333333333335,
-                "y": 720.6666666666665
+                "x": 159.83488132094942,
+                "y": 236.0536635706914
+            }
+        },
+        "tilemaps/tavern.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 581.3333333333333,
+                "y": 421.66666666666674
+            }
+        },
+        "tilemaps/village.tmx": {
+            "scale": 2,
+            "selectedLayer": 16,
+            "viewCenter": {
+                "x": 1306,
+                "y": 829.25
             }
         },
         "tilemaps/village.tmx#grass1-dirt1": {
@@ -373,9 +414,9 @@
         },
         "tilemaps/weaklingsCave.tmx": {
             "scale": 3.78515625,
-            "selectedLayer": 10,
+            "selectedLayer": 12,
             "viewCenter": {
-                "x": 125.75438596491229,
+                "x": 125.49019607843135,
                 "y": 236.0536635706914
             }
         },
@@ -552,6 +593,7 @@
     "project": "weakling.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "tilemaps/hermitsTower.tmx",
         "tilesets/houses.tsx",
         "tilesets/grass1.tsx",
         "tilesets/long-grass.tsx",
@@ -562,14 +604,14 @@
         "tilesets/grass1-dirt4.tsx",
         "tilesets/icon-item-set.tsx",
         "tilesets/grass4.tsx",
-        "tilesets/flowers.tsx",
-        "tilesets/male17-4.tsx"
+        "tilesets/flowers.tsx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedExportFilter": "All Files (*)",
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
-    "tileset.margin": 0,
-    "tileset.spacing": 0,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 1,
+    "tileset.spacing": 2,
     "tileset.tileSize": {
         "height": 32,
         "width": 32
