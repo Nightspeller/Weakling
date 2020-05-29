@@ -11,7 +11,7 @@ export const tarethSecondDialog: DialogTree = [{
     id: 'greetings',
     text: `Nope, still working on it, it might happen that you will be back from Caltor before I am done taking these things across the road and downstairs.`,
     replies: [{
-        text: `Hmm, fine! I might have something which might help! Just a few days ago I perfected my strength potion! Carrots and Rocky roses together do miracles!`,
+        text: `Hmm, fine! I might have something which might help! Just a few days ago I perfected my strength potion! Couple carrots and Rocky rose together do miracles!`,
         checkInventory: 'remove',
         checkValue: [{itemId: 'medium-weak-strength-potion', quantity: 1}],
         successTriggers: 'potionGiven',
