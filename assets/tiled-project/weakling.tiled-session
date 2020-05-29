@@ -14,7 +14,7 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 3
+            "scaleInDock": 1
         },
         "C:/Users/serjn/WebstormProjects/weakling/assets/images/Pipoya RPG Tileset 32x32/SampleMap/samplemap.tmx": {
             "scale": 5.5,
@@ -277,12 +277,20 @@
             "dynamicWrapping": true,
             "scaleInDock": 1
         },
+        "tilemaps/betweenVillageAndDungeon.tmx": {
+            "scale": 3,
+            "selectedLayer": 16,
+            "viewCenter": {
+                "x": 266.99999999999994,
+                "y": 338.49999999999994
+            }
+        },
         "tilemaps/caltor.tmx": {
             "scale": 0.75,
             "selectedLayer": 19,
             "viewCenter": {
-                "x": 2304,
-                "y": 2366
+                "x": 2302.6666666666665,
+                "y": 2364.6666666666665
             }
         },
         "tilemaps/castle.tsx": {
@@ -304,6 +312,14 @@
         },
         "tilemaps/dirt4.tsx": {
             "scaleInDock": 1
+        },
+        "tilemaps/dungeon.tmx": {
+            "scale": 3,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 251.99999999999997,
+                "y": 742.8333333333333
+            }
         },
         "tilemaps/eldersCave.tmx": {
             "scale": 3,
@@ -349,6 +365,14 @@
                 "y": 533.6666666666667
             }
         },
+        "tilemaps/house.tmx": {
+            "scale": 1.884014423076923,
+            "selectedLayer": 14,
+            "viewCenter": {
+                "x": 384.2858054226476,
+                "y": 408.43636363636375
+            }
+        },
         "tilemaps/houses.tsx": {
             "scaleInDock": 1
         },
@@ -390,11 +414,11 @@
             }
         },
         "tilemaps/village.tmx": {
-            "scale": 2,
-            "selectedLayer": 16,
+            "scale": 3,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 1306,
-                "y": 829.25
+                "x": 1432,
+                "y": 610.5
             }
         },
         "tilemaps/village.tmx#grass1-dirt1": {
@@ -413,11 +437,11 @@
             "scaleInDock": 1
         },
         "tilemaps/weaklingsCave.tmx": {
-            "scale": 3.78515625,
-            "selectedLayer": 12,
+            "scale": 3,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 125.49019607843135,
-                "y": 236.0536635706914
+                "x": 146.99999999999997,
+                "y": 290.49999999999994
             }
         },
         "tilesets/base-addition.tsx": {
@@ -490,6 +514,7 @@
             "scaleInEditor": 4
         },
         "tilesets/grass1-dirt4.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 4
         },
         "tilesets/grass1.tsx": {
@@ -591,7 +616,7 @@
         "tilemaps/backCave.tmx"
     ],
     "project": "weakling.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
         "tilemaps/hermitsTower.tmx",
         "tilesets/houses.tsx",

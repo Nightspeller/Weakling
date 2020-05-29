@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2020.04.10" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="5">
+<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="6">
  <editorsettings>
-  <export target="dungeon.json" format="json"/>
+  <export target="../../exported-maps/dungeon.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="base.tsx"/>
- <tileset firstgid="1065" source="dirt4.tsx"/>
- <tileset firstgid="1113" source="base-addition.tsx"/>
+ <tileset firstgid="1" source="../tilesets/base.tsx"/>
+ <tileset firstgid="1065" source="../tilesets/dirt4.tsx"/>
+ <tileset firstgid="1113" source="../tilesets/base-addition.tsx"/>
  <group id="3" name="Layer 1">
   <layer id="1" name="Below player" width="32" height="32">
    <data encoding="base64">
@@ -63,7 +63,7 @@
   </object>
  </objectgroup>
  <objectgroup id="12" name="Waypoints">
-  <object id="4" name="BetweenVillageAndDungeon" x="64" y="992" width="64" height="32">
+  <object id="4" name="BetweenVillageAndDungeon" type="Waypoint" x="64" y="992" width="64" height="32">
    <properties>
     <property name="location" value="BetweenVillageAndDungeon"/>
     <property name="toCoordinates" value="{&quot;x&quot;: 46, &quot;y&quot;: 1}"/>
@@ -76,6 +76,14 @@
     <property name="items" value="[{&quot;itemId&quot;: &quot;rope&quot;, &quot;quantity&quot;: 1}]"/>
     <property name="openedFrame" type="int" value="65"/>
     <property name="secret" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="13" name="Enemies">
+  <object id="5" name="Boars" type="Enemy" x="352" y="800" width="64" height="64">
+   <properties>
+    <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wizard&quot;}, {&quot;type&quot;: &quot;wizard&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
+    <property name="image" value="boar-avatar"/>
    </properties>
   </object>
  </objectgroup>

@@ -2,7 +2,7 @@ export const tarethDialog = [{
         id: 'greetings',
         text: `Oh man, elder tasked me with preparing these stockpiles for winter storage! And they are sooo heavy! I barely can lift that basket, and it is not even the heaviest one!`,
         replies: [{
-                text: 'You can handle it, just take it slow.',
+                text: 'You can handle it, just take it slow. I will come and check on you later!',
                 callbackParam: 'fastEnd'
             }]
     }];
