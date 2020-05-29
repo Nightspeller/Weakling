@@ -22,3 +22,7 @@ export const quickSlotNames: Slots[] = [
 export const componentSlotNames: Slots[] = [
     'componentSlot0', 'componentSlot1', 'componentSlot2', 'componentSlot3', 'componentSlot4',
 ]
+
+export const alchemyStandSlotNames: Slots[] = [
+    ...componentSlotNames, 'vesselSlot', 'resultSlot',
+]

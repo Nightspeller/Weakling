@@ -4,6 +4,7 @@ import Item from "../../entities/item.js";
 import { GAME_H, GAME_W, INVENTORY_ITEM_DESCRIPTION_H, INVENTORY_ITEM_DESCRIPTION_W } from "../../config/constants.js";
 import { LOCATION_SCENES } from "../../index.js";
 import ItemRepresentation from "../../entities/itemRepresentation.js";
+import { backpackSlotNames } from "../../data/items/itemSlots.js";
 export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     constructor({ key: key }) {
         super({ key: key });
@@ -80,14 +81,17 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         }
     }
     _animateItemFromSlotToSlot(fromSlot, toSlot) {
-        const itemToAnimate = this.itemsMap.get(fromSlot);
-        const originalSlot = this.slotsDisplayGroup.getChildren().find(slot => slot.name === toSlot);
-        this.tweens.add({
-            targets: itemToAnimate,
-            x: originalSlot.x + 32,
-            y: originalSlot.y + 32,
-            ease: 'Back.easeOut',
-            duration: 500,
+        return new Promise((resolve) => {
+            const itemToAnimate = this.itemsMap.get(fromSlot);
+            const originalSlot = this.slotsDisplayGroup.getChildren().find(slot => slot.name === toSlot);
+            this.tweens.add({
+                targets: itemToAnimate,
+                x: originalSlot.x + 32,
+                y: originalSlot.y + 32,
+                ease: 'Back.easeOut',
+                duration: 500,
+                onComplete: () => resolve(),
+            });
         });
     }
     _enableDragAndDrop() {
@@ -114,23 +118,59 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             scene._highlightValidSlots(itemRepresentation.item.possibleSlots, true);
         });
         itemRepresentation.on('drag', function (pointer, dragX, dragY) {
+            scene.dragStarted = true;
             this.x = dragX;
             this.y = dragY;
             this.setDepth(scene.opts.baseDepth + 2);
         });
         itemRepresentation.on('dragend', function (pointer, something1, something2, dropped) {
             this.setDepth(scene.opts.baseDepth + 1);
-            if (!dropped) {
+            if (scene.dragStarted && !dropped) {
                 scene._animateItemFromSlotToSlot(currentSlot, currentSlot);
             }
             scene._highlightValidSlots(itemRepresentation.item.possibleSlots, false);
+            scene.dragStarted = false;
         });
+        let doubleClickTimer = 0;
         itemRepresentation.on('pointerdown', (pointer) => {
+            const itemCurrentSlot = this._getSlotByItem(itemRepresentation);
             if (pointer.rightButtonDown()) {
-                this._showItemDescriptionAndActions(this._getSlotByItem(itemRepresentation));
+                this._showItemDescriptionAndActions(itemCurrentSlot);
+            }
+            else {
+                if (doubleClickTimer === 0) {
+                    doubleClickTimer = Date.now();
+                }
+                else {
+                    let delta = Date.now() - doubleClickTimer;
+                    if (delta > 350) {
+                        doubleClickTimer = Date.now();
+                    }
+                    else {
+                        this._moveItemToBackpack(itemCurrentSlot);
+                    }
+                }
             }
         });
         this.itemsDisplayGroup.add(itemRepresentation);
+    }
+    _moveItemToBackpack(fromSlot) {
+        const itemR = this.itemsMap.get(fromSlot);
+        if (itemR.item.stackable === true) {
+            for (let [slot, itemFromMap] of this.itemsMap.entries()) {
+                if (backpackSlotNames.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
+                    this._animateItemFromSlotToSlot(fromSlot, slot).then(() => {
+                        this._changeItemQuantity(slot, itemFromMap.item.quantity + itemR.item.quantity);
+                        this._deleteItemRepresentation(fromSlot);
+                    });
+                    return;
+                }
+            }
+        }
+        const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
+        if (emptyBackPackSlot) {
+            this._moveItemFromSlotToSlot(fromSlot, emptyBackPackSlot, true);
+        }
     }
     _highlightValidSlots(slotNames, showHighlight) {
         const slotsObjects = this.slotsDisplayGroup.getChildren();

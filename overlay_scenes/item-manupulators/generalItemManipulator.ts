@@ -7,6 +7,7 @@ import {LOCATION_SCENES} from "../../index.js";
 import ItemRepresentation from "../../entities/itemRepresentation.js";
 import GameObject = Phaser.GameObjects.GameObject;
 import Slot = spine.Slot;
+import {backpackSlotNames} from "../../data/items/itemSlots.js";
 
 export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     protected player: Player;
@@ -18,6 +19,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     private droppedItems: Item[];
     protected itemsMap: Map<Slots, ItemRepresentation>;
     protected updateSourceCallback: Function;
+    private dragStarted: boolean;
 
     constructor({key: key}) {
         super({key: key});
@@ -67,10 +69,10 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         }
 
         if (itemToMove.item.itemId === itemInTargetSlot?.item.itemId) {
-            setTimeout(()=> {
-                this._changeItemQuantity(toSlot, itemInTargetSlot.item.quantity+itemToMove.item.quantity);
+            setTimeout(() => {
+                this._changeItemQuantity(toSlot, itemInTargetSlot.item.quantity + itemToMove.item.quantity);
                 this._deleteItemRepresentation(fromSlot);
-            },0);
+            }, 0);
             return;
         }
 
@@ -99,15 +101,18 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         }
     }
 
-    protected _animateItemFromSlotToSlot(fromSlot, toSlot) {
-        const itemToAnimate = this.itemsMap.get(fromSlot);
-        const originalSlot = this.slotsDisplayGroup.getChildren().find(slot => slot.name === toSlot) as Sprite;
-        this.tweens.add({
-            targets: itemToAnimate,
-            x: originalSlot.x + 32,
-            y: originalSlot.y + 32,
-            ease: 'Back.easeOut',
-            duration: 500,
+    protected _animateItemFromSlotToSlot(fromSlot, toSlot): Promise<void> {
+        return new Promise((resolve) => {
+            const itemToAnimate = this.itemsMap.get(fromSlot);
+            const originalSlot = this.slotsDisplayGroup.getChildren().find(slot => slot.name === toSlot) as Sprite;
+            this.tweens.add({
+                targets: itemToAnimate,
+                x: originalSlot.x + 32,
+                y: originalSlot.y + 32,
+                ease: 'Back.easeOut',
+                duration: 500,
+                onComplete: () => resolve(),
+            });
         });
     }
 
@@ -138,24 +143,57 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             scene._highlightValidSlots(itemRepresentation.item.possibleSlots, true);
         });
         itemRepresentation.on('drag', function (pointer, dragX, dragY) {
+            scene.dragStarted = true;
             this.x = dragX;
             this.y = dragY;
             this.setDepth(scene.opts.baseDepth + 2);
         });
         itemRepresentation.on('dragend', function (pointer, something1, something2, dropped) {
             this.setDepth(scene.opts.baseDepth + 1);
-            if (!dropped) {
+            if (scene.dragStarted && !dropped) {
                 scene._animateItemFromSlotToSlot(currentSlot, currentSlot);
             }
             scene._highlightValidSlots(itemRepresentation.item.possibleSlots, false);
+            scene.dragStarted = false;
         });
-
+        let doubleClickTimer = 0
         itemRepresentation.on('pointerdown', (pointer) => {
+            const itemCurrentSlot = this._getSlotByItem(itemRepresentation);
             if (pointer.rightButtonDown()) {
-                this._showItemDescriptionAndActions(this._getSlotByItem(itemRepresentation));
+                this._showItemDescriptionAndActions(itemCurrentSlot);
+            } else {
+                if (doubleClickTimer === 0) {
+                    doubleClickTimer = Date.now();
+                } else {
+                    let delta = Date.now() - doubleClickTimer;
+                    if (delta > 350) {
+                        doubleClickTimer = Date.now()
+                    } else {
+                        this._moveItemToBackpack(itemCurrentSlot);
+                    }
+                }
             }
         });
         this.itemsDisplayGroup.add(itemRepresentation);
+    }
+
+    protected _moveItemToBackpack(fromSlot: Slots) {
+        const itemR = this.itemsMap.get(fromSlot);
+        if (itemR.item.stackable === true) {
+            for (let [slot, itemFromMap] of this.itemsMap.entries()) {
+                if (backpackSlotNames.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
+                    this._animateItemFromSlotToSlot(fromSlot, slot).then(() => {
+                        this._changeItemQuantity(slot, itemFromMap.item.quantity+itemR.item.quantity);
+                        this._deleteItemRepresentation(fromSlot);
+                    });
+                    return;
+                }
+            }
+        }
+        const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
+        if (emptyBackPackSlot) {
+            this._moveItemFromSlotToSlot(fromSlot, emptyBackPackSlot, true);
+        }
     }
 
     protected _highlightValidSlots(slotNames: string[], showHighlight: boolean) {
@@ -224,8 +262,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             splitItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
                 const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
                 if (emptyBackPackSlot) {
-                    const newQuantity = Math.floor(item.quantity/2);
-                    this._changeItemQuantity(slot, item.quantity-newQuantity);
+                    const newQuantity = Math.floor(item.quantity / 2);
+                    this._changeItemQuantity(slot, item.quantity - newQuantity);
                     const separatedItem = new Item(item.itemId, newQuantity);
                     this._createItemRepresentation(separatedItem, emptyBackPackSlot);
                     this.player.addItemToInventory(separatedItem, separatedItem.quantity, emptyBackPackSlot);

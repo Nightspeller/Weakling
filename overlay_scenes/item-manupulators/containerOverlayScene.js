@@ -1,5 +1,5 @@
 import { GeneralItemManipulatorScene } from "./generalItemManipulator.js";
-import { backpackSlotNames, dollSlotNames, quickSlotNames } from "../../data/items/itemSlots.js";
+import { backpackSlotNames, containerSlotNames, dollSlotNames, quickSlotNames } from "../../data/items/itemSlots.js";
 export class ContainerOverlayScene extends GeneralItemManipulatorScene {
     constructor() {
         super({ key: 'ContainerOverlay' });
@@ -51,6 +51,16 @@ export class ContainerOverlayScene extends GeneralItemManipulatorScene {
             font: 'bold 16px Arial',
             fill: '000000',
         });
+        const takeAllButton = this.add.text(this.opts.windowWidth - 20 - 55, this.opts.windowY + textY, `Take All`, {
+            font: 'bold 16px Arial',
+            fill: this.opts.closeButtonColor,
+            backgroundColor: 'lightgrey',
+            fixedWidth: 70,
+            align: 'center',
+        });
+        this.add.graphics()
+            .lineStyle(this.opts.borderThickness, this.opts.borderColor, this.opts.borderAlpha)
+            .strokeRect(takeAllButton.x, takeAllButton.y, takeAllButton.width, takeAllButton.height);
         for (let i = 0; i < Math.floor(this.numberOfSlots / 5) + 1; i++) {
             const slotsInRow = Math.floor((this.numberOfSlots - 5 * i) / 5) > 0 ? 5 : this.numberOfSlots % 5;
             for (let j = 0; j < slotsInRow; j++) {
@@ -59,6 +69,8 @@ export class ContainerOverlayScene extends GeneralItemManipulatorScene {
                 this._createSlot(`containerSlot${j}_${i}`, slotX, slotY);
             }
         }
+        takeAllButton.setInteractive({ useHandCursor: true }).on('pointerdown', () => this._takeAllItems());
+        this.input.keyboard.on('keydown-' + 'SPACE', () => this._takeAllItems());
     }
     _drawDoll() {
         this.add.sprite(this.opts.windowX + 16, this.opts.windowY + 20, 'doll')
@@ -126,6 +138,13 @@ export class ContainerOverlayScene extends GeneralItemManipulatorScene {
                 this._createSlot(`quickSlot${i}`, 16 + 64 * i, this.opts.windowHeight - 64 - 16);
             }
         }
+    }
+    _takeAllItems() {
+        containerSlotNames.forEach(slotName => {
+            if (this.itemsMap.get(slotName)) {
+                this._moveItemToBackpack(slotName);
+            }
+        });
     }
     closeScene() {
         const itemsInContainer = [...this.itemsMap]

@@ -1,7 +1,13 @@
 import Item from "../../entities/item.js";
 import ItemRepresentation from "../../entities/itemRepresentation.js";
 import {GeneralItemManipulatorScene} from "./generalItemManipulator.js";
-import {backpackSlotNames, dollSlotNames, quickSlotNames} from "../../data/items/itemSlots.js";
+import {
+    alchemyStandSlotNames,
+    backpackSlotNames,
+    containerSlotNames,
+    dollSlotNames,
+    quickSlotNames
+} from "../../data/items/itemSlots.js";
 import drawArrow from "../../helpers/drawArrow.js";
 import {recipes} from "../../data/recipes.js";
 import prepareLog from "../../helpers/logger.js";
@@ -74,6 +80,18 @@ export class AlchemyStandScene extends GeneralItemManipulatorScene {
             font: 'bold 16px Arial',
             fill: '000000',
         });
+        const takeAllButton = this.add.text(this.opts.windowWidth - 20 - 55, this.opts.windowY + standY, `Take All`, {
+            font: 'bold 16px Arial',
+            fill: this.opts.closeButtonColor,
+            backgroundColor: 'lightgrey',
+            fixedWidth: 70,
+            align: 'center',
+        });
+        this.add.graphics()
+            .lineStyle(this.opts.borderThickness, this.opts.borderColor, this.opts.borderAlpha)
+            .strokeRect(takeAllButton.x, takeAllButton.y, takeAllButton.width, takeAllButton.height);
+        takeAllButton.setInteractive({useHandCursor: true}).on('pointerdown', () => this._takeAllItems());
+        this.input.keyboard.on('keydown-' + 'SPACE', () => this._takeAllItems());
 
         const standSlotCoords = {
             componentSlot0: {x: standX, y: standY + 20},
@@ -242,6 +260,14 @@ export class AlchemyStandScene extends GeneralItemManipulatorScene {
                 this._createSlot(`quickSlot${i}`, 16 + 64 * i, this.opts.windowHeight - 64 - 16);
             }
         }
+    }
+
+    private _takeAllItems() {
+        alchemyStandSlotNames.forEach(slotName => {
+            if (this.itemsMap.get(slotName)) {
+                this._moveItemToBackpack(slotName);
+            }
+        })
     }
 
     public closeScene() {

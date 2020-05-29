@@ -1,7 +1,7 @@
 import Item from "../../entities/item.js";
 import ItemRepresentation from "../../entities/itemRepresentation.js";
 import {GeneralItemManipulatorScene} from "./generalItemManipulator.js";
-import {backpackSlotNames, dollSlotNames, quickSlotNames} from "../../data/items/itemSlots.js";
+import {backpackSlotNames, containerSlotNames, dollSlotNames, quickSlotNames} from "../../data/items/itemSlots.js";
 
 interface ContainerInitParams {
     opts?: OverlaySceneOptions,
@@ -48,7 +48,7 @@ export class ContainerOverlayScene extends GeneralItemManipulatorScene {
         this._drawBackpack();
         this._createItemsMap(new Map<Slots, Item>([...this.player.getAllItems(), ...this.items]), (fromSlot: Slots, toSlot: Slots, itemR: ItemRepresentation, swappingIsFinished?: boolean) => {
 
-            console.log(`Item %c${itemR.item.itemId}%c was moved from %c${fromSlot}%c to %c${toSlot}%c, swapping is finished: %c${swappingIsFinished}`, `color: aqua`, `color: while`, `color: red`, `color: while`, `color: red`, `color: while`, `color: ${swappingIsFinished ? 'green': 'red'}`);
+            console.log(`Item %c${itemR.item.itemId}%c was moved from %c${fromSlot}%c to %c${toSlot}%c, swapping is finished: %c${swappingIsFinished}`, `color: aqua`, `color: while`, `color: red`, `color: while`, `color: red`, `color: while`, `color: ${swappingIsFinished ? 'green' : 'red'}`);
             if (this.player.getItemInSlot(fromSlot) === itemR.item) {
                 this.player.removeItemFromInventory(this.player.getItemInSlot(fromSlot), this.player.getItemInSlot(fromSlot).quantity);
             }
@@ -75,6 +75,16 @@ export class ContainerOverlayScene extends GeneralItemManipulatorScene {
             font: 'bold 16px Arial',
             fill: '000000',
         });
+        const takeAllButton = this.add.text(this.opts.windowWidth - 20 - 55, this.opts.windowY + textY, `Take All`, {
+            font: 'bold 16px Arial',
+            fill: this.opts.closeButtonColor,
+            backgroundColor: 'lightgrey',
+            fixedWidth: 70,
+            align: 'center',
+        });
+        this.add.graphics()
+            .lineStyle(this.opts.borderThickness, this.opts.borderColor, this.opts.borderAlpha)
+            .strokeRect(takeAllButton.x, takeAllButton.y, takeAllButton.width, takeAllButton.height);
         for (let i = 0; i < Math.floor(this.numberOfSlots / 5) + 1; i++) {
             const slotsInRow = Math.floor((this.numberOfSlots - 5 * i) / 5) > 0 ? 5 : this.numberOfSlots % 5;
             for (let j = 0; j < slotsInRow; j++) {
@@ -83,6 +93,8 @@ export class ContainerOverlayScene extends GeneralItemManipulatorScene {
                 this._createSlot(`containerSlot${j}_${i}`, slotX, slotY);
             }
         }
+        takeAllButton.setInteractive({useHandCursor: true}).on('pointerdown', () => this._takeAllItems());
+        this.input.keyboard.on('keydown-' + 'SPACE', () => this._takeAllItems());        
     }
 
     private _drawDoll() {
@@ -153,6 +165,14 @@ export class ContainerOverlayScene extends GeneralItemManipulatorScene {
                 this._createSlot(`quickSlot${i}`, 16 + 64 * i, this.opts.windowHeight - 64 - 16);
             }
         }
+    }
+
+    private _takeAllItems() {
+        containerSlotNames.forEach(slotName => {
+            if (this.itemsMap.get(slotName)) {
+                this._moveItemToBackpack(slotName);
+            }
+        })
     }
 
     public closeScene() {

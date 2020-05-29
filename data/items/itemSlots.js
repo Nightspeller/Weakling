@@ -18,4 +18,7 @@ export const quickSlotNames = [
 export const componentSlotNames = [
     'componentSlot0', 'componentSlot1', 'componentSlot2', 'componentSlot3', 'componentSlot4',
 ];
+export const alchemyStandSlotNames = [
+    ...componentSlotNames, 'vesselSlot', 'resultSlot',
+];
 //# sourceMappingURL=itemSlots.js.map
