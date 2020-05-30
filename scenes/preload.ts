@@ -135,6 +135,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("dog-2", "assets/images-extruded/characters/world-map/neutral/dog-2.png", tilesetConfig);
         this.load.spritesheet("dog-3", "assets/images-extruded/characters/world-map/neutral/dog-3.png", tilesetConfig);
         this.load.spritesheet("shadow-1", "assets/images-extruded/characters/world-map/shadows/shadow-1.png", tilesetConfig);
+        this.load.spritesheet("fire", "assets/images-extruded/animations/fire.png", tilesetConfig);
 
         // Battle characters images
         this.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
