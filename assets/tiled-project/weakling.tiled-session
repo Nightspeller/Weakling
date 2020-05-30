@@ -290,7 +290,7 @@
             "selectedLayer": 16,
             "viewCenter": {
                 "x": 266.99999999999994,
-                "y": 338.16666666666663
+                "y": 337.83333333333337
             }
         },
         "tilemaps/booksStore.tmx": {
@@ -497,10 +497,10 @@
         },
         "tilemaps/weaklingsCave.tmx": {
             "scale": 3,
-            "selectedLayer": 6,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 146.99999999999997,
-                "y": 290.49999999999994
+                "x": 181.99999999999997,
+                "y": 366.83333333333337
             }
         },
         "tilesets/base-addition.tsx": {
