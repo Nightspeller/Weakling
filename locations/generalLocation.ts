@@ -284,7 +284,7 @@ export class GeneralLocation extends Phaser.Scene {
 
         this.setupRunKey();
 
-        if (mapKey !== 'battle') this.createDebugButton();
+        if (mapKey !== 'battle') this.setupDebugCollisionGraphics();
     }
 
     public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): Phaser.Types.GameObjects.Sprite.SpriteConfig {
@@ -362,7 +362,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.updatePlayer();
     }
 
-    public createDebugButton() {
+    public setupDebugCollisionGraphics() {
         let debugModeOn = false;
         const debugGraphicsGroup = this.add.group();
         this.layers.forEach(layer => {
