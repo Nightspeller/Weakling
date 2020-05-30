@@ -1,6 +1,7 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import { GeneralOverlayScene } from "./generalOverlayScene.js";
 import { GAME_W } from "../config/constants.js";
+import { RichText } from "../helpers/richText.js";
 export class QuestLogScene extends GeneralOverlayScene {
     constructor() {
         super({ key: 'QuestLog' });
@@ -24,30 +25,43 @@ export class QuestLogScene extends GeneralOverlayScene {
     _drawQuestLog() {
         this.questLogDisplayGroup.clear(true, true);
         const quests = this.player.getQuests();
-        const textOptions = {
-            color: 'black',
-            wordWrap: { width: 360 }
-        };
-        const questDescription = this.add.text(GAME_W / 2, 32, this._getQuestDescriptionText(quests[0]), textOptions);
+        quests.sort(quest => quest.currentStates.includes('completed') ? 1 : 0);
+        const textOptions = { color: 'black', wordWrap: { width: 360 } };
+        const questDescription = this.add.container(GAME_W / 2, 32);
+        this._updateQuestDescriptionContainer(quests[0], questDescription);
         this.questLogDisplayGroup.add(questDescription);
+        let selectedQuestName;
         quests.forEach((quest, index) => {
-            const questName = this.add.text(32, 32 + 20 * index, quest.questName, textOptions);
+            const questName = new RichText(this, 32, 32 + 20 * index, quest.questName, textOptions);
+            if (index === 0) {
+                selectedQuestName = questName;
+                selectedQuestName.setStyle({ 'fontStyle': 'bold' });
+            }
+            if (quest.currentStates.includes('completed'))
+                questName.cross();
             this.questLogDisplayGroup.add(questName);
-            const questDescriptionText = this._getQuestDescriptionText(quests[index]);
             questName.setInteractive({ useHandCursor: true });
             questName.on('pointerdown', () => {
-                questDescription.setText(questDescriptionText);
+                selectedQuestName.setStyle({ 'fontStyle': 'normal' });
+                selectedQuestName = questName;
+                questName.setStyle({ 'fontStyle': 'bold' });
+                this._updateQuestDescriptionContainer(quests[index], questDescription);
             });
         });
     }
-    _getQuestDescriptionText(quest) {
-        let description = '';
-        quest.currentStates.forEach(state => {
+    _updateQuestDescriptionContainer(quest, questDescriptionContainer) {
+        let lastY = 0;
+        questDescriptionContainer.removeAll(true);
+        quest.currentStates.forEach((state, index) => {
             if (quest.availableStates[state] !== '') {
-                description += quest.availableStates[state] + '\n\n';
+                const textOptions = { color: 'black', wordWrap: { width: 360 } };
+                if (index === quest.currentStates.length - 1 && quest.currentStates.length !== 1)
+                    textOptions['fontStyle'] = 'bold';
+                const text = new RichText(this, 0, lastY, quest.availableStates[state] + '\n\n', textOptions);
+                questDescriptionContainer.add(text);
+                lastY += text.height;
             }
         });
-        return description;
     }
 }
 //# sourceMappingURL=questLog.js.map
