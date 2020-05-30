@@ -284,7 +284,7 @@ export class GeneralLocation extends Phaser.Scene {
 
         this.setupRunKey();
 
-        if (mapKey !== 'battle' && DEBUG) this.createDebugButton();
+        if (mapKey !== 'battle') this.createDebugButton();
     }
 
     public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): Phaser.Types.GameObjects.Sprite.SpriteConfig {
@@ -363,7 +363,6 @@ export class GeneralLocation extends Phaser.Scene {
     }
 
     public createDebugButton() {
-        const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0).setDepth(100);
         let debugModeOn = false;
         const debugGraphicsGroup = this.add.group();
         this.layers.forEach(layer => {
@@ -378,10 +377,7 @@ export class GeneralLocation extends Phaser.Scene {
             debugGraphicsGroup.add(debugGraphics);
         });
         debugGraphicsGroup.setVisible(debugModeOn);
-        debugButton.on('pointerdown', () => {
-            debugModeOn = !debugModeOn;
-            debugGraphicsGroup.setVisible(debugModeOn);
-        });
+
         this.input.keyboard.off('keyup-F1');
         this.input.keyboard.on('keyup-F1', () => {
             debugModeOn = !debugModeOn;

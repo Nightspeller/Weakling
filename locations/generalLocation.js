@@ -1,6 +1,6 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import Item from "../entities/item.js";
-import { DEBUG, GAME_H, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED } from "../config/constants.js";
+import { GAME_H, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED } from "../config/constants.js";
 import { messages } from "../data/messages.js";
 import Container from "../entities/container.js";
 import { Trigger } from "../entities/trigger.js";
@@ -250,7 +250,7 @@ export class GeneralLocation extends Phaser.Scene {
         });
         this.setupAttackKey();
         this.setupRunKey();
-        if (mapKey !== 'battle' && DEBUG)
+        if (mapKey !== 'battle')
             this.createDebugButton();
     }
     getSpriteParamsByObjectName(objectName, objectLayer = 'Objects') {
@@ -324,7 +324,6 @@ export class GeneralLocation extends Phaser.Scene {
         this.updatePlayer();
     }
     createDebugButton() {
-        const debugButton = this.add.image(32, 32, 'debug-icon').setOrigin(0, 0).setInteractive().setScrollFactor(0).setDepth(100);
         let debugModeOn = false;
         const debugGraphicsGroup = this.add.group();
         this.layers.forEach(layer => {
@@ -339,10 +338,6 @@ export class GeneralLocation extends Phaser.Scene {
             debugGraphicsGroup.add(debugGraphics);
         });
         debugGraphicsGroup.setVisible(debugModeOn);
-        debugButton.on('pointerdown', () => {
-            debugModeOn = !debugModeOn;
-            debugGraphicsGroup.setVisible(debugModeOn);
-        });
         this.input.keyboard.off('keyup-F1');
         this.input.keyboard.on('keyup-F1', () => {
             debugModeOn = !debugModeOn;
