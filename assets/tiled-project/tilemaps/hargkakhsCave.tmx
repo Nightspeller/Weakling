@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="6">
  <editorsettings>
-  <export target="hargkakhsCave.json" format="json"/>
+  <export target="../../exported-maps/hargkakhsCave.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="base.tsx"/>
- <tileset firstgid="1065" source="wall-up.tsx"/>
- <tileset firstgid="1161" source="base-addition.tsx"/>
+ <tileset firstgid="1" source="../tilesets/base.tsx"/>
+ <tileset firstgid="1065" source="../tilesets/wall-up.tsx"/>
+ <tileset firstgid="1161" source="../tilesets/base-addition.tsx"/>
  <layer id="1" name="Tile Layer 1" width="8" height="12">
   <data encoding="base64">
    BgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAA

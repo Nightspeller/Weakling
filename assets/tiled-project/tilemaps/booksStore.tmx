@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2020.04.10" orientation="orthogonal" renderorder="right-down" width="11" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="7">
+<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" width="11" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="7">
  <editorsettings>
-  <export target="booksStore.json" format="json"/>
+  <export target="../../exported-maps/booksStore.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="base.tsx"/>
- <tileset firstgid="1065" source="wall-up.tsx"/>
- <tileset firstgid="1161" source="male17-3.tsx"/>
+ <tileset firstgid="1" source="../tilesets/base.tsx"/>
+ <tileset firstgid="1065" source="../tilesets/wall-up.tsx"/>
+ <tileset firstgid="1161" source="../tilesets/male17-3.tsx"/>
+ <tileset firstgid="1173" source="../tilesets/shadow-1.tsx"/>
  <group id="3" name="Layer 1">
   <layer id="1" name="Below player" width="11" height="8">
    <data encoding="base64">
@@ -40,7 +41,7 @@
  <group id="7" name="Layer 2">
   <layer id="8" name="Below player" width="11" height="8">
    <data encoding="base64">
-   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
   </data>
   </layer>
   <layer id="9" name="Collisions" width="11" height="8">

@@ -99,7 +99,7 @@
          "layers":[
                 {
                  "compression":"",
-                 "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                 "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
                  "encoding":"base64",
                  "height":8,
                  "id":8,
@@ -347,7 +347,7 @@
  "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.04.10",
+ "tiledversion":"2020.05.27",
  "tileheight":32,
  "tilesets":[
         {
@@ -9949,12 +9949,12 @@
         {
          "columns":8,
          "firstgid":1065,
-         "image":"..\/images\/tilesets\/wall-up.png",
-         "imageheight":384,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/wall-up.png",
+         "imageheight":408,
+         "imagewidth":272,
+         "margin":1,
          "name":"wall-up",
-         "spacing":0,
+         "spacing":2,
          "tilecount":96,
          "tileheight":32,
          "tiles":[
@@ -10833,6 +10833,19 @@
          "margin":1,
          "name":"male17-3",
          "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":1173,
+         "image":"..\/images-extruded\/characters\/world-map\/shadows\/shadow-1.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"shadow-1",
          "spacing":2,
          "tilecount":12,
          "tileheight":32,

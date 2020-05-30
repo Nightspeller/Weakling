@@ -444,7 +444,7 @@
  "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.3.3",
+ "tiledversion":"2020.05.27",
  "tileheight":32,
  "tilesets":[
         {
@@ -455,6 +455,7 @@
          "imagewidth":272,
          "margin":1,
          "name":"base",
+         "objectalignment":"topleft",
          "spacing":2,
          "tilecount":1064,
          "tileheight":32,

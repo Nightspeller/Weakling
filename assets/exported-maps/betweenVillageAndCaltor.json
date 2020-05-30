@@ -247,11 +247,6 @@
                  "name":"Apple 1",
                  "properties":[
                         {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
@@ -275,11 +270,6 @@
                  "name":"Apple 2",
                  "properties":[
                         {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
@@ -297,11 +287,6 @@
                  "id":14,
                  "name":"Apple 5",
                  "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
                         {
                          "name":"items",
                          "type":"string",
@@ -326,11 +311,6 @@
                  "name":"Apple 9",
                  "properties":[
                         {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
@@ -348,11 +328,6 @@
                  "id":16,
                  "name":"Apple 4",
                  "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
                         {
                          "name":"items",
                          "type":"string",
@@ -372,11 +347,6 @@
                  "name":"Apple 7",
                  "properties":[
                         {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
@@ -394,11 +364,6 @@
                  "id":18,
                  "name":"Apple 3",
                  "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
                         {
                          "name":"items",
                          "type":"string",
@@ -418,11 +383,6 @@
                  "name":"Apple 10",
                  "properties":[
                         {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
@@ -441,11 +401,6 @@
                  "name":"Apple 8",
                  "properties":[
                         {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
@@ -463,11 +418,6 @@
                  "id":21,
                  "name":"Apple 6",
                  "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
                         {
                          "name":"items",
                          "type":"string",
@@ -500,8 +450,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1344,
-                 "y":480
+                 "x":704,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",

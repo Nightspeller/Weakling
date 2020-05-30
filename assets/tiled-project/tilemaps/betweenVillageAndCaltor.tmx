@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2020.04.10" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="23">
+<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="23">
  <editorsettings>
-  <export target="betweenVillageAndCaltor.json" format="json"/>
+  <export target="../../exported-maps/betweenVillageAndCaltor.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="base.tsx"/>
- <tileset firstgid="1065" source="dirt4.tsx"/>
- <tileset firstgid="1113" source="grass1-dirt2.tsx"/>
- <tileset firstgid="1161" source="base-addition.tsx"/>
- <tileset firstgid="1929" source="flowers.tsx"/>
- <tileset firstgid="1977" source="water2.tsx"/>
- <tileset firstgid="2361" source="long-grass.tsx"/>
+ <tileset firstgid="1" source="../tilesets/base.tsx"/>
+ <tileset firstgid="1065" source="../tilesets/dirt4.tsx"/>
+ <tileset firstgid="1113" source="../tilesets/grass1-dirt2.tsx"/>
+ <tileset firstgid="1161" source="../tilesets/base-addition.tsx"/>
+ <tileset firstgid="1929" source="../tilesets/flowers.tsx"/>
+ <tileset firstgid="1977" source="../tilesets/water2.tsx"/>
+ <tileset firstgid="2361" source="../tilesets/long-grass.tsx"/>
  <group id="2" name="Lyaer 1">
   <layer id="1" name="Below player" width="60" height="25">
    <data encoding="base64">

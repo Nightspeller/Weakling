@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="5">
+<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="5">
  <editorsettings>
-  <export target="greatPlains.json" format="json"/>
+  <export target="../../exported-maps/greatPlains.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="base.tsx"/>
+ <tileset firstgid="1" source="../tilesets/base.tsx"/>
  <group id="2" name="Layer 1">
   <layer id="1" name="Below player" width="50" height="50">
    <data encoding="base64">

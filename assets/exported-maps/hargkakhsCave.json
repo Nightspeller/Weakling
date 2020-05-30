@@ -9807,12 +9807,12 @@
         {
          "columns":8,
          "firstgid":1065,
-         "image":"..\/images\/tilesets\/wall-up.png",
-         "imageheight":384,
-         "imagewidth":256,
-         "margin":0,
+         "image":"..\/images-extruded\/tilesets\/wall-up.png",
+         "imageheight":408,
+         "imagewidth":272,
+         "margin":1,
          "name":"wall-up",
-         "spacing":0,
+         "spacing":2,
          "tilecount":96,
          "tileheight":32,
          "tiles":[

@@ -74,7 +74,7 @@
                  "height":14,
                  "id":16,
                  "name":"Fringe transparent",
-                 "opacity":1,
+                 "opacity":0.8,
                  "properties":[
                         {
                          "name":"fringe",
