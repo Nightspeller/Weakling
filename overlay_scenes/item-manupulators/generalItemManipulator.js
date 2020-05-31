@@ -155,6 +155,9 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         this.itemsDisplayGroup.add(itemRepresentation);
     }
     _moveItemToBackpack(fromSlot) {
+        if (this.movementInProgress)
+            return;
+        this.movementInProgress = true;
         const itemR = this.itemsMap.get(fromSlot);
         if (itemR.item.stackable === true) {
             for (let [slot, itemFromMap] of this.itemsMap.entries()) {
@@ -162,6 +165,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                     this._animateItemFromSlotToSlot(fromSlot, slot).then(() => {
                         this._changeItemQuantity(slot, itemFromMap.item.quantity + itemR.item.quantity);
                         this._deleteItemRepresentation(fromSlot);
+                        this.movementInProgress = false;
                     });
                     return;
                 }
@@ -170,6 +174,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
         if (emptyBackPackSlot) {
             this._moveItemFromSlotToSlot(fromSlot, emptyBackPackSlot, true);
+            this.movementInProgress = false;
         }
     }
     _highlightValidSlots(slotNames, showHighlight) {
