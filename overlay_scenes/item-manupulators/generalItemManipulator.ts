@@ -20,7 +20,6 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     protected itemsMap: Map<Slots, ItemRepresentation>;
     protected updateSourceCallback: Function;
     private dragStarted: boolean;
-    private movementInProgress: boolean;
 
     constructor({key: key}) {
         super({key: key});
@@ -179,16 +178,16 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     }
 
     protected _moveItemToBackpack(fromSlot: Slots) {
-        if (this.movementInProgress) return;
-        this.movementInProgress = true;
         const itemR = this.itemsMap.get(fromSlot);
         if (itemR.item.stackable === true) {
             for (let [slot, itemFromMap] of this.itemsMap.entries()) {
                 if (backpackSlotNames.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
                     this._animateItemFromSlotToSlot(fromSlot, slot).then(() => {
-                        this._changeItemQuantity(slot, itemFromMap.item.quantity+itemR.item.quantity);
-                        this._deleteItemRepresentation(fromSlot);
-                        this.movementInProgress = false;
+                        //TODO: kinda a hack to avoid delition of an item which already was deleted....
+                        if (this.itemsMap.get(fromSlot)) {
+                            this._changeItemQuantity(slot, itemFromMap.item.quantity+itemR.item.quantity);
+                            this._deleteItemRepresentation(fromSlot);
+                        }
                     });
                     return;
                 }
@@ -197,7 +196,6 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
         if (emptyBackPackSlot) {
             this._moveItemFromSlotToSlot(fromSlot, emptyBackPackSlot, true);
-            this.movementInProgress = false;
         }
     }
 
