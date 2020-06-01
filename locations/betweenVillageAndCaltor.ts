@@ -48,7 +48,7 @@ export class BetweenVillageAndCaltorScene extends GeneralLocation {
                 grave.setDialog(graveDialogWithFalseName, (param) => {
                     if (param === 'falseNameCalled') {
                         this.player.updateQuest('theSelflessSpirit', 'falseNameCalled');
-                        this.switchToScene('Battle', {enemies: [{"type": "wildBoar"}, {"type": "wildBoar"}]});
+                        this.switchToScene('Battle', {enemies: [{"type": "ghost-knight"}]});
                     }
                 });
             }

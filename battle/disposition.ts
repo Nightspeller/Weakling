@@ -5,6 +5,7 @@ import {Adventurer} from "../characters/adventurers/adventurer.js";
 import {Wizard} from "../characters/enemies/wizard.js";
 import {BattleScene} from "./battle.js";
 import Effect from "../entities/effect.js";
+import {GhostKnight} from "../characters/enemies/ghost-knight.js";
 
 export class Disposition {
     public playerCharacters: Adventurer[];
@@ -224,6 +225,7 @@ export class Disposition {
 }
 
 const enemiesList = {
-    wildBoar: Boar,
-    wizard: Wizard
+    'wildBoar': Boar,
+    'wizard': Wizard,
+    'ghost-knight': GhostKnight
 };

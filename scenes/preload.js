@@ -131,6 +131,10 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 231,
             frameHeight: 190
         });
+        this.load.spritesheet("ghost-knight-idle", "assets/images/characters/battle/enemies/ghost-knight/Idle.png", {
+            frameWidth: 180,
+            frameHeight: 180
+        });
         // Items
         this.load.image("rope-belt", "assets/images/items/rope-belt.png");
         this.load.image("bag-green", "assets/images/items/bag-green.png");
@@ -172,6 +176,22 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 231,
             frameHeight: 190
         });
+        this.load.spritesheet("ghost-knight-attack1", "assets/images/characters/battle/enemies/ghost-knight/Attack1.png", {
+            frameWidth: 180,
+            frameHeight: 180
+        });
+        this.load.spritesheet("ghost-knight-attack2", "assets/images/characters/battle/enemies/ghost-knight/Attack2.png", {
+            frameWidth: 180,
+            frameHeight: 180
+        });
+        this.load.spritesheet("ghost-knight-hit", "assets/images/characters/battle/enemies/ghost-knight/Hit.png", {
+            frameWidth: 180,
+            frameHeight: 180
+        });
+        this.load.spritesheet("ghost-knight-death", "assets/images/characters/battle/enemies/ghost-knight/Death.png", {
+            frameWidth: 180,
+            frameHeight: 180
+        });
         this.load.spritesheet("doors2-upscaled", "assets/images/tilesets/doors2-upscaled.png", {
             frameWidth: 32,
             frameHeight: 96
@@ -205,9 +225,9 @@ export class PreloadScene extends Phaser.Scene {
             optionsInstance.toggleMusic();
         this.createAnimations();
         console.log('Preload done, calling Main Menu');
-        //this.scene.start("Battle", {enemies: [{"type": "wildBoar"}, {"type": "wizard"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
         if (DEBUG) {
-            this.scene.start("WeaklingsCave", { prevScene: this.scene.key });
+            this.scene.start("Battle", { enemies: [{ "type": "ghost-knight" }, { "type": "ghost-knight" }, { "type": "wizard" }, { "type": "wildBoar" }], prevScene: "Caltor" });
+            //this.scene.start("WeaklingsCave", {prevScene: this.scene.key});
         }
         else {
             this.scene.start("MainMenu", { prevScene: this.scene.key });
@@ -336,6 +356,36 @@ export class PreloadScene extends Phaser.Scene {
         this.anims.create({
             key: 'wizard_death',
             frames: this.anims.generateFrameNames('wizard-death'),
+            frameRate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'ghost-knight_idle',
+            frames: this.anims.generateFrameNames('ghost-knight-idle'),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'ghost-knight_attack1',
+            frames: this.anims.generateFrameNames('ghost-knight-attack1'),
+            frameRate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'ghost-knight_attack2',
+            frames: this.anims.generateFrameNames('ghost-knight-attack2'),
+            frameRate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'ghost-knight_hit',
+            frames: this.anims.generateFrameNames('ghost-knight-hit'),
+            frameRate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'ghost-knight_death',
+            frames: this.anims.generateFrameNames('ghost-knight-death'),
             frameRate: 10,
             repeat: 0
         });
