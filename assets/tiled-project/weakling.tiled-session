@@ -1,11 +1,11 @@
 {
-    "activeFile": "tilemaps/backCave.tmx",
+    "activeFile": "tilemaps/village.tmx",
     "expandedProjectPaths": [
         "exported-maps",
-        ".",
         "maps",
-        "tilesets",
-        "tilemaps"
+        "tilemaps",
+        ".",
+        "tilesets"
     ],
     "exportAsImage.drawTileGrid": false,
     "exportAsImage.includeBackgroundColor": false,
@@ -281,16 +281,16 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1512.3333333333333,
-                "y": 519.8333333333334
+                "x": 959.8333333333333,
+                "y": 400
             }
         },
         "tilemaps/betweenVillageAndDungeon.tmx": {
             "scale": 3,
             "selectedLayer": 16,
             "viewCenter": {
-                "x": 266.99999999999994,
-                "y": 337.83333333333337
+                "x": 783.8333333333333,
+                "y": 320
             }
         },
         "tilemaps/booksStore.tmx": {
@@ -473,11 +473,11 @@
             }
         },
         "tilemaps/village.tmx": {
-            "scale": 3,
+            "scale": 8,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 1384.3333333333333,
-                "y": 504.49999999999994
+                "x": 1356.875,
+                "y": 485.8125
             }
         },
         "tilemaps/village.tmx#grass1-dirt1": {
@@ -499,8 +499,8 @@
             "scale": 3,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 181.99999999999997,
-                "y": 366.83333333333337
+                "x": 128.16666666666663,
+                "y": 224
             }
         },
         "tilesets/base-addition.tsx": {
@@ -536,7 +536,7 @@
         },
         "tilesets/dirt4.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 1,
+            "scaleInDock": 3,
             "scaleInEditor": 5.5
         },
         "tilesets/doors1-upscaled.tsx": {
@@ -559,6 +559,10 @@
             "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 4
+        },
+        "tilesets/fire.tsx": {
+            "scaleInDock": 5.5,
+            "scaleInEditor": 11
         },
         "tilesets/fisherman.tsx": {
             "scaleInDock": 1,
@@ -591,6 +595,7 @@
             "scaleInEditor": 1
         },
         "tilesets/icon-item-set.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 3
         },
         "tilesets/interface-tiles.tsx": {
@@ -676,32 +681,28 @@
     "map.tileWidth": 32,
     "map.width": 10,
     "openFiles": [
-        "hermitsTower.tmx",
-        "house.tmx",
-        "interface.tmx",
-        "nahkhasCave.tmx",
-        "weaklingsCave.tmx",
-        "icon-item-set.tsx",
-        "castle.tsx",
-        "tilemaps/caltor.tmx",
+        "tilemaps/weaklingsCave.tmx",
+        "tilemaps/betweenVillageAndDungeon.tmx",
+        "tilemaps/betweenVillageAndCaltor.tmx",
+        "tilesets/fire.tsx",
         "tilemaps/village.tmx",
-        "tilemaps/backCave.tmx"
+        "tilesets/base.tsx"
     ],
     "project": "weakling.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "tilemaps/weaklingsCave.tmx",
+        "tilemaps/betweenVillageAndDungeon.tmx",
+        "tilemaps/betweenVillageAndCaltor.tmx",
+        "tilesets/fire.tsx",
+        "tilesets/base.tsx",
+        "tilemaps/village.tmx",
         "tilemaps/tavern.tmx",
         "tilemaps/nahkhasCave.tmx",
         "tilemaps/hermitsTower.tmx",
         "tilemaps/hargkakhsCave.tmx",
         "tilemaps/greatPlains.tmx",
-        "tilemaps/fight.tmx",
-        "tilemaps/eldersCave.tmx",
-        "tilemaps/dungeon.tmx",
-        "tilemaps/crypt.tmx",
-        "tilemaps/booksStore.tmx",
-        "tilemaps/village.tmx",
-        "tilemaps/caltor.tmx"
+        "tilemaps/fight.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedExportFilter": "All Files (*)",

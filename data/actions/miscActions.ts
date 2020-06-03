@@ -17,6 +17,8 @@ export const miscActions: { [key: string]: ActionData } = {
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
+        icon: {texture: 'icon-item-set', frame: 144},
+        parametersCost: {},
     },
     inspectEnemy: {
         actionId: 'inspectEnemy',
@@ -32,6 +34,8 @@ export const miscActions: { [key: string]: ActionData } = {
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
+        icon: {texture: 'icon-item-set', frame: 167},
+        parametersCost: {},
     },
     meditate: {
         actionId: 'meditate',
@@ -50,6 +54,8 @@ export const miscActions: { [key: string]: ActionData } = {
         actionCost: 1,
         noticeable: 0,
         animation: 'castBuff',
+        icon: {texture: 'icon-item-set', frame: 5},
+        parametersCost: {},
     },
     accessInventory: {
         actionId: 'accessInventory',
@@ -65,6 +71,8 @@ export const miscActions: { [key: string]: ActionData } = {
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
+        icon: {texture: 'icon-item-set', frame: 160},
+        parametersCost: {},
     },
     enrage: {
         actionId: 'enrage',
@@ -83,5 +91,7 @@ export const miscActions: { [key: string]: ActionData } = {
         actionCost: 0.5,
         noticeable: 1,
         animation: 'castBuff',
+        icon: {texture: 'icon-item-set', frame: 59},
+        parametersCost: {energy: 3},
     },
 };

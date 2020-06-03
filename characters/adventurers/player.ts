@@ -73,9 +73,9 @@ export class Player extends Adventurer {
             this.addItemToInventory('rocky-rose-flower', 6);
             this.addItemToInventory('hargkakhs-key');
 
-            this.addQuest('theSelflessSpirit');
+           /* this.addQuest('theSelflessSpirit');
             this.updateQuest('theSelflessSpirit', 'falseNameLearned');
-            this.updateQuest('theSelflessSpirit', 'falseNameCalled');
+            this.updateQuest('theSelflessSpirit', 'falseNameCalled');*/
             //this.updateQuest('theSelflessSpirit', 'trueNameLearned');
             //this.updateQuest('theSelflessSpirit', 'trueNameCalled');
         }

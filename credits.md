@@ -7,9 +7,9 @@ Engine:
 Graphics:
 - Main tileset and animations - Pipoya - https://pipoya.itch.io
 - Main icon set - Shikashi - https://shikashiassets.itch.io/shikashis-fantasy-icons-pack
-- Various icons - Raventale - https://raventale.itch.io
+- Various icons - RavenTale - https://raventale.itch.io
 - World characters - Kitterlings - https://kitterlings.itch.io/jeremy-and-martha
-- Wizard - Luizmelo - https://luizmelo.itch.io/wizard-pack
+- Wizard and some other characters - Luizmelo - https://luizmelo.itch.io/wizard-pack
 - Interface doll and slots - Heroes 3 - will be replaced, but, for now, thanks 3DO!
 
 Audio:

@@ -16,6 +16,8 @@ export const physicalActions = {
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
+        icon: { texture: 'icon-item-set', frame: 20 },
+        parametersCost: { energy: 3 },
     },
     adjustArmor: {
         actionId: 'adjustArmor',
@@ -34,10 +36,12 @@ export const physicalActions = {
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
+        icon: { texture: 'icon-item-set', frame: 119 },
+        parametersCost: { energy: 3 },
     },
     setTrap: {
         actionId: 'setTrap',
-        phase: ['preparation'],
+        phase: ['preparation', 'battle'],
         type: 'physical',
         actionName: 'Set a trap',
         actionDescription: 'Sets a trap on the most likely way of the selected opponent',
@@ -49,11 +53,13 @@ export const physicalActions = {
         actionCost: 0.5,
         noticeable: 0.1,
         animation: 'meleeAttack',
+        icon: { texture: 'icon-item-set', frame: 174 },
+        parametersCost: { energy: 3 },
     },
     meleeAttack: {
         actionId: 'meleeAttack',
-        phase: ['battle'],
-        type: 'physical',
+        phase: ['battle', "preparation"],
+        type: 'misc',
         actionName: 'Melee attack',
         actionDescription: 'Hits the opponent with equipped melee weapon',
         effectsDescriptions: [{
@@ -64,6 +70,8 @@ export const physicalActions = {
         actionCost: 1,
         noticeable: 1,
         animation: 'meleeAttack',
+        icon: { texture: 'icon-item-set', frame: 95 },
+        parametersCost: { energy: 3 },
     },
     wildRush: {
         actionId: 'wildRush',
@@ -83,6 +91,8 @@ export const physicalActions = {
             { conditionId: 'cursedSoil', probability: 0.75, conditionDisplayName: 'Cursed Soil' }
         ],
         animation: 'meleeAttack',
+        icon: { texture: 'icon-item-set', frame: 95 },
+        parametersCost: { energy: 3 },
     },
 };
 //# sourceMappingURL=physicalActions.js.map

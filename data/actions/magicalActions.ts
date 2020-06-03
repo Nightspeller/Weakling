@@ -13,6 +13,8 @@ export const magicalActions: { [key: string]: ActionData } = {
         actionCost: 1,
         noticeable: 0,
         animation: 'meleeAttack',
+        icon: {texture: 'icon-item-set', frame: 53},
+        parametersCost: {manna: 3},
     },
     dustStorm: {
         actionId: 'dustStorm',
@@ -31,6 +33,8 @@ export const magicalActions: { [key: string]: ActionData } = {
         actionCost: 1,
         noticeable: 0,
         animation: 'meleeAttack',
+        icon: {texture: 'icon-item-set', frame: 336},
+        parametersCost: {manna: 3},
     },
     drainingSoil: {
         actionId: 'drainingSoil',
@@ -47,6 +51,8 @@ export const magicalActions: { [key: string]: ActionData } = {
         noticeable: 0,
         special: 'If the trap is on the way, trap gets cursed, both effects are +10%, if trap is placed on cursed land - gets cursed himself',
         animation: 'meleeAttack',
+        icon: {texture: 'icon-item-set', frame: 368},
+        parametersCost: {manna: 3},
     },
     fireProtection: {
         actionId: 'fireProtection',
@@ -62,6 +68,8 @@ export const magicalActions: { [key: string]: ActionData } = {
         actionCost: 1.5,
         noticeable: 0,
         animation: 'castBuff',
+        icon: {texture: 'icon-item-set', frame: 57},
+        parametersCost: {manna: 3},
     },
     swiftMind: {
         actionId: 'swiftMind',
@@ -80,6 +88,8 @@ export const magicalActions: { [key: string]: ActionData } = {
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
+        icon: {texture: 'icon-item-set', frame: 19},
+        parametersCost: {manna: 3},
     },
     magicMissile: {
         actionId: 'magicMissile',
@@ -96,6 +106,8 @@ export const magicalActions: { [key: string]: ActionData } = {
         noticeable: 1,
         triggers: [],
         animation: 'meleeAttack',
+        icon: {texture: 'icon-item-set', frame: 336},
+        parametersCost: {manna: 3},
     },
     fireball: {
         actionId: 'fireball',
@@ -112,5 +124,7 @@ export const magicalActions: { [key: string]: ActionData } = {
         noticeable: 1,
         triggers: [],
         animation: 'meleeAttack',
+        icon: {texture: 'icons-additional', frame: 'magic-swirl'},
+        parametersCost: {manna: 3},
     },
 };

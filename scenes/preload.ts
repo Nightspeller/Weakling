@@ -237,6 +237,9 @@ export class PreloadScene extends Phaser.Scene {
         // Audio
         this.load.audio('intro', ['assets/audio/intro.ogg', 'assets/audio/intro.mp3']);
         this.load.audio('keys-for-success', ['assets/audio/keys-for-success.mp3', 'assets/audio/keys-for-success.ogg']);
+
+        // Atlases
+        this.load.atlas('icons-additional', 'assets/images-extruded/interface/icons-additional.png', 'assets/images-extruded/interface/icons-additional.json');
     }
 
     create() {
