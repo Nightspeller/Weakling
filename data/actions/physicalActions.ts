@@ -58,8 +58,8 @@ export const physicalActions: { [key: string]: ActionData } = {
     },
     meleeAttack: {
         actionId: 'meleeAttack',
-        phase: ['battle', "preparation"],
-        type: 'misc',
+        phase: ['battle'],
+        type: 'physical',
         actionName: 'Melee attack',
         actionDescription: 'Hits the opponent with equipped melee weapon',
         effectsDescriptions: [{
@@ -71,7 +71,7 @@ export const physicalActions: { [key: string]: ActionData } = {
         noticeable: 1,
         animation: 'meleeAttack',
         icon: {texture: 'icon-item-set', frame: 95},
-        parametersCost: {energy: 3},
+        parametersCost: {energy: 1},
     },
     wildRush: {
         actionId: 'wildRush',

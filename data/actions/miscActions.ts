@@ -71,7 +71,7 @@ export const miscActions: { [key: string]: ActionData } = {
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
-        icon: {texture: 'icon-item-set', frame: 160},
+        icon: {texture: 'icon-item-set', frame: 137},
         parametersCost: {},
     },
     enrage: {

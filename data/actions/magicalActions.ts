@@ -31,9 +31,9 @@ export const magicalActions: { [key: string]: ActionData } = {
         }],
         target: 'allEnemies',
         actionCost: 1,
-        noticeable: 0,
+        noticeable: 1,
         animation: 'meleeAttack',
-        icon: {texture: 'icon-item-set', frame: 336},
+        icon: {texture: 'icons-additional', frame: 'tornado'},
         parametersCost: {manna: 3},
     },
     drainingSoil: {
