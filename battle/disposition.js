@@ -112,6 +112,7 @@ export class Disposition {
         }
     }
     processAction(source, targets, action) {
+        var _a, _b;
         const targetsNames = targets.map(target => target.name).join(', ');
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${targetsNames}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         this.log(`${source.name} tries to perform ${action.actionName} on ${targetsNames}`);
@@ -126,28 +127,49 @@ export class Disposition {
         if (source.actionPoints[action.type] < action.actionCost) {
             console.log(`Action was not performed because ${source.actionPoints[action.type]} ${action.type} action points is not enough - ${action.actionCost} is needed.`);
             this.log(`Action was not performed because ${source.actionPoints[action.type]} ${action.type} action points is not enough - ${action.actionCost} is needed.`);
+            return actionResults;
+        }
+        if (action.parametersCost.manna && source.currentCharacteristics.parameters.currentManna < action.parametersCost.manna) {
+            console.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentManna} manna is not enough - ${action.parametersCost.manna} is needed.`);
+            this.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentManna} manna is not enough - ${action.parametersCost.manna} is needed.`);
+            return actionResults;
+        }
+        if (action.parametersCost.energy && source.currentCharacteristics.parameters.currentEnergy < action.parametersCost.energy) {
+            console.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentEnergy} energy is not enough - ${action.parametersCost.energy} is needed.`);
+            this.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentEnergy} energy is not enough - ${action.parametersCost.energy} is needed.`);
+            return actionResults;
+        }
+        actionResults.attempted = true;
+        if ((_a = action.parametersCost) === null || _a === void 0 ? void 0 : _a.energy) {
+            const subtractEnergyEffect = new Effect('subtractEnergy');
+            subtractEnergyEffect.setModifier(source, source, action);
+            subtractEnergyEffect.source = action.actionId;
+            source.applyEffect(subtractEnergyEffect);
+        }
+        if ((_b = action.parametersCost) === null || _b === void 0 ? void 0 : _b.manna) {
+            const subtractMannaEffect = new Effect('subtractManna');
+            subtractMannaEffect.setModifier(source, source, action);
+            subtractMannaEffect.source = action.actionId;
+            source.applyEffect(subtractMannaEffect);
+        }
+        source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
+        actionResults.triggeredTraps = this._checkForTriggers(source, action);
+        if (action.actionId === 'accessInventory') {
+            if (source instanceof Adventurer) {
+                actionResults.succeeded.push(true);
+                this.scene.switchToScene('Inventory', {}, false);
+            }
         }
         else {
-            actionResults.attempted = true;
-            source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
-            actionResults.triggeredTraps = this._checkForTriggers(source, action);
-            if (action.actionId === 'accessInventory') {
-                if (source instanceof Adventurer) {
-                    actionResults.succeeded.push(true);
-                    this.scene.switchToScene('Inventory', {}, false);
-                }
-            }
-            else {
-                action.effects.forEach(effect => {
-                    targets.forEach((target, index) => {
-                        if (effect.applicationCheck(source, target, action)) {
-                            effect.setModifier(source, target, action);
-                            target.applyEffect(effect);
-                            actionResults.succeeded[index] = true;
-                        }
-                    });
+            action.effects.forEach(effect => {
+                targets.forEach((target, index) => {
+                    if (effect.applicationCheck(source, target, action)) {
+                        effect.setModifier(source, target, action);
+                        target.applyEffect(effect);
+                        actionResults.succeeded[index] = true;
+                    }
                 });
-            }
+            });
         }
         return actionResults;
     }

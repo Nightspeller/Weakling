@@ -77,7 +77,7 @@ interface ActionData {
     triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
     animation: 'meleeAttack' | 'castAttack' | 'castBuff';
     icon?: {texture: string, frame: number | string};
-    parametersCost?: {energy?: number, manna?: number},
+    parametersCost?: {energy?: number, manna?: number};
 }
 
 interface Weapon {

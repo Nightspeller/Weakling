@@ -168,6 +168,44 @@ export const directEffects = {
             };
         },
     },
+    subtractEnergy: {
+        effectId: 'subtractEnergy',
+        name: 'Subtract energy',
+        description: 'Energy usually is subtracted while using abilities or drained by enemies',
+        type: 'direct',
+        targetCharacteristic: 'parameters.currentEnergy',
+        baseDuration: null,
+        durationLeft: null,
+        strength: null,
+        source: null,
+        statusImage: { texture: 'icons', frame: 0 },
+        applicationCheck: (source, target, action) => true,
+        setModifier: function (source, target, action) {
+            this.modifier = {
+                type: 'value',
+                value: -action.parametersCost.energy
+            };
+        },
+    },
+    subtractManna: {
+        effectId: 'subtractManna',
+        name: 'Subtract manna',
+        description: 'Manna usually is subtracted while using abilities or drained by enemies',
+        type: 'direct',
+        targetCharacteristic: 'parameters.currentManna',
+        baseDuration: null,
+        durationLeft: null,
+        strength: null,
+        source: null,
+        statusImage: { texture: 'icons', frame: 0 },
+        applicationCheck: (source, target, action) => true,
+        setModifier: function (source, target, action) {
+            this.modifier = {
+                type: 'value',
+                value: -action.parametersCost.manna
+            };
+        },
+    },
 };
 function log(entree) {
     const logElement = document.getElementsByClassName('battle-log')[0];

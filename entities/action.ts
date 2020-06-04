@@ -18,6 +18,8 @@ export default class Action implements ActionData{
     public requires?: string;
     public triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
     public animation: 'meleeAttack' | 'castAttack' | 'castBuff';
+    public icon?: {texture: string, frame: number | string};
+    public parametersCost?: {energy?: number, manna?: number};
 
     constructor(actionId: string, character: Adventurer | GeneralEnemy) {
         const actionData = {...actionsData[actionId]} as ActionData;
