@@ -12,8 +12,15 @@ export class Adventurer extends GeneralCharacter {
         this.actionPointsIncrement = {physical: 1, magical: 1, misc: 1};
     }
 
-    public getInventoryItemById(itemId: string): Item | undefined {
-        return [...this.inventory.values()].find(existingItem => existingItem.itemId === itemId);
+    public getInventoryItemById(itemId: string, excludeBackpack = false): Item | undefined {
+        const entreeFound =  [...this.inventory.entries()].find(([slot, existingItem]) => {
+            if (excludeBackpack) {
+                return existingItem.itemId === itemId && slot.includes('backpack') === false;
+            }else {
+                return existingItem.itemId === itemId;
+            }
+        });
+        if (entreeFound) return entreeFound[1];
     }
 
     private _getInventorySlotOfItem(item: Item): Slots | undefined {

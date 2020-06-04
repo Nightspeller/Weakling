@@ -188,6 +188,10 @@ export class Disposition {
                 this.scene.switchToScene('Inventory', {}, false);
             }
         } else {
+            if (action.consumes !== undefined && source instanceof Adventurer) {
+                const consumedItem = source.getInventoryItemById(action.consumes, true);
+                source.removeItemFromInventory(consumedItem, 1);
+            }
             action.effects.forEach(effect => {
                 targets.forEach((target, index) => {
                     if (effect.applicationCheck(source, target, action)) {

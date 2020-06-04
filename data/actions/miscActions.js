@@ -1,23 +1,24 @@
 export const miscActions = {
-    drinkWeakHealthPotion: {
-        actionId: 'drinkWeakHealthPotion',
+    drinkSmallWeakHealthPotion: {
+        actionId: 'drinkSmallWeakHealthPotion',
         phase: ['preparation', 'battle'],
         type: 'misc',
-        actionName: 'Drink weak health potion',
-        requires: 'weakHealthPotion',
-        actionDescription: 'Drink weak health potion to restore some hp ',
+        actionName: 'Drink small weak health potion',
+        consumes: 'small-weak-healing-potion',
+        actionDescription: 'Drink small weak health potion to restore some hp ',
         effectsDescriptions: [{
-                effectId: 'health',
+                effectId: 'heal',
                 strength: 1
-            }, {
+            } /*, {
                 effectId: 'saturation',
                 strength: 1
-            }],
+            }*/
+        ],
         target: 'self',
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
-        icon: { texture: 'icon-item-set', frame: 144 },
+        icon: { texture: 'icon-item-set', frame: 352 },
         parametersCost: {},
     },
     inspectEnemy: {

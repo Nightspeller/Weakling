@@ -73,7 +73,7 @@ interface ActionData {
     actionName: string;
     target: 'self' | 'enemy' | 'friend' | 'any' | 'all' | 'allEnemies' | 'allFriends' | 'party';
     special?: string;
-    requires?: string;
+    consumes?: string;
     triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
     animation: 'meleeAttack' | 'castAttack' | 'castBuff';
     icon?: {texture: string, frame: number | string};
