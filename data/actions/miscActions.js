@@ -21,6 +21,28 @@ export const miscActions = {
         icon: { texture: 'icon-item-set', frame: 352 },
         parametersCost: {},
     },
+    drinkMediumWeakStrengthPotion: {
+        actionId: 'drinkMediumWeakStrengthPotion',
+        phase: ['preparation', 'battle'],
+        type: 'misc',
+        actionName: 'Drink medium weak strength potion',
+        consumes: 'medium-weak-strength-potion',
+        actionDescription: 'Drink medium weak strength potion to get some strength',
+        effectsDescriptions: [{
+                effectId: 'strengthUp',
+                strength: 1
+            } /*, {
+                effectId: 'saturation',
+                strength: 1
+            }*/
+        ],
+        target: 'self',
+        actionCost: 0.5,
+        noticeable: 0,
+        animation: 'castBuff',
+        icon: { texture: 'icon-item-set', frame: 157 },
+        parametersCost: {},
+    },
     inspectEnemy: {
         actionId: 'inspectEnemy',
         phase: ['preparation', 'battle'],
@@ -64,15 +86,26 @@ export const miscActions = {
         type: 'misc',
         actionName: 'Access inventory',
         actionDescription: 'Sometimes even in the heat of the battle you absolutely have to do it',
-        effectsDescriptions: [{
-                effectId: 'openInventory',
-                strength: 1
-            }],
+        effectsDescriptions: [],
         target: 'self',
         actionCost: 0.5,
         noticeable: 0,
         animation: 'castBuff',
         icon: { texture: 'icon-item-set', frame: 137 },
+        parametersCost: {},
+    },
+    retreat: {
+        actionId: 'retreat',
+        phase: ['preparation', 'battle'],
+        type: 'misc',
+        actionName: 'Retreat!',
+        actionDescription: 'For Kobolds, retreat is just a fancy way to say RUN AWAY!',
+        effectsDescriptions: [],
+        target: 'self',
+        actionCost: 3,
+        noticeable: 1,
+        animation: 'castBuff',
+        icon: { texture: 'icon-item-set', frame: 72 },
         parametersCost: {},
     },
     enrage: {

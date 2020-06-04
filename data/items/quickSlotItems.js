@@ -13,6 +13,7 @@ export const quickSlotItems = {
             useEffects: [
                 { 'attributes.strength': 2 }
             ],
+            additionalActions: ['drinkMediumWeakStrengthPotion']
         },
         sellPrice: 2,
         buyPrice: 4

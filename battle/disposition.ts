@@ -187,21 +187,30 @@ export class Disposition {
                 actionResults.succeeded.push(true);
                 this.scene.switchToScene('Inventory', {}, false);
             }
-        } else {
-            if (action.consumes !== undefined && source instanceof Adventurer) {
-                const consumedItem = source.getInventoryItemById(action.consumes, true);
-                source.removeItemFromInventory(consumedItem, 1);
-            }
-            action.effects.forEach(effect => {
-                targets.forEach((target, index) => {
-                    if (effect.applicationCheck(source, target, action)) {
-                        effect.setModifier(source, target, action);
-                        target.applyEffect(effect);
-                        actionResults.succeeded[index] = true;
-                    }
-                });
-            });
+            return actionResults;
         }
+        if (action.actionId === 'retreat') {
+            console.log('Adventurer party lost the battle');
+            this.log('Adventurer party lost the battle');
+            this.scene.exitBattle(false);
+            this.battleEnded = true;
+            return actionResults;
+        }
+
+        if (action.consumes !== undefined && source instanceof Adventurer) {
+            const consumedItem = source.getInventoryItemById(action.consumes, true);
+            source.removeItemFromInventory(consumedItem, 1);
+        }
+        action.effects.forEach(effect => {
+            targets.forEach((target, index) => {
+                if (effect.applicationCheck(source, target, action)) {
+                    effect.setModifier(source, target, action);
+                    target.applyEffect(effect);
+                    actionResults.succeeded[index] = true;
+                }
+            });
+        });
+
 
         return actionResults;
     }

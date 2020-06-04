@@ -14,6 +14,7 @@ export const quickSlotItems: { [key: string]: ItemData } = {
             useEffects: [
                 {'attributes.strength': 2}
             ],
+            additionalActions: ['drinkMediumWeakStrengthPotion']
         },
         sellPrice: 2,
         buyPrice: 4

@@ -43,7 +43,7 @@ export class Elder extends Adventurer {
         this.addItemToInventory('copper-pieces', 15);*/
         this.name = 'Elder Guarthh';
 
-        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
     }
 
     public getAttackDamage() {

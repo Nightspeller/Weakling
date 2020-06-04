@@ -57,7 +57,7 @@ export class Player extends Adventurer {
             this.addItemToInventory('rocky-rose-sapling');
             this.addItemToInventory('fancy-belt');
             this.addItemToInventory('sourgrass', 6);
-            this.addItemToInventory('small-weak-healing-potion', 2);
+            this.addItemToInventory('medium-weak-strength-potion', 2);
             this.addItemToInventory('leather-armor', 1);
             this.addItemToInventory('small-bottle', 3);
             this.addItemToInventory('medium-bottle', 3);
@@ -75,7 +75,7 @@ export class Player extends Adventurer {
         this.addBaseModifiers();
         this.applyItems();
         this.name = 'Weakling';
-        this.availableActions = ['meditate', 'accessInventory', /*'drinkWeakHealthPotion', */ 'swiftMind', 'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
+        this.availableActions = ['meditate', 'accessInventory', 'retreat', 'swiftMind', 'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
         this.party = [this];
         if (DEBUG)
             this.party = [this, elderInstance];
