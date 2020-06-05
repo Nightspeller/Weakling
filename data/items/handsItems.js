@@ -5,7 +5,7 @@ export const handsItems = {
         displayName: 'Wooden sword',
         description: 'Usually used for training rather than real fight, it is still better than nothing.',
         possibleSlots: ['rightHand', 'leftHand', ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 80 },
+        sprite: { texture: 'icon-item-set', frame: 80 },
         stackable: false,
         modified: false,
         specifics: {
@@ -23,7 +23,7 @@ export const handsItems = {
         displayName: 'Iron dagger',
         description: 'Simple, but quick to draw and use weapon, more common for street fights rather than epic battles.',
         possibleSlots: ['rightHand', 'leftHand', ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 87 },
+        sprite: { texture: 'icon-item-set', frame: 87 },
         stackable: false,
         modified: false,
         specifics: {
@@ -41,7 +41,7 @@ export const handsItems = {
         displayName: 'Spirit sword',
         description: 'The sword left by the great hero, the protector of poor and weak - it can be used only for the good deeds.',
         possibleSlots: ['rightHand', 'leftHand', ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 84 },
+        sprite: { texture: 'icon-item-set', frame: 84 },
         stackable: false,
         modified: false,
         specifics: {
@@ -59,7 +59,7 @@ export const handsItems = {
         displayName: 'Wooden spear',
         description: 'Wooden spear with the stone tip - main weapon of Kobolds',
         possibleSlots: ['rightHand', ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'spear-weapon', frame: null },
+        sprite: { texture: 'spear-weapon', frame: null },
         stackable: false,
         modified: false,
         specifics: {

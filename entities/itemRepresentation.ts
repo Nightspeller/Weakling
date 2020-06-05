@@ -8,7 +8,7 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
         super(scene, x, y);
         this.item = item;
 
-        const image = scene.add.image(0, 0, item.sprite.key, item.sprite.frame).setDisplaySize(64, 64);
+        const image = scene.add.image(0, 0, item.sprite.texture, item.sprite.frame).setDisplaySize(64, 64);
         this.add([image]);
         this.quantityText = scene.add.text(32, 32, item.quantity.toString(), {
             font: '14px monospace',

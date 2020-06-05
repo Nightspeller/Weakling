@@ -87,7 +87,7 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
                 triggerY: mapObject.y,
                 triggerW: mapObject.width,
                 triggerH: mapObject.height,
-                texture: itemsData[plant.plantId].sprite.key,
+                texture: itemsData[plant.plantId].sprite.texture,
                 frame: itemsData[plant.plantId].sprite.frame,
                 singleUse: true,
                 callback: () => {

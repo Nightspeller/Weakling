@@ -6,7 +6,7 @@ export const pantsItems: { [key: string]: ItemData } = {
         displayName: 'Leather pants',
         description: 'Basic leather pants',
         possibleSlots: ['pants', ...backpackSlotNames, ...containerSlotNames],
-        sprite: {key: 'icon-item-set', frame: 123},
+        sprite: {texture: 'icon-item-set', frame: 123},
         stackable: false,
         modified: false,
         specifics: {

@@ -1,98 +1,40 @@
 import { backpackSlotNames, containerSlotNames, quickSlotNames } from "./itemSlots.js";
+import { generatePotions } from "../../helpers/helperFunctions.js";
+const healthPotions = generatePotions('health', [
+    { texture: 'icon-item-set', frame: 352 },
+    { texture: 'icon-item-set', frame: 156 },
+    { texture: 'icon-item-set', frame: 144 },
+    { texture: 'icon-item-set', frame: 308 }
+]);
+const energyPotions = generatePotions('energy', [
+    { texture: 'icon-item-set', frame: 306 },
+    { texture: 'icon-item-set', frame: 305 },
+    { texture: 'icon-item-set', frame: 146 },
+    { texture: 'icon-item-set', frame: 307 }
+]);
+const mannaPotions = generatePotions('manna', [
+    { texture: 'icon-item-set', frame: 306 },
+    { texture: 'icon-item-set', frame: 158 },
+    { texture: 'icon-item-set', frame: 145 },
+    { texture: 'icon-item-set', frame: 309 }
+]);
+const strengthPotions = generatePotions('strength', [
+    { texture: 'icon-item-set', frame: 306 },
+    { texture: 'icon-item-set', frame: 157 },
+    { texture: 'icon-item-set', frame: 147 },
+    { texture: 'icon-item-set', frame: 311 }
+]);
 export const quickSlotItems = {
-    'medium-weak-strength-potion': {
-        itemId: 'medium-weak-strength-potion',
-        displayName: 'Medium weak strength potion',
-        description: 'Very basic strength potion, medium size.',
-        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 157 },
-        stackable: true,
-        modified: false,
-        quantity: null,
-        specifics: {
-            useEffects: [
-                { 'attributes.strength': 2 }
-            ],
-            additionalActions: ['drinkMediumWeakStrengthPotion']
-        },
-        sellPrice: 2,
-        buyPrice: 4
-    },
-    'small-weak-healing-potion': {
-        itemId: 'small-weak-healing-potion',
-        displayName: 'Minor weak healing potion',
-        description: 'Very basic healing potion.',
-        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 352 },
-        stackable: true,
-        modified: false,
-        quantity: null,
-        specifics: {
-            useEffects: [
-                { 'parameters.currentHealth': 5 }
-            ],
-            additionalActions: ['drinkSmallWeakHealthPotion']
-        },
-        sellPrice: 2,
-        buyPrice: 4
-    },
-    'medium-weak-healing-potion': {
-        itemId: 'medium-weak-healing-potion',
-        displayName: 'Medium weak healing potion',
-        description: 'Very basic healing potion, medium size.',
-        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 156 },
-        stackable: true,
-        modified: false,
-        quantity: null,
-        specifics: {
-            useEffects: [
-                { 'parameters.currentHealth': 10 }
-            ],
-        },
-        sellPrice: 2,
-        buyPrice: 4
-    },
-    'big-weak-healing-potion': {
-        itemId: 'big-weak-healing-potion',
-        displayName: 'Big weak healing potion',
-        description: 'Very basic healing potion, big size.',
-        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 144 },
-        stackable: true,
-        modified: false,
-        quantity: null,
-        specifics: {
-            useEffects: [
-                { 'parameters.currentHealth': 15 }
-            ],
-        },
-        sellPrice: 2,
-        buyPrice: 4
-    },
-    'giant-weak-healing-potion': {
-        itemId: 'giant-weak-healing-potion',
-        displayName: 'Giant weak healing potion',
-        description: 'Very basic healing potion, giant size.',
-        possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 308 },
-        stackable: true,
-        modified: false,
-        quantity: null,
-        specifics: {
-            useEffects: [
-                { 'parameters.currentHealth': 20 }
-            ],
-        },
-        sellPrice: 2,
-        buyPrice: 4
-    },
+    ...healthPotions,
+    ...energyPotions,
+    ...mannaPotions,
+    ...strengthPotions,
     'trap-kit': {
         itemId: 'trap-kit',
         displayName: 'Trap kit',
         description: 'Simple trap kit',
         possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 174 },
+        sprite: { texture: 'icon-item-set', frame: 174 },
         stackable: true,
         modified: false,
         quantity: null,
@@ -107,7 +49,7 @@ export const quickSlotItems = {
         displayName: 'Beer',
         description: 'Local beer.',
         possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 254 },
+        sprite: { texture: 'icon-item-set', frame: 254 },
         stackable: true,
         modified: false,
         quantity: null,

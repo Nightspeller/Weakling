@@ -42,10 +42,11 @@ export class Player extends Adventurer {
 
         if (DEBUG) {
             this.baseCharacteristics.parameters.health = 50;
-            this.baseCharacteristics.parameters.currentHealth = 50;
+            this.baseCharacteristics.parameters.currentHealth = 40;
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
-            this.addItemToInventory('leather-armor', 1, 'body');
+            this.addItemToInventory('fancy-belt', 1,'belt');
+/*            this.addItemToInventory('leather-armor', 1, 'body');
             this.addItemToInventory('trap-kit');
             this.addItemToInventory('spirit-sword');
             this.addItemToInventory('mirror-of-travel');
@@ -56,12 +57,12 @@ export class Player extends Adventurer {
             this.addItemToInventory('pinky-pie-sapling', 3);
             this.addItemToInventory('yellow-fingers-sapling', 3);
             this.addItemToInventory('carrot',3);
-            this.addItemToInventory('small-weak-healing-potion', 2);
+            this.addItemToInventory('small-weak-health-potion', 2);
             this.addItemToInventory('pinky-pie-sapling');
             this.addItemToInventory('yellow-fingers-sapling');
             this.addItemToInventory('primula-sapling');
             this.addItemToInventory('rocky-rose-sapling');
-            this.addItemToInventory('fancy-belt');
+            this.addItemToInventory('medium-weak-energy-potion');
             this.addItemToInventory('sourgrass',6);
             this.addItemToInventory('medium-weak-strength-potion', 2);
             this.addItemToInventory('leather-armor', 1);
@@ -71,7 +72,29 @@ export class Player extends Adventurer {
             this.addItemToInventory('giant-bottle', 3);
             this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
             this.addItemToInventory('rocky-rose-flower', 6);
-            this.addItemToInventory('hargkakhs-key');
+            this.addItemToInventory('hargkakhs-key');*/
+
+
+            this.addItemToInventory('small-weak-health-potion', 2);
+            this.addItemToInventory('medium-weak-health-potion', 2);
+            this.addItemToInventory('big-weak-health-potion', 2);
+            this.addItemToInventory('giant-weak-health-potion', 2);
+            this.addItemToInventory('small-mediocre-health-potion', 2);
+            this.addItemToInventory('medium-mediocre-health-potion', 2);
+            this.addItemToInventory('big-mediocre-health-potion', 2);
+            this.addItemToInventory('giant-mediocre-health-potion', 2);
+            this.addItemToInventory('small-average-health-potion', 2);
+            this.addItemToInventory('medium-average-health-potion', 2);
+            this.addItemToInventory('big-average-health-potion', 2);
+            this.addItemToInventory('giant-average-health-potion', 2);
+            this.addItemToInventory('small-strong-health-potion', 2);
+            this.addItemToInventory('medium-strong-health-potion', 2);
+            this.addItemToInventory('big-strong-health-potion', 2);
+            this.addItemToInventory('giant-strong-health-potion', 2);
+            this.addItemToInventory('small-powerful-health-potion', 2);
+            this.addItemToInventory('medium-powerful-health-potion', 2);
+            this.addItemToInventory('big-powerful-health-potion', 2);
+            this.addItemToInventory('giant-powerful-health-potion', 2);
 
            /* this.addQuest('theSelflessSpirit');
             this.updateQuest('theSelflessSpirit', 'falseNameLearned');

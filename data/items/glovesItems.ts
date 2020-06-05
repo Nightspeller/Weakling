@@ -6,7 +6,7 @@ export const glovesItems: { [key: string]: ItemData } = {
         displayName: 'Work gloves',
         description: 'Rough-made and simple, but think and reliable gloves ideal for heavy-lifting',
         possibleSlots: ['gloves', ...backpackSlotNames, ...containerSlotNames],
-        sprite: {key: 'icon-item-set', frame: 128},
+        sprite: {texture: 'icon-item-set', frame: 128},
         stackable: false,
         modified: false,
         specifics: {
@@ -23,7 +23,7 @@ export const glovesItems: { [key: string]: ItemData } = {
         displayName: 'Leather gloves',
         description: 'Basic leather gloves',
         possibleSlots: ['gloves', ...backpackSlotNames, ...containerSlotNames],
-        sprite: {key: 'icon-item-set', frame: 128},
+        sprite: {texture: 'icon-item-set', frame: 128},
         stackable: false,
         modified: false,
         specifics: {

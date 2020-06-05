@@ -19,7 +19,7 @@ export class ActionInterfaceDrawer {
             let actionsOfType = [0, 0, 0];
             let buttonX;
             let buttonY;
-            availableActions.sort().forEach(actionId => {
+            availableActions.forEach(actionId => {
                 var _a, _b, _c, _d;
                 const action = new Action(actionId, currentCharacter);
                 if (action.phase.includes(disposition.currentPhase)) {

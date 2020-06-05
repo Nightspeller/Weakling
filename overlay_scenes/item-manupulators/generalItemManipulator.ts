@@ -135,7 +135,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     protected _createItemRepresentation(item: Item, currentSlot: Slots) {
         const scene = this;
         const slotImage = this.slotsDisplayGroup.getChildren().find(slot => slot.name === currentSlot) as Sprite;
-        const itemRepresentation = new ItemRepresentation(this, slotImage.x + 32, slotImage.y + 32, item.sprite.key, item.sprite.frame, item);
+        const itemRepresentation = new ItemRepresentation(this, slotImage.x + 32, slotImage.y + 32, item.sprite.texture, item.sprite.frame, item);
         this.itemsMap.set(currentSlot, itemRepresentation);
 
         this.input.setDraggable(itemRepresentation);

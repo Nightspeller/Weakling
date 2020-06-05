@@ -1,6 +1,6 @@
 export const directEffects: { [key: string]: EffectData } = {
-    heal: {
-        effectId: 'heal',
+    getHealth: {
+        effectId: 'getHealth',
         name: 'Healing',
         description: 'Healing is done',
         type: 'direct',
@@ -14,7 +14,7 @@ export const directEffects: { [key: string]: EffectData } = {
         setModifier: function (source, target, action) {
             this.modifier = {
                 type: 'value',
-                value: 2*10*this.strength
+                value: 5*this.strength
             };
         },
     },
@@ -143,8 +143,8 @@ export const directEffects: { [key: string]: EffectData } = {
             };
         },
     },
-    restoreEnergy: {
-        effectId: 'restoreEnergy',
+    getEnergy: {
+        effectId: 'getEnergy',
         name: 'Restore energy',
         description: 'Restore some energy',
         type: 'direct',

@@ -240,7 +240,7 @@ export class GeneralLocation extends Phaser.Scene {
                     const itemId = droppedItem.itemId;
                     const itemQuantity = droppedItem.quantity;
                     const item = new Item(itemId, itemQuantity);
-                    let texture = item.sprite.key;
+                    let texture = item.sprite.texture;
                     let frame = item.sprite.frame;
                     // TODO: name must be unique
                     new Trigger({

@@ -70,7 +70,7 @@ export class ShopScene extends GeneralOverlayScene {
         const container = this.add.container(x, y).setInteractive(containerShape, Phaser.Geom.Rectangle.Contains);
 
         const slotImage = this.add.image(0, 0, 'inventory-slot').setDisplaySize(64, 64).setOrigin(0, 0);
-        const itemImage = this.add.image(0, 0, item.sprite.key, item.sprite.frame).setDisplaySize(64, 64).setOrigin(0, 0);
+        const itemImage = this.add.image(0, 0, item.sprite.texture, item.sprite.frame).setDisplaySize(64, 64).setOrigin(0, 0);
         container.add([slotImage, itemImage]);
         if (item.quantity > 1) {
             const quantityText = this.add.text(64, 64, item.quantity.toString(), {

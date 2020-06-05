@@ -9,7 +9,7 @@ interface TriggerParams {
     triggerH: number,
     callback?: Function;
     texture?: string;
-    frame?: number;
+    frame?: number | string;
     interaction?: 'collide' | 'overlap' | 'activate' | 'activateOverlap';
     offsetX?: number;
     offsetY?: number;

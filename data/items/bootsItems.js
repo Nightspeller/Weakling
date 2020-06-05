@@ -5,7 +5,7 @@ export const bootsItems = {
         displayName: 'Leather boots',
         description: 'Basic leather boots',
         possibleSlots: ['boots', ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 130 },
+        sprite: { texture: 'icon-item-set', frame: 130 },
         stackable: false,
         modified: false,
         specifics: {

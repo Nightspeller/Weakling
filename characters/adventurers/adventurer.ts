@@ -145,12 +145,13 @@ export class Adventurer extends GeneralCharacter {
     }
 
     public getAvailableActions() {
-        let combinedActions = [...this.availableActions];
+        let combinedActions = [];
         this.inventory.forEach((item, slot) => {
             if (item.specifics?.additionalActions && !slot.includes('backpack')) {
                 combinedActions = [...combinedActions, ...item.specifics?.additionalActions]
             }
         });
+        combinedActions = [...combinedActions, ...this.availableActions];
         return [...new Set(combinedActions)];
     }
 

@@ -1,25 +1,13 @@
+import {generatePotionActions} from "../../helpers/helperFunctions.js";
+
+const healthPotionActions = generatePotionActions('health');
+const energyPotionActions = generatePotionActions('energy');
+const mannaPotionActions = generatePotionActions('manna');
+
 export const miscActions: { [key: string]: ActionData } = {
-    drinkSmallWeakHealthPotion: {
-        actionId: 'drinkSmallWeakHealthPotion',
-        phase: ['preparation', 'battle'],
-        type: 'misc',
-        actionName: 'Drink small weak health potion',
-        consumes: 'small-weak-healing-potion',
-        actionDescription: 'Drink small weak health potion to restore some hp ',
-        effectsDescriptions: [{
-            effectId: 'heal',
-            strength: 1
-        }/*, {
-            effectId: 'saturation',
-            strength: 1
-        }*/],
-        target: 'self',
-        actionCost: 0.5,
-        noticeable: 0,
-        animation: 'castBuff',
-        icon: {texture: 'icon-item-set', frame: 352},
-        parametersCost: {},
-    },
+    ...healthPotionActions,
+    ...energyPotionActions,
+    ...mannaPotionActions,
     drinkMediumWeakStrengthPotion: {
         actionId: 'drinkMediumWeakStrengthPotion',
         phase: ['preparation', 'battle'],

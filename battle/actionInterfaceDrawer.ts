@@ -30,7 +30,7 @@ export class ActionInterfaceDrawer {
             let actionsOfType = [0, 0, 0];
             let buttonX;
             let buttonY;
-            availableActions.sort().forEach(actionId => {
+            availableActions.forEach(actionId => {
                 const action = new Action(actionId, currentCharacter);
                 if (action.phase.includes(disposition.currentPhase)) {
                     if (action.type === 'physical') {

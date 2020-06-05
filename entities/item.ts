@@ -5,7 +5,7 @@ export default class Item implements ItemData{
     public displayName: string;
     public description: string;
     public possibleSlots: Slots[];
-    public sprite: { key: string; frame: number };
+    public sprite: SpriteParameters;
     public stackable: boolean;
     public modified: boolean;
     public quantity: number;

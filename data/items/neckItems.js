@@ -5,7 +5,7 @@ export const neckItems = {
         displayName: 'All-powerful necklace',
         description: 'Unbelievably rare and powerful artifact, which improves it\'s owner in pretty much every way',
         possibleSlots: ['neck', ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'allpowerful-necklace', frame: null },
+        sprite: { texture: 'allpowerful-necklace', frame: null },
         stackable: false,
         modified: false,
         specifics: {

@@ -6,7 +6,7 @@ export const bodyItems: { [key: string]: ItemData } = {
         displayName: 'Leather armor',
         description: 'Basic leather armor',
         possibleSlots: ['body', ...backpackSlotNames, ...containerSlotNames],
-        sprite: {key: 'icon-item-set', frame: 118},
+        sprite: {texture: 'icon-item-set', frame: 118},
         stackable: false,
         modified: false,
         specifics: {

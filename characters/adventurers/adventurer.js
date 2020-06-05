@@ -141,13 +141,14 @@ export class Adventurer extends GeneralCharacter {
         this.recalculateCharacteristics();
     }
     getAvailableActions() {
-        let combinedActions = [...this.availableActions];
+        let combinedActions = [];
         this.inventory.forEach((item, slot) => {
             var _a, _b;
             if (((_a = item.specifics) === null || _a === void 0 ? void 0 : _a.additionalActions) && !slot.includes('backpack')) {
                 combinedActions = [...combinedActions, ...(_b = item.specifics) === null || _b === void 0 ? void 0 : _b.additionalActions];
             }
         });
+        combinedActions = [...combinedActions, ...this.availableActions];
         return [...new Set(combinedActions)];
     }
     startRound(roundType) {

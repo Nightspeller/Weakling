@@ -6,7 +6,7 @@ export const ringsItems: { [key: string]: ItemData } = {
         displayName: 'Smoldering ring',
         description: 'This ring looks like it is made of smoldering coal, but it does not burn you, just warming your finger ever so slightly.',
         possibleSlots: ['ringLeft', 'ringRight', ...backpackSlotNames, ...containerSlotNames],
-        sprite: {key: 'icon-item-set', frame: 132},
+        sprite: {texture: 'icon-item-set', frame: 132},
         stackable: false,
         modified: false,
         quantity: null,

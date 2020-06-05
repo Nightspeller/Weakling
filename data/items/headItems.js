@@ -5,7 +5,7 @@ export const headItems = {
         displayName: 'Ranger\'s hat',
         description: 'Classic ranger\'s hat - provides very little protection, but does not get in a way',
         possibleSlots: ['head', ...backpackSlotNames, ...containerSlotNames],
-        sprite: { key: 'icon-item-set', frame: 112 },
+        sprite: { texture: 'icon-item-set', frame: 112 },
         stackable: false,
         modified: false,
         specifics: {

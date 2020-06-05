@@ -76,14 +76,14 @@ interface ActionData {
     consumes?: string;
     triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
     animation: 'meleeAttack' | 'castAttack' | 'castBuff';
-    icon?: {texture: string, frame: number | string};
+    icon?: SpriteParameters;
     parametersCost?: {energy?: number, manna?: number};
 }
 
 interface Weapon {
     weaponId: string;
     slot: 'any' | 'anyHand' | 'rightHand' | 'leftHand' | 'twoHands' | 'tail';
-    sprite: { key: string; frame: number };
+    sprite: SpriteParameters;
     damage: number;
     size: string[];
 }
@@ -93,7 +93,7 @@ interface Belt {
     slot: 'belt';
     additionalCharacteristics: any[];
     quickSlots: number;
-    sprite: { key: string; frame: number };
+    sprite: SpriteParameters;
     size: string[];
 }
 
@@ -102,7 +102,7 @@ interface ItemData {
     displayName: string;
     description: string;
     possibleSlots: Slots[];
-    sprite: { key: string; frame: number };
+    sprite: SpriteParameters;
     stackable: boolean;
     modified: boolean;
     quantity?: number;
