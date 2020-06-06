@@ -302,11 +302,11 @@
             }
         },
         "tilemaps/caltor.tmx": {
-            "scale": 0.75,
+            "scale": 2,
             "selectedLayer": 19,
             "viewCenter": {
-                "x": 1599.9999999999998,
-                "y": 1599.3333333333335
+                "x": 1986.5,
+                "y": 2737.25
             }
         },
         "tilemaps/castle.tsx": {

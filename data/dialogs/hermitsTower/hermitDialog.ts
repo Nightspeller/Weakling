@@ -87,7 +87,7 @@ export const hermitDialog: DialogTree = [{
     id: `teaching5`,
     text: `And yeah, if you are not careful your scroll can fuzz off or even worse, but you know what - I believe in you - I think you can do it, and do it right. `+
         `And even keep all your limbs together after using one. So let me show you how to start, but never tell anybody where did you learn it - the great Wooden Tower is not ready to be revealed.
-        From now on, you can call me ... Mater!`,
+        From now on, you can call me ... Master!`,
     replies: [{
         text: `Thank you, Master`,
         callbackParam: `fastEnd`
