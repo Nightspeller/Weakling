@@ -240,6 +240,7 @@ export class PreloadScene extends Phaser.Scene {
 
         // Atlases
         this.load.atlas('icons-additional', 'assets/images-extruded/interface/icons-additional.png', 'assets/images-extruded/interface/icons-additional.json');
+        this.load.atlas('edited', 'assets/images-extruded/interface/edited.png', 'assets/images-extruded/interface/edited.json');
     }
 
     create() {

@@ -46,12 +46,12 @@ export class Player extends Adventurer {
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
             this.addItemToInventory('fancy-belt', 1,'belt');
-/*            this.addItemToInventory('leather-armor', 1, 'body');
+            this.addItemToInventory('leather-armor', 1, 'body');
             this.addItemToInventory('trap-kit');
             this.addItemToInventory('spirit-sword');
             this.addItemToInventory('mirror-of-travel');
             this.addItemToInventory('smoldering-ring', 1, 'ringRight');
-            this.addItemToInventory('rope-belt', 1, 'belt');
+            this.addItemToInventory('rope-belt', 1);
             this.addItemToInventory('fancy-belt');
             this.addItemToInventory('primula-flower',4);
             this.addItemToInventory('pinky-pie-sapling', 3);
@@ -72,10 +72,10 @@ export class Player extends Adventurer {
             this.addItemToInventory('giant-bottle', 3);
             this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
             this.addItemToInventory('rocky-rose-flower', 6);
-            this.addItemToInventory('hargkakhs-key');*/
+            this.addItemToInventory('hargkakhs-key');
 
 
-            this.addItemToInventory('small-weak-health-potion', 2);
+/*            this.addItemToInventory('small-weak-health-potion', 2);
             this.addItemToInventory('medium-weak-health-potion', 2);
             this.addItemToInventory('big-weak-health-potion', 2);
             this.addItemToInventory('giant-weak-health-potion', 2);
@@ -94,7 +94,7 @@ export class Player extends Adventurer {
             this.addItemToInventory('small-powerful-health-potion', 2);
             this.addItemToInventory('medium-powerful-health-potion', 2);
             this.addItemToInventory('big-powerful-health-potion', 2);
-            this.addItemToInventory('giant-powerful-health-potion', 2);
+            this.addItemToInventory('giant-powerful-health-potion', 2);*/
 
            /* this.addQuest('theSelflessSpirit');
             this.updateQuest('theSelflessSpirit', 'falseNameLearned');

@@ -465,11 +465,11 @@
             }
         },
         "tilemaps/tavern.tmx": {
-            "scale": 1.5,
+            "scale": 2,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 580.6666666666667,
-                "y": 422.33333333333326
+                "x": 695.5,
+                "y": 427.25
             }
         },
         "tilemaps/village.tmx": {

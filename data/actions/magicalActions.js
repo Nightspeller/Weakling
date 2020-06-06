@@ -33,7 +33,7 @@ export const magicalActions = {
         actionCost: 1,
         noticeable: 1,
         animation: 'meleeAttack',
-        icon: { texture: 'icons-additional', frame: 'tornado' },
+        icon: { texture: 'edited', frame: 'Tornado' },
         parametersCost: { manna: 3 },
     },
     drainingSoil: {

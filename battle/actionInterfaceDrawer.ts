@@ -32,6 +32,10 @@ export class ActionInterfaceDrawer {
             let buttonY;
             availableActions.forEach(actionId => {
                 const action = new Action(actionId, currentCharacter);
+                if (disposition.currentPhase === 'preparation' && (action.actionId === 'retreat' || action.actionId === 'accessInventory')) {
+                    action.actionCost = 0;
+                }
+
                 if (action.phase.includes(disposition.currentPhase)) {
                     if (action.type === 'physical') {
                         buttonX = (actionsOfType[0] % 3) * 81;
