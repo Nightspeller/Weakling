@@ -56,7 +56,7 @@ export const miscActions: { [key: string]: ActionData } = {
             effectId: 'restoreManna',
             strength: 1
         }, {
-            effectId: 'restoreEnergy',
+            effectId: 'getEnergy',
             strength: 1
         }],
         target: 'self',
