@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "version": "0.6.5"
+  },
+  "savePath": "C:\\Users\\serjn\\WebstormProjects\\weakling\\assets\\images-extruded\\items",
+  "images": [],
+  "folders": [
+    "C:/Users/serjn/WebstormProjects/weakling/assets/images-base/items-and-icons/eggs"
+  ],
+  "packOptions": {
+    "textureName": "eggs",
+    "textureFormat": "png",
+    "removeFileExtension": true,
+    "prependFolderName": false,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "disableSmoothing": false,
+    "filter": "none",
+    "exporter": "Phaser 3",
+    "fileName": "pack-result",
+    "savePath": "C:\\Users\\serjn\\WebstormProjects\\weakling\\assets\\images-extruded\\items",
+    "width": 512,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 0,
+    "extrude": 1,
+    "allowRotation": false,
+    "allowTrim": false,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": true,
+    "packer": "MaxRectsBin",
+    "packerMethod": "BestShortSideFit"
+  }
+}
