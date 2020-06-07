@@ -3,32 +3,13 @@ import {generatePotionActions} from "../../helpers/helperFunctions.js";
 const healthPotionActions = generatePotionActions('health');
 const energyPotionActions = generatePotionActions('energy');
 const mannaPotionActions = generatePotionActions('manna');
+const strengthPotionActions = generatePotionActions('strength');
 
 export const miscActions: { [key: string]: ActionData } = {
     ...healthPotionActions,
     ...energyPotionActions,
     ...mannaPotionActions,
-    drinkMediumWeakStrengthPotion: {
-        actionId: 'drinkMediumWeakStrengthPotion',
-        phase: ['preparation', 'battle'],
-        type: 'misc',
-        actionName: 'Drink medium weak strength potion',
-        consumes: 'medium-weak-strength-potion',
-        actionDescription: 'Drink medium weak strength potion to get some strength',
-        effectsDescriptions: [{
-            effectId: 'strengthUp',
-            strength: 1
-        }/*, {
-            effectId: 'saturation',
-            strength: 1
-        }*/],
-        target: 'self',
-        actionCost: 0.5,
-        noticeable: 0,
-        animation: 'castBuff',
-        icon: {texture: 'icon-item-set', frame: 157},
-        parametersCost: {},
-    },
+    ...strengthPotionActions,
     inspectEnemy: {
         actionId: 'inspectEnemy',
         phase: ['preparation', 'battle'],
@@ -53,10 +34,10 @@ export const miscActions: { [key: string]: ActionData } = {
         actionName: 'Meditate',
         actionDescription: 'Clear your mind, balance and expand your energies',
         effectsDescriptions: [{
-            effectId: 'restoreManna',
+            effectId: 'addManna',
             strength: 1
         }, {
-            effectId: 'getEnergy',
+            effectId: 'addEnergy',
             strength: 1
         }],
         target: 'self',
@@ -101,7 +82,7 @@ export const miscActions: { [key: string]: ActionData } = {
         actionName: 'Enrage',
         actionDescription: 'Character gets really angry, loosing the ability to think straight, but gaining extra strength',
         effectsDescriptions: [{
-            effectId: 'strengthUp',
+            effectId: 'addStrength',
             strength: 1
         }, {
             effectId: 'intelligenceDown',

@@ -6,7 +6,7 @@ export const magicalActions = {
         actionName: 'Healing touch',
         actionDescription: 'Primitive spell, which nevertheless does the trick - restores some health',
         effectsDescriptions: [{
-                effectId: 'getHealth',
+                effectId: 'addHealth',
                 strength: 1
             }],
         target: 'party',

@@ -1,11 +1,11 @@
 {
-    "activeFile": "tilemaps/village.tmx",
+    "activeFile": "tilesets/icon-item-set.tsx",
     "expandedProjectPaths": [
-        "exported-maps",
         "maps",
+        "tilesets",
         "tilemaps",
-        ".",
-        "tilesets"
+        "exported-maps",
+        "."
     ],
     "exportAsImage.drawTileGrid": false,
     "exportAsImage.includeBackgroundColor": false,
@@ -305,8 +305,8 @@
             "scale": 2,
             "selectedLayer": 19,
             "viewCenter": {
-                "x": 1986.5,
-                "y": 2737.25
+                "x": 1599.75,
+                "y": 1600
             }
         },
         "tilemaps/castle.tsx": {
@@ -468,16 +468,16 @@
             "scale": 2,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 695.5,
-                "y": 427.25
+                "x": 623.75,
+                "y": 352
             }
         },
         "tilemaps/village.tmx": {
             "scale": 8,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 1356.875,
-                "y": 485.8125
+                "x": 799.9375,
+                "y": 640
             }
         },
         "tilemaps/village.tmx#grass1-dirt1": {
@@ -499,7 +499,7 @@
             "scale": 3,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 128.16666666666663,
+                "x": 128.16666666666666,
                 "y": 224
             }
         },
@@ -510,7 +510,7 @@
         },
         "tilesets/base.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 1,
+            "scaleInDock": 4,
             "scaleInEditor": 8
         },
         "tilesets/castle.tsx": {
@@ -595,7 +595,7 @@
             "scaleInEditor": 1
         },
         "tilesets/icon-item-set.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 3
         },
         "tilesets/interface-tiles.tsx": {
@@ -686,7 +686,10 @@
         "tilemaps/betweenVillageAndCaltor.tmx",
         "tilesets/fire.tsx",
         "tilemaps/village.tmx",
-        "tilesets/base.tsx"
+        "tilesets/base.tsx",
+        "tilesets/icon-item-set.tsx",
+        "tilemaps/caltor.tmx",
+        "tilemaps/tavern.tmx"
     ],
     "project": "weakling.tiled-project",
     "property.type": "bool",
@@ -695,14 +698,14 @@
         "tilemaps/betweenVillageAndDungeon.tmx",
         "tilemaps/betweenVillageAndCaltor.tmx",
         "tilesets/fire.tsx",
-        "tilesets/base.tsx",
         "tilemaps/village.tmx",
+        "tilesets/base.tsx",
         "tilemaps/tavern.tmx",
+        "tilemaps/caltor.tmx",
+        "tilesets/icon-item-set.tsx",
         "tilemaps/nahkhasCave.tmx",
         "tilemaps/hermitsTower.tmx",
-        "tilemaps/hargkakhsCave.tmx",
-        "tilemaps/greatPlains.tmx",
-        "tilemaps/fight.tmx"
+        "tilemaps/hargkakhsCave.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedExportFilter": "All Files (*)",

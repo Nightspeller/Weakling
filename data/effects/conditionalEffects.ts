@@ -14,7 +14,7 @@ export const conditionalEffects: { [key: string]: EffectData } = {
         setModifier: function (source, target, action) {
             this.modifier = {
                 type: 'effect',
-                value: ['pureDamage']
+                value: ['subtractHealth']
             };
         },
     },
@@ -32,7 +32,7 @@ export const conditionalEffects: { [key: string]: EffectData } = {
         setModifier: function (source, target, action) {
             this.modifier = {
                 type: 'effect',
-                value: ['pureDamage', 'agilityDown']
+                value: ['subtractHealth', 'agilityDown']
             };
         },
     },

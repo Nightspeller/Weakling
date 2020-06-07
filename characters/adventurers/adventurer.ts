@@ -1,6 +1,7 @@
 import GeneralCharacter from "../generalCharacter.js";
 import Item from "../../entities/item.js";
 import item from "../../entities/item.js";
+import prepareLog from "../../helpers/logger.js";
 
 export class Adventurer extends GeneralCharacter {
     private inventory: Map<Slots, Item>;
@@ -44,11 +45,12 @@ export class Adventurer extends GeneralCharacter {
         return undefined;
     }
 
-    private _addItemToEmptyBackpackSlot(item): Item | undefined {
+    private _addItemToEmptyBackpackSlot(item: Item): Item | undefined {
         const emptyBackpackSlot = this.getEmptyBackpackSlot();
         if (emptyBackpackSlot) {
             return this._addItemToTheMap(emptyBackpackSlot, item);
         } else {
+            console.log(...prepareLog(`Trying to add !!${item.itemId} to !!empty !!backpack !!slot, but no such slots exist. Make sure to properly !!handle !!the !!returned '!!undefined'!`));
             return undefined;
         }
     }

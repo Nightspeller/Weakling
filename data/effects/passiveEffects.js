@@ -37,8 +37,8 @@ export const passiveEffects = {
             };
         },
     },
-    strengthUp: {
-        effectId: 'strengthUp',
+    addStrength: {
+        effectId: 'addStrength',
         name: 'Strength up',
         description: 'Strength is increased',
         type: 'passive',

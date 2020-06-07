@@ -1,6 +1,6 @@
 export const directEffects = {
-    getHealth: {
-        effectId: 'getHealth',
+    addHealth: {
+        effectId: 'addHealth',
         name: 'Healing',
         description: 'Healing is done',
         type: 'direct',
@@ -18,8 +18,8 @@ export const directEffects = {
             };
         },
     },
-    pureDamage: {
-        effectId: 'pureDamage',
+    subtractHealth: {
+        effectId: 'subtractHealth',
         name: null,
         description: null,
         type: 'direct',
@@ -130,8 +130,8 @@ export const directEffects = {
             };
         }
     },
-    restoreManna: {
-        effectId: 'restoreManna',
+    addManna: {
+        effectId: 'addManna',
         name: 'Restore manna',
         description: 'Restore some manna',
         type: 'direct',
@@ -149,8 +149,8 @@ export const directEffects = {
             };
         },
     },
-    getEnergy: {
-        effectId: 'getEnergy',
+    addEnergy: {
+        effectId: 'addEnergy',
         name: 'Restore energy',
         description: 'Restore some energy',
         type: 'direct',

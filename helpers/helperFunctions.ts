@@ -50,7 +50,7 @@ export function generatePotionActions(characteristic): { [key: string]: ActionDa
                 consumes: `${size}-${quality}-${characteristic}-potion`,
                 actionDescription: `Drink ${size} ${quality} ${characteristic} potion to get ${strength*5} ${characteristic}`,
                 effectsDescriptions: [{
-                    effectId: `get${capsFirstLetter(characteristic)}`,
+                    effectId: `add${capsFirstLetter(characteristic)}`,
                     strength: strength
                 }],
                 target: 'self',

@@ -6,7 +6,7 @@ export const physicalActions = {
         actionName: 'Warm up',
         actionDescription: 'Sets you in your best physical shape for the upcoming battle',
         effectsDescriptions: [{
-                effectId: 'strengthUp',
+                effectId: 'addStrength',
                 strength: 1
             }, {
                 effectId: 'agilityUp',
