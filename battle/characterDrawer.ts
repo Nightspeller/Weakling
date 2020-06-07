@@ -164,18 +164,18 @@ export class CharacterDrawer {
 
     private drawCharInfo() {
         this.characterInfoContainer.removeAll(true);
-        this.mainImage.setDepth(10).disableInteractive();
+        this.mainImage.setDepth(4).disableInteractive();
 
         let overlay = this.scene.add.graphics()
             .fillStyle(0x000000, 0.25)
-            .fillRect(0, 0, 800, 640);
+            .fillRect(0, 0, 800, 640).setDepth(3);
         let zone = this.scene.add.zone(0, 0, 800, 640).setOrigin(0, 0)
             .setInteractive().once('pointerdown', () => {
                 overlay.destroy();
                 zone.destroy();
                 this.characterInfoContainer.removeAll(true);
                 this.mainImage.setDepth(0).setInteractive({useHandCursor: true});
-            });
+            }).setDepth(4);
 
         const background = this.scene.add.graphics()
             .lineStyle(1, 0xff0000)
@@ -242,7 +242,7 @@ export class CharacterDrawer {
             }
         });
 
-        this.characterInfoContainer.setDepth(2);
+        this.characterInfoContainer.setDepth(4);
     }
 
     private pointerDownCallback() {
