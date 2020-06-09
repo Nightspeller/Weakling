@@ -266,10 +266,11 @@ export class CharacterDrawer {
         });
     }
 
-    public playMoveAnimation(targetX: number, targetY: number) {
+    public playMoveAnimation(targetX: number, targetY: number, flip = false) {
         return new Promise((resolve) => {
-            if (this.char.animations?.approach) {
-                this.mainImage.anims.play(this.char.animations.approach, true);
+            if (flip) this.mainImage.flipX = !this.mainImage.flipX;
+            if (this.char.animations?.move) {
+                this.mainImage.anims.play(this.char.animations.move, true);
             }
 
             this.scene.tweens.add({
@@ -283,9 +284,10 @@ export class CharacterDrawer {
                     }
                 },
                 ease: 'Back.easeOut',
-                duration: 500,
+                duration: 3000,
                 yoyo: false,
                 onComplete: () => {
+                    if (flip) this.mainImage.flipX = !this.mainImage.flipX;
                     this.playIdleAnimation();
                     resolve()
                 }

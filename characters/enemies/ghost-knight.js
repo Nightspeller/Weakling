@@ -44,7 +44,7 @@ export class GhostKnight extends GeneralEnemy {
         this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
         this.actionPointsIncrement = { physical: 1, magical: 1, misc: 0 };
         this.animations.idle = 'ghost-knight_idle';
-        this.animations.approach = 'ghost-knight_walk';
+        this.animations.move = 'ghost-knight_move';
         this.animations.attack = 'ghost-knight_attack2';
         this.animations.buff = 'ghost-knight_attack1';
         this.animations.death = 'ghost-knight_death';

@@ -90,7 +90,7 @@ export class BattleScene extends GeneralLocation {
                 if (targetDrawer) {
                     await charDrawer.playMoveAnimation(targetDrawer.position.x + (animatingEnemy ? 96 : -96), targetDrawer.position.y);
                     await charDrawer.playMeleeAttackAnimation(targetDrawer.position.x, targetDrawer.position.y);
-                    charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
+                    charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y, true);
                 }
                 else {
                     await charDrawer.playMeleeAttackAnimation(600, 320);

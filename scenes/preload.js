@@ -127,14 +127,6 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('elder', 'assets/images/characters/battle/party/elder.png');
         this.load.image('boar-avatar', 'assets/images/characters/battle/enemies/boar.png');
         this.load.image("dead-character", "assets/images/characters/battle/dead-character.png");
-        this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png", {
-            frameWidth: 231,
-            frameHeight: 190
-        });
-        this.load.spritesheet("ghost-knight-idle", "assets/images/characters/battle/enemies/ghost-knight/Idle.png", {
-            frameWidth: 180,
-            frameHeight: 180
-        });
         // Items
         this.load.image("rope-belt", "assets/images/items/rope-belt.png");
         this.load.image("bag-green", "assets/images/items/bag-green.png");
@@ -160,6 +152,14 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 192,
             frameHeight: 192
         });
+        this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png", {
+            frameWidth: 231,
+            frameHeight: 190
+        });
+        this.load.spritesheet("wizard-move", "assets/images/characters/battle/enemies/Wizard/Run.png", {
+            frameWidth: 231,
+            frameHeight: 190
+        });
         this.load.spritesheet("wizard-attack1", "assets/images/characters/battle/enemies/Wizard/Attack1.png", {
             frameWidth: 231,
             frameHeight: 190
@@ -176,7 +176,11 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 231,
             frameHeight: 190
         });
-        this.load.spritesheet("ghost-knight-approach", "assets/images/characters/battle/enemies/ghost-knight/Run.png", {
+        this.load.spritesheet("ghost-knight-idle", "assets/images/characters/battle/enemies/ghost-knight/Idle.png", {
+            frameWidth: 180,
+            frameHeight: 180
+        });
+        this.load.spritesheet("ghost-knight-move", "assets/images/characters/battle/enemies/ghost-knight/Run.png", {
             frameWidth: 180,
             frameHeight: 180
         });
@@ -345,6 +349,12 @@ export class PreloadScene extends Phaser.Scene {
             repeat: -1
         });
         this.anims.create({
+            key: 'wizard_move',
+            frames: this.anims.generateFrameNames('wizard-move'),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
             key: 'wizard_attack1',
             frames: this.anims.generateFrameNames('wizard-attack1'),
             frameRate: 10,
@@ -375,10 +385,10 @@ export class PreloadScene extends Phaser.Scene {
             repeat: -1
         });
         this.anims.create({
-            key: 'ghost-knight_approach',
-            frames: this.anims.generateFrameNames('ghost-knight-approach'),
+            key: 'ghost-knight_move',
+            frames: this.anims.generateFrameNames('ghost-knight-move'),
             frameRate: 10,
-            repeat: 0
+            repeat: -1
         });
         this.anims.create({
             key: 'ghost-knight_attack1',

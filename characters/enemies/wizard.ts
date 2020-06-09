@@ -42,6 +42,7 @@ export class Wizard extends GeneralEnemy {
         this.actionPointsIncrement = {physical: 0, magical: 1, misc: 1};
 
         this.animations.idle = 'wizard_idle';
+        this.animations.move = 'wizard_move';
         this.animations.attack = 'wizard_attack2';
         this.animations.buff = 'wizard_attack1';
         this.animations.death = 'wizard_death';

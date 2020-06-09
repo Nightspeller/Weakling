@@ -226,11 +226,13 @@ export class CharacterDrawer {
             }
         });
     }
-    playMoveAnimation(targetX, targetY) {
+    playMoveAnimation(targetX, targetY, flip = false) {
         return new Promise((resolve) => {
             var _a;
-            if ((_a = this.char.animations) === null || _a === void 0 ? void 0 : _a.approach) {
-                this.mainImage.anims.play(this.char.animations.approach, true);
+            if (flip)
+                this.mainImage.flipX = !this.mainImage.flipX;
+            if ((_a = this.char.animations) === null || _a === void 0 ? void 0 : _a.move) {
+                this.mainImage.anims.play(this.char.animations.move, true);
             }
             this.scene.tweens.add({
                 targets: this.mainImage,
@@ -243,9 +245,11 @@ export class CharacterDrawer {
                     }
                 },
                 ease: 'Back.easeOut',
-                duration: 500,
+                duration: 3000,
                 yoyo: false,
                 onComplete: () => {
+                    if (flip)
+                        this.mainImage.flipX = !this.mainImage.flipX;
                     this.playIdleAnimation();
                     resolve();
                 }
