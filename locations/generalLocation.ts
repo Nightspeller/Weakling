@@ -20,6 +20,7 @@ export class GeneralLocation extends Phaser.Scene {
     private playerSpeed: number;
     private lastCursor: string;
     private objectsHighlightBorders: Phaser.GameObjects.Group;
+    protected cursorCoordinatesText: Phaser.GameObjects.Text;
 
     constructor(sceneSettings) {
         super(sceneSettings);
@@ -360,6 +361,16 @@ export class GeneralLocation extends Phaser.Scene {
 
     public update() {
         this.updatePlayer();
+        if(DEBUG) {
+            const cursorX = Math.round(this.input.mousePointer.x);
+            const cursorY = Math.round(this.input.mousePointer.y);
+            if (this.cursorCoordinatesText) {
+                this.cursorCoordinatesText.setText(`${cursorX} ${cursorY}`);
+            } else {
+                this.cursorCoordinatesText = this.add.text(0,0,`${cursorX} ${cursorY}`, {color: 'black', background: 'yellow'})
+                    .setDepth(1000).setScrollFactor(0).setOrigin(0,0);
+            }
+        }
     }
 
     public setupDebugCollisionGraphics() {

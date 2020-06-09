@@ -1,6 +1,6 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import Item from "../entities/item.js";
-import { GAME_H, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED } from "../config/constants.js";
+import { DEBUG, GAME_H, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED } from "../config/constants.js";
 import { messages } from "../data/messages.js";
 import Container from "../entities/container.js";
 import { Trigger } from "../entities/trigger.js";
@@ -322,6 +322,17 @@ export class GeneralLocation extends Phaser.Scene {
     }
     update() {
         this.updatePlayer();
+        if (DEBUG) {
+            const cursorX = Math.round(this.input.mousePointer.x);
+            const cursorY = Math.round(this.input.mousePointer.y);
+            if (this.cursorCoordinatesText) {
+                this.cursorCoordinatesText.setText(`${cursorX} ${cursorY}`);
+            }
+            else {
+                this.cursorCoordinatesText = this.add.text(0, 0, `${cursorX} ${cursorY}`, { color: 'black', background: 'yellow' })
+                    .setDepth(1000).setScrollFactor(0).setOrigin(0, 0);
+            }
+        }
     }
     setupDebugCollisionGraphics() {
         let debugModeOn = false;
