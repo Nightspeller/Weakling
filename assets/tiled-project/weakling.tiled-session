@@ -1,11 +1,11 @@
 {
-    "activeFile": "tilesets/icon-item-set.tsx",
+    "activeFile": "tilemaps/dungeon.tmx",
     "expandedProjectPaths": [
-        "maps",
-        "tilesets",
         "tilemaps",
+        "maps",
+        ".",
         "exported-maps",
-        "."
+        "tilesets"
     ],
     "exportAsImage.drawTileGrid": false,
     "exportAsImage.includeBackgroundColor": false,
@@ -302,10 +302,10 @@
             }
         },
         "tilemaps/caltor.tmx": {
-            "scale": 2,
-            "selectedLayer": 19,
+            "scale": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1599.75,
+                "x": 1599.8333333333333,
                 "y": 1600
             }
         },
@@ -339,10 +339,10 @@
         },
         "tilemaps/dungeon.tmx": {
             "scale": 3,
-            "selectedLayer": 10,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 251.99999999999997,
-                "y": 742.8333333333333
+                "x": 206.66666666666669,
+                "y": 874.4999999999999
             }
         },
         "tilemaps/eldersCave.tmx": {
@@ -689,7 +689,8 @@
         "tilesets/base.tsx",
         "tilesets/icon-item-set.tsx",
         "tilemaps/caltor.tmx",
-        "tilemaps/tavern.tmx"
+        "tilemaps/tavern.tmx",
+        "tilemaps/dungeon.tmx"
     ],
     "project": "weakling.tiled-project",
     "property.type": "bool",
@@ -700,12 +701,12 @@
         "tilesets/fire.tsx",
         "tilemaps/village.tmx",
         "tilesets/base.tsx",
-        "tilemaps/tavern.tmx",
-        "tilemaps/caltor.tmx",
         "tilesets/icon-item-set.tsx",
+        "tilemaps/caltor.tmx",
+        "tilemaps/tavern.tmx",
+        "tilemaps/dungeon.tmx",
         "tilemaps/nahkhasCave.tmx",
-        "tilemaps/hermitsTower.tmx",
-        "tilemaps/hargkakhsCave.tmx"
+        "tilemaps/hermitsTower.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedExportFilter": "All Files (*)",
