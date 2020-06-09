@@ -2,6 +2,7 @@ import {Adventurer} from "../characters/adventurers/adventurer.js";
 import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import {ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH} from "../config/constants.js";
 import Rectangle = Phaser.Geom.Rectangle;
+import {drawBorder} from "../helpers/helperFunctions.js";
 
 export class CharacterDrawer {
     private readonly isParty: boolean;
@@ -41,9 +42,12 @@ export class CharacterDrawer {
         const spriteParams = this.char.spriteParams;
         this.mainImage = this.scene.add.sprite(this.position.x, this.position.y, this.char.spriteParams.texture, this.char.spriteParams.frame)
             .setDisplaySize(spriteParams.width, spriteParams.height);
+        drawBorder(this.scene, this.mainImage);
+        // This whole mess with clickable are is here to make sure that it is 96x96 square centered at the player image no matter how small or big the initial image is
+        // When area is applied to the image, Phaser will rescale it using image scale, thus initial clickable area rectangle must be pre-adjusted.
         const clickableArea = new Rectangle(
-            this.mainImage.getCenter().x - this.mainImage.getTopLeft().x - 48,
-            this.mainImage.getCenter().y - this.mainImage.getTopLeft().y - 48,
+            (this.mainImage.getCenter().x - this.mainImage.getTopLeft().x - 48) / this.mainImage.scaleX,
+            (this.mainImage.getCenter().y - this.mainImage.getTopLeft().y - 48) / this.mainImage.scaleY,
             96 / this.mainImage.scaleX,
             96 / this.mainImage.scaleY);
         this.mainImage.setInteractive({
@@ -153,11 +157,14 @@ export class CharacterDrawer {
             .fillStyle(0xf0d191)
             .fillRect(x, y, 32 * 8, 3 * 32);
         this.effectInformationContainer.add(background);
-        this.effectInformationContainer.add(this.scene.add.text(x + 8, y + 8, `${effect.name}`, {...textStyle, font: 'bold 12px monospace'}));
+        this.effectInformationContainer.add(this.scene.add.text(x + 8, y + 8, `${effect.name}`, {
+            ...textStyle,
+            font: 'bold 12px monospace'
+        }));
         this.effectInformationContainer.add(this.scene.add.text(x + 8, y + 8 + 12 + 8, `${effect.description} \nDuration: ${effect.durationLeft} / ${effect.baseDuration}`, textStyle));
         this.effectInformationContainer.add(this.scene.add.text(x + 8, y + 8 + 12 + 8 + 12 + 8 + 8, `Source: ${effect.source}`, textStyle));
-        if (typeof effect.modifier.value === "number") {
-            this.effectInformationContainer.add(this.scene.add.text(x + 8, y + 8 + 12 + 8 + 12 + 8 + 8 + 12, `Strength: ${effect.modifier.value}${effect.modifier.type === 'percent' ? '%':' units'}`, textStyle));
+        if (typeof effect.modifier?.value === "number") {
+            this.effectInformationContainer.add(this.scene.add.text(x + 8, y + 8 + 12 + 8 + 12 + 8 + 8 + 12, `Strength: ${effect.modifier.value}${effect.modifier.type === 'percent' ? '%' : ' units'}`, textStyle));
         }
         this.effectInformationContainer.setDepth(2);
     }
