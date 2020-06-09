@@ -1,7 +1,6 @@
 import { Adventurer } from "../characters/adventurers/adventurer.js";
 import { ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH } from "../config/constants.js";
 var Rectangle = Phaser.Geom.Rectangle;
-import { drawBorder } from "../helpers/helperFunctions.js";
 export class CharacterDrawer {
     constructor(scene, char, positionIndex) {
         this.isParty = (char instanceof Adventurer);
@@ -25,7 +24,6 @@ export class CharacterDrawer {
         const spriteParams = this.char.spriteParams;
         this.mainImage = this.scene.add.sprite(this.position.x, this.position.y, this.char.spriteParams.texture, this.char.spriteParams.frame)
             .setDisplaySize(spriteParams.width, spriteParams.height);
-        drawBorder(this.scene, this.mainImage);
         // This whole mess with clickable are is here to make sure that it is 96x96 square centered at the player image no matter how small or big the initial image is
         // When area is applied to the image, Phaser will rescale it using image scale, thus initial clickable area rectangle must be pre-adjusted.
         const clickableArea = new Rectangle((this.mainImage.getCenter().x - this.mainImage.getTopLeft().x - 48) / this.mainImage.scaleX, (this.mainImage.getCenter().y - this.mainImage.getTopLeft().y - 48) / this.mainImage.scaleY, 96 / this.mainImage.scaleX, 96 / this.mainImage.scaleY);
