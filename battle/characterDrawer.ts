@@ -41,7 +41,7 @@ export class CharacterDrawer {
         const spriteParams = this.char.spriteParams;
         this.mainImage = this.scene.add.sprite(this.position.x, this.position.y, this.char.spriteParams.texture, this.char.spriteParams.frame)
             .setDisplaySize(spriteParams.width, spriteParams.height);
-        // This whole mess with clickable are is here to make sure that it is 96x96 square centered at the player image no matter how small or big the initial image is
+        // This whole mess with clickable area is here to make sure that it is 96x96 square centered at the player image no matter how small or big the initial image is
         // When area is applied to the image, Phaser will rescale it using image scale, thus initial clickable area rectangle must be pre-adjusted.
         const clickableArea = new Rectangle(
             (this.mainImage.getCenter().x - this.mainImage.getTopLeft().x - 48) / this.mainImage.scaleX,
@@ -266,12 +266,43 @@ export class CharacterDrawer {
         });
     }
 
+    public playMoveAnimation(targetX: number, targetY: number) {
+        return new Promise((resolve) => {
+            if (this.char.animations?.approach) {
+                this.mainImage.anims.play(this.char.animations.approach, true);
+            }
+
+            this.scene.tweens.add({
+                targets: this.mainImage,
+                props: {
+                    x: {
+                        value: targetX,
+                    },
+                    y: {
+                        value: targetY,
+                    }
+                },
+                ease: 'Back.easeOut',
+                duration: 500,
+                yoyo: false,
+                onComplete: () => {
+                    this.playIdleAnimation();
+                    resolve()
+                }
+            });
+
+        })
+    }
+
     public playMeleeAttackAnimation(targetX: number, targetY: number) {
         return new Promise((resolve) => {
+            const initialImageDepth = this.mainImage.depth;
+            this.mainImage.setDepth(5)
             if (this.char.animations?.attack) {
                 this.mainImage.anims.play(this.char.animations.attack, true);
                 this.mainImage.once('animationcomplete', (currentAnim, currentFrame, sprite) => {
                     this.playIdleAnimation();
+                    this.mainImage.setDepth(initialImageDepth);
                     resolve();
                 });
             } else {
@@ -296,7 +327,8 @@ export class CharacterDrawer {
 
                     },
                     /*onRepeat: function () { addEvent('onRepeat') },*/
-                    onComplete: function () {
+                    onComplete: () => {
+                        this.mainImage.setDepth(initialImageDepth);
                         resolve()
                     }
                 });

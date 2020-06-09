@@ -3,7 +3,9 @@ import { Disposition } from "./disposition.js";
 import { GeneralLocation } from "../locations/generalLocation.js";
 import { CharacterDrawer } from "./characterDrawer.js";
 import { Adventurer } from "../characters/adventurers/adventurer.js";
+import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import { ActionInterfaceDrawer } from "./actionInterfaceDrawer.js";
+var Rectangle = Phaser.Geom.Rectangle;
 export class BattleScene extends GeneralLocation {
     constructor() {
         super({ key: 'Battle' });
@@ -35,6 +37,8 @@ export class BattleScene extends GeneralLocation {
             this.charToDrawerMap.set(char, new CharacterDrawer(this, char, index));
         });
         this.disposition.startRound();
+    }
+    update() {
     }
     redrawAllCharacters() {
         this.charToDrawerMap.forEach((charDrawer, char) => {
@@ -77,13 +81,16 @@ export class BattleScene extends GeneralLocation {
     async playAnimation(char, animation, target) {
         const charDrawer = this.charToDrawerMap.get(char);
         let targetDrawer = this.charToDrawerMap.get(target);
+        const animatingEnemy = char instanceof GeneralEnemy;
         switch (animation) {
             case 'idle':
                 await charDrawer.playIdleAnimation();
                 break;
             case 'meleeAttack':
                 if (targetDrawer) {
+                    await charDrawer.playMoveAnimation(targetDrawer.position.x + (animatingEnemy ? 96 : -96), targetDrawer.position.y);
                     await charDrawer.playMeleeAttackAnimation(targetDrawer.position.x, targetDrawer.position.y);
+                    charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
                 }
                 else {
                     await charDrawer.playMeleeAttackAnimation(600, 320);
@@ -123,10 +130,18 @@ export class BattleScene extends GeneralLocation {
                 .on('pointerout', () => charNameText.setVisible(false));
             this.turnOrderDisplayContainer.add(charNameText);
             this.turnOrderDisplayContainer.add(initiativeText);
-            this.turnOrderDisplayContainer.add(this.add.sprite(64 * i + 32, 16 + 32, char.spriteParams.texture, char.spriteParams.frame)
-                .setDisplaySize(64, 64).setInteractive()
-                .on('pointerover', () => charNameText.setText(char.name).setVisible(true))
-                .on('pointerout', () => charNameText.setVisible(false)));
+            const sprite = this.add.sprite(64 * i + 32, 16 + 32, char.spriteParams.texture, char.spriteParams.frame)
+                .setDisplaySize(char.spriteParams.width / 1.5, char.spriteParams.height / 1.5);
+            sprite.flipX = char.spriteParams.flip;
+            // This whole mess with clickable area is here to make sure that it is 64x64 square centered at the char image no matter how small or big the initial image is
+            // When area is applied to the image, Phaser will rescale it using image scale, thus initial clickable area rectangle must be pre-adjusted.
+            const clickableArea = new Rectangle((sprite.getCenter().x - sprite.getTopLeft().x - 32) / sprite.scaleX, (sprite.getCenter().y - sprite.getTopLeft().y - 32) / sprite.scaleY, 64 / sprite.scaleX, 64 / sprite.scaleY);
+            sprite.setInteractive({
+                hitArea: clickableArea,
+                hitAreaCallback: Rectangle.Contains
+            }).on('pointerover', () => charNameText.setText(char.name).setVisible(true))
+                .on('pointerout', () => charNameText.setVisible(false));
+            this.turnOrderDisplayContainer.add(sprite);
         });
     }
     exitBattle(isPartyWon) {
@@ -138,8 +153,6 @@ export class BattleScene extends GeneralLocation {
             this.scene.run(this.prevSceneKey);
         }
         this.scene.stop('Battle');
-    }
-    update() {
     }
 }
 //# sourceMappingURL=battle.js.map

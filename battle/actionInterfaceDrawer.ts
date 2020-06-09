@@ -86,8 +86,8 @@ export class ActionInterfaceDrawer {
 
                             let overlay = scene.add.graphics()
                                 .fillStyle(0x000000, 0.25)
-                                .fillRect(0, 0, 800, 640);
-                            let zone = scene.add.zone(0, 0, 800, 640).setOrigin(0, 0)
+                                .fillRect(0, 0, 800, 640).setDepth(3);
+                            let zone = scene.add.zone(0, 0, 800, 640).setOrigin(0, 0).setDepth(3)
                                 .setInteractive().once('pointerdown', () => removeOverlay());
                             const removeOverlay = () => {
                                 overlay.destroy();
@@ -102,7 +102,7 @@ export class ActionInterfaceDrawer {
 
                             potentialTargets.forEach(potentialTarget => {
                                 if (potentialTarget.character.isAlive) {
-                                    potentialTarget.image.setDepth(3);
+                                    potentialTarget.image.setDepth(4);
                                     potentialTarget.zone.once('pointerdown', () => {
                                         removeOverlay();
                                         self.displayContainer.removeAll(true);

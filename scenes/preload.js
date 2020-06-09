@@ -176,6 +176,10 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 231,
             frameHeight: 190
         });
+        this.load.spritesheet("ghost-knight-approach", "assets/images/characters/battle/enemies/ghost-knight/Run.png", {
+            frameWidth: 180,
+            frameHeight: 180
+        });
         this.load.spritesheet("ghost-knight-attack1", "assets/images/characters/battle/enemies/ghost-knight/Attack1.png", {
             frameWidth: 180,
             frameHeight: 180
@@ -369,6 +373,12 @@ export class PreloadScene extends Phaser.Scene {
             frames: this.anims.generateFrameNames('ghost-knight-idle'),
             frameRate: 10,
             repeat: -1
+        });
+        this.anims.create({
+            key: 'ghost-knight_approach',
+            frames: this.anims.generateFrameNames('ghost-knight-approach'),
+            frameRate: 10,
+            repeat: 0
         });
         this.anims.create({
             key: 'ghost-knight_attack1',
