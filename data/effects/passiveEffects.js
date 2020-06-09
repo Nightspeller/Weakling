@@ -1,4 +1,19 @@
 export const passiveEffects = {
+    terrified: {
+        effectId: 'terrified',
+        name: 'Terrified',
+        description: `This character is terrified - it can't fact their terror in combat`,
+        type: 'passive',
+        baseDuration: 1,
+        durationLeft: null,
+        strength: null,
+        source: null,
+        statusImage: { texture: 'icons', frame: 4 },
+        applicationCheck: (source, target, action) => true,
+        setModifier: function (source, target, action) {
+            this.baseDuration = this.strength;
+        },
+    },
     armorUp: {
         effectId: 'armorUp',
         name: 'Armor up',

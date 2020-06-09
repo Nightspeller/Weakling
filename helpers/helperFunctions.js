@@ -3,6 +3,11 @@ import { quickSlotItems } from "../data/items/quickSlotItems.js";
 export function capsFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+export function drawBorder(scene, object, color = 0x0000ff) {
+    scene.add.graphics()
+        .lineStyle(1, color)
+        .strokeRect(object.getTopLeft().x, object.getTopLeft().y, object.displayWidth, object.displayHeight);
+}
 export function generatePotions(characteristic, icons) {
     const qualities = ['weak', 'mediocre', 'average', 'strong', 'powerful'];
     const sizes = ['small', 'medium', 'big', 'giant'];

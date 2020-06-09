@@ -1,8 +1,15 @@
 import {backpackSlotNames, containerSlotNames, quickSlotNames} from "../data/items/itemSlots.js";
 import {quickSlotItems} from "../data/items/quickSlotItems.js";
+import Sprite = Phaser.GameObjects.Sprite;
 
 export function capsFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function drawBorder(scene: Phaser.Scene,object: Sprite, color=0x0000ff) {
+    scene.add.graphics()
+                .lineStyle(1, color)
+                .strokeRect(object.getTopLeft().x, object.getTopLeft().y, object.displayWidth, object.displayHeight);
 }
 
 export function generatePotions(characteristic, icons: SpriteParameters[]): { [key: string]: ItemData } {

@@ -87,12 +87,14 @@ export default class GeneralCharacter {
             this.currentEffects[existingEffectIndex].durationLeft = effect.baseDuration;
         } else {
             if (effect.type !== "conditional") {
-                let [group, subgroup] = effect.targetCharacteristic.split('.');
-                this.characteristicsModifiers[group][subgroup].push({
-                    // @ts-ignore - in case of traps effect modifier value is another effect!
-                    value: Math.round(effect.modifier.type === 'value' ? effect.modifier.value : this.baseCharacteristics[group][subgroup] * (effect.modifier.value / 100)),
-                    source: effect
-                });
+                if (effect.targetCharacteristic) {
+                    let [group, subgroup] = effect.targetCharacteristic.split('.');
+                    this.characteristicsModifiers[group][subgroup].push({
+                        // @ts-ignore - in case of traps effect modifier value is another effect!
+                        value: Math.round(effect.modifier.type === 'value' ? effect.modifier.value : this.baseCharacteristics[group][subgroup] * (effect.modifier.value / 100)),
+                        source: effect
+                    });
+                }
             }
             if (effect.type !== 'direct') {
                 this.currentEffects.push(effect);
@@ -137,8 +139,10 @@ export default class GeneralCharacter {
     private recalculateEffects() {
         this.currentEffects = this.currentEffects.filter((effect, i) => {
             if (effect.durationLeft === 1) {
-                const [group, subgroup] = effect.targetCharacteristic.split('.');
-                this.characteristicsModifiers[group][subgroup] = this.characteristicsModifiers[group][subgroup].filter(modifier => modifier.source !== effect);
+                if (effect.targetCharacteristic) {
+                    const [group, subgroup] = effect.targetCharacteristic.split('.');
+                    this.characteristicsModifiers[group][subgroup] = this.characteristicsModifiers[group][subgroup].filter(modifier => modifier.source !== effect);
+                }
                 return false
             } else {
                 if (effect.durationLeft !== -1) {

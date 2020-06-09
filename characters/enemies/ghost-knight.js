@@ -6,32 +6,29 @@ export class GhostKnight extends GeneralEnemy {
         this.aiTurn = (disposition) => {
             const alivePlayers = disposition.playerCharacters.filter(char => char.isAlive);
             const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-            const action = this.currentEffects.some(effect => effect.effectId === 'intelligenceUp') ? 'magicMissile' : 'swiftMind';
-            if (action === 'swiftMind') {
-                return { action: new Action(action, this), targets: [this] };
-            }
-            else {
-                return { action: new Action(action, this), targets: [randomAlivePlayer] };
-            }
+            let action = 'meleeAttack';
+            if (this.actionPoints.magical >= 2)
+                action = 'fear';
+            return { action: new Action(action, this), targets: [randomAlivePlayer] };
         };
         this.spriteParams = { texture: 'ghost-knight-idle', frame: 0, width: 300, height: 300, flip: true };
         this.level = 1;
-        this.availableActions = ['magicMissile', 'swiftMind'];
+        this.availableActions = ['meleeAttack', 'fear'];
         this.name = 'Ghost of the Knight';
         this.baseCharacteristics = {
             attributes: {
-                strength: 10,
-                agility: 3,
+                strength: 20,
+                agility: 20,
                 intelligence: 10,
                 initiative: Phaser.Math.Between(10, 20)
             },
             parameters: {
-                health: 10,
-                currentHealth: 10,
+                health: 30,
+                currentHealth: 30,
                 manna: 10,
                 currentManna: 10,
-                energy: 5,
-                currentEnergy: 5,
+                energy: 20,
+                currentEnergy: 20,
             },
             defences: {
                 armor: 12,
@@ -44,9 +41,10 @@ export class GhostKnight extends GeneralEnemy {
                 magicResistance: 0,
             }
         };
-        this.actionPointsBase = { physical: 0, magical: 1, misc: 0 };
-        this.actionPointsIncrement = { physical: 0, magical: 1, misc: 1 };
+        this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
+        this.actionPointsIncrement = { physical: 1, magical: 1, misc: 0 };
         this.animations.idle = 'ghost-knight_idle';
+        this.animations.approach = 'ghost-knight_walk';
         this.animations.attack = 'ghost-knight_attack2';
         this.animations.buff = 'ghost-knight_attack1';
         this.animations.death = 'ghost-knight_death';

@@ -16,6 +16,23 @@ export const magicalActions = {
         icon: { texture: 'icon-item-set', frame: 53 },
         parametersCost: { manna: 3 },
     },
+    fear: {
+        actionId: 'fear',
+        phase: ['battle'],
+        type: 'magical',
+        actionName: 'Fear',
+        actionDescription: `Puts fear in opponent's heart preventing them from attacking the source of fear`,
+        effectsDescriptions: [{
+                effectId: 'terrified',
+                strength: 2
+            }],
+        target: 'enemy',
+        actionCost: 2,
+        noticeable: 1,
+        animation: 'meleeAttack',
+        icon: { texture: 'icon-item-set', frame: 4 },
+        parametersCost: { manna: 3 },
+    },
     dustStorm: {
         actionId: 'dustStorm',
         phase: ['battle'],
