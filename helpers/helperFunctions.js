@@ -1,12 +1,20 @@
 import { backpackSlotNames, containerSlotNames, quickSlotNames } from "../data/items/itemSlots.js";
 import { quickSlotItems } from "../data/items/quickSlotItems.js";
+var Sprite = Phaser.GameObjects.Sprite;
 export function capsFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 export function drawBorder(scene, object, color = 0x0000ff) {
-    scene.add.graphics()
-        .lineStyle(1, color)
-        .strokeRect(object.getTopLeft().x, object.getTopLeft().y, object.displayWidth, object.displayHeight);
+    if (object instanceof Sprite) {
+        scene.add.graphics()
+            .lineStyle(1, color)
+            .strokeRect(object.getTopLeft().x, object.getTopLeft().y, object.displayWidth, object.displayHeight);
+    }
+    else {
+        scene.add.graphics()
+            .lineStyle(1, color)
+            .strokeRect(object.x, object.y, object.width, object.height);
+    }
 }
 export function generatePotions(characteristic, icons) {
     const qualities = ['weak', 'mediocre', 'average', 'strong', 'powerful'];
