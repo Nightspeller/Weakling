@@ -65,7 +65,7 @@ export class Trigger {
 
         if (interaction === 'collide') {
             scene.physics.add.collider(scene.playerImage, this.image, () => {
-                if (this.disabled === false){
+                if (this.disabled === false) {
                     this.callback();
                     if (singleUse) {
                         this.destroy();
@@ -75,7 +75,7 @@ export class Trigger {
         }
         if (interaction === 'overlap') {
             scene.physics.add.overlap(scene.playerImage, this.image, () => {
-                if (this.disabled === false){
+                if (this.disabled === false) {
                     this.callback();
                     if (singleUse) {
                         this.destroy();
@@ -129,17 +129,19 @@ export class Trigger {
 
     private onSpaceBarPressed(event) {
         event.preventDefault();
-        const scene = this.scene
+        const scene = this.scene;
         //checking if player is looking at the trigger image, adjustments are done in order to reflect the fact that physical body is smaller than the image
-        if (this.type === 'activateOverlap' ||
+        if (this.scene.somethingTriggered === false && (this.type === 'activateOverlap' ||
             (this.image.getTopLeft().y === scene.playerImage.getBottomRight().y && [0, 1, 2].includes(Number(scene.playerImage.frame.name))) ||
             (this.image.getTopLeft().x === scene.playerImage.getBottomRight().x - 8 && [6, 7, 8].includes(Number(scene.playerImage.frame.name))) ||
             (this.image.getBottomRight().y === scene.playerImage.getTopLeft().y + 16 && [18, 19, 20].includes(Number(scene.playerImage.frame.name))) ||
             (this.image.getBottomRight().x === scene.playerImage.getTopLeft().x + 8 && [12, 13, 14].includes(Number(scene.playerImage.frame.name)))
-        ) {
+        )) {
             const bodies = scene.physics.overlapRect(this.image.x, this.image.y, this.image.displayWidth + 2, this.image.displayHeight + 2);
             // @ts-ignore
             if (bodies.includes(scene.playerImage.body) && bodies.includes(this.image.body)) {
+                this.scene.somethingTriggered = true;
+                setTimeout(() => this.scene.somethingTriggered = false, 0);
                 this.callback();
                 if (this.singleUse) {
                     this.destroy();

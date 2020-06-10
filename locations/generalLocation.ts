@@ -21,6 +21,7 @@ export class GeneralLocation extends Phaser.Scene {
     private lastCursor: string;
     private objectsHighlightBorders: Phaser.GameObjects.Group;
     protected cursorCoordinatesText: Phaser.GameObjects.Text;
+    public somethingTriggered: boolean;
 
     constructor(sceneSettings) {
         super(sceneSettings);
@@ -28,6 +29,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.spaceBarCooldown = 0;
         this.playerSpeed = PLAYER_WORLD_SPEED;
         this.lastCursor = 'down';
+        this.somethingTriggered = false;
     }
 
     preload() {
@@ -397,7 +399,8 @@ export class GeneralLocation extends Phaser.Scene {
     }
 
     public switchToScene(sceneKey: string, data: object = {}, shouldSleep = true, toCoordinates: { x: number, y: number } = null) {
-        //console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
+        console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
+        console.log(data);
         // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
         // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
         // still dont know how to fix properly..

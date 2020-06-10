@@ -11,6 +11,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.spaceBarCooldown = 0;
         this.playerSpeed = PLAYER_WORLD_SPEED;
         this.lastCursor = 'down';
+        this.somethingTriggered = false;
     }
     preload() {
         this.load.scenePlugin({
@@ -356,7 +357,8 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
     switchToScene(sceneKey, data = {}, shouldSleep = true, toCoordinates = null) {
-        //console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
+        console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
+        console.log(data);
         // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
         // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
         // still dont know how to fix properly..
