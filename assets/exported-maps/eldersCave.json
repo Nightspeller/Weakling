@@ -306,7 +306,7 @@
                         {
                          "name":"items",
                          "type":"string",
-                         "value":"[{\"itemId\": \"small-weak-healing-potion\", \"quantity\": 2}]"
+                         "value":"[{\"itemId\": \"small-weak-health-potion\", \"quantity\": 2}]"
                         }],
                  "rotation":0,
                  "type":"Container",
