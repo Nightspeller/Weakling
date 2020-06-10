@@ -52,27 +52,34 @@ export class DialogScene extends GeneralOverlayScene {
         this.dialogDisplayGroup.clear(true, true);
         this._showName();
         (_a = this.timedEvent) === null || _a === void 0 ? void 0 : _a.remove();
+        if (line.text.length > 420)
+            console.warn(`Dialog line is longer than 420 characters! Might be looking bad!...`, line.text);
         this._setText(line.text, this.opts.letterAppearanceDelay > 0).then(() => {
             this._setReplies(line.replies);
         });
     }
     _setReplies(replies) {
         const keyCodes = ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"];
+        let prevLineTopY = this.opts.windowY + this.opts.windowHeight - 5;
+        replies.reverse();
         replies.forEach((reply, index) => {
+            if (reply.text.length > 200)
+                console.warn(`Dialog line is longer than 200 characters! Might be looking bad!...`, reply.text);
             const replyX = this.opts.windowX + 25;
-            const replyY = this.opts.windowY + this.opts.windowHeight - 10 - 34 * replies.length + 34 * index;
-            const replyGameObject = this.add.text(replyX, replyY, `${index + 1}. ${reply.text}`, {
+            const replyY = prevLineTopY - 5;
+            const replyGameObject = this.add.text(replyX, replyY, `${replies.length - index}. ${reply.text}`, {
                 color: this.opts.responseTextColor,
                 wordWrap: {
                     width: this.opts.windowWidth - 50
                 }
-            }).setScrollFactor(0).setInteractive();
+            }).setScrollFactor(0).setOrigin(0, 1).setInteractive();
+            prevLineTopY = replyGameObject.getTopLeft().y;
             replyGameObject.on('pointerover', () => replyGameObject.setColor(this.opts.responseTextHoverColor));
             replyGameObject.on('pointerout', () => replyGameObject.setColor(this.opts.responseTextColor));
             replyGameObject.once('pointerdown', () => {
                 this._replaySelected(reply);
             });
-            this.input.keyboard.once('keyup-' + keyCodes[index + 1], () => {
+            this.input.keyboard.once('keyup-' + keyCodes[replies.length - index], () => {
                 keyCodes.forEach(keyCode => this.input.keyboard.off(`keyup-${keyCode}`));
                 this._replaySelected(reply);
             });
@@ -137,6 +144,7 @@ export class DialogScene extends GeneralOverlayScene {
     }
     _setText(text, animate) {
         return new Promise(resolve => {
+            text += '\n——————————————————————————————————————————————————————————————————————';
             const textX = this.opts.windowX + 25;
             const textY = this.opts.windowY + 10;
             const textGameObject = this.add.text(textX, textY, '', {
