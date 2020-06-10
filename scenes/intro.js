@@ -45,8 +45,9 @@ export class IntroScene extends Phaser.Scene {
             .lineStyle(2, 0xffffff, 0.4)
             .strokeRect(showHimDungeon.getTopLeft().x, showHimDungeon.getTopLeft().y, showHimDungeon.width, showHimDungeon.height);
         showHimDungeon.once('pointerdown', () => {
-            bgMusic.stop();
-            this.scene.start("Dungeon", { prevScene: this.scene.key });
+            alert('Coming soon!');
+            //bgMusic.stop();
+            //this.scene.start("Dungeon", {prevScene: this.scene.key});
         });
     }
 }
