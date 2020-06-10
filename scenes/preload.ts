@@ -414,7 +414,7 @@ export class PreloadScene extends Phaser.Scene {
         this.anims.create({
             key: 'ghost-knight_attack1',
             frames: this.anims.generateFrameNames('ghost-knight-attack1'),
-            frameRate: 10,
+            frameRate: 5,
             repeat: 0
         });
         this.anims.create({

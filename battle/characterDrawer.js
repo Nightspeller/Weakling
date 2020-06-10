@@ -226,14 +226,24 @@ export class CharacterDrawer {
             }
         });
     }
-    playMoveAnimation(targetX, targetY, flip = false) {
+    playMoveAnimation(targetX, targetY) {
         return new Promise((resolve) => {
             var _a;
-            if (flip)
-                this.mainImage.flipX = !this.mainImage.flipX;
+            if (targetX === this.mainImage.x) {
+                resolve();
+            }
+            if (targetX >= this.mainImage.x && this.isParty)
+                this.mainImage.flipX = this.char.spriteParams.flip;
+            if (targetX < this.mainImage.x && this.isParty)
+                this.mainImage.flipX = !this.char.spriteParams.flip;
+            if (targetX > this.mainImage.x && !this.isParty)
+                this.mainImage.flipX = !this.char.spriteParams.flip;
+            if (targetX <= this.mainImage.x && !this.isParty)
+                this.mainImage.flipX = this.char.spriteParams.flip;
             if ((_a = this.char.animations) === null || _a === void 0 ? void 0 : _a.move) {
                 this.mainImage.anims.play(this.char.animations.move, true);
             }
+            const duration = (Math.abs(targetX - this.mainImage.x) / 600) * 1000;
             this.scene.tweens.add({
                 targets: this.mainImage,
                 props: {
@@ -244,12 +254,11 @@ export class CharacterDrawer {
                         value: targetY,
                     }
                 },
-                ease: 'Back.easeOut',
-                duration: 3000,
+                // ease: 'Back.easeOut',
+                duration: duration,
                 yoyo: false,
                 onComplete: () => {
-                    if (flip)
-                        this.mainImage.flipX = !this.mainImage.flipX;
+                    this.mainImage.flipX = this.char.spriteParams.flip;
                     this.playIdleAnimation();
                     resolve();
                 }
@@ -262,11 +271,12 @@ export class CharacterDrawer {
             const initialImageDepth = this.mainImage.depth;
             this.mainImage.setDepth(5);
             if ((_a = this.char.animations) === null || _a === void 0 ? void 0 : _a.attack) {
-                this.mainImage.anims.play(this.char.animations.attack, true);
-                this.mainImage.once('animationcomplete', (currentAnim, currentFrame, sprite) => {
-                    this.playIdleAnimation();
-                    this.mainImage.setDepth(initialImageDepth);
-                    resolve();
+                this.mainImage.anims.setRepeat(0);
+                this.mainImage.anims.play(this.char.animations.idle).once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                    this.mainImage.anims.play(this.char.animations.attack).once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                        this.mainImage.setDepth(initialImageDepth);
+                        resolve();
+                    });
                 });
             }
             else {
@@ -281,6 +291,7 @@ export class CharacterDrawer {
                         }
                     },
                     ease: 'Back.easeOut',
+                    delay: 300,
                     duration: 500,
                     yoyo: true,
                     /*paused: true,

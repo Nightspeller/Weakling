@@ -57,17 +57,7 @@ export class BattleScene extends GeneralLocation {
     async animateAction({ attempted, succeeded, triggeredTraps, source, targets, action }) {
         this.charToDrawerMap.get(source).drawActionPoints(true);
         if (attempted) {
-            if (targets.length === 1) {
-                await this.playAnimation(source, action.animation, targets[0]);
-            }
-            else {
-                await this.playAnimation(source, action.animation);
-            }
-            await Promise.all(targets.map((target, index) => {
-                if (succeeded[index] && targets[index] !== source) {
-                    return this.playAnimation(targets[index], 'hit');
-                }
-            }));
+            await this.playAnimation(source, action.animation, targets, succeeded);
             targets.forEach(target => {
                 if (!target.isAlive) {
                     this.playAnimation(target, 'death');
@@ -78,9 +68,12 @@ export class BattleScene extends GeneralLocation {
             }
         }
     }
-    async playAnimation(char, animation, target) {
+    async playAnimation(char, animation, targets, succeeded) {
         const charDrawer = this.charToDrawerMap.get(char);
-        let targetDrawer = this.charToDrawerMap.get(target);
+        let targetDrawer;
+        if ((targets === null || targets === void 0 ? void 0 : targets.length) === 1) {
+            targetDrawer = this.charToDrawerMap.get(targets[0]);
+        }
         const animatingEnemy = char instanceof GeneralEnemy;
         switch (animation) {
             case 'idle':
@@ -90,10 +83,21 @@ export class BattleScene extends GeneralLocation {
                 if (targetDrawer) {
                     await charDrawer.playMoveAnimation(targetDrawer.position.x + (animatingEnemy ? 96 : -96), targetDrawer.position.y);
                     await charDrawer.playMeleeAttackAnimation(targetDrawer.position.x, targetDrawer.position.y);
-                    charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y, true);
+                    targets.forEach((target, index) => {
+                        if (succeeded[index] && targets[index] !== char) {
+                            this.playAnimation(targets[index], 'hit');
+                        }
+                    });
+                    await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
+                    await new Promise(resolve => setTimeout(() => resolve(), 500));
                 }
                 else {
                     await charDrawer.playMeleeAttackAnimation(600, 320);
+                    targets.forEach((target, index) => {
+                        if (succeeded[index] && targets[index] !== char) {
+                            this.playAnimation(targets[index], 'hit');
+                        }
+                    });
                 }
                 break;
             case 'castBuff':
