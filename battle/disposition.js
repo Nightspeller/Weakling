@@ -112,7 +112,7 @@ export class Disposition {
         }
     }
     processAction(source, targets, action) {
-        var _a, _b;
+        var _a, _b, _c;
         const targetsNames = targets.map(target => target.name).join(', ');
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${targetsNames}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         this.log(`${source.name} tries to perform ${action.actionName} on ${targetsNames}`);
@@ -169,7 +169,7 @@ export class Disposition {
             return actionResults;
         }
         if (action.consumes !== undefined && source instanceof Adventurer) {
-            const consumedItem = source.getInventoryItemById(action.consumes, true);
+            const consumedItem = (_c = source.getInventoryItemById(action.consumes, true)) === null || _c === void 0 ? void 0 : _c.item;
             source.removeItemFromInventory(consumedItem, 1);
         }
         action.effects.forEach(effect => {

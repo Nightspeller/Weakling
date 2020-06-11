@@ -9,7 +9,7 @@ export const backpackItems = {
         stackable: false,
         modified: false,
         specifics: {},
-        sellPrice: 100,
+        sellPrice: 0,
         buyPrice: 200
     },
     'jeremaya-book': {

@@ -136,4 +136,4 @@ Actions: ${this.player.getAvailableActions().join(', ')}`;
         }).setScrollFactor(0).setDepth(this.opts.baseDepth).setName('characteristicsText');
     }
 }
-//# sourceMappingURL=inventory.js.map
+//# sourceMappingURL=inventoryOverlayScene.js.map

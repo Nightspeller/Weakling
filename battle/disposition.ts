@@ -198,7 +198,7 @@ export class Disposition {
         }
 
         if (action.consumes !== undefined && source instanceof Adventurer) {
-            const consumedItem = source.getInventoryItemById(action.consumes, true);
+            const consumedItem = source.getInventoryItemById(action.consumes, true)?.item;
             source.removeItemFromInventory(consumedItem, 1);
         }
         action.effects.forEach(effect => {

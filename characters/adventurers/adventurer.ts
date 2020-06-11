@@ -13,7 +13,7 @@ export class Adventurer extends GeneralCharacter {
         this.actionPointsIncrement = {physical: 1, magical: 1, misc: 1};
     }
 
-    public getInventoryItemById(itemId: string, excludeBackpack = false): Item | undefined {
+    public getInventoryItemById(itemId: string, excludeBackpack = false): { slot: Slots, item: Item } | undefined {
         const entreeFound =  [...this.inventory.entries()].find(([slot, existingItem]) => {
             if (excludeBackpack) {
                 return existingItem.itemId === itemId && slot.includes('backpack') === false;
@@ -21,7 +21,7 @@ export class Adventurer extends GeneralCharacter {
                 return existingItem.itemId === itemId;
             }
         });
-        if (entreeFound) return entreeFound[1];
+        if (entreeFound) return {slot: entreeFound[0], item: entreeFound[1]};
     }
 
     private _getInventorySlotOfItem(item: Item): Slots | undefined {
@@ -85,7 +85,7 @@ export class Adventurer extends GeneralCharacter {
             }
         } else {
             if (item.stackable === true) {
-                const sameItemInInventory = this.getInventoryItemById(item.itemId);
+                const sameItemInInventory = this.getInventoryItemById(item.itemId)?.item;
                 if (sameItemInInventory) {
                     sameItemInInventory.quantity += quantity;
                 } else {

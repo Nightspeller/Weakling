@@ -61,13 +61,13 @@ export class DialogScene extends GeneralOverlayScene {
     _setReplies(replies) {
         const keyCodes = ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"];
         let prevLineTopY = this.opts.windowY + this.opts.windowHeight - 5;
-        replies.reverse();
-        replies.forEach((reply, index) => {
+        const reversedReplies = JSON.parse(JSON.stringify(replies)).reverse();
+        reversedReplies.forEach((reply, index) => {
             if (reply.text.length > 200)
                 console.warn(`Dialog line is longer than 200 characters! Might be looking bad!...`, reply.text);
             const replyX = this.opts.windowX + 25;
             const replyY = prevLineTopY - 5;
-            const replyGameObject = this.add.text(replyX, replyY, `${replies.length - index}. ${reply.text}`, {
+            const replyGameObject = this.add.text(replyX, replyY, `${reversedReplies.length - index}. ${reply.text}`, {
                 color: this.opts.responseTextColor,
                 wordWrap: {
                     width: this.opts.windowWidth - 50
@@ -79,7 +79,7 @@ export class DialogScene extends GeneralOverlayScene {
             replyGameObject.once('pointerdown', () => {
                 this._replaySelected(reply);
             });
-            this.input.keyboard.once('keyup-' + keyCodes[replies.length - index], () => {
+            this.input.keyboard.once('keyup-' + keyCodes[reversedReplies.length - index], () => {
                 keyCodes.forEach(keyCode => this.input.keyboard.off(`keyup-${keyCode}`));
                 this._replaySelected(reply);
             });
@@ -101,7 +101,8 @@ export class DialogScene extends GeneralOverlayScene {
         else if (reply.checkInventory) {
             let allIsThere = true;
             reply.checkValue.forEach(requestedItem => {
-                const item = this.player.getInventoryItemById(requestedItem.itemId);
+                var _a;
+                const item = (_a = this.player.getInventoryItemById(requestedItem.itemId)) === null || _a === void 0 ? void 0 : _a.item;
                 if (item === undefined || item.quantity < requestedItem.quantity) {
                     allIsThere = false;
                 }
@@ -109,7 +110,8 @@ export class DialogScene extends GeneralOverlayScene {
             if (allIsThere) {
                 if (reply.checkInventory === 'remove') {
                     reply.checkValue.forEach(requestedItem => {
-                        const item = this.player.getInventoryItemById(requestedItem.itemId);
+                        var _a;
+                        const item = (_a = this.player.getInventoryItemById(requestedItem.itemId)) === null || _a === void 0 ? void 0 : _a.item;
                         this.player.removeItemFromInventory(item, requestedItem.quantity);
                     });
                 }

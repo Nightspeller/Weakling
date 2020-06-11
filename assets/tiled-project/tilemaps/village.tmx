@@ -140,7 +140,7 @@
   </object>
  </objectgroup>
  <objectgroup id="4" name="Objects">
-  <object id="1" name="Start" x="1504" y="608">
+  <object id="1" name="Start" x="1056" y="832">
    <point/>
   </object>
  </objectgroup>

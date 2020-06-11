@@ -10,7 +10,8 @@ export const dollSlotNames = [
 ];
 export const containerSlotNames = [
     'containerSlot0_0', 'containerSlot1_0', 'containerSlot2_0', 'containerSlot3_0', 'containerSlot4_0',
-    'containerSlot0_1', 'containerSlot1_1', 'containerSlot2_1', 'containerSlot3_1', 'containerSlot4_1'
+    'containerSlot0_1', 'containerSlot1_1', 'containerSlot2_1', 'containerSlot3_1', 'containerSlot4_1',
+    'containerSlot0_2', 'containerSlot1_2', 'containerSlot2_2', 'containerSlot3_2', 'containerSlot4_2'
 ];
 export const quickSlotNames = [
     'quickSlot0', 'quickSlot1', 'quickSlot2', 'quickSlot3', 'quickSlot4',

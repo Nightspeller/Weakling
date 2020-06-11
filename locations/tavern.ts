@@ -23,11 +23,11 @@ export class TavernScene extends GeneralLocation {
             mapObjectName: 'Bartender',
             initDialog: bartenderDialog,
             items: [
-                {itemId: 'copper-pieces', quantity: 10},
-                {itemId: 'dagger-weapon', quantity: 1},
-                {itemId: 'leather-armor', quantity: 1},
-                {itemId: 'leather-pants', quantity: 1},
-                {itemId: 'leather-boots', quantity: 1},
+                {itemId: 'copper-pieces', quantity: 40},
+                {itemId: 'beer', quantity: 5},
+                {itemId: 'pumpkin', quantity: 2},
+                {itemId: 'apple', quantity: 3},
+                {itemId: 'carrot', quantity: 4},
             ],
             interactionCallback: param => {
                 if (param === 'beerAndRumorObtained') {
@@ -35,10 +35,7 @@ export class TavernScene extends GeneralLocation {
                     bartender.setDialog(bartenderNoRumoresDialog)
                 }
                 if (param === 'openShop') {
-                    this.switchToScene('Shop', {
-                        player: this.player,
-                        trader: bartender
-                    }, false)
+                    bartender.startTrade();
                 }
             }
         });

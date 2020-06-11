@@ -95,26 +95,24 @@ export class CaltorScene extends GeneralLocation {
             ],
             interactionCallback: (param) => {
                 if (param === 'openShop') {
-                    this.switchToScene('Shop', {
-                        player: this.player,
-                        trader: bodger
-                    }, false)
+                    bodger.startTrade();
                 }
                 if (param === 'goodsSold') {
                     this.player.addItemToInventory('copper-pieces', 100);
-                    bodger.addItemToInventory('minerals', 10);
-                    bodger.addItemToInventory('basket', 10);
+                    bodger.addItemsToTrade([
+                        {itemId: 'minerals', quantity: 10},
+                        {itemId: 'basket', quantity: 10},
+                    ]);
                     this.player.updateQuest('bigCaltorTrip', 'goodsSold');
                 }
                 if (param === 'goodsSoldAndOpenShop') {
                     this.player.addItemToInventory('copper-pieces', 100);
-                    bodger.addItemToInventory('minerals', 10);
-                    bodger.addItemToInventory('basket', 10);
+                    bodger.addItemsToTrade([
+                        {itemId: 'minerals', quantity: 10},
+                        {itemId: 'basket', quantity: 10},
+                    ]);
                     this.player.updateQuest('bigCaltorTrip', 'goodsSold');
-                    this.switchToScene('Shop', {
-                        player: this.player,
-                        trader: bodger
-                    }, false)
+                    bodger.startTrade();
                 }
             }
         });
@@ -145,10 +143,7 @@ export class CaltorScene extends GeneralLocation {
                 {itemId: 'invisibility-cape', quantity: 1},
                 {itemId: 'leather-gloves', quantity: 1},
             ], interactionCallback: () => {
-                this.switchToScene('Shop', {
-                    player: this.player,
-                    trader: kasima
-                }, false)
+                kasima.startTrade();
             }
         });
 

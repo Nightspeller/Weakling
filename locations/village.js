@@ -94,10 +94,7 @@ export class VillageScene extends GeneralLocation {
                     keith.setDialog(keithNoApologyDialog);
                 }
                 if (param === 'openShop') {
-                    this.switchToScene('Shop', {
-                        player: this.player,
-                        trader: keith
-                    }, false);
+                    keith.startTrade();
                     keith.setDialog(keithShopAgainDialog);
                 }
             },

@@ -26,10 +26,7 @@ export class HermitsTowerScene extends GeneralLocation {
             ],
             interactionCallback: param => {
                 if (param === 'openShop') {
-                    this.switchToScene('Shop', {
-                        player: this.player,
-                        trader: hermit
-                    }, false);
+                    hermit.startTrade();
                 }
             }
         });

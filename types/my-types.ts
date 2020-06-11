@@ -142,6 +142,7 @@ type Slots = 'rightHand' | 'leftHand' | 'belt' | 'head' | 'neck' | 'ringLeft' | 
                 'backpack0_4' | 'backpack1_4' | 'backpack2_4' | 'backpack3_4' | 'backpack4_4' |
                 'containerSlot0_0' | 'containerSlot1_0' | 'containerSlot2_0' | 'containerSlot3_0' | 'containerSlot4_0' |
                 'containerSlot0_1' | 'containerSlot1_1' | 'containerSlot2_1' | 'containerSlot3_1' | 'containerSlot4_1' |
+                'containerSlot0_2' | 'containerSlot1_2' | 'containerSlot2_2' | 'containerSlot3_2' | 'containerSlot4_2' |
                 'componentSlot0' | 'componentSlot1' | 'componentSlot2' | 'componentSlot3' | 'componentSlot4' | 'vesselSlot' | 'resultSlot';
 
 interface Quest {

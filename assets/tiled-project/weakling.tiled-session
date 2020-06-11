@@ -347,9 +347,9 @@
         },
         "tilemaps/eldersCave.tmx": {
             "scale": 3,
-            "selectedLayer": 0,
+            "selectedLayer": 15,
             "viewCenter": {
-                "x": 251.33333333333334,
+                "x": 251.3333333333333,
                 "y": 253.16666666666663
             }
         },

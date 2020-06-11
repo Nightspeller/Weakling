@@ -18,7 +18,7 @@ export class Adventurer extends GeneralCharacter {
             }
         });
         if (entreeFound)
-            return entreeFound[1];
+            return { slot: entreeFound[0], item: entreeFound[1] };
     }
     _getInventorySlotOfItem(item) {
         for (let [slot, inventoryItem] of this.inventory.entries()) {
@@ -58,6 +58,7 @@ export class Adventurer extends GeneralCharacter {
         return item;
     }
     addItemToInventory(passedItem, quantity = 1, slot) {
+        var _a;
         if (typeof quantity !== "number")
             throw 'addItemToInventory received quantity not as a number';
         const item = typeof passedItem === "string" ? new Item(passedItem, quantity) : passedItem;
@@ -82,7 +83,7 @@ export class Adventurer extends GeneralCharacter {
         }
         else {
             if (item.stackable === true) {
-                const sameItemInInventory = this.getInventoryItemById(item.itemId);
+                const sameItemInInventory = (_a = this.getInventoryItemById(item.itemId)) === null || _a === void 0 ? void 0 : _a.item;
                 if (sameItemInInventory) {
                     sameItemInInventory.quantity += quantity;
                 }

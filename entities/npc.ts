@@ -1,12 +1,15 @@
 import Item from "./item.js";
 import {Trigger} from "./trigger.js";
+import {GeneralLocation} from "../locations/generalLocation.js";
 
 export default class Npc {
-    public inventory: Item[];
     public dialog: DialogTree;
     private interactionCallback: Function;
     public name: string;
     public image: Phaser.Physics.Arcade.Image;
+    private items: Map<Slots, Item>;
+    private scene: GeneralLocation;
+    private numberOfSlots: number;
 
     constructor(
         {
@@ -22,6 +25,7 @@ export default class Npc {
             }
         }: NpcOptions
     ) {
+        this.scene = scene;
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
         if (mapObject['gid'] && !texture) {
@@ -72,8 +76,17 @@ export default class Npc {
             }).image;
         }
 
-        this.inventory = [];
-        items?.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
+        this.items = new Map<Slots, Item>();
+        this.numberOfSlots = 15;
+        for (let i = 0; i < Math.floor(this.numberOfSlots / 5) + 1; i++) {
+            const slotsInRow = Math.floor((this.numberOfSlots - 5 * i) / 5) > 0 ? 5 : this.numberOfSlots % 5;
+            for (let j = 0; j < slotsInRow; j++) {
+                if (items[5*i+j]) {
+                    const newItem = new Item(items[5*i+j].itemId, items[5*i+j].quantity);
+                    this.items.set(`containerSlot${j}_${i}` as Slots, newItem);
+                }
+            }
+        }
     }
 
     public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
@@ -81,34 +94,31 @@ export default class Npc {
         if (newInteractionCallback) this.interactionCallback = newInteractionCallback;
     }
 
-    public addItemToInventory(passedItem: string | Item, quantity = 1): Item {
-        let item;
-        if (typeof passedItem === "string") {
-            item = new Item(passedItem, quantity);
-        } else {
-            item = passedItem;
-        }
-        if (item.stackable) {
-            item.quantity = quantity;
-            const existingItem = this.inventory.find(existingItem => existingItem.itemId === item.itemId);
-            if (existingItem) {
-                existingItem.quantity += item.quantity;
-                return existingItem;
+    public startTrade() {
+        this.scene.switchToScene('ShopOverlay', {
+            name: this.name,
+            numberOfSlots: this.numberOfSlots,
+            items: this.items,
+            closeCallback: (itemsInContainer) => {
+                this.items = itemsInContainer;
             }
-        }
-
-        this.inventory.push(item);
-        return item;
+        }, false)
     }
 
-    public removeItemFromInventory(item: Item, quantity = 1) {
-        if (!this.inventory.includes(item) || quantity > item.quantity) {
-            throw 'Trying to remove non-existing item (or more items than possessed)!'
-        }
-        if (quantity === item.quantity || !item.quantity) {
-            this.inventory = this.inventory.filter(existingItem => existingItem !== item)
-        } else {
-            item.quantity -= quantity;
-        }
+    public addItemsToTrade(itemsData: {itemId: string; quantity: number}[]) {
+        itemsData.forEach((item) => {
+            for (let i = 0; i < Math.floor(this.numberOfSlots / 5) + 1; i++) {
+                const slotsInRow = Math.floor((this.numberOfSlots - 5 * i) / 5) > 0 ? 5 : this.numberOfSlots % 5;
+                for (let j = 0; j < slotsInRow; j++) {
+                    if (this.items.get(`containerSlot${j}_${i}` as Slots) === undefined) {
+                        const newItem = new Item(item.itemId, item.quantity);
+                        this.items.set(`containerSlot${j}_${i}` as Slots, newItem);
+                        return;
+                    }
+                }
+            }
+            throw 'Trader is full, cant add items! Write more code to handle it properly!'
+        })
+
     }
 }

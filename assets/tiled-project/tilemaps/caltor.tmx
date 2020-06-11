@@ -123,7 +123,7 @@
  <objectgroup id="6" name="Objects">
   <object id="4" name="Barracks" x="864" y="2880" width="64" height="64"/>
   <object id="10" name="Character Picker" x="2464" y="2816" width="32" height="32"/>
-  <object id="24" name="Start" x="2400" y="1664">
+  <object id="24" name="Start" x="2304" y="2720">
    <point/>
   </object>
  </objectgroup>

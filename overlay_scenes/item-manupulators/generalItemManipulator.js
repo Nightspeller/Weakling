@@ -5,6 +5,7 @@ import { GAME_H, GAME_W, INVENTORY_ITEM_DESCRIPTION_H, INVENTORY_ITEM_DESCRIPTIO
 import { LOCATION_SCENES } from "../../index.js";
 import ItemRepresentation from "../../entities/itemRepresentation.js";
 import { backpackSlotNames } from "../../data/items/itemSlots.js";
+import prepareLog from "../../helpers/logger.js";
 export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     constructor({ key: key }) {
         super({ key: key });
@@ -41,16 +42,17 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     _moveItemFromSlotToSlot(fromSlot, toSlot, swappingIsFinished = true) {
         const itemToMove = this.itemsMap.get(fromSlot);
         const itemInTargetSlot = this.itemsMap.get(toSlot);
-        console.log(`Trying to move %c${itemToMove.item.itemId}%c from %c${fromSlot}%c to %c${toSlot}%c. There is %c${itemInTargetSlot ? itemInTargetSlot.item.itemId : 'no'}%c item in that slot.`, `color: aqua`, `color: while`, `color: red`, `color: while`, `color: red`, `color: while`, `color: aqua`, `color: white`);
         if (fromSlot === toSlot) {
+            console.log(...prepareLog(`Trying to move item in !!${fromSlot} to itself, instead just ??animating ??it ??back`));
             this._animateItemFromSlotToSlot(fromSlot, fromSlot);
             return;
         }
+        console.log(`Trying to move %c${itemToMove.item.itemId}%c from %c${fromSlot}%c to %c${toSlot}%c. There is %c${itemInTargetSlot ? itemInTargetSlot.item.itemId : 'no'}%c item in that slot.`, `color: aqua`, `color: auto`, `color: red`, `color: auto`, `color: red`, `color: auto`, `color: aqua`, `color: auto`);
         if (itemToMove.item.itemId === (itemInTargetSlot === null || itemInTargetSlot === void 0 ? void 0 : itemInTargetSlot.item.itemId)) {
-            setTimeout(() => {
+            this._animateItemFromSlotToSlot(fromSlot, toSlot).then(() => {
                 this._changeItemQuantity(toSlot, itemInTargetSlot.item.quantity + itemToMove.item.quantity);
                 this._deleteItemRepresentation(fromSlot);
-            }, 0);
+            });
             return;
         }
         if (itemToMove.item.possibleSlots.includes(toSlot)) {
@@ -147,25 +149,22 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                         doubleClickTimer = Date.now();
                     }
                     else {
-                        this._moveItemToBackpack(itemCurrentSlot);
+                        this._itemDoubleClickCallback(itemCurrentSlot);
                     }
                 }
             }
         });
         this.itemsDisplayGroup.add(itemRepresentation);
     }
+    _itemDoubleClickCallback(itemCurrentSlot) {
+        this._moveItemToBackpack(itemCurrentSlot);
+    }
     _moveItemToBackpack(fromSlot) {
         const itemR = this.itemsMap.get(fromSlot);
         if (itemR.item.stackable === true) {
             for (let [slot, itemFromMap] of this.itemsMap.entries()) {
                 if (backpackSlotNames.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
-                    this._animateItemFromSlotToSlot(fromSlot, slot).then(() => {
-                        //TODO: kinda a hack to avoid delition of an item which already was deleted....
-                        if (this.itemsMap.get(fromSlot)) {
-                            this._changeItemQuantity(slot, itemFromMap.item.quantity + itemR.item.quantity);
-                            this._deleteItemRepresentation(fromSlot);
-                        }
-                    });
+                    this._moveItemFromSlotToSlot(fromSlot, slot);
                     return;
                 }
             }
@@ -194,7 +193,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             this.highlightedSlotsGroup.clear(true, true);
         }
     }
-    _showItemDescriptionAndActions(slot) {
+    _showItemDescriptionAndActions(slot, additionalActionsEnabled = true) {
         var _a, _b, _c;
         const itemRepresentation = this.itemsMap.get(slot);
         const item = itemRepresentation.item;
@@ -220,32 +219,34 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                 width: INVENTORY_ITEM_DESCRIPTION_W,
             },
         };
-        const dropItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 32 - 5, 5, 'icon-item-set', 205).setOrigin(0, 0);
-        dropItemButton.setInteractive({ useHandCursor: true });
-        dropItemButton.once('pointerdown', (pointer, eventX, eventY, event) => {
-            this._dropItem(slot);
-            event.stopPropagation();
-            outerZone.destroy(true);
-            descriptionContainer.destroy(true);
-        });
-        descriptionContainer.add(dropItemButton);
-        if (item.quantity > 1) {
-            const splitItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 64 - 5, 5, 'icon-item-set', 36).setOrigin(0, 0);
-            splitItemButton.setInteractive({ useHandCursor: true });
-            splitItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
-                const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
-                if (emptyBackPackSlot) {
-                    const newQuantity = Math.floor(item.quantity / 2);
-                    this._changeItemQuantity(slot, item.quantity - newQuantity);
-                    const separatedItem = new Item(item.itemId, newQuantity);
-                    this._createItemRepresentation(separatedItem, emptyBackPackSlot);
-                    this.player.addItemToInventory(separatedItem, separatedItem.quantity, emptyBackPackSlot);
-                }
+        if (additionalActionsEnabled) {
+            const dropItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 32 - 5, 5, 'icon-item-set', 205).setOrigin(0, 0);
+            dropItemButton.setInteractive({ useHandCursor: true });
+            dropItemButton.once('pointerdown', (pointer, eventX, eventY, event) => {
+                this._dropItem(slot);
                 event.stopPropagation();
                 outerZone.destroy(true);
                 descriptionContainer.destroy(true);
             });
-            descriptionContainer.add(splitItemButton);
+            descriptionContainer.add(dropItemButton);
+            if (item.quantity > 1) {
+                const splitItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 64 - 5, 5, 'icon-item-set', 36).setOrigin(0, 0);
+                splitItemButton.setInteractive({ useHandCursor: true });
+                splitItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
+                    const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
+                    if (emptyBackPackSlot) {
+                        const newQuantity = Math.floor(item.quantity / 2);
+                        this._changeItemQuantity(slot, item.quantity - newQuantity);
+                        const separatedItem = new Item(item.itemId, newQuantity);
+                        this._createItemRepresentation(separatedItem, emptyBackPackSlot);
+                        this.player.addItemToInventory(separatedItem, separatedItem.quantity, emptyBackPackSlot);
+                    }
+                    event.stopPropagation();
+                    outerZone.destroy(true);
+                    descriptionContainer.destroy(true);
+                });
+                descriptionContainer.add(splitItemButton);
+            }
         }
         const name = this.add.text(5, 5, item.displayName, textStyle).setOrigin(0, 0);
         descriptionContainer.add(name);
@@ -275,7 +276,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             descriptionContainer.add(characteristics);
             lastTextPosition = characteristics.getBottomLeft().y;
         }
-        const price = this.add.text(5, lastTextPosition + 10, `Sell price, for 1: ${item.sellPrice} copper\nBuy price, for 1: ${item.buyPrice} copper`, textStyle).setOrigin(0, 0);
+        const priceText = `Sell price, for 1: ${item.sellPrice ? `${item.sellPrice} copper` : `Can't be sold.`}\nBuy price, for 1: ${item.buyPrice} copper`;
+        const price = this.add.text(5, lastTextPosition + 10, priceText, textStyle).setOrigin(0, 0);
         descriptionContainer.add(price);
         lastTextPosition = price.getBottomLeft().y;
         if (item.itemId === 'mirror-of-travel') {
@@ -314,6 +316,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     }
     _changeItemQuantity(slot, newQuantity) {
         const itemRepresentation = this.itemsMap.get(slot);
+        if (itemRepresentation.item.stackable === false && newQuantity > 1)
+            throw `Trying to increase quality of un-stackable item! ${itemRepresentation.item.itemId}`;
         if (newQuantity !== 0) {
             itemRepresentation.item.quantity = newQuantity;
             itemRepresentation.updateQuantityCounter();
