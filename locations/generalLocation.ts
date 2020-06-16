@@ -4,6 +4,7 @@ import {DEBUG, GAME_H, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED} from 
 import {messages} from "../data/messages.js";
 import Container from "../entities/container.js";
 import {Trigger} from "../entities/trigger.js";
+import prepareLog from "../helpers/logger.js";
 
 export class GeneralLocation extends Phaser.Scene {
     public player: Player;
@@ -399,8 +400,8 @@ export class GeneralLocation extends Phaser.Scene {
     }
 
     public switchToScene(sceneKey: string, data: object = {}, shouldSleep = true, toCoordinates: { x: number, y: number } = null) {
-        console.log(`Switching from %c${this.scene.key}%c to %c${sceneKey}%c. Should %c${this.scene.key}%c turn off %c(sleep): ${shouldSleep}`, 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red', 'color: auto', 'color: red');
-        console.log(data);
+        console.log(...prepareLog(`Switching from ??${this.scene.key} to ??${sceneKey}. Should ??${this.scene.key} turn off !!(sleep): !!${shouldSleep}`));
+        console.log(`Data passed to ${sceneKey}:`, data);
         // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
         // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
         // still dont know how to fix properly..
