@@ -61,7 +61,7 @@ export class Adventurer extends GeneralCharacter {
         this.applyItems();
         return item;
     }
-    addItemToInventory(item, quantity = 1, slot) {
+    addItemToInventory(item, quantity = 1, slot, sceneForDropping) {
         var _a;
         if (typeof quantity !== "number")
             throw 'addItemToInventory received quantity not as a number';
@@ -98,12 +98,18 @@ export class Adventurer extends GeneralCharacter {
                     sameItemInInventory.quantity += quantity;
                     return sameItemInInventory;
                 }
-                else {
-                    return this._addItemToEmptyBackpackSlot(item);
-                }
+            }
+            const itemAdded = this._addItemToEmptyBackpackSlot(item);
+            if (itemAdded) {
+                return itemAdded;
             }
             else {
-                return this._addItemToEmptyBackpackSlot(item);
+                if (sceneForDropping) {
+                    sceneForDropping.createDroppedItem(item);
+                }
+                else {
+                    return undefined;
+                }
             }
         }
     }

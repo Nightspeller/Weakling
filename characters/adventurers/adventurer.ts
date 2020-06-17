@@ -1,7 +1,7 @@
 import GeneralCharacter from "../generalCharacter.js";
 import Item from "../../entities/item.js";
-import item from "../../entities/item.js";
 import prepareLog from "../../helpers/logger.js";
+import {GeneralLocation} from "../../locations/generalLocation.js";
 
 export class Adventurer extends GeneralCharacter {
     private inventory: Map<Slots, Item>;
@@ -69,7 +69,7 @@ export class Adventurer extends GeneralCharacter {
         return item;
     }
 
-    public addItemToInventory(item: string | Item, quantity = 1, slot?: Slots): Item | undefined {
+    public addItemToInventory(item: string | Item, quantity = 1, slot?: Slots, sceneForDropping?: GeneralLocation): Item | undefined {
         if (typeof quantity !== "number") throw 'addItemToInventory received quantity not as a number';
         if (typeof item === "string") {
             item = new Item(item, quantity);
@@ -99,11 +99,17 @@ export class Adventurer extends GeneralCharacter {
                 if (sameItemInInventory) {
                     sameItemInInventory.quantity += quantity;
                     return sameItemInInventory;
-                } else {
-                    return this._addItemToEmptyBackpackSlot(item);
                 }
+            }
+            const itemAdded = this._addItemToEmptyBackpackSlot(item);
+            if (itemAdded) {
+                return itemAdded
             } else {
-                return this._addItemToEmptyBackpackSlot(item);
+                if (sceneForDropping) {
+                    sceneForDropping.createDroppedItem(item);
+                } else {
+                    return undefined;
+                }
             }
         }
     }

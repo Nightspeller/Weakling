@@ -59,7 +59,7 @@ export class BetweenVillageAndCaltorScene extends GeneralLocation {
             if (((_d = this.player.getQuestById('theSelflessSpirit')) === null || _d === void 0 ? void 0 : _d.currentStates.includes('trueNameCalled')) && ((_e = this.player.getQuestById('theSelflessSpirit')) === null || _e === void 0 ? void 0 : _e.currentStates.includes('deedsGlorified')) && ((_f = this.player.getQuestById('theSelflessSpirit')) === null || _f === void 0 ? void 0 : _f.currentStates.includes('deathMoaned'))) {
                 grave.setDialog(readyToTakeTheOath, (param) => {
                     if (param === 'oathTaken') {
-                        this.player.addItemToInventory('spirit-sword');
+                        this.player.addItemToInventory('spirit-sword', 1, undefined, this);
                     }
                 });
             }

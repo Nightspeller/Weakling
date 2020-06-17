@@ -13,7 +13,7 @@ export class BooksStoreScene extends GeneralLocation {
     }
 
     public preload() {
-       super.preload()
+        super.preload()
     }
 
     public init(data) {
@@ -27,7 +27,8 @@ export class BooksStoreScene extends GeneralLocation {
             scene: this,
             mapObjectName: "Frett",
             initDialog: frettDialog,
-            interactionCallback: param => {}
+            interactionCallback: param => {
+            }
         });
 
         this._dialogToUse(frett);
@@ -58,7 +59,7 @@ export class BooksStoreScene extends GeneralLocation {
         if (this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('trueNameCalled')) {
             frett.setDialog(frettAfterTrueNameCalledDialog, (param) => {
                 if (param === 'bookObtained') {
-                    this.player.addItemToInventory('jeremaya-book');
+                    this.player.addItemToInventory('jeremaya-book', 1, undefined, this);
                     this.player.updateQuest('theSelflessSpirit', 'oathLearned');
                     frett.setDialog(frettHowCanIHelpYouDialog);
                 }

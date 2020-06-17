@@ -17,7 +17,8 @@ export class BooksStoreScene extends GeneralLocation {
             scene: this,
             mapObjectName: "Frett",
             initDialog: frettDialog,
-            interactionCallback: param => { }
+            interactionCallback: param => {
+            }
         });
         this._dialogToUse(frett);
         this.events.on('wake', (scene) => {
@@ -43,7 +44,7 @@ export class BooksStoreScene extends GeneralLocation {
         if ((_d = this.player.getQuestById('theSelflessSpirit')) === null || _d === void 0 ? void 0 : _d.currentStates.includes('trueNameCalled')) {
             frett.setDialog(frettAfterTrueNameCalledDialog, (param) => {
                 if (param === 'bookObtained') {
-                    this.player.addItemToInventory('jeremaya-book');
+                    this.player.addItemToInventory('jeremaya-book', 1, undefined, this);
                     this.player.updateQuest('theSelflessSpirit', 'oathLearned');
                     frett.setDialog(frettHowCanIHelpYouDialog);
                 }

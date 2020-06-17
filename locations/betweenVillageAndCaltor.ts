@@ -71,7 +71,7 @@ export class BetweenVillageAndCaltorScene extends GeneralLocation {
                 this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('deathMoaned')) {
                 grave.setDialog(readyToTakeTheOath, (param) => {
                     if (param === 'oathTaken') {
-                        this.player.addItemToInventory('spirit-sword');
+                        this.player.addItemToInventory('spirit-sword', 1, undefined, this);
                     }
                 });
             }

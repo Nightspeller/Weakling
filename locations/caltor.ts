@@ -65,7 +65,7 @@ export class CaltorScene extends GeneralLocation {
             initDialog: strangerDialog,
             interactionCallback: param => {
                 if (param === 'daggerObtained') {
-                    this.player.addItemToInventory('dagger-weapon');
+                    this.player.addItemToInventory('dagger-weapon', 1, undefined, this);
                 }
             }
         });
@@ -98,7 +98,7 @@ export class CaltorScene extends GeneralLocation {
                     bodger.startTrade();
                 }
                 if (param === 'goodsSold') {
-                    this.player.addItemToInventory('copper-pieces', 100);
+                    this.player.addItemToInventory('copper-pieces', 100, undefined, this);
                     bodger.addItemsToTrade([
                         {itemId: 'minerals', quantity: 10},
                         {itemId: 'basket', quantity: 10},
@@ -106,7 +106,7 @@ export class CaltorScene extends GeneralLocation {
                     this.player.updateQuest('bigCaltorTrip', 'goodsSold');
                 }
                 if (param === 'goodsSoldAndOpenShop') {
-                    this.player.addItemToInventory('copper-pieces', 100);
+                    this.player.addItemToInventory('copper-pieces', 100, undefined, this);
                     bodger.addItemsToTrade([
                         {itemId: 'minerals', quantity: 10},
                         {itemId: 'basket', quantity: 10},

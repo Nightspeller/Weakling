@@ -27,7 +27,7 @@ export class TavernScene extends GeneralLocation {
             ],
             interactionCallback: param => {
                 if (param === 'beerAndRumorObtained') {
-                    this.player.addItemToInventory('beer', 1);
+                    this.player.addItemToInventory('beer', 1, undefined, this);
                     bartender.setDialog(bartenderNoRumoresDialog);
                 }
                 if (param === 'openShop') {

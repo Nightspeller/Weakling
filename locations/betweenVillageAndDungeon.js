@@ -91,7 +91,7 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
                 frame: itemsData[plant.plantId].sprite.frame,
                 singleUse: true,
                 callback: () => {
-                    this.player.addItemToInventory(plant.plantId);
+                    this.player.addItemToInventory(plant.plantId, 1, undefined, this);
                     this.planted = this.planted.filter(plantInList => plantInList.tileIndex !== plant.tileIndex);
                 },
             });

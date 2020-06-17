@@ -45,7 +45,7 @@ export class VillageScene extends GeneralLocation {
                 nahkha.setDialog(nahkhaAfterTheElderDialog, (param) => {
                     if (param === 'basketsObtained') {
                         nahkha.setDialog(nahkhaAfterGoodsObtainedDialog);
-                        this.player.addItemToInventory('basket', 10);
+                        this.player.addItemToInventory('basket', 10, undefined, this);
                         this.player.updateQuest('bigCaltorTrip', 'basketsObtained');
                     }
                 });
@@ -121,18 +121,18 @@ export class VillageScene extends GeneralLocation {
             initDialog: hargkakhFirstDialog,
             interactionCallback: (param) => {
                 if (param === 'pickupFailure') {
-                    this.player.addItemToInventory('hargkakhs-key');
+                    this.player.addItemToInventory('hargkakhs-key', 1, undefined, this);
                     hargkakh.setDialog(hargkakhSecondTryDialog, (param) => {
                         if (param === 'mineralsObtained') {
                             hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
-                            this.player.addItemToInventory('minerals', 10);
+                            this.player.addItemToInventory('minerals', 10, undefined, this);
                             this.player.updateQuest('bigCaltorTrip', 'mineralsObtained');
                         }
                     });
                 }
                 if (param === 'mineralsObtained') {
                     hargkakh.setDialog(hargkakhAfterGoodsObtainedDialog);
-                    this.player.addItemToInventory('minerals', 10);
+                    this.player.addItemToInventory('minerals', 10, undefined, this);
                     this.player.updateQuest('bigCaltorTrip', 'mineralsObtained');
                 }
             }
