@@ -411,6 +411,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             throw `Trying to delete item which does not exist in slot ${slot}`;
         itemRepresentation.destroy(true);
         this.itemsMap.delete(slot);
+        this.updateSourceCallback();
         return itemRepresentation;
     }
     _dropItem(slot) {
