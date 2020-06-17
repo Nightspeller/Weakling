@@ -94,6 +94,12 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                 if (quantity < itemToMove.item.quantity) {
                     console.log(...prepareLog(`Since ??${itemToMove.item.itemId} is getting separated, moving ??${itemInTargetSlot.item.itemId} to first possible empty slot`));
                     this._moveItemFromSlotToFirstPossible(toSlot, playerSlotNames, undefined, true);
+                    const separatedItem = this._createItemRepresentation(new Item(itemToMove.item.itemId, quantity), toSlot).setVisible(false);
+                    this._animateItemFromSlotToSlot(fromSlot, toSlot, true).then(() => {
+                        separatedItem.setVisible(true);
+                    });
+                    this._animateItemFromSlotToSlot(fromSlot, fromSlot);
+                    this._changeItemQuantity(fromSlot, itemToMove.item.quantity - quantity);
                 }
                 else {
                     if (itemInTargetSlot.item.possibleSlots.includes(fromSlot)) {
