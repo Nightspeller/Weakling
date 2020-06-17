@@ -9,7 +9,7 @@ import { CharacterPickerScene } from "./overlay_scenes/characterPicker.js";
 import { BattleScene } from "./battle/battle.js";
 import { DialogScene } from "./overlay_scenes/dialog.js";
 import { TavernScene } from "./locations/tavern.js";
-import { InventoryScene } from "./overlay_scenes/item-manupulators/inventoryOverlayScene.js";
+import { InventoryOverlayScene } from "./overlay_scenes/item-manupulators/inventoryOverlayScene.js";
 import { HermitsTowerScene } from "./locations/hermitsTower.js";
 import { MainMenuScene } from "./scenes/mainMenu.js";
 import { WeaklingsCaveScene } from "./locations/weaklingsCave.js";
@@ -54,7 +54,7 @@ const gameConfig = {
         OptionsScene,
         IntroScene,
         ...LOCATION_SCENES,
-        CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, InventoryScene, QuestLogScene, AlchemyStandScene, ContainerOverlayScene
+        CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, InventoryOverlayScene, QuestLogScene, AlchemyStandScene, ContainerOverlayScene
     ]
 };
 export const game = new Phaser.Game(gameConfig);

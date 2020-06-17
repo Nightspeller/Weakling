@@ -1,14 +1,14 @@
 import Item from "../../entities/item.js";
 import {ContainerOverlayScene} from "./containerOverlayScene.js";
-import {containerSlotNames} from "../../data/items/itemSlots.js";
+import {backpackSlotNames, containerSlotNames} from "../../data/items/itemSlots.js";
 import prepareLog from "../../helpers/logger.js";
 
 export class TraderOverlayScene extends ContainerOverlayScene {
     constructor() {
-        super({key: 'ShopOverlay'});
+        super({key: 'TraderOverlay'});
     }
 
-    protected _moveItemFromSlotToSlot(fromSlot: Slots, toSlot: Slots, swappingIsFinished = true) {
+    protected _moveItemFromSlotToSlot(fromSlot: Slots, toSlot: Slots, quantity?: number) {
         if (
             (fromSlot.includes('container') && (this.itemsMap.has(toSlot) && this.itemsMap.get(toSlot).item.itemId !== this.itemsMap.get(fromSlot).item.itemId)) ||
             (toSlot.includes('container') && (this.itemsMap.has(toSlot) && this.itemsMap.get(toSlot).item.itemId !== this.itemsMap.get(fromSlot).item.itemId)) ||
@@ -18,13 +18,11 @@ export class TraderOverlayScene extends ContainerOverlayScene {
             this.itemsMap.get(fromSlot)?.item.sellPrice === 0
         ) {
             console.log(...prepareLog(`Trying to move !!forbidden combination, ??animating ??item ??back to ??${fromSlot}`));
-            super._moveItemFromSlotToSlot(fromSlot, fromSlot, swappingIsFinished);
+            super._moveItemFromSlotToSlot(fromSlot, fromSlot);
             return;
         }
-        if (
-            (fromSlot.includes('container') === false && toSlot.includes('container') === false)
-        ) {
-            super._moveItemFromSlotToSlot(fromSlot, toSlot, swappingIsFinished);
+        if (fromSlot.includes('container') === false && toSlot.includes('container') === false) {
+            super._moveItemFromSlotToSlot(fromSlot, toSlot, quantity);
             return;
         }
         const [playerMoneySlot, playerMoneyItemR] = [...this.itemsMap].find(([slotName, item]) => slotName.includes('backpack') && item.item.itemId === 'copper-pieces') ?? [];
@@ -32,11 +30,13 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         const playerMoney = playerMoneyItemR ? playerMoneyItemR?.item.quantity : 0;
         const traderMoney = traderMoneyItemR ? traderMoneyItemR?.item.quantity : 0;
         const tradingItemR = this.itemsMap.get(fromSlot);
+        if (quantity === undefined) quantity = tradingItemR.item.quantity;
         if (fromSlot.includes('container')) {
-            console.log(...prepareLog(`Trying to buy !!${tradingItemR.item.itemId}`));
-            const totalItemCost = tradingItemR.item.buyPrice;
+            console.log(...prepareLog(`Trying to buy ??${quantity} !!${tradingItemR.item.itemId}`));
+            const totalItemCost = tradingItemR.item.buyPrice * quantity;
             if (playerMoney >= totalItemCost) {
                 console.log(...prepareLog('Player has !!enough money to buy it'))
+                super._moveItemFromSlotToSlot(fromSlot, toSlot, quantity);
                 this._changeItemQuantity(playerMoneySlot, playerMoney - totalItemCost);
                 if (traderMoneyItemR) {
                     console.log(...prepareLog('Trader !!has money in the inventory'))
@@ -51,35 +51,33 @@ export class TraderOverlayScene extends ContainerOverlayScene {
                         throw 'Emergency! No slot to create money on trader!'
                     }
                 }
-                super._moveItemFromSlotToSlot(fromSlot, toSlot, true);
             } else {
-                console.log(...prepareLog('Player !!does !!not !!have !!enough money to buy it'))
+                console.log(...prepareLog('??Player has !!not !!enough money to buy it'))
                 super._moveItemFromSlotToSlot(fromSlot, fromSlot);
                 return
             }
         }
         if (toSlot.includes('container')) {
-            console.log('selling');
-            const totalItemCost = tradingItemR.item.sellPrice * tradingItemR.item.quantity;
+            console.log(...prepareLog(`Trying to sell ??${quantity} !!${tradingItemR.item.itemId}`));
+            const totalItemCost = tradingItemR.item.sellPrice * quantity;
             if (traderMoney >= totalItemCost) {
-                console.log('enough money')
+                console.log(...prepareLog('Trader has !!enough money to buy it'))
+                super._moveItemFromSlotToSlot(fromSlot, toSlot, quantity);
                 this._changeItemQuantity(traderMoneySlot, traderMoney - totalItemCost);
                 if (playerMoneyItemR) {
                     this._changeItemQuantity(playerMoneySlot, playerMoney + totalItemCost);
                 } else {
                     const newMoneyItem = new Item('copper-pieces', totalItemCost);
-                    const emptyPlayerSlot = this.player.getEmptyBackpackSlot();
+                    const emptyPlayerSlot = this._getFirstEmptySlot(backpackSlotNames);
                     if (emptyPlayerSlot) {
                         this._createItemRepresentation(newMoneyItem, emptyPlayerSlot);
-                        this.player.addItemToInventory(newMoneyItem, newMoneyItem.quantity, emptyPlayerSlot);
                     } else {
                         throw 'Emergency! No slot to create money on player!'
                     }
                 }
-                super._moveItemFromSlotToSlot(fromSlot, toSlot, swappingIsFinished);
             } else {
-                console.log(...prepareLog('!!Trader does not have enough money to buy item!'))
-                super._moveItemFromSlotToSlot(fromSlot, fromSlot, swappingIsFinished);
+                console.log(...prepareLog('??Trader has !!not !!enough money to buy item!'))
+                super._moveItemFromSlotToSlot(fromSlot, fromSlot, quantity);
                 return
             }
         }
@@ -97,51 +95,11 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         }
     }
 
-    private _getTraderSlotByItemId(itemId: string): Slots | undefined {
-        for (let [slot, itemFromMap] of this.itemsMap.entries()) {
-            if (itemFromMap.item.itemId === itemId && slot.includes('container')) {
-                return slot;
-            }
-        }
-        return undefined;
-    }
-
     protected _itemDoubleClickCallback(itemCurrentSlot) {
-        const tradingItemR = this.itemsMap.get(itemCurrentSlot);
         if (itemCurrentSlot.includes('container') === false) {
-            if (tradingItemR.item.stackable === true) {
-                const slotOfExistingItem = this._getTraderSlotByItemId(tradingItemR.item.itemId);
-                if (slotOfExistingItem) {
-                    console.log(...prepareLog(`Item !!is !!stackable and already at !!${slotOfExistingItem}`))
-                    this._moveItemFromSlotToSlot(itemCurrentSlot, slotOfExistingItem);
-                    return;
-                }
-            }
-            const emptyTraderSlot = this._getEmptyTraderSlot();
-            if (emptyTraderSlot) {
-                console.log(...prepareLog(`Item !!isn't !!stackable and there is empty trader slot`))
-                this._moveItemFromSlotToSlot(itemCurrentSlot, emptyTraderSlot, true);
-            } else {
-                console.log(...prepareLog(`Item !!isn't !!stackable and there is !!no empty trader slot`))
-                this._moveItemFromSlotToSlot(itemCurrentSlot, itemCurrentSlot);
-            }
+            this._moveItemFromSlotToFirstPossible(itemCurrentSlot, containerSlotNames, 1);
         } else {
-            if (tradingItemR.item.stackable === true) {
-                const existingItem = this.player.getInventoryItemById(tradingItemR.item.itemId);
-                if (existingItem) {
-                    console.log(...prepareLog(`Item !!is !!stackable and already at !!${existingItem.slot}`))
-                    this._moveItemFromSlotToSlot(itemCurrentSlot, existingItem.slot);
-                    return;
-                }
-            }
-            const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
-            if (emptyBackPackSlot) {
-                console.log(...prepareLog(`Item !!isn't !!stackable and there is empty backpack slot`))
-                this._moveItemFromSlotToSlot(itemCurrentSlot, emptyBackPackSlot, true);
-            } else {
-                console.log(...prepareLog(`Item !!isn't !!stackable and there is !!no empty backpack slot`))
-                this._moveItemFromSlotToSlot(itemCurrentSlot, itemCurrentSlot);
-            }
+            this._moveItemFromSlotToFirstPossible(itemCurrentSlot, backpackSlotNames, 1)
         }
     }
 

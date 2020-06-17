@@ -13,6 +13,10 @@ export class Adventurer extends GeneralCharacter {
         this.actionPointsIncrement = {physical: 1, magical: 1, misc: 1};
     }
 
+    public updateInventory(newInventoryMap: Map<Slots, Item>) {
+        this.inventory = newInventoryMap;
+    }
+
     public getInventoryItemById(itemId: string, excludeBackpack = false): { slot: Slots, item: Item } | undefined {
         const entreeFound =  [...this.inventory.entries()].find(([slot, existingItem]) => {
             if (excludeBackpack) {

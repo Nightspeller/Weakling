@@ -71,7 +71,7 @@ export default class Npc {
             this.interactionCallback = newInteractionCallback;
     }
     startTrade() {
-        this.scene.switchToScene('ShopOverlay', {
+        this.scene.switchToScene('TraderOverlay', {
             name: this.name,
             numberOfSlots: this.numberOfSlots,
             items: this.items,

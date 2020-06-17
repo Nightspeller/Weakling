@@ -2,11 +2,17 @@ import {Player, playerInstance} from "../../characters/adventurers/player.js";
 import {GeneralOverlayScene} from "../generalOverlayScene.js";
 import Sprite = Phaser.GameObjects.Sprite;
 import Item from "../../entities/item.js";
-import {GAME_H, GAME_W, INVENTORY_ITEM_DESCRIPTION_H, INVENTORY_ITEM_DESCRIPTION_W} from "../../config/constants.js";
+import {
+    DEBUG,
+    GAME_H,
+    GAME_W,
+    INVENTORY_ITEM_DESCRIPTION_H,
+    INVENTORY_ITEM_DESCRIPTION_W
+} from "../../config/constants.js";
 import {LOCATION_SCENES} from "../../index.js";
 import ItemRepresentation from "../../entities/itemRepresentation.js";
 import GameObject = Phaser.GameObjects.GameObject;
-import {backpackSlotNames} from "../../data/items/itemSlots.js";
+import {backpackSlotNames, dollSlotNames, playerSlotNames, quickSlotNames} from "../../data/items/itemSlots.js";
 import prepareLog from "../../helpers/logger.js";
 
 export class GeneralItemManipulatorScene extends GeneralOverlayScene {
@@ -44,6 +50,28 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         this.itemsDisplayGroup = this.add.group();
         this.highlightedSlotsGroup = this.add.group();
         this.droppedItems = [];
+
+        if (DEBUG) {
+            this.input.keyboard.off('keyup-F2');
+            this.input.keyboard.on('keyup-F2', () => {
+                console.table([...this.itemsMap].map(
+                    ([key, value]) => [key, value.item.itemId, value.item.quantity])
+                );
+            })
+        }
+    }
+
+    protected _createDropSlot(x, y) {
+        const slot = this._createSlot('dropSlot', x, y);
+        const dropSlotHoverText = this.add.text(this.opts.windowX + x, this.opts.windowY + y + 64, 'Drop on the ground', {
+            backgroundColor: 'lightgrey',
+            color: 'black'
+        }).setVisible(false);
+        this.add.sprite(this.opts.windowX + x, this.opts.windowY + y, 'icon-item-set', 205,)
+            .setOrigin(0, 0).setDisplaySize(64, 64).setInteractive()
+            .on('pointerover', () => dropSlotHoverText.setVisible(true))
+            .on('pointerout', () => dropSlotHoverText.setVisible(false));
+        return slot;
     }
 
     protected _createSlot(name, x, y, isZone = false) {
@@ -58,60 +86,99 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         return slot;
     }
 
-    protected _moveItemFromSlotToSlot(fromSlot: Slots, toSlot: Slots, swappingIsFinished = true) {
+    protected _moveItemFromSlotToSlot(fromSlot: Slots, toSlot: Slots, quantity?: number) {
         const itemToMove = this.itemsMap.get(fromSlot);
         const itemInTargetSlot = this.itemsMap.get(toSlot);
+        if (quantity === undefined) quantity = itemToMove.item.quantity;
 
-        if (fromSlot === toSlot) {
-            console.log(...prepareLog(`Trying to move item in !!${fromSlot} to itself, instead just ??animating ??it ??back`));
+        if (toSlot === 'dropSlot') {
+            console.log(...prepareLog('Item was moved to !!dropSlot'));
+            this._dropItem(fromSlot);
+            return;
+        }
+
+        if (fromSlot === toSlot || itemToMove.item.possibleSlots.includes(toSlot) === false) {
+            console.log(...prepareLog(`Trying to move item in !!${fromSlot} to ${fromSlot === toSlot ? '!!itself' : '!!impossible slot'}, instead just ??animating ??it ??back`));
             this._animateItemFromSlotToSlot(fromSlot, fromSlot);
             return;
         }
-        console.log(`Trying to move %c${itemToMove.item.itemId}%c from %c${fromSlot}%c to %c${toSlot}%c. There is %c${itemInTargetSlot ? itemInTargetSlot.item.itemId : 'no'}%c item in that slot.`, `color: aqua`, `color: auto`, `color: red`, `color: auto`, `color: red`, `color: auto`, `color: aqua`, `color: auto`);
-        if (itemToMove.item.itemId === itemInTargetSlot?.item.itemId) {
-            this._animateItemFromSlotToSlot(fromSlot, toSlot).then(() => {
-                this._changeItemQuantity(toSlot, itemInTargetSlot.item.quantity + itemToMove.item.quantity);
+
+        console.log(...prepareLog(`Trying to move ??${quantity} !!${itemToMove.item.itemId} from !!${fromSlot} to !!${toSlot}.`));
+
+        if (itemToMove.item.stackable && itemToMove.item.itemId === itemInTargetSlot?.item.itemId) {
+            console.log(...prepareLog(`Items are the same, !!stacking them`));
+            if (itemToMove.item.quantity === quantity) {
+                this._animateItemFromSlotToSlot(fromSlot, toSlot, true)
                 this._deleteItemRepresentation(fromSlot);
-            })
-            return;
-        }
-
-        if (itemToMove.item.possibleSlots.includes(toSlot)) {
-            this._animateItemFromSlotToSlot(fromSlot, toSlot);
-            this.itemsMap.delete(fromSlot);
-
-            if (itemInTargetSlot === undefined) {
-                this.itemsMap.set(toSlot, itemToMove);
+                this._highlightValidSlots(itemToMove.item.possibleSlots, false);
+                this._changeItemQuantity(toSlot, itemInTargetSlot.item.quantity + quantity);
             } else {
-                if (itemInTargetSlot.item.possibleSlots.includes(fromSlot)) {
-                    this._moveItemFromSlotToSlot(toSlot, fromSlot, false);
+                this._animateItemFromSlotToSlot(fromSlot, toSlot, true);
+                this._animateItemFromSlotToSlot(fromSlot, fromSlot);
+                this._changeItemQuantity(fromSlot, itemToMove.item.quantity - quantity);
+                this._changeItemQuantity(toSlot, itemInTargetSlot.item.quantity + quantity);
+            }
+        } else {
+            if (itemInTargetSlot !== undefined) {
+                console.log(...prepareLog(`There is ??${itemInTargetSlot.item.itemId} item in that slot.`));
+                if (quantity < itemToMove.item.quantity) {
+                    console.log(...prepareLog(`Since ??${itemToMove.item.itemId} is getting separated, moving ??${itemInTargetSlot.item.itemId} to first possible empty slot`));
+                    this._moveItemFromSlotToFirstPossible(toSlot, playerSlotNames, undefined, true);
                 } else {
-                    const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
-                    if (emptyBackPackSlot) {
-                        this._moveItemFromSlotToSlot(toSlot, emptyBackPackSlot, false);
+                    if (itemInTargetSlot.item.possibleSlots.includes(fromSlot)) {
+                        console.log(...prepareLog(`Items are ??swappable, so lets swap it.`));
+                        this._animateItemFromSlotToSlot(fromSlot, toSlot);
+                        this._animateItemFromSlotToSlot(toSlot, fromSlot);
+                        this.itemsMap.set(toSlot, itemToMove);
+                        this.itemsMap.set(fromSlot, itemInTargetSlot);
                     } else {
-                        this._dropItem(toSlot);
+                        console.log(...prepareLog(`Items are !!not !!swappable, so moving ??${itemInTargetSlot.item.itemId} to first possible empty slot.`));
+                        this._moveItemFromSlotToFirstPossible(toSlot, playerSlotNames, undefined, true);
+                        this._animateItemFromSlotToSlot(fromSlot, toSlot);
+                        this.itemsMap.delete(fromSlot);
+                        this.itemsMap.set(toSlot, itemToMove);
                     }
                 }
-                this.itemsMap.set(toSlot, itemToMove);
+            } else {
+                console.log(...prepareLog(`There is ??no item in that slot.`));
+                if (quantity < itemToMove.item.quantity) {
+                    console.log(...prepareLog(`Starting separation`));
+                    const separatedItem = this._createItemRepresentation(new Item(itemToMove.item.itemId, quantity), toSlot).setVisible(false);
+                    this._animateItemFromSlotToSlot(fromSlot, toSlot, true).then(() => {
+                        separatedItem.setVisible(true);
+                    });
+                    this._animateItemFromSlotToSlot(fromSlot, fromSlot);
+                    this._changeItemQuantity(fromSlot, itemToMove.item.quantity - quantity);
+                } else {
+                    console.log(...prepareLog(`Moving the whole item without separation`));
+                    this._animateItemFromSlotToSlot(fromSlot, toSlot);
+                    this.itemsMap.delete(fromSlot);
+                    this.itemsMap.set(toSlot, itemToMove);
+                }
             }
-            this.updateSourceCallback(fromSlot, toSlot, itemToMove, swappingIsFinished);
-        } else {
-            this._animateItemFromSlotToSlot(fromSlot, fromSlot);
         }
+        this.updateSourceCallback();
     }
 
-    protected _animateItemFromSlotToSlot(fromSlot, toSlot): Promise<void> {
+    protected _animateItemFromSlotToSlot(fromSlot, toSlot, duplicateItemImage = false): Promise<void> {
         return new Promise((resolve) => {
-            const itemToAnimate = this.itemsMap.get(fromSlot);
+            let itemToAnimate = this.itemsMap.get(fromSlot);
+            console.log(...prepareLog(`Animating !!${itemToAnimate.item.itemId} from ??${fromSlot} to ??${toSlot}`));
             const originalSlot = this.slotsDisplayGroup.getChildren().find(slot => slot.name === toSlot) as Sprite;
+            if (duplicateItemImage) {
+                // @ts-ignore
+                itemToAnimate = this.add.sprite(itemToAnimate.x, itemToAnimate.y, itemToAnimate.item.sprite.texture, itemToAnimate.item.sprite.frame).setDisplaySize(64, 64);
+            }
             this.tweens.add({
                 targets: itemToAnimate,
                 x: originalSlot.x + 32,
                 y: originalSlot.y + 32,
                 ease: 'Back.easeOut',
                 duration: 500,
-                onComplete: () => resolve(),
+                onComplete: () => {
+                    if (duplicateItemImage) itemToAnimate.destroy(true);
+                    resolve();
+                },
             });
         });
     }
@@ -121,7 +188,9 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             this.input.on('drop', (pointer, droppedItem: ItemRepresentation, target: GameObject) => {
                 const fromSlot = this._getSlotByItem(droppedItem);
                 const toSlot = target.name as Slots;
-                this._moveItemFromSlotToSlot(fromSlot, toSlot);
+                const shiftKey = this.input.keyboard.addKey('SHIFT');
+                const halfOfQuantity = Math.floor(this.itemsMap.get(fromSlot).item.quantity / 2);
+                this._moveItemFromSlotToSlot(fromSlot, toSlot, shiftKey.isDown ? halfOfQuantity : undefined);
             });
         }
     }
@@ -132,10 +201,11 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         itemsMap.forEach(this._createItemRepresentation.bind(this));
     }
 
-    protected _createItemRepresentation(item: Item, currentSlot: Slots) {
+    protected _createItemRepresentation(item: Item, currentSlot: Slots): ItemRepresentation {
         const scene = this;
         const slotImage = this.slotsDisplayGroup.getChildren().find(slot => slot.name === currentSlot) as Sprite;
         const itemRepresentation = new ItemRepresentation(this, slotImage.x + 32, slotImage.y + 32, item.sprite.texture, item.sprite.frame, item);
+        itemRepresentation.setDepth(this.opts.baseDepth+1);
         this.itemsMap.set(currentSlot, itemRepresentation);
 
         this.input.setDraggable(itemRepresentation);
@@ -151,6 +221,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         itemRepresentation.on('dragend', function (pointer, something1, something2, dropped) {
             this.setDepth(scene.opts.baseDepth + 1);
             if (scene.dragStarted && !dropped) {
+                const currentSlot = scene._getSlotByItem(itemRepresentation);
                 scene._animateItemFromSlotToSlot(currentSlot, currentSlot);
             }
             scene._highlightValidSlots(itemRepresentation.item.possibleSlots, false);
@@ -175,25 +246,44 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             }
         });
         this.itemsDisplayGroup.add(itemRepresentation);
+        return itemRepresentation;
     }
 
     protected _itemDoubleClickCallback(itemCurrentSlot) {
-        this._moveItemToBackpack(itemCurrentSlot);
+        if (backpackSlotNames.includes(itemCurrentSlot)) {
+            const item = this.itemsMap.get(itemCurrentSlot).item;
+            const possibleNonBackpackPlayerSlotsForItem = item.possibleSlots.filter(x => dollSlotNames.includes(x) || quickSlotNames.includes(x));
+            this._moveItemFromSlotToFirstPossible(itemCurrentSlot, possibleNonBackpackPlayerSlotsForItem);
+        } else {
+            this._moveItemFromSlotToFirstPossible(itemCurrentSlot, backpackSlotNames);
+        }
     }
 
-    protected _moveItemToBackpack(fromSlot: Slots) {
+    protected _getFirstEmptySlot(slotsPool: Slots[]) {
+        return slotsPool.find(slot => this.itemsMap.get(slot) === undefined)
+    }
+
+    protected _moveItemFromSlotToFirstPossible(fromSlot: Slots, slotsPool: Slots[], quantity?: number, dropIfNoSlots = false): boolean {
         const itemR = this.itemsMap.get(fromSlot);
+        const possibleSlotsPool = itemR.item.possibleSlots.filter(x => slotsPool.includes(x));
         if (itemR.item.stackable === true) {
             for (let [slot, itemFromMap] of this.itemsMap.entries()) {
-                if (backpackSlotNames.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
-                    this._moveItemFromSlotToSlot(fromSlot, slot)
-                    return;
+                if (possibleSlotsPool.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
+                    this._moveItemFromSlotToSlot(fromSlot, slot, quantity)
+                    return true;
                 }
             }
         }
-        const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
-        if (emptyBackPackSlot) {
-            this._moveItemFromSlotToSlot(fromSlot, emptyBackPackSlot, true);
+        const emptyPossibleSlot = this._getFirstEmptySlot(possibleSlotsPool);
+        if (emptyPossibleSlot) {
+            this._moveItemFromSlotToSlot(fromSlot, emptyPossibleSlot, quantity);
+            return true;
+        } else {
+            if (dropIfNoSlots) {
+                this._dropItem(fromSlot)
+                return true;
+            }
+            return false;
         }
     }
 
@@ -262,14 +352,9 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                 const splitItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 64 - 5, 5, 'icon-item-set', 36).setOrigin(0, 0);
                 splitItemButton.setInteractive({useHandCursor: true});
                 splitItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
-                    const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
-                    if (emptyBackPackSlot) {
-                        const newQuantity = Math.floor(item.quantity / 2);
-                        this._changeItemQuantity(slot, item.quantity - newQuantity);
-                        const separatedItem = new Item(item.itemId, newQuantity);
-                        this._createItemRepresentation(separatedItem, emptyBackPackSlot);
-                        this.player.addItemToInventory(separatedItem, separatedItem.quantity, emptyBackPackSlot);
-                    }
+                    const newQuantity = Math.floor(item.quantity / 2);
+                    const possiblePlayerSlotsForItem = item.possibleSlots.filter(x => playerSlotNames.includes(x));
+                    this._moveItemFromSlotToFirstPossible(slot, possiblePlayerSlotsForItem, newQuantity);
                     event.stopPropagation();
                     outerZone.destroy(true);
                     descriptionContainer.destroy(true);
@@ -369,16 +454,15 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     protected _deleteItemRepresentation(slot: Slots): ItemRepresentation {
         const itemRepresentation = this.itemsMap.get(slot);
         if (!itemRepresentation) throw `Trying to delete item which does not exist in slot ${slot}`;
-        if (this.player.getItemInSlot(slot)) {
-            this.player.removeItemFromInventory(itemRepresentation.item, itemRepresentation.item.quantity);
-        }
         itemRepresentation.destroy(true);
         this.itemsMap.delete(slot);
         return itemRepresentation;
     }
 
     protected _dropItem(slot: Slots) {
+        this._animateItemFromSlotToSlot(slot, 'dropSlot', true);
         const deletedItem = this._deleteItemRepresentation(slot)
+        this._highlightValidSlots(deletedItem.item.possibleSlots, false);
         this.droppedItems.push(deletedItem.item);
     }
 

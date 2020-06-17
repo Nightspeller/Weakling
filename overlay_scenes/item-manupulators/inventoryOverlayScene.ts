@@ -1,55 +1,36 @@
 import {GeneralItemManipulatorScene} from "./generalItemManipulator.js";
-import ItemRepresentation from "../../entities/itemRepresentation.js";
-import {backpackSlotNames, dollSlotNames, quickSlotNames} from "../../data/items/itemSlots.js";
+import {backpackSlotNames, playerSlotNames} from "../../data/items/itemSlots.js";
 
-export class InventoryScene extends GeneralItemManipulatorScene {
+export class InventoryOverlayScene extends GeneralItemManipulatorScene {
     private numberOfQuickSlots: number;
     private characteristicsText: Phaser.GameObjects.Text;
 
-    constructor() {
-        super({key: 'Inventory'});
-    }
-
-    public init({opts, closeCallback, prevScene}: { opts?: OverlaySceneOptions, closeCallback?: Function, prevScene: string }) {
-        super.init({opts, closeCallback, prevScene});
+    constructor(initObject = {key: 'Inventory'}) {
+        super(initObject);
     }
 
     public preload() {
 
     }
 
-    public create() {
+    public create(withCharacteristics = true) {
         super.create();
         this.numberOfQuickSlots = this.player.getItemInSlot("belt")?.specifics.quickSlots || 1;
-        this._showInventory();
-        this.input.keyboard.on('keyup-' + 'I', () => this.closeScene());
+        this._showInventory(withCharacteristics);
+        if (withCharacteristics) {
+            this.input.keyboard.on('keyup-' + 'I', () => this.closeScene());
+        }
     }
 
-    private _showInventory() {
+    private _showInventory(withCharacteristics: boolean) {
         this._drawDoll();
         this._drawQuickSlots();
         this._drawBackpack();
-        this._createItemsMap(this.player.getAllItems(), (fromSlot: Slots, toSlot: Slots, itemR: ItemRepresentation, swappingIsFinished?: boolean) => {
-
-            console.log(`Item %c${itemR.item.itemId}%c was moved from %c${fromSlot}%c to %c${toSlot}%c, swapping is finished: %c${swappingIsFinished}`, `color: aqua`, `color: while`, `color: red`, `color: while`, `color: red`, `color: while`, `color: ${swappingIsFinished ? 'green': 'red'}`);
-            if (this.player.getItemInSlot(fromSlot) === itemR.item) {
-                this.player.removeItemFromInventory(this.player.getItemInSlot(fromSlot), this.player.getItemInSlot(fromSlot).quantity);
-            }
-            if (this.player.getItemInSlot(toSlot)) {
-                this.player.removeItemFromInventory(this.player.getItemInSlot(toSlot), this.player.getItemInSlot(toSlot).quantity);
-            }
-            const playerInventorySlots = [...dollSlotNames, ...backpackSlotNames, ...quickSlotNames];
-            if (playerInventorySlots.includes(toSlot)) {
-                this.player.addItemToInventory(itemR.item, itemR.item.quantity, toSlot);
-            }
-
-            // we do not want to adjust quickSlots until the swapping is done so that items not fly away from quickSlots until final item composition is settled
-            if (swappingIsFinished) {
-                this._adjustQuickSlots();
-                this._drawCharacteristics();
-            }
+        this._createDropSlot(16, this.opts.windowHeight - 64 - 32 - 64);
+        this._createItemsMap(this.player.getAllItems(), () => {
+            this.updatePlayerInventory(withCharacteristics);
         });
-        this._drawCharacteristics();
+        if (withCharacteristics) this._drawCharacteristics();
         this._enableDragAndDrop();
     }
 
@@ -99,19 +80,14 @@ export class InventoryScene extends GeneralItemManipulatorScene {
 
     private _adjustQuickSlots() {
         const oldQuickSlotsNumber = this.numberOfQuickSlots;
-        const newQuickSlotsNumber = this.player.getItemInSlot("belt")?.specifics.quickSlots || 1;
+        const newQuickSlotsNumber = this.itemsMap.get('belt')?.item.specifics.quickSlots || 1;
         console.log(`Adjusting quickSlots from ${oldQuickSlotsNumber} to ${newQuickSlotsNumber}`);
         this.numberOfQuickSlots = newQuickSlotsNumber;
         if (newQuickSlotsNumber < oldQuickSlotsNumber) {
             for (let i = oldQuickSlotsNumber - 1; i > newQuickSlotsNumber - 1; i--) {
                 const itemToBeMoved = this.itemsMap.get(`quickSlot${i}` as Slots);
                 if (itemToBeMoved) {
-                    const emptyBackPackSlot = this.player.getEmptyBackpackSlot();
-                    if (emptyBackPackSlot) {
-                        this._moveItemFromSlotToSlot(`quickSlot${i}` as Slots, emptyBackPackSlot);
-                    } else {
-                        this._dropItem(`quickSlot${i}` as Slots);
-                    }
+                    this._moveItemFromSlotToFirstPossible(`quickSlot${i}` as Slots, backpackSlotNames);
                 }
                 this.slotsDisplayGroup.getChildren().find(obj => obj.name === `quickSlot${i}`).destroy(true);
             }
@@ -149,5 +125,17 @@ Actions: ${this.player.getAvailableActions().join(', ')}`;
                 width: 32 * 10,
             },
         }).setScrollFactor(0).setDepth(this.opts.baseDepth).setName('characteristicsText');
+    }
+
+    private updatePlayerInventory(withCharacteristics: boolean) {
+        const newPlayerInventory = new Map();
+        this.itemsMap.forEach((itemR, slot) => {
+            if (playerSlotNames.includes(slot)) {
+                newPlayerInventory.set(slot, itemR.item);
+            }
+        })
+        this.player.updateInventory(newPlayerInventory);
+        this._adjustQuickSlots();
+        if (withCharacteristics) this._drawCharacteristics();
     }
 }
