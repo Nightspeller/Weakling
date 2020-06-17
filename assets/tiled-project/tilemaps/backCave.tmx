@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" width="14" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="4">
+<map version="1.4" tiledversion="1.4.0" orientation="orthogonal" renderorder="right-down" width="14" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="8">
  <editorsettings>
   <export target="../../exported-maps/backCave.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/base.tsx"/>
+ <tileset firstgid="1065" source="../tilesets/eyeball.tsx"/>
  <group id="2" name="Layer 1">
   <layer id="3" name="Below player" width="14" height="10">
    <data encoding="base64">
@@ -115,5 +116,8 @@
     <property name="toCoordinates" value="{&quot;x&quot;: 17, &quot;y&quot;: 7}"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="24" name="NPCs">
+  <object id="7" name="Eyeball" gid="1065" x="64" y="0" width="150" height="150"/>
  </objectgroup>
 </map>

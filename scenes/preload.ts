@@ -169,6 +169,10 @@ export class PreloadScene extends Phaser.Scene {
             frameWidth: 192,
             frameHeight: 192
         });
+        this.load.spritesheet("eyeball", "assets/images/characters/battle/party/eyeball/Flight.png", {
+            frameWidth: 150,
+            frameHeight: 150
+        });
         this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png", {
             frameWidth: 231,
             frameHeight: 190
@@ -260,8 +264,8 @@ export class PreloadScene extends Phaser.Scene {
         this.createAnimations();
         console.log('Preload done, calling Main Menu');
         if (DEBUG) {
-            this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-            //this.scene.start("Village", {prevScene: this.scene.key});
+            //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
+            this.scene.start("BackCave", {prevScene: this.scene.key});
         } else {
             this.scene.start("MainMenu", {prevScene: this.scene.key});
         }

@@ -339,12 +339,35 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":24,
+         "name":"NPCs",
+         "objects":[
+                {
+                 "gid":1065,
+                 "height":150,
+                 "id":7,
+                 "name":"Eyeball",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":150,
+                 "x":64,
+                 "y":0
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":24,
- "nextobjectid":4,
+ "nextlayerid":25,
+ "nextobjectid":8,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.05.27",
+ "tiledversion":"1.4.0",
  "tileheight":32,
  "tilesets":[
         {
@@ -9942,9 +9965,60 @@
                         }]
                 }],
          "tilewidth":32
+        }, 
+        {
+         "columns":8,
+         "firstgid":1065,
+         "image":"..\/images\/characters\/battle\/party\/eyeball\/Flight.png",
+         "imageheight":150,
+         "imagewidth":1200,
+         "margin":0,
+         "name":"eyeball",
+         "objectalignment":"topleft",
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":150,
+         "tiles":[
+                {
+                 "animation":[
+                        {
+                         "duration":100,
+                         "tileid":0
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":1
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":2
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":3
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":4
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":5
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":6
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":7
+                        }],
+                 "id":0
+                }],
+         "tilewidth":150
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":14
 }
