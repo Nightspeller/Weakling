@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "phaser": "^3.23.0",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.5"
   }
 }
