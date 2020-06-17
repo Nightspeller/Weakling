@@ -10,6 +10,7 @@ export class Adventurer extends GeneralCharacter {
     }
     updateInventory(newInventoryMap) {
         this.inventory = newInventoryMap;
+        this.applyItems();
     }
     getInventoryItemById(itemId, excludeBackpack = false) {
         const entreeFound = [...this.inventory.entries()].find(([slot, existingItem]) => {

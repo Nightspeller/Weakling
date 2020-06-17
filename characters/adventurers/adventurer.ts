@@ -15,6 +15,7 @@ export class Adventurer extends GeneralCharacter {
 
     public updateInventory(newInventoryMap: Map<Slots, Item>) {
         this.inventory = newInventoryMap;
+        this.applyItems();
     }
 
     public getInventoryItemById(itemId: string, excludeBackpack = false): { slot: Slots, item: Item } | undefined {
