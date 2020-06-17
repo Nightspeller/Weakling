@@ -238,14 +238,17 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         }
     }
     _getFirstEmptySlot(slotsPool) {
-        return slotsPool.find(slot => this.itemsMap.get(slot) === undefined);
+        return slotsPool.find(slot => {
+            const slotImageExists = this.slotsDisplayGroup.getChildren().find(slotImage => slotImage.name === slot);
+            return (slotImageExists && this.itemsMap.get(slot) === undefined);
+        });
     }
     _moveItemFromSlotToFirstPossible(fromSlot, slotsPool, quantity, dropIfNoSlots = false) {
         const itemR = this.itemsMap.get(fromSlot);
         const possibleSlotsPool = itemR.item.possibleSlots.filter(x => slotsPool.includes(x));
         if (itemR.item.stackable === true) {
             for (let [slot, itemFromMap] of this.itemsMap.entries()) {
-                if (possibleSlotsPool.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
+                if (slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
                     this._moveItemFromSlotToSlot(fromSlot, slot, quantity);
                     return true;
                 }

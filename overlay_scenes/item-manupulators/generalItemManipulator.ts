@@ -266,7 +266,10 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     }
 
     protected _getFirstEmptySlot(slotsPool: Slots[]) {
-        return slotsPool.find(slot => this.itemsMap.get(slot) === undefined)
+        return slotsPool.find(slot => {
+            const slotImageExists = this.slotsDisplayGroup.getChildren().find(slotImage => slotImage.name === slot);
+            return (slotImageExists && this.itemsMap.get(slot) === undefined);
+        })
     }
 
     protected _moveItemFromSlotToFirstPossible(fromSlot: Slots, slotsPool: Slots[], quantity?: number, dropIfNoSlots = false): boolean {
@@ -274,7 +277,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const possibleSlotsPool = itemR.item.possibleSlots.filter(x => slotsPool.includes(x));
         if (itemR.item.stackable === true) {
             for (let [slot, itemFromMap] of this.itemsMap.entries()) {
-                if (possibleSlotsPool.includes(slot) && slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
+                if (slot !== fromSlot && itemFromMap.item.itemId === itemR.item.itemId) {
                     this._moveItemFromSlotToSlot(fromSlot, slot, quantity)
                     return true;
                 }

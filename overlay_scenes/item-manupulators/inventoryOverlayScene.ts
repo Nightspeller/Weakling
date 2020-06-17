@@ -87,7 +87,7 @@ export class InventoryOverlayScene extends GeneralItemManipulatorScene {
             for (let i = oldQuickSlotsNumber - 1; i > newQuickSlotsNumber - 1; i--) {
                 const itemToBeMoved = this.itemsMap.get(`quickSlot${i}` as Slots);
                 if (itemToBeMoved) {
-                    this._moveItemFromSlotToFirstPossible(`quickSlot${i}` as Slots, backpackSlotNames);
+                    this._moveItemFromSlotToFirstPossible(`quickSlot${i}` as Slots, backpackSlotNames, undefined, true);
                 }
                 this.slotsDisplayGroup.getChildren().find(obj => obj.name === `quickSlot${i}`).destroy(true);
             }
