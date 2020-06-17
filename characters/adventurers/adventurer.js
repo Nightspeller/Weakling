@@ -61,11 +61,16 @@ export class Adventurer extends GeneralCharacter {
         this.applyItems();
         return item;
     }
-    addItemToInventory(passedItem, quantity = 1, slot) {
+    addItemToInventory(item, quantity = 1, slot) {
         var _a;
         if (typeof quantity !== "number")
             throw 'addItemToInventory received quantity not as a number';
-        const item = typeof passedItem === "string" ? new Item(passedItem, quantity) : passedItem;
+        if (typeof item === "string") {
+            item = new Item(item, quantity);
+        }
+        else {
+            quantity = item.quantity;
+        }
         if (slot !== undefined) {
             const itemInTheSlot = this.inventory.get(slot);
             if (itemInTheSlot) {
@@ -75,6 +80,7 @@ export class Adventurer extends GeneralCharacter {
                 else {
                     if (item.stackable === true) {
                         itemInTheSlot.quantity += quantity;
+                        return itemInTheSlot;
                     }
                     else {
                         throw `Trying to stack un-stackable item ${item.itemId} in the slot ${slot}`;
@@ -90,6 +96,7 @@ export class Adventurer extends GeneralCharacter {
                 const sameItemInInventory = (_a = this.getInventoryItemById(item.itemId)) === null || _a === void 0 ? void 0 : _a.item;
                 if (sameItemInInventory) {
                     sameItemInInventory.quantity += quantity;
+                    return sameItemInInventory;
                 }
                 else {
                     return this._addItemToEmptyBackpackSlot(item);

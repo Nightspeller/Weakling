@@ -208,31 +208,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
         this.events.on('resume', (scene, data) => {
             if (data === null || data === void 0 ? void 0 : data.droppedItems) {
-                data.droppedItems.forEach(droppedItem => {
-                    const itemId = droppedItem.itemId;
-                    const itemQuantity = droppedItem.quantity;
-                    const item = new Item(itemId, itemQuantity);
-                    let texture = item.sprite.texture;
-                    let frame = item.sprite.frame;
-                    // TODO: name must be unique
-                    new Trigger({
-                        scene: this,
-                        name: item.displayName,
-                        triggerX: this.playerImage.x,
-                        triggerY: this.playerImage.y,
-                        triggerW: 32,
-                        triggerH: 32,
-                        offsetX: 0,
-                        offsetY: 0,
-                        texture: texture,
-                        frame: frame,
-                        interaction: 'activate',
-                        singleUse: true,
-                        callback: () => {
-                            this.player.addItemToInventory(itemId, itemQuantity);
-                        },
-                    });
-                });
+                data.droppedItems.forEach(droppedItem => this.createDroppedItem(droppedItem));
             }
             if (data === null || data === void 0 ? void 0 : data.switchToScene) {
                 this.switchToScene(data.switchToScene, data.data);
@@ -254,6 +230,32 @@ export class GeneralLocation extends Phaser.Scene {
         this.setupRunKey();
         if (mapKey !== 'battle')
             this.setupDebugCollisionGraphics();
+    }
+    createDroppedItem(item, quantity = 1) {
+        if (typeof item === "string") {
+            item = new Item(item, quantity);
+        }
+        // TODO: name must be unique
+        const droppedItemTrigger = new Trigger({
+            scene: this,
+            name: item.displayName,
+            triggerX: this.playerImage.x,
+            triggerY: this.playerImage.y,
+            triggerW: 32,
+            triggerH: 32,
+            offsetX: 0,
+            offsetY: 0,
+            texture: item.sprite.texture,
+            frame: item.sprite.frame,
+            interaction: 'activate',
+            singleUse: false,
+            callback: () => {
+                const itemInInventory = this.player.addItemToInventory(item);
+                if (itemInInventory !== undefined) {
+                    droppedItemTrigger.destroy();
+                }
+            },
+        });
     }
     getSpriteParamsByObjectName(objectName, objectLayer = 'Objects') {
         const gid = this.getMapObject(objectName, objectLayer)['gid'];

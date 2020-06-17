@@ -60,7 +60,7 @@ export class Adventurer extends GeneralCharacter {
         }
     }
 
-    private _addItemToTheMap(slot: Slots, item: Item): item {
+    private _addItemToTheMap(slot: Slots, item: Item): Item {
         if (slot === undefined || item === undefined) {
             throw `Error while adding ${item} to ${slot}`;
         }
@@ -69,9 +69,13 @@ export class Adventurer extends GeneralCharacter {
         return item;
     }
 
-    public addItemToInventory(passedItem: string | Item, quantity = 1, slot?: Slots): Item | undefined {
+    public addItemToInventory(item: string | Item, quantity = 1, slot?: Slots): Item | undefined {
         if (typeof quantity !== "number") throw 'addItemToInventory received quantity not as a number';
-        const item = typeof passedItem === "string" ? new Item(passedItem, quantity) : passedItem;
+        if (typeof item === "string") {
+            item = new Item(item, quantity);
+        } else {
+            quantity = item.quantity;
+        }
 
         if (slot !== undefined) {
             const itemInTheSlot = this.inventory.get(slot);
@@ -81,6 +85,7 @@ export class Adventurer extends GeneralCharacter {
                 } else {
                     if (item.stackable === true) {
                         itemInTheSlot.quantity += quantity;
+                        return itemInTheSlot;
                     } else {
                         throw `Trying to stack un-stackable item ${item.itemId} in the slot ${slot}`;
                     }
@@ -93,6 +98,7 @@ export class Adventurer extends GeneralCharacter {
                 const sameItemInInventory = this.getInventoryItemById(item.itemId)?.item;
                 if (sameItemInInventory) {
                     sameItemInInventory.quantity += quantity;
+                    return sameItemInInventory;
                 } else {
                     return this._addItemToEmptyBackpackSlot(item);
                 }
