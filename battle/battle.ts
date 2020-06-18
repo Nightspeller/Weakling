@@ -108,24 +108,21 @@ export class BattleScene extends GeneralLocation {
                 await charDrawer.playIdleAnimation();
                 break;
             case 'meleeAttack':
+                let attackX = 600;
+                let attackY = 320;
                 if (targetDrawer) {
-                    await charDrawer.playMoveAnimation(targetDrawer.position.x + (animatingEnemy ? 96 : -96), targetDrawer.position.y);
-                    await charDrawer.playMeleeAttackAnimation(targetDrawer.position.x, targetDrawer.position.y);
-                    targets.forEach((target, index) => {
-                        if (succeeded[index] && targets[index] !== char) {
-                            this.playAnimation(targets[index], 'hit')
-                        }
-                    });
-                    await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
-                    await new Promise(resolve => setTimeout(()=>resolve(), 500))
-                } else {
-                    await charDrawer.playMeleeAttackAnimation(600, 320);
-                    targets.forEach((target, index) => {
-                        if (succeeded[index] && targets[index] !== char) {
-                            this.playAnimation(targets[index], 'hit')
-                        }
-                    });
+                    attackX = targetDrawer.position.x;
+                    attackY = targetDrawer.position.y;
                 }
+                await charDrawer.playMoveAnimation(attackX + (animatingEnemy ? 96 : -96), attackY);
+                await charDrawer.playMeleeAttackAnimation(attackX, attackY);
+                targets.forEach((target, index) => {
+                    if (succeeded[index] && targets[index] !== char) {
+                        this.playAnimation(targets[index], 'hit')
+                    }
+                });
+                await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
+                await new Promise(resolve => setTimeout(() => resolve(), 500))
                 break;
             case 'castBuff':
                 await charDrawer.playCastAnimation();

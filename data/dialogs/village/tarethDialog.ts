@@ -24,7 +24,7 @@ export const tarethSecondDialog: DialogTree = [{
     id: 'potionGiven',
     text: `Hmm, will it really work? Last time you made me drink something you made out of carrots I ended up colored like one - the whole village was making fun of me for a week!`,
     replies: [{
-        text: 'This time it will work! I gave some to Whiskers another day and next day he caught a small boar instead of regular mouse! I am telling you it will work!',
+        text: 'This time it will work! I gave some to Whiskers another day and next day he caught Eyeball midair and dragged him to Mitikha like he was a mouse! I am telling you it will work!',
         callbackParam: 'potionGiven'
     }]
 }, {

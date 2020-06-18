@@ -4,7 +4,7 @@ import {DEBUG} from "../../config/constants.js";
 export class Eyeball extends Adventurer {
     constructor() {
         super();
-        this.spriteParams = {texture: 'eyeball', frame: null, width: 96, height: 96};
+        this.spriteParams = {texture: 'eyeball-idle', frame: null, width: 300, height: 300};
         this.baseCharacteristics = {
             attributes: {
                 strength: 5,
@@ -40,6 +40,13 @@ export class Eyeball extends Adventurer {
         this.name = 'Eyeball';
 
         this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
+
+        this.animations.idle = 'eyeball_idle';
+        this.animations.move = 'eyeball_idle';
+        this.animations.attack = 'eyeball_attack1';
+        this.animations.buff = 'eyeball_buff';
+        this.animations.death = 'eyeball_death';
+        this.animations.hit = 'eyeball_hit';
     }
 
     public getAttackDamage() {

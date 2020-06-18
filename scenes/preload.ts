@@ -1,6 +1,7 @@
 import {Player, playerInstance} from "../characters/adventurers/player.js";
 import {optionsInstance} from "../config/optionsConfig.js";
 import {DEBUG} from "../config/constants.js";
+import {createAnimations, preloadAnimationsShpritesheets} from "./animations.js";
 
 export class PreloadScene extends Phaser.Scene {
     private player: Player;
@@ -157,74 +158,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet("icon-item-set", "assets/images-extruded/items/icon-item-set.png", tilesetConfig);
 
         // Animations
-        this.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", {
-            frameWidth: 192,
-            frameHeight: 192
-        });
-        this.load.spritesheet("light-pillar-back", "assets/images/animations/light-pillar/light-pillar-yellow-back.png", {
-            frameWidth: 192,
-            frameHeight: 192
-        });
-        this.load.spritesheet("light-pillar-front", "assets/images/animations/light-pillar/light-pillar-yellow-front.png", {
-            frameWidth: 192,
-            frameHeight: 192
-        });
-        this.load.spritesheet("eyeball", "assets/images/characters/battle/party/eyeball/Flight.png", {
-            frameWidth: 150,
-            frameHeight: 150
-        });
-        this.load.spritesheet("wizard-idle", "assets/images/characters/battle/enemies/Wizard/Idle.png", {
-            frameWidth: 231,
-            frameHeight: 190
-        });
-        this.load.spritesheet("wizard-move", "assets/images/characters/battle/enemies/Wizard/Run.png", {
-            frameWidth: 231,
-            frameHeight: 190
-        });
-        this.load.spritesheet("wizard-attack1", "assets/images/characters/battle/enemies/Wizard/Attack1.png", {
-            frameWidth: 231,
-            frameHeight: 190
-        });
-        this.load.spritesheet("wizard-attack2", "assets/images/characters/battle/enemies/Wizard/Attack2.png", {
-            frameWidth: 231,
-            frameHeight: 190
-        });
-        this.load.spritesheet("wizard-hit", "assets/images/characters/battle/enemies/Wizard/Hit.png", {
-            frameWidth: 231,
-            frameHeight: 190
-        });
-        this.load.spritesheet("wizard-death", "assets/images/characters/battle/enemies/Wizard/Death.png", {
-            frameWidth: 231,
-            frameHeight: 190
-        });
-        this.load.spritesheet("ghost-knight-idle", "assets/images/characters/battle/enemies/ghost-knight/Idle.png", {
-            frameWidth: 180,
-            frameHeight: 180
-        });
-        this.load.spritesheet("ghost-knight-move", "assets/images/characters/battle/enemies/ghost-knight/Run.png", {
-            frameWidth: 180,
-            frameHeight: 180
-        });
-        this.load.spritesheet("ghost-knight-attack1", "assets/images/characters/battle/enemies/ghost-knight/Attack1.png", {
-            frameWidth: 180,
-            frameHeight: 180
-        });
-        this.load.spritesheet("ghost-knight-attack2", "assets/images/characters/battle/enemies/ghost-knight/Attack2.png", {
-            frameWidth: 180,
-            frameHeight: 180
-        });
-        this.load.spritesheet("ghost-knight-hit", "assets/images/characters/battle/enemies/ghost-knight/Hit.png", {
-            frameWidth: 180,
-            frameHeight: 180
-        });
-        this.load.spritesheet("ghost-knight-death", "assets/images/characters/battle/enemies/ghost-knight/Death.png", {
-            frameWidth: 180,
-            frameHeight: 180
-        });
-        this.load.spritesheet("doors2-upscaled", "assets/images/tilesets/doors2-upscaled.png", {
-            frameWidth: 32,
-            frameHeight: 96
-        });
+        preloadAnimationsShpritesheets(this);
         this.load.image("hit", "assets/images/animations/hit.png");
 
         // Load the export Tiled JSON
@@ -261,183 +195,14 @@ export class PreloadScene extends Phaser.Scene {
         optionsInstance.setSoundManager(this);
         if (DEBUG) optionsInstance.toggleMusic();
 
-        this.createAnimations();
+        // @ts-ignore
+        createAnimations(this);
         console.log('Preload done, calling Main Menu');
         if (DEBUG) {
-            //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-            this.scene.start("BackCave", {prevScene: this.scene.key});
+            this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
+            //this.scene.start("BackCave", {prevScene: this.scene.key});
         } else {
             this.scene.start("MainMenu", {prevScene: this.scene.key});
         }
-    }
-
-    private createAnimations() {
-        this.anims.create({
-            key: 'open_door',
-            frames: this.anims.generateFrameNames('doors2-upscaled', {start: 6, end: 8}),
-            frameRate: 10,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'walk_down',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 0, end: 2}),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'walk_up',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 18, end: 20}),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'walk_right',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 6, end: 8}),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'walk_left',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 12, end: 14}),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'attack_down',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 3, end: 5}),
-            frameRate: 5
-        });
-        this.anims.create({
-            key: 'attack_up',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 21, end: 23}),
-            frameRate: 5
-        });
-        this.anims.create({
-            key: 'attack_right',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 9, end: 11}),
-            frameRate: 5
-        });
-        this.anims.create({
-            key: 'attack_left',
-            frames: this.anims.generateFrameNames(this.player.worldImageSpriteParams.texture, {start: 15, end: 17}),
-            frameRate: 5
-        });
-        this.anims.create({
-            key: 'idle_up',
-            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 19}],
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'idle_down',
-            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 1}],
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'idle_left',
-            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 13}],
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'idle_right',
-            frames: [{key: this.player.worldImageSpriteParams.texture, frame: 7}],
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'light_pillar_animation',
-            frames: this.anims.generateFrameNames('light-pillar'),
-            duration: 500,
-            showOnStart: true,
-            hideOnComplete: true
-        });
-        this.anims.create({
-            key: 'light_pillar_animation_back',
-            frames: this.anims.generateFrameNames('light-pillar-back'),
-            duration: 500,
-            showOnStart: true,
-            hideOnComplete: true
-        });
-        this.anims.create({
-            key: 'light_pillar_animation_front',
-            frames: this.anims.generateFrameNames('light-pillar-front'),
-            duration: 500,
-            showOnStart: true,
-            hideOnComplete: true
-        });
-        this.anims.create({
-            key: 'wizard_idle',
-            frames: this.anims.generateFrameNames('wizard-idle'),
-            frameRate: 5,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'wizard_move',
-            frames: this.anims.generateFrameNames('wizard-move'),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'wizard_attack1',
-            frames: this.anims.generateFrameNames('wizard-attack1'),
-            frameRate: 10,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'wizard_attack2',
-            frames: this.anims.generateFrameNames('wizard-attack2'),
-            frameRate: 10,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'wizard_hit',
-            frames: this.anims.generateFrameNames('wizard-hit'),
-            frameRate: 10,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'wizard_death',
-            frames: this.anims.generateFrameNames('wizard-death'),
-            frameRate: 10,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'ghost-knight_idle',
-            frames: this.anims.generateFrameNames('ghost-knight-idle'),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'ghost-knight_move',
-            frames: this.anims.generateFrameNames('ghost-knight-move'),
-            frameRate: 10,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'ghost-knight_attack1',
-            frames: this.anims.generateFrameNames('ghost-knight-attack1'),
-            frameRate: 5,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'ghost-knight_attack2',
-            frames: this.anims.generateFrameNames('ghost-knight-attack2'),
-            frameRate: 10,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'ghost-knight_hit',
-            frames: this.anims.generateFrameNames('ghost-knight-hit'),
-            frameRate: 10,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'ghost-knight_death',
-            frames: this.anims.generateFrameNames('ghost-knight-death'),
-            frameRate: 10,
-            repeat: 0
-        });
     }
 }

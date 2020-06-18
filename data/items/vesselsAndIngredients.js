@@ -72,6 +72,18 @@ export const vesselsAndIngredients = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'purplecup-mushroom': {
+        itemId: 'purplecup-mushroom',
+        displayName: 'Purplecup mushroom',
+        description: 'Delicious mushroom growing deep in the caverns.',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: { texture: 'base', frame: 57 },
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 3,
+        buyPrice: 6
+    },
     'apple': {
         itemId: 'apple',
         displayName: 'Apple',

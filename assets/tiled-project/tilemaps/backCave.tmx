@@ -118,6 +118,6 @@
   </object>
  </objectgroup>
  <objectgroup id="24" name="NPCs">
-  <object id="7" name="Eyeball" gid="1065" x="64" y="0" width="150" height="150"/>
+  <object id="7" name="Eyeball" type="NPC" gid="1065" x="64" y="0" width="150" height="150"/>
  </objectgroup>
 </map>
