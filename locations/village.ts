@@ -55,7 +55,7 @@ export class VillageScene extends GeneralLocation {
                 this.player.updateQuest('bigCaltorTrip', 'talkedToElder');
                 elder.setDialog(elderSecondTimeDialog, (param) => {
                     if (param === 'readyToGo') {
-                        elder.image.destroy(true);
+                        elder.destroy();
                         this.player.party.push(elderInstance);
                         this.player.updateQuest('bigCaltorTrip', 'readyToGo');
                     }
@@ -164,7 +164,7 @@ export class VillageScene extends GeneralLocation {
         this.events.on('wake', (scene) => {
             if (this.player.getQuestById('bigCaltorTrip').currentStates.includes('goodsSold')) {
                 mitikhha.setDialog(mitikhhaWelcomeBackDialog, () => {
-                    mitikhha.image.destroy(true);
+                    mitikhha.destroy();
                 });
                 this.player.updateQuest('bigCaltorTrip', 'completed');
             }

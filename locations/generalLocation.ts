@@ -294,14 +294,35 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
 
-    public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): Phaser.Types.GameObjects.Sprite.SpriteConfig {
+    public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): Phaser.Types.GameObjects.Sprite.SpriteConfig & {animation?: string} {
         const gid = this.getMapObject(objectName, objectLayer)['gid'];
         for (let i = 0; i < this.map.tilesets.length; i++) {
             const tileset = this.map.tilesets[i];
             if (gid >= tileset.firstgid && gid < tileset.firstgid + tileset.total) {
-                return {key: tileset.name, frame: gid - tileset.firstgid}
+                let animKey;
+                if (tileset.tileData[gid - tileset.firstgid]?.animation) {
+                    console.log('Found animation', tileset.tileData[gid - tileset.firstgid].animation);
+                    animKey = this._createAnimationFromTiled(tileset.image.key, gid - tileset.firstgid, tileset.tileData[gid - tileset.firstgid].animation);
+                }
+                return {key: tileset.name, frame: gid - tileset.firstgid, animation: animKey}
             }
         }
+    }
+
+    private _createAnimationFromTiled(tilesetImageKey: string, gid: number, tiledAnimation: { duration: number, tileid: number }[]): string {
+        const phaserAnimationFrames = tiledAnimation.map(tiledFrame => {
+            return {
+                key: tilesetImageKey,
+                frame: tiledFrame.tileid,
+                duration: tiledFrame.duration,
+            }
+        })
+        this.anims.create({
+            key: tilesetImageKey+gid,
+            frames: phaserAnimationFrames,
+            repeat: -1
+        });
+        return tilesetImageKey+gid;
     }
 
     private setSidesCollisions(layer) {
@@ -367,14 +388,17 @@ export class GeneralLocation extends Phaser.Scene {
 
     public update() {
         this.updatePlayer();
-        if(DEBUG) {
+        if (DEBUG) {
             const cursorX = Math.round(this.input.mousePointer.x);
             const cursorY = Math.round(this.input.mousePointer.y);
             if (this.cursorCoordinatesText) {
                 this.cursorCoordinatesText.setText(`${cursorX} ${cursorY}`);
             } else {
-                this.cursorCoordinatesText = this.add.text(0,0,`${cursorX} ${cursorY}`, {color: 'black', background: 'yellow'})
-                    .setDepth(1000).setScrollFactor(0).setOrigin(0,0);
+                this.cursorCoordinatesText = this.add.text(0, 0, `${cursorX} ${cursorY}`, {
+                    color: 'black',
+                    background: 'yellow'
+                })
+                    .setDepth(1000).setScrollFactor(0).setOrigin(0, 0);
             }
         }
     }

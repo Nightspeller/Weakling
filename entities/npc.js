@@ -3,6 +3,7 @@ import { Trigger } from "./trigger.js";
 export default class Npc {
     constructor({ scene, name, mapObjectName, mapObjectLayer = 'NPCs', texture, frame, initDialog, items = [], interactionCallback = () => {
     } }) {
+        let animation;
         this.scene = scene;
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
@@ -10,11 +11,12 @@ export default class Npc {
             const params = scene.getSpriteParamsByObjectName(mapObject.name, mapObjectLayer);
             texture = params.key;
             frame = params.frame;
+            animation = params.animation;
         }
         if (initDialog) {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback;
-            this.image = new Trigger({
+            this.trigger = new Trigger({
                 scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
@@ -34,10 +36,12 @@ export default class Npc {
                         }, false);
                     }
                 }
-            }).image;
+            });
+            if (animation)
+                this.trigger.image.anims.play(animation);
         }
         else {
-            this.image = new Trigger({
+            this.trigger = new Trigger({
                 scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
@@ -51,7 +55,7 @@ export default class Npc {
                     });
                     this.interactionCallback();
                 }
-            }).image;
+            });
         }
         this.items = new Map();
         this.numberOfSlots = 15;
@@ -94,6 +98,9 @@ export default class Npc {
             }
             throw 'Trader is full, cant add items! Write more code to handle it properly!';
         });
+    }
+    destroy() {
+        this.trigger.destroy();
     }
 }
 //# sourceMappingURL=npc.js.map

@@ -89,7 +89,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('dirt2', 'assets/images-extruded/tilesets/dirt2.png', tilesetConfig);
         this.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
         this.load.spritesheet('water2', 'assets/images-extruded/tilesets/water2.png', tilesetConfig);
-        this.load.spritesheet('grass1-dirt1', 'assets/images/tilesets/grass1-dirt1.png', tilesetConfig);
+        this.load.spritesheet('grass1-dirt1', 'assets/images-extruded/tilesets/grass1-dirt1.png', tilesetConfig);
         this.load.spritesheet('grass1-dirt2', 'assets/images-extruded/tilesets/grass1-dirt2.png', tilesetConfig);
         this.load.spritesheet('grass1-dirt4', 'assets/images-extruded/tilesets/grass1-dirt4.png', tilesetConfig);
         this.load.spritesheet('wall-up', 'assets/images-extruded/tilesets/wall-up.png', tilesetConfig);
@@ -199,8 +199,8 @@ export class PreloadScene extends Phaser.Scene {
         createAnimations(this);
         console.log('Preload done, calling Main Menu');
         if (DEBUG) {
-            this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-            //this.scene.start("BackCave", {prevScene: this.scene.key});
+            //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
+            this.scene.start("BackCave", {prevScene: this.scene.key});
         } else {
             this.scene.start("MainMenu", {prevScene: this.scene.key});
         }

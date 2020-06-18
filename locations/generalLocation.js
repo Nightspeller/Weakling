@@ -258,13 +258,34 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
     getSpriteParamsByObjectName(objectName, objectLayer = 'Objects') {
+        var _a;
         const gid = this.getMapObject(objectName, objectLayer)['gid'];
         for (let i = 0; i < this.map.tilesets.length; i++) {
             const tileset = this.map.tilesets[i];
             if (gid >= tileset.firstgid && gid < tileset.firstgid + tileset.total) {
-                return { key: tileset.name, frame: gid - tileset.firstgid };
+                let animKey;
+                if ((_a = tileset.tileData[gid - tileset.firstgid]) === null || _a === void 0 ? void 0 : _a.animation) {
+                    console.log('Found animation', tileset.tileData[gid - tileset.firstgid].animation);
+                    animKey = this._createAnimationFromTiled(tileset.image.key, gid - tileset.firstgid, tileset.tileData[gid - tileset.firstgid].animation);
+                }
+                return { key: tileset.name, frame: gid - tileset.firstgid, animation: animKey };
             }
         }
+    }
+    _createAnimationFromTiled(tilesetImageKey, gid, tiledAnimation) {
+        const phaserAnimationFrames = tiledAnimation.map(tiledFrame => {
+            return {
+                key: tilesetImageKey,
+                frame: tiledFrame.tileid,
+                duration: tiledFrame.duration,
+            };
+        });
+        this.anims.create({
+            key: tilesetImageKey + gid,
+            frames: phaserAnimationFrames,
+            repeat: -1
+        });
+        return tilesetImageKey + gid;
     }
     setSidesCollisions(layer) {
         for (let ty = 0; ty < layer.height; ty++) {
@@ -333,7 +354,10 @@ export class GeneralLocation extends Phaser.Scene {
                 this.cursorCoordinatesText.setText(`${cursorX} ${cursorY}`);
             }
             else {
-                this.cursorCoordinatesText = this.add.text(0, 0, `${cursorX} ${cursorY}`, { color: 'black', background: 'yellow' })
+                this.cursorCoordinatesText = this.add.text(0, 0, `${cursorX} ${cursorY}`, {
+                    color: 'black',
+                    background: 'yellow'
+                })
                     .setDepth(1000).setScrollFactor(0).setOrigin(0, 0);
             }
         }

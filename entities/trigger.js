@@ -80,11 +80,12 @@ export class Trigger {
         event.preventDefault();
         const scene = this.scene;
         //checking if player is looking at the trigger image, adjustments are done in order to reflect the fact that physical body is smaller than the image
+        const bodyBounds = this.image.body.getBounds({ x: 0, y: 0, right: 0, bottom: 0 });
         if (this.scene.somethingTriggered === false && (this.type === 'activateOverlap' ||
-            (this.image.getTopLeft().y === scene.playerImage.getBottomRight().y && [0, 1, 2].includes(Number(scene.playerImage.frame.name))) ||
-            (this.image.getTopLeft().x === scene.playerImage.getBottomRight().x - 8 && [6, 7, 8].includes(Number(scene.playerImage.frame.name))) ||
-            (this.image.getBottomRight().y === scene.playerImage.getTopLeft().y + 16 && [18, 19, 20].includes(Number(scene.playerImage.frame.name))) ||
-            (this.image.getBottomRight().x === scene.playerImage.getTopLeft().x + 8 && [12, 13, 14].includes(Number(scene.playerImage.frame.name))))) {
+            (bodyBounds.y === scene.playerImage.getBottomRight().y && [0, 1, 2].includes(Number(scene.playerImage.frame.name))) ||
+            (bodyBounds.x === scene.playerImage.getBottomRight().x - 8 && [6, 7, 8].includes(Number(scene.playerImage.frame.name))) ||
+            (bodyBounds.bottom === scene.playerImage.getTopLeft().y + 16 && [18, 19, 20].includes(Number(scene.playerImage.frame.name))) ||
+            (bodyBounds.right === scene.playerImage.getTopLeft().x + 8 && [12, 13, 14].includes(Number(scene.playerImage.frame.name))))) {
             const bodies = scene.physics.overlapRect(this.image.x, this.image.y, this.image.displayWidth + 2, this.image.displayHeight + 2);
             // @ts-ignore
             if (bodies.includes(scene.playerImage.body) && bodies.includes(this.image.body)) {

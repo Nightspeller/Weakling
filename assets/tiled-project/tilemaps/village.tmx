@@ -9,9 +9,7 @@
  <tileset firstgid="1161" source="../tilesets/grass1-dirt2.tsx"/>
  <tileset firstgid="1209" source="../tilesets/dirt4.tsx"/>
  <tileset firstgid="1257" source="../tilesets/grass4.tsx"/>
- <tileset firstgid="1305" name="grass1-dirt1" tilewidth="32" tileheight="32" tilecount="48" columns="8">
-  <image source="../../images-extruded/tilesets/grass1-dirt2.png" width="272" height="204"/>
- </tileset>
+ <tileset firstgid="1305" source="../tilesets/grass1-dirt1.tsx"/>
  <tileset firstgid="1353" source="../tilesets/dirt2.tsx"/>
  <tileset firstgid="1401" source="../tilesets/base-addition.tsx"/>
  <tileset firstgid="2169" source="../tilesets/female20-3.tsx"/>

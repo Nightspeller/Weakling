@@ -6,10 +6,10 @@ export default class Npc {
     public dialog: DialogTree;
     private interactionCallback: Function;
     public name: string;
-    public image: Phaser.Physics.Arcade.Image;
     private items: Map<Slots, Item>;
     private scene: GeneralLocation;
     private numberOfSlots: number;
+    public trigger: Trigger;
 
     constructor(
         {
@@ -25,6 +25,7 @@ export default class Npc {
             }
         }: NpcOptions
     ) {
+        let animation;
         this.scene = scene;
         const mapObject = scene.getMapObject(mapObjectName, mapObjectLayer);
         this.name = name ? name : mapObject.name;
@@ -32,12 +33,13 @@ export default class Npc {
             const params = scene.getSpriteParamsByObjectName(mapObject.name, mapObjectLayer);
             texture = params.key;
             frame = params.frame as number;
+            animation = params.animation;
         }
         if (initDialog) {
             this.dialog = initDialog;
             this.interactionCallback = interactionCallback;
 
-            this.image = new Trigger({
+            this.trigger = new Trigger({
                 scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
@@ -57,9 +59,10 @@ export default class Npc {
                         }, false);
                     }
                 }
-            }).image;
+            });
+            if (animation) this.trigger.image.anims.play(animation);
         } else {
-            this.image = new Trigger({
+            this.trigger = new Trigger({
                 scene: scene,
                 name: mapObject.name,
                 triggerX: mapObject.x,
@@ -73,7 +76,7 @@ export default class Npc {
                     });
                     this.interactionCallback();
                 }
-            }).image;
+            });
         }
 
         this.items = new Map<Slots, Item>();
@@ -120,5 +123,9 @@ export default class Npc {
             throw 'Trader is full, cant add items! Write more code to handle it properly!'
         })
 
+    }
+
+    public destroy() {
+        this.trigger.destroy();
     }
 }

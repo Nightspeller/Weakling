@@ -23,11 +23,12 @@ export class BackCaveScene extends GeneralLocation {
                     eyeball.setDialog(eyeballSecondTimeDialog);
                 }
                 if (param === 'eyeballJoined') {
-                    eyeball.image.destroy(true);
+                    eyeball.destroy();
                     this.player.party.push(eyeballInstance);
                 }
             }
         });
+        eyeball.trigger.image.body.setSize(32, 32).setOffset(65, 65);
     }
     update() {
         super.update();

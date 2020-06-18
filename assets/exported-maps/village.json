@@ -10750,12 +10750,12 @@
         {
          "columns":8,
          "firstgid":1305,
-         "image":"..\/images-extruded\/tilesets\/grass1-dirt2.png",
+         "image":"..\/images-extruded\/tilesets\/grass1-dirt1.png",
          "imageheight":204,
          "imagewidth":272,
-         "margin":0,
+         "margin":1,
          "name":"grass1-dirt1",
-         "spacing":0,
+         "spacing":2,
          "tilecount":48,
          "tileheight":32,
          "tilewidth":32
