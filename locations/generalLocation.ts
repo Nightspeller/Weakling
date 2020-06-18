@@ -424,6 +424,10 @@ export class GeneralLocation extends Phaser.Scene {
             debugModeOn = !debugModeOn;
             debugGraphicsGroup.setVisible(debugModeOn);
         })
+        this.input.keyboard.off('keyup-F2');
+        this.input.keyboard.on('keyup-F2', () => {
+            console.log(this);
+        })
     }
 
     public switchToScene(sceneKey: string, data: object = {}, shouldSleep = true, toCoordinates: { x: number, y: number } = null) {

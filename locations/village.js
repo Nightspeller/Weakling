@@ -9,7 +9,7 @@ import { mitikhhaDialog, mitikhhaSecondDialog, mitikhhaWelcomeBackDialog } from 
 import { DEBUG } from "../config/constants.js";
 import { tarethDialog, tarethDoneDialog, tarethSecondDialog } from "../data/dialogs/village/tarethDialog.js";
 import { keithDialog, keithNoApologyDialog, keithShopAgainDialog } from "../data/dialogs/village/keithDialog.js";
-import { whiskersDialog } from "../data/dialogs/village/whiskersDialog.js";
+import { whiskersDialog, whiskersSecondDialog } from "../data/dialogs/village/whiskersDialog.js";
 export class VillageScene extends GeneralLocation {
     constructor() {
         super({ key: 'Village' });
@@ -64,6 +64,7 @@ export class VillageScene extends GeneralLocation {
             mapObjectName: 'Whiskers',
             initDialog: whiskersDialog,
             interactionCallback: (param) => {
+                whiskers.setDialog(whiskersSecondDialog);
             }
         });
         const tareth = new Npc({
