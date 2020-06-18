@@ -265,8 +265,8 @@ export function createAnimations(scene: Phaser.Scene & {player: Player}) {
     });
     scene.anims.create({
         key: 'eyeball_buff',
-        frames: scene.anims.generateFrameNames('eyeball-attack'),
-        frameRate: 10,
+        frames: scene.anims.generateFrameNames('eyeball-attack').reverse(),
+        frameRate: 5,
         repeat: 0
     });
     scene.anims.create({
