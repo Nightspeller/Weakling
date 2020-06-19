@@ -51,7 +51,7 @@ export const moorshDialog = [{
             }]
     }, {
         id: 'sell4',
-        text: `I think 6 big bones grinded to dust should do it - do you think you can get it?`,
+        text: `I think 6 big bones ground to dust should do it - do you think you can get it?`,
         replies: [{
                 text: `I'll see what I can do!`,
                 callbackParam: 'boneQuestAccepted'
