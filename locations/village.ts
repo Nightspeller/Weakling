@@ -22,6 +22,7 @@ import {DEBUG} from "../config/constants.js";
 import {tarethDialog, tarethDoneDialog, tarethSecondDialog} from "../data/dialogs/village/tarethDialog.js";
 import {keithDialog, keithNoApologyDialog, keithShopAgainDialog} from "../data/dialogs/village/keithDialog.js";
 import {whiskersDialog, whiskersSecondDialog} from "../data/dialogs/village/whiskersDialog.js";
+import {moorshDialog} from "../data/dialogs/village/MoorshDialog.js";
 
 export class VillageScene extends GeneralLocation {
     constructor() {
@@ -137,6 +138,17 @@ export class VillageScene extends GeneralLocation {
             scene: this,
             mapObjectName: 'Nahkha',
             initDialog: nahkhaBeforeTheElderDialog
+        });
+
+        const moorsh = new Npc({
+            scene: this,
+            mapObjectName: 'Moorsh',
+            initDialog: moorshDialog,
+            interactionCallback: (param) =>{
+                if (param === 'boneQuestAccepted') {
+                    this.player.addQuest('bonesPicking');
+                }
+            }
         });
 
         const hargkakh = new Npc({

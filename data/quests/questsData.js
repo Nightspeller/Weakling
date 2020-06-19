@@ -14,6 +14,27 @@ export const questsData = {
         },
         currentStates: ['started']
     },
+    'scaredyEyeball': {
+        questId: 'scaredyEyeball',
+        questName: 'Scaredy Eyeball',
+        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
+        availableStates: {
+            started: `I found Eyeball, our favorite cyclops bat, hiding in the cave next to the Village entrance. A few days ago Whiskers gave him some hard time after drinking my experimental strength potion.\nNow Eyeball does not want to go outside anymore, even though Whiskers is back to normal. I wonder if there is something I can do to cheer him up.`,
+            signRead: `It seems like Eyeball is a big fan of Purplecup mushrooms - if I happen to find one, that might be just a thing to lure him outside!`,
+            completed: `It worked, Eyeball feels better now and ready to leave the cave!`
+        },
+        currentStates: ['started']
+    },
+    'bonesPicking': {
+        questId: 'bonesPicking',
+        questName: 'Bones picking',
+        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
+        availableStates: {
+            started: `My friend Moorsh asked me to bring him 12 portions of bone dust so he could make his mushrooms to spore. I should be able to recover the necessary bones from the Old Dungeon.`,
+            completed: `I got the mushroom spores! With it I can grow my own crop in no time!`
+        },
+        currentStates: ['started']
+    },
     'helpTheTareth': {
         questId: 'helpTheTareth',
         questName: 'Help the Tareth',

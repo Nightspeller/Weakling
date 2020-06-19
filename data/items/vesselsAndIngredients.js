@@ -84,6 +84,18 @@ export const vesselsAndIngredients = {
         sellPrice: 3,
         buyPrice: 6
     },
+    'longshroom-mushroom': {
+        itemId: 'longshroom-mushroom',
+        displayName: 'Longshroom mushroom',
+        description: 'Funny looking and very tasty mushrooms, perfect for a stew.',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: { texture: 'base-addition', frame: 230 },
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 3,
+        buyPrice: 6
+    },
     'apple': {
         itemId: 'apple',
         displayName: 'Apple',
