@@ -4,7 +4,7 @@ export class LiatshNpc extends GeneralNpc {
     constructor({ scene, x, y, spriteParams }) {
         super({
             scene,
-            name: 'Whiskers',
+            name: 'Liatsh',
             triggerX: x,
             triggerY: y,
             spriteParams: spriteParams,
