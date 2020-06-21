@@ -60,4 +60,4 @@ export const moorshDialog = [{
                 callbackParam: 'fastEnd'
             }]
     }];
-//# sourceMappingURL=MoorshDialog.js.map
+//# sourceMappingURL=moorshDialog.js.map

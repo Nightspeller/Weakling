@@ -14,8 +14,8 @@ export const questsData = {
         },
         currentStates: ['started']
     },
-    'scaredyEyeball': {
-        questId: 'scaredyEyeball',
+    'scaredyBat': {
+        questId: 'scaredyBat',
         questName: 'Scaredy Eyeball',
         questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 10 },
         availableStates: {

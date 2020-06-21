@@ -109,8 +109,6 @@ export class GeneralLocation extends Phaser.Scene {
 
         this.map.getObjectLayer('Doors/Doors Objects')?.objects.forEach(object => {
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Doors/Doors Objects');
-            const texture = spriteParams.key;
-            const frame = spriteParams.frame as number;
             // Todo: there must be a better way to do that but I am way too tired not to find it...
             const trigger = new Trigger({
                 scene: this,
@@ -119,8 +117,8 @@ export class GeneralLocation extends Phaser.Scene {
                 triggerY: object.y,
                 triggerW: object.width,
                 triggerH: object.height,
-                texture: texture,
-                frame: frame,
+                texture: spriteParams.texture,
+                frame: spriteParams.frame,
                 interaction: 'activate',
                 callback: () => {
                     trigger.setDisableState(true);
@@ -135,7 +133,7 @@ export class GeneralLocation extends Phaser.Scene {
 
         this.map.getObjectLayer('Containers')?.objects.forEach(object => {
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
-            const texture = spriteParams.key;
+            const texture = spriteParams.texture;
             const frame = spriteParams.frame as number;
             const emptyFrame = object.properties?.find(prop => prop.name === 'openedFrame')?.value;
             const isSecret = object.properties?.find(prop => prop.name === 'secret')?.value;
@@ -294,7 +292,7 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
 
-    public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): Phaser.Types.GameObjects.Sprite.SpriteConfig & {animation?: string} {
+    public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): SpriteParameters {
         const gid = this.getMapObject(objectName, objectLayer)['gid'];
         for (let i = 0; i < this.map.tilesets.length; i++) {
             const tileset = this.map.tilesets[i];
@@ -304,7 +302,7 @@ export class GeneralLocation extends Phaser.Scene {
                     console.log('Found animation', tileset.tileData[gid - tileset.firstgid].animation);
                     animKey = this._createAnimationFromTiled(tileset.image.key, gid - tileset.firstgid, tileset.tileData[gid - tileset.firstgid].animation);
                 }
-                return {key: tileset.name, frame: gid - tileset.firstgid, animation: animKey}
+                return {texture: tileset.name, frame: gid - tileset.firstgid, animation: animKey}
             }
         }
     }

@@ -1,6 +1,5 @@
 import { GeneralLocation } from "./generalLocation.js";
-import Npc from "../entities/npc.js";
-import { liatshDialog } from "../data/dialogs/eldersCave/liatshDialog.js";
+import { LiatshNpc } from "../npcs/eldersCave/liatshNpc.js";
 export class EldersCaveScene extends GeneralLocation {
     constructor() {
         super({ key: 'EldersCave' });
@@ -13,11 +12,7 @@ export class EldersCaveScene extends GeneralLocation {
     }
     create() {
         super.create('eldersCave');
-        const liatsh = new Npc({
-            scene: this,
-            mapObjectName: 'Liatsh',
-            initDialog: liatshDialog
-        });
+        const liatsh = new LiatshNpc({ scene: this });
     }
     update() {
         super.update();

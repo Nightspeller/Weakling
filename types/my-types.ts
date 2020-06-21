@@ -59,6 +59,7 @@ interface SpriteParameters {
     width?: number;
     height?: number;
     flip?: boolean;
+    animation?: string;
 }
 
 interface ActionData {
@@ -152,18 +153,6 @@ interface Quest {
     questReward: { items: {itemId: string; quantity: number}[], xp: number }
     availableStates: {[key: string]: string}
     currentStates: string[];
-}
-
-interface NpcOptions {
-    scene: any;
-    mapObjectName: string;
-    mapObjectLayer?: string;
-    name?: string;
-    texture?: string;
-    frame?: number;
-    initDialog?: DialogTree;
-    interactionCallback?: Function;
-    items?: any[];
 }
 
 interface DialogReplay {

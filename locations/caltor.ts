@@ -1,16 +1,12 @@
-import {strangerDialog} from "../data/dialogs/caltor/strangerDialog.js";
-import {baelinDialog} from "../data/dialogs/caltor/baelinDialog.js";
-import {gregDialog, gregQuestAcceptedDialog} from "../data/dialogs/caltor/gregDialog.js";
-import Npc from "../entities/npc.js";
-import {bodgerDialog} from "../data/dialogs/caltor/bodgerDialog.js";
 import {GeneralLocation} from "./generalLocation.js";
-import {announcementsDialog, announcementsEmptyDialog} from "../data/dialogs/caltor/announcementsDialog.js";
-import {
-    fountainChangedDialog,
-    fountainSignDialog,
-    fountainVandalDialog
-} from "../data/dialogs/caltor/fountainSignDialog.js";
 import {Trigger} from "../entities/trigger.js";
+import {StrangerNpc} from "../npcs/caltor/strangerNpc.js";
+import {GregNpc} from "../npcs/caltor/gregNpc.js";
+import {BodgerNpc} from "../npcs/caltor/bodgerNpc.js";
+import {BaelinNpc} from "../npcs/caltor/baelinNpc.js";
+import {AnnouncementsDeskNpc} from "../npcs/caltor/announcementsDeskNpc.js";
+import {KasimaNpc} from "../npcs/caltor/kasimaNpc.js";
+import {FountainNpc} from "../npcs/caltor/fountainNpc.js";
 
 export class CaltorScene extends GeneralLocation {
     constructor() {
@@ -59,118 +55,19 @@ export class CaltorScene extends GeneralLocation {
             }
         });
 
-        const stranger = new Npc({
-            scene: this,
-            mapObjectName: "Stranger",
-            initDialog: strangerDialog,
-            interactionCallback: param => {
-                if (param === 'daggerObtained') {
-                    this.player.addItemToInventory('dagger-weapon', 1, undefined, this);
-                }
-            }
-        });
+        const stranger = new StrangerNpc({scene: this});
 
-        const greg = new Npc({
-            scene: this,
-            mapObjectName: "Greg",
-            initDialog: gregDialog,
-            interactionCallback: param => {
-                if (param === 'accept') {
-                    this.player.addQuest('gregsBucket');
-                    greg.setDialog(gregQuestAcceptedDialog);
-                }
-            }
-        });
+        const greg = new GregNpc({scene: this});
 
-        const bodger = new Npc({
-            scene: this,
-            mapObjectName: "Bodger",
-            initDialog: bodgerDialog,
-            items: [
-                {itemId: 'copper-pieces', quantity: 10},
-                {itemId: 'dagger-weapon', quantity: 1},
-                {itemId: 'leather-armor', quantity: 1},
-                {itemId: 'leather-pants', quantity: 1},
-                {itemId: 'leather-boots', quantity: 1},
-            ],
-            interactionCallback: (param) => {
-                if (param === 'openShop') {
-                    bodger.startTrade();
-                }
-                if (param === 'goodsSold') {
-                    this.player.addItemToInventory('copper-pieces', 100, undefined, this);
-                    bodger.addItemsToTrade([
-                        {itemId: 'minerals', quantity: 10},
-                        {itemId: 'basket', quantity: 10},
-                    ]);
-                    this.player.updateQuest('bigCaltorTrip', 'goodsSold');
-                }
-                if (param === 'goodsSoldAndOpenShop') {
-                    this.player.addItemToInventory('copper-pieces', 100, undefined, this);
-                    bodger.addItemsToTrade([
-                        {itemId: 'minerals', quantity: 10},
-                        {itemId: 'basket', quantity: 10},
-                    ]);
-                    this.player.updateQuest('bigCaltorTrip', 'goodsSold');
-                    bodger.startTrade();
-                }
-            }
-        });
+        const bodger = new BodgerNpc({scene: this});
 
-        const baelin = new Npc({scene: this, mapObjectName: 'Baelin', initDialog: baelinDialog});
+        const baelin = new BaelinNpc({scene: this});
 
-        const announcementsDesk = new Npc({
-            scene: this,
-            name: 'Announcements Desk',
-            mapObjectName: 'Announcements',
-            initDialog: announcementsDialog,
-            interactionCallback: (param) => {
-                if (param === 'questAccepted') {
-                    announcementsDesk.setDialog(announcementsEmptyDialog);
-                    this.player.addQuest('boarsAtTheFields');
-                }
-            }
-        });
+        const announcementsDesk = new AnnouncementsDeskNpc({scene: this});
 
-        const kasima = new Npc({
-            scene: this,
-            mapObjectName: 'Kasima',
-            items: [
-                {itemId: 'copper-pieces', quantity: 200},
-                {itemId: 'rope-belt', quantity: 1},
-                {itemId: 'dagger-weapon', quantity: 1},
-                {itemId: 'leather-armor', quantity: 1},
-                {itemId: 'invisibility-cape', quantity: 1},
-                {itemId: 'leather-gloves', quantity: 1},
-            ], interactionCallback: () => {
-                kasima.startTrade();
-            }
-        });
+        const kasima = new KasimaNpc({scene: this});
 
-        const fountain = new Npc({
-            scene: this,
-            mapObjectName: 'Fountain sign',
-            initDialog: fountainSignDialog,
-            interactionCallback: () => {
-                if (this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('started')) {
-                    this.player.updateQuest('theSelflessSpirit', 'falseNameLearned');
-                }
-            }
-        });
-
-        this.events.on('wake', (scene) => {
-            if (this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('trueNameLearned') &&
-                !this.player.getQuestById('theSelflessSpirit')?.currentStates.includes('deedsGlorified')
-            ) {
-                fountain.setDialog(fountainVandalDialog, (param) => {
-                    if (param === 'fountainVandalized') {
-                        this.player.updateQuest('theSelflessSpirit', 'deedsGlorified');
-                        fountain.setDialog(fountainChangedDialog, () => {
-                        });
-                    }
-                })
-            }
-        });
+        const fountain = new FountainNpc({scene: this});
     }
 
     public update() {

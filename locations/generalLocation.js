@@ -79,8 +79,6 @@ export class GeneralLocation extends Phaser.Scene {
         });
         (_a = this.map.getObjectLayer('Doors/Doors Objects')) === null || _a === void 0 ? void 0 : _a.objects.forEach(object => {
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Doors/Doors Objects');
-            const texture = spriteParams.key;
-            const frame = spriteParams.frame;
             // Todo: there must be a better way to do that but I am way too tired not to find it...
             const trigger = new Trigger({
                 scene: this,
@@ -89,8 +87,8 @@ export class GeneralLocation extends Phaser.Scene {
                 triggerY: object.y,
                 triggerW: object.width,
                 triggerH: object.height,
-                texture: texture,
-                frame: frame,
+                texture: spriteParams.texture,
+                frame: spriteParams.frame,
                 interaction: 'activate',
                 callback: () => {
                     trigger.setDisableState(true);
@@ -105,7 +103,7 @@ export class GeneralLocation extends Phaser.Scene {
         (_b = this.map.getObjectLayer('Containers')) === null || _b === void 0 ? void 0 : _b.objects.forEach(object => {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
-            const texture = spriteParams.key;
+            const texture = spriteParams.texture;
             const frame = spriteParams.frame;
             const emptyFrame = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'openedFrame')) === null || _b === void 0 ? void 0 : _b.value;
             const isSecret = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'secret')) === null || _d === void 0 ? void 0 : _d.value;
@@ -268,7 +266,7 @@ export class GeneralLocation extends Phaser.Scene {
                     console.log('Found animation', tileset.tileData[gid - tileset.firstgid].animation);
                     animKey = this._createAnimationFromTiled(tileset.image.key, gid - tileset.firstgid, tileset.tileData[gid - tileset.firstgid].animation);
                 }
-                return { key: tileset.name, frame: gid - tileset.firstgid, animation: animKey };
+                return { texture: tileset.name, frame: gid - tileset.firstgid, animation: animKey };
             }
         }
     }

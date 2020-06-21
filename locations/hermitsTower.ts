@@ -1,6 +1,5 @@
 import {GeneralLocation} from "./generalLocation.js";
-import Npc from "../entities/npc.js";
-import {hermitDialog, hermitLastDialog} from "../data/dialogs/hermitsTower/hermitDialog.js";
+import {HermitNpc} from "../npcs/hermitsTower/hermitNpc.js";
 
 export class HermitsTowerScene extends GeneralLocation {
     constructor() {
@@ -17,23 +16,7 @@ export class HermitsTowerScene extends GeneralLocation {
 
     public create() {
         super.create('hermitsTower');
-        const hermit = new Npc({
-            scene: this,
-            mapObjectName: 'Hermit',
-            initDialog: hermitDialog,
-            items: [
-                {itemId: 'copper-pieces', quantity: 10},
-                {itemId: 'dagger-weapon', quantity: 1},
-                {itemId: 'leather-armor', quantity: 1},
-                {itemId: 'leather-pants', quantity: 1},
-                {itemId: 'leather-boots', quantity: 1},
-            ],
-            interactionCallback: param => {
-                if (param === 'openShop') {
-                    hermit.startTrade();
-                }
-            }
-        });
+        const hermit = new HermitNpc({scene: this});
     }
 
     public update() {

@@ -20,7 +20,7 @@ interface TriggerParams {
 export class Trigger {
     public image: Phaser.Physics.Arcade.Sprite;
     callback: Function;
-    private scene: GeneralLocation;
+    protected scene: GeneralLocation;
     private type: "collide" | "overlap" | "activate" | "activateOverlap";
     private singleUse: boolean;
     private isSecret: boolean;
