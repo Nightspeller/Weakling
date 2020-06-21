@@ -60,7 +60,7 @@ export class WeaklingsCaveScene extends GeneralLocation {
 
         const alchemyStandMapObject = this.getMapObject(`Alchemy stand`);
         const spriteParams = this.getSpriteParamsByObjectName(alchemyStandMapObject.name);
-        const texture = spriteParams.key;
+        const texture = spriteParams.texture;
         const frame = spriteParams.frame as number;
         const workingFrame = alchemyStandMapObject.properties?.find(prop => prop.name === 'workingFrame')?.value;
         new AlchemyStand({
