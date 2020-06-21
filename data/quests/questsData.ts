@@ -16,7 +16,7 @@ export const questsData: { [key: string]: Quest } = {
     },
     'scaredyBat': {
         questId: 'scaredyBat',
-        questName: 'Scaredy Eyeball',
+        questName: 'Scaredy Bat',
         questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 10},
         availableStates: {
             started: `I found Eyeball, our favorite cyclops bat, hiding in the cave next to the Village entrance. A few days ago Whiskers gave him some hard time after drinking my experimental strength potion.\nNow Eyeball does not want to go outside anymore, even though Whiskers is back to normal. I wonder if there is something I can do to cheer him up.`,
