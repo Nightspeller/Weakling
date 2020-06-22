@@ -80,6 +80,7 @@
   </object>
   <object id="6" name="Purplecups" type="Container" gid="58" x="544" y="992" width="32" height="32">
    <properties>
+    <property name="disableWhenEmpty" type="bool" value="true"/>
     <property name="items" value="[{&quot;itemId&quot;: &quot;purplecup-mushroom&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>

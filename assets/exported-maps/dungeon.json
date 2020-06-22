@@ -248,6 +248,11 @@
                  "name":"Purplecups",
                  "properties":[
                         {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"purplecup-mushroom\", \"quantity\": 2}]"
