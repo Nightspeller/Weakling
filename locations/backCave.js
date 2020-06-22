@@ -18,8 +18,11 @@ export class BackCaveScene extends GeneralLocation {
                 y: trigger.image.y - 75,
                 duration: 5000,
                 onComplete: () => {
-                    this.player.updateQuest('scaredyBat', 'purplecupFed');
-                    trigger.destroy();
+                    this.eyeball.image.play('eyeball_attack1').once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                        this.eyeball.image.play('eyeball_idle');
+                        this.player.updateQuest('scaredyBat', 'purplecupFed');
+                        trigger.destroy();
+                    });
                 },
             });
         }

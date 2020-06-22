@@ -5,7 +5,7 @@ export const recipes = {
         component3: [],
         process: {id: 'heat', level: 'minor'},
         vessel: 'small-bottle',
-        result: 'small-weak-health-potion'
+        result: {id: 'small-weak-health-potion', quantity: 1}
     },
     'medium-weak-health-potion': {
         component1: [{id: 'sourgrass', quantity: 2}, {id: 'rocky-rose-flower', quantity: 1}],
@@ -13,7 +13,7 @@ export const recipes = {
         component3: [],
         process: {id: 'heat', level: 'minor'},
         vessel: 'medium-bottle',
-        result: 'medium-weak-health-potion'
+        result: {id: 'medium-weak-health-potion', quantity: 1}
     },
     'big-weak-health-potion': {
         component1: [{id: 'sourgrass', quantity: 3}, {id: 'rocky-rose-flower', quantity: 2}],
@@ -21,7 +21,7 @@ export const recipes = {
         component3: [],
         process: {id: 'heat', level: 'minor'},
         vessel: 'big-bottle',
-        result: 'big-weak-health-potion'
+        result: {id: 'big-weak-health-potion', quantity: 1}
     },
     'giant-weak-health-potion': {
         component1: [{id: 'sourgrass', quantity: 4}, {id: 'rocky-rose-flower', quantity: 2}],
@@ -29,7 +29,7 @@ export const recipes = {
         component3: [],
         process: {id: 'heat', level: 'minor'},
         vessel: 'giant-bottle',
-        result: 'giant-weak-health-potion'
+        result: {id: 'giant-weak-health-potion', quantity: 1}
     },
     'medium-weak-strength-potion': {
         component1: [{id: 'rocky-rose-flower', quantity: 1}],
@@ -37,7 +37,7 @@ export const recipes = {
         component3: [],
         process: {id: 'heat', level: 'minor'},
         vessel: 'medium-bottle',
-        result: 'medium-weak-strength-potion'
+        result: {id: 'medium-weak-strength-potion', quantity: 1}
     },
     'medium-weak-energy-potion': {
         component1: [{id: 'pumpkin-seeds', quantity: 2}],
@@ -45,7 +45,15 @@ export const recipes = {
         component3: [],
         process: {id: 'heat', level: 'minor'},
         vessel: 'medium-bottle',
-        result: 'medium-weak-energy-potion'
+        result: {id: 'medium-weak-energy-potion', quantity: 1}
+    },
+    'bone-dust': {
+        component1: [{id: 'bone', quantity: 1}],
+        component2: [],
+        component3: [],
+        process: {id: 'heat', level: 'minor'},
+        vessel: undefined,
+        result: {id: 'bone-dust', quantity: 2}
     },
 }
 

@@ -53,7 +53,7 @@ export class AlchemyStandScene extends InventoryOverlayScene {
     _drawBrewButton() {
         const buttonX = this.opts.windowX + this.opts.windowWidth - 20 - 64 * 5 + 64 * 2;
         const buttonY = 20 + 64 * 5 + 20 + 20 + 64 * 2 + 32;
-        const brewBtn = this.add.text(buttonX, buttonY, 'Brew', {
+        const brewBtn = this.add.text(buttonX, buttonY, 'Make', {
             font: 'bold 16px Arial',
             fill: this.opts.closeButtonColor,
             backgroundColor: 'lightgrey',
@@ -81,16 +81,17 @@ export class AlchemyStandScene extends InventoryOverlayScene {
         });
         console.log(matchingRecipe, requiredComponents);
         if (requiredComponents) {
-            if (result === undefined || (result.itemId === matchingRecipe.result && result.stackable === true)) {
+            if (result === undefined || (result.itemId === matchingRecipe.result.id && result.stackable === true)) {
                 requiredComponents.forEach(requiredComponent => {
                     this._changeItemQuantity(`componentSlot${requiredComponent.componentNumber}`, requiredComponent.component.quantity - requiredComponent.requiredQuantity);
                 });
-                this._changeItemQuantity(`vesselSlot`, vessel.quantity - 1);
+                if (vessel)
+                    this._changeItemQuantity(`vesselSlot`, vessel.quantity - 1);
                 if (result === undefined) {
-                    this._createItemRepresentation(new Item(matchingRecipe.result, 1), 'resultSlot');
+                    this._createItemRepresentation(new Item(matchingRecipe.result.id, matchingRecipe.result.quantity), 'resultSlot');
                 }
                 else {
-                    this._changeItemQuantity(`resultSlot`, result.quantity + 1);
+                    this._changeItemQuantity(`resultSlot`, result.quantity + matchingRecipe.result.quantity);
                 }
             }
         }

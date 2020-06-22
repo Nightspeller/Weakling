@@ -103,7 +103,7 @@
   </layer>
  </group>
  <objectgroup id="22" name="Objects">
-  <object id="1" name="Start" x="64" y="320">
+  <object id="1" name="Start" x="128" y="320">
    <point/>
   </object>
  </objectgroup>

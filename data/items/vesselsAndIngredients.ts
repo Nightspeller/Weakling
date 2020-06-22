@@ -73,6 +73,30 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'bone': {
+        itemId: 'bone',
+        displayName: 'Bone',
+        description: 'Bone of some unlucky creature',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 281},
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 2,
+        buyPrice: 4
+    },
+    'bone-dust': {
+        itemId: 'bone-dust',
+        displayName: 'Bone dust',
+        description: 'Calcium-reach powder made out of bones',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 331},
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 2,
+        buyPrice: 4
+    },
     'purplecup-mushroom': {
         itemId: 'purplecup-mushroom',
         displayName: 'Purplecup mushroom',
@@ -85,6 +109,20 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
         sellPrice: 3,
         buyPrice: 6
     },
+    'purplecup-spore': {
+        itemId: 'purplecup-spore',
+        displayName: 'Spores of Purplecups',
+        description: 'Spores of Purplecups mushrooms - can be crown into full mushroom',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 192},
+        stackable: true,
+        modified: false,
+        specifics: {
+            plantable: 'purplecup-mushroom'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'longshroom-mushroom': {
         itemId: 'longshroom-mushroom',
         displayName: 'Longshroom mushroom',
@@ -96,6 +134,20 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
         specifics: {},
         sellPrice: 3,
         buyPrice: 6
+    },
+    'longshroom-spore': {
+        itemId: 'longshroom-spore',
+        displayName: 'Spores of Longshroom',
+        description: 'Spores of Longshroom mushrooms - can be crown into full mushroom',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 192},
+        stackable: true,
+        modified: false,
+        specifics: {
+            plantable: 'longshroom-mushroom'
+        },
+        sellPrice: 1,
+        buyPrice: 2
     },
     'apple': {
         itemId: 'apple',
