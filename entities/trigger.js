@@ -8,6 +8,7 @@ export class Trigger {
         this.singleUse = singleUse;
         this.isSecret = isSecret;
         this.disabled = false;
+        this.destroyed = false;
         this.image = scene.physics.add
             .sprite(triggerX + offsetX, triggerY + offsetY, texture, frame)
             .setOrigin(0, 0)
@@ -70,6 +71,7 @@ export class Trigger {
     destroy() {
         var _a;
         this.image.destroy(true);
+        this.destroyed = true;
         (_a = this.highlightBorder) === null || _a === void 0 ? void 0 : _a.destroy(true);
         this.scene.input.keyboard.off('keydown-SPACE', this.onSpaceBarPressed, this);
         this.scene.input.keyboard.off('keydown-SHIFT', this.onHighlightOn, this);

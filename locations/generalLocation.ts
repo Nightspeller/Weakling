@@ -265,7 +265,7 @@ export class GeneralLocation extends Phaser.Scene {
         if (mapKey !== 'battle') this.setupDebugCollisionGraphics();
     }
 
-    public createDroppedItem(item: Item | string, quantity = 1) {
+    public createDroppedItem(item: Item | string, quantity = 1): Trigger {
         if (typeof item === "string") {
             item = new Item(item, quantity);
         }
@@ -290,6 +290,7 @@ export class GeneralLocation extends Phaser.Scene {
                 }
             },
         });
+        return droppedItemTrigger;
     }
 
     public getSpriteParamsByObjectName(objectName: string, objectLayer = 'Objects'): SpriteParameters {

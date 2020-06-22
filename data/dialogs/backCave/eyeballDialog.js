@@ -69,27 +69,10 @@ export const eyeballSecondTimeOfferPurplecupDialog = [{
         id: 'greetings5',
         text: `Bul'k!`,
         replies: [{
-                text: `Still no? Hey! How about some Purplecups? Will it cheer you up?`,
-                checkInventory: 'remove',
-                checkValue: [{ itemId: 'purplecup-mushroom', quantity: 1 }],
-                successTriggers: 'purplecupGiven',
-                failureTriggers: 'noPurplecup',
+                text: `Come on buddy, it is time to leave the cave and meet the world again! You can stick with me for sometime and see how it goes.`,
+                callbackParam: 'eyeballJoined'
             }, {
                 text: `Yeah, I understand.. Pretty traumatizing experience - being dragged through the whole Village by a cat, like some kind of flying mouse.. I will leave you be then, get better soon!`,
-                callbackParam: 'fastEnd'
-            }]
-    }, {
-        id: 'purplecupGiven',
-        text: `Buuuul'k!`,
-        replies: [{
-                text: `That's my boy! Lets go!`,
-                callbackParam: 'eyeballJoined'
-            }]
-    }, {
-        id: 'noPurplecup',
-        text: `Bul'k?..`,
-        replies: [{
-                text: `I don't have it with me.. Let me go get some - I will be right back!`,
                 callbackParam: 'fastEnd'
             }]
     }];

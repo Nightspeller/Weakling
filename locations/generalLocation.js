@@ -254,6 +254,7 @@ export class GeneralLocation extends Phaser.Scene {
                 }
             },
         });
+        return droppedItemTrigger;
     }
     getSpriteParamsByObjectName(objectName, objectLayer = 'Objects') {
         var _a;

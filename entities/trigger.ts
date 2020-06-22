@@ -27,6 +27,7 @@ export class Trigger {
     private highlightBorder: Phaser.GameObjects.Graphics;
     public name: string;
     private disabled: boolean;
+    public destroyed: boolean;
 
     constructor(
         {
@@ -54,6 +55,7 @@ export class Trigger {
         this.singleUse = singleUse;
         this.isSecret = isSecret;
         this.disabled = false;
+        this.destroyed = false;
         this.image = scene.physics.add
             .sprite(triggerX + offsetX, triggerY + offsetY, texture, frame)
             .setOrigin(0, 0)
@@ -120,6 +122,7 @@ export class Trigger {
 
     public destroy() {
         this.image.destroy(true);
+        this.destroyed = true;
         this.highlightBorder?.destroy(true);
         this.scene.input.keyboard.off('keydown-SPACE', this.onSpaceBarPressed, this);
         this.scene.input.keyboard.off('keydown-SHIFT', this.onHighlightOn, this);

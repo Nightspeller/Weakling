@@ -34,7 +34,7 @@ export class EyeballNpc extends GeneralNpc {
         this.image.body.setSize(32, 32).setOffset(65, 65);
 
         this.preInteractionCallback = () => {
-            if (scene.player.getQuestById('scaredyBat')?.currentStates.includes('signRead')) {
+            if (scene.player.getQuestById('scaredyBat')?.currentStates.includes('purplecupFed')) {
                 this.setDialog(eyeballSecondTimeOfferPurplecupDialog);
             }
         }
