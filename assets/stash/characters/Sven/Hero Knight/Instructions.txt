@@ -1,0 +1,29 @@
+
+Thank you for downloading this asset. 
+The following information is useful when importing the sprite sheets:
+----------------
+
+BlockEffect.png
+5 frames, frame resolution: 50x64px 
+
+HeroKnight.png
+90 frames, frame resolution: 100x55px
+
+HeroKnight_Block_noEffect.png
+5 frames, frame resolution: 100x55px
+
+HeroKnight_Death_noBlood.png
+10 frames, frame resolution: 100x55px
+
+SlideDust.png
+5 frames, frame resolution: 25x32px
+
+EnvironmentTiles.png
+4 frames, frame resolution: 32x32px
+
+----------------
+Check out the Preview files for more info.
+I want to thank you for supporting my work and for making it possible for me to continue doing what I love. 
+
+Best regards,
+ Sven

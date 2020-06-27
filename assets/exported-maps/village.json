@@ -793,7 +793,7 @@
                         {
                          "name":"toCoordinates",
                          "type":"string",
-                         "value":"{\"x\": 12, \"y\": 8}"
+                         "value":"{\"x\": 11, \"y\": 9}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -815,7 +815,7 @@
                         {
                          "name":"toCoordinates",
                          "type":"string",
-                         "value":"{\"x\": 2, \"y\": 8}"
+                         "value":"{\"x\": 4, \"y\": 10}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",

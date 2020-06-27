@@ -232,13 +232,13 @@
   <object id="44" name="Back Cave Higher Level" type="Waypoint" x="544" y="192" width="32" height="32">
    <properties>
     <property name="location" value="BackCave"/>
-    <property name="toCoordinates" value="{&quot;x&quot;: 12, &quot;y&quot;: 8}"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 11, &quot;y&quot;: 9}"/>
    </properties>
   </object>
   <object id="45" name="Back Cave Lower Level" type="Waypoint" x="288" y="224" width="64" height="32">
    <properties>
     <property name="location" value="BackCave"/>
-    <property name="toCoordinates" value="{&quot;x&quot;: 2, &quot;y&quot;: 8}"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 4, &quot;y&quot;: 10}"/>
    </properties>
   </object>
  </objectgroup>
