@@ -83,6 +83,9 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('wall-up', 'assets/images-extruded/tilesets/wall-up.png', tilesetConfig);
         this.load.spritesheet('flowers', 'assets/images-extruded/tilesets/flowers.png', tilesetConfig);
         this.load.spritesheet('castle', 'assets/images-extruded/tilesets/castle.png', tilesetConfig);
+        this.load.spritesheet('grassland', 'assets/images-extruded/tilesets/grassland.png', tilesetConfig);
+        this.load.spritesheet('caves', 'assets/images-extruded/tilesets/caves.png', tilesetConfig);
+        this.load.spritesheet('caves-grassland-entrance', 'assets/images-extruded/tilesets/caves-grassland-entrance.png', tilesetConfig);
         // Interface
         this.load.image('interface', 'assets/images/interface/Interface.png');
         this.load.image('interface-24x19', 'assets/images-extruded/interface/interface-24x19.png');
@@ -162,6 +165,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('betweenVillageAndCaltor', 'assets/exported-maps/betweenVillageAndCaltor.json');
         this.load.tilemapTiledJSON('backCave', 'assets/exported-maps/backCave.json');
         this.load.tilemapTiledJSON('greatPlains', 'assets/exported-maps/greatPlains.json');
+        this.load.tilemapTiledJSON('dungeonLevel1', 'assets/exported-maps/dungeonLevel1.json');
         // Audio
         this.load.audio('intro', ['assets/audio/intro.ogg', 'assets/audio/intro.mp3']);
         this.load.audio('keys-for-success', ['assets/audio/keys-for-success.mp3', 'assets/audio/keys-for-success.ogg']);
@@ -180,7 +184,7 @@ export class PreloadScene extends Phaser.Scene {
         console.log('Preload done, calling Main Menu');
         if (DEBUG) {
             //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-            this.scene.start("BackCave", { prevScene: this.scene.key });
+            this.scene.start("DungeonLevel1", { prevScene: this.scene.key });
         }
         else {
             this.scene.start("MainMenu", { prevScene: this.scene.key });

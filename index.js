@@ -27,9 +27,11 @@ import { GreatPlainsScene } from "./locations/greatPlains.js";
 import { BooksStoreScene } from "./locations/booksStore.js";
 import { AlchemyStandScene } from "./overlay_scenes/item-manupulators/alchemyStandOverlay.js";
 import { ContainerOverlayScene } from "./overlay_scenes/item-manupulators/containerOverlayScene.js";
+import { DungeonLevel1Scene } from "./locations/dungeonLevel1.js";
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
     BetweenVillageAndCaltorScene,
     DungeonScene,
+    DungeonLevel1Scene,
     CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CryptScene, BooksStoreScene,
     VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene, BackCaveScene,
     GreatPlainsScene];

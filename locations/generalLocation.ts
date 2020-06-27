@@ -97,7 +97,7 @@ export class GeneralLocation extends Phaser.Scene {
             if (layer.alpha !== 1) createdLayer.setAlpha(layer.alpha);
             this.layers.push(createdLayer);
             // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
-            if (Array.isArray(layer.properties) && layer.properties.find((prop: any) => prop.name === 'hasCollisions')) {
+            if (Array.isArray(layer.properties) && layer.properties.find((prop: any) => prop.name === 'hasCollisions' && prop.value === true)) {
                 createdLayer.setCollisionByProperty({collides: true});
                 this.setSidesCollisions(createdLayer.layer);
                 this.physics.add.collider(this.playerImage, createdLayer);
@@ -407,7 +407,7 @@ export class GeneralLocation extends Phaser.Scene {
         const debugGraphicsGroup = this.add.group();
         this.layers.forEach(layer => {
             const debugGraphics = this.add.graphics().setAlpha(0.25)
-            if (Array.isArray(layer.layer.properties) && layer.layer.properties.find((prop: any) => prop.name === 'hasCollisions')) {
+            if (Array.isArray(layer.layer.properties) && layer.layer.properties.find((prop: any) => prop.name === 'hasCollisions' && prop.value === true)) {
                 layer.renderDebug(debugGraphics, {
                     tileColor: null,
                     collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255),
