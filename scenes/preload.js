@@ -1,7 +1,7 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import { optionsInstance } from "../config/optionsConfig.js";
 import { DEBUG } from "../config/constants.js";
-import { createAnimations, preloadAnimationsShpritesheets } from "./animations.js";
+import { createAnimations, preloadAnimationsSpriteSheets } from "./animations.js";
 export class PreloadScene extends Phaser.Scene {
     constructor() {
         super({ key: 'Preload' });
@@ -86,6 +86,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('grassland', 'assets/images-extruded/tilesets/grassland.png', tilesetConfig);
         this.load.spritesheet('caves', 'assets/images-extruded/tilesets/caves.png', tilesetConfig);
         this.load.spritesheet('caves-grassland-entrance', 'assets/images-extruded/tilesets/caves-grassland-entrance.png', tilesetConfig);
+        this.load.spritesheet('caves-decoration-animated-b', 'assets/images-extruded/tilesets/caves-decoration-animated-b.png', tilesetConfig);
         // Interface
         this.load.image('interface', 'assets/images/interface/Interface.png');
         this.load.image('interface-24x19', 'assets/images-extruded/interface/interface-24x19.png');
@@ -145,7 +146,7 @@ export class PreloadScene extends Phaser.Scene {
         });
         this.load.spritesheet("icon-item-set", "assets/images-extruded/items/icon-item-set.png", tilesetConfig);
         // Animations
-        preloadAnimationsShpritesheets(this);
+        preloadAnimationsSpriteSheets(this);
         this.load.image("hit", "assets/images/animations/hit.png");
         // Load the export Tiled JSON
         this.load.tilemapTiledJSON('caltor', 'assets/exported-maps/caltor.json');
@@ -183,7 +184,7 @@ export class PreloadScene extends Phaser.Scene {
         createAnimations(this);
         console.log('Preload done, calling Main Menu');
         if (DEBUG) {
-            //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "ghost-knight"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
+            //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "skeleton"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
             this.scene.start("DungeonLevel1", { prevScene: this.scene.key });
         }
         else {
