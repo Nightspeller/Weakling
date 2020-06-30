@@ -92,6 +92,9 @@ export class BattleScene extends GeneralLocation {
                     if (succeeded[index] && targets[index] !== char) {
                         this.playAnimation(targets[index], 'hit');
                     }
+                    else {
+                        this.playAnimation(targets[index], 'miss');
+                    }
                 });
                 await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
                 await new Promise(resolve => setTimeout(() => resolve(), 500));
@@ -101,6 +104,9 @@ export class BattleScene extends GeneralLocation {
                 break;
             case 'hit':
                 await charDrawer.playHitAnimation();
+                break;
+            case 'miss':
+                await charDrawer.playMissAnimation();
                 break;
             case 'death':
                 await charDrawer.playDeathAnimation();

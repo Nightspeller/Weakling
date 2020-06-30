@@ -352,6 +352,35 @@ export class CharacterDrawer {
             }
         });
     }
+    playMissAnimation() {
+        return new Promise((resolve) => {
+            if (this.char.animations.miss) {
+                this.mainImage.anims.play(this.char.animations.miss);
+                this.mainImage.once('animationcomplete', () => {
+                    this.playIdleAnimation();
+                    resolve();
+                });
+            }
+            else {
+                const missText = this.scene.add.text(this.position.x, this.position.y, 'Miss!', { color: 'red', font: 'bold 30px monospace' }).setOrigin(0.5, 0.5);
+                this.scene.tweens.add({
+                    targets: missText,
+                    props: {
+                        y: {
+                            value: this.position.y - 80,
+                        }
+                    },
+                    // ease: 'Back.easeOut',
+                    duration: 800,
+                    yoyo: false,
+                    onComplete: () => {
+                        missText.destroy(true);
+                        resolve();
+                    }
+                });
+            }
+        });
+    }
     playDeathAnimation() {
         return new Promise((resolve) => {
             if (this.char.animations.death) {
