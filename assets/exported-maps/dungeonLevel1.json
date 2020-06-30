@@ -437,12 +437,12 @@
                 {
                  "height":64,
                  "id":14,
-                 "name":"Boars",
+                 "name":"Skeletons",
                  "properties":[
                         {
                          "name":"enemies",
                          "type":"string",
-                         "value":"[{\"type\": \"wildBoar\"}, {\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}, {\"type\": \"wildBoar\"}]"
+                         "value":"[{\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}]"
                         }, 
                         {
                          "name":"image",

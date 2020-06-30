@@ -151,9 +151,9 @@
   </object>
  </objectgroup>
  <objectgroup id="23" name="Enemies">
-  <object id="14" name="Boars" type="Enemy" x="288" y="800" width="64" height="64">
+  <object id="14" name="Skeletons" type="Enemy" x="288" y="800" width="64" height="64">
    <properties>
-    <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
+    <property name="enemies" value="[{&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}]"/>
     <property name="image" value="skeleton-idle"/>
    </properties>
   </object>
