@@ -302,29 +302,6 @@
                  "width":32,
                  "x":0,
                  "y":224
-                }, 
-                {
-                 "gid":58,
-                 "height":32,
-                 "id":6,
-                 "name":"Purplecups",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"purplecup-mushroom\", \"quantity\": 2}]"
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":544,
-                 "y":608
                 }],
          "opacity":1,
          "type":"objectgroup",
