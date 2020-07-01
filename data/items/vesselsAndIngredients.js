@@ -287,8 +287,8 @@ export const vesselsAndIngredients = {
         stackable: true,
         modified: false,
         specifics: {},
-        sellPrice: 1,
-        buyPrice: 2
+        sellPrice: 4,
+        buyPrice: 8
     },
     'cabbage-seeds': {
         itemId: 'cabbage-seeds',

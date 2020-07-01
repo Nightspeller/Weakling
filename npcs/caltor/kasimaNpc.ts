@@ -15,10 +15,10 @@ export class KasimaNpc extends GeneralNpc {
             items: [
                 {itemId: 'copper-pieces', quantity: 200},
                 {itemId: 'rope-belt', quantity: 1},
-                {itemId: 'dagger-weapon', quantity: 1},
-                {itemId: 'leather-armor', quantity: 1},
                 {itemId: 'invisibility-cape', quantity: 1},
-                {itemId: 'leather-gloves', quantity: 1},
+                {itemId: 'small-bottle', quantity: 2},
+                {itemId: 'medium-bottle', quantity: 2},
+                {itemId: 'big-bottle', quantity: 2},
             ]
         });
     }
