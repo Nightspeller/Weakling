@@ -164,6 +164,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.map.getObjectLayer('Enemies')?.objects.forEach(object => {
             const enemyImage = object.properties?.find(prop => prop.name === 'image')?.value;
             const enemies = JSON.parse(object.properties.find(prop => prop.name === 'enemies')?.value);
+            const background = object.properties.find(prop => prop.name === 'background')?.value || 'field-background';
             new Trigger({
                 scene: this,
                 name: object.name,
@@ -175,7 +176,7 @@ export class GeneralLocation extends Phaser.Scene {
                 frame: null,
                 interaction: 'activate',
                 callback: () => {
-                    this.switchToScene('Battle', {enemies: enemies, enemyName: object.name});
+                    this.switchToScene('Battle', {enemies: enemies, enemyName: object.name, background: background}, false);
                 },
             });
         });

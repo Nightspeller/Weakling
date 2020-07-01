@@ -8,7 +8,7 @@ export class Skeleton extends GeneralEnemy {
 
     constructor() {
         super();
-        this.spriteParams = {texture: 'skeleton-idle', frame: 0, width: 300, height: 300, flip: true};
+        this.spriteParams = {texture: 'skeleton-idle', frame: 0, width: 280, height: 280, flip: true};
         this.level = 1;
         this.availableActions = ['meleeAttack', 'fear'];
         this.name = 'Skeleton';

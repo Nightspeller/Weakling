@@ -130,9 +130,10 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_c = this.map.getObjectLayer('Enemies')) === null || _c === void 0 ? void 0 : _c.objects.forEach(object => {
-            var _a, _b, _c;
+            var _a, _b, _c, _d;
             const enemyImage = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'image')) === null || _b === void 0 ? void 0 : _b.value;
             const enemies = JSON.parse((_c = object.properties.find(prop => prop.name === 'enemies')) === null || _c === void 0 ? void 0 : _c.value);
+            const background = ((_d = object.properties.find(prop => prop.name === 'background')) === null || _d === void 0 ? void 0 : _d.value) || 'field-background';
             new Trigger({
                 scene: this,
                 name: object.name,
@@ -144,7 +145,7 @@ export class GeneralLocation extends Phaser.Scene {
                 frame: null,
                 interaction: 'activate',
                 callback: () => {
-                    this.switchToScene('Battle', { enemies: enemies, enemyName: object.name });
+                    this.switchToScene('Battle', { enemies: enemies, enemyName: object.name, background: background }, false);
                 },
             });
         });

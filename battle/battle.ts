@@ -1,52 +1,58 @@
 import {playerInstance} from "../characters/adventurers/player.js";
 import {Disposition} from "./disposition.js";
 import GeneralCharacter from "../characters/generalCharacter.js";
-import {GeneralLocation} from "../locations/generalLocation.js";
 import {CharacterDrawer} from "./characterDrawer.js";
 import {Adventurer} from "../characters/adventurers/adventurer.js";
 import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import {ActionInterfaceDrawer} from "./actionInterfaceDrawer.js";
 import Rectangle = Phaser.Geom.Rectangle;
+import {GeneralOverlayScene} from "../overlay_scenes/generalOverlayScene.js";
+import Item from "../entities/item.js";
 
-export class BattleScene extends GeneralLocation {
+export class BattleScene extends GeneralOverlayScene {
     private disposition: Disposition;
     private turnOrderDisplayContainer: Phaser.GameObjects.Container;
     private enemies: string[];
-    charToDrawerMap: Map<GeneralCharacter, CharacterDrawer>;
-    private characterInfoGroup: Phaser.GameObjects.Group;
-    private effectInformationGroup: Phaser.GameObjects.Group;
+    private charToDrawerMap: Map<GeneralCharacter, CharacterDrawer>;
     private enemyName: string;
     private actionInterfaceDrawer: ActionInterfaceDrawer;
+    private droppedItems: Item[];
+    private background: string;
 
     constructor() {
         super({key: 'Battle'});
     }
 
-    public init(data) {
-        if (Array.isArray(data.enemies)) {
-            this.enemies = data.enemies.map(enemy => enemy.type);
-            this.enemyName = data.enemyName;
+    public init({prevScene, enemies, enemyName, background}: { prevScene: string, enemies: {type: string}[], enemyName: string, background: string }) {
+        this.opts = {
+            backgroundColor: 0xf0d191,
+            backgroundAlpha: 0,
+            windowX: 0,
+            windowY: 0,
+            windowWidth: 800,
+            windowHeight: 640,
+            borderThickness: 0,
+            baseDepth: 0,
+        };
+        this.parentSceneKey = prevScene;
+        this.background = background;
+        if (Array.isArray(enemies)) {
+            this.enemies = enemies.map(enemy => enemy.type);
+            this.enemyName = enemyName;
         } else {
             throw Error('No enemies were passed for Battle scene!');
         }
-        this.prevSceneKey = data.prevScene;
-    }
-
-    public preload() {
-        super.preload();
     }
 
     public create() {
-        super.create('battle');
+        super.create(this.parentSceneKey, this.opts);
 
         this.turnOrderDisplayContainer = this.add.container(16, 16);
-
-        this.player = playerInstance;
 
         this.charToDrawerMap = new Map();
 
         this.disposition = new Disposition(
-            this.player.party,
+            playerInstance.party,
             this.enemies,
             'forrest',
             this);
@@ -58,11 +64,13 @@ export class BattleScene extends GeneralLocation {
             this.charToDrawerMap.set(char, new CharacterDrawer(this, char, index));
         });
 
-        this.disposition.startRound()
-    }
+        this.disposition.startRound();
 
-    public update() {
-
+        this.events.on('resume', (scene, data) => {
+            if (data?.droppedItems) {
+                this.droppedItems = data.droppedItems;
+            }
+        })
     }
 
     public redrawAllCharacters() {
@@ -185,15 +193,20 @@ export class BattleScene extends GeneralLocation {
         });
     }
 
+    protected _drawBackground() {
+        this.add.image(this.opts.windowX, this.opts.windowY, this.background)
+            .setDisplaySize(this.opts.windowWidth, this.opts.windowHeight)
+            .setOrigin(0).setDepth(this.opts.baseDepth);
+    }
+
+    protected _drawCloseButton() {};
 
     public exitBattle(isPartyWon) {
-        console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'} Switching from the battle scene to ${this.prevSceneKey}. Name of object to remove: ${this.enemyName}`);
+        console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'}. Name of enemy object: ${this.enemyName}`);
         if (isPartyWon === true) {
-            this.scene.run(this.prevSceneKey, {defeatedEnemy: this.enemyName});
+            this.closeScene({defeatedEnemy: this.enemyName, droppedItems: this.droppedItems});
         } else {
-            this.scene.run(this.prevSceneKey);
+            this.closeScene({droppedItems: this.droppedItems});
         }
-
-        this.scene.stop('Battle');
     }
 }

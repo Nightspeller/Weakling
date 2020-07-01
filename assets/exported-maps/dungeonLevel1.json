@@ -79,7 +79,7 @@
                  "height":32,
                  "id":4,
                  "name":"Fringe transparent",
-                 "opacity":0.8,
+                 "opacity":1,
                  "properties":[
                         {
                          "name":"fringe",
@@ -439,6 +439,11 @@
                  "id":14,
                  "name":"Skeletons",
                  "properties":[
+                        {
+                         "name":"background",
+                         "type":"string",
+                         "value":"cave-background"
+                        }, 
                         {
                          "name":"enemies",
                          "type":"string",

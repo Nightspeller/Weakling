@@ -1,34 +1,41 @@
 import { playerInstance } from "../characters/adventurers/player.js";
 import { Disposition } from "./disposition.js";
-import { GeneralLocation } from "../locations/generalLocation.js";
 import { CharacterDrawer } from "./characterDrawer.js";
 import { Adventurer } from "../characters/adventurers/adventurer.js";
 import GeneralEnemy from "../characters/enemies/generalEnemy.js";
 import { ActionInterfaceDrawer } from "./actionInterfaceDrawer.js";
 var Rectangle = Phaser.Geom.Rectangle;
-export class BattleScene extends GeneralLocation {
+import { GeneralOverlayScene } from "../overlay_scenes/generalOverlayScene.js";
+export class BattleScene extends GeneralOverlayScene {
     constructor() {
         super({ key: 'Battle' });
     }
-    init(data) {
-        if (Array.isArray(data.enemies)) {
-            this.enemies = data.enemies.map(enemy => enemy.type);
-            this.enemyName = data.enemyName;
+    init({ prevScene, enemies, enemyName, background }) {
+        this.opts = {
+            backgroundColor: 0xf0d191,
+            backgroundAlpha: 0,
+            windowX: 0,
+            windowY: 0,
+            windowWidth: 800,
+            windowHeight: 640,
+            borderThickness: 0,
+            baseDepth: 0,
+        };
+        this.parentSceneKey = prevScene;
+        this.background = background;
+        if (Array.isArray(enemies)) {
+            this.enemies = enemies.map(enemy => enemy.type);
+            this.enemyName = enemyName;
         }
         else {
             throw Error('No enemies were passed for Battle scene!');
         }
-        this.prevSceneKey = data.prevScene;
-    }
-    preload() {
-        super.preload();
     }
     create() {
-        super.create('battle');
+        super.create(this.parentSceneKey, this.opts);
         this.turnOrderDisplayContainer = this.add.container(16, 16);
-        this.player = playerInstance;
         this.charToDrawerMap = new Map();
-        this.disposition = new Disposition(this.player.party, this.enemies, 'forrest', this);
+        this.disposition = new Disposition(playerInstance.party, this.enemies, 'forrest', this);
         this.actionInterfaceDrawer = new ActionInterfaceDrawer(this, this.disposition);
         this.disposition.playerCharacters.forEach((char, index) => {
             this.charToDrawerMap.set(char, new CharacterDrawer(this, char, index));
@@ -37,8 +44,11 @@ export class BattleScene extends GeneralLocation {
             this.charToDrawerMap.set(char, new CharacterDrawer(this, char, index));
         });
         this.disposition.startRound();
-    }
-    update() {
+        this.events.on('resume', (scene, data) => {
+            if (data === null || data === void 0 ? void 0 : data.droppedItems) {
+                this.droppedItems = data.droppedItems;
+            }
+        });
     }
     redrawAllCharacters() {
         this.charToDrawerMap.forEach((charDrawer, char) => {
@@ -150,15 +160,21 @@ export class BattleScene extends GeneralLocation {
             this.turnOrderDisplayContainer.add(sprite);
         });
     }
+    _drawBackground() {
+        this.add.image(this.opts.windowX, this.opts.windowY, this.background)
+            .setDisplaySize(this.opts.windowWidth, this.opts.windowHeight)
+            .setOrigin(0).setDepth(this.opts.baseDepth);
+    }
+    _drawCloseButton() { }
+    ;
     exitBattle(isPartyWon) {
-        console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'} Switching from the battle scene to ${this.prevSceneKey}. Name of object to remove: ${this.enemyName}`);
+        console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'}. Name of enemy object: ${this.enemyName}`);
         if (isPartyWon === true) {
-            this.scene.run(this.prevSceneKey, { defeatedEnemy: this.enemyName });
+            this.closeScene({ defeatedEnemy: this.enemyName, droppedItems: this.droppedItems });
         }
         else {
-            this.scene.run(this.prevSceneKey);
+            this.closeScene({ droppedItems: this.droppedItems });
         }
-        this.scene.stop('Battle');
     }
 }
 //# sourceMappingURL=battle.js.map

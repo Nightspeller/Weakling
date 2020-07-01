@@ -158,13 +158,14 @@ export class Disposition {
         if (action.actionId === 'accessInventory') {
             if (source instanceof Adventurer) {
                 actionResults.succeeded.push(true);
-                this.scene.switchToScene('Inventory', {}, false);
+                this.scene.scene.pause('Battle');
+                this.scene.scene.run('Inventory', { prevScene: 'Battle' });
             }
             return actionResults;
         }
         if (action.actionId === 'retreat') {
-            console.log('Adventurer party lost the battle');
-            this.log('Adventurer party lost the battle');
+            console.log('Adventurer party retreated!');
+            this.log('Adventurer party retreated!');
             this.scene.exitBattle(false);
             this.battleEnded = true;
             return actionResults;

@@ -33,7 +33,7 @@ export class GeneralOverlayScene extends Phaser.Scene {
         this._drawCloseButton();
     }
 
-    private _drawBackground() {
+    protected _drawBackground() {
         this.add.image(this.opts.windowX, this.opts.windowY, 'interface-24x19')
             .setDisplaySize(this.opts.windowWidth, this.opts.windowHeight).setAlpha(this.opts.backgroundAlpha)
             .setOrigin(0).setScrollFactor(0).setDepth(this.opts.baseDepth);
@@ -45,7 +45,7 @@ export class GeneralOverlayScene extends Phaser.Scene {
             .setScrollFactor(0).setDepth(this.opts.baseDepth);*/
     }
 
-    private _drawCloseButton() {
+    protected _drawCloseButton() {
         const closeButtonX = this.opts.windowX + this.opts.windowWidth - 24;
         const closeButtonY = this.opts.windowY + 4;
         this.add.graphics()

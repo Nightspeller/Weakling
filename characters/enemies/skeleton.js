@@ -11,7 +11,7 @@ export class Skeleton extends GeneralEnemy {
                 action = 'fear';
             return { action: new Action(action, this), targets: [randomAlivePlayer] };
         };
-        this.spriteParams = { texture: 'skeleton-idle', frame: 0, width: 300, height: 300, flip: true };
+        this.spriteParams = { texture: 'skeleton-idle', frame: 0, width: 280, height: 280, flip: true };
         this.level = 1;
         this.availableActions = ['meleeAttack', 'fear'];
         this.name = 'Skeleton';
