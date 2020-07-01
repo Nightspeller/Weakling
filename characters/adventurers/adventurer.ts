@@ -178,6 +178,7 @@ export class Adventurer extends GeneralCharacter {
         super.startRound(roundType);
         if (roundType === 'preparation') {
             this.isAlive = true;
+            this.actedThisRound = false;
             this.applyItems();
         }
     }
