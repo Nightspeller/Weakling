@@ -134,7 +134,7 @@ export class GeneralLocation extends Phaser.Scene {
             const enemyImage = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'image')) === null || _b === void 0 ? void 0 : _b.value;
             const enemies = JSON.parse((_c = object.properties.find(prop => prop.name === 'enemies')) === null || _c === void 0 ? void 0 : _c.value);
             const background = ((_d = object.properties.find(prop => prop.name === 'background')) === null || _d === void 0 ? void 0 : _d.value) || 'field-background';
-            const drop = JSON.parse((_e = object.properties.find(prop => prop.name === 'drop')) === null || _e === void 0 ? void 0 : _e.value);
+            const drop = JSON.parse(((_e = object.properties.find(prop => prop.name === 'drop')) === null || _e === void 0 ? void 0 : _e.value) || "[]");
             new Trigger({
                 scene: this,
                 name: object.name,
