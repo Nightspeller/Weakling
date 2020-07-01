@@ -10,6 +10,9 @@ export default class Item {
                 throw `Can't create "${itemId}" because there is no data for it.`;
             }
         }
+        if (itemParams['stackable'] === false && quantity > 1) {
+            throw `Trying to create unstackable item "${itemId}" with quantity of ${quantity}.`;
+        }
         itemParams = { ...itemParams, ...options, quantity: quantity };
         Object.entries(itemParams).forEach(([key, value]) => this[key] = value);
     }

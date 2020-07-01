@@ -130,10 +130,11 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_c = this.map.getObjectLayer('Enemies')) === null || _c === void 0 ? void 0 : _c.objects.forEach(object => {
-            var _a, _b, _c, _d;
+            var _a, _b, _c, _d, _e;
             const enemyImage = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'image')) === null || _b === void 0 ? void 0 : _b.value;
             const enemies = JSON.parse((_c = object.properties.find(prop => prop.name === 'enemies')) === null || _c === void 0 ? void 0 : _c.value);
             const background = ((_d = object.properties.find(prop => prop.name === 'background')) === null || _d === void 0 ? void 0 : _d.value) || 'field-background';
+            const drop = JSON.parse((_e = object.properties.find(prop => prop.name === 'drop')) === null || _e === void 0 ? void 0 : _e.value);
             new Trigger({
                 scene: this,
                 name: object.name,
@@ -147,7 +148,7 @@ export class GeneralLocation extends Phaser.Scene {
                 callback: () => {
                     this.switchToScene('Battle', { enemies: enemies, enemyName: object.name, background: background }, false);
                 },
-            });
+            })['drop'] = drop;
         });
         (_d = this.map.getObjectLayer('Waypoints')) === null || _d === void 0 ? void 0 : _d.objects.forEach(object => {
             var _a, _b, _c, _d;
@@ -206,6 +207,21 @@ export class GeneralLocation extends Phaser.Scene {
         this.sys['animatedTiles'].init(this.map);
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
         this.events.on('resume', (scene, data) => {
+            var _a;
+            if (data === null || data === void 0 ? void 0 : data.defeatedEnemy) {
+                const trigger = this.triggers.find(trigger => trigger.name === data.defeatedEnemy);
+                trigger === null || trigger === void 0 ? void 0 : trigger.destroy();
+                if (trigger) {
+                    console.log(trigger['drop']);
+                    (_a = trigger['drop']) === null || _a === void 0 ? void 0 : _a.forEach(dropped => {
+                        const shouldDrop = !(Math.random() > dropped.chance);
+                        console.log(`dropping ${dropped.itemId}? ${shouldDrop}`);
+                        if (shouldDrop) {
+                            this.createDroppedItem(dropped.itemId, dropped.quantity);
+                        }
+                    });
+                }
+            }
             if (data === null || data === void 0 ? void 0 : data.droppedItems) {
                 data.droppedItems.forEach(droppedItem => this.createDroppedItem(droppedItem));
             }
@@ -214,9 +230,6 @@ export class GeneralLocation extends Phaser.Scene {
             }
         });
         this.events.on('wake', (scene, data) => {
-            if (data === null || data === void 0 ? void 0 : data.defeatedEnemy) {
-                this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
-            }
             if (data === null || data === void 0 ? void 0 : data.toCoordinates) {
                 this.playerImage.setPosition(data.toCoordinates.x * 32 + this.offsetX, data.toCoordinates.y * 32 + this.offsetY);
             }

@@ -165,6 +165,7 @@ export class GeneralLocation extends Phaser.Scene {
             const enemyImage = object.properties?.find(prop => prop.name === 'image')?.value;
             const enemies = JSON.parse(object.properties.find(prop => prop.name === 'enemies')?.value);
             const background = object.properties.find(prop => prop.name === 'background')?.value || 'field-background';
+            const drop = JSON.parse(object.properties.find(prop => prop.name === 'drop')?.value);
             new Trigger({
                 scene: this,
                 name: object.name,
@@ -178,7 +179,7 @@ export class GeneralLocation extends Phaser.Scene {
                 callback: () => {
                     this.switchToScene('Battle', {enemies: enemies, enemyName: object.name, background: background}, false);
                 },
-            });
+            })['drop'] = drop;
         });
 
         this.map.getObjectLayer('Waypoints')?.objects.forEach(object => {
@@ -238,6 +239,20 @@ export class GeneralLocation extends Phaser.Scene {
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
 
         this.events.on('resume', (scene, data) => {
+            if (data?.defeatedEnemy) {
+                const trigger = this.triggers.find(trigger => trigger.name === data.defeatedEnemy);
+                trigger?.destroy();
+                if (trigger) {
+                    console.log(trigger['drop']);
+                    trigger['drop']?.forEach(dropped => {
+                        const shouldDrop = !(Math.random() > dropped.chance);
+                        console.log(`dropping ${dropped.itemId}? ${shouldDrop}`)
+                        if (shouldDrop) {
+                            this.createDroppedItem(dropped.itemId, dropped.quantity)
+                        }
+                    });
+                }
+            }
             if (data?.droppedItems) {
                 data.droppedItems.forEach(droppedItem => this.createDroppedItem(droppedItem));
             }
@@ -247,9 +262,6 @@ export class GeneralLocation extends Phaser.Scene {
         });
 
         this.events.on('wake', (scene, data) => {
-            if (data?.defeatedEnemy) {
-                this.triggers.find(trigger => trigger.name === data.defeatedEnemy).image.destroy(true);
-            }
             if (data?.toCoordinates) {
                 this.playerImage.setPosition(data.toCoordinates.x * 32 + this.offsetX, data.toCoordinates.y * 32 + this.offsetY);
             }
