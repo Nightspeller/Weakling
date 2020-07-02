@@ -3,6 +3,7 @@ import {elderInstance} from "./elder.js";
 import {DEBUG} from "../../config/constants.js";
 import {questsData} from "../../data/quests/questsData.js";
 import {fillInventoryWithPotions} from "../../helpers/fillInventory.js";
+import {eyeballInstance} from "./eyeball.js";
 
 export class Player extends Adventurer {
     public worldImageSpriteParams: { texture: string; frame: number };
@@ -11,6 +12,7 @@ export class Player extends Adventurer {
 
     constructor() {
         super();
+        this.name = 'Weakling';
         this.spriteParams = {texture: 'weakling', frame: null, width: 96, height: 96};
         this.worldImageSpriteParams = {texture: 'jeremy-green', frame: 1};
         this.quests = [];
@@ -42,10 +44,10 @@ export class Player extends Adventurer {
         };
 
         if (DEBUG) {
-            this.baseCharacteristics.parameters.health = 50;
-            this.baseCharacteristics.parameters.currentHealth = 40;
-            fillInventoryWithPotions(this,'type', 'strength');
-/*            this.addItemToInventory('copper-pieces', 1000);
+            this.baseCharacteristics.parameters.health = 10;
+            this.baseCharacteristics.parameters.currentHealth = 1;
+            //fillInventoryWithPotions(this,'type', 'strength');
+            this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
             this.addItemToInventory('fancy-belt', 1,'belt');
             this.addItemToInventory('leather-armor', 1, 'body');
@@ -54,19 +56,19 @@ export class Player extends Adventurer {
             this.addItemToInventory('mirror-of-travel');
             this.addItemToInventory('smoldering-ring', 1, 'ringRight');
             this.addItemToInventory('rope-belt', 1);
-            this.addItemToInventory('fancy-belt');
+            this.addItemToInventory('purplecup-mushroom', 3);
             this.addItemToInventory('primula-flower',4);
             this.addItemToInventory('pinky-pie-sapling', 3);
             this.addItemToInventory('yellow-fingers-sapling', 3);
             this.addItemToInventory('carrot',3);
             this.addItemToInventory('small-weak-energy-potion', 2);
             this.addItemToInventory('pinky-pie-sapling');
-            this.addItemToInventory('yellow-fingers-sapling');
-            this.addItemToInventory('primula-sapling');
+            this.addItemToInventory('bone', 6);
+            this.addItemToInventory('bone-dust', 12);
             this.addItemToInventory('rocky-rose-sapling');
             this.addItemToInventory('medium-weak-energy-potion');
             this.addItemToInventory('sourgrass',6);
-            this.addItemToInventory('medium-weak-strength-potion', 2);
+            this.addItemToInventory('medium-weak-strength-potion', 5);
             this.addItemToInventory('leather-armor', 1);
             this.addItemToInventory('small-bottle', 3);
             this.addItemToInventory('medium-bottle', 3);
@@ -74,9 +76,10 @@ export class Player extends Adventurer {
             this.addItemToInventory('giant-bottle', 3);
             this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
             this.addItemToInventory('rocky-rose-flower', 6);
-            this.addItemToInventory('hargkakhs-key');*/
+            this.addItemToInventory('hargkakhs-key');
 
-
+            this.addXp(639);
+            this.addXp(10);
 
            /* this.addQuest('theSelflessSpirit');
             this.updateQuest('theSelflessSpirit', 'falseNameLearned');
@@ -86,12 +89,11 @@ export class Player extends Adventurer {
         }
         this.addBaseModifiers();
         this.applyItems();
-        this.name = 'Weakling';
 
         this.availableActions = ['meditate', 'accessInventory', 'retreat', 'swiftMind', 'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
 
         this.party = [this];
-        if (DEBUG) this.party = [this, elderInstance];
+        if (DEBUG) this.party = [this, elderInstance, eyeballInstance];
 
         this.addQuest('bigCaltorTrip');
     }

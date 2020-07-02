@@ -196,10 +196,17 @@ export class CharacterDrawer {
         this.characterInfoContainer.add(name);
 
         const textStyle = {font: '12px monospace', fill: '#000000'};
+        let level;
+        if (this.char instanceof Adventurer) {
+            level = this.scene.add.text(2 + 96 + 2, 24, `Level: ${this.char.level}, ${this.char.xp}xp / ${this.char.experienceTable[this.char.level]}xp`, textStyle);
+        } else {
+            level = this.scene.add.text(2 + 96 + 2, 24, `Level: ${this.char.level}`, textStyle);
+        }
+        this.characterInfoContainer.add(level);
         const parameters = this.char.currentCharacteristics.parameters;
-        const health = this.scene.add.text(2 + 96 + 2, 24, `HP: ${parameters.currentHealth}/${parameters.health}`, textStyle);
-        const manna = this.scene.add.text(2 + 96 + 2, 40, `MP: ${parameters.currentManna}/${parameters.manna}`, textStyle);
-        const energy = this.scene.add.text(2 + 96 + 2, 56, `EN: ${parameters.currentEnergy}/${parameters.energy}`, textStyle);
+        const health = this.scene.add.text(2 + 96 + 2, 40, `HP: ${parameters.currentHealth}/${parameters.health}`, textStyle);
+        const manna = this.scene.add.text(2 + 96 + 2, 56, `MP: ${parameters.currentManna}/${parameters.manna}`, textStyle);
+        const energy = this.scene.add.text(2 + 96 + 2, 72, `EN: ${parameters.currentEnergy}/${parameters.energy}`, textStyle);
         this.characterInfoContainer.add(health);
         this.characterInfoContainer.add(manna);
         this.characterInfoContainer.add(energy);

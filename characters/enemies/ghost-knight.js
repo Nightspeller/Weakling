@@ -12,7 +12,7 @@ export class GhostKnight extends GeneralEnemy {
             return { action: new Action(action, this), targets: [randomAlivePlayer] };
         };
         this.spriteParams = { texture: 'ghost-knight-idle', frame: 0, width: 300, height: 300, flip: true };
-        this.level = 1;
+        this.level = 3;
         this.availableActions = ['meleeAttack', 'fear'];
         this.name = 'Ghost of the Knight';
         this.baseCharacteristics = {

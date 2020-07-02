@@ -91,7 +91,7 @@ export class InventoryOverlayScene extends GeneralItemManipulatorScene {
     _drawCharacteristics() {
         const textX = this.opts.windowX + this.opts.windowWidth - 20 - 64 * 5;
         const textY = this.opts.windowY + 20 + 64 * 5 + 20;
-        const text = `${this.player.name}
+        const text = `${this.player.name}, level ${this.player.level}, ${this.player.xp}xp / ${this.player.experienceTable[this.player.level]}xp
 HP: ${this.player.currentCharacteristics.parameters.currentHealth}/${this.player.currentCharacteristics.parameters.health}
 MP: ${this.player.currentCharacteristics.parameters.currentManna}/${this.player.currentCharacteristics.parameters.manna}
 EN: ${this.player.currentCharacteristics.parameters.currentEnergy}/${this.player.currentCharacteristics.parameters.energy}

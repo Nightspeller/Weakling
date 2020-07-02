@@ -7,6 +7,9 @@ export class Adventurer extends GeneralCharacter {
         this.inventory = new Map();
         this.actionPointsBase = { physical: 1, magical: 1, misc: 1 };
         this.actionPointsIncrement = { physical: 1, magical: 1, misc: 1 };
+        this.experienceTable = [0, 10, 20, 40, 80, 160, 320, 480, 640, 800];
+        this.xp = 0;
+        this.level = 1;
     }
     updateInventory(newInventoryMap) {
         this.inventory = newInventoryMap;
@@ -178,6 +181,37 @@ export class Adventurer extends GeneralCharacter {
             this.actedThisRound = false;
             this.applyItems();
         }
+    }
+    addXp(xp) {
+        this.xp += xp;
+        let matchingLevel = 1;
+        for (let i = 9; i >= 0; i--) {
+            if (this.xp > this.experienceTable[i]) {
+                //console.log(`for ${this.xp}xp, value in table ${this.experienceTable[i]}, the index is ${i}`)
+                matchingLevel = i + 1;
+                break;
+            }
+        }
+        //console.log(matchingLevel, this.level);
+        if (matchingLevel !== this.level) {
+            const levelDifference = matchingLevel - this.level;
+            for (let i = 0; i < levelDifference; i++) {
+                this.levelUp();
+            }
+        }
+    }
+    levelUp() {
+        //console.log(...prepareLog(`Leveling up ??${this.name} from level ${this.level} to ${this.level + 1}`));
+        this.level++;
+        this.baseCharacteristics.attributes.strength++;
+        this.baseCharacteristics.attributes.agility++;
+        this.baseCharacteristics.attributes.intelligence++;
+        this.baseCharacteristics.parameters.health++;
+        this.baseCharacteristics.parameters.currentHealth = this.baseCharacteristics.parameters.health;
+        this.baseCharacteristics.parameters.manna++;
+        this.baseCharacteristics.parameters.currentManna = this.baseCharacteristics.parameters.manna;
+        this.baseCharacteristics.parameters.energy++;
+        this.baseCharacteristics.parameters.currentEnergy = this.baseCharacteristics.parameters.energy;
     }
     freeze() {
     }
