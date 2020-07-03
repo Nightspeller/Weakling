@@ -166,7 +166,8 @@ export class GeneralLocation extends Phaser.Scene {
             const enemies = JSON.parse(object.properties.find(prop => prop.name === 'enemies')?.value);
             const background = object.properties.find(prop => prop.name === 'background')?.value || 'field-background';
             const drop = JSON.parse(object.properties.find(prop => prop.name === 'drop')?.value || "[]");
-            new Trigger({
+            const xpReward = object.properties?.find(prop => prop.name === 'xpReward')?.value ?? 0;
+            const trigger = new Trigger({
                 scene: this,
                 name: object.name,
                 triggerX: object.x,
@@ -179,7 +180,9 @@ export class GeneralLocation extends Phaser.Scene {
                 callback: () => {
                     this.switchToScene('Battle', {enemies: enemies, enemyName: object.name, background: background}, false);
                 },
-            })['drop'] = drop;
+            })
+            trigger['drop'] = drop;
+            trigger['xpReward'] = xpReward;
         });
 
         this.map.getObjectLayer('Waypoints')?.objects.forEach(object => {
@@ -243,14 +246,15 @@ export class GeneralLocation extends Phaser.Scene {
                 const trigger = this.triggers.find(trigger => trigger.name === data.defeatedEnemy);
                 trigger?.destroy();
                 if (trigger) {
-                    console.log(trigger['drop']);
                     trigger['drop']?.forEach(dropped => {
                         const shouldDrop = !(Math.random() > dropped.chance);
-                        console.log(`dropping ${dropped.itemId}? ${shouldDrop}`)
                         if (shouldDrop) {
                             this.createDroppedItem(dropped.itemId, dropped.quantity)
                         }
                     });
+                    if (trigger['xpReward'] !== 0) {
+                        this.player.addXp(trigger['xpReward']);
+                    }
                 }
             }
             if (data?.droppedItems) {

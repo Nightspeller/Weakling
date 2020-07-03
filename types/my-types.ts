@@ -150,7 +150,7 @@ type Slots = 'rightHand' | 'leftHand' | 'belt' | 'head' | 'neck' | 'ringLeft' | 
 interface Quest {
     questId: string;
     questName: string;
-    questReward: { items: {itemId: string; quantity: number}[], xp: number }
+    questReward: { items: {itemId: string; quantity: number}[], xp: number, text?: string }
     availableStates: {[key: string]: string}
     currentStates: string[];
 }

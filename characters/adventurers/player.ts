@@ -79,7 +79,7 @@ export class Player extends Adventurer {
             this.addItemToInventory('hargkakhs-key');
 
             this.addXp(639);
-            this.addXp(10);
+//            this.addXp(10);
 
            /* this.addQuest('theSelflessSpirit');
             this.updateQuest('theSelflessSpirit', 'falseNameLearned');
@@ -115,6 +115,11 @@ export class Player extends Adventurer {
                 console.log("Trying to add state which is already added.");
             } else {
                 this.quests[questToUpdateIndex].currentStates.push(state);
+                if (state === 'completed') {
+                    this.addXp(this.quests[questToUpdateIndex].questReward.xp);
+                    //TODO: support inventory overflow..somehow...
+                    this.quests[questToUpdateIndex].questReward.items.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
+                }
             }
         }
     }

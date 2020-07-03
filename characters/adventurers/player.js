@@ -71,7 +71,7 @@ export class Player extends Adventurer {
             this.addItemToInventory('rocky-rose-flower', 6);
             this.addItemToInventory('hargkakhs-key');
             this.addXp(639);
-            this.addXp(10);
+            //            this.addXp(10);
             /* this.addQuest('theSelflessSpirit');
              this.updateQuest('theSelflessSpirit', 'falseNameLearned');
              this.updateQuest('theSelflessSpirit', 'falseNameCalled');*/
@@ -105,6 +105,11 @@ export class Player extends Adventurer {
             }
             else {
                 this.quests[questToUpdateIndex].currentStates.push(state);
+                if (state === 'completed') {
+                    this.addXp(this.quests[questToUpdateIndex].questReward.xp);
+                    //TODO: support inventory overflow..somehow...
+                    this.quests[questToUpdateIndex].questReward.items.forEach(item => this.addItemToInventory(item.itemId, item.quantity));
+                }
             }
         }
     }
