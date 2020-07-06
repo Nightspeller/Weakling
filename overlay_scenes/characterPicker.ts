@@ -123,6 +123,10 @@ export class CharacterPickerScene extends GeneralOverlayScene {
                 });
                 self.scene.get('Caltor')['playerImage'].anims.play("idle_up");
                 self.closeScene();
+
+                if (char.texture.key.includes('martha')) {
+                    self.player.updateAchievement('Did you just assume?..', undefined, true);
+                }
             })
         })
     }

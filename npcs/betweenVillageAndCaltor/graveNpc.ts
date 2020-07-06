@@ -59,6 +59,7 @@ export class GraveNpc extends GeneralNpc {
                 this.setDialog(readyToTakeTheOath, (param) => {
                     if (param === 'oathTaken') {
                         scene.player.addItemToInventory('spirit-sword', 1, undefined, scene);
+                        scene.player.updateAchievement('Spirit them away', undefined, true);
                     }
                 });
             }

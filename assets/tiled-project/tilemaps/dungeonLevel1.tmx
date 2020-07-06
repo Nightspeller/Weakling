@@ -157,6 +157,7 @@
     <property name="drop" value="[{&quot;itemId&quot;: &quot;bone&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 1}, {&quot;itemId&quot;: &quot;dagger-weapon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 0.1}]"/>
     <property name="enemies" value="[{&quot;type&quot;: &quot;skeleton&quot;}]"/>
     <property name="image" value="skeleton-idle"/>
+    <property name="xpReward" type="int" value="3"/>
    </properties>
   </object>
   <object id="15" name="Skeletons 2" type="Enemy" x="32" y="576" width="64" height="64">
@@ -165,6 +166,7 @@
     <property name="drop" value="[{&quot;itemId&quot;: &quot;bone&quot;, &quot;quantity&quot;: 2, &quot;chance&quot;: 1}, {&quot;itemId&quot;: &quot;dagger-weapon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 0.1}]"/>
     <property name="enemies" value="[{&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}]"/>
     <property name="image" value="skeleton-idle"/>
+    <property name="xpReward" type="int" value="6"/>
    </properties>
   </object>
   <object id="16" name="Skeletons 3" type="Enemy" x="704" y="256" width="64" height="64">
@@ -173,6 +175,7 @@
     <property name="drop" value="[{&quot;itemId&quot;: &quot;bone&quot;, &quot;quantity&quot;: 3, &quot;chance&quot;: 1}, {&quot;itemId&quot;: &quot;dagger-weapon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 0.1}]"/>
     <property name="enemies" value="[{&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}]"/>
     <property name="image" value="skeleton-idle"/>
+    <property name="xpReward" type="int" value="9"/>
    </properties>
   </object>
   <object id="17" name="Skeletons 4" type="Enemy" x="1152" y="704" width="64" height="64">
@@ -181,6 +184,7 @@
     <property name="drop" value="[{&quot;itemId&quot;: &quot;bone&quot;, &quot;quantity&quot;: 3, &quot;chance&quot;: 1}, {&quot;itemId&quot;: &quot;dagger-weapon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 0.1}]"/>
     <property name="enemies" value="[{&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}]"/>
     <property name="image" value="skeleton-idle"/>
+    <property name="xpReward" type="int" value="9"/>
    </properties>
   </object>
  </objectgroup>

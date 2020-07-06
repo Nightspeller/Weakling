@@ -205,6 +205,7 @@ export class BattleScene extends GeneralOverlayScene {
         console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'}. Name of enemy object: ${this.enemyName}`);
         if (isPartyWon === true) {
             this.closeScene({defeatedEnemy: this.enemyName, droppedItems: this.droppedItems});
+            playerInstance.updateAchievement('Weak, but not useless', undefined, undefined, 1);
         } else {
             this.closeScene({droppedItems: this.droppedItems});
         }

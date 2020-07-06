@@ -9,6 +9,7 @@ export class Player extends Adventurer {
     public worldImageSpriteParams: { texture: string; frame: number };
     public party: Adventurer[];
     private quests: Quest[];
+    achievements: ({ name: string; description: string; icon: SpriteParameters; achieved: boolean; progress?: [number, number] })[];
 
     constructor() {
         super();
@@ -49,7 +50,7 @@ export class Player extends Adventurer {
             //fillInventoryWithPotions(this,'type', 'strength');
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
-            this.addItemToInventory('fancy-belt', 1,'belt');
+            this.addItemToInventory('fancy-belt', 1, 'belt');
             this.addItemToInventory('leather-armor', 1, 'body');
             this.addItemToInventory('trap-kit');
             this.addItemToInventory('spirit-sword');
@@ -57,17 +58,17 @@ export class Player extends Adventurer {
             this.addItemToInventory('smoldering-ring', 1, 'ringRight');
             this.addItemToInventory('rope-belt', 1);
             this.addItemToInventory('purplecup-mushroom', 3);
-            this.addItemToInventory('primula-flower',4);
+            this.addItemToInventory('primula-flower', 4);
             this.addItemToInventory('pinky-pie-sapling', 3);
             this.addItemToInventory('yellow-fingers-sapling', 3);
-            this.addItemToInventory('carrot',3);
+            this.addItemToInventory('carrot', 3);
             this.addItemToInventory('small-weak-energy-potion', 2);
             this.addItemToInventory('pinky-pie-sapling');
-            this.addItemToInventory('bone', 6);
+            this.addItemToInventory('bone', 12);
             this.addItemToInventory('bone-dust', 12);
             this.addItemToInventory('rocky-rose-sapling');
             this.addItemToInventory('medium-weak-energy-potion');
-            this.addItemToInventory('sourgrass',6);
+            this.addItemToInventory('sourgrass', 6);
             this.addItemToInventory('medium-weak-strength-potion', 5);
             this.addItemToInventory('leather-armor', 1);
             this.addItemToInventory('small-bottle', 3);
@@ -81,9 +82,9 @@ export class Player extends Adventurer {
             this.addXp(639);
 //            this.addXp(10);
 
-           /* this.addQuest('theSelflessSpirit');
-            this.updateQuest('theSelflessSpirit', 'falseNameLearned');
-            this.updateQuest('theSelflessSpirit', 'falseNameCalled');*/
+            /* this.addQuest('theSelflessSpirit');
+             this.updateQuest('theSelflessSpirit', 'falseNameLearned');
+             this.updateQuest('theSelflessSpirit', 'falseNameCalled');*/
             //this.updateQuest('theSelflessSpirit', 'trueNameLearned');
             //this.updateQuest('theSelflessSpirit', 'trueNameCalled');
         }
@@ -96,6 +97,61 @@ export class Player extends Adventurer {
         if (DEBUG) this.party = [this, elderInstance, eyeballInstance];
 
         this.addQuest('bigCaltorTrip');
+
+        this.achievements = [{
+            name: 'Fully prepared',
+            description: 'Equip items at every slot',
+            icon: {texture: 'icon-item-set', frame: 137},
+            achieved: false
+        }, {
+            name: 'My little hobby',
+            description: 'Make 10 potions or mixtures',
+            icon: {texture: 'icon-item-set', frame: 188},
+            progress: [0, 10],
+            achieved: false
+        }, {
+            name: 'Let it go',
+            description: 'Drop an item - it might be more useful than it seems!',
+            icon: {texture: 'icon-item-set', frame: 205},
+            achieved: false
+        }, {
+            name: 'Welcome to the Farmville',
+            description: 'Grow 6 plants',
+            icon: {texture: 'icon-item-set', frame: 197},
+            progress: [0, 6],
+            achieved: false
+        }, {
+            name: 'Did you just assume?..',
+            description: 'Change your gender',
+            icon: {texture: 'icon-item-set', frame: 263},
+            achieved: false
+        }, {
+            name: 'Spirit them away',
+            description: 'Obtain the Spirit Sword',
+            icon: {texture: 'icon-item-set', frame: 84},
+            achieved: false
+        }, {
+            name: 'See battle, Boo? Run, Boo, run!',
+            description: 'Run away from the battle before it begins',
+            icon: {texture: 'edited', frame: 'Running'},
+            achieved: false
+        }, {
+            name: 'Weak, but not useless',
+            description: 'Defeat 5 enemy groups',
+            icon: {texture: 'icon-item-set', frame: 48},
+            progress: [0, 5],
+            achieved: false
+        }, {
+            name: 'Checked, checked aaaand checked!',
+            description: 'Complete all the quests',
+            icon: {texture: 'icon-item-set', frame: 216},
+            achieved: false
+        }, {
+            name: 'It is done',
+            description: 'Finish the game by collecting all achievements',
+            icon: {texture: 'icon-item-set', frame: 199},
+            achieved: false
+        }];
     }
 
     public addQuest(questId) {
@@ -122,6 +178,12 @@ export class Player extends Adventurer {
                 }
             }
         }
+
+        let shouldGetAchievement = true;
+        this.quests.forEach(quest => {
+            if (quest.currentStates.includes('completed') === false) shouldGetAchievement = false
+        })
+        if (this.quests.length === Object(questsData).keys().length && shouldGetAchievement) this.updateAchievement('Checked, checked aaaand checked!', undefined, true);
     }
 
     public getQuestById(questId: string) {
@@ -130,6 +192,31 @@ export class Player extends Adventurer {
 
     public getQuests() {
         return this.quests;
+    }
+
+    public updateAchievement(name, newDescription, achieved, progressIncrement?: number) {
+        const achievement = this.achievements.find(achievement => achievement.name === name);
+        if (achievement === undefined) throw `Trying to update non-existing achievement: ${name}`;
+        if (newDescription) achievement.description = newDescription;
+        if (achieved) achievement.achieved = achieved;
+        if (progressIncrement) {
+            achievement.progress[0] += progressIncrement;
+            if (achievement.progress[0] >= achievement.progress[1]) {
+                achievement.progress[0] = achievement.progress[1];
+                achievement.achieved = true;
+            }
+        }
+
+        let shouldGetFinalAchievement = true;
+        this.achievements.forEach(achievement => {
+            if (achievement.achieved === false) shouldGetFinalAchievement = false
+        })
+        if (shouldGetFinalAchievement) {
+            this.updateAchievement('It is done', undefined, true);
+            alert(`Congratulations! Impressive! You actually finished the game, or at least the part of it which is currently ready. It's hard to overstate my satisfaction! Feel free to come back later to play it again, hopefully with much more content added!`);
+        }
+
+        return achievement;
     }
 }
 

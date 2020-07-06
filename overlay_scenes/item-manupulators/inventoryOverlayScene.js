@@ -1,5 +1,5 @@
 import { GeneralItemManipulatorScene } from "./generalItemManipulator.js";
-import { backpackSlotNames, playerSlotNames } from "../../data/items/itemSlots.js";
+import { backpackSlotNames, dollSlotNames, playerSlotNames } from "../../data/items/itemSlots.js";
 export class InventoryOverlayScene extends GeneralItemManipulatorScene {
     constructor(initObject = { key: 'Inventory' }) {
         super(initObject);
@@ -126,6 +126,13 @@ Actions: ${this.player.getAvailableActions().join(', ')}`;
         this._adjustQuickSlots();
         if (withCharacteristics)
             this._drawCharacteristics();
+        let shouldGetAchievement = true;
+        dollSlotNames.forEach(slot => {
+            if (this.itemsMap[slot] === undefined)
+                shouldGetAchievement = false;
+        });
+        if (shouldGetAchievement)
+            this.player.updateAchievement('Fully prepared', undefined, true);
     }
 }
 //# sourceMappingURL=inventoryOverlayScene.js.map

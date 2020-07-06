@@ -25,15 +25,17 @@ export class QuestLogScene extends GeneralOverlayScene {
     }
     _drawQuestLog() {
         this.questLogDisplayGroup.clear(true, true);
+        const questLogTitle = this.add.text(GAME_W / 2, 42, 'Quest Journal', { color: 'black', fontSize: '32px', fontStyle: 'bold' }).setOrigin(0.5);
+        this.questLogDisplayGroup.add(questLogTitle);
         const quests = this.player.getQuests();
         quests.sort(quest => quest.currentStates.includes('completed') ? 1 : 0);
         const textOptions = { color: 'black', wordWrap: { width: 360 } };
-        const questDescription = this.add.container(GAME_W / 2, 32);
+        const questDescription = this.add.container(GAME_W / 2, 64);
         this._updateQuestDescriptionContainer(quests[0], questDescription);
         this.questLogDisplayGroup.add(questDescription);
         let selectedQuestName;
         quests.forEach((quest, index) => {
-            const questName = new RichText(this, 32, 32 + 20 * index, quest.questName, textOptions);
+            const questName = new RichText(this, 32, 64 + 20 * index, quest.questName, textOptions);
             if (index === 0) {
                 selectedQuestName = questName;
                 selectedQuestName.setStyle({ 'fontStyle': 'bold' });

@@ -28,6 +28,7 @@ import {BooksStoreScene} from "./locations/booksStore.js";
 import {AlchemyStandScene} from "./overlay_scenes/item-manupulators/alchemyStandOverlay.js";
 import {ContainerOverlayScene} from "./overlay_scenes/item-manupulators/containerOverlayScene.js";
 import {DungeonLevel1Scene} from "./locations/dungeonLevel1.js";
+import {AchievementsScene} from "./overlay_scenes/achievements.js";
 
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
     BetweenVillageAndCaltorScene,
@@ -62,7 +63,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
         OptionsScene,
         IntroScene,
         ...LOCATION_SCENES,
-        CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, InventoryOverlayScene, QuestLogScene, AlchemyStandScene, ContainerOverlayScene
+        CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, InventoryOverlayScene, QuestLogScene, AchievementsScene, AlchemyStandScene, ContainerOverlayScene
     ]
 };
 

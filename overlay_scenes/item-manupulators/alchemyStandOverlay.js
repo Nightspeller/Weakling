@@ -94,6 +94,7 @@ export class AlchemyStandScene extends InventoryOverlayScene {
                     this._changeItemQuantity(`resultSlot`, result.quantity + matchingRecipe.result.quantity);
                 }
             }
+            this.player.updateAchievement('My little hobby', undefined, undefined, 1);
         }
     }
     _testRecipe(recipe, components, vessel) {

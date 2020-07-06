@@ -4,6 +4,7 @@ import { Wizard } from "../characters/enemies/wizard.js";
 import Effect from "../entities/effect.js";
 import { GhostKnight } from "../characters/enemies/ghost-knight.js";
 import { Skeleton } from "../characters/enemies/skeleton.js";
+import { playerInstance } from "../characters/adventurers/player.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location, scene) {
         this.scene = scene;
@@ -168,6 +169,8 @@ export class Disposition {
             this.log('Adventurer party retreated!');
             this.scene.exitBattle(false);
             this.battleEnded = true;
+            if (this.currentPhase === 'preparation')
+                playerInstance.updateAchievement('See battle, Boo? Run, Boo, run!', undefined, true);
             return actionResults;
         }
         if (action.consumes !== undefined && source instanceof Adventurer) {

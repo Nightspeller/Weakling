@@ -100,6 +100,7 @@ export class BetweenVillageAndDungeonScene extends GeneralLocation {
             setTimeout(() => {
                 trigger.image.setPosition(mapObject.x, mapObject.y);
             }, 0);
+            this.player.updateAchievement('Welcome to the Farmville', undefined, undefined, 1);
         }
         else {
             this.map.putTileAt(157, 12 + x, 15 + y, true, 'Patch Plants');

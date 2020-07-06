@@ -428,6 +428,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const deletedItem = this._deleteItemRepresentation(slot);
         this._highlightValidSlots(deletedItem.item.possibleSlots, false);
         this.droppedItems.push(deletedItem.item);
+        this.player.updateAchievement('Let it go', undefined, true);
     }
     _getSlotByItem(itemRepresentation) {
         for (let [slot, itemFromMap] of this.itemsMap.entries()) {
