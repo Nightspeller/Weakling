@@ -251,12 +251,46 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":8,
+         "name":"Containers",
+         "objects":[
+                {
+                 "gid":1473,
+                 "height":32,
+                 "id":17,
+                 "name":"Fire marble",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"fire-marble\", \"quantity\": 3}]"
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":160
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":17,
+ "nextlayerid":9,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.05.27",
+ "tiledversion":"1.4.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -10759,9 +10793,23 @@
          "tilecount":12,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "columns":16,
+         "firstgid":1185,
+         "image":"..\/images-extruded\/items\/icon-item-set.png",
+         "imageheight":816,
+         "imagewidth":544,
+         "margin":1,
+         "name":"icon-item-set",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":384,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":10
 }

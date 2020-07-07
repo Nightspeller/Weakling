@@ -140,7 +140,7 @@ Actions: ${this.player.getAvailableActions().join(', ')}`;
 
         let shouldGetAchievement = true;
         dollSlotNames.forEach(slot => {
-            if (this.itemsMap[slot] === undefined) shouldGetAchievement = false;
+            if (this.itemsMap.get(slot) === undefined) shouldGetAchievement = false;
         })
         if (shouldGetAchievement) this.player.updateAchievement('Fully prepared', undefined, true);
     }

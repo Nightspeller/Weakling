@@ -128,7 +128,7 @@ Actions: ${this.player.getAvailableActions().join(', ')}`;
             this._drawCharacteristics();
         let shouldGetAchievement = true;
         dollSlotNames.forEach(slot => {
-            if (this.itemsMap[slot] === undefined)
+            if (this.itemsMap.get(slot) === undefined)
                 shouldGetAchievement = false;
         });
         if (shouldGetAchievement)
