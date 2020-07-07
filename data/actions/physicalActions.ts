@@ -1,4 +1,22 @@
 export const physicalActions: { [key: string]: ActionData } = {
+    throwFireMarble: {
+        actionId: 'throwFireMarble',
+        phase: ['battle'],
+        type: 'physical',
+        actionName: 'Throw fire marble',
+        actionDescription: 'Throws fire marble to the enemy burning them',
+        effectsDescriptions: [{
+            effectId: 'physicalDamage',
+            strength: 1
+        }],
+        consumes: `fire-marble`,
+        target: 'enemy',
+        actionCost: 0.5,
+        noticeable: 0,
+        animation: 'meleeAttack',
+        icon: {texture: 'icon-item-set', frame: 288},
+        parametersCost: {energy: 3},
+    },
     warmUp: {
         actionId: 'warmUp',
         phase: ['preparation', 'battle'],
