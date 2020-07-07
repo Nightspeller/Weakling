@@ -134,7 +134,7 @@ interface DialogOptions extends OverlaySceneOptions {
     letterAppearanceDelay?: number;
 }
 
-type Slots = 'rightHand' | 'leftHand' | 'belt' | 'head' | 'neck' | 'ringLeft' | 'ringRight' | 'body' | 'cape' | 'gloves' | 'tail' | 'pants' | 'boots' | 'backpack' |
+type Slots = 'rightHand' | 'leftHand' | 'belt' | 'head' | 'neck' | 'ringLeft' | 'ringRight' | 'body' | 'cape' | 'gloves' | 'tail' | 'pants' | 'boots' | 'bag' |
                 'quickSlot' | `quickSlot0` | `quickSlot1` | `quickSlot2` | `quickSlot3` | `quickSlot4` |
                 'backpack0_0' | 'backpack1_0' | 'backpack2_0' | 'backpack3_0' | 'backpack4_0' |
                 'backpack0_1' | 'backpack1_1' | 'backpack2_1' | 'backpack3_1' | 'backpack4_1' |

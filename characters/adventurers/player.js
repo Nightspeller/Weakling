@@ -66,11 +66,11 @@ export class Player extends Adventurer {
             this.addItemToInventory('small-bottle', 3);
             this.addItemToInventory('medium-bottle', 3);
             this.addItemToInventory('big-bottle', 3);
-            this.addItemToInventory('giant-bottle', 3);
+            this.addItemToInventory('fire-marble', 3);
             this.addItemToInventory('wooden-sword-weapon', 1, 'rightHand');
             this.addItemToInventory('rocky-rose-flower', 6);
-            this.addItemToInventory('hargkakhs-key');
-            this.addXp(639);
+            this.addItemToInventory('basic-sack');
+            //this.addXp(639);
             //            this.addXp(10);
             /* this.addQuest('theSelflessSpirit');
              this.updateQuest('theSelflessSpirit', 'falseNameLearned');
@@ -171,7 +171,7 @@ export class Player extends Adventurer {
             if (quest.currentStates.includes('completed') === false)
                 shouldGetAchievement = false;
         });
-        if (this.quests.length === Object(questsData).keys().length && shouldGetAchievement)
+        if (this.quests.length === Object.keys(questsData).length && shouldGetAchievement)
             this.updateAchievement('Checked, checked aaaand checked!', undefined, true);
     }
     getQuestById(questId) {

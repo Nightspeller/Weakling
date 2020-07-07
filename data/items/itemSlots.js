@@ -6,7 +6,7 @@ export const backpackSlotNames = [
     'backpack0_4', 'backpack1_4', 'backpack2_4', 'backpack3_4', 'backpack4_4',
 ];
 export const dollSlotNames = [
-    'rightHand', 'leftHand', 'belt', 'head', 'neck', 'ringLeft', 'ringRight', 'body', 'cape', 'gloves', 'tail', 'pants', 'boots', 'backpack',
+    'rightHand', 'leftHand', 'belt', 'head', 'neck', 'ringLeft', 'ringRight', 'body', 'cape', 'gloves', 'tail', 'pants', 'boots', 'bag',
 ];
 export const quickSlotNames = [
     'quickSlot0', 'quickSlot1', 'quickSlot2', 'quickSlot3', 'quickSlot4',

@@ -30,6 +30,7 @@ export class KeithNpc extends GeneralNpc {
                 {itemId: 'pumpkin', quantity: 3},
                 {itemId: 'cabbage-seeds', quantity: 5},
                 {itemId: 'cabbage', quantity: 3},
+                {itemId: 'basic-sack', quantity: 1},
             ]
         });
     }
