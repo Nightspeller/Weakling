@@ -51,6 +51,8 @@ export class GeneralLocation extends Phaser.Scene {
             this.showToggleSoundIcon();
             this.showToggleQuestLogIcon();
             this.showAchievementsIcon();
+            if (DEBUG)
+                this.showAllItemsIcon();
         }
         const tilesets = [];
         this.map.tilesets.forEach(tileset => {
@@ -542,6 +544,19 @@ export class GeneralLocation extends Phaser.Scene {
         this.input.keyboard.off('keyup-K');
         this.input.keyboard.on('keyup-K', () => {
             this.switchToScene('Achievements', {}, false);
+        });
+    }
+    showAllItemsIcon() {
+        const allItemsGraphics = this.add.graphics().setScrollFactor(0)
+            .fillStyle(0xf0d191, 0.8)
+            .fillRect(32, 32, 32, 32)
+            .lineStyle(3, 0x907748)
+            .strokeRect(32, 32, 32, 32)
+            .setDepth(10 - 1);
+        const allItemsIconImage = this.add.image(32, 32, 'icon-item-set', 270)
+            .setOrigin(0, 0).setScrollFactor(0).setInteractive({ useHandCursor: true }).setDepth(10 - 1);
+        allItemsIconImage.on('pointerdown', () => {
+            this.switchToScene('AllItems', {}, false);
         });
     }
 }

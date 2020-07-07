@@ -26,17 +26,14 @@ export class AchievementsScene extends GeneralOverlayScene {
         let selectedAchievementName;
         achievements.forEach((achievement, index) => {
             const achievementIcon = this.add.sprite(32, 64 + (32 + 10) * index, achievement.icon.texture, achievement.icon.frame)
-                .setOrigin(0, 0)
-                .setTint(0x9A9A9A);
+                .setOrigin(0, 0);
             const achievementName = new RichText(this, 32 + 32 + 5, 64 + 10 + (32 + 10) * index, achievement.name, textOptions);
             if (index === 0) {
                 selectedAchievementName = achievementName;
                 selectedAchievementName.setStyle({ 'fontStyle': 'bold' });
             }
-            if (achievement.achieved === true) {
-                achievementIcon.clearTint();
+            if (achievement.achieved === true)
                 achievementName.cross();
-            }
             achievementIcon.setInteractive({ useHandCursor: true });
             achievementName.setInteractive({ useHandCursor: true });
             const selectAchievement = () => {
