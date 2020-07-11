@@ -13,7 +13,7 @@ export const tarethSecondDialog: DialogTree = [{
     replies: [{
         text: `Hmm, fine! I might have something which might help! Just a few days ago I perfected my strength potion! Couple carrots and Rocky rose together do miracles!`,
         checkInventory: 'remove',
-        checkValue: [{itemId: 'medium-weak-strength-potion', quantity: 1}],
+        checkValue: [{itemId: 'small-weak-strength-potion', quantity: 1}],
         successTriggers: 'potionGiven',
         failureTriggers: 'noPotion',
     }, {

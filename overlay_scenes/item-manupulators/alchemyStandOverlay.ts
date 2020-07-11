@@ -111,16 +111,24 @@ export class AlchemyStandScene extends InventoryOverlayScene {
             return requiredComponents;
         })
         console.log(matchingRecipe, requiredComponents);
-        if (requiredComponents) {
-            if(result === undefined || (result.itemId === matchingRecipe.result.id && result.stackable === true)) {
+        let qualityResult;
+        if (matchingRecipe){
+            Object.entries(matchingRecipe.result).forEach(([intelligence, result]) => {
+                if (+intelligence <= this.player.currentCharacteristics.attributes.intelligence) {
+                    qualityResult = result;
+                }
+            })
+        }
+        if (qualityResult && requiredComponents) {
+            if(result === undefined || (result.itemId === qualityResult.id && result.stackable === true)) {
                 requiredComponents.forEach(requiredComponent => {
                     this._changeItemQuantity(`componentSlot${requiredComponent.componentNumber}` as Slots, requiredComponent.component.quantity - requiredComponent.requiredQuantity);
                 })
                 if (vessel) this._changeItemQuantity(`vesselSlot` as Slots, vessel.quantity - 1);
                 if (result === undefined) {
-                    this._createItemRepresentation(new Item(matchingRecipe.result.id, matchingRecipe.result.quantity), 'resultSlot');
+                    this._createItemRepresentation(new Item(qualityResult.id, qualityResult.quantity), 'resultSlot');
                 } else {
-                    this._changeItemQuantity(`resultSlot`, result.quantity + matchingRecipe.result.quantity);
+                    this._changeItemQuantity(`resultSlot`, result.quantity + qualityResult.quantity);
                 }
             }
             this.player.updateAchievement('My little hobby', undefined, undefined, 1);
