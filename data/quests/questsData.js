@@ -76,12 +76,13 @@ export const questsData = {
         },
         currentStates: ['started']
     },
-    'gregsBucket': {
-        questId: 'gregsBucket',
-        questName: `Greg's bucket`,
-        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 5 },
+    'gatherTheGarlic': {
+        questId: 'gatherTheGarlic',
+        questName: `Gather the garlic`,
+        questReward: { items: [], xp: 5 },
         availableStates: {
-            started: `Greg the garlic farmer asked you for help - his bucket got a hole in it and can't be used any longer.`
+            started: `Greg the garlic farmer asked you for help - he wants you to collect all the garlic at his field and bring it to him. In exchange, he allows you to keep all the garlic seeds you will find..`,
+            completed: `You helped Greg with his garlic and got some garlic seeds. He will also be able to sell you some more if you'll even have a need in it.`
         },
         currentStates: ['started']
     }

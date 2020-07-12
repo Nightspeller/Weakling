@@ -265,6 +265,32 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'garlic-seeds': {
+        itemId: 'carrot-seeds',
+        displayName: 'Garlic seeds',
+        description: 'The seeds of the garlic',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 198},
+        stackable: true,
+        modified: false,
+        specifics: {
+            plantable: 'garlic'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'garlic': {
+        itemId: 'garlic',
+        displayName: 'Garlic',
+        description: 'Nice grown garlic',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 232},
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
     'carrot-seeds': {
         itemId: 'carrot-seeds',
         displayName: 'Carrot seeds',

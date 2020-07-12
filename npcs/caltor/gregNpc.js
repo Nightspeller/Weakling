@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import { gregDialog, gregQuestAcceptedDialog } from "../../data/dialogs/caltor/gregDialog.js";
+import { gregAfterQuestFinishedDialog, gregDialog, gregQuestAcceptedDialog } from "../../data/dialogs/caltor/gregDialog.js";
 export class GregNpc extends GeneralNpc {
     constructor({ scene, x, y, spriteParams }) {
         super({
@@ -10,11 +10,27 @@ export class GregNpc extends GeneralNpc {
             spriteParams: spriteParams,
             initDialog: gregDialog,
             interactionCallback: (param) => {
-                if (param === 'accept') {
-                    scene.player.addQuest('gregsBucket');
+                if (param === 'jobAccepted') {
+                    scene.player.addQuest('gatherTheGarlic');
                     this.setDialog(gregQuestAcceptedDialog);
                 }
-            }
+                if (param === 'garlicGathered') {
+                    scene.player.updateQuest('gatherTheGarlic', 'completed');
+                    this.setDialog(gregAfterQuestFinishedDialog);
+                }
+                if (param === 'garlicGatheredOpenShop') {
+                    scene.player.updateQuest('gatherTheGarlic', 'completed');
+                    this.setDialog(gregAfterQuestFinishedDialog);
+                    this.startTrade();
+                }
+                if (param === 'openShop') {
+                    this.startTrade();
+                }
+            },
+            items: [
+                { itemId: 'garlic', quantity: 10 },
+                { itemId: 'garlic-seeds', quantity: 10 },
+            ],
         });
     }
 }
