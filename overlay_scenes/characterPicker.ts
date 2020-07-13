@@ -17,7 +17,7 @@ export class CharacterPickerScene extends GeneralOverlayScene {
     }
 
     public create() {
-        super.create('Caltor');
+        super.create('House');
         this._drawCharacterOptions();
     }
 

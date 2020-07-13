@@ -30,7 +30,7 @@ export const questsData = {
         questName: 'Bones picking',
         questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 5 },
         availableStates: {
-            started: `My friend Moorsh asked me to bring him 12 portions of bone dust so he could make his mushrooms to spore. I should be able to recover the necessary bones from the Old Dungeon.`,
+            started: `My friend, Moorsh, asked me to bring him 12 portions of bone dust so he could make his mushrooms to spore. I should be able to recover the necessary bones from the Old Dungeon.`,
             completed: `I got the mushroom spores! With it I can grow my own crop in no time!`
         },
         currentStates: ['started']

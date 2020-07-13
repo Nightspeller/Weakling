@@ -19,18 +19,6 @@ export class CaltorScene extends GeneralLocation {
     }
     create() {
         super.create('caltor');
-        const charPickerMapObject = this.getMapObject(`Character Picker`);
-        new Trigger({
-            scene: this,
-            name: charPickerMapObject.name,
-            triggerX: charPickerMapObject.x,
-            triggerY: charPickerMapObject.y,
-            triggerW: charPickerMapObject.width,
-            triggerH: charPickerMapObject.height,
-            callback: () => {
-                this.switchToScene('CharacterPicker', {}, false);
-            }
-        });
         let layer4visible = true;
         const barracksMapObject = this.getMapObject(`Barracks`);
         new Trigger({
