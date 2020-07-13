@@ -9,7 +9,8 @@ export class Player extends Adventurer {
     public worldImageSpriteParams: { texture: string; frame: number };
     public party: Adventurer[];
     private quests: Quest[];
-    achievements: ({ name: string; description: string; icon: SpriteParameters; achieved: boolean; progress?: [number, number] })[];
+    public achievements: ({ name: string; description: string; icon: SpriteParameters; achieved: boolean; progress?: [number, number] })[];
+    public defeatedEnemies: string[];
 
     constructor() {
         super();
@@ -17,6 +18,7 @@ export class Player extends Adventurer {
         this.spriteParams = {texture: 'weakling', frame: null, width: 96, height: 96};
         this.worldImageSpriteParams = {texture: 'jeremy-green', frame: 1};
         this.quests = [];
+        this.defeatedEnemies = [];
         this.baseCharacteristics = {
             attributes: {
                 strength: 10,

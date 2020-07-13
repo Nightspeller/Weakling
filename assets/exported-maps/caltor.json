@@ -1390,6 +1390,11 @@
                  "name":"Boars 1",
                  "properties":[
                         {
+                         "name":"drop",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"bacon\", \"quantity\": 2, \"chance\": 1}, {\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 0.1}]"
+                        }, 
+                        {
                          "name":"enemies",
                          "type":"string",
                          "value":"[{\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}]"
@@ -1398,6 +1403,11 @@
                          "name":"image",
                          "type":"string",
                          "value":"boar-avatar"
+                        }, 
+                        {
+                         "name":"xpReward",
+                         "type":"int",
+                         "value":2
                         }],
                  "rotation":0,
                  "type":"Enemy",
@@ -1412,6 +1422,11 @@
                  "name":"Boars 2",
                  "properties":[
                         {
+                         "name":"drop",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 1}, {\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 0.1}]"
+                        }, 
+                        {
                          "name":"enemies",
                          "type":"string",
                          "value":"[{\"type\": \"wildBoar\"}]"
@@ -1420,6 +1435,11 @@
                          "name":"image",
                          "type":"string",
                          "value":"boar-avatar"
+                        }, 
+                        {
+                         "name":"xpReward",
+                         "type":"int",
+                         "value":1
                         }],
                  "rotation":0,
                  "type":"Enemy",

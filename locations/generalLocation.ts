@@ -245,6 +245,7 @@ export class GeneralLocation extends Phaser.Scene {
 
         this.events.on('resume', (scene, data) => {
             if (data?.defeatedEnemy) {
+                this.player.defeatedEnemies.push(`${mapKey}/${data.defeatedEnemy}`);
                 const trigger = this.triggers.find(trigger => trigger.name === data.defeatedEnemy);
                 trigger?.destroy();
                 if (trigger) {

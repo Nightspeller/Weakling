@@ -2,7 +2,7 @@ export const questsData: { [key: string]: Quest } = {
     'bigCaltorTrip': {
         questId: 'bigCaltorTrip',
         questName: 'Big Caltor trip',
-        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 5},
+        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 3},
         availableStates: {
             started: `Today is the big day! It is time to gather all what your Village produced this season and take it to Caltor! And of course you overslept!.. \nSo now it is time to hurry and meet Elder Guarthh and hit the road! He usually can be found either at his home or at the center of the Village.`,
             talkedToElder: `Elder Guarthh asks you to collect goods for sale from fellow villagers: minerals dug out by uncle Hargkakh and baskets from auntie Nahkha.`,
@@ -17,7 +17,7 @@ export const questsData: { [key: string]: Quest } = {
     'scaredyBat': {
         questId: 'scaredyBat',
         questName: 'Scaredy Bat',
-        questReward: {items: [], xp: 5, text: 'new companion'},
+        questReward: {items: [], xp: 3, text: 'new companion'},
         availableStates: {
             started: `I found Eyeball, our favorite cyclops bat, hiding in the cave next to the Village entrance. A few days ago Whiskers gave him some hard time after drinking my experimental strength potion.\nNow Eyeball does not want to go outside anymore, even though Whiskers is back to normal. I wonder if there is something I can do to cheer him up.`,
             purplecupFed: `Yay! Purplecups did the trick and lured Eyeball outside of his comfort zone! Now I just have to take him with me outside.`,
@@ -28,7 +28,7 @@ export const questsData: { [key: string]: Quest } = {
     'bonesPicking': {
         questId: 'bonesPicking',
         questName: 'Bones picking',
-        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 5},
+        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 3},
         availableStates: {
             started: `My friend, Moorsh, asked me to bring him 12 portions of bone dust so he could make his mushrooms to spore. I should be able to recover the necessary bones from the Old Dungeon.`,
             completed: `I got the mushroom spores! With it I can grow my own crop in no time!`
@@ -38,7 +38,7 @@ export const questsData: { [key: string]: Quest } = {
     'helpTheTareth': {
         questId: 'helpTheTareth',
         questName: 'Help the Tareth',
-        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 5},
+        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 3},
         availableStates: {
             started: `Your friend, Tareth, struggles with the task he got from the Elder - he needs to carry harvested supplies to the stockpile, but the baskets are too heavy. You don't have time to do it for him, so there must be other way to help him.`,
             potionToMake: `I might be able to help if I make some empowering potion for poor Tareth.`,
@@ -50,7 +50,7 @@ export const questsData: { [key: string]: Quest } = {
     'theSelflessSpirit': {
         questId: 'theSelflessSpirit',
         questName: 'The Selfless Spirit',
-        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 5},
+        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 3},
         availableStates: {
             started: `You found the grave of a brave hero, with the spirit sword next to it. The engraving says:\n
     Here lays the great hero of Caltor,
@@ -70,16 +70,20 @@ export const questsData: { [key: string]: Quest } = {
     'boarsAtTheFields': {
         questId: 'boarsAtTheFields',
         questName: `Boars at the Fields`,
-        questReward: {items: [{itemId: 'copper-pieces', quantity: 5}], xp: 5},
+        questReward: {items: [], xp: 3},
         availableStates: {
-            started: `You read the announcement on the board near the tavern, that help is needed to get rid of the boars ravaging farmer Joe's fields.`
+            started: `Looks like the that help is needed to get rid of the boars ravaging farmer Joe's fields.`,
+            noRewardNegotiated: `You talked to farmer Joe just to find out that there is no reward for the task, but at least you get to keep the bacon and hopefully learn something.`,
+            rewardNegotiated: `You talked to farmer Joe and negotiated the reward of 10 copper pieces for the task.`,
+            boarsKilled: `You dealt with the boars on farmer Joe's fields`,
+            completed: `You informed Joe about the task being completed.`
         },
         currentStates: ['started']
     },
     'gatherTheGarlic': {
         questId: 'gatherTheGarlic',
         questName: `Gather the garlic`,
-        questReward: {items: [], xp: 5},
+        questReward: {items: [], xp: 3},
         availableStates: {
             started: `Greg the garlic farmer asked you for help - he wants you to collect all the garlic at his field and bring it to him. In exchange, he allows you to keep all the garlic seeds you will find..`,
             completed: `You helped Greg with his garlic and got some garlic seeds. He will also be able to sell you some more if you'll even have a need in it.`

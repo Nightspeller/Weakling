@@ -8,6 +8,7 @@ export class Player extends Adventurer {
         this.spriteParams = { texture: 'weakling', frame: null, width: 96, height: 96 };
         this.worldImageSpriteParams = { texture: 'jeremy-green', frame: 1 };
         this.quests = [];
+        this.defeatedEnemies = [];
         this.baseCharacteristics = {
             attributes: {
                 strength: 10,

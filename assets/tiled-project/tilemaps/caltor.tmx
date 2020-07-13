@@ -382,14 +382,18 @@
  <objectgroup id="12" name="Enemies">
   <object id="15" name="Boars 1" type="Enemy" x="2944" y="2976" width="64" height="64">
    <properties>
+    <property name="drop" value="[{&quot;itemId&quot;: &quot;bacon&quot;, &quot;quantity&quot;: 2, &quot;chance&quot;: 1}, {&quot;itemId&quot;: &quot;bacon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 0.1}]"/>
     <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
     <property name="image" value="boar-avatar"/>
+    <property name="xpReward" type="int" value="2"/>
    </properties>
   </object>
   <object id="20" name="Boars 2" type="Enemy" x="2656" y="2912" width="64" height="64">
    <properties>
+    <property name="drop" value="[{&quot;itemId&quot;: &quot;bacon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 1}, {&quot;itemId&quot;: &quot;bacon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 0.1}]"/>
     <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}]"/>
     <property name="image" value="boar-avatar"/>
+    <property name="xpReward" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

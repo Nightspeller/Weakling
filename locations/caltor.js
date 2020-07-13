@@ -43,6 +43,11 @@ export class CaltorScene extends GeneralLocation {
         const announcementsDesk = new AnnouncementsDeskNpc({ scene: this });
         const kasima = new KasimaNpc({ scene: this });
         const fountain = new FountainNpc({ scene: this });
+        this.events.on('resume', (scene, data) => {
+            if (this.player.defeatedEnemies.includes('caltor/Boars 1') && this.player.defeatedEnemies.includes('caltor/Boars 2')) {
+                this.player.updateQuest('boarsAtTheFields', 'boarsKilled');
+            }
+        });
     }
     update() {
         super.update();

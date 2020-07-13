@@ -265,6 +265,30 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'cheese': {
+        itemId: 'cheese',
+        displayName: 'Cheese',
+        description: 'Nice grown...cheese?',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 247},
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'bacon': {
+        itemId: 'bacon',
+        displayName: 'Bacon',
+        description: 'A good portion of tasty bacon',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: {texture: 'icon-item-set', frame: 241},
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 3,
+        buyPrice: 6
+    },
     'garlic-seeds': {
         itemId: 'carrot-seeds',
         displayName: 'Garlic seeds',
