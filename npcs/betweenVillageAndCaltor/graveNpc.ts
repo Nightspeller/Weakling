@@ -35,7 +35,10 @@ export class GraveNpc extends GeneralNpc {
                 this.setDialog(graveDialogWithFalseName, (param) => {
                     if (param === 'falseNameCalled') {
                         scene.player.updateQuest('theSelflessSpirit', 'falseNameCalled');
-                        scene.switchToScene('Battle', {enemies: [{"type": "ghost-knight"}]});
+                        scene.switchToScene('Battle', {
+                            enemies: [{"type": "ghost-knight"}],
+                            background: 'field-background'
+                        });
                     }
                 });
             }
@@ -58,8 +61,8 @@ export class GraveNpc extends GeneralNpc {
                 scene.player.getQuestById('theSelflessSpirit')?.currentStates.includes('deathMoaned')) {
                 this.setDialog(readyToTakeTheOath, (param) => {
                     if (param === 'oathTaken') {
-                        scene.player.addItemToInventory('spirit-sword', 1, undefined, scene);
                         scene.player.updateAchievement('Spirit them away', undefined, true);
+                        scene.player.updateQuest('theSelflessSpirit', 'completed');
                     }
                 });
             }

@@ -28,7 +28,7 @@ export const questsData = {
     'bonesPicking': {
         questId: 'bonesPicking',
         questName: 'Bones picking',
-        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 3 },
+        questReward: { items: [], xp: 3 },
         availableStates: {
             started: `My friend, Moorsh, asked me to bring him 12 portions of bone dust so he could make his mushrooms to spore. I should be able to recover the necessary bones from the Old Dungeon.`,
             completed: `I got the mushroom spores! With it I can grow my own crop in no time!`
@@ -38,7 +38,7 @@ export const questsData = {
     'helpTheTareth': {
         questId: 'helpTheTareth',
         questName: 'Help the Tareth',
-        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 3 },
+        questReward: { items: [], xp: 3 },
         availableStates: {
             started: `Your friend, Tareth, struggles with the task he got from the Elder - he needs to carry harvested supplies to the stockpile, but the baskets are too heavy. You don't have time to do it for him, so there must be other way to help him.`,
             potionToMake: `I might be able to help if I make some empowering potion for poor Tareth.`,
@@ -50,7 +50,7 @@ export const questsData = {
     'theSelflessSpirit': {
         questId: 'theSelflessSpirit',
         questName: 'The Selfless Spirit',
-        questReward: { items: [{ itemId: 'copper-pieces', quantity: 5 }], xp: 3 },
+        questReward: { items: [{ itemId: 'spirit-sword', quantity: 1 }], xp: 5 },
         availableStates: {
             started: `You found the grave of a brave hero, with the spirit sword next to it. The engraving says:\n
     Here lays the great hero of Caltor,
@@ -63,7 +63,8 @@ export const questsData = {
             trueNameCalled: `You called the hero by the name of Jeremaya the Bandit. Solemn silence got even deeper.`,
             deedsGlorified: `You glorified the deeds of sir Jeremaya the Bandit.`,
             oathLearned: `You learned the oath of Jeremaya the Bandit from his biography.`,
-            deathMoaned: `You moaned the hero's fall by planting Primulas on his grave.`
+            deathMoaned: `You moaned the hero's fall by planting Primulas on his grave.`,
+            completed: `I proved worthy of the spirit sword and now wield it to protect the weak and destitute.`
         },
         currentStates: ['started']
     },

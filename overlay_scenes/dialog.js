@@ -60,6 +60,7 @@ export class DialogScene extends GeneralOverlayScene {
     }
     _setReplies(replies) {
         const keyCodes = ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"];
+        ["ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"].forEach(keyCode => this.input.keyboard.off(`keyup-${keyCode}`));
         let prevLineTopY = this.opts.windowY + this.opts.windowHeight - 5;
         const reversedReplies = JSON.parse(JSON.stringify(replies)).reverse();
         reversedReplies.forEach((reply, index) => {
