@@ -34,5 +34,23 @@ export const neckItems = {
         sellPrice: 100,
         buyPrice: 200
     },
+    'minor-azure-necklace': {
+        itemId: 'minor-azure-necklace',
+        displayName: 'Minor azure necklace',
+        description: `This simple necklace has a tiny azure stone in it, said to make it's owner smarter`,
+        possibleSlots: ['neck', ...backpackSlotNames, ...containerSlotNames],
+        sprite: { texture: 'icon-item-set', frame: 135 },
+        stackable: false,
+        modified: false,
+        specifics: {
+            additionalCharacteristics: [
+                { 'attributes.intelligence': 1 },
+                { 'parameters.manna': 1 },
+            ],
+            size: ['xs', 's', 'm'],
+        },
+        sellPrice: 10,
+        buyPrice: 20
+    },
 };
 //# sourceMappingURL=neckItems.js.map

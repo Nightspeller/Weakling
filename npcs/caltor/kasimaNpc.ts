@@ -16,6 +16,7 @@ export class KasimaNpc extends GeneralNpc {
                 {itemId: 'copper-pieces', quantity: 200},
                 {itemId: 'rope-belt', quantity: 1},
                 {itemId: 'invisibility-cape', quantity: 1},
+                {itemId: 'minor-energy-ring', quantity: 1},
                 {itemId: 'small-bottle', quantity: 2},
                 {itemId: 'medium-bottle', quantity: 2},
                 {itemId: 'big-bottle', quantity: 2},
