@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" width="11" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="3">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="11" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="4">
  <editorsettings>
   <export target="../../exported-maps/crypt.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/base.tsx"/>
  <tileset firstgid="1065" source="../tilesets/wall-up.tsx"/>
  <tileset firstgid="1161" source="../tilesets/base-addition.tsx"/>
+ <tileset firstgid="1929" source="../tilesets/icon-item-set.tsx"/>
  <group id="2" name="Layer 1">
   <layer id="1" name="Below Player" width="11" height="12">
    <data encoding="base64">
@@ -109,6 +110,15 @@
    <properties>
     <property name="location" value="Caltor"/>
     <property name="toCoordinates" value="{&quot;x&quot;: 32, &quot;y&quot;: 8}"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="18" name="Containers">
+  <object id="3" name="Minor azure necklace" type="Container" gid="2064" x="128" y="96" width="32" height="32">
+   <properties>
+    <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;minor-azure-necklace&quot;, &quot;quantity&quot;: 1}]"/>
+    <property name="secret" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
