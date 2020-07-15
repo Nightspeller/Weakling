@@ -64,7 +64,7 @@ export const questsData = {
             deedsGlorified: `You glorified the deeds of sir Jeremaya the Bandit.`,
             oathLearned: `You learned the oath of Jeremaya the Bandit from his biography.`,
             deathMoaned: `You moaned the hero's fall by planting Primulas on his grave.`,
-            completed: `I proved worthy of the spirit sword and now wield it to protect the weak and destitute.`
+            completed: `You proved worthy of the spirit sword and now wield it to protect the weak and destitute.`
         },
         currentStates: ['started']
     },

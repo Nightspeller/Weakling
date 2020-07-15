@@ -1,3 +1,14 @@
+export const hermitDialogStab = [{
+        id: `greetings`,
+        text: `Oh hey! You are not supposed to be here! In fact, I am not supposed to be here neither. The whole 'here' is not supposed to be here - I am a character from the second act. So, farewell for now, and if you wish us to meet again, for real this time, please go and support the developer with feedback and kind work. Thank you!`,
+        replies: [{
+                text: `(End) Naaaah`,
+                callbackParam: `fastEnd`
+            }, {
+                text: `(End) Will do!`,
+                callbackParam: `fastEnd`
+            }]
+    }];
 export const hermitDialog = [{
         id: `greetings`,
         text: `So the Varadun sent you? Interesting... I guess that means that you are also striving to get the ear of the Neverforgeting One. Who is that your revenge is against? Bandits? Greedy merchants?

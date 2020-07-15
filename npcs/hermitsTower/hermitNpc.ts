@@ -1,6 +1,6 @@
 import GeneralNpc from "../generalNpc.js";
 import {GeneralLocation} from "../../locations/generalLocation.js";
-import {hermitDialog} from "../../data/dialogs/hermitsTower/hermitDialog.js";
+import {hermitDialogStab} from "../../data/dialogs/hermitsTower/hermitDialog.js";
 
 export class HermitNpc extends GeneralNpc {
     constructor({scene, x, y, spriteParams}: { scene: GeneralLocation; x?: number; y?: number; spriteParams?: SpriteParameters }) {
@@ -10,7 +10,7 @@ export class HermitNpc extends GeneralNpc {
             triggerX: x,
             triggerY: y,
             spriteParams: spriteParams,
-            initDialog: hermitDialog,
+            initDialog: hermitDialogStab,
             interactionCallback: (param) => {
                 if (param === 'openShop') {
                     this.startTrade();
