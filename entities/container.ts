@@ -67,7 +67,11 @@ export default class Container extends Trigger{
                 if (instantPickup) {
                     items.forEach(itemDescription => {
                         const newItem = scene.player.addItemToInventory(itemDescription.itemId, itemDescription.quantity, undefined, scene);
-                        scene.showTextAbovePlayer(`${newItem.displayName} (${itemDescription.quantity})`)
+                        if (newItem) {
+                            scene.showTextAbovePlayer(`${newItem.displayName} (${itemDescription.quantity})`)
+                        } else {
+                            scene.showTextAbovePlayer(`No space in backpack!`)
+                        }
                     })
                     //TODO: might be nice to use emptyFrame when provided instead of destroying
                     this.destroy();

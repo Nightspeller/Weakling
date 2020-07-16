@@ -264,6 +264,7 @@ export class GeneralLocation extends Phaser.Scene {
                     });
                     if (trigger['xpReward'] !== 0) {
                         this.player.addXp(trigger['xpReward']);
+                        this.showTextAbovePlayer(`${trigger['xpReward']} XP!`, 2000)
                     }
                 }
             }
@@ -619,7 +620,7 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
 
-    public showTextAbovePlayer(text: string) {
+    public showTextAbovePlayer(text: string, duration = 1000) {
         const textObj = this.add.text(this.playerImage.x+16, this.playerImage.y, text, {color: 'black', fontStyle: 'bold'}).setDepth(10).setOrigin(0.5,0.5);
         let delay = 0;
         if (this.abovePlayerTextTween) {
@@ -633,7 +634,7 @@ export class GeneralLocation extends Phaser.Scene {
             // alpha: '+=1',
             ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
             delay: delay,
-            duration: 1000,
+            duration: duration,
             repeat: 0,            // -1: infinity
             yoyo: false,
             onComplete: () => {
