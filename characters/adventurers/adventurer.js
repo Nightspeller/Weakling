@@ -186,7 +186,7 @@ export class Adventurer extends GeneralCharacter {
         this.xp += xp;
         let matchingLevel = 1;
         for (let i = 9; i >= 0; i--) {
-            if (this.xp > this.experienceTable[i]) {
+            if (this.xp >= this.experienceTable[i]) {
                 //console.log(`for ${this.xp}xp, value in table ${this.experienceTable[i]}, the index is ${i}`)
                 matchingLevel = i + 1;
                 break;
@@ -201,7 +201,7 @@ export class Adventurer extends GeneralCharacter {
         }
     }
     levelUp() {
-        //console.log(...prepareLog(`Leveling up ??${this.name} from level ${this.level} to ${this.level + 1}`));
+        console.log(...prepareLog(`Leveling up ??${this.name} from level ${this.level} to ${this.level + 1}`));
         this.level++;
         this.baseCharacteristics.attributes.strength++;
         this.baseCharacteristics.attributes.agility++;
@@ -212,6 +212,7 @@ export class Adventurer extends GeneralCharacter {
         this.baseCharacteristics.parameters.currentManna = this.baseCharacteristics.parameters.manna;
         this.baseCharacteristics.parameters.energy++;
         this.baseCharacteristics.parameters.currentEnergy = this.baseCharacteristics.parameters.energy;
+        this.addBaseModifiers();
     }
     freeze() {
     }

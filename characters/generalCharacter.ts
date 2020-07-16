@@ -122,6 +122,8 @@ export default class GeneralCharacter {
     protected addBaseModifiers() {
         Object.entries(this.baseCharacteristics).forEach(([group, value]) => {
             Object.entries(value).forEach(([subgroup, value]) => {
+                this.characteristicsModifiers[group][subgroup] =
+                    this.characteristicsModifiers[group][subgroup].filter(modifier => modifier.source !== 'base');
                 this.characteristicsModifiers[group][subgroup].push({
                     // @ts-ignore
                     value: this.baseCharacteristics[group][subgroup],

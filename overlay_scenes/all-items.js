@@ -74,6 +74,16 @@ export class AllItemsScene extends GeneralOverlayScene {
             description.setVisible(true);
         });
         eyeballIcon.on('pointerout', () => description.setVisible(false));
+        const addXPIcon = this.add.sprite(90, 16, 'icon-item-set', 32)
+            .setOrigin(0, 0)
+            .setDisplaySize(32, 32);
+        addXPIcon.setInteractive({ useHandCursor: true });
+        addXPIcon.on('pointerdown', () => this.player.addXp(5));
+        addXPIcon.on('pointerover', () => {
+            description.setText('Add XP').setPosition(32, 32);
+            description.setVisible(true);
+        });
+        addXPIcon.on('pointerout', () => description.setVisible(false));
     }
 }
 //# sourceMappingURL=all-items.js.map
