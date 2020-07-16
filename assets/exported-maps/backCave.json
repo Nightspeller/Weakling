@@ -357,6 +357,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"longshroom-mushroom\", \"quantity\": 1}]"
@@ -401,7 +406,7 @@
  "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.0",
+ "tiledversion":"1.4.1",
  "tileheight":32,
  "tilesets":[
         {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.0" orientation="orthogonal" renderorder="right-down" width="14" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="26" nextobjectid="9">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="14" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="26" nextobjectid="9">
  <editorsettings>
   <export target="../../exported-maps/backCave.json" format="json"/>
  </editorsettings>
@@ -125,6 +125,7 @@
   <object id="8" name="Longshroom" type="Container" gid="1303" x="224" y="128" width="32" height="32">
    <properties>
     <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="instantPickup" type="bool" value="true"/>
     <property name="items" value="[{&quot;itemId&quot;: &quot;longshroom-mushroom&quot;, &quot;quantity&quot;: 1}]"/>
    </properties>
   </object>

@@ -564,6 +564,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"invisibility-cape\", \"quantity\": 1}]"
@@ -588,6 +593,11 @@
                  "properties":[
                         {
                          "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
                          "type":"bool",
                          "value":true
                         }, 
@@ -639,95 +649,16 @@
                 {
                  "gid":97,
                  "height":32,
-                 "id":70,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3072,
-                 "y":1472
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":71,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3040,
-                 "y":1472
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":72,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3008,
-                 "y":1472
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
                  "id":73,
                  "name":"Garlic 1",
                  "properties":[
                         {
                          "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
                          "type":"bool",
                          "value":true
                         }, 
@@ -760,6 +691,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
@@ -779,515 +715,16 @@
                 {
                  "gid":97,
                  "height":32,
-                 "id":75,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2976,
-                 "y":1408
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":76,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2976,
-                 "y":1440
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":77,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2944,
-                 "y":1440
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":78,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2944,
-                 "y":1408
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":79,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2944,
-                 "y":1376
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":80,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2944,
-                 "y":1344
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":81,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2976,
-                 "y":1344
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":82,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":2976,
-                 "y":1376
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":83,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3008,
-                 "y":1344
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":84,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3008,
-                 "y":1376
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":85,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3040,
-                 "y":1344
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":86,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3040,
-                 "y":1376
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":87,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3072,
-                 "y":1344
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":88,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3072,
-                 "y":1376
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":89,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3072,
-                 "y":1408
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":90,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3072,
-                 "y":1440
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":91,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3040,
-                 "y":1440
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
-                 "id":92,
-                 "name":"Garlic 1",
-                 "properties":[
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":3040,
-                 "y":1408
-                }, 
-                {
-                 "gid":97,
-                 "height":32,
                  "id":93,
                  "name":"Garlic 1",
                  "properties":[
                         {
                          "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
                          "type":"bool",
                          "value":true
                         }, 
@@ -1307,6 +744,699 @@
                  "width":32,
                  "x":3008,
                  "y":1440
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":94,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2944,
+                 "y":1376
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":95,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3072,
+                 "y":1344
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":96,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3072,
+                 "y":1472
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":97,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3008,
+                 "y":1344
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":98,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2944,
+                 "y":1408
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":99,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2976,
+                 "y":1408
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":100,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2976,
+                 "y":1376
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":101,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2976,
+                 "y":1344
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":102,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2944,
+                 "y":1344
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":103,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3008,
+                 "y":1376
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":104,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3040,
+                 "y":1376
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":105,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3072,
+                 "y":1376
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":106,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3072,
+                 "y":1408
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":107,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3040,
+                 "y":1408
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":108,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3040,
+                 "y":1440
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":109,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3072,
+                 "y":1440
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":110,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3040,
+                 "y":1472
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":111,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3008,
+                 "y":1472
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":112,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2976,
+                 "y":1440
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":113,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":2944,
+                 "y":1440
+                }, 
+                {
+                 "gid":97,
+                 "height":32,
+                 "id":114,
+                 "name":"Garlic 1",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":3040,
+                 "y":1344
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1455,7 +1585,7 @@
          "y":0
         }],
  "nextlayerid":32,
- "nextobjectid":94,
+ "nextobjectid":115,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.1",

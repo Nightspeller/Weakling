@@ -1,6 +1,6 @@
 import { Trigger } from "./trigger.js";
 export default class Container extends Trigger {
-    constructor({ scene, name, triggerX, triggerY, triggerW, triggerH, texture, frame, isSecret = false, items = [], numberOfSlots = 10, emptyTexture, emptyFrame, requiresToOpen, disableWhenEmpty = false, flipX = false, flipY = false }) {
+    constructor({ scene, name, triggerX, triggerY, triggerW, triggerH, texture, frame, isSecret = false, items = [], numberOfSlots = 10, emptyTexture, emptyFrame, requiresToOpen, disableWhenEmpty = false, flipX = false, flipY = false, instantPickup = false }) {
         if (emptyFrame === -1)
             emptyFrame = undefined;
         super({
@@ -19,6 +19,15 @@ export default class Container extends Trigger {
                     const item = scene.player.getInventoryItemById(requiresToOpen);
                     if (!item)
                         return;
+                }
+                if (instantPickup) {
+                    items.forEach(itemDescription => {
+                        const newItem = scene.player.addItemToInventory(itemDescription.itemId, itemDescription.quantity, undefined, scene);
+                        scene.showTextAbovePlayer(`${newItem.displayName} (${itemDescription.quantity})`);
+                    });
+                    //TODO: might be nice to use emptyFrame when provided instead of destroying
+                    this.destroy();
+                    return;
                 }
                 scene.switchToScene('ContainerOverlay', {
                     name: name,

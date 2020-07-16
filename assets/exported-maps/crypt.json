@@ -335,6 +335,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"minor-azure-necklace\", \"quantity\": 1}]"

@@ -23,6 +23,7 @@ export class GeneralLocation extends Phaser.Scene {
     private objectsHighlightBorders: Phaser.GameObjects.Group;
     protected cursorCoordinatesText: Phaser.GameObjects.Text;
     public somethingTriggered: boolean;
+    private abovePlayerTextTween: Phaser.Tweens.Tween;
 
     constructor(sceneSettings) {
         super(sceneSettings);
@@ -142,6 +143,7 @@ export class GeneralLocation extends Phaser.Scene {
             const items = JSON.parse(object.properties?.find(prop => prop.name === 'items')?.value);
             const disableWhenEmpty = object.properties?.find(prop => prop.name === 'disableWhenEmpty')?.value;
             const requiresToOpen = object.properties?.find(prop => prop.name === 'requiresToOpen')?.value;
+            const instantPickup = object.properties?.find(prop => prop.name === 'instantPickup')?.value;
 
             new Container({
                 scene: this,
@@ -159,7 +161,8 @@ export class GeneralLocation extends Phaser.Scene {
                 flipX: object.flippedHorizontal,
                 flipY: object.flippedVertical,
                 disableWhenEmpty: disableWhenEmpty,
-                requiresToOpen: requiresToOpen
+                requiresToOpen: requiresToOpen,
+                instantPickup: instantPickup,
             })
         });
 
@@ -180,7 +183,11 @@ export class GeneralLocation extends Phaser.Scene {
                 frame: null,
                 interaction: 'activate',
                 callback: () => {
-                    this.switchToScene('Battle', {enemies: enemies, enemyName: object.name, background: background}, false);
+                    this.switchToScene('Battle', {
+                        enemies: enemies,
+                        enemyName: object.name,
+                        background: background
+                    }, false);
                 },
             })
             trigger['drop'] = drop;
@@ -337,11 +344,11 @@ export class GeneralLocation extends Phaser.Scene {
             }
         })
         this.anims.create({
-            key: tilesetImageKey+gid,
+            key: tilesetImageKey + gid,
             frames: phaserAnimationFrames,
             repeat: -1
         });
-        return tilesetImageKey+gid;
+        return tilesetImageKey + gid;
     }
 
     private setSidesCollisions(layer) {
@@ -377,9 +384,9 @@ export class GeneralLocation extends Phaser.Scene {
     public showOpenInventoryIcon(opts?: Object, closeCallback?: Function) {
         const topMenuBackgroundGraphics = this.add.graphics().setScrollFactor(0)
             .fillStyle(0xf0d191, 0.8)
-            .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 -32 -32 - 16, 16, 64 * 4, 64)
+            .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 16, 16, 64 * 4, 64)
             .lineStyle(3, 0x907748)
-            .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32-32 -32 - 16, 16, 64 * 4, 64)
+            .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 16, 16, 64 * 4, 64)
             .setDepth(10 - 1);
 
         const inventoryGraphics = this.add.graphics().setScrollFactor(0)
@@ -610,5 +617,29 @@ export class GeneralLocation extends Phaser.Scene {
         allItemsIconImage.on('pointerdown', () => {
             this.switchToScene('AllItems', {}, false);
         });
+    }
+
+    public showTextAbovePlayer(text: string) {
+        const textObj = this.add.text(this.playerImage.x+16, this.playerImage.y, text, {color: 'black', fontStyle: 'bold'}).setDepth(10).setOrigin(0.5,0.5);
+        let delay = 0;
+        if (this.abovePlayerTextTween) {
+            delay = 500;
+        }
+        this.abovePlayerTextTween = this.add.tween({
+            targets: textObj,
+            y: { from: this.playerImage.y, to: this.playerImage.y-50 },
+            // alpha: { start: 0, to: 1 },
+            // alpha: 1,
+            // alpha: '+=1',
+            ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+            delay: delay,
+            duration: 1000,
+            repeat: 0,            // -1: infinity
+            yoyo: false,
+            onComplete: () => {
+                textObj.destroy(true);
+                this.abovePlayerTextTween = undefined
+            },
+        })
     }
 }

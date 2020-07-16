@@ -169,6 +169,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"yellow-fingers-sapling\", \"quantity\": 1}]"
@@ -188,6 +193,11 @@
                  "properties":[
                         {
                          "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
                          "type":"bool",
                          "value":true
                         }, 
@@ -215,6 +225,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"rocky-rose-sapling\", \"quantity\": 1}]"
@@ -234,6 +249,11 @@
                  "properties":[
                         {
                          "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
                          "type":"bool",
                          "value":true
                         }, 
@@ -317,7 +337,7 @@
  "nextobjectid":8,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.05.27",
+ "tiledversion":"1.4.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -17725,18 +17745,18 @@
          "columns":16,
          "firstgid":1929,
          "image":"..\/images-extruded\/items\/icon-item-set.png",
-         "imageheight":782,
+         "imageheight":816,
          "imagewidth":544,
          "margin":1,
          "name":"icon-item-set",
          "objectalignment":"topleft",
          "spacing":2,
-         "tilecount":368,
+         "tilecount":384,
          "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":10
 }

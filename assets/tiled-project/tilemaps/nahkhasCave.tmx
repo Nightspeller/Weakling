@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="8">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="8">
  <editorsettings>
   <export target="../../exported-maps/nahkhasCave.json" format="json"/>
  </editorsettings>
@@ -62,24 +62,28 @@
   <object id="3" name="Yellow Fingers Sapling" type="Container" gid="1395" x="256" y="288" width="32" height="32">
    <properties>
     <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="instantPickup" type="bool" value="true"/>
     <property name="items" value="[{&quot;itemId&quot;: &quot;yellow-fingers-sapling&quot;, &quot;quantity&quot;: 1}]"/>
    </properties>
   </object>
   <object id="5" name="Pinky Pie Sapling" type="Container" gid="1395" x="256" y="256" width="32" height="32">
    <properties>
     <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="instantPickup" type="bool" value="true"/>
     <property name="items" value="[{&quot;itemId&quot;: &quot;pinky-pie-sapling&quot;, &quot;quantity&quot;: 1}]"/>
    </properties>
   </object>
   <object id="6" name="Rocky Rose Sapling" type="Container" gid="1395" x="256" y="224" width="32" height="32">
    <properties>
     <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="instantPickup" type="bool" value="true"/>
     <property name="items" value="[{&quot;itemId&quot;: &quot;rocky-rose-sapling&quot;, &quot;quantity&quot;: 1}]"/>
    </properties>
   </object>
   <object id="7" name="Primula Sapling" type="Container" gid="1395" x="256" y="192" width="32" height="32">
    <properties>
     <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="instantPickup" type="bool" value="true"/>
     <property name="items" value="[{&quot;itemId&quot;: &quot;primula-sapling&quot;, &quot;quantity&quot;: 1}]"/>
    </properties>
   </object>

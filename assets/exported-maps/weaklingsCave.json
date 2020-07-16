@@ -367,6 +367,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"coal\", \"quantity\": 3}]"
@@ -396,6 +401,11 @@
                  "properties":[
                         {
                          "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
                          "type":"bool",
                          "value":true
                         }, 

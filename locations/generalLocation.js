@@ -104,7 +104,7 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_b = this.map.getObjectLayer('Containers')) === null || _b === void 0 ? void 0 : _b.objects.forEach(object => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
             const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
             const texture = spriteParams.texture;
             const frame = spriteParams.frame;
@@ -113,6 +113,7 @@ export class GeneralLocation extends Phaser.Scene {
             const items = JSON.parse((_f = (_e = object.properties) === null || _e === void 0 ? void 0 : _e.find(prop => prop.name === 'items')) === null || _f === void 0 ? void 0 : _f.value);
             const disableWhenEmpty = (_h = (_g = object.properties) === null || _g === void 0 ? void 0 : _g.find(prop => prop.name === 'disableWhenEmpty')) === null || _h === void 0 ? void 0 : _h.value;
             const requiresToOpen = (_k = (_j = object.properties) === null || _j === void 0 ? void 0 : _j.find(prop => prop.name === 'requiresToOpen')) === null || _k === void 0 ? void 0 : _k.value;
+            const instantPickup = (_m = (_l = object.properties) === null || _l === void 0 ? void 0 : _l.find(prop => prop.name === 'instantPickup')) === null || _m === void 0 ? void 0 : _m.value;
             new Container({
                 scene: this,
                 triggerX: object.x,
@@ -129,7 +130,8 @@ export class GeneralLocation extends Phaser.Scene {
                 flipX: object.flippedHorizontal,
                 flipY: object.flippedVertical,
                 disableWhenEmpty: disableWhenEmpty,
-                requiresToOpen: requiresToOpen
+                requiresToOpen: requiresToOpen,
+                instantPickup: instantPickup,
             });
         });
         (_c = this.map.getObjectLayer('Enemies')) === null || _c === void 0 ? void 0 : _c.objects.forEach(object => {
@@ -150,7 +152,11 @@ export class GeneralLocation extends Phaser.Scene {
                 frame: null,
                 interaction: 'activate',
                 callback: () => {
-                    this.switchToScene('Battle', { enemies: enemies, enemyName: object.name, background: background }, false);
+                    this.switchToScene('Battle', {
+                        enemies: enemies,
+                        enemyName: object.name,
+                        background: background
+                    }, false);
                 },
             });
             trigger['drop'] = drop;
@@ -558,6 +564,29 @@ export class GeneralLocation extends Phaser.Scene {
             .setOrigin(0, 0).setScrollFactor(0).setInteractive({ useHandCursor: true }).setDepth(10 - 1);
         allItemsIconImage.on('pointerdown', () => {
             this.switchToScene('AllItems', {}, false);
+        });
+    }
+    showTextAbovePlayer(text) {
+        const textObj = this.add.text(this.playerImage.x + 16, this.playerImage.y, text, { color: 'black', fontStyle: 'bold' }).setDepth(10).setOrigin(0.5, 0.5);
+        let delay = 0;
+        if (this.abovePlayerTextTween) {
+            delay = 500;
+        }
+        this.abovePlayerTextTween = this.add.tween({
+            targets: textObj,
+            y: { from: this.playerImage.y, to: this.playerImage.y - 50 },
+            // alpha: { start: 0, to: 1 },
+            // alpha: 1,
+            // alpha: '+=1',
+            ease: 'Linear',
+            delay: delay,
+            duration: 1000,
+            repeat: 0,
+            yoyo: false,
+            onComplete: () => {
+                textObj.destroy(true);
+                this.abovePlayerTextTween = undefined;
+            },
         });
     }
 }

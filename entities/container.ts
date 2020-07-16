@@ -20,6 +20,7 @@ interface ContainerParams {
     disableWhenEmpty?: boolean
     flipX?: boolean,
     flipY?: boolean,
+    instantPickup?: boolean,
 }
 
 export default class Container extends Trigger{
@@ -42,7 +43,8 @@ export default class Container extends Trigger{
                     requiresToOpen,
                     disableWhenEmpty = false,
                     flipX = false,
-                    flipY = false
+                    flipY = false,
+                    instantPickup = false
                 }: ContainerParams
     ) {
         if (emptyFrame === -1) emptyFrame = undefined;
@@ -61,6 +63,15 @@ export default class Container extends Trigger{
                 if (requiresToOpen) {
                     const item = scene.player.getInventoryItemById(requiresToOpen);
                     if (!item) return;
+                }
+                if (instantPickup) {
+                    items.forEach(itemDescription => {
+                        const newItem = scene.player.addItemToInventory(itemDescription.itemId, itemDescription.quantity, undefined, scene);
+                        scene.showTextAbovePlayer(`${newItem.displayName} (${itemDescription.quantity})`)
+                    })
+                    //TODO: might be nice to use emptyFrame when provided instead of destroying
+                    this.destroy();
+                    return;
                 }
                 scene.switchToScene('ContainerOverlay', {
                     name: name,
