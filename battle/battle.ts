@@ -16,11 +16,12 @@ export class BattleScene extends GeneralOverlayScene {
     private charToDrawerMap: Map<GeneralCharacter, CharacterDrawer>;
     private enemyName: string;
     private actionInterfaceDrawer: ActionInterfaceDrawer;
-    private droppedItems: Item[];
+    public droppedItems: Item[];
     private background: string;
 
     constructor() {
         super({key: 'Battle'});
+        this.droppedItems = [];
     }
 
     public init({prevScene, enemies, enemyName, background}: { prevScene: string, enemies: {type: string}[], enemyName: string, background: string }) {
@@ -68,7 +69,7 @@ export class BattleScene extends GeneralOverlayScene {
 
         this.events.on('resume', (scene, data) => {
             if (data?.droppedItems) {
-                this.droppedItems = data.droppedItems;
+                this.droppedItems.push(...data.droppedItems);
             }
         })
     }

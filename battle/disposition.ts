@@ -8,6 +8,7 @@ import Effect from "../entities/effect.js";
 import {GhostKnight} from "../characters/enemies/ghost-knight.js";
 import {Skeleton} from "../characters/enemies/skeleton.js";
 import {playerInstance} from "../characters/adventurers/player.js";
+import Item from "../entities/item.js";
 
 export class Disposition {
     public playerCharacters: Adventurer[];
@@ -204,6 +205,11 @@ export class Disposition {
         if (action.consumes !== undefined && source instanceof Adventurer) {
             const consumedItem = source.getInventoryItemById(action.consumes, true)?.item;
             source.removeItemFromInventory(consumedItem, 1);
+            consumedItem.specifics.recovers?.forEach(item => {
+                if (playerInstance.addItemToInventory(item.itemId, item.quality) === undefined) {
+                    this.scene.droppedItems.push(new Item(item.itemId, item.quality));
+                }
+            })
         }
         action.effects.forEach(effect => {
             targets.forEach((target, index) => {

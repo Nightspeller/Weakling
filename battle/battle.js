@@ -9,6 +9,7 @@ import { GeneralOverlayScene } from "../overlay_scenes/generalOverlayScene.js";
 export class BattleScene extends GeneralOverlayScene {
     constructor() {
         super({ key: 'Battle' });
+        this.droppedItems = [];
     }
     init({ prevScene, enemies, enemyName, background }) {
         this.opts = {
@@ -46,7 +47,7 @@ export class BattleScene extends GeneralOverlayScene {
         this.disposition.startRound();
         this.events.on('resume', (scene, data) => {
             if (data === null || data === void 0 ? void 0 : data.droppedItems) {
-                this.droppedItems = data.droppedItems;
+                this.droppedItems.push(...data.droppedItems);
             }
         });
     }

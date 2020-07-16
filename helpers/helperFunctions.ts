@@ -36,7 +36,8 @@ export function generatePotions(characteristic, icons: SpriteParameters[]): { [k
                 modified: false,
                 quantity: null,
                 specifics: {
-                    additionalActions: [`drink${capsFirstLetter(size)}${capsFirstLetter(quality)}${capsFirstLetter(characteristic)}Potion`]
+                    additionalActions: [`drink${capsFirstLetter(size)}${capsFirstLetter(quality)}${capsFirstLetter(characteristic)}Potion`],
+                    recovers: [{itemId: `${size}-bottle`, quality: 1}]
                 },
                 sellPrice: sellPrise,
                 buyPrice: sellPrise * 2

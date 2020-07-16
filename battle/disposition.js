@@ -5,6 +5,7 @@ import Effect from "../entities/effect.js";
 import { GhostKnight } from "../characters/enemies/ghost-knight.js";
 import { Skeleton } from "../characters/enemies/skeleton.js";
 import { playerInstance } from "../characters/adventurers/player.js";
+import Item from "../entities/item.js";
 export class Disposition {
     constructor(playerCharacters, enemyCharacters, location, scene) {
         this.scene = scene;
@@ -114,7 +115,7 @@ export class Disposition {
         }
     }
     processAction(source, targets, action) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         const targetsNames = targets.map(target => target.name).join(', ');
         console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${targetsNames}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
         this.log(`${source.name} tries to perform ${action.actionName} on ${targetsNames}`);
@@ -176,6 +177,11 @@ export class Disposition {
         if (action.consumes !== undefined && source instanceof Adventurer) {
             const consumedItem = (_c = source.getInventoryItemById(action.consumes, true)) === null || _c === void 0 ? void 0 : _c.item;
             source.removeItemFromInventory(consumedItem, 1);
+            (_d = consumedItem.specifics.recovers) === null || _d === void 0 ? void 0 : _d.forEach(item => {
+                if (playerInstance.addItemToInventory(item.itemId, item.quality) === undefined) {
+                    this.scene.droppedItems.push(new Item(item.itemId, item.quality));
+                }
+            });
         }
         action.effects.forEach(effect => {
             targets.forEach((target, index) => {
