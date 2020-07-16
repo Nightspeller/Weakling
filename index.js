@@ -42,8 +42,6 @@ const gameConfig = {
     type: Phaser.AUTO,
     width: GAME_W,
     height: GAME_H,
-    // @ts-ignore
-    pixelArt: true,
     zoom: GAME_ZOOM,
     physics: {
         default: 'arcade',
@@ -51,9 +49,12 @@ const gameConfig = {
             debug: DEBUG,
         },
     },
+    render: {
+        pixelArt: true,
+    },
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene,
+    scene: [/*TestPreloadScene, */ PreloadScene,
         MainMenuScene,
         OptionsScene,
         IntroScene,

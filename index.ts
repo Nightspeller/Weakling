@@ -30,6 +30,7 @@ import {ContainerOverlayScene} from "./overlay_scenes/item-manupulators/containe
 import {DungeonLevel1Scene} from "./locations/dungeonLevel1.js";
 import {AchievementsScene} from "./overlay_scenes/achievements.js";
 import {AllItemsScene} from "./overlay_scenes/all-items.js";
+import {TestPreloadScene} from "./scenes/perf-test.js";
 
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
     BetweenVillageAndCaltorScene,
@@ -46,8 +47,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 
     width: GAME_W,
     height: GAME_H,
-// @ts-ignore
-    pixelArt: true,
+
     zoom: GAME_ZOOM,
 
     physics: {
@@ -57,9 +57,13 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
         },
     },
 
+    render: {
+        pixelArt: true,
+    },
+
     parent: 'game',
     backgroundColor: '#000000',
-    scene: [PreloadScene,
+    scene: [/*TestPreloadScene, */PreloadScene,
         MainMenuScene,
         OptionsScene,
         IntroScene,
