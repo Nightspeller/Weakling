@@ -279,6 +279,7 @@ export class GeneralLocation extends Phaser.Scene {
             callback: () => {
                 const itemInInventory = this.player.addItemToInventory(item);
                 if (itemInInventory !== undefined) {
+                    this.showTextAbovePlayer(`${itemInInventory.displayName} (${quantity})`);
                     droppedItemTrigger.destroy();
                 }
             },
@@ -568,7 +569,10 @@ export class GeneralLocation extends Phaser.Scene {
         });
     }
     showTextAbovePlayer(text, duration = 1000) {
-        const textObj = this.add.text(this.playerImage.x + 16, this.playerImage.y, text, { color: 'black', fontStyle: 'bold' }).setDepth(10).setOrigin(0.5, 0.5);
+        const textObj = this.add.text(this.playerImage.x + 16, this.playerImage.y, text, {
+            color: 'black',
+            fontStyle: 'bold'
+        }).setDepth(10).setOrigin(0.5, 0.5);
         let delay = 0;
         if (this.abovePlayerTextTween) {
             delay = 500;
@@ -576,9 +580,6 @@ export class GeneralLocation extends Phaser.Scene {
         this.abovePlayerTextTween = this.add.tween({
             targets: textObj,
             y: { from: this.playerImage.y, to: this.playerImage.y - 50 },
-            // alpha: { start: 0, to: 1 },
-            // alpha: 1,
-            // alpha: '+=1',
             ease: 'Linear',
             delay: delay,
             duration: duration,
