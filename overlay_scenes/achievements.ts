@@ -2,11 +2,9 @@ import {Player, playerInstance} from "../characters/adventurers/player.js";
 import {GeneralOverlayScene} from "./generalOverlayScene.js";
 import {GAME_W} from "../config/constants.js";
 import {RichText} from "../helpers/richText.js";
-import {itemsData} from "../data/itemsData.js";
 
 export class AchievementsScene extends GeneralOverlayScene {
     private player: Player;
-    private achievementsDisplayGroup: Phaser.GameObjects.Group;
 
     constructor() {
         super({key: 'Achievements'});
