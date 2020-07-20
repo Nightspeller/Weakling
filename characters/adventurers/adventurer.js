@@ -194,24 +194,21 @@ export class Adventurer extends GeneralCharacter {
         }
         //console.log(matchingLevel, this.level);
         if (matchingLevel !== this.level) {
-            const levelDifference = matchingLevel - this.level;
+            this.readyForLevelUp = true;
+            /*const levelDifference = matchingLevel - this.level;
             for (let i = 0; i < levelDifference; i++) {
+                this.readyForLevelUp = true
                 this.levelUp();
-            }
+            }*/
         }
     }
-    levelUp() {
+    levelUp(strengthAddition = 0, agilityAddition = 0, intelligenceAddition = 0) {
         console.log(...prepareLog(`Leveling up ??${this.name} from level ${this.level} to ${this.level + 1}`));
         this.level++;
-        this.baseCharacteristics.attributes.strength++;
-        this.baseCharacteristics.attributes.agility++;
-        this.baseCharacteristics.attributes.intelligence++;
-        this.baseCharacteristics.parameters.health++;
-        this.baseCharacteristics.parameters.currentHealth = this.baseCharacteristics.parameters.health;
-        this.baseCharacteristics.parameters.manna++;
-        this.baseCharacteristics.parameters.currentManna = this.baseCharacteristics.parameters.manna;
-        this.baseCharacteristics.parameters.energy++;
-        this.baseCharacteristics.parameters.currentEnergy = this.baseCharacteristics.parameters.energy;
+        this.baseCharacteristics.attributes.strength += strengthAddition;
+        this.baseCharacteristics.attributes.agility += agilityAddition;
+        this.baseCharacteristics.attributes.intelligence += intelligenceAddition;
+        this.readyForLevelUp = false;
         this.addBaseModifiers();
     }
     freeze() {

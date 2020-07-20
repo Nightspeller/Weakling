@@ -31,6 +31,7 @@ import {DungeonLevel1Scene} from "./locations/dungeonLevel1.js";
 import {AchievementsScene} from "./overlay_scenes/achievements.js";
 import {AllItemsScene} from "./overlay_scenes/all-items.js";
 import {TestPreloadScene} from "./scenes/perf-test.js";
+import {LevelUpScreenScene} from "./overlay_scenes/level-up-screen.js";
 
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
     BetweenVillageAndCaltorScene,
@@ -68,7 +69,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
         OptionsScene,
         IntroScene,
         ...LOCATION_SCENES,
-        CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, InventoryOverlayScene, QuestLogScene, AchievementsScene, AllItemsScene, AlchemyStandScene, ContainerOverlayScene
+        CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, InventoryOverlayScene, QuestLogScene, AchievementsScene, LevelUpScreenScene, AllItemsScene, AlchemyStandScene, ContainerOverlayScene
     ]
 };
 

@@ -218,6 +218,9 @@ export class GeneralLocation extends Phaser.Scene {
         });
         this.sys['animatedTiles'].init(this.map);
         this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
+        this.levelUpIcon = this.add.sprite(this.playerImage.x, this.playerImage.y, 'icon-item-set', 32).setOrigin(0, 1).setVisible(false);
+        this.levelUpIcon.setInteractive({ useHandCursor: true });
+        this.levelUpIcon.on('pointerdown', () => this.switchToScene('LevelUpScreen', {}, false));
         this.events.on('resume', (scene, data) => {
             var _a;
             if (data === null || data === void 0 ? void 0 : data.defeatedEnemy) {
@@ -477,6 +480,15 @@ export class GeneralLocation extends Phaser.Scene {
                 this.playerImage.play('walk_left', true);
                 this.lastCursor = 'left';
             }
+        }
+        if (this.player.readyForLevelUp) {
+            if (!this.levelUpIcon.visible)
+                this.levelUpIcon.setVisible(true);
+            this.levelUpIcon.setPosition(this.playerImage.x, this.playerImage.y);
+        }
+        else {
+            if (this.levelUpIcon.visible)
+                this.levelUpIcon.setVisible(false);
         }
     }
     setupRunKey() {
