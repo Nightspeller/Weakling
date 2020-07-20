@@ -29,6 +29,7 @@ export class GeneralOverlayScene extends Phaser.Scene {
             }, ...opts
         };
         this.parentSceneKey = parentSceneKey;
+        this.input.setDefaultCursor('default')
         this._drawBackground();
         this._drawCloseButton();
     }
