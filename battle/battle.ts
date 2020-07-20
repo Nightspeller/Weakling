@@ -13,7 +13,7 @@ export class BattleScene extends GeneralOverlayScene {
     private disposition: Disposition;
     private turnOrderDisplayContainer: Phaser.GameObjects.Container;
     private enemies: string[];
-    private charToDrawerMap: Map<GeneralCharacter, CharacterDrawer>;
+    public charToDrawerMap: Map<GeneralCharacter, CharacterDrawer>;
     private enemyName: string;
     private actionInterfaceDrawer: ActionInterfaceDrawer;
     public droppedItems: Item[];
