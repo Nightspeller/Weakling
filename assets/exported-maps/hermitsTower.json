@@ -269,6 +269,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"fire-marble\", \"quantity\": 3}]"
@@ -290,7 +295,7 @@
  "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.1",
+ "tiledversion":"1.4.2",
  "tileheight":32,
  "tilesets":[
         {

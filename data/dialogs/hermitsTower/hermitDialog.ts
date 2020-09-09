@@ -1,6 +1,6 @@
 export const hermitDialogStab: DialogTree = [{
     id: `greetings`,
-    text: `Oh hey! You are not supposed to be here! In fact, I am not supposed to be here neither. The whole 'here' is not supposed to be here - I am a character from the second act. So, farewell for now, and if you wish us to meet again, for real this time, please go and support the developer with feedback and kind work. Thank you!`,
+    text: `Oh hey! You are not supposed to be here! In fact, I am not supposed to be here neither. The whole 'here' is not supposed to be here - I am a character from the second act. So, farewell for now, and if you wish us to meet again, for real this time, please go and support the developer with feedback and kind word. Thank you!`,
     replies: [{
         text: `(End) Naaaah`,
         callbackParam: `fastEnd`
