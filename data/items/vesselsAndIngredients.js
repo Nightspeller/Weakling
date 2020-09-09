@@ -289,7 +289,7 @@ export const vesselsAndIngredients = {
         buyPrice: 6
     },
     'garlic-seeds': {
-        itemId: 'carrot-seeds',
+        itemId: 'garlic-seeds',
         displayName: 'Garlic seeds',
         description: 'The seeds of the garlic',
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],

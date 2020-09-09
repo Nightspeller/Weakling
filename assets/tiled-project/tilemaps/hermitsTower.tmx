@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="37" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="19">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="37" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="19">
  <editorsettings>
   <export target="../../exported-maps/hermitsTower.json" format="json"/>
  </editorsettings>
@@ -80,6 +80,7 @@
   <object id="17" name="Fire marble" type="Container" gid="1473" x="256" y="160" width="32" height="32">
    <properties>
     <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="instantPickup" type="bool" value="true"/>
     <property name="items" value="[{&quot;itemId&quot;: &quot;fire-marble&quot;, &quot;quantity&quot;: 3}]"/>
    </properties>
   </object>
