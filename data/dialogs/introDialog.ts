@@ -24,7 +24,7 @@ export const introDialog: DialogTree = [{
     }]
 }, {
     id: 'intro_4',
-    text: `    Then it is settled! No time to waste - it is gonna be a long day, but if everything will go good, you might even get an invitation for dinner - after all, if there is anything better than seeing Mitikhha, than it would be seeing Mitikhha while eating Mitikhha's mother, aunty Girda's, cooking!`,
+    text: `    Then it is settled! No time to waste - it is gonna be a long day, but if everything will go good, you might even get an invitation for dinner - after all, if there is anything better than seeing Mitikhha, than it would be seeing Mitikhha while eating Mitikhha's mother, aunty Liatsh's, cooking!`,
     replies: [{
         text: '(Continue}',
         successTriggers: 'intro_5'
