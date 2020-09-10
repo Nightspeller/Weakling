@@ -204,11 +204,6 @@ export class BattleScene extends GeneralOverlayScene {
 
     public exitBattle(isPartyWon) {
         console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'}. Name of enemy object: ${this.enemyName}`);
-        this.disposition.playerCharacters.forEach(adventurer => {
-            adventurer.baseCharacteristics.parameters.currentHealth = adventurer.currentCharacteristics.parameters.currentHealth > 0 ? adventurer.currentCharacteristics.parameters.currentHealth : 1;
-            adventurer.baseCharacteristics.parameters.currentEnergy = adventurer.currentCharacteristics.parameters.currentEnergy;
-            adventurer.baseCharacteristics.parameters.currentManna = adventurer.currentCharacteristics.parameters.currentManna;
-        })
         if (isPartyWon === true) {
             this.closeScene({defeatedEnemy: this.enemyName, droppedItems: this.droppedItems});
             playerInstance.updateAchievement('Weak, but not useless', undefined, undefined, 1);
