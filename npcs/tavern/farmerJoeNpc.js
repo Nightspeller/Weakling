@@ -33,11 +33,9 @@ export class FarmerJoeNpc extends GeneralNpc {
                     this.setDialog(farmerJoeDialogQuestDiscussed);
                 }
                 if (param === 'questRejected' && ((_a = playerInstance.getQuestById('boarsAtTheFields')) === null || _a === void 0 ? void 0 : _a.currentStates.includes('started'))) {
-                    playerInstance.addQuest('boarsAtTheFields');
                     if (playerInstance.defeatedEnemies.includes('caltor/Boars 1') && playerInstance.defeatedEnemies.includes('caltor/Boars 2')) {
                         playerInstance.updateQuest('boarsAtTheFields', 'boarsKilled');
                     }
-                    this.setDialog(farmerJoeDialogQuestDiscussed);
                 }
             },
             items: [

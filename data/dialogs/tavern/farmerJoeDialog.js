@@ -137,7 +137,7 @@ export const farmerJoeDialogQuestDiscussedNoReward = [{
                 text: `(Int check) And how did it go so far? I don't see any volunteers around, but I can see that your crops are disappearing - so how about I will take on a task for, let's say, 15 copper - surely you'll get much more if the crops are intact.`,
                 checkCharacteristic: 'attributes.intelligence',
                 checkValue: 11,
-                successTriggers: 'readyqsdToHelpForReward2',
+                successTriggers: 'readyToHelpForReward2',
                 failureTriggers: 'rewardDemandRejected'
             }, {
                 text: '(End) I am not doing it for, good luck with your new pets!',

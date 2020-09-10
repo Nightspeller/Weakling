@@ -8,12 +8,6 @@ import {
     farmerJoeDialogQuestObtained
 } from "../../data/dialogs/tavern/farmerJoeDialog.js";
 import {playerInstance} from "../../characters/adventurers/player.js";
-import {
-    frettAfterTrueNameCalledDialog,
-    frettHowCanIHelpYouDialog,
-    frettObservedReadingAndInterestDialog,
-    frettObservedReadingDialog, frettRepeatStoryDialog
-} from "../../data/dialogs/caltor/frettDialog.js";
 
 export class FarmerJoeNpc extends GeneralNpc {
     constructor({scene, x, y, spriteParams}: { scene: GeneralLocation; x?: number; y?: number; spriteParams?: SpriteParameters }) {
@@ -45,11 +39,9 @@ export class FarmerJoeNpc extends GeneralNpc {
                     this.setDialog(farmerJoeDialogQuestDiscussed);
                 }
                 if (param === 'questRejected' && playerInstance.getQuestById('boarsAtTheFields')?.currentStates.includes('started')) {
-                    playerInstance.addQuest('boarsAtTheFields');
                     if (playerInstance.defeatedEnemies.includes('caltor/Boars 1') && playerInstance.defeatedEnemies.includes('caltor/Boars 2')) {
                         playerInstance.updateQuest('boarsAtTheFields', 'boarsKilled');
                     }
-                    this.setDialog(farmerJoeDialogQuestDiscussed);
                 }
             },
             items: [
