@@ -1,9 +1,6 @@
 import {Adventurer} from "./adventurer.js";
-import {elderInstance} from "./elder.js";
 import {DEBUG} from "../../config/constants.js";
 import {questsData} from "../../data/quests/questsData.js";
-import {fillInventoryWithPotions} from "../../helpers/fillInventory.js";
-import {eyeballInstance} from "./eyeball.js";
 
 export class Player extends Adventurer {
     public worldImageSpriteParams: { texture: string; frame: number };
