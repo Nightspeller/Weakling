@@ -104,20 +104,10 @@ export class Disposition {
         if (!this.enemyCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party won the battle');
             this.log('Adventurer party won the battle');
-            this.playerCharacters.forEach(adventurer => {
-                adventurer.baseCharacteristics.parameters.currentHealth = adventurer.currentCharacteristics.parameters.currentHealth > 0 ? adventurer.currentCharacteristics.parameters.currentHealth : 1;
-                adventurer.baseCharacteristics.parameters.currentEnergy = adventurer.currentCharacteristics.parameters.currentEnergy;
-                adventurer.baseCharacteristics.parameters.currentManna = adventurer.currentCharacteristics.parameters.currentManna;
-            });
             this.scene.exitBattle(true);
             this.battleEnded = true;
         }
-        else if (!this.playerCharacters.some(char => char.isAlive)) {
-            this.playerCharacters.forEach(adventurer => {
-                adventurer.baseCharacteristics.parameters.currentHealth = adventurer.currentCharacteristics.parameters.currentHealth > 0 ? adventurer.currentCharacteristics.parameters.currentHealth : 1;
-                adventurer.baseCharacteristics.parameters.currentEnergy = adventurer.currentCharacteristics.parameters.currentEnergy;
-                adventurer.baseCharacteristics.parameters.currentManna = adventurer.currentCharacteristics.parameters.currentManna;
-            });
+        if (!this.playerCharacters.some(char => char.isAlive)) {
             console.log('Adventurer party lost the battle');
             this.log('Adventurer party lost the battle');
             this.scene.exitBattle(false);
