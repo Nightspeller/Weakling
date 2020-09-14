@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import { gregAfterQuestFinishedDialog, gregDialog, gregQuestAcceptedDialog } from "../../data/dialogs/caltor/gregDialog.js";
+import { gregAfterQuestFinishedDialog, gregDialog, gregQuestAcceptedDialog } from "../../data/dialogs/honeywood/gregDialog.js";
 export class GregNpc extends GeneralNpc {
     constructor({ scene, x, y, spriteParams }) {
         super({

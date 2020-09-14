@@ -1,7 +1,7 @@
 import { GeneralLocation } from "./generalLocation.js";
 import { Trigger } from "../entities/trigger.js";
 import { StrangerNpc } from "../npcs/caltor/strangerNpc.js";
-import { GregNpc } from "../npcs/caltor/gregNpc.js";
+import { GregNpc } from "../npcs/honeywood/gregNpc.js";
 import { BodgerNpc } from "../npcs/caltor/bodgerNpc.js";
 import { BaelinNpc } from "../npcs/caltor/baelinNpc.js";
 import { AnnouncementsDeskNpc } from "../npcs/caltor/announcementsDeskNpc.js";

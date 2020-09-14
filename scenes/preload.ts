@@ -133,6 +133,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('male14-2', 'assets/images-extruded/characters/world-map/neutral/male14-2.png', tilesetConfig);
         this.load.spritesheet("male17-3", "assets/images-extruded/characters/world-map/neutral/male17-3.png", tilesetConfig);
         this.load.spritesheet("male17-4", "assets/images-extruded/characters/world-map/neutral/male17-4.png", tilesetConfig);
+        this.load.spritesheet("female17-1", "assets/images-extruded/characters/world-map/neutral/female17-1.png", tilesetConfig);
         this.load.spritesheet("female19-1", "assets/images-extruded/characters/world-map/neutral/female19-1.png", tilesetConfig);
         this.load.spritesheet("female19-3", "assets/images-extruded/characters/world-map/neutral/female19-3.png", tilesetConfig);
         this.load.spritesheet("female20-3", "assets/images-extruded/characters/world-map/neutral/female20-3.png", tilesetConfig);
@@ -176,6 +177,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('tavern', 'assets/exported-maps/tavern.json');
         this.load.tilemapTiledJSON('booksStore', 'assets/exported-maps/booksStore.json');
         this.load.tilemapTiledJSON('hermitsTower', 'assets/exported-maps/hermitsTower.json');
+        this.load.tilemapTiledJSON('honeywood', 'assets/exported-maps/honeywood.json');
         this.load.tilemapTiledJSON('village', 'assets/exported-maps/village.json');
         this.load.tilemapTiledJSON('battle', 'assets/exported-maps/fight.json');
         this.load.tilemapTiledJSON('hargkakhsCave', 'assets/exported-maps/hargkakhsCave.json');
@@ -209,7 +211,7 @@ export class PreloadScene extends Phaser.Scene {
         console.log('Preload done, calling Main Menu');
         if (DEBUG) {
             //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "skeleton"}, {"type": "wizard"}, {"type": "wildBoar"}], background: 'cave-background', prevScene: "Caltor"});
-            this.scene.start("Caltor", {prevScene: this.scene.key});
+            this.scene.start("Honeywood", {prevScene: this.scene.key});
         } else {
             this.scene.start("MainMenu", {prevScene: this.scene.key});
         }

@@ -32,11 +32,13 @@ import {AchievementsScene} from "./overlay_scenes/achievements.js";
 import {AllItemsScene} from "./overlay_scenes/all-items.js";
 import {TestPreloadScene} from "./scenes/perf-test.js";
 import {LevelUpScreenScene} from "./overlay_scenes/level-up-screen.js";
+import {HoneywoodScene} from "./locations/honeywood.js";
 
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
     BetweenVillageAndCaltorScene,
     DungeonScene,
     DungeonLevel1Scene,
+    HoneywoodScene,
     CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CryptScene, BooksStoreScene,
     VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene, BackCaveScene,
     GreatPlainsScene];

@@ -136,10 +136,10 @@
   <object id="66" name="Fountain sign" type="NPC" gid="662" x="2112" y="800" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="14" name="Waypoints">
-  <object id="18" name="BetweenVillageAndCaltor" type="Waypoint" x="2368" y="3168" width="64" height="32">
+  <object id="18" name="Honeywood" type="Waypoint" x="2368" y="3168" width="64" height="32">
    <properties>
-    <property name="location" value="BetweenVillageAndCaltor"/>
-    <property name="toCoordinates" value="{&quot;x&quot;: 5, &quot;y&quot;: 1}"/>
+    <property name="location" value="Honeywood"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 12, &quot;y&quot;: 0}"/>
    </properties>
   </object>
   <object id="19" name="House Door" type="Waypoint" x="1792" y="3008" width="32" height="64">

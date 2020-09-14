@@ -4,7 +4,7 @@ import {
     gregAfterQuestFinishedDialog,
     gregDialog,
     gregQuestAcceptedDialog
-} from "../../data/dialogs/caltor/gregDialog.js";
+} from "../../data/dialogs/honeywood/gregDialog.js";
 
 export class GregNpc extends GeneralNpc {
     constructor({scene, x, y, spriteParams}: { scene: GeneralLocation; x?: number; y?: number; spriteParams?: SpriteParameters }) {

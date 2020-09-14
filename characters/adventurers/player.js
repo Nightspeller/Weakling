@@ -37,9 +37,9 @@ export class Player extends Adventurer {
             //fillInventoryWithPotions(this,'type', 'strength');
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
-            /*            this.addItemToInventory('mirror-of-travel');
-                        this.addItemToInventory('fancy-belt', 1, 'belt');
-                        this.addItemToInventory('leather-armor', 1, 'body');*/
+            this.addItemToInventory('mirror-of-travel');
+            this.addItemToInventory('fancy-belt', 1, 'belt');
+            this.addItemToInventory('leather-armor', 1, 'body');
             this.addItemToInventory('spirit-sword', 1, 'rightHand');
             /*this.addItemToInventory('smoldering-ring', 1, 'ringRight');
             this.addItemToInventory('fire-marble', 3, "tail");

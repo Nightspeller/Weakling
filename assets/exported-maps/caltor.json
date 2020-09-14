@@ -417,17 +417,17 @@
                 {
                  "height":32,
                  "id":18,
-                 "name":"BetweenVillageAndCaltor",
+                 "name":"Honeywood",
                  "properties":[
                         {
                          "name":"location",
                          "type":"string",
-                         "value":"BetweenVillageAndCaltor"
+                         "value":"Honeywood"
                         }, 
                         {
                          "name":"toCoordinates",
                          "type":"string",
-                         "value":"{\"x\": 5, \"y\": 1}"
+                         "value":"{\"x\": 12, \"y\": 0}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
