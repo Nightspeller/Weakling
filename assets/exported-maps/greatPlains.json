@@ -431,7 +431,7 @@
                  "type":"Waypoint",
                  "visible":true,
                  "width":64,
-                 "x":1248,
+                 "x":1312,
                  "y":0
                 }],
          "opacity":1,
@@ -444,7 +444,7 @@
  "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.05.27",
+ "tiledversion":"1.4.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -10045,6 +10045,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":50
 }
