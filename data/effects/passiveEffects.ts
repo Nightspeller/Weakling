@@ -14,6 +14,25 @@ export const passiveEffects: { [key: string]: EffectData } = {
             this.baseDuration = this.strength
         },
     },
+    drunk: {
+        effectId: 'drunk',
+        name: 'Drunk',
+        description: `This character is drunk - his agility is reduced`,
+        type: 'passive',
+        targetCharacteristic: 'agility',
+        baseDuration: 3,
+        durationLeft: null,
+        strength: null,
+        source: null,
+        statusImage: {texture: 'icons', frame: 62},
+        applicationCheck: (source, target, action) => true,
+        setModifier: function (source, target, action) {
+            this.modifier = {
+                type: 'percent',
+                value: -10*this.strength
+            };
+        },
+    },
     armorUp: {
         effectId: 'armorUp',
         name: 'Armor up',

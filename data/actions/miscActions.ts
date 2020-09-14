@@ -101,8 +101,12 @@ export const miscActions: { [key: string]: ActionData } = {
         type: 'misc',
         actionName: 'Drink Alcohol',
         actionDescription: 'Drinking alcohol in battle is double-edged sword - do not cut yourself too deep',
+        consumes: `beer`,
         effectsDescriptions: [{
             effectId: 'addEnergy',
+            strength: 1
+        }, {
+            effectId: 'drunk',
             strength: 1
         }],
         target: 'self',
