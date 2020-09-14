@@ -81,16 +81,17 @@ export class CharacterDrawer {
             align: 'center',
             fixedWidth: BATTLE_CHAR_WIDTH
         };
-        const params = this.char.currentCharacteristics.parameters;
-        const healthText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 36, `${params.currentHealth} / ${params.health}`, {
+        const characteristics = this.char.characteristics;
+        const params = this.char.parameters;
+        const healthText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 36, `${params.health} / ${characteristics.health}`, {
             ...textParams,
             backgroundColor: '#ff000075'
         }).setOrigin(0.5, 0);
-        const mannaText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 24, `${params.currentManna} / ${params.manna}`, {
+        const mannaText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 24, `${params.manna} / ${characteristics.manna}`, {
             ...textParams,
             backgroundColor: '#0000ff75'
         }).setOrigin(0.5, 0);
-        const energyText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 12, `${params.currentEnergy} / ${params.energy}`, {
+        const energyText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 12, `${params.energy} / ${characteristics.energy}`, {
             ...textParams,
             backgroundColor: '#00ff0075'
         }).setOrigin(0.5, 0);
@@ -203,53 +204,55 @@ export class CharacterDrawer {
             level = this.scene.add.text(2 + 96 + 2, 24, `Level: ${this.char.level}`, textStyle);
         }
         this.characterInfoContainer.add(level);
-        const parameters = this.char.currentCharacteristics.parameters;
-        const health = this.scene.add.text(2 + 96 + 2, 40, `HP: ${parameters.currentHealth}/${parameters.health}`, textStyle);
-        const manna = this.scene.add.text(2 + 96 + 2, 56, `MP: ${parameters.currentManna}/${parameters.manna}`, textStyle);
-        const energy = this.scene.add.text(2 + 96 + 2, 72, `EN: ${parameters.currentEnergy}/${parameters.energy}`, textStyle);
+        const characteristics = this.char.characteristics;
+        const parameters = this.char.parameters;
+
+        const health = this.scene.add.text(2 + 96 + 2, 40, `HP: ${parameters.health}/${characteristics.health}`, textStyle);
+        const manna = this.scene.add.text(2 + 96 + 2, 56, `MP: ${parameters.manna}/${characteristics.manna}`, textStyle);
+        const energy = this.scene.add.text(2 + 96 + 2, 72, `EN: ${parameters.energy}/${characteristics.energy}`, textStyle);
         this.characterInfoContainer.add(health);
         this.characterInfoContainer.add(manna);
         this.characterInfoContainer.add(energy);
 
         let lastTextY = 102;
-        const drawText = (group, subgroup) => {
-            let charString = this.char.currentCharacteristics[group][subgroup] + ' (';
-            charString += this.char.characteristicsModifiers[group][subgroup].map(modifier => modifier.value).join(' + ') + ')';
-            const text = this.scene.add.text(8, lastTextY, `${subgroup}: ${charString}`, textStyle);
+        const drawText = (characteristic) => {
+            let charString = this.char.characteristics[characteristic] + ' (';
+            charString += this.char.characteristicsModifiers[characteristic].map(modifier => modifier.value).join(' + ') + ')';
+            const text = this.scene.add.text(8, lastTextY, `${characteristic}: ${charString}`, textStyle);
             this.characterInfoContainer.add(text);
             lastTextY += 14;
         };
 
-        Object.entries(this.char.currentCharacteristics).forEach(([group, value]) => {
-            Object.entries(value).forEach(([subgroup, value]) => {
-                if (group !== 'parameters' && !subgroup.includes('Resistance')) drawText(group, subgroup);
-            })
+        Object.keys(this.char.characteristics).forEach((characteristic) => {
+            if (characteristic !== 'health' && characteristic !== 'manna' && characteristic !=='energy' && !characteristic.includes('Resistance')) {
+                drawText(characteristic);
+            }
         });
 
-        const resistance = this.scene.add.text(8, 186, `Resistance: `, textStyle);
+        const resistance = this.scene.add.text(8, 206, `Resistance: `, textStyle);
         this.characterInfoContainer.add(resistance);
 
-        const resistanceDetails = this.scene.add.text(8, 202,
-            `🔥${this.char.currentCharacteristics.defences.fireResistance} ` +
-            `❄${this.char.currentCharacteristics.defences.coldResistance} ` +
-            `⚡${this.char.currentCharacteristics.defences.electricityResistance} ` +
-            `☣${this.char.currentCharacteristics.defences.acidResistance} ` +
-            `☠${this.char.currentCharacteristics.defences.poisonResistance} ` +
-            `✨${this.char.currentCharacteristics.defences.magicResistance} `,
+        const resistanceDetails = this.scene.add.text(8, 222,
+            `🔥${this.char.characteristics.fireResistance} ` +
+            `❄${this.char.characteristics.coldResistance} ` +
+            `⚡${this.char.characteristics.electricityResistance} ` +
+            `☣${this.char.characteristics.acidResistance} ` +
+            `☠${this.char.characteristics.poisonResistance} ` +
+            `✨${this.char.characteristics.magicResistance} `,
             {font: '14px monospace', fill: '#000000'});
         this.characterInfoContainer.add(resistanceDetails);
 
-        const actionPointsText = this.scene.add.text(8, 234, `Action points:`, textStyle);
+        const actionPointsText = this.scene.add.text(8, 254, `Action points:`, textStyle);
         this.characterInfoContainer.add(actionPointsText);
 
         let pointsDrawn = 0;
         Object.keys(this.char.actionPoints).forEach((pointType, index) => {
             for (let i = 0; i < Math.trunc(this.char.actionPoints[pointType]); i++) {
-                this.characterInfoContainer.add(this.scene.add.sprite(8 + pointsDrawn * 16, 250, 'action-points', index).setOrigin(0));
+                this.characterInfoContainer.add(this.scene.add.sprite(8 + pointsDrawn * 16, 270, 'action-points', index).setOrigin(0));
                 pointsDrawn++;
             }
             if (this.char.actionPoints[pointType] % 1 === 0.5) {
-                this.characterInfoContainer.add(this.scene.add.sprite(8 + pointsDrawn * 16, 250, 'action-points', index + 3).setOrigin(0));
+                this.characterInfoContainer.add(this.scene.add.sprite(8 + pointsDrawn * 16, 270, 'action-points', index + 3).setOrigin(0));
                 pointsDrawn++;
             }
         });

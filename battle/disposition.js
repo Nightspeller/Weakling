@@ -89,13 +89,13 @@ export class Disposition {
             this.turnOrder = [...this.playerCharacters]
                 .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
+                .sort((a, b) => b.characteristics.initiative - a.characteristics.initiative);
         }
         else {
             this.turnOrder = [...this.playerCharacters, ...this.enemyCharacters]
                 .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
+                .sort((a, b) => b.characteristics.initiative - a.characteristics.initiative);
         }
         this.scene.drawTurnOrder(this.turnOrder);
     }
@@ -132,28 +132,22 @@ export class Disposition {
             this.log(`Action was not performed because ${source.actionPoints[action.type]} ${action.type} action points is not enough - ${action.actionCost} is needed.`);
             return actionResults;
         }
-        if (action.parametersCost.manna && source.currentCharacteristics.parameters.currentManna < action.parametersCost.manna) {
-            console.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentManna} manna is not enough - ${action.parametersCost.manna} is needed.`);
-            this.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentManna} manna is not enough - ${action.parametersCost.manna} is needed.`);
+        if (action.parametersCost.manna && source.parameters.manna < action.parametersCost.manna) {
+            console.log(`Action was not performed because ${source.parameters} manna is not enough - ${action.parametersCost.manna} is needed.`);
+            this.log(`Action was not performed because ${source.parameters} manna is not enough - ${action.parametersCost.manna} is needed.`);
             return actionResults;
         }
-        if (action.parametersCost.energy && source.currentCharacteristics.parameters.currentEnergy < action.parametersCost.energy) {
-            console.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentEnergy} energy is not enough - ${action.parametersCost.energy} is needed.`);
-            this.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentEnergy} energy is not enough - ${action.parametersCost.energy} is needed.`);
+        if (action.parametersCost.energy && source.parameters.energy < action.parametersCost.energy) {
+            console.log(`Action was not performed because ${source.parameters.energy} energy is not enough - ${action.parametersCost.energy} is needed.`);
+            this.log(`Action was not performed because ${source.parameters.energy} energy is not enough - ${action.parametersCost.energy} is needed.`);
             return actionResults;
         }
         actionResults.attempted = true;
         if ((_a = action.parametersCost) === null || _a === void 0 ? void 0 : _a.energy) {
-            const subtractEnergyEffect = new Effect('subtractEnergy');
-            subtractEnergyEffect.setModifier(source, source, action);
-            subtractEnergyEffect.source = action.actionId;
-            source.applyEffect(subtractEnergyEffect);
+            source.addToParameter('energy', -action.parametersCost.energy);
         }
         if ((_b = action.parametersCost) === null || _b === void 0 ? void 0 : _b.manna) {
-            const subtractMannaEffect = new Effect('subtractManna');
-            subtractMannaEffect.setModifier(source, source, action);
-            subtractMannaEffect.source = action.actionId;
-            source.applyEffect(subtractMannaEffect);
+            source.addToParameter('manna', -action.parametersCost.manna);
         }
         source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;
         actionResults.triggeredTraps = this._checkForTriggers(source, action);

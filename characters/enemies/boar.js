@@ -18,37 +18,32 @@ export class Boar extends GeneralEnemy {
         this.level = 1;
         this.availableActions = ['wildRush', 'enrage'];
         this.name = 'Wild Boar';
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 10,
-                agility: 10,
-                intelligence: 3,
-                initiative: Phaser.Math.Between(20, 30)
-            },
-            parameters: {
-                health: 20,
-                currentHealth: 20,
-                manna: 0,
-                currentManna: 0,
-                energy: 10,
-                currentEnergy: 10,
-            },
-            defences: {
-                armor: 12,
-                dodge: 10,
-                fireResistance: 0,
-                coldResistance: 5,
-                acidResistance: 0,
-                electricityResistance: 0,
-                poisonResistance: 0,
-                magicResistance: 0,
-            }
+        this.characteristicsModifiers = {
+            strength: [{ source: 'base', value: 10 }],
+            agility: [{ source: 'base', value: 10 }],
+            intelligence: [{ source: 'base', value: 3 }],
+            initiative: [{ source: 'base', value: Phaser.Math.Between(20, 30) }],
+            health: [{ source: 'base', value: 20 }],
+            manna: [{ source: 'base', value: 0 }],
+            energy: [{ source: 'base', value: 10 }],
+            armor: [{ source: 'base', value: 12 }],
+            dodge: [{ source: 'base', value: 10 }],
+            fireResistance: [{ source: 'base', value: 0 }],
+            coldResistance: [{ source: 'base', value: 5 }],
+            acidResistance: [{ source: 'base', value: 0 }],
+            electricityResistance: [{ source: 'base', value: 0 }],
+            poisonResistance: [{ source: 'base', value: 0 }],
+            magicResistance: [{ source: 'base', value: 0 }],
+            weaponDamage: [{ source: 'base', value: 3 }]
         };
+        this.parameters = {
+            health: 20,
+            manna: 0,
+            energy: 10,
+        };
+        this._recalculateCharacteristics();
         this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
         this.actionPointsIncrement = { physical: 1, magical: 0, misc: 1 };
-    }
-    getAttackDamage() {
-        return 3;
     }
 }
 //# sourceMappingURL=boar.js.map

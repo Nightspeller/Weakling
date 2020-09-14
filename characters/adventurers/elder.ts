@@ -5,49 +5,40 @@ export class Elder extends Adventurer {
     constructor() {
         super();
         this.spriteParams = {texture: 'elder', frame: null, width: 96, height: 96};
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 5,
-                agility: 10,
-                intelligence: 15,
-                initiative: Phaser.Math.Between(0, 30) + 10
-            },
-            parameters: {
-                health: 5,
-                currentHealth: 5,
-                manna: 5,
-                currentManna: 5,
-                energy: 10,
-                currentEnergy: 10,
-            },
-            defences: {
-                armor: 10,
-                dodge: 10,
-                fireResistance: 10,
-                coldResistance: 10,
-                acidResistance: 10,
-                electricityResistance: 10,
-                poisonResistance: 10,
-                magicResistance: 10,
-            }
+        this.characteristicsModifiers = {
+            strength: [{source: 'base', value: 5}],
+            agility: [{source: 'base', value: 10}],
+            intelligence: [{source: 'base', value: 15}],
+            initiative: [{source: 'base', value: Phaser.Math.Between(0, 30)+ 10}],
+            health: [{source: 'base', value: 5}],
+            manna: [{source: 'base', value: 10}],
+            energy: [{source: 'base', value: 5}],
+            armor: [{source: 'base', value: 10}],
+            dodge: [{source: 'base', value: 10}],
+            fireResistance: [{source: 'base', value: 10}],
+            coldResistance: [{source: 'base', value: 10}],
+            acidResistance: [{source: 'base', value: 10}],
+            electricityResistance: [{source: 'base', value: 10}],
+            poisonResistance: [{source: 'base', value: 10}],
+            magicResistance: [{source: 'base', value: 10}],
+            weaponDamage: [{source: 'base', value: 5}]
         };
-
-        if (DEBUG) {
-            this.baseCharacteristics.parameters.health = 50;
-            this.baseCharacteristics.parameters.currentHealth = 50;
+        this.parameters = {
+            health: 5,
+            manna: 10,
+            energy: 5,
         }
 
-/*        this.addItemToInventory('rope-belt').currentSlot = 'belt';
-        this.addItemToInventory('leather-armor').currentSlot = 'body';
-        this.addItemToInventory('wooden-sword-weapon').currentSlot = 'rightHand';
-        this.addItemToInventory('copper-pieces', 15);*/
+        this._recalculateCharacteristics();
+
+        if (DEBUG) {
+            this.characteristics.health = 50;
+            this.parameters.health = 50;
+        }
+
         this.name = 'Elder Guarthh';
 
         this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
-    }
-
-    public getAttackDamage() {
-        return 5;
     }
 }
 

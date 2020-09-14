@@ -335,6 +335,20 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                 });
                 descriptionContainer.add(splitItemButton);
             }
+            if (((_a = item.specifics) === null || _a === void 0 ? void 0 : _a.worldConsumable) && this.parentSceneKey !== 'Battle') {
+                const consumeItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 96 - 10, 5, 'icon-item-set', 18).setOrigin(0, 0);
+                consumeItemButton.setInteractive({ useHandCursor: true });
+                consumeItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
+                    const currentMax = this.player.characteristics[item.specifics.worldConsumable.type];
+                    const healing = Math.round(currentMax * item.specifics.worldConsumable.value);
+                    this.player.addToParameter(item.specifics.worldConsumable.type, healing);
+                    this._changeItemQuantity(slot, item.quantity - 1);
+                    event.stopPropagation();
+                    outerZone.destroy(true);
+                    descriptionContainer.destroy(true);
+                });
+                descriptionContainer.add(consumeItemButton);
+            }
         }
         const name = this.add.text(5, 5, item.displayName, textStyle).setOrigin(0, 0);
         descriptionContainer.add(name);
@@ -342,11 +356,6 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const description = this.add.text(5, name.getBottomLeft().y + 15, item.description, textStyle).setOrigin(0, 0);
         descriptionContainer.add(description);
         let lastTextPosition = description.getBottomLeft().y;
-        if ((_a = item.specifics) === null || _a === void 0 ? void 0 : _a.damage) {
-            const damage = this.add.text(5, lastTextPosition + 10, `Damage: ${item.specifics.damage}`, textStyle).setOrigin(0, 0);
-            descriptionContainer.add(damage);
-            lastTextPosition = damage.getBottomLeft().y;
-        }
         if ((_b = item.specifics) === null || _b === void 0 ? void 0 : _b.additionalActions) {
             const actions = this.add.text(5, lastTextPosition + 10, `Provides actions: ${item.specifics.additionalActions.join(', ')}`, textStyle).setOrigin(0, 0);
             descriptionContainer.add(actions);
@@ -356,7 +365,6 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             const charText = item.specifics.additionalCharacteristics.map(char => {
                 let name = Object.keys(char)[0];
                 let value = Object.values(char)[0];
-                name = name.split('.')[1];
                 name = name[0].toUpperCase() + name.slice(1);
                 return `${name}: ${value}`;
             }).join('\n');
@@ -409,6 +417,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         if (newQuantity !== 0) {
             itemRepresentation.item.quantity = newQuantity;
             itemRepresentation.updateQuantityCounter();
+            this.updateSourceCallback();
         }
         else {
             this._deleteItemRepresentation(slot);

@@ -18,19 +18,19 @@ export const strangerDialog: DialogTree = [{
     text: 'Let\'s see what I can show you.. With the new dialog system you can for example try to pass some ability checks. Try to get this shiny new dagger from me.',
     replies: [{
         text: '(Strength) Aaaa! I want a new dagger give me give me give me!',
-        checkCharacteristic: 'attributes.strength',
+        checkCharacteristic: 'strength',
         checkValue: 20,
         successTriggers: 'daggerSuccess3',
         failureTriggers: 'daggerFailure',
     }, {
         text: '(Agility) *Whistle whistle whistle* Casually walk around trying to sneaky pick up the dagger.',
-        checkCharacteristic: 'attributes.agility',
+        checkCharacteristic: 'agility',
         checkValue: 15,
         successTriggers: 'daggerSuccess3',
         failureTriggers: 'daggerFailure',
     }, {
         text: '(Intelligence) A & B were sitting on the pipe, A fell down, B got lost, who was left on the pipe?',
-        checkCharacteristic: 'attributes.intelligence',
+        checkCharacteristic: 'intelligence',
         checkValue: 10,
         successTriggers: 'daggerSuccess1',
         failureTriggers: 'daggerFailure',
@@ -46,19 +46,19 @@ export const strangerDialog: DialogTree = [{
     text: 'Try to get this shiny new dagger from me.',
     replies: [{
         text: '(Strength) Aaaa! I want a new dagger give me give me give me!',
-        checkCharacteristic: 'attributes.strength',
+        checkCharacteristic: 'strength',
         checkValue: 20,
         successTriggers: 'daggerSuccess3',
         failureTriggers: 'daggerFailure'
     }, {
         text: '(Agility) *Whistle whistle whistle* Casually walk around trying to sneaky pick up the dagger.',
-        checkCharacteristic: 'attributes.agility',
+        checkCharacteristic: 'agility',
         checkValue: 15,
         successTriggers: 'daggerSuccess3',
         failureTriggers: 'daggerFailure'
     }, {
         text: '(Intelligence) A & B were sitting on the pipe, A fell down, B got lost, who is left on the pipe?',
-        checkCharacteristic: 'attributes.intelligence',
+        checkCharacteristic: 'intelligence',
         checkValue: 10,
         successTriggers: 'daggerSuccess1',
         failureTriggers: 'daggerFailure'

@@ -108,8 +108,7 @@ export class DialogScene extends GeneralOverlayScene {
 
     private _replaySelected(reply) {
         if (reply.checkCharacteristic !== undefined) {
-            const charToCheck = reply.checkCharacteristic.split('.');
-            if (this.player.currentCharacteristics[charToCheck[0]][charToCheck[1]] >= reply.checkValue) {
+            if (this.player.characteristics[reply.checkCharacteristic] >= reply.checkValue) {
                 const nextLine = this.dialogTree.find(line => line.id === reply.successTriggers);
                 this._showLine(nextLine);
             } else {

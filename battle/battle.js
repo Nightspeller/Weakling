@@ -136,7 +136,7 @@ export class BattleScene extends GeneralOverlayScene {
                 backgroundColor: 'lightgrey',
                 color: 'black'
             }).setVisible(false);
-            const initiativeText = this.add.text(64 * i, 0, char.currentCharacteristics.attributes.initiative.toString(), {
+            const initiativeText = this.add.text(64 * i, 0, char.characteristics.initiative.toString(), {
                 fixedWidth: 64,
                 fixedHeight: 16,
                 align: 'center',
@@ -166,14 +166,14 @@ export class BattleScene extends GeneralOverlayScene {
             .setDisplaySize(this.opts.windowWidth, this.opts.windowHeight)
             .setOrigin(0).setDepth(this.opts.baseDepth);
     }
-    _drawCloseButton() { }
+    _drawCloseButton() {
+    }
     ;
     exitBattle(isPartyWon) {
         console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'}. Name of enemy object: ${this.enemyName}`);
         this.disposition.playerCharacters.forEach(adventurer => {
-            adventurer.baseCharacteristics.parameters.currentHealth = adventurer.currentCharacteristics.parameters.currentHealth > 0 ? adventurer.currentCharacteristics.parameters.currentHealth : 1;
-            adventurer.baseCharacteristics.parameters.currentEnergy = adventurer.currentCharacteristics.parameters.currentEnergy;
-            adventurer.baseCharacteristics.parameters.currentManna = adventurer.currentCharacteristics.parameters.currentManna;
+            if (adventurer.parameters.health === 0)
+                adventurer.addToParameter('health', 1);
         });
         if (isPartyWon === true) {
             this.closeScene({ defeatedEnemy: this.enemyName, droppedItems: this.droppedItems });

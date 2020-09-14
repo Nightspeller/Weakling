@@ -93,5 +93,22 @@ export const miscActions = {
         icon: { texture: 'icon-item-set', frame: 59 },
         parametersCost: { energy: 3 },
     },
+    drinkAlcohol: {
+        actionId: 'drinkAlcohol',
+        phase: ['preparation', 'battle'],
+        type: 'misc',
+        actionName: 'Drink Alcohol',
+        actionDescription: 'Drinking alcohol in battle is double-edged sword - do not cut yourself too deep',
+        effectsDescriptions: [{
+                effectId: 'addEnergy',
+                strength: 1
+            }],
+        target: 'self',
+        actionCost: 1,
+        noticeable: 0,
+        animation: 'castBuff',
+        icon: { texture: 'icon-item-set', frame: 254 },
+        parametersCost: {},
+    },
 };
 //# sourceMappingURL=miscActions.js.map

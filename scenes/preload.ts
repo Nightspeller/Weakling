@@ -208,8 +208,8 @@ export class PreloadScene extends Phaser.Scene {
         createAnimations(this);
         console.log('Preload done, calling Main Menu');
         if (DEBUG) {
-            //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "skeleton"}, {"type": "wizard"}, {"type": "wildBoar"}], prevScene: "Caltor"});
-            this.scene.start("DungeonLevel1", {prevScene: this.scene.key});
+            //this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "skeleton"}, {"type": "wizard"}, {"type": "wildBoar"}], background: 'cave-background', prevScene: "Caltor"});
+            this.scene.start("Caltor", {prevScene: this.scene.key});
         } else {
             this.scene.start("MainMenu", {prevScene: this.scene.key});
         }

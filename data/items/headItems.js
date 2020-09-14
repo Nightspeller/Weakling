@@ -10,9 +10,9 @@ export const headItems = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                { 'attributes.agility': 1 },
-                { 'attributes.initiative': 1 },
-                { 'defences.armor': 1 },
+                { 'agility': 1 },
+                { 'initiative': 1 },
+                { 'armor': 1 },
             ],
             size: ['xs', 's', 'm'],
         },

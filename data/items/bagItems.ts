@@ -11,7 +11,7 @@ export const bagItems: { [key: string]: ItemData } = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                {'parameters.health': 1},
+                {'health': 1},
             ],
             size: ['xs', 's', 'm'],
         },

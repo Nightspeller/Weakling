@@ -2,6 +2,8 @@ import GeneralCharacter from "../generalCharacter.js";
 import Item from "../../entities/item.js";
 import prepareLog from "../../helpers/logger.js";
 import {GeneralLocation} from "../../locations/generalLocation.js";
+import {playerSlotNames} from "../../data/items/itemSlots.js";
+import item from "../../entities/item.js";
 
 export class Adventurer extends GeneralCharacter {
     private inventory: Map<Slots, Item>;
@@ -20,8 +22,20 @@ export class Adventurer extends GeneralCharacter {
     }
 
     public updateInventory(newInventoryMap: Map<Slots, Item>) {
-        this.inventory = newInventoryMap;
-        this.applyItems();
+        // needed to avoid bug with moving same item inside the doll
+        const itemsToAdd = new Map();
+        playerSlotNames.forEach(slot => {
+            const itemInNewInventory = newInventoryMap.get(slot);
+            const itemInCurrentInventory = this.inventory.get(slot);
+            if (itemInCurrentInventory !== itemInNewInventory) {
+                if (itemInNewInventory === undefined) {
+                    this.removeItemFromInventory(itemInCurrentInventory, itemInCurrentInventory.quantity)
+                } else {
+                    itemsToAdd.set(slot, itemInNewInventory);
+                }
+            }
+        })
+        itemsToAdd.forEach((item, slot) => this._addItemToTheMap(slot, item));
     }
 
     public getInventoryItemById(itemId: string, excludeBackpack = false): { slot: Slots, item: Item } | undefined {
@@ -71,7 +85,7 @@ export class Adventurer extends GeneralCharacter {
             throw `Error while adding ${item} to ${slot}`;
         }
         this.inventory.set(slot, item);
-        this.applyItems();
+        this._processItemModifiers(slot, item, true);
         return item;
     }
 
@@ -130,13 +144,7 @@ export class Adventurer extends GeneralCharacter {
         } else {
             item.quantity -= quantity;
         }
-        this.applyItems();
-    }
-
-    public getAttackDamage() {
-        const rightHandDamage = this.inventory.get('rightHand')?.specifics?.damage || 1;
-        const leftHandDamage = this.inventory.get('leftHand')?.specifics?.damage / 2 || 0;
-        return Math.round(rightHandDamage + leftHandDamage);
+        this._processItemModifiers(slotOfItem, item, false);
     }
 
     public getAllItems() {
@@ -147,26 +155,22 @@ export class Adventurer extends GeneralCharacter {
         return this.inventory.get(slotName);
     }
 
-    public applyItems() {
-        Object.entries(this.characteristicsModifiers).forEach(([group, value]) => {
-            Object.entries(value).forEach(([subgroup, value]) => {
-                this.characteristicsModifiers[group][subgroup] = this.characteristicsModifiers[group][subgroup].filter(modifier => !modifier.source.itemId);
-            })
-        });
-        this.inventory.forEach((item, slot) => {
-            if (slot.includes('backpack') === false) {
-                item.specifics?.additionalCharacteristics?.forEach(char => {
-                    Object.entries(char).forEach(([targetString, targetValue]) => {
-                        const target = targetString.split('.');
-                        this.characteristicsModifiers[target[0]][target[1]].push({
-                            value: targetValue,
+    private _processItemModifiers(slot: Slots, item: Item, add: boolean) {
+        if (slot.includes('backpack') === false) {
+            item.specifics?.additionalCharacteristics?.forEach(char => {
+                Object.entries(char).forEach(([targetName, targetValue]) => {
+                    if (targetName === 'weaponDamage' && slot === 'leftHand') targetValue = Math.round((targetValue as number)/2);
+                    if (add) {
+                        this.setCharacteristicModifier(targetName, {
+                            value: targetValue as number,
                             source: item
                         });
-                    });
-                })
-            }
-        });
-        this.recalculateCharacteristics();
+                    } else {
+                        this.removeCharacteristicModifier(targetName, item);
+                    }
+                });
+            })
+        }
     }
 
     public getAvailableActions() {
@@ -185,7 +189,6 @@ export class Adventurer extends GeneralCharacter {
         if (roundType === 'preparation') {
             this.isAlive = true;
             this.actedThisRound = false;
-            this.applyItems();
         }
     }
 
@@ -194,30 +197,31 @@ export class Adventurer extends GeneralCharacter {
         let matchingLevel = 1;
         for (let i = 9; i >= 0; i--) {
             if (this.xp >= this.experienceTable[i]) {
-                //console.log(`for ${this.xp}xp, value in table ${this.experienceTable[i]}, the index is ${i}`)
                 matchingLevel = i + 1;
                 break;
             }
         }
-        //console.log(matchingLevel, this.level);
         if (matchingLevel !== this.level) {
             this.readyForLevelUp = true;
-            /*const levelDifference = matchingLevel - this.level;
-            for (let i = 0; i < levelDifference; i++) {
-                this.readyForLevelUp = true
-                this.levelUp();
-            }*/
         }
     }
 
     public levelUp(strengthAddition = 0, agilityAddition = 0, intelligenceAddition = 0) {
         console.log(...prepareLog(`Leveling up ??${this.name} from level ${this.level} to ${this.level + 1}`));
         this.level++;
-        this.baseCharacteristics.attributes.strength+=strengthAddition;
-        this.baseCharacteristics.attributes.agility+=agilityAddition;
-        this.baseCharacteristics.attributes.intelligence+=intelligenceAddition;
+        this.setCharacteristicModifier('strength', {
+            source: 'base',
+            value: this.characteristicsModifiers.strength.find(mod => mod.source === 'base').value + strengthAddition
+        });
+        this.setCharacteristicModifier('agility', {
+            source: 'base',
+            value: this.characteristicsModifiers.agility.find(mod => mod.source === 'base').value + agilityAddition
+        });
+        this.setCharacteristicModifier('intelligence', {
+            source: 'base',
+            value: this.characteristicsModifiers.intelligence.find(mod => mod.source === 'base').value + intelligenceAddition
+        });
         this.readyForLevelUp = false;
-        this.addBaseModifiers();
     }
 
     freeze() {

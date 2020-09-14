@@ -460,6 +460,7 @@ export class GeneralLocation extends Phaser.Scene {
         this.input.keyboard.off('keyup-F2');
         this.input.keyboard.on('keyup-F2', () => {
             console.log(this);
+            console.log(this.player);
         })
     }
 

@@ -9,54 +9,49 @@ export class Player extends Adventurer {
         this.worldImageSpriteParams = { texture: 'jeremy-green', frame: 1 };
         this.quests = [];
         this.defeatedEnemies = [];
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 10,
-                agility: 10,
-                intelligence: 10,
-                initiative: Phaser.Math.Between(0, 30)
-            },
-            parameters: {
-                health: 5,
-                currentHealth: 5,
-                manna: 5,
-                currentManna: 5,
-                energy: 10,
-                currentEnergy: 10,
-            },
-            defences: {
-                armor: 10,
-                dodge: 10,
-                fireResistance: 10,
-                coldResistance: 10,
-                acidResistance: 10,
-                electricityResistance: 10,
-                poisonResistance: 10,
-                magicResistance: 10,
-            }
+        this.characteristicsModifiers = {
+            strength: [{ source: 'base', value: 10 }],
+            agility: [{ source: 'base', value: 10 }],
+            intelligence: [{ source: 'base', value: 10 }],
+            initiative: [{ source: 'base', value: Phaser.Math.Between(0, 30) }],
+            health: [{ source: 'base', value: 5 }],
+            manna: [{ source: 'base', value: 5 }],
+            energy: [{ source: 'base', value: 10 }],
+            armor: [{ source: 'base', value: 10 }],
+            dodge: [{ source: 'base', value: 10 }],
+            fireResistance: [{ source: 'base', value: 10 }],
+            coldResistance: [{ source: 'base', value: 10 }],
+            acidResistance: [{ source: 'base', value: 10 }],
+            electricityResistance: [{ source: 'base', value: 10 }],
+            poisonResistance: [{ source: 'base', value: 10 }],
+            magicResistance: [{ source: 'base', value: 10 }],
+            weaponDamage: [{ source: 'base', value: 1 }]
         };
+        this.parameters = {
+            health: 5,
+            manna: 5,
+            energy: 10,
+        };
+        this._recalculateCharacteristics();
         if (DEBUG) {
-            this.baseCharacteristics.parameters.health = 10;
-            this.baseCharacteristics.parameters.currentHealth = 10;
             //fillInventoryWithPotions(this,'type', 'strength');
             this.addItemToInventory('copper-pieces', 1000);
             this.addItemToInventory('allpowerful-necklace');
-            this.addItemToInventory('mirror-of-travel');
-            this.addItemToInventory('fancy-belt', 1, 'belt');
-            this.addItemToInventory('leather-armor', 1, 'body');
+            /*            this.addItemToInventory('mirror-of-travel');
+                        this.addItemToInventory('fancy-belt', 1, 'belt');
+                        this.addItemToInventory('leather-armor', 1, 'body');*/
             this.addItemToInventory('spirit-sword', 1, 'rightHand');
-            this.addItemToInventory('smoldering-ring', 1, 'ringRight');
+            /*this.addItemToInventory('smoldering-ring', 1, 'ringRight');
             this.addItemToInventory('fire-marble', 3, "tail");
-            this.addItemToInventory('trap-kit');
-            this.addItemToInventory('basic-sack');
+            this.addItemToInventory('trap-kit');*/
+            this.addItemToInventory('apple', 5);
+            this.addItemToInventory('carrot', 3);
             /* this.addQuest('theSelflessSpirit');
              this.updateQuest('theSelflessSpirit', 'falseNameLearned');
              this.updateQuest('theSelflessSpirit', 'falseNameCalled');*/
             //this.updateQuest('theSelflessSpirit', 'trueNameLearned');
             //this.updateQuest('theSelflessSpirit', 'trueNameCalled');
         }
-        this.addBaseModifiers();
-        this.applyItems();
         this.availableActions = ['meditate', 'accessInventory', 'retreat', 'swiftMind', 'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
         this.party = [this];
         this.addQuest('bigCaltorTrip');

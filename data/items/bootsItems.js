@@ -10,8 +10,8 @@ export const bootsItems = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                { 'defences.dodge': 1 },
-                { 'parameters.energy': 1 }
+                { 'dodge': 1 },
+                { 'energy': 1 }
             ],
             size: ['xs', 's', 'm'],
         },

@@ -54,9 +54,7 @@ export const quickSlotItems = {
         modified: false,
         quantity: null,
         specifics: {
-            useEffects: [
-                { 'parameters.currentHealth': 1 }
-            ],
+            additionalActions: [`drinkAlcohol`],
         },
         sellPrice: 2,
         buyPrice: 3

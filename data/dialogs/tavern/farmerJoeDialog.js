@@ -37,7 +37,7 @@ export const farmerJoeDialogQuestNotObtained = [{
                 callbackParam: 'questAccepted'
             }, {
                 text: `(Int check) And how did it go so far? I don't see any volunteers around, but I can see that your crops are disappearing - so how about I will take on a task for, let's say, 15 copper - surely you'll get much more if the crops are intact.`,
-                checkCharacteristic: 'attributes.intelligence',
+                checkCharacteristic: 'intelligence',
                 checkValue: 11,
                 successTriggers: 'readyToHelpForReward2',
                 failureTriggers: 'rewardDemandRejected'
@@ -91,7 +91,7 @@ export const farmerJoeDialogQuestObtained = [{
                 callbackParam: 'questAccepted'
             }, {
                 text: `(Int check) And how did it go so far? I don't see any volunteers around, but I can see that your crops are disappearing - so how about I will take on a task for, let's say, 15 copper - surely you'll get much more if the crops are intact.`,
-                checkCharacteristic: 'attributes.intelligence',
+                checkCharacteristic: 'intelligence',
                 checkValue: 11,
                 successTriggers: 'readyToHelpForReward2',
                 failureTriggers: 'rewardDemandRejected'
@@ -135,7 +135,7 @@ export const farmerJoeDialogQuestDiscussedNoReward = [{
                 callbackParam: 'questAccepted'
             }, {
                 text: `(Int check) And how did it go so far? I don't see any volunteers around, but I can see that your crops are disappearing - so how about I will take on a task for, let's say, 15 copper - surely you'll get much more if the crops are intact.`,
-                checkCharacteristic: 'attributes.intelligence',
+                checkCharacteristic: 'intelligence',
                 checkValue: 11,
                 successTriggers: 'readyToHelpForReward2',
                 failureTriggers: 'rewardDemandRejected'

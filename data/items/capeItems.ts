@@ -12,7 +12,7 @@ export const capeItems: { [key: string]: ItemData } = {
         specifics: {
             skills: ['invisibility'],
             additionalCharacteristics: [
-                {'defences.magicResistance': 2}
+                {'magicResistance': 2}
             ],
             size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
         },

@@ -14,6 +14,7 @@ import ItemRepresentation from "../../entities/itemRepresentation.js";
 import GameObject = Phaser.GameObjects.GameObject;
 import {backpackSlotNames, dollSlotNames, playerSlotNames, quickSlotNames} from "../../data/items/itemSlots.js";
 import prepareLog from "../../helpers/logger.js";
+import {capsFirstLetter} from "../../helpers/helperFunctions.js";
 
 export class GeneralItemManipulatorScene extends GeneralOverlayScene {
     protected player: Player;
@@ -211,7 +212,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const scene = this;
         const slotImage = this.slotsDisplayGroup.getChildren().find(slot => slot.name === currentSlot) as Sprite;
         const itemRepresentation = new ItemRepresentation(this, slotImage.x + 32, slotImage.y + 32, item.sprite.texture, item.sprite.frame, item);
-        itemRepresentation.setDepth(this.opts.baseDepth+1);
+        itemRepresentation.setDepth(this.opts.baseDepth + 1);
         this.itemsMap.set(currentSlot, itemRepresentation);
 
         this.input.setDraggable(itemRepresentation);
@@ -370,6 +371,22 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                 });
                 descriptionContainer.add(splitItemButton);
             }
+
+            if (item.specifics?.worldConsumable && this.parentSceneKey !== 'Battle') {
+                const consumeItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 96 - 10, 5, 'icon-item-set', 18).setOrigin(0, 0);
+                consumeItemButton.setInteractive({useHandCursor: true});
+                consumeItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
+                    const currentMax = this.player.characteristics[item.specifics.worldConsumable.type];
+                    const healing = Math.round(currentMax * item.specifics.worldConsumable.value);
+                    this.player.addToParameter(item.specifics.worldConsumable.type, healing);
+
+                    this._changeItemQuantity(slot, item.quantity - 1);
+                    event.stopPropagation();
+                    outerZone.destroy(true);
+                    descriptionContainer.destroy(true);
+                });
+                descriptionContainer.add(consumeItemButton);
+            }
         }
 
         const name = this.add.text(5, 5, item.displayName, textStyle).setOrigin(0, 0);
@@ -380,11 +397,6 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
 
         let lastTextPosition = description.getBottomLeft().y;
 
-        if (item.specifics?.damage) {
-            const damage = this.add.text(5, lastTextPosition + 10, `Damage: ${item.specifics.damage}`, textStyle).setOrigin(0, 0);
-            descriptionContainer.add(damage);
-            lastTextPosition = damage.getBottomLeft().y;
-        }
         if (item.specifics?.additionalActions) {
             const actions = this.add.text(5, lastTextPosition + 10, `Provides actions: ${item.specifics.additionalActions.join(', ')}`, textStyle).setOrigin(0, 0);
             descriptionContainer.add(actions);
@@ -394,7 +406,6 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             const charText = item.specifics.additionalCharacteristics.map(char => {
                 let name = Object.keys(char)[0];
                 let value = Object.values(char)[0];
-                name = name.split('.')[1];
                 name = name[0].toUpperCase() + name.slice(1);
                 return `${name}: ${value}`
             }).join('\n');
@@ -455,6 +466,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         if (newQuantity !== 0) {
             itemRepresentation.item.quantity = newQuantity;
             itemRepresentation.updateQuantityCounter();
+            this.updateSourceCallback();
         } else {
             this._deleteItemRepresentation(slot);
         }

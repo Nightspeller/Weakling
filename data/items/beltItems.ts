@@ -27,8 +27,8 @@ export const beltItems: { [key: string]: ItemData } = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                {'attributes.strength': 1},
-                {'attributes.agility': 1}
+                {'strength': 1},
+                {'agility': 1}
             ],
             quickSlots: 5,
             size: ['xs', 's', 'm'],

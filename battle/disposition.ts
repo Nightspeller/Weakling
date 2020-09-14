@@ -102,12 +102,12 @@ export class Disposition {
             this.turnOrder = [...this.playerCharacters]
                 .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
+                .sort((a, b) => b.characteristics.initiative - a.characteristics.initiative);
         } else {
             this.turnOrder = [...this.playerCharacters, ...this.enemyCharacters]
                 .filter(char => !char.actedThisRound && char.isAlive)
                 .sort((a, b) => Math.random() - 1)
-                .sort((a, b) => b.currentCharacteristics.attributes.initiative - a.currentCharacteristics.attributes.initiative);
+                .sort((a, b) => b.characteristics.initiative - a.characteristics.initiative);
         }
         this.scene.drawTurnOrder(this.turnOrder);
     }
@@ -158,29 +158,23 @@ export class Disposition {
             return actionResults;
         }
 
-        if (action.parametersCost.manna && source.currentCharacteristics.parameters.currentManna < action.parametersCost.manna) {
-            console.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentManna} manna is not enough - ${action.parametersCost.manna} is needed.`);
-            this.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentManna} manna is not enough - ${action.parametersCost.manna} is needed.`);
+        if (action.parametersCost.manna && source.parameters.manna < action.parametersCost.manna) {
+            console.log(`Action was not performed because ${source.parameters} manna is not enough - ${action.parametersCost.manna} is needed.`);
+            this.log(`Action was not performed because ${source.parameters} manna is not enough - ${action.parametersCost.manna} is needed.`);
             return actionResults;
         }
-        if (action.parametersCost.energy && source.currentCharacteristics.parameters.currentEnergy < action.parametersCost.energy) {
-            console.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentEnergy} energy is not enough - ${action.parametersCost.energy} is needed.`);
-            this.log(`Action was not performed because ${source.currentCharacteristics.parameters.currentEnergy} energy is not enough - ${action.parametersCost.energy} is needed.`);
+        if (action.parametersCost.energy && source.parameters.energy < action.parametersCost.energy) {
+            console.log(`Action was not performed because ${source.parameters.energy} energy is not enough - ${action.parametersCost.energy} is needed.`);
+            this.log(`Action was not performed because ${source.parameters.energy} energy is not enough - ${action.parametersCost.energy} is needed.`);
             return actionResults;
         }
 
         actionResults.attempted = true;
         if (action.parametersCost?.energy) {
-            const subtractEnergyEffect = new Effect('subtractEnergy');
-            subtractEnergyEffect.setModifier(source, source, action);
-            subtractEnergyEffect.source = action.actionId;
-            source.applyEffect(subtractEnergyEffect);
+            source.addToParameter('energy', -action.parametersCost.energy);
         }
         if (action.parametersCost?.manna) {
-            const subtractMannaEffect = new Effect('subtractManna');
-            subtractMannaEffect.setModifier(source, source, action);
-            subtractMannaEffect.source = action.actionId;
-            source.applyEffect(subtractMannaEffect);
+            source.addToParameter('manna', -action.parametersCost.manna);
         }
 
         source.actionPoints[action.type] = source.actionPoints[action.type] - action.actionCost;

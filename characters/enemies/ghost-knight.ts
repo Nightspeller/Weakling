@@ -4,40 +4,36 @@ import {Adventurer} from "../adventurers/adventurer.js";
 import Action from "../../entities/action.js";
 
 export class GhostKnight extends GeneralEnemy {
-    private weapon: { damage: number };
-
     constructor() {
         super();
         this.spriteParams = {texture: 'ghost-knight-idle', frame: 0, width: 300, height: 300, flip: true};
         this.level = 3;
         this.availableActions = ['meleeAttack', 'fear'];
         this.name = 'Ghost of the Knight';
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 20,
-                agility: 20,
-                intelligence: 10,
-                initiative: Phaser.Math.Between(10, 20)
-            },
-            parameters: {
-                health: 30,
-                currentHealth: 30,
-                manna: 10,
-                currentManna: 10,
-                energy: 20,
-                currentEnergy: 20,
-            },
-            defences: {
-                armor: 12,
-                dodge: 10,
-                fireResistance: 0,
-                coldResistance: 5,
-                acidResistance: 0,
-                electricityResistance: 0,
-                poisonResistance: 0,
-                magicResistance: 0,
-            }
+        this.characteristicsModifiers = {
+            strength: [{source: 'base', value: 20}],
+            agility: [{source: 'base', value: 20}],
+            intelligence: [{source: 'base', value: 10}],
+            initiative: [{source: 'base', value: Phaser.Math.Between(0, 30)}],
+            health: [{source: 'base', value: 30}],
+            manna: [{source: 'base', value: 10}],
+            energy: [{source: 'base', value: 20}],
+            armor: [{source: 'base', value: 12}],
+            dodge: [{source: 'base', value: 10}],
+            fireResistance: [{source: 'base', value: 0}],
+            coldResistance: [{source: 'base', value: 5}],
+            acidResistance: [{source: 'base', value: 0}],
+            electricityResistance: [{source: 'base', value: 0}],
+            poisonResistance: [{source: 'base', value: 0}],
+            magicResistance: [{source: 'base', value: 0}],
+            weaponDamage: [{source: 'base', value: 3}]
         };
+        this.parameters = {
+            health: 30,
+            manna: 10,
+            energy: 20,
+        }
+        this._recalculateCharacteristics();
         this.actionPointsBase = {physical: 1, magical: 0, misc: 0};
         this.actionPointsIncrement = {physical: 1, magical: 1, misc: 0};
 
@@ -56,8 +52,4 @@ export class GhostKnight extends GeneralEnemy {
         if (this.actionPoints.magical >= 2) action = 'fear';
         return {action: new Action(action, this), targets: [randomAlivePlayer]};
     };
-
-    public getAttackDamage() {
-        return 3;
-    }
 }

@@ -11,7 +11,7 @@ export const glovesItems: { [key: string]: ItemData } = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                {'attributes.strength': 1}
+                {'strength': 1}
             ],
             size: ['xs', 's', 'm'],
         },
@@ -28,8 +28,8 @@ export const glovesItems: { [key: string]: ItemData } = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                {'attributes.strength': 1},
-                {'parameters.health': 1}
+                {'strength': 1},
+                {'health': 1}
             ],
             size: ['xs', 's', 'm'],
         },

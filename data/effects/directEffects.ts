@@ -1,10 +1,12 @@
+import generalCharacter from "../../characters/generalCharacter.js";
+
 export const directEffects: { [key: string]: EffectData } = {
     addHealth: {
         effectId: 'addHealth',
         name: 'Healing',
         description: 'Healing is done',
         type: 'direct',
-        targetCharacteristic: 'parameters.currentHealth',
+        targetCharacteristic: 'health',
         baseDuration: -1,
         durationLeft: null,
         strength: null,
@@ -23,7 +25,7 @@ export const directEffects: { [key: string]: EffectData } = {
         name: null,
         description: null,
         type: 'direct',
-        targetCharacteristic: 'parameters.currentHealth',
+        targetCharacteristic: 'health',
         baseDuration: null,
         durationLeft: null,
         strength: null,
@@ -42,16 +44,16 @@ export const directEffects: { [key: string]: EffectData } = {
         name: null,
         description: null,
         type: 'direct',
-        targetCharacteristic: 'parameters.currentHealth',
+        targetCharacteristic: 'health',
         baseDuration: null,
         durationLeft: null,
         strength: null,
         source: null,
         statusImage: {texture: 'icons', frame: 0},
-        applicationCheck: (source, target, action) => {
+        applicationCheck: (source: generalCharacter, target: generalCharacter, action) => {
             let hitChance: number;
-            const agility = source.currentCharacteristics.attributes.agility;
-            const dodge = target.currentCharacteristics.defences.dodge;
+            const agility = source.characteristics.agility;
+            const dodge = target.characteristics.dodge;
             if (agility > dodge * 1.5) {
                 hitChance = 90;
             } else if (agility < dodge * 0.5) {
@@ -69,13 +71,13 @@ export const directEffects: { [key: string]: EffectData } = {
             }
             return hitChance >= hitRoll;
         },
-        setModifier: function (source, target, action) {
+        setModifier: function (source: generalCharacter, target: generalCharacter, action) {
             const damage = source.getAttackDamage();
-            let penetration = source.currentCharacteristics.attributes.strength / target.currentCharacteristics.defences.armor;
+            let penetration = source.characteristics.strength / target.characteristics.armor;
             penetration = penetration < 1 ? penetration : 1;
             const resultDamage = Math.round(damage * penetration);
-            console.log(`%c${resultDamage} damage is done. %c${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`, 'color: red', 'color: auto')
-            log(`${resultDamage} damage is done. ${source.currentCharacteristics.attributes.strength} strength vs ${target.currentCharacteristics.defences.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`);
+            console.log(`%c${resultDamage} damage is done. %c${source.characteristics.strength} strength vs ${target.characteristics.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`, 'color: red', 'color: auto')
+            log(`${resultDamage} damage is done. ${source.characteristics.strength} strength vs ${target.characteristics.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`);
             this.modifier = {
                 type: 'value',
                 value: -resultDamage
@@ -87,16 +89,16 @@ export const directEffects: { [key: string]: EffectData } = {
         name: null,
         description: null,
         type: 'direct',
-        targetCharacteristic: 'parameters.currentHealth',
+        targetCharacteristic: 'health',
         baseDuration: null,
         durationLeft: null,
         strength: null,
         source: null,
         statusImage: {texture: 'icons', frame: 0},
-        applicationCheck: (source, target, action) => {
+        applicationCheck: (source: generalCharacter, target: generalCharacter, action) => {
             let hitChance: number;
-            const intelligence = source.currentCharacteristics.attributes.intelligence;
-            const magicResistance = target.currentCharacteristics.defences.magicResistance;
+            const intelligence = source.characteristics.intelligence;
+            const magicResistance = target.characteristics.magicResistance;
             if (intelligence > magicResistance * 1.5) {
                 hitChance = 90;
             } else if (intelligence < magicResistance * 0.5) {
@@ -114,7 +116,7 @@ export const directEffects: { [key: string]: EffectData } = {
             }
             return hitChance >= hitRoll;
         },
-        setModifier: function (source, target, action) {
+        setModifier: function (source: generalCharacter, target: generalCharacter, action) {
             const damage = source.getAttackDamage();
             console.log(`%c${damage}%c damage is done.`, 'color: red', 'color: auto');
             log(`${damage} damage is done.`);
@@ -129,7 +131,7 @@ export const directEffects: { [key: string]: EffectData } = {
         name: 'Restore manna',
         description: 'Restore some manna',
         type: 'direct',
-        targetCharacteristic: 'parameters.currentManna',
+        targetCharacteristic: 'manna',
         baseDuration: null,
         durationLeft: null,
         strength: null,
@@ -148,7 +150,7 @@ export const directEffects: { [key: string]: EffectData } = {
         name: 'Restore energy',
         description: 'Restore some energy',
         type: 'direct',
-        targetCharacteristic: 'parameters.currentEnergy',
+        targetCharacteristic: 'energy',
         baseDuration: null,
         durationLeft: null,
         strength: null,
@@ -167,7 +169,7 @@ export const directEffects: { [key: string]: EffectData } = {
         name: 'Subtract energy',
         description: 'Energy usually is subtracted while using abilities or drained by enemies',
         type: 'direct',
-        targetCharacteristic: 'parameters.currentEnergy',
+        targetCharacteristic: 'energy',
         baseDuration: null,
         durationLeft: null,
         strength: null,
@@ -186,7 +188,7 @@ export const directEffects: { [key: string]: EffectData } = {
         name: 'Subtract manna',
         description: 'Manna usually is subtracted while using abilities or drained by enemies',
         type: 'direct',
-        targetCharacteristic: 'parameters.currentManna',
+        targetCharacteristic: 'manna',
         baseDuration: null,
         durationLeft: null,
         strength: null,

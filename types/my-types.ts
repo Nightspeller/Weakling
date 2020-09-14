@@ -1,5 +1,4 @@
 interface CharacteristicsSet {
-    defences: {
         dodge: number;
         armor: number;
         fireResistance: number;
@@ -8,21 +7,13 @@ interface CharacteristicsSet {
         acidResistance: number;
         poisonResistance: number;
         magicResistance: number;
-    };
-    attributes: {
         strength: number;
         agility: number;
         intelligence: number;
         initiative: number;
-    };
-    parameters: {
         health: number;
-        currentHealth: number;
         manna: number;
-        currentManna: number;
         energy: number;
-        currentEnergy: number;
-    }
 }
 
 type Modifier = EffectModifier | ValueModifier;
@@ -79,14 +70,6 @@ interface ActionData {
     animation: 'meleeAttack' | 'castAttack' | 'castBuff';
     icon?: SpriteParameters;
     parametersCost?: {energy?: number, manna?: number};
-}
-
-interface Weapon {
-    weaponId: string;
-    slot: 'any' | 'anyHand' | 'rightHand' | 'leftHand' | 'twoHands' | 'tail';
-    sprite: SpriteParameters;
-    damage: number;
-    size: string[];
 }
 
 interface Belt {

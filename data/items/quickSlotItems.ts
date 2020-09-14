@@ -1,5 +1,5 @@
 import {backpackSlotNames, containerSlotNames, quickSlotNames} from "./itemSlots.js";
-import {generatePotions} from "../../helpers/helperFunctions.js";
+import {capsFirstLetter, generatePotions} from "../../helpers/helperFunctions.js";
 
 const healthPotions = generatePotions('health', [
     {texture: 'potions', frame: 'small-red-potion'},
@@ -59,9 +59,7 @@ export const quickSlotItems: { [key: string]: ItemData } = {
         modified: false,
         quantity: null,
         specifics: {
-            useEffects: [
-                {'parameters.currentHealth': 1}
-            ],
+            additionalActions: [`drinkAlcohol`],
         },
         sellPrice: 2,
         buyPrice: 3

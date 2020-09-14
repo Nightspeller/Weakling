@@ -114,7 +114,7 @@ export class AlchemyStandScene extends InventoryOverlayScene {
         let qualityResult;
         if (matchingRecipe){
             Object.entries(matchingRecipe.result).forEach(([intelligence, result]) => {
-                if (+intelligence <= this.player.currentCharacteristics.attributes.intelligence) {
+                if (+intelligence <= this.player.characteristics.intelligence) {
                     qualityResult = result;
                 }
             })

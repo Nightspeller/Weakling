@@ -10,9 +10,9 @@ export const handsItems: { [key: string]: ItemData } = {
         stackable: false,
         modified: false,
         specifics: {
-            damage: 5,
             additionalCharacteristics: [
-                {'defences.dodge': 1}
+                {'dodge': 1},
+                {'weaponDamage': 5},
             ],
             size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
         },
@@ -28,9 +28,9 @@ export const handsItems: { [key: string]: ItemData } = {
         stackable: false,
         modified: false,
         specifics: {
-            damage: 10,
             additionalCharacteristics: [
-                {'defences.dodge': 2}
+                {'dodge': 2},
+                {'weaponDamage': 10},
             ],
             size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
         },
@@ -46,9 +46,9 @@ export const handsItems: { [key: string]: ItemData } = {
         stackable: false,
         modified: false,
         specifics: {
-            damage: 15,
             additionalCharacteristics: [
-                {'defences.magicResistance': 5}
+                {'magicResistance': 5},
+                {'weaponDamage': 15},
             ],
             size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
         },
@@ -64,9 +64,9 @@ export const handsItems: { [key: string]: ItemData } = {
         stackable: false,
         modified: false,
         specifics: {
-            damage: 10,
             additionalCharacteristics: [
-                {'defences.dodge': 2}
+                {'dodge': 2},
+                {'weaponDamage': 10},
             ],
             size: ['xs', 's', 'm', 'l', 'xl', 'xxxl']
         },

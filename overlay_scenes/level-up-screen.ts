@@ -41,11 +41,11 @@ export class LevelUpScreenScene extends GeneralOverlayScene {
         const availablePointsText = this.add.text(32, 64, `Available points: ${this.availablePoints}`, textOptions);
 
         const addStrengthIcon = this.add.sprite(32, 96, 'icon-item-set', 32).setOrigin(0, 0).setInteractive({useHandCursor: true});
-        const addStrengthText = this.add.text(64, 106, `Strength: ${this.player.currentCharacteristics.attributes.strength}`, textOptions).setOrigin(0, 0);
+        const addStrengthText = this.add.text(64, 106, `Strength: ${this.player.characteristics.strength}`, textOptions).setOrigin(0, 0);
         const addAgilityIcon = this.add.sprite(32, 128, 'icon-item-set', 32).setOrigin(0, 0).setInteractive({useHandCursor: true});
-        const addAgilityText = this.add.text(64, 138, `Agility: ${this.player.currentCharacteristics.attributes.agility}`, textOptions).setOrigin(0, 0);
+        const addAgilityText = this.add.text(64, 138, `Agility: ${this.player.characteristics.agility}`, textOptions).setOrigin(0, 0);
         const addIntelligenceIcon = this.add.sprite(32, 160, 'icon-item-set', 32).setOrigin(0, 0).setInteractive({useHandCursor: true});
-        const addIntelligenceText = this.add.text(64, 170, `Intelligence: ${this.player.currentCharacteristics.attributes.intelligence}`, textOptions).setOrigin(0, 0);
+        const addIntelligenceText = this.add.text(64, 170, `Intelligence: ${this.player.characteristics.intelligence}`, textOptions).setOrigin(0, 0);
 
         const increaseAttribute = (attr) => {
             if (this.availablePoints !== 0) {
@@ -62,15 +62,15 @@ export class LevelUpScreenScene extends GeneralOverlayScene {
         }
         addStrengthIcon.on('pointerdown', () => {
             increaseAttribute(0);
-            addStrengthText.setText(`Strength: ${this.player.currentCharacteristics.attributes.strength + this.attributeModifiers[0]}`)
+            addStrengthText.setText(`Strength: ${this.player.characteristics.strength + this.attributeModifiers[0]}`)
         })
         addAgilityIcon.on('pointerdown', () => {
             increaseAttribute(1);
-            addAgilityText.setText(`Agility: ${this.player.currentCharacteristics.attributes.agility + this.attributeModifiers[1]}`)
+            addAgilityText.setText(`Agility: ${this.player.characteristics.agility + this.attributeModifiers[1]}`)
         })
         addIntelligenceIcon.on('pointerdown', () => {
             increaseAttribute(2);
-            addIntelligenceText.setText(`Intelligence: ${this.player.currentCharacteristics.attributes.intelligence + this.attributeModifiers[2]}`)
+            addIntelligenceText.setText(`Intelligence: ${this.player.characteristics.intelligence + this.attributeModifiers[2]}`)
         })
 
         const finishButton = new RichText(this, 96, 200, `Confirm!`, {...textOptions, padding: 3}, {
@@ -93,16 +93,16 @@ export class LevelUpScreenScene extends GeneralOverlayScene {
         const textX = GAME_W / 2 - 16;
         const textY = 64;
         const text = `${this.player.name}, level ${this.player.level}, ${this.player.xp}xp / ${this.player.experienceTable[this.player.level]}xp
-HP: ${this.player.currentCharacteristics.parameters.currentHealth}/${this.player.currentCharacteristics.parameters.health}
-MP: ${this.player.currentCharacteristics.parameters.currentManna}/${this.player.currentCharacteristics.parameters.manna}
-EN: ${this.player.currentCharacteristics.parameters.currentEnergy}/${this.player.currentCharacteristics.parameters.energy}
-Strength: ${this.player.currentCharacteristics.attributes.strength}
-Agility: ${this.player.currentCharacteristics.attributes.agility}
-Intelligence: ${this.player.currentCharacteristics.attributes.intelligence}
-Armor: ${this.player.currentCharacteristics.defences.armor}
-Dodge: ${this.player.currentCharacteristics.defences.dodge}
-Resistance: 🔥${this.player.currentCharacteristics.defences.fireResistance}❄${this.player.currentCharacteristics.defences.coldResistance}⚡${this.player.currentCharacteristics.defences.electricityResistance}☣${this.player.currentCharacteristics.defences.acidResistance}☠${this.player.currentCharacteristics.defences.poisonResistance}✨${this.player.currentCharacteristics.defences.magicResistance}
-Initiative: ${this.player.currentCharacteristics.attributes.initiative}
+HP: ${this.player.parameters.health}/${this.player.characteristics.health}
+MP: ${this.player.parameters.manna}/${this.player.characteristics.manna}
+EN: ${this.player.parameters.energy}/${this.player.characteristics.energy}
+Strength: ${this.player.characteristics.strength}
+Agility: ${this.player.characteristics.agility}
+Intelligence: ${this.player.characteristics.intelligence}
+Armor: ${this.player.characteristics.armor}
+Dodge: ${this.player.characteristics.dodge}
+Resistance: 🔥${this.player.characteristics.fireResistance}❄${this.player.characteristics.coldResistance}⚡${this.player.characteristics.electricityResistance}☣${this.player.characteristics.acidResistance}☠${this.player.characteristics.poisonResistance}✨${this.player.characteristics.magicResistance}
+Initiative: ${this.player.characteristics.initiative}
 Damage: ${this.player.getAttackDamage()}
 
 Actions: ${this.player.getAvailableActions().join(', ')}`;

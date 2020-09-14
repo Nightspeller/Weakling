@@ -7,62 +7,102 @@ export default class GeneralCharacter {
         this.availableActions = [];
         this.actedThisRound = false;
         this.isAlive = true;
-        this.baseCharacteristics = {
-            attributes: {
-                strength: null,
-                agility: null,
-                intelligence: null,
-                initiative: null
-            },
-            parameters: {
-                health: null,
-                currentHealth: null,
-                manna: null,
-                currentManna: null,
-                energy: null,
-                currentEnergy: null,
-            },
-            defences: {
-                armor: null,
-                dodge: null,
-                fireResistance: null,
-                coldResistance: null,
-                acidResistance: null,
-                electricityResistance: null,
-                poisonResistance: null,
-                magicResistance: null,
-            }
+        this.characteristics = {
+            strength: null,
+            agility: null,
+            intelligence: null,
+            initiative: null,
+            health: null,
+            manna: null,
+            energy: null,
+            armor: null,
+            dodge: null,
+            fireResistance: null,
+            coldResistance: null,
+            acidResistance: null,
+            electricityResistance: null,
+            poisonResistance: null,
+            magicResistance: null,
+            weaponDamage: null,
         };
-        this.currentCharacteristics = JSON.parse(JSON.stringify(this.baseCharacteristics));
         this.characteristicsModifiers = {
-            attributes: {
-                strength: [],
-                agility: [],
-                intelligence: [],
-                initiative: []
-            },
-            parameters: {
-                health: [],
-                currentHealth: [],
-                manna: [],
-                currentManna: [],
-                energy: [],
-                currentEnergy: [],
-            },
-            defences: {
-                armor: [],
-                dodge: [],
-                fireResistance: [],
-                coldResistance: [],
-                acidResistance: [],
-                electricityResistance: [],
-                poisonResistance: [],
-                magicResistance: [],
-            }
+            strength: [{ source: 'base', value: null }],
+            agility: [{ source: 'base', value: null }],
+            intelligence: [{ source: 'base', value: null }],
+            initiative: [{ source: 'base', value: null }],
+            health: [{ source: 'base', value: null }],
+            manna: [{ source: 'base', value: null }],
+            energy: [{ source: 'base', value: null }],
+            armor: [{ source: 'base', value: null }],
+            dodge: [{ source: 'base', value: null }],
+            fireResistance: [{ source: 'base', value: null }],
+            coldResistance: [{ source: 'base', value: null }],
+            acidResistance: [{ source: 'base', value: null }],
+            electricityResistance: [{ source: 'base', value: null }],
+            poisonResistance: [{ source: 'base', value: null }],
+            magicResistance: [{ source: 'base', value: null }],
+            weaponDamage: [{ source: 'base', value: 1 }]
+        };
+        this.parameters = {
+            health: 0,
+            manna: 0,
+            energy: 0,
         };
         this.actionPoints = { physical: 0, magical: 0, misc: 0 };
         this.actionPointsBase = { physical: 0, magical: 0, misc: 0 };
         this.actionPointsIncrement = { physical: 0, magical: 0, misc: 0 };
+    }
+    addToParameter(parameter, value) {
+        console.log(`Changing ${parameter} by ${value}`);
+        if (this.parameters[parameter] + value > this.characteristics[parameter]) {
+            this.parameters[parameter] = this.characteristics[parameter];
+        }
+        else {
+            this.parameters[parameter] += value;
+        }
+        if (this.parameters[parameter] < 0)
+            this.parameters[parameter] = 0;
+        if (parameter === 'health' && this.parameters[parameter] === 0)
+            this.isAlive = false;
+    }
+    _recalculateCharacteristics(characteristic) {
+        if (characteristic) {
+            this.characteristics[characteristic] = this.characteristicsModifiers[characteristic].reduce((acc, modifier) => {
+                return (acc + modifier.value) > 0 ? (acc + modifier.value) : 0;
+            }, 0);
+        }
+        else {
+            Object.keys(this.characteristics).forEach(characteristic => {
+                this.characteristics[characteristic] = this.characteristicsModifiers[characteristic].reduce((acc, modifier) => {
+                    return (acc + modifier.value) > 0 ? (acc + modifier.value) : 0;
+                }, 0);
+            });
+        }
+        if (this.parameters.health > this.characteristics.health)
+            this.parameters.health = this.characteristics.health;
+        if (this.parameters.manna > this.characteristics.manna)
+            this.parameters.manna = this.characteristics.manna;
+        if (this.parameters.energy > this.characteristics.energy)
+            this.parameters.energy = this.characteristics.energy;
+    }
+    setCharacteristicModifier(characteristic, modifier) {
+        console.log(`Setting modifier for ${characteristic}`, modifier);
+        if (Number.isInteger(modifier.value) === false)
+            throw `Non-integer modifier value is passed!`;
+        const existingModifiers = this.characteristicsModifiers[characteristic];
+        const existingModifier = existingModifiers.find((existingModifier) => existingModifier.source === modifier.source);
+        if (existingModifier) {
+            existingModifier.value = modifier.value;
+        }
+        else {
+            existingModifiers.push(modifier);
+        }
+        this._recalculateCharacteristics(characteristic);
+    }
+    removeCharacteristicModifier(characteristic, source) {
+        console.log(`Removing modifier for ${characteristic}, source:`, source);
+        this.characteristicsModifiers[characteristic] = this.characteristicsModifiers[characteristic].filter(modifier => modifier.source !== source);
+        this._recalculateCharacteristics(characteristic);
     }
     applyEffect(effect) {
         const existingEffectIndex = this.currentEffects.findIndex(elem => (elem.source === effect.source && elem.effectId === effect.effectId));
@@ -73,59 +113,33 @@ export default class GeneralCharacter {
         else {
             if (effect.type !== "conditional") {
                 if (effect.targetCharacteristic) {
-                    let [group, subgroup] = effect.targetCharacteristic.split('.');
-                    this.characteristicsModifiers[group][subgroup].push({
-                        // @ts-ignore - in case of traps effect modifier value is another effect!
-                        value: Math.round(effect.modifier.type === 'value' ? effect.modifier.value : this.baseCharacteristics[group][subgroup] * (effect.modifier.value / 100)),
-                        source: effect
-                    });
+                    const targetCharacteristic = effect.targetCharacteristic;
+                    // @ts-ignore - in case of traps effect modifier value is another effect!
+                    const value = Math.round(effect.modifier.type === 'value' ? effect.modifier.value : this.characteristics[targetCharacteristic] * (effect.modifier.value / 100));
+                    if (targetCharacteristic === 'health' || targetCharacteristic === 'manna' || targetCharacteristic === 'energy') {
+                        this.addToParameter(targetCharacteristic, value);
+                    }
+                    else {
+                        this.setCharacteristicModifier(targetCharacteristic, {
+                            value: value,
+                            source: effect
+                        });
+                    }
                 }
             }
             if (effect.type !== 'direct') {
                 this.currentEffects.push(effect);
             }
         }
-        this.recalculateCharacteristics();
-    }
-    recalculateCharacteristics() {
-        Object.entries(this.characteristicsModifiers).forEach(([group, value]) => {
-            Object.entries(value).forEach(([subgroup, value]) => {
-                this.currentCharacteristics[group][subgroup] = this.characteristicsModifiers[group][subgroup].reduce((acc, modifier) => {
-                    if (group === 'parameters' && subgroup.includes('current')) {
-                        const maxValue = this.currentCharacteristics.parameters[subgroup.split('current')[1].toLowerCase()];
-                        const resultValue = Phaser.Math.Clamp(acc + modifier.value, 0, maxValue);
-                        if (subgroup === 'currentHealth' && resultValue === 0)
-                            this.isAlive = false;
-                        return resultValue;
-                    }
-                    return (acc + modifier.value) > 0 ? (acc + modifier.value) : 0;
-                }, 0);
-            });
-        });
-    }
-    addBaseModifiers() {
-        Object.entries(this.baseCharacteristics).forEach(([group, value]) => {
-            Object.entries(value).forEach(([subgroup, value]) => {
-                this.characteristicsModifiers[group][subgroup] =
-                    this.characteristicsModifiers[group][subgroup].filter(modifier => modifier.source !== 'base');
-                this.characteristicsModifiers[group][subgroup].push({
-                    // @ts-ignore
-                    value: this.baseCharacteristics[group][subgroup],
-                    source: 'base'
-                });
-            });
-        });
-        this.recalculateCharacteristics();
     }
     getAttackDamage() {
-        return 1;
+        return this.characteristics.weaponDamage;
     }
     recalculateEffects() {
         this.currentEffects = this.currentEffects.filter((effect, i) => {
             if (effect.durationLeft === 1) {
                 if (effect.targetCharacteristic) {
-                    const [group, subgroup] = effect.targetCharacteristic.split('.');
-                    this.characteristicsModifiers[group][subgroup] = this.characteristicsModifiers[group][subgroup].filter(modifier => modifier.source !== effect);
+                    this.removeCharacteristicModifier(effect.targetCharacteristic, effect);
                 }
                 return false;
             }
@@ -136,39 +150,11 @@ export default class GeneralCharacter {
                 return true;
             }
         });
-        this.recalculateCharacteristics();
     }
     startRound(roundType) {
         if (roundType === 'preparation') {
-            this.characteristicsModifiers = {
-                attributes: {
-                    strength: [],
-                    agility: [],
-                    intelligence: [],
-                    initiative: []
-                },
-                parameters: {
-                    health: [],
-                    currentHealth: [],
-                    manna: [],
-                    currentManna: [],
-                    energy: [],
-                    currentEnergy: [],
-                },
-                defences: {
-                    armor: [],
-                    dodge: [],
-                    fireResistance: [],
-                    coldResistance: [],
-                    acidResistance: [],
-                    electricityResistance: [],
-                    poisonResistance: [],
-                    magicResistance: [],
-                }
-            };
             this.actionPoints = { ...this.actionPointsBase };
             this.currentEffects = [];
-            this.addBaseModifiers();
         }
         else {
             this.actionPoints.physical = Phaser.Math.Clamp(this.actionPoints.physical + this.actionPointsIncrement.physical, 0, 3);

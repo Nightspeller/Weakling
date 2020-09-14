@@ -15,32 +15,30 @@ export class GhostKnight extends GeneralEnemy {
         this.level = 3;
         this.availableActions = ['meleeAttack', 'fear'];
         this.name = 'Ghost of the Knight';
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 20,
-                agility: 20,
-                intelligence: 10,
-                initiative: Phaser.Math.Between(10, 20)
-            },
-            parameters: {
-                health: 30,
-                currentHealth: 30,
-                manna: 10,
-                currentManna: 10,
-                energy: 20,
-                currentEnergy: 20,
-            },
-            defences: {
-                armor: 12,
-                dodge: 10,
-                fireResistance: 0,
-                coldResistance: 5,
-                acidResistance: 0,
-                electricityResistance: 0,
-                poisonResistance: 0,
-                magicResistance: 0,
-            }
+        this.characteristicsModifiers = {
+            strength: [{ source: 'base', value: 20 }],
+            agility: [{ source: 'base', value: 20 }],
+            intelligence: [{ source: 'base', value: 10 }],
+            initiative: [{ source: 'base', value: Phaser.Math.Between(0, 30) }],
+            health: [{ source: 'base', value: 30 }],
+            manna: [{ source: 'base', value: 10 }],
+            energy: [{ source: 'base', value: 20 }],
+            armor: [{ source: 'base', value: 12 }],
+            dodge: [{ source: 'base', value: 10 }],
+            fireResistance: [{ source: 'base', value: 0 }],
+            coldResistance: [{ source: 'base', value: 5 }],
+            acidResistance: [{ source: 'base', value: 0 }],
+            electricityResistance: [{ source: 'base', value: 0 }],
+            poisonResistance: [{ source: 'base', value: 0 }],
+            magicResistance: [{ source: 'base', value: 0 }],
+            weaponDamage: [{ source: 'base', value: 3 }]
         };
+        this.parameters = {
+            health: 30,
+            manna: 10,
+            energy: 20,
+        };
+        this._recalculateCharacteristics();
         this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
         this.actionPointsIncrement = { physical: 1, magical: 1, misc: 0 };
         this.animations.idle = 'ghost-knight_idle';
@@ -49,9 +47,6 @@ export class GhostKnight extends GeneralEnemy {
         this.animations.buff = 'ghost-knight_attack1';
         this.animations.death = 'ghost-knight_death';
         this.animations.hit = 'ghost-knight_hit';
-    }
-    getAttackDamage() {
-        return 3;
     }
 }
 //# sourceMappingURL=ghost-knight.js.map

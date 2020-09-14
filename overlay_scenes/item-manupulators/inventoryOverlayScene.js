@@ -89,19 +89,20 @@ export class InventoryOverlayScene extends GeneralItemManipulatorScene {
         }
     }
     _drawCharacteristics() {
+        console.log(`Re-drawing characteristics`);
         const textX = this.opts.windowX + this.opts.windowWidth - 20 - 64 * 5;
         const textY = this.opts.windowY + 20 + 64 * 5 + 20;
         const text = `${this.player.name}, level ${this.player.level}, ${this.player.xp}xp / ${this.player.experienceTable[this.player.level]}xp
-HP: ${this.player.currentCharacteristics.parameters.currentHealth}/${this.player.currentCharacteristics.parameters.health}
-MP: ${this.player.currentCharacteristics.parameters.currentManna}/${this.player.currentCharacteristics.parameters.manna}
-EN: ${this.player.currentCharacteristics.parameters.currentEnergy}/${this.player.currentCharacteristics.parameters.energy}
-Strength: ${this.player.currentCharacteristics.attributes.strength}
-Agility: ${this.player.currentCharacteristics.attributes.agility}
-Intelligence: ${this.player.currentCharacteristics.attributes.intelligence}
-Armor: ${this.player.currentCharacteristics.defences.armor}
-Dodge: ${this.player.currentCharacteristics.defences.dodge}
-Resistance: 🔥${this.player.currentCharacteristics.defences.fireResistance}❄${this.player.currentCharacteristics.defences.coldResistance}⚡${this.player.currentCharacteristics.defences.electricityResistance}☣${this.player.currentCharacteristics.defences.acidResistance}☠${this.player.currentCharacteristics.defences.poisonResistance}✨${this.player.currentCharacteristics.defences.magicResistance}
-Initiative: ${this.player.currentCharacteristics.attributes.initiative}
+HP: ${this.player.parameters.health}/${this.player.characteristics.health}
+MP: ${this.player.parameters.manna}/${this.player.characteristics.manna}
+EN: ${this.player.parameters.energy}/${this.player.characteristics.energy}
+Strength: ${this.player.characteristics.strength}
+Agility: ${this.player.characteristics.agility}
+Intelligence: ${this.player.characteristics.intelligence}
+Armor: ${this.player.characteristics.armor}
+Dodge: ${this.player.characteristics.dodge}
+Resistance: 🔥${this.player.characteristics.fireResistance}❄${this.player.characteristics.coldResistance}⚡${this.player.characteristics.electricityResistance}☣${this.player.characteristics.acidResistance}☠${this.player.characteristics.poisonResistance}✨${this.player.characteristics.magicResistance}
+Initiative: ${this.player.characteristics.initiative}
 Damage: ${this.player.getAttackDamage()}
 
 Actions: ${this.player.getAvailableActions().join(', ')}`;

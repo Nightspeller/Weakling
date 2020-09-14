@@ -55,10 +55,10 @@ export class ActionInterfaceDrawer {
 
                     let isEnoughResource = true;
                     if (action.parametersCost?.energy) {
-                        isEnoughResource = currentCharacter.currentCharacteristics.parameters.currentEnergy >= action.parametersCost?.energy;
+                        isEnoughResource = currentCharacter.parameters.energy >= action.parametersCost?.energy;
                     }
                     if (action.parametersCost?.manna) {
-                        isEnoughResource = currentCharacter.currentCharacteristics.parameters.currentManna >= action.parametersCost?.manna;
+                        isEnoughResource = currentCharacter.parameters.manna >= action.parametersCost?.manna;
                     }
                     const isAvailable = isEnoughResource && currentCharacter.actionPoints[action.type] >= action.actionCost;
 

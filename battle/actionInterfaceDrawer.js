@@ -43,10 +43,10 @@ export class ActionInterfaceDrawer {
                     }
                     let isEnoughResource = true;
                     if ((_a = action.parametersCost) === null || _a === void 0 ? void 0 : _a.energy) {
-                        isEnoughResource = currentCharacter.currentCharacteristics.parameters.currentEnergy >= ((_b = action.parametersCost) === null || _b === void 0 ? void 0 : _b.energy);
+                        isEnoughResource = currentCharacter.parameters.energy >= ((_b = action.parametersCost) === null || _b === void 0 ? void 0 : _b.energy);
                     }
                     if ((_c = action.parametersCost) === null || _c === void 0 ? void 0 : _c.manna) {
-                        isEnoughResource = currentCharacter.currentCharacteristics.parameters.currentManna >= ((_d = action.parametersCost) === null || _d === void 0 ? void 0 : _d.manna);
+                        isEnoughResource = currentCharacter.parameters.manna >= ((_d = action.parametersCost) === null || _d === void 0 ? void 0 : _d.manna);
                     }
                     const isAvailable = isEnoughResource && currentCharacter.actionPoints[action.type] >= action.actionCost;
                     const button = this.drawActionInterfaceButton(action, buttonX, buttonY, isAvailable);

@@ -4,35 +4,33 @@ export class Eyeball extends Adventurer {
     constructor() {
         super();
         this.spriteParams = { texture: 'eyeball-idle', frame: null, width: 300, height: 300 };
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 5,
-                agility: 10,
-                intelligence: 15,
-                initiative: Phaser.Math.Between(0, 30) + 10
-            },
-            parameters: {
-                health: 5,
-                currentHealth: 5,
-                manna: 5,
-                currentManna: 5,
-                energy: 10,
-                currentEnergy: 10,
-            },
-            defences: {
-                armor: 10,
-                dodge: 10,
-                fireResistance: 10,
-                coldResistance: 10,
-                acidResistance: 10,
-                electricityResistance: 10,
-                poisonResistance: 10,
-                magicResistance: 10,
-            }
+        this.characteristicsModifiers = {
+            strength: [{ source: 'base', value: 10 }],
+            agility: [{ source: 'base', value: 10 }],
+            intelligence: [{ source: 'base', value: 15 }],
+            initiative: [{ source: 'base', value: Phaser.Math.Between(0, 30) + 10 }],
+            health: [{ source: 'base', value: 5 }],
+            manna: [{ source: 'base', value: 5 }],
+            energy: [{ source: 'base', value: 10 }],
+            armor: [{ source: 'base', value: 10 }],
+            dodge: [{ source: 'base', value: 10 }],
+            fireResistance: [{ source: 'base', value: 10 }],
+            coldResistance: [{ source: 'base', value: 10 }],
+            acidResistance: [{ source: 'base', value: 10 }],
+            electricityResistance: [{ source: 'base', value: 10 }],
+            poisonResistance: [{ source: 'base', value: 10 }],
+            magicResistance: [{ source: 'base', value: 10 }],
+            weaponDamage: [{ source: 'base', value: 1 }]
         };
+        this.parameters = {
+            health: 5,
+            manna: 5,
+            energy: 10,
+        };
+        this._recalculateCharacteristics();
         if (DEBUG) {
-            this.baseCharacteristics.parameters.health = 50;
-            this.baseCharacteristics.parameters.currentHealth = 50;
+            this.characteristics.health = 50;
+            this.parameters.health = 50;
         }
         this.name = 'Eyeball';
         this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
@@ -42,9 +40,6 @@ export class Eyeball extends Adventurer {
         this.animations.buff = 'eyeball_buff';
         this.animations.death = 'eyeball_death';
         this.animations.hit = 'eyeball_hit';
-    }
-    getAttackDamage() {
-        return 5;
     }
 }
 export const eyeballInstance = new Eyeball();

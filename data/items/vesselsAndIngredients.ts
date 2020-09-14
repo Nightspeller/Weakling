@@ -152,12 +152,17 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
     'apple': {
         itemId: 'apple',
         displayName: 'Apple',
-        description: `It is an apple. That's about it.`,
+        description: `It is an apple. That's about it. Can be eaten to restore quarter of HP.`,
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
         sprite: {texture: 'icon-item-set', frame: 224},
         stackable: true,
         modified: false,
-        specifics: {},
+        specifics: {
+            worldConsumable: {
+                type: 'health',
+                value: 0.25
+            }
+        },
         sellPrice: 1,
         buyPrice: 2
     },
@@ -268,24 +273,34 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
     'cheese': {
         itemId: 'cheese',
         displayName: 'Cheese',
-        description: 'Nice grown...cheese?',
+        description: 'Nice grown...cheese? Restores half HP.',
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
         sprite: {texture: 'icon-item-set', frame: 247},
         stackable: true,
         modified: false,
-        specifics: {},
+        specifics: {
+            worldConsumable: {
+                type: 'health',
+                value: 0.5
+            }
+        },
         sellPrice: 1,
         buyPrice: 2
     },
     'bacon': {
         itemId: 'bacon',
         displayName: 'Bacon',
-        description: 'A good portion of tasty bacon',
+        description: 'A good portion of tasty bacon. Restores half HP.',
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
         sprite: {texture: 'icon-item-set', frame: 241},
         stackable: true,
         modified: false,
-        specifics: {},
+        specifics: {
+            worldConsumable: {
+                type: 'health',
+                value: 0.5
+            }
+        },
         sellPrice: 3,
         buyPrice: 6
     },
@@ -306,12 +321,17 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
     'garlic': {
         itemId: 'garlic',
         displayName: 'Garlic',
-        description: 'Nice grown garlic',
+        description: 'Nice grown garlic. Restores quarter of manna',
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
         sprite: {texture: 'icon-item-set', frame: 232},
         stackable: true,
         modified: false,
-        specifics: {},
+        specifics: {
+            worldConsumable: {
+                type: 'manna',
+                value: 0.25
+            }
+        },
         sellPrice: 1,
         buyPrice: 2
     },
@@ -332,12 +352,17 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
     'carrot': {
         itemId: 'carrot',
         displayName: 'Carrot',
-        description: 'Nice grown carrot',
+        description: 'Nice grown carrot. Can be eaten to restore half of energy.',
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
         sprite: {texture: 'icon-item-set', frame: 230},
         stackable: true,
         modified: false,
-        specifics: {},
+        specifics: {
+            worldConsumable: {
+                type: 'energy',
+                value: 0.5
+            }
+        },
         sellPrice: 4,
         buyPrice: 8
     },
@@ -358,12 +383,17 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
     'cabbage': {
         itemId: 'cabbage',
         displayName: 'Cabbage',
-        description: 'Nice grown cabbage',
+        description: 'Nice grown cabbage. Restores 10% of HP',
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
         sprite: {texture: 'base', frame: 167},
         stackable: true,
         modified: false,
-        specifics: {},
+        specifics: {
+            worldConsumable: {
+                type: 'health',
+                value: 0.1
+            }
+        },
         sellPrice: 1,
         buyPrice: 2
     },
@@ -384,12 +414,17 @@ export const vesselsAndIngredients: { [key: string]: ItemData } = {
     'pumpkin': {
         itemId: 'pumpkin',
         displayName: 'Pumpkin',
-        description: 'Nice grown pumpkin',
+        description: 'Nice grown pumpkin. Restores quarter of energy.',
         possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
         sprite: {texture: 'base', frame: 166},
         stackable: true,
         modified: false,
-        specifics: {},
+        specifics: {
+            worldConsumable: {
+                type: 'energy',
+                value: 0.25
+            }
+        },
         sellPrice: 1,
         buyPrice: 2
     },

@@ -26,7 +26,7 @@ export const ringsItems = {
         quantity: null,
         specifics: {
             additionalCharacteristics: [
-                { 'parameters.energy': 2 },
+                { 'energy': 2 },
             ],
             size: ['xs', 's', 'm'],
         },

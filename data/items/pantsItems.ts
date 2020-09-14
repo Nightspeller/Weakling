@@ -11,8 +11,8 @@ export const pantsItems: { [key: string]: ItemData } = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                {'defences.armor': 1},
-                {'attributes.agility': 1}
+                {'armor': 1},
+                {'agility': 1}
             ],
             size: ['xs', 's', 'm'],
         },

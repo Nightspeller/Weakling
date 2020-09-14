@@ -12,7 +12,7 @@ export const hargkakhFirstDialog = [{
             ' - i found some copper, and even a little bit of iron ore - this must be good enough to keep the village going for the winter! Can you carry it?',
         replies: [{
                 text: '(Strength) Let me try it',
-                checkCharacteristic: 'attributes.strength',
+                checkCharacteristic: 'strength',
                 checkValue: 12,
                 successTriggers: 'pickupSuccess',
                 failureTriggers: 'pickupFailure',
@@ -38,7 +38,7 @@ export const hargkakhSecondTryDialog = [{
         text: `Got it? Good! Try picking it up now!`,
         replies: [{
                 text: '(Strength) Okay',
-                checkCharacteristic: 'attributes.strength',
+                checkCharacteristic: 'strength',
                 checkValue: 12,
                 successTriggers: 'pickupSuccess',
                 failureTriggers: 'pickupFailure',

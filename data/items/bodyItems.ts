@@ -11,8 +11,8 @@ export const bodyItems: { [key: string]: ItemData } = {
         modified: false,
         specifics: {
             additionalCharacteristics: [
-                {'defences.armor': 2},
-                {'defences.dodge': 1}
+                {'armor': 2},
+                {'dodge': 1}
             ],
             additionalActions: ['adjustArmor'],
             size: ['xs', 's', 'm'],

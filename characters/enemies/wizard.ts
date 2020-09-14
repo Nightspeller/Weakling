@@ -4,40 +4,37 @@ import {Adventurer} from "../adventurers/adventurer.js";
 import Action from "../../entities/action.js";
 
 export class Wizard extends GeneralEnemy {
-    private weapon: { damage: number };
-
     constructor() {
         super();
         this.spriteParams = {texture: 'wizard-idle', frame: 0, width: 231, height: 190, flip: true};
         this.level = 1;
         this.availableActions = ['magicMissile', 'swiftMind'];
         this.name = 'Wizard';
-        this.baseCharacteristics = {
-            attributes: {
-                strength: 10,
-                agility: 3,
-                intelligence: 10,
-                initiative: Phaser.Math.Between(10, 20)
-            },
-            parameters: {
-                health: 10,
-                currentHealth: 10,
-                manna: 10,
-                currentManna: 10,
-                energy: 5,
-                currentEnergy: 5,
-            },
-            defences: {
-                armor: 12,
-                dodge: 10,
-                fireResistance: 0,
-                coldResistance: 5,
-                acidResistance: 0,
-                electricityResistance: 0,
-                poisonResistance: 0,
-                magicResistance: 0,
-            }
+        this.characteristicsModifiers = {
+            strength: [{source: 'base', value: 10}],
+            agility: [{source: 'base', value: 3}],
+            intelligence: [{source: 'base', value: 10}],
+            initiative: [{source: 'base', value: Phaser.Math.Between(10, 20)}],
+            health: [{source: 'base', value: 10}],
+            manna: [{source: 'base', value: 10}],
+            energy: [{source: 'base', value: 5}],
+            armor: [{source: 'base', value: 12}],
+            dodge: [{source: 'base', value: 10}],
+            fireResistance: [{source: 'base', value: 0}],
+            coldResistance: [{source: 'base', value: 5}],
+            acidResistance: [{source: 'base', value: 0}],
+            electricityResistance: [{source: 'base', value: 0}],
+            poisonResistance: [{source: 'base', value: 0}],
+            magicResistance: [{source: 'base', value: 0}],
+            weaponDamage: [{source: 'base', value: 3}]
         };
+        this.parameters = {
+            health: 10,
+            manna: 10,
+            energy: 5,
+        }
+        this._recalculateCharacteristics();
+
         this.actionPointsBase = {physical: 0, magical: 1, misc: 0};
         this.actionPointsIncrement = {physical: 0, magical: 1, misc: 1};
 
@@ -59,8 +56,4 @@ export class Wizard extends GeneralEnemy {
             return {action: new Action(action, this), targets: [randomAlivePlayer]}
         }
     };
-
-    public getAttackDamage() {
-        return 3;
-    }
 }
