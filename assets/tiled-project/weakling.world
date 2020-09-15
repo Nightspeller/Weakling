@@ -11,43 +11,50 @@
             "fileName": "tilemaps/village.tmx",
             "height": 1280,
             "width": 1600,
-            "x": 3935,
-            "y": 1920
+            "x": 5663,
+            "y": 2688
         },
         {
             "fileName": "tilemaps/betweenVillageAndCaltor.tmx",
             "height": 800,
             "width": 1952,
-            "x": 2174,
-            "y": 3200
+            "x": 3902,
+            "y": 3968
         },
         {
             "fileName": "tilemaps/greatPlains.tmx",
             "height": 1600,
             "width": 1600,
-            "x": 2525,
-            "y": 4000
+            "x": 4253,
+            "y": 4768
         },
         {
             "fileName": "tilemaps/betweenVillageAndDungeon.tmx",
             "height": 640,
             "width": 1600,
-            "x": 5532,
-            "y": 1984
+            "x": 7260,
+            "y": 2752
         },
         {
             "fileName": "tilemaps/dungeon.tmx",
             "height": 640,
             "width": 832,
-            "x": 6939,
-            "y": 1344
+            "x": 8667,
+            "y": 2112
         },
         {
             "fileName": "tilemaps/backCave.tmx",
             "height": 384,
             "width": 448,
-            "x": 4122,
-            "y": 1408
+            "x": 7130,
+            "y": 1152
+        },
+        {
+            "fileName": "tilemaps/honeywood.tmx",
+            "height": 960,
+            "width": 1920,
+            "x": 1976,
+            "y": 3200
         }
     ],
     "onlyShowAdjacentMaps": false,

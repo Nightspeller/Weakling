@@ -1,6 +1,7 @@
 import {GeneralLocation} from "./generalLocation.js";
 import {GregNpc} from "../npcs/honeywood/gregNpc.js";
 import {MashaNpc} from "../npcs/honeywood/mashaNpc.js";
+import {LimeNpc} from "../npcs/honeywood/limeNpc.js";
 
 export class HoneywoodScene extends GeneralLocation {
     constructor() {
@@ -20,6 +21,7 @@ export class HoneywoodScene extends GeneralLocation {
 
         const greg = new GregNpc({scene: this});
         const masha = new MashaNpc({scene: this});
+        const limeNpc = new LimeNpc({scene: this});
     }
 
     public update() {

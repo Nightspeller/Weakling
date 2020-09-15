@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="2020.05.27" name="water2" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="384" columns="64">
+<tileset version="1.4" tiledversion="2020.09.09" name="water2" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="384" columns="64">
  <image source="../../images-extruded/tilesets/water2.png" width="2176" height="204"/>
- <terraintypes>
-  <terrain name="Water" tile="70"/>
- </terraintypes>
  <tile id="0">
   <properties>
    <property name="collides" type="bool" value="true"/>
@@ -23,23 +20,63 @@
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="1" duration="250"/>
+   <frame tileid="9" duration="250"/>
+   <frame tileid="17" duration="250"/>
+   <frame tileid="25" duration="250"/>
+   <frame tileid="33" duration="250"/>
+   <frame tileid="41" duration="250"/>
+   <frame tileid="49" duration="250"/>
+   <frame tileid="57" duration="250"/>
+  </animation>
  </tile>
  <tile id="2">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="2" duration="250"/>
+   <frame tileid="10" duration="250"/>
+   <frame tileid="18" duration="250"/>
+   <frame tileid="26" duration="250"/>
+   <frame tileid="34" duration="250"/>
+   <frame tileid="42" duration="250"/>
+   <frame tileid="50" duration="250"/>
+   <frame tileid="58" duration="250"/>
+  </animation>
  </tile>
  <tile id="3">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="3" duration="250"/>
+   <frame tileid="11" duration="250"/>
+   <frame tileid="19" duration="250"/>
+   <frame tileid="27" duration="250"/>
+   <frame tileid="35" duration="250"/>
+   <frame tileid="43" duration="250"/>
+   <frame tileid="51" duration="250"/>
+   <frame tileid="59" duration="250"/>
+  </animation>
  </tile>
  <tile id="4">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="4" duration="250"/>
+   <frame tileid="12" duration="250"/>
+   <frame tileid="20" duration="250"/>
+   <frame tileid="28" duration="250"/>
+   <frame tileid="36" duration="250"/>
+   <frame tileid="44" duration="250"/>
+   <frame tileid="52" duration="250"/>
+   <frame tileid="60" duration="250"/>
+  </animation>
  </tile>
- <tile id="5" terrain=",,,0">
+ <tile id="5">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -54,7 +91,7 @@
    <frame tileid="61" duration="250"/>
   </animation>
  </tile>
- <tile id="6" terrain=",,0,0">
+ <tile id="6">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -69,7 +106,7 @@
    <frame tileid="62" duration="250"/>
   </animation>
  </tile>
- <tile id="7" terrain=",,0,">
+ <tile id="7">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -383,23 +420,63 @@
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="65" duration="250"/>
+   <frame tileid="73" duration="250"/>
+   <frame tileid="81" duration="250"/>
+   <frame tileid="89" duration="250"/>
+   <frame tileid="97" duration="250"/>
+   <frame tileid="105" duration="250"/>
+   <frame tileid="113" duration="250"/>
+   <frame tileid="121" duration="250"/>
+  </animation>
  </tile>
  <tile id="66">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="66" duration="250"/>
+   <frame tileid="74" duration="250"/>
+   <frame tileid="82" duration="250"/>
+   <frame tileid="90" duration="250"/>
+   <frame tileid="98" duration="250"/>
+   <frame tileid="106" duration="250"/>
+   <frame tileid="114" duration="250"/>
+   <frame tileid="122" duration="250"/>
+  </animation>
  </tile>
  <tile id="67">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="67" duration="250"/>
+   <frame tileid="75" duration="250"/>
+   <frame tileid="83" duration="250"/>
+   <frame tileid="91" duration="250"/>
+   <frame tileid="99" duration="250"/>
+   <frame tileid="107" duration="250"/>
+   <frame tileid="115" duration="250"/>
+   <frame tileid="123" duration="250"/>
+  </animation>
  </tile>
  <tile id="68">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="68" duration="250"/>
+   <frame tileid="76" duration="250"/>
+   <frame tileid="84" duration="250"/>
+   <frame tileid="92" duration="250"/>
+   <frame tileid="100" duration="250"/>
+   <frame tileid="108" duration="250"/>
+   <frame tileid="116" duration="250"/>
+   <frame tileid="124" duration="250"/>
+  </animation>
  </tile>
- <tile id="69" terrain=",0,,0">
+ <tile id="69">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -414,7 +491,7 @@
    <frame tileid="125" duration="250"/>
   </animation>
  </tile>
- <tile id="70" terrain="0,0,0,0">
+ <tile id="70">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -429,7 +506,7 @@
    <frame tileid="126" duration="250"/>
   </animation>
  </tile>
- <tile id="71" terrain="0,,0,">
+ <tile id="71">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -728,28 +805,68 @@
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="128" duration="250"/>
+   <frame tileid="136" duration="250"/>
+   <frame tileid="144" duration="250"/>
+   <frame tileid="152" duration="250"/>
+   <frame tileid="160" duration="250"/>
+   <frame tileid="168" duration="250"/>
+   <frame tileid="176" duration="250"/>
+   <frame tileid="184" duration="250"/>
+  </animation>
  </tile>
  <tile id="129">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="129" duration="250"/>
+   <frame tileid="137" duration="250"/>
+   <frame tileid="145" duration="250"/>
+   <frame tileid="153" duration="250"/>
+   <frame tileid="161" duration="250"/>
+   <frame tileid="169" duration="250"/>
+   <frame tileid="177" duration="250"/>
+   <frame tileid="185" duration="250"/>
+  </animation>
  </tile>
  <tile id="130">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="130" duration="250"/>
+   <frame tileid="138" duration="250"/>
+   <frame tileid="146" duration="250"/>
+   <frame tileid="154" duration="250"/>
+   <frame tileid="162" duration="250"/>
+   <frame tileid="170" duration="250"/>
+   <frame tileid="178" duration="250"/>
+   <frame tileid="186" duration="250"/>
+  </animation>
  </tile>
  <tile id="131">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="131" duration="250"/>
+   <frame tileid="139" duration="250"/>
+   <frame tileid="147" duration="250"/>
+   <frame tileid="155" duration="250"/>
+   <frame tileid="163" duration="250"/>
+   <frame tileid="171" duration="250"/>
+   <frame tileid="179" duration="250"/>
+   <frame tileid="187" duration="250"/>
+  </animation>
  </tile>
  <tile id="132">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="133" terrain=",0,,">
+ <tile id="133">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -764,7 +881,7 @@
    <frame tileid="189" duration="250"/>
   </animation>
  </tile>
- <tile id="134" terrain="0,0,,">
+ <tile id="134">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -779,7 +896,7 @@
    <frame tileid="190" duration="250"/>
   </animation>
  </tile>
- <tile id="135" terrain="0,,,">
+ <tile id="135">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -1078,11 +1195,31 @@
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="192" duration="250"/>
+   <frame tileid="200" duration="250"/>
+   <frame tileid="208" duration="250"/>
+   <frame tileid="216" duration="250"/>
+   <frame tileid="224" duration="250"/>
+   <frame tileid="232" duration="250"/>
+   <frame tileid="240" duration="250"/>
+   <frame tileid="248" duration="250"/>
+  </animation>
  </tile>
  <tile id="193">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="193" duration="250"/>
+   <frame tileid="201" duration="250"/>
+   <frame tileid="209" duration="250"/>
+   <frame tileid="217" duration="250"/>
+   <frame tileid="225" duration="250"/>
+   <frame tileid="233" duration="250"/>
+   <frame tileid="241" duration="250"/>
+   <frame tileid="249" duration="250"/>
+  </animation>
  </tile>
  <tile id="194">
   <properties>
@@ -1094,7 +1231,7 @@
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="196" terrain="0,0,0,">
+ <tile id="196">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -1109,7 +1246,7 @@
    <frame tileid="252" duration="250"/>
   </animation>
  </tile>
- <tile id="197" terrain="0,0,,0">
+ <tile id="197">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -1418,11 +1555,31 @@
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="256" duration="250"/>
+   <frame tileid="264" duration="250"/>
+   <frame tileid="272" duration="250"/>
+   <frame tileid="280" duration="250"/>
+   <frame tileid="288" duration="250"/>
+   <frame tileid="296" duration="250"/>
+   <frame tileid="304" duration="250"/>
+   <frame tileid="312" duration="250"/>
+  </animation>
  </tile>
  <tile id="257">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="257" duration="250"/>
+   <frame tileid="265" duration="250"/>
+   <frame tileid="273" duration="250"/>
+   <frame tileid="281" duration="250"/>
+   <frame tileid="289" duration="250"/>
+   <frame tileid="297" duration="250"/>
+   <frame tileid="305" duration="250"/>
+   <frame tileid="313" duration="250"/>
+  </animation>
  </tile>
  <tile id="258">
   <properties>
@@ -1434,7 +1591,7 @@
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="260" terrain="0,,0,0">
+ <tile id="260">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -1449,7 +1606,7 @@
    <frame tileid="316" duration="250"/>
   </animation>
  </tile>
- <tile id="261" terrain=",0,0,0">
+ <tile id="261">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
@@ -1758,11 +1915,31 @@
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="320" duration="250"/>
+   <frame tileid="328" duration="250"/>
+   <frame tileid="336" duration="250"/>
+   <frame tileid="344" duration="250"/>
+   <frame tileid="352" duration="250"/>
+   <frame tileid="360" duration="250"/>
+   <frame tileid="368" duration="250"/>
+   <frame tileid="376" duration="250"/>
+  </animation>
  </tile>
  <tile id="321">
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="321" duration="250"/>
+   <frame tileid="329" duration="250"/>
+   <frame tileid="337" duration="250"/>
+   <frame tileid="345" duration="250"/>
+   <frame tileid="353" duration="250"/>
+   <frame tileid="361" duration="250"/>
+   <frame tileid="369" duration="250"/>
+   <frame tileid="377" duration="250"/>
+  </animation>
  </tile>
  <tile id="322">
   <properties>
@@ -1788,6 +1965,16 @@
   <properties>
    <property name="collides" type="bool" value="true"/>
   </properties>
+  <animation>
+   <frame tileid="326" duration="250"/>
+   <frame tileid="334" duration="250"/>
+   <frame tileid="342" duration="250"/>
+   <frame tileid="350" duration="250"/>
+   <frame tileid="358" duration="250"/>
+   <frame tileid="366" duration="250"/>
+   <frame tileid="374" duration="250"/>
+   <frame tileid="382" duration="250"/>
+  </animation>
  </tile>
  <tile id="327">
   <properties>
@@ -2074,4 +2261,55 @@
    <property name="collides" type="bool" value="true"/>
   </properties>
  </tile>
+ <wangsets>
+  <wangset name="Converted Terrains" tile="-1">
+   <wangcolor name="Water" color="#ff0000" tile="70" probability="1"/>
+   <wangtile tileid="1" wangid="0,0,1,0,0,0,0,0"/>
+   <wangtile tileid="2" wangid="0,0,1,0,0,0,1,0"/>
+   <wangtile tileid="3" wangid="0,0,0,0,0,0,1,0"/>
+   <wangtile tileid="4" wangid="0,0,0,0,1,0,0,0"/>
+   <wangtile tileid="5" wangid="0,0,1,1,1,0,0,0"/>
+   <wangtile tileid="6" wangid="0,0,1,1,1,1,1,0"/>
+   <wangtile tileid="7" wangid="0,0,0,0,1,1,1,0"/>
+   <wangtile tileid="64" wangid="0,0,1,0,1,0,0,0"/>
+   <wangtile tileid="65" wangid="0,0,0,0,1,0,1,0"/>
+   <wangtile tileid="66" wangid="1,0,1,0,1,0,0,0"/>
+   <wangtile tileid="67" wangid="0,0,1,0,1,0,1,0"/>
+   <wangtile tileid="68" wangid="1,0,0,0,1,0,0,0"/>
+   <wangtile tileid="69" wangid="1,1,1,1,1,0,0,0"/>
+   <wangtile tileid="70" wangid="1,1,1,1,1,1,1,1"/>
+   <wangtile tileid="71" wangid="1,0,0,0,1,1,1,1"/>
+   <wangtile tileid="128" wangid="1,0,1,0,0,0,0,0"/>
+   <wangtile tileid="129" wangid="1,0,0,0,0,0,1,0"/>
+   <wangtile tileid="130" wangid="1,0,1,0,0,0,1,0"/>
+   <wangtile tileid="131" wangid="1,0,0,0,1,0,1,0"/>
+   <wangtile tileid="132" wangid="1,0,0,0,0,0,0,0"/>
+   <wangtile tileid="133" wangid="1,1,1,0,0,0,0,0"/>
+   <wangtile tileid="134" wangid="1,1,1,0,0,0,1,1"/>
+   <wangtile tileid="135" wangid="1,0,0,0,0,0,1,1"/>
+   <wangtile tileid="192" wangid="1,1,1,0,1,0,0,0"/>
+   <wangtile tileid="193" wangid="1,0,0,0,1,0,1,1"/>
+   <wangtile tileid="194" wangid="0,0,1,0,1,1,1,0"/>
+   <wangtile tileid="195" wangid="0,0,1,1,1,0,1,0"/>
+   <wangtile tileid="196" wangid="1,1,1,0,1,1,1,1"/>
+   <wangtile tileid="197" wangid="1,1,1,1,1,0,1,1"/>
+   <wangtile tileid="198" wangid="1,0,1,0,1,0,1,1"/>
+   <wangtile tileid="199" wangid="1,1,1,0,1,0,1,0"/>
+   <wangtile tileid="256" wangid="1,0,1,1,1,0,0,0"/>
+   <wangtile tileid="257" wangid="1,0,0,0,1,1,1,0"/>
+   <wangtile tileid="258" wangid="1,0,1,0,0,0,1,1"/>
+   <wangtile tileid="259" wangid="1,1,1,0,0,0,1,0"/>
+   <wangtile tileid="260" wangid="1,0,1,1,1,1,1,1"/>
+   <wangtile tileid="261" wangid="1,1,1,1,1,1,1,0"/>
+   <wangtile tileid="262" wangid="1,0,1,0,1,1,1,0"/>
+   <wangtile tileid="263" wangid="1,0,1,1,1,0,1,0"/>
+   <wangtile tileid="320" wangid="1,0,1,1,1,1,1,0"/>
+   <wangtile tileid="321" wangid="1,1,1,0,1,0,1,1"/>
+   <wangtile tileid="322" wangid="1,0,1,0,1,1,1,1"/>
+   <wangtile tileid="323" wangid="1,1,1,1,1,0,1,0"/>
+   <wangtile tileid="324" wangid="1,0,1,1,1,0,1,1"/>
+   <wangtile tileid="325" wangid="1,1,1,0,1,1,1,0"/>
+   <wangtile tileid="326" wangid="1,0,1,0,1,0,1,0"/>
+  </wangset>
+ </wangsets>
 </tileset>

@@ -118,6 +118,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.spritesheet('male14-2', 'assets/images-extruded/characters/world-map/neutral/male14-2.png', tilesetConfig);
         this.load.spritesheet("male17-3", "assets/images-extruded/characters/world-map/neutral/male17-3.png", tilesetConfig);
         this.load.spritesheet("male17-4", "assets/images-extruded/characters/world-map/neutral/male17-4.png", tilesetConfig);
+        this.load.spritesheet("female05-4", "assets/images-extruded/characters/world-map/neutral/female05-4.png", tilesetConfig);
         this.load.spritesheet("female17-1", "assets/images-extruded/characters/world-map/neutral/female17-1.png", tilesetConfig);
         this.load.spritesheet("female19-1", "assets/images-extruded/characters/world-map/neutral/female19-1.png", tilesetConfig);
         this.load.spritesheet("female19-3", "assets/images-extruded/characters/world-map/neutral/female19-3.png", tilesetConfig);

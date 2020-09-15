@@ -269,6 +269,32 @@ export const vesselsAndIngredients = {
         sellPrice: 1,
         buyPrice: 2
     },
+    'chamomile-seeds': {
+        itemId: 'chamomile-seeds',
+        displayName: 'Chamomile seeds',
+        description: 'The seeds of the chamomile',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: { texture: 'icon-item-set', frame: 198 },
+        stackable: true,
+        modified: false,
+        specifics: {
+            plantable: 'chamomile'
+        },
+        sellPrice: 1,
+        buyPrice: 2
+    },
+    'chamomile': {
+        itemId: 'chamomile',
+        displayName: 'Chamomile',
+        description: 'The chamomile flower',
+        possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+        sprite: { texture: 'base', frame: 52 },
+        stackable: true,
+        modified: false,
+        specifics: {},
+        sellPrice: 2,
+        buyPrice: 4
+    },
     'cheese': {
         itemId: 'cheese',
         displayName: 'Cheese',
