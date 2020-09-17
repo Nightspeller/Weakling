@@ -7,6 +7,7 @@ import {BaelinNpc} from "../npcs/caltor/baelinNpc.js";
 import {AnnouncementsDeskNpc} from "../npcs/caltor/announcementsDeskNpc.js";
 import {KasimaNpc} from "../npcs/caltor/kasimaNpc.js";
 import {FountainNpc} from "../npcs/caltor/fountainNpc.js";
+import {FionaNpc} from "../npcs/caltor/fionaNpc.js";
 
 export class CaltorScene extends GeneralLocation {
     constructor() {
@@ -53,6 +54,8 @@ export class CaltorScene extends GeneralLocation {
         const announcementsDesk = new AnnouncementsDeskNpc({scene: this});
 
         const kasima = new KasimaNpc({scene: this});
+
+        const fiona = new FionaNpc({scene: this});
 
         const fountain = new FountainNpc({scene: this});
 
