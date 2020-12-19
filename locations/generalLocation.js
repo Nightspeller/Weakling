@@ -181,7 +181,7 @@ export class GeneralLocation extends Phaser.Scene {
             });
         });
         (_e = this.map.getObjectLayer('Messages')) === null || _e === void 0 ? void 0 : _e.objects.forEach(object => {
-            var _a, _b, _c, _d, _e, _f;
+            var _a, _b, _c, _d, _e, _f, _g, _h;
             const messageId = (_b = (_a = object.properties) === null || _a === void 0 ? void 0 : _a.find(prop => prop.name === 'messageId')) === null || _b === void 0 ? void 0 : _b.value;
             const messageText = messages[messageId];
             const interaction = (_d = (_c = object.properties) === null || _c === void 0 ? void 0 : _c.find(prop => prop.name === 'interaction')) === null || _d === void 0 ? void 0 : _d.value;
@@ -193,6 +193,8 @@ export class GeneralLocation extends Phaser.Scene {
                 triggerY: object.y,
                 triggerW: object.width,
                 triggerH: object.height,
+                texture: (_g = this.getSpriteParamsByObjectName(object.name, 'Messages')) === null || _g === void 0 ? void 0 : _g.texture,
+                frame: (_h = this.getSpriteParamsByObjectName(object.name, 'Messages')) === null || _h === void 0 ? void 0 : _h.frame,
                 interaction: interaction,
                 singleUse: singleUse,
                 callback: () => {

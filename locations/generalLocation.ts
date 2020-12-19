@@ -225,6 +225,8 @@ export class GeneralLocation extends Phaser.Scene {
                 triggerY: object.y,
                 triggerW: object.width,
                 triggerH: object.height,
+                texture: this.getSpriteParamsByObjectName(object.name, 'Messages')?.texture,
+                frame: this.getSpriteParamsByObjectName(object.name, 'Messages')?.frame,
                 interaction: interaction,
                 singleUse: singleUse,
                 callback: () => {

@@ -1,8 +1,9 @@
 export const messages = {
-    caltor_honeywoodSign: `Welcome to Honeywood!\nPopulation: no idea - numbers are hard.`,
-    caltor_waymark: `West - to the fort.\nEast - to the fields and tavern.\nNorth - to Honeywood.`,
+    caltor_waymark: `West - to the fort.\nEast - to the fields and tavern.\nSouth - to Honeywood.`,
+    caltor_cityGuard1: `Welcome to Caltor.`,
+    caltor_cityGuard2: `I am watching you, little one.`,
 
-    betweenVillageAndCaltor_waymark: `West - to Caltor.\nEast - to Mundriv forest.\nNorth - to Alahai Mountains (don't step on Kobolds!).\nSouth - to Great Planes.`,
+    betweenVillageAndCaltor_waymark: `West - to Caltor and Honeywood.\nEast - to Mundriv forest.\nNorth - to Alahai Mountains (don't step on Kobolds!).\nSouth - to Great Planes.`,
     betweenVillageAndCaltor_garden_sign: `Property of farmer Joe. \n\nUnauthorized pickers will be hit with the broom!`,
 
     greatPlains_randomSign: `Oh wow you are persistent! This is the GREAT PLAINS! Nothing is here, but, well, plains! Go walk somewhere else :-) `,
@@ -12,4 +13,5 @@ export const messages = {
     village_notForPickup: `Do not pick up! These are for winter! Shoo the Eyeball away from Purplecups!`,
 
     honeywood_floristSign: `The sign says: "Fiona the florist". \n\nUnder the main line somebody wrote with charcoal: "And Lime the flower!`,
+    honeywood_honeywoodSign: `Welcome to Honeywood!\nPopulation: no idea - numbers are hard.`,
 };

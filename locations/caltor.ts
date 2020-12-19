@@ -45,8 +45,6 @@ export class CaltorScene extends GeneralLocation {
 
         const stranger = new StrangerNpc({scene: this});
 
-        const greg = new GregNpc({scene: this});
-
         const bodger = new BodgerNpc({scene: this});
 
         const baelin = new BaelinNpc({scene: this});

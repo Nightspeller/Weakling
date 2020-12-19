@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.09.09" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="26" nextobjectid="37">
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="26" nextobjectid="41">
  <editorsettings>
   <export target="../../exported-maps/honeywood.json" format="json"/>
  </editorsettings>
@@ -149,6 +149,16 @@
     <property name="interaction" value="activate"/>
     <property name="messageId" value="honeywood_floristSign"/>
     <property name="singleUse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="39" name="Honeywood sign north" type="Message" gid="236" x="352" y="128" width="32" height="32">
+   <properties>
+    <property name="messageId" value="honeywood_honeywoodSign"/>
+   </properties>
+  </object>
+  <object id="40" name="Honeywood sign east" type="Message" gid="236" x="1856" y="704" width="32" height="32">
+   <properties>
+    <property name="messageId" value="honeywood_honeywoodSign"/>
    </properties>
   </object>
  </objectgroup>
