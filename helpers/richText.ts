@@ -7,7 +7,8 @@ export class RichText extends Phaser.GameObjects.Text {
         y,
         text,
         style?,
-        border?: { color: number, width: number, alpha: number }) {
+        border?: { color: number, width: number, alpha: number }
+    ) {
         super(scene, x, y, text, style);
         this.additionalElements = scene.add.group();
         if (border) {
@@ -23,9 +24,9 @@ export class RichText extends Phaser.GameObjects.Text {
         scene.add.existing(this);
     }
 
-    public destroy(fromScene?: boolean) {
-        super.destroy(fromScene);
-        this.additionalElements.destroy(true);
+    public destroy() {
+        super.destroy();
+        this.additionalElements.destroy();
     }
 
     public cross() {

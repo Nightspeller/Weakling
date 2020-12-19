@@ -70,9 +70,9 @@ export class Trigger {
     }
     destroy() {
         var _a;
-        this.image.destroy(true);
+        this.image.destroy();
         this.destroyed = true;
-        (_a = this.highlightBorder) === null || _a === void 0 ? void 0 : _a.destroy(true);
+        (_a = this.highlightBorder) === null || _a === void 0 ? void 0 : _a.destroy();
         this.scene.input.keyboard.off('keydown-SPACE', this.onSpaceBarPressed, this);
         this.scene.input.keyboard.off('keydown-SHIFT', this.onHighlightOn, this);
         this.scene.input.keyboard.off('keyup-SHIFT', this.onHighlightOff, this);

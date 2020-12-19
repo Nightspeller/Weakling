@@ -14,9 +14,9 @@ export class RichText extends Phaser.GameObjects.Text {
         }
         scene.add.existing(this);
     }
-    destroy(fromScene) {
-        super.destroy(fromScene);
-        this.additionalElements.destroy(true);
+    destroy() {
+        super.destroy();
+        this.additionalElements.destroy();
     }
     cross() {
         this.additionalElements.add(this.scene.add.graphics()

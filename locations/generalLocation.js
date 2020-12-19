@@ -60,13 +60,7 @@ export class GeneralLocation extends Phaser.Scene {
         });
         this.layers = [];
         this.map.layers.forEach(layer => {
-            let createdLayer;
-            if (Array.isArray(layer.properties) && layer.properties.find((prop) => (prop === null || prop === void 0 ? void 0 : prop.name) === 'dynamic' && prop.value === true)) {
-                createdLayer = this.map.createDynamicLayer(layer.name, tilesets, this.offsetX, this.offsetY);
-            }
-            else {
-                createdLayer = this.map.createStaticLayer(layer.name, tilesets, this.offsetX, this.offsetY);
-            }
+            const createdLayer = this.map.createLayer(layer.name, tilesets, this.offsetX, this.offsetY);
             if (layer.alpha !== 1)
                 createdLayer.setAlpha(layer.alpha);
             this.layers.push(createdLayer);
@@ -387,8 +381,7 @@ export class GeneralLocation extends Phaser.Scene {
             }
             else {
                 this.cursorCoordinatesText = this.add.text(0, 0, `${cursorX} ${cursorY}`, {
-                    color: 'black',
-                    background: 'yellow'
+                    color: 'black'
                 })
                     .setDepth(1000).setScrollFactor(0).setOrigin(0, 0);
             }
@@ -447,7 +440,7 @@ export class GeneralLocation extends Phaser.Scene {
         const right = this.keys.right.isDown || this.keys['D'].isDown;
         const left = this.keys.left.isDown || this.keys['A'].isDown;
         this.playerImage.setVelocity(0);
-        const isAttackAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getCurrentKey().includes('attack');
+        const isAttackAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getName().includes('attack');
         if (!isAttackAnimPlaying) {
             if (this.lastCursor && !up && !down && !right && !left) {
                 this.playerImage.play(`idle_${this.lastCursor}`, true);
@@ -527,8 +520,8 @@ export class GeneralLocation extends Phaser.Scene {
     setupAttackKey() {
         this.input.keyboard.off('keydown-E');
         this.input.keyboard.on('keydown-E', () => {
-            const isWalkAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getCurrentKey().includes('walk');
-            const isAttackAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getCurrentKey().includes('attack');
+            const isWalkAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getName().includes('walk');
+            const isAttackAnimPlaying = this.playerImage.anims.isPlaying && this.playerImage.anims.getName().includes('attack');
             if (!isWalkAnimPlaying && !isAttackAnimPlaying) {
                 this.playerImage.anims.play(`attack_${this.lastCursor}`, true);
             }
@@ -599,7 +592,7 @@ export class GeneralLocation extends Phaser.Scene {
             repeat: 0,
             yoyo: false,
             onComplete: () => {
-                textObj.destroy(true);
+                textObj.destroy();
                 this.abovePlayerTextTween = undefined;
             },
         });

@@ -27,7 +27,7 @@ export class IntroScene extends Phaser.Scene {
             'Now...take me there, show me...',
             {
                 font: '14px monospace',
-                fill: '#ffffff'
+                color: '#ffffff'
             }
         ).setOrigin(0.5, 0.5);
 
@@ -35,9 +35,9 @@ export class IntroScene extends Phaser.Scene {
             'Show him that lovely morning at the Village',
             {
                 font: '14px monospace',
-                fill: '#ffffff',
+                color: '#ffffff',
                 backgroundColor: '#222222',
-                padding: 10,
+                padding: {x:10, y:10},
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
 
@@ -54,9 +54,9 @@ export class IntroScene extends Phaser.Scene {
             'Show him the dungeon',
             {
                 font: '14px monospace',
-                fill: '#ffffff',
+                color: '#ffffff',
                 backgroundColor: '#222222',
-                padding: 10,
+                padding: {x: 10, y: 10},
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
 

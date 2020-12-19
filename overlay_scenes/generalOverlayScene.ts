@@ -56,7 +56,7 @@ export class GeneralOverlayScene extends Phaser.Scene {
 
         const closeBtn = this.add.text(closeButtonX, closeButtonY, 'X', {
             font: 'bold 16px Arial',
-            fill: this.opts.closeButtonColor,
+            color: this.opts.closeButtonColor,
             fixedWidth: 20,
             fixedHeight: 20,
             align: 'center'

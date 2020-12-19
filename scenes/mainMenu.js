@@ -17,17 +17,17 @@ export class MainMenuScene extends Phaser.Scene {
             .strokeRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300);
         const subtitle = this.add.text(GAME_W / 2, GAME_H / 2 - 120, `Serg Nights' presents:`, {
             font: '14px monospace',
-            fill: '#b5b5b5'
+            color: '#b5b5b5'
         }).setOrigin(0.5, 0.5);
         const title = this.add.text(GAME_W / 2, GAME_H / 2 - 70, 'Weakling!', {
             font: '50px monospace',
-            fill: '#ca0000'
+            color: '#ca0000'
         }).setOrigin(0.5, 0.5);
         const startButtonText = this.add.text(GAME_W / 2, GAME_H * 2 / 3 - 70, 'Let it begin...', {
             font: '20px monospace',
-            fill: '#ffffff',
+            color: '#ffffff',
             backgroundColor: '#222222',
-            padding: 10,
+            padding: { x: 10, y: 10 },
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         const border = this.add.graphics()
             .lineStyle(2, 0xffffff, 0.4)
@@ -37,8 +37,8 @@ export class MainMenuScene extends Phaser.Scene {
         });
         const optionsText = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20, 'Options', {
             font: '20px monospace',
-            fill: '#ffffff',
-            padding: 10
+            color: '#ffffff',
+            padding: { x: 10, y: 10 }
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         optionsText.on('pointerdown', () => {
             this.scene.pause(this.scene.key);

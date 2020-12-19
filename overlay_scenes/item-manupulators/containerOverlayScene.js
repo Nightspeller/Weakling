@@ -22,12 +22,12 @@ export class ContainerOverlayScene extends InventoryOverlayScene {
         const textY = 20 + 64 * 5 + 20;
         this.add.text(this.opts.windowX + textX, this.opts.windowY + textY, `${this.name}:`, {
             font: 'bold 16px Arial',
-            fill: '000000',
+            color: '000000',
         });
         if (takeAllEnabled) {
             const takeAllButton = this.add.text(this.opts.windowWidth - 20 - 55, this.opts.windowY + textY, `Take All`, {
                 font: 'bold 16px Arial',
-                fill: this.opts.closeButtonColor,
+                color: this.opts.closeButtonColor,
                 backgroundColor: 'lightgrey',
                 fixedWidth: 70,
                 align: 'center',

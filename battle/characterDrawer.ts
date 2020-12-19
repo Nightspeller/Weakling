@@ -193,10 +193,10 @@ export class CharacterDrawer {
         const image = this.scene.add.sprite(48 + 2, 48 + 2, spriteParams.texture, spriteParams.frame).setDisplaySize(spriteParams.width, spriteParams.height);
         this.characterInfoContainer.add(image);
 
-        const name = this.scene.add.text(2 + 96 + 2, 0, this.char.name, {font: '20px monospace', fill: '#000000'});
+        const name = this.scene.add.text(2 + 96 + 2, 0, this.char.name, {font: '20px monospace', color: '#000000'});
         this.characterInfoContainer.add(name);
 
-        const textStyle = {font: '12px monospace', fill: '#000000'};
+        const textStyle = {font: '12px monospace', color: '#000000'};
         let level;
         if (this.char instanceof Adventurer) {
             level = this.scene.add.text(2 + 96 + 2, 24, `Level: ${this.char.level}, ${this.char.xp}xp / ${this.char.experienceTable[this.char.level]}xp`, textStyle);
@@ -239,7 +239,7 @@ export class CharacterDrawer {
             `☣${this.char.characteristics.acidResistance} ` +
             `☠${this.char.characteristics.poisonResistance} ` +
             `✨${this.char.characteristics.magicResistance} `,
-            {font: '14px monospace', fill: '#000000'});
+            {font: '14px monospace', color: '#000000'});
         this.characterInfoContainer.add(resistanceDetails);
 
         const actionPointsText = this.scene.add.text(8, 254, `Action points:`, textStyle);
@@ -265,7 +265,7 @@ export class CharacterDrawer {
     }
 
     public playIdleAnimation() {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             if (this.char.animations.idle) {
                 this.mainImage.anims.play(this.char.animations.idle);
                 resolve();
@@ -277,7 +277,7 @@ export class CharacterDrawer {
     }
 
     public playMoveAnimation(targetX: number, targetY: number) {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             if (targetX === this.mainImage.x) {
                 resolve();
             }
@@ -315,7 +315,7 @@ export class CharacterDrawer {
     }
 
     public playMeleeAttackAnimation(targetX: number, targetY: number) {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             const initialImageDepth = this.mainImage.depth;
             this.mainImage.setDepth(5)
             if (this.char.animations?.attack) {
@@ -359,7 +359,7 @@ export class CharacterDrawer {
     }
 
     public playCastAnimation() {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             if (this.char.animations?.buff) {
                 this.mainImage.anims.play(this.char.animations.buff, true);
                 this.mainImage.once('animationcomplete', () => {
@@ -383,7 +383,7 @@ export class CharacterDrawer {
     }
 
     public playHitAnimation() {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             if (this.char.animations.hit) {
                 this.mainImage.anims.play(this.char.animations.hit);
                 this.mainImage.once('animationcomplete', () => {
@@ -393,7 +393,7 @@ export class CharacterDrawer {
             } else {
                 const hitImage = this.scene.add.sprite(this.position.x, this.position.y, 'hit');
                 setTimeout(() => {
-                    hitImage.destroy(true);
+                    hitImage.destroy();
                 }, 500);
                 resolve();
             }
@@ -401,7 +401,7 @@ export class CharacterDrawer {
     }
 
     public playMissAnimation() {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             if (this.char.animations.miss) {
                 this.mainImage.anims.play(this.char.animations.miss);
                 this.mainImage.once('animationcomplete', () => {
@@ -422,7 +422,7 @@ export class CharacterDrawer {
                     duration: 800,
                     yoyo: false,
                     onComplete: () => {
-                        missText.destroy(true);
+                        missText.destroy();
                         resolve()
                     }
                 });
@@ -431,7 +431,7 @@ export class CharacterDrawer {
     }
 
     public playDeathAnimation() {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             if (this.char.animations.death) {
                 this.mainImage.anims.play(this.char.animations.death);
                 this.mainImage.once('animationcomplete', () => {

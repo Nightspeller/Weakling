@@ -40,11 +40,11 @@ export class AlchemyStandScene extends InventoryOverlayScene {
         const standY = 20 + 64 * 5 + 20;
         this.add.text(this.opts.windowX + standX, this.opts.windowY + standY, `${this.name}:`, {
             font: 'bold 16px Arial',
-            fill: '000000',
+            color: '000000',
         });
         const takeAllButton = this.add.text(this.opts.windowWidth - 20 - 55, this.opts.windowY + standY, `Take All`, {
             font: 'bold 16px Arial',
-            fill: this.opts.closeButtonColor,
+            color: this.opts.closeButtonColor,
             backgroundColor: 'lightgrey',
             fixedWidth: 70,
             align: 'center',
@@ -84,7 +84,7 @@ export class AlchemyStandScene extends InventoryOverlayScene {
 
         const brewBtn = this.add.text(buttonX, buttonY, 'Make', {
             font: 'bold 16px Arial',
-            fill: this.opts.closeButtonColor,
+            color: this.opts.closeButtonColor,
             backgroundColor: 'lightgrey',
             fixedWidth: 64,
             align: 'center',

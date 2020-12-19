@@ -158,7 +158,7 @@ export class DialogScene extends GeneralOverlayScene {
     }
 
     private _setText(text: string, animate: boolean) {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             text += '\n——————————————————————————————————————————————————————————————————————';
             const textX = this.opts.windowX + 25;
             const textY = this.opts.windowY + 10;

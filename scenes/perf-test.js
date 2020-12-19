@@ -55,13 +55,7 @@ export class TestPreloadScene extends Phaser.Scene {
         });
         const layers = [];
         map.layers.forEach(layer => {
-            let createdLayer;
-            if (Array.isArray(layer.properties) && layer.properties.find((prop) => (prop === null || prop === void 0 ? void 0 : prop.name) === 'dynamic' && prop.value === true)) {
-                createdLayer = map.createDynamicLayer(layer.name, tilesets);
-            }
-            else {
-                createdLayer = map.createStaticLayer(layer.name, tilesets);
-            }
+            const createdLayer = map.createLayer(layer.name, tilesets);
             if (layer.alpha !== 1)
                 createdLayer.setAlpha(layer.alpha);
             layers.push(createdLayer);

@@ -164,9 +164,9 @@ export class CharacterDrawer {
         const spriteParams = this.char.spriteParams;
         const image = this.scene.add.sprite(48 + 2, 48 + 2, spriteParams.texture, spriteParams.frame).setDisplaySize(spriteParams.width, spriteParams.height);
         this.characterInfoContainer.add(image);
-        const name = this.scene.add.text(2 + 96 + 2, 0, this.char.name, { font: '20px monospace', fill: '#000000' });
+        const name = this.scene.add.text(2 + 96 + 2, 0, this.char.name, { font: '20px monospace', color: '#000000' });
         this.characterInfoContainer.add(name);
-        const textStyle = { font: '12px monospace', fill: '#000000' };
+        const textStyle = { font: '12px monospace', color: '#000000' };
         let level;
         if (this.char instanceof Adventurer) {
             level = this.scene.add.text(2 + 96 + 2, 24, `Level: ${this.char.level}, ${this.char.xp}xp / ${this.char.experienceTable[this.char.level]}xp`, textStyle);
@@ -203,7 +203,7 @@ export class CharacterDrawer {
             `⚡${this.char.characteristics.electricityResistance} ` +
             `☣${this.char.characteristics.acidResistance} ` +
             `☠${this.char.characteristics.poisonResistance} ` +
-            `✨${this.char.characteristics.magicResistance} `, { font: '14px monospace', fill: '#000000' });
+            `✨${this.char.characteristics.magicResistance} `, { font: '14px monospace', color: '#000000' });
         this.characterInfoContainer.add(resistanceDetails);
         const actionPointsText = this.scene.add.text(8, 254, `Action points:`, textStyle);
         this.characterInfoContainer.add(actionPointsText);
@@ -355,7 +355,7 @@ export class CharacterDrawer {
             else {
                 const hitImage = this.scene.add.sprite(this.position.x, this.position.y, 'hit');
                 setTimeout(() => {
-                    hitImage.destroy(true);
+                    hitImage.destroy();
                 }, 500);
                 resolve();
             }
@@ -383,7 +383,7 @@ export class CharacterDrawer {
                     duration: 800,
                     yoyo: false,
                     onComplete: () => {
-                        missText.destroy(true);
+                        missText.destroy();
                         resolve();
                     }
                 });

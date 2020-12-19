@@ -133,7 +133,7 @@ export class BattleScene extends GeneralOverlayScene {
                     }
                 });
                 await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
-                await new Promise(resolve => setTimeout(() => resolve(), 500))
+                await new Promise<void>(resolve => setTimeout(() => resolve(), 500))
                 break;
             case 'castBuff':
                 await charDrawer.playCastAnimation();

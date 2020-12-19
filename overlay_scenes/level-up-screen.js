@@ -57,7 +57,7 @@ export class LevelUpScreenScene extends GeneralOverlayScene {
             increaseAttribute(2);
             addIntelligenceText.setText(`Intelligence: ${this.player.characteristics.intelligence + this.attributeModifiers[2]}`);
         });
-        const finishButton = new RichText(this, 96, 200, `Confirm!`, { ...textOptions, padding: 3 }, {
+        const finishButton = new RichText(this, 96, 200, `Confirm!`, { ...textOptions, padding: { x: 3, y: 3 } }, {
             color: 0x907748,
             width: 3,
             alpha: 1

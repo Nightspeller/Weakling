@@ -35,21 +35,21 @@ export class OptionsScene extends Phaser.Scene {
             'Options',
             {
                 font: '30px monospace',
-                fill: '#ffffff'
+                color: '#ffffff'
             }
         ).setOrigin(0.5, 0.5);
         const titleAudio = this.add.text(GAME_W / 2, GAME_H / 2 - 50,
             'Audio:',
             {
                 font: '20px monospace',
-                fill: '#ffffff'
+                color: '#ffffff'
             }
         ).setOrigin(0.5, 0.5);
         const musicToggle = this.add.text(GAME_W / 2, GAME_H / 2,
             `Music is ${optionsInstance.isMusicOn ? 'ON' : 'OFF'}`,
             {
                 font: '20px monospace',
-                fill: '#ffffff'
+                color: '#ffffff'
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
         musicToggle.on('pointerdown', () => {
@@ -72,7 +72,7 @@ export class OptionsScene extends Phaser.Scene {
             'Restart the game',
             {
                 font: '20px monospace',
-                fill: '#ca0000'
+                color: '#ca0000'
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
         restartButton.on('pointerdown', () => {
@@ -83,7 +83,7 @@ export class OptionsScene extends Phaser.Scene {
             'Back to game',
             {
                 font: '20px monospace',
-                fill: '#ffffff'
+                color: '#ffffff'
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
         backButton.on('pointerdown', () => this._close());

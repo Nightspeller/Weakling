@@ -20,13 +20,13 @@ export class IntroScene extends Phaser.Scene {
             'Good... Very good.\n\n\n' +
             'Now...take me there, show me...', {
             font: '14px monospace',
-            fill: '#ffffff'
+            color: '#ffffff'
         }).setOrigin(0.5, 0.5);
         const showHimVillage = this.add.text(GAME_W / 2, GAME_H / 2 + 200, 'Show him that lovely morning at the Village', {
             font: '14px monospace',
-            fill: '#ffffff',
+            color: '#ffffff',
             backgroundColor: '#222222',
-            padding: 10,
+            padding: { x: 10, y: 10 },
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         const border1 = this.add.graphics()
             .lineStyle(2, 0xffffff, 0.4)
@@ -37,9 +37,9 @@ export class IntroScene extends Phaser.Scene {
         });
         const showHimDungeon = this.add.text(GAME_W / 2, GAME_H / 2 + 250, 'Show him the dungeon', {
             font: '14px monospace',
-            fill: '#ffffff',
+            color: '#ffffff',
             backgroundColor: '#222222',
-            padding: 10,
+            padding: { x: 10, y: 10 },
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         const border2 = this.add.graphics()
             .lineStyle(2, 0xffffff, 0.4)

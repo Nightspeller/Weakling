@@ -12,21 +12,21 @@ export class MainMenuScene extends Phaser.Scene {
     create() {
         console.log('Creating main menu');
 
-        const backgroundImage = this.add.image(0,0, 'main-menu-background')
-            .setOrigin(0,0)
+        const backgroundImage = this.add.image(0, 0, 'main-menu-background')
+            .setOrigin(0, 0)
             .setDisplaySize(GAME_W, GAME_H);
 
         const menuBackground = this.add.graphics()
-            .lineStyle(3,0x222222)
+            .lineStyle(3, 0x222222)
             .fillStyle(0x2A3E07)
-            .fillRect(GAME_W/3-25, 150, GAME_W/3+40, GAME_H-300)
-            .strokeRect(GAME_W/3-25, 150, GAME_W/3+40, GAME_H-300);
+            .fillRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300)
+            .strokeRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300);
 
         const subtitle = this.add.text(GAME_W / 2, GAME_H / 2 - 120,
             `Serg Nights' presents:`,
             {
                 font: '14px monospace',
-                fill: '#b5b5b5'
+                color: '#b5b5b5'
             }
         ).setOrigin(0.5, 0.5);
 
@@ -34,7 +34,7 @@ export class MainMenuScene extends Phaser.Scene {
             'Weakling!',
             {
                 font: '50px monospace',
-                fill: '#ca0000'
+                color: '#ca0000'
             }
         ).setOrigin(0.5, 0.5);
 
@@ -42,14 +42,14 @@ export class MainMenuScene extends Phaser.Scene {
             'Let it begin...',
             {
                 font: '20px monospace',
-                fill: '#ffffff',
+                color: '#ffffff',
                 backgroundColor: '#222222',
-                padding: 10,
+                padding: {x: 10, y: 10},
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
 
         const border = this.add.graphics()
-            .lineStyle(2,0xffffff, 0.4)
+            .lineStyle(2, 0xffffff, 0.4)
             .strokeRect(startButtonText.getTopLeft().x, startButtonText.getTopLeft().y, startButtonText.width, startButtonText.height);
 
         startButtonText.once('pointerdown', () => {
@@ -60,8 +60,8 @@ export class MainMenuScene extends Phaser.Scene {
             'Options',
             {
                 font: '20px monospace',
-                fill: '#ffffff',
-                padding: 10
+                color: '#ffffff',
+                padding: {x: 10, y: 10}
             }
         ).setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
         optionsText.on('pointerdown', () => {

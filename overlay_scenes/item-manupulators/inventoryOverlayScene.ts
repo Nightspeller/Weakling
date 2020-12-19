@@ -89,7 +89,7 @@ export class InventoryOverlayScene extends GeneralItemManipulatorScene {
                 if (itemToBeMoved) {
                     this._moveItemFromSlotToFirstPossible(`quickSlot${i}` as Slots, backpackSlotNames, undefined, true);
                 }
-                this.slotsDisplayGroup.getChildren().find(obj => obj.name === `quickSlot${i}`).destroy(true);
+                this.slotsDisplayGroup.getChildren().find(obj => obj.name === `quickSlot${i}`).destroy();
             }
         }
         if (newQuickSlotsNumber > oldQuickSlotsNumber) {
@@ -118,7 +118,7 @@ Damage: ${this.player.getAttackDamage()}
 
 Actions: ${this.player.getAvailableActions().join(', ')}`;
 
-        if (this.characteristicsText) this.characteristicsText.destroy(true);
+        if (this.characteristicsText) this.characteristicsText.destroy();
         this.characteristicsText = this.add.text(textX, textY, text, {
             font: '14px monospace',
             color: '#000000',

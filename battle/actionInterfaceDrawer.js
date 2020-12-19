@@ -81,7 +81,7 @@ export class ActionInterfaceDrawer {
                                 zone.destroy();
                                 potentialTargets.forEach(potentialTarget => {
                                     potentialTarget.image.setDepth(0);
-                                    potentialTarget.zone.destroy(true);
+                                    potentialTarget.zone.destroy();
                                 });
                                 this.lineStyle(1, 0x000000, 1)
                                     .strokeRect(this.bx, this.by, 32 + 3 * 16, 32);

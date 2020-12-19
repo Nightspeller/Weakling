@@ -156,7 +156,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                 duration: 500,
                 onComplete: () => {
                     if (duplicateItemImage)
-                        itemToAnimate.destroy(true);
+                        itemToAnimate.destroy();
                     resolve();
                 },
             });
@@ -296,8 +296,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const descriptionContainer = this.add.container(containerX, containerY).setDepth(this.opts.baseDepth + 2);
         outerZone.once('pointerdown', (pointer, eventX, eventY, event) => {
             event.stopPropagation();
-            outerZone.destroy(true);
-            descriptionContainer.destroy(true);
+            outerZone.destroy();
+            descriptionContainer.destroy();
         });
         const background = this.add.graphics()
             .fillStyle(this.opts.backgroundColor, 1)
@@ -318,8 +318,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             dropItemButton.once('pointerdown', (pointer, eventX, eventY, event) => {
                 this._dropItem(slot);
                 event.stopPropagation();
-                outerZone.destroy(true);
-                descriptionContainer.destroy(true);
+                outerZone.destroy();
+                descriptionContainer.destroy();
             });
             descriptionContainer.add(dropItemButton);
             if (item.quantity > 1) {
@@ -330,8 +330,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                     const possiblePlayerSlotsForItem = item.possibleSlots.filter(x => playerSlotNames.includes(x));
                     this._moveItemFromSlotToFirstPossible(slot, possiblePlayerSlotsForItem, newQuantity);
                     event.stopPropagation();
-                    outerZone.destroy(true);
-                    descriptionContainer.destroy(true);
+                    outerZone.destroy();
+                    descriptionContainer.destroy();
                 });
                 descriptionContainer.add(splitItemButton);
             }
@@ -344,8 +344,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                     this.player.addToParameter(item.specifics.worldConsumable.type, healing);
                     this._changeItemQuantity(slot, item.quantity - 1);
                     event.stopPropagation();
-                    outerZone.destroy(true);
-                    descriptionContainer.destroy(true);
+                    outerZone.destroy();
+                    descriptionContainer.destroy();
                 });
                 descriptionContainer.add(consumeItemButton);
             }
@@ -386,8 +386,8 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
                 const locationsDialogContainer = this.add.container(0, 0).setDepth(this.opts.baseDepth + 3);
                 outerZone.once('pointerdown', (pointer, eventX, eventY, event) => {
                     event.stopPropagation();
-                    outerZone.destroy(true);
-                    locationsDialogContainer.destroy(true);
+                    outerZone.destroy();
+                    locationsDialogContainer.destroy();
                 });
                 const background = this.add.graphics();
                 locationsDialogContainer.add(background);
@@ -427,7 +427,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
         const itemRepresentation = this.itemsMap.get(slot);
         if (!itemRepresentation)
             throw `Trying to delete item which does not exist in slot ${slot}`;
-        itemRepresentation.destroy(true);
+        itemRepresentation.destroy();
         this.itemsMap.delete(slot);
         this.updateSourceCallback();
         return itemRepresentation;

@@ -24,15 +24,15 @@ export class OptionsScene extends Phaser.Scene {
         optionsBackground.on('pointerdown', (pointer, x, y, event) => event.stopPropagation());
         const title = this.add.text(GAME_W / 2, GAME_H / 2 - 120, 'Options', {
             font: '30px monospace',
-            fill: '#ffffff'
+            color: '#ffffff'
         }).setOrigin(0.5, 0.5);
         const titleAudio = this.add.text(GAME_W / 2, GAME_H / 2 - 50, 'Audio:', {
             font: '20px monospace',
-            fill: '#ffffff'
+            color: '#ffffff'
         }).setOrigin(0.5, 0.5);
         const musicToggle = this.add.text(GAME_W / 2, GAME_H / 2, `Music is ${optionsInstance.isMusicOn ? 'ON' : 'OFF'}`, {
             font: '20px monospace',
-            fill: '#ffffff'
+            color: '#ffffff'
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         musicToggle.on('pointerdown', () => {
             optionsInstance.toggleMusic();
@@ -51,14 +51,14 @@ export class OptionsScene extends Phaser.Scene {
                 });*/
         const restartButton = this.add.text(GAME_W / 2, GAME_H * 2 / 3 - 30, 'Restart the game', {
             font: '20px monospace',
-            fill: '#ca0000'
+            color: '#ca0000'
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         restartButton.on('pointerdown', () => {
             window.location.reload();
         });
         const backButton = this.add.text(GAME_W / 2, GAME_H * 2 / 3 + 20, 'Back to game', {
             font: '20px monospace',
-            fill: '#ffffff'
+            color: '#ffffff'
         }).setOrigin(0.5, 0.5).setInteractive({ useHandCursor: true });
         backButton.on('pointerdown', () => this._close());
         this.input.keyboard.on('keyup-O', () => this._close());

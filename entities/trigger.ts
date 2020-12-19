@@ -121,9 +121,9 @@ export class Trigger {
     }
 
     public destroy() {
-        this.image.destroy(true);
+        this.image.destroy();
         this.destroyed = true;
-        this.highlightBorder?.destroy(true);
+        this.highlightBorder?.destroy();
         this.scene.input.keyboard.off('keydown-SPACE', this.onSpaceBarPressed, this);
         this.scene.input.keyboard.off('keydown-SHIFT', this.onHighlightOn, this);
         this.scene.input.keyboard.off('keyup-SHIFT', this.onHighlightOff, this);
