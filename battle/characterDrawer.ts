@@ -319,9 +319,8 @@ export class CharacterDrawer {
             const initialImageDepth = this.mainImage.depth;
             this.mainImage.setDepth(5)
             if (this.char.animations?.attack) {
-                this.mainImage.anims.setRepeat(0);
-                this.mainImage.anims.play(this.char.animations.idle).once('animationcomplete', (currentAnim, currentFrame, sprite) => {
-                    this.mainImage.anims.play(this.char.animations.attack).once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                this.mainImage.anims.play({key: this.char.animations.idle, repeat: 0}).once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                    this.mainImage.anims.play({key: this.char.animations.attack, repeat: 0}).once('animationcomplete', (currentAnim, currentFrame, sprite) => {
                         this.mainImage.setDepth(initialImageDepth);
                         resolve();
                     });
