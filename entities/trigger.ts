@@ -86,7 +86,7 @@ export class Trigger {
             });
         }
         if (interaction === 'activate') {
-            scene.physics.add.collider(scene.playerImage, this.image);
+            scene.physics.add.collider(scene.playerImage, this.image, this.handlePlayerImageCollision); 
         }
         if (interaction === 'activateOverlap') {
             scene.physics.add.overlap(scene.playerImage, this.image);
@@ -153,6 +153,9 @@ export class Trigger {
             }
         }
     }
+
+    //This is overriden by the child
+    protected handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite, collisionImage: Phaser.Physics.Arcade.Sprite) {}
 
     private onHighlightOn(event) {
         event.preventDefault();

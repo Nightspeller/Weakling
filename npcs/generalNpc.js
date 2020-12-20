@@ -55,6 +55,22 @@ export default class GeneralNpc extends Trigger {
             }
         }
     }
+    handlePlayerImageCollision(playerImage, collisionImage) {
+        const dx = playerImage.x - collisionImage.x;
+        const dy = playerImage.y - collisionImage.y;
+        if (dx > -18.5 && dx < 19 && dy === -32) {
+            collisionImage.anims.play(collisionImage.texture.key + '-idle-up');
+        }
+        else if (dx > -18.5 && dx < 19 && dy === 16) {
+            collisionImage.anims.play(collisionImage.texture.key + '-idle-down');
+        }
+        else if (dx === -24 && dy > -16 && dy < 16) {
+            collisionImage.anims.play(collisionImage.texture.key + '-idle-left');
+        }
+        else if (dx === 24 && dy > -25 && dy < 14) {
+            collisionImage.anims.play(collisionImage.texture.key + '-idle-right');
+        }
+    }
     setDialog(newDialog, newInteractionCallback) {
         this.dialog = newDialog;
         if (newInteractionCallback)
