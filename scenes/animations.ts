@@ -356,4 +356,25 @@ function createSkeletonAnimations(scene: Phaser.Scene) {
         frameRate: 10,
         repeat: 0
     });
+
+    const standardCharacterTextures = ['cat-1', 'cat-2', 'cat-3', 'dog-1', 'dog-2', 'dog-3', 'female05-4', 'female17-1', 'female18-4', 'female19-1', 'female19-3', 'female20-3', 'male3-1', 'male10-1', 'male12-1', 'male13-1', 'male14-2', 'male17-3', 'male17-4']
+
+    standardCharacterTextures.forEach((npc) => {
+        scene.anims.create({
+            key: npc + '-idle-up',
+            frames: [{key: npc, frame: 10}]
+        });
+        scene.anims.create({
+            key: npc + '-idle-down',
+            frames: [{key: npc, frame: 1}]
+        });
+        scene.anims.create({
+            key: npc + '-idle-left',
+            frames: [{key: npc, frame: 4}]
+        });
+        scene.anims.create({
+            key: npc + '-idle-right',
+            frames: [{key: npc, frame: 7}]
+        });
+    });
 }
