@@ -20,7 +20,6 @@ export default class GeneralNpc extends Trigger {
     private interactionCallback: Function;
     private items: Map<Slots, Item>;
     private numberOfSlots: number;
-    
     constructor(
         {
             scene,
@@ -87,23 +86,28 @@ export default class GeneralNpc extends Trigger {
         }
     }
 
-    public handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite, collisionImage: Phaser.Physics.Arcade.Sprite){
+    protected handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite,collisionImage: Phaser.Physics.Arcade.Sprite) {
+        const dx = playerImage.x - collisionImage.x;
+        const dy = playerImage.y - collisionImage.y;
     
-        const dx = playerImage.x - collisionImage.x
-        const dy = playerImage.y - collisionImage.y
-
-            if (dx > -18.5 && dx < 19 && dy === -32) {
-                collisionImage.anims.play(collisionImage.texture.key + '-idle-up')
-            } 
-            else if (dx > -18.5 && dx < 19 && dy === 16) {
-                collisionImage.anims.play(collisionImage.texture.key + '-idle-down')
-            }
-            else if (dx === -24 && dy > -16 && dy < 16) {
-                collisionImage.anims.play(collisionImage.texture.key + '-idle-left')
-            }
-            else if (dx === 24 && dy > -25 && dy < 14) {
-                collisionImage.anims.play(collisionImage.texture.key + '-idle-right')
-            }
+        // to prevent the animation to play for graveNpc 
+        if(collisionImage.frame.texture.key === "base-addition") return;
+        
+        if(collisionImage.anims == null && collisionImage.anims.currentFrame == null) return;
+        
+        if (playerImage.y + playerImage.body.height <= collisionImage.y - collisionImage.body.height / 2){
+            collisionImage.anims.play(collisionImage.texture.key + "-idle-up");
+        }     
+        else if (playerImage.y >= collisionImage.y + collisionImage.body.height / 2){
+            collisionImage.anims.play(collisionImage.texture.key + "-idle-down");
+        }
+        else if (playerImage.x < collisionImage.x){
+            collisionImage.anims.play(collisionImage.texture.key + "-idle-left");
+        }
+        else if (playerImage.x > collisionImage.x){
+            collisionImage.anims.play(collisionImage.texture.key + "-idle-right");
+        }
+            
     }
 
     public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
