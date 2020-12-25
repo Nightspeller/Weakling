@@ -1,4 +1,9 @@
-export function preloadAnimationsSpriteSheets(scene) {
+import {Player, playerInstance} from "../../characters/adventurers/player.js";
+
+export function preloadAnimationsSpriteSheets(scene: Phaser.Scene) {
+
+    scene.load.image("hit", "assets/images/animations/hit.png");
+
     scene.load.spritesheet("light-pillar", "assets/images/animations/light-pillar/light-pillar-yellow.png", {
         frameWidth: 192,
         frameHeight: 192
@@ -109,78 +114,80 @@ export function preloadAnimationsSpriteSheets(scene) {
         frameHeight: 96
     });
 }
-export function createAnimations(scene) {
+
+export function createAnimations(scene: Phaser.Scene) {
+    const player = playerInstance;
     scene.anims.create({
         key: 'open_door',
-        frames: scene.anims.generateFrameNames('doors2-upscaled', { start: 6, end: 8 }),
+        frames: scene.anims.generateFrameNames('doors2-upscaled', {start: 6, end: 8}),
         frameRate: 10,
         repeat: 0
     });
     scene.anims.create({
         key: 'walk_down',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 0, end: 2 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 0, end: 2}),
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'walk_up',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 18, end: 20 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 18, end: 20}),
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'walk_right',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 6, end: 8 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 6, end: 8}),
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'walk_left',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 12, end: 14 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 12, end: 14}),
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'attack_down',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 3, end: 5 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 3, end: 5}),
         frameRate: 5
     });
     scene.anims.create({
         key: 'attack_up',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 21, end: 23 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 21, end: 23}),
         frameRate: 5
     });
     scene.anims.create({
         key: 'attack_right',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 9, end: 11 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 9, end: 11}),
         frameRate: 5
     });
     scene.anims.create({
         key: 'attack_left',
-        frames: scene.anims.generateFrameNames(scene.player.worldImageSpriteParams.texture, { start: 15, end: 17 }),
+        frames: scene.anims.generateFrameNames(player.worldImageSpriteParams.texture, {start: 15, end: 17}),
         frameRate: 5
     });
     scene.anims.create({
         key: 'idle_up',
-        frames: [{ key: scene.player.worldImageSpriteParams.texture, frame: 19 }],
+        frames: [{key: player.worldImageSpriteParams.texture, frame: 19}],
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'idle_down',
-        frames: [{ key: scene.player.worldImageSpriteParams.texture, frame: 1 }],
+        frames: [{key: player.worldImageSpriteParams.texture, frame: 1}],
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'idle_left',
-        frames: [{ key: scene.player.worldImageSpriteParams.texture, frame: 13 }],
+        frames: [{key: player.worldImageSpriteParams.texture, frame: 13}],
         frameRate: 10,
         repeat: -1
     });
     scene.anims.create({
         key: 'idle_right',
-        frames: [{ key: scene.player.worldImageSpriteParams.texture, frame: 7 }],
+        frames: [{key: player.worldImageSpriteParams.texture, frame: 7}],
         frameRate: 10,
         repeat: -1
     });
@@ -309,7 +316,8 @@ export function createAnimations(scene) {
     });
     createSkeletonAnimations(scene);
 }
-function createSkeletonAnimations(scene) {
+
+function createSkeletonAnimations(scene: Phaser.Scene) {
     scene.anims.create({
         key: 'skeleton_idle',
         frames: scene.anims.generateFrameNames('skeleton-idle'),
@@ -352,24 +360,25 @@ function createSkeletonAnimations(scene) {
         frameRate: 10,
         repeat: 0
     });
-    const standardCharacterTextures = ['cat-1', 'cat-2', 'cat-3', 'dog-1', 'dog-2', 'dog-3', 'female05-4', 'female17-1', 'female18-4', 'female19-1', 'female19-3', 'female20-3', 'male3-1', 'male10-1', 'male12-1', 'male13-1', 'male14-2', 'male17-3', 'male17-4'];
+
+    const standardCharacterTextures = ['cat-1', 'cat-2', 'cat-3', 'dog-1', 'dog-2', 'dog-3', 'female05-4', 'female17-1', 'female18-4', 'female19-1', 'female19-3', 'female20-3', 'male3-1', 'male10-1', 'male12-1', 'male13-1', 'male14-2', 'male17-3', 'male17-4']
+
     standardCharacterTextures.forEach((npc) => {
         scene.anims.create({
             key: npc + '-idle-up',
-            frames: [{ key: npc, frame: 10 }]
+            frames: [{key: npc, frame: 10}]
         });
         scene.anims.create({
             key: npc + '-idle-down',
-            frames: [{ key: npc, frame: 1 }]
+            frames: [{key: npc, frame: 1}]
         });
         scene.anims.create({
             key: npc + '-idle-left',
-            frames: [{ key: npc, frame: 4 }]
+            frames: [{key: npc, frame: 4}]
         });
         scene.anims.create({
             key: npc + '-idle-right',
-            frames: [{ key: npc, frame: 7 }]
+            frames: [{key: npc, frame: 7}]
         });
     });
 }
-//# sourceMappingURL=animations.js.map
