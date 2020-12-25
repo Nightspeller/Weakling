@@ -383,7 +383,8 @@ export class GeneralLocation extends Phaser.Scene {
             }
             else {
                 this.cursorCoordinatesText = this.add.text(0, 0, `${cursorX} ${cursorY}`, {
-                    color: 'black'
+                    color: 'black',
+                    backgroundColor: '#f0d191',
                 })
                     .setDepth(1000).setScrollFactor(0).setOrigin(0, 0);
             }
