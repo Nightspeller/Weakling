@@ -1,5 +1,5 @@
 import GeneralCharacter from "../generalCharacter.js";
-import {Disposition} from "../../battle/disposition.js";
+import {Disposition} from "../../scenes/battle/disposition.js";
 import {Adventurer} from "../adventurers/adventurer.js";
 
 export default class GeneralEnemy extends GeneralCharacter{

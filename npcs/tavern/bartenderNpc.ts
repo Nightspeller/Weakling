@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {bartenderDialog, bartenderNoRumoresDialog} from "../../data/dialogs/tavern/bartenderDialog.js";
 
 export class BartenderNpc extends GeneralNpc {

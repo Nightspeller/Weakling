@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {keithDialog, keithNoApologyDialog, keithShopAgainDialog} from "../../data/dialogs/village/keithDialog.js";
 
 export class KeithNpc extends GeneralNpc {

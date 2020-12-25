@@ -58,7 +58,7 @@ export default class GeneralNpc extends Trigger {
     handlePlayerImageCollision(playerImage, collisionImage) {
         const dx = playerImage.x - collisionImage.x;
         const dy = playerImage.y - collisionImage.y;
-        // to prevent the animation to play for graveNpc 
+        // to prevent the animation to play for graveNpc
         if (collisionImage.frame.texture.key === "base-addition")
             return;
         if (collisionImage.anims == null && collisionImage.anims.currentFrame == null)

@@ -1,4 +1,4 @@
-import {GeneralLocation} from "../locations/generalLocation.js";
+import {GeneralLocation} from "../scenes/locations/generalLocation.js";
 
 interface TriggerParams {
     scene: GeneralLocation,
@@ -86,7 +86,7 @@ export class Trigger {
             });
         }
         if (interaction === 'activate') {
-            scene.physics.add.collider(scene.playerImage, this.image, this.handlePlayerImageCollision); 
+            scene.physics.add.collider(scene.playerImage, this.image, this.handlePlayerImageCollision);
         }
         if (interaction === 'activateOverlap') {
             scene.physics.add.overlap(scene.playerImage, this.image);

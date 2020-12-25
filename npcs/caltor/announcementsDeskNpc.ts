@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {announcementsDialog, announcementsEmptyDialog} from "../../data/dialogs/caltor/announcementsDialog.js";
 import {playerInstance} from "../../characters/adventurers/player.js";
 

@@ -1,19 +1,19 @@
 interface CharacteristicsSet {
-        dodge: number;
-        armor: number;
-        fireResistance: number;
-        coldResistance: number;
-        electricityResistance: number;
-        acidResistance: number;
-        poisonResistance: number;
-        magicResistance: number;
-        strength: number;
-        agility: number;
-        intelligence: number;
-        initiative: number;
-        health: number;
-        manna: number;
-        energy: number;
+    dodge: number;
+    armor: number;
+    fireResistance: number;
+    coldResistance: number;
+    electricityResistance: number;
+    acidResistance: number;
+    poisonResistance: number;
+    magicResistance: number;
+    strength: number;
+    agility: number;
+    intelligence: number;
+    initiative: number;
+    health: number;
+    manna: number;
+    energy: number;
 }
 
 type Modifier = EffectModifier | ValueModifier;
@@ -69,7 +69,7 @@ interface ActionData {
     triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
     animation: 'meleeAttack' | 'castAttack' | 'castBuff';
     icon?: SpriteParameters;
-    parametersCost?: {energy?: number, manna?: number};
+    parametersCost?: { energy?: number, manna?: number };
 }
 
 interface Belt {
@@ -133,8 +133,8 @@ type Slots = 'rightHand' | 'leftHand' | 'belt' | 'head' | 'neck' | 'ringLeft' | 
 interface Quest {
     questId: string;
     questName: string;
-    questReward: { items: {itemId: string; quantity: number}[], xp: number, text?: string }
-    availableStates: {[key: string]: string}
+    questReward: { items: { itemId: string; quantity: number }[], xp: number, text?: string }
+    availableStates: { [key: string]: string }
     currentStates: string[];
 }
 

@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {liatshDialog} from "../../data/dialogs/eldersCave/liatshDialog.js";
 
 export class LiatshNpc extends GeneralNpc {

@@ -5,7 +5,7 @@ import {
     eyeballSecondTimeOfferPurplecupDialog
 } from "../../data/dialogs/backCave/eyeballDialog.js";
 import {eyeballInstance} from "../../characters/adventurers/eyeball.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 
 export class EyeballNpc extends GeneralNpc {
     constructor({scene, x, y, spriteParams}: { scene: GeneralLocation; x?: number; y?: number; spriteParams?: SpriteParameters }) {

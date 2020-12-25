@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {tarethDialog, tarethDoneDialog, tarethSecondDialog} from "../../data/dialogs/village/tarethDialog.js";
 
 export class TarethNpc extends GeneralNpc {

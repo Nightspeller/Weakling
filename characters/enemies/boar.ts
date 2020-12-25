@@ -1,5 +1,5 @@
 import GeneralEnemy from "./generalEnemy.js";
-import {Disposition} from "../../battle/disposition.js";
+import {Disposition} from "../../scenes/battle/disposition.js";
 import {Adventurer} from "../adventurers/adventurer.js";
 import Action from "../../entities/action.js";
 

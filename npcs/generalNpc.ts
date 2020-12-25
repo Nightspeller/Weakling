@@ -1,6 +1,6 @@
 import Item from "../entities/item.js";
 import {Trigger} from "../entities/trigger.js";
-import {GeneralLocation} from "../locations/generalLocation.js";
+import {GeneralLocation} from "../scenes/locations/generalLocation.js";
 
 export interface NpcOptions {
     scene: GeneralLocation;
@@ -89,15 +89,15 @@ export default class GeneralNpc extends Trigger {
     protected handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite,collisionImage: Phaser.Physics.Arcade.Sprite) {
         const dx = playerImage.x - collisionImage.x;
         const dy = playerImage.y - collisionImage.y;
-    
-        // to prevent the animation to play for graveNpc 
+
+        // to prevent the animation to play for graveNpc
         if(collisionImage.frame.texture.key === "base-addition") return;
-        
+
         if(collisionImage.anims == null && collisionImage.anims.currentFrame == null) return;
-        
+
         if (playerImage.y + playerImage.body.height <= collisionImage.y - collisionImage.body.height / 2){
             collisionImage.anims.play(collisionImage.texture.key + "-idle-up");
-        }     
+        }
         else if (playerImage.y >= collisionImage.y + collisionImage.body.height / 2){
             collisionImage.anims.play(collisionImage.texture.key + "-idle-down");
         }
@@ -107,7 +107,7 @@ export default class GeneralNpc extends Trigger {
         else if (playerImage.x > collisionImage.x){
             collisionImage.anims.play(collisionImage.texture.key + "-idle-right");
         }
-            
+
     }
 
     public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {

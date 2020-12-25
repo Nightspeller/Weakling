@@ -1,4 +1,4 @@
-import {GeneralLocation} from "../locations/generalLocation.js";
+import {GeneralLocation} from "../scenes/locations/generalLocation.js";
 import Item from "./item.js";
 import {Trigger} from "./trigger.js";
 

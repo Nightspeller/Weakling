@@ -1,7 +1,7 @@
 import GeneralCharacter from "../generalCharacter.js";
 import Item from "../../entities/item.js";
 import prepareLog from "../../helpers/logger.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {playerSlotNames} from "../../data/items/itemSlots.js";
 import item from "../../entities/item.js";
 

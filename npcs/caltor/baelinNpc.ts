@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {baelinDialog} from "../../data/dialogs/caltor/baelinDialog.js";
 
 export class BaelinNpc extends GeneralNpc {

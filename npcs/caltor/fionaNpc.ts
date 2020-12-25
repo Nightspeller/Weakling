@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {fionaDialog} from "../../data/dialogs/caltor/fionaDialog.js";
 
 export class FionaNpc extends GeneralNpc {

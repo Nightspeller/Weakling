@@ -1,5 +1,5 @@
 import GeneralNpc from "../generalNpc.js";
-import {GeneralLocation} from "../../locations/generalLocation.js";
+import {GeneralLocation} from "../../scenes/locations/generalLocation.js";
 import {strangerDialog} from "../../data/dialogs/caltor/strangerDialog.js";
 
 export class StrangerNpc extends GeneralNpc {
