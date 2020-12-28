@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="61" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="24">
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="61" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="24">
  <editorsettings>
-  <export target="../../exported-maps/betweenVillageAndCaltor.json" format="json"/>
+  <export target="../../../src/assets/exported-maps/betweenVillageAndCaltor.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/base.tsx"/>
  <tileset firstgid="1065" source="../tilesets/dirt4.tsx"/>
@@ -170,7 +170,7 @@
   <object id="2" name="Village" type="Waypoint" x="1824" y="0" width="64" height="32">
    <properties>
     <property name="location" value="Village"/>
-    <property name="toCoordinates" value="{&quot;x&quot;: 1, &quot;y&quot;: 39}"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 2, &quot;y&quot;: 39}"/>
    </properties>
   </object>
   <object id="22" name="Great Plains" type="Waypoint" x="1664" y="768" width="64" height="32">

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weakling!</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #414141;
+            color: white;
+        }
+
+        canvas {
+            display: block;
+            margin: auto;
+        }
+
+        .intro {
+            padding: 0 1rem;
+        }
+
+        a {
+            color: white;
+        }
+
+        .battle-log {
+            padding: 0 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="game"></div>
+<div class="battle-log">
+    <h1>Battle Log:</h1>
+</div>
+<script>
+    let i = 0;
+    function toggleDebug() {
+        if (i >= 5) {
+            i = 0;
+            localStorage.setItem('DEBUG', localStorage.getItem('DEBUG') !== 'true');
+        } else {
+            i++;
+        }
+    }
+</script>
+<section class="intro">
+    <h1 onclick="toggleDebug()">Hello adventurer!</h1>
+    <p>Welcome to the Weakling, an open source RPG game.</p>
+    <p>This is just the beginning and very much work in progress on it's early stage, but there are already a few things
+        you can do to explore it yourself!</p>
+    <p>Please, use <strong>WASD</strong> or <strong>Arrow Keys</strong> to navigate the world, and
+        <strong>Space</strong> to move between locations and interact with certain objects (highlighted with the purple
+        frame). Other actions are done with the mouse.</p>
+    <p>For more information and project-related links please read <a
+            href="https://telegra.ph/Introducing-Weakling-12-23" target="_blank">an Introduction</a>. Thank you and
+        enjoy!</p>
+</section>
+</body>
+</html>

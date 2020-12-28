@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="58">
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="58">
  <editorsettings>
-  <export target="../../exported-maps/village.json" format="json"/>
+  <export target="../../../src/assets/exported-maps/village.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/base.tsx"/>
  <tileset firstgid="1065" source="../tilesets/flowers.tsx"/>
@@ -185,7 +185,7 @@
   <object id="10" name="BetweenVillageAndCaltor" type="Waypoint" x="64" y="1248" width="64" height="32">
    <properties>
     <property name="location" value="BetweenVillageAndCaltor"/>
-    <property name="toCoordinates" value="{&quot;x&quot;: 56, &quot;y&quot;: 1}"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 57, &quot;y&quot;: 1}"/>
    </properties>
   </object>
   <object id="11" name="Hargkakh's Cave" type="Waypoint" x="1280" y="768" width="32" height="32">
