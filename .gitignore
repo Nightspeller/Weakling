@@ -1,26 +1,4 @@
 # Project exclude paths
-/assets/tilemaps/pipo-map001.js
-/assets/tilemaps/pipo-map001.js.map
-/assets/tilemaps/pipo-map001_at-kusa.js
-/assets/tilemaps/pipo-map001_at-kusa.js.map
-/assets/tilemaps/pipo-map001_at-miti.js
-/assets/tilemaps/pipo-map001_at-miti.js.map
-/assets/tilemaps/pipo-map001_at-mori.js
-/assets/tilemaps/pipo-map001_at-mori.js.map
-/assets/tilemaps/pipo-map001_at-sabaku.js
-/assets/tilemaps/pipo-map001_at-sabaku.js.map
-/assets/tilemaps/pipo-map001_at-tuti.js
-/assets/tilemaps/pipo-map001_at-tuti.js.map
-/assets/tilemaps/pipo-map001_at-yama1.js
-/assets/tilemaps/pipo-map001_at-yama1.js.map
-/assets/tilemaps/pipo-map001_at-yama2.js
-/assets/tilemaps/pipo-map001_at-yama2.js.map
-/assets/tilemaps/pipo-map001_at-yama3.js
-/assets/tilemaps/pipo-map001_at-yama3.js.map
-/assets/tilemaps/tmw_desert_spacing.js
-/assets/tilemaps/tmw_desert_spacing.js.map
 /assets/tiled-project/weakling.tiled-session
 /node_modules/
-/types/my-types.js
-/types/my-types.js.map
 /.idea
