@@ -6,6 +6,32 @@ export class TraderOverlayScene extends ContainerOverlayScene {
     constructor() {
         super({ key: 'TraderOverlay' });
     }
+    create() {
+        super.create();
+        this.itemsMap.forEach((value, key) => {
+            let elementValue = value;
+            let currentSlot = key;
+            if (currentSlot.startsWith("containerSlot") &&
+                elementValue.item.itemId === "copper-pieces") {
+                this.npcMoney = elementValue.item.quantity;
+            }
+            else {
+                if (elementValue.item.itemId === "copper-pieces") {
+                    this.playerMoney = elementValue.item.quantity;
+                }
+            }
+        });
+        this.itemsMap.forEach((value, key) => {
+            let elementValue = value;
+            let currentSlot = key;
+            if (currentSlot.startsWith("containerSlot")) {
+                elementValue.setPriceTag(this.playerMoney, "player");
+            }
+            else {
+                elementValue.setPriceTag(this.npcMoney, "npc");
+            }
+        });
+    }
     _moveItemFromSlotToSlot(fromSlot, toSlot, quantity) {
         var _a, _b, _c, _d, _e;
         if ((fromSlot.includes('container') && (this.itemsMap.has(toSlot) && this.itemsMap.get(toSlot).item.itemId !== this.itemsMap.get(fromSlot).item.itemId)) ||

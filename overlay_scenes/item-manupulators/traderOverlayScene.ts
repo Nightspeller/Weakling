@@ -4,9 +4,39 @@ import {backpackSlotNames, containerSlotNames} from "../../data/items/itemSlots.
 import prepareLog from "../../helpers/logger.js";
 
 export class TraderOverlayScene extends ContainerOverlayScene {
+    private npcMoney?: number
+    private playerMoney?: number
+
     constructor() {
         super({key: 'TraderOverlay'});
     }
+
+    public create() {
+        super.create();
+        this.itemsMap.forEach((value, key) => {
+          let elementValue = value;
+          let currentSlot = key;
+          if (
+            currentSlot.startsWith("containerSlot") &&
+            elementValue.item.itemId === "copper-pieces"
+          ) {
+            this.npcMoney = elementValue.item.quantity;
+          } else {
+            if (elementValue.item.itemId === "copper-pieces") {
+              this.playerMoney = elementValue.item.quantity;
+            }
+          }
+        });
+   this.itemsMap.forEach((value, key) => {
+     let elementValue = value;
+     let currentSlot = key;
+     if (currentSlot.startsWith("containerSlot")) {
+       elementValue.setPriceTag(this.playerMoney, "player");
+     } else {
+       elementValue.setPriceTag(this.npcMoney, "npc");
+     }
+   });
+      }
 
     protected _moveItemFromSlotToSlot(fromSlot: Slots, toSlot: Slots, quantity?: number) {
         if (
