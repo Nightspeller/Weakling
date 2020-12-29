@@ -35,6 +35,9 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
                 },
             }).setOrigin(1, 1);
         }
+        this.add([this.priceTag])
+        this.add([this.itemPriceText])
+        this.add([this.coinIcon])
         this.setSize(64, 64)
             .setScrollFactor(0)
             .setInteractive();
@@ -45,21 +48,17 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
     public setPriceTag(characterMoney: number, forWho: String){
         if (forWho === "player") {
           this.itemPriceText.setText(this.item.buyPrice.toString());
-          this.setPriceTagColor(characterMoney > this.item.buyPrice ? 'green' : 'red');
-
+          this.setPriceTagColor(characterMoney >= this.item.buyPrice ? 'green' : 'red');
         } else if (forWho === "npc") {
-          this.itemPriceText.setText(this.item.sellPrice.toString());
           if (this.item.sellPrice === 0) {
             this.hidePriceInformation();
           } else {
-            this.setPriceTagColor(characterMoney > this.item.sellPrice ? "green" : "red");
+            this.itemPriceText.setText(this.item.sellPrice.toString());
+            this.setPriceTagColor(characterMoney >= this.item.sellPrice ? "green" : "red");
           }
         } else {
           throw Error("invalid argument!");
         }
-        this.add([this.priceTag])
-        this.add([this.itemPriceText])
-        this.add([this.coinIcon])
     }
 
     public setPriceTagColor(color: String){

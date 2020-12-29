@@ -13,30 +13,35 @@ export class TraderOverlayScene extends ContainerOverlayScene {
 
     public create() {
         super.create();
+        this.setCurrentCopperAmount()
+        this.updatePriceTags()
+    }
+
+    private setCurrentCopperAmount(){
         this.itemsMap.forEach((value, key) => {
-          let elementValue = value;
-          let currentSlot = key;
-          if (
-            currentSlot.startsWith("containerSlot") &&
-            elementValue.item.itemId === "copper-pieces"
-          ) {
-            this.npcMoney = elementValue.item.quantity;
-          } else {
-            if (elementValue.item.itemId === "copper-pieces") {
-              this.playerMoney = elementValue.item.quantity;
+            let elementValue = value;
+            let currentSlot = key;
+            if (currentSlot.startsWith("containerSlot") && elementValue.item.itemId === "copper-pieces") {
+              this.npcMoney = elementValue.item.quantity;
+            } else {
+              if (elementValue.item.itemId === "copper-pieces") {
+                this.playerMoney = elementValue.item.quantity;
+              }
             }
-          }
-        });
-   this.itemsMap.forEach((value, key) => {
-     let elementValue = value;
-     let currentSlot = key;
-     if (currentSlot.startsWith("containerSlot")) {
-       elementValue.setPriceTag(this.playerMoney, "player");
-     } else {
-       elementValue.setPriceTag(this.npcMoney, "npc");
-     }
-   });
-      }
+          });
+    }
+
+    private updatePriceTags(){
+        this.itemsMap.forEach((value, key) => {
+            let elementValue = value;
+            let currentSlot = key;
+            if (currentSlot.startsWith("containerSlot")) {
+              elementValue.setPriceTag(this.playerMoney, "player");
+            } else {
+              elementValue.setPriceTag(this.npcMoney, "npc");
+            }
+          });
+    }
 
     protected _moveItemFromSlotToSlot(fromSlot: Slots, toSlot: Slots, quantity?: number) {
         if (
@@ -59,6 +64,9 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         const [traderMoneySlot, traderMoneyItemR] = [...this.itemsMap].find(([slotName, item]) => slotName.includes('container') && item.item.itemId === 'copper-pieces') ?? [];
         const playerMoney = playerMoneyItemR ? playerMoneyItemR?.item.quantity : 0;
         const traderMoney = traderMoneyItemR ? traderMoneyItemR?.item.quantity : 0;
+        this.playerMoney = playerMoney
+        this.npcMoney = traderMoney
+        this.updatePriceTags()
         const tradingItemR = this.itemsMap.get(fromSlot);
         if (quantity === undefined) quantity = tradingItemR.item.quantity;
         if (fromSlot.includes('container')) {
@@ -68,6 +76,9 @@ export class TraderOverlayScene extends ContainerOverlayScene {
                 console.log(...prepareLog('Player has !!enough money to buy it'))
                 super._moveItemFromSlotToSlot(fromSlot, toSlot, quantity);
                 this._changeItemQuantity(playerMoneySlot, playerMoney - totalItemCost);
+                this.playerMoney = (playerMoney - totalItemCost)
+                this.npcMoney = (traderMoney + totalItemCost)
+                this.updatePriceTags()
                 if (traderMoneyItemR) {
                     console.log(...prepareLog('Trader !!has money in the inventory'))
                     this._changeItemQuantity(traderMoneySlot, traderMoney + totalItemCost);
@@ -94,6 +105,9 @@ export class TraderOverlayScene extends ContainerOverlayScene {
                 console.log(...prepareLog('Trader has !!enough money to buy it'))
                 super._moveItemFromSlotToSlot(fromSlot, toSlot, quantity);
                 this._changeItemQuantity(traderMoneySlot, traderMoney - totalItemCost);
+                this.npcMoney = (traderMoney - totalItemCost)
+                this.playerMoney = (playerMoney + totalItemCost)
+                this.updatePriceTags()
                 if (playerMoneyItemR) {
                     this._changeItemQuantity(playerMoneySlot, playerMoney + totalItemCost);
                 } else {
@@ -131,6 +145,8 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         } else {
             this._moveItemFromSlotToFirstPossible(itemCurrentSlot, backpackSlotNames, 1)
         }
+        this.setCurrentCopperAmount()
+        this.updatePriceTags()
     }
 
     protected _drawContainerSlotsAndTitle() {
