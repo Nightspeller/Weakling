@@ -12,10 +12,10 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         this.updatePriceTags();
     }
     setCurrentCopperAmount() {
-        this.itemsMap.forEach((value, key) => {
-            let elementValue = value;
-            let currentSlot = key;
-            if (currentSlot.startsWith("containerSlot") && elementValue.item.itemId === "copper-pieces") {
+        this.itemsMap.forEach((itemRepresentation, currentSlot) => {
+            const elementValue = itemRepresentation;
+            const currentS = currentSlot;
+            if (currentS.startsWith("containerSlot") && elementValue.item.itemId === "copper-pieces") {
                 this.npcMoney = elementValue.item.quantity;
             }
             else {
@@ -26,10 +26,10 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         });
     }
     updatePriceTags() {
-        this.itemsMap.forEach((value, key) => {
-            let elementValue = value;
-            let currentSlot = key;
-            if (currentSlot.startsWith("containerSlot")) {
+        this.itemsMap.forEach((itemRepresentation, currentSlot) => {
+            const elementValue = itemRepresentation;
+            const currentS = currentSlot;
+            if (currentS.startsWith("containerSlot")) {
                 elementValue.setPriceTag(this.playerMoney, "player");
             }
             else {
@@ -57,9 +57,6 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         const [traderMoneySlot, traderMoneyItemR] = (_e = [...this.itemsMap].find(([slotName, item]) => slotName.includes('container') && item.item.itemId === 'copper-pieces')) !== null && _e !== void 0 ? _e : [];
         const playerMoney = playerMoneyItemR ? playerMoneyItemR === null || playerMoneyItemR === void 0 ? void 0 : playerMoneyItemR.item.quantity : 0;
         const traderMoney = traderMoneyItemR ? traderMoneyItemR === null || traderMoneyItemR === void 0 ? void 0 : traderMoneyItemR.item.quantity : 0;
-        this.playerMoney = playerMoney;
-        this.npcMoney = traderMoney;
-        this.updatePriceTags();
         const tradingItemR = this.itemsMap.get(fromSlot);
         if (quantity === undefined)
             quantity = tradingItemR.item.quantity;
@@ -144,8 +141,6 @@ export class TraderOverlayScene extends ContainerOverlayScene {
         else {
             this._moveItemFromSlotToFirstPossible(itemCurrentSlot, backpackSlotNames, 1);
         }
-        this.setCurrentCopperAmount();
-        this.updatePriceTags();
     }
     _drawContainerSlotsAndTitle() {
         super._drawContainerSlotsAndTitle(false);
