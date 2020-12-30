@@ -11,6 +11,7 @@ Graphics:
 - World characters - Kitterlings - https://kitterlings.itch.io/jeremy-and-martha
 - Wizard and some other characters - Luizmelo - https://luizmelo.itch.io/wizard-pack
 - Interface doll and slots - Heroes 3 - will be replaced, but, for now, thanks 3DO!
+- Copper coin - Loel - https://opengameart.org/content/coins-pixel-art-silver-gold-crystal-and-more
 
 Audio:
 - Music by Darren Curtis - https://www.darrencurtismusic.com

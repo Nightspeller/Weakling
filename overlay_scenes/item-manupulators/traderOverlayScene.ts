@@ -4,8 +4,43 @@ import {backpackSlotNames, containerSlotNames} from "../../data/items/itemSlots.
 import prepareLog from "../../helpers/logger.js";
 
 export class TraderOverlayScene extends ContainerOverlayScene {
+    private npcMoney?: number
+    private playerMoney?: number
+
     constructor() {
         super({key: 'TraderOverlay'});
+    }
+
+    public create() {
+        super.create();
+        this.setCurrentCopperAmount()
+        this.updatePriceTags()
+    }
+
+    private setCurrentCopperAmount(){
+        this.itemsMap.forEach((itemRepresentation, currentSlot) => {
+            const elementValue = itemRepresentation;
+            const currentS = currentSlot;
+            if (currentS.startsWith("containerSlot") && elementValue.item.itemId === "copper-pieces") {
+              this.npcMoney = elementValue.item.quantity;
+            } else {
+              if (elementValue.item.itemId === "copper-pieces") {
+                this.playerMoney = elementValue.item.quantity;
+              }
+            }
+          });
+    }
+
+    private updatePriceTags(){
+        this.itemsMap.forEach((itemRepresentation, currentSlot) => {
+            const elementValue = itemRepresentation;
+            const currentS = currentSlot;
+            if (currentS.startsWith("containerSlot")) {
+              elementValue.setPriceTag(this.playerMoney, "player");
+            } else {
+              elementValue.setPriceTag(this.npcMoney, "npc");
+            }
+          });
     }
 
     protected _moveItemFromSlotToSlot(fromSlot: Slots, toSlot: Slots, quantity?: number) {
@@ -38,6 +73,9 @@ export class TraderOverlayScene extends ContainerOverlayScene {
                 console.log(...prepareLog('Player has !!enough money to buy it'))
                 super._moveItemFromSlotToSlot(fromSlot, toSlot, quantity);
                 this._changeItemQuantity(playerMoneySlot, playerMoney - totalItemCost);
+                this.playerMoney = (playerMoney - totalItemCost)
+                this.npcMoney = (traderMoney + totalItemCost)
+                this.updatePriceTags()
                 if (traderMoneyItemR) {
                     console.log(...prepareLog('Trader !!has money in the inventory'))
                     this._changeItemQuantity(traderMoneySlot, traderMoney + totalItemCost);
@@ -64,6 +102,9 @@ export class TraderOverlayScene extends ContainerOverlayScene {
                 console.log(...prepareLog('Trader has !!enough money to buy it'))
                 super._moveItemFromSlotToSlot(fromSlot, toSlot, quantity);
                 this._changeItemQuantity(traderMoneySlot, traderMoney - totalItemCost);
+                this.npcMoney = (traderMoney - totalItemCost)
+                this.playerMoney = (playerMoney + totalItemCost)
+                this.updatePriceTags()
                 if (playerMoneyItemR) {
                     this._changeItemQuantity(playerMoneySlot, playerMoney + totalItemCost);
                 } else {

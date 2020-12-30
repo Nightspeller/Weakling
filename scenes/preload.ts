@@ -169,6 +169,8 @@ export class PreloadScene extends Phaser.Scene {
             margin: 1
         });
         this.load.spritesheet("icon-item-set", "assets/images-extruded/items/icon-item-set.png", tilesetConfig);
+        this.load.spritesheet("price-tag-icons", "assets/images/tilesets/price-tag-icons.png", tilesetConfig);
+
 
         // Animations
         preloadAnimationsSpriteSheets(this);

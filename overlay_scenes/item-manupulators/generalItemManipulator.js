@@ -1,7 +1,7 @@
 import { playerInstance } from "../../characters/adventurers/player.js";
 import { GeneralOverlayScene } from "../generalOverlayScene.js";
 import Item from "../../entities/item.js";
-import { DEBUG, GAME_H, GAME_W, INVENTORY_ITEM_DESCRIPTION_H, INVENTORY_ITEM_DESCRIPTION_W } from "../../config/constants.js";
+import { DEBUG, GAME_H, GAME_W, INVENTORY_ITEM_DESCRIPTION_H, INVENTORY_ITEM_DESCRIPTION_W, INVENTORY_ITEM_SCALE } from "../../config/constants.js";
 import { LOCATION_SCENES } from "../../index.js";
 import ItemRepresentation from "../../entities/itemRepresentation.js";
 import { backpackSlotNames, dollSlotNames, playerSlotNames, quickSlotNames } from "../../data/items/itemSlots.js";
@@ -146,7 +146,7 @@ export class GeneralItemManipulatorScene extends GeneralOverlayScene {
             const originalSlot = this.slotsDisplayGroup.getChildren().find(slot => slot.name === toSlot);
             if (duplicateItemImage) {
                 // @ts-ignore
-                itemToAnimate = this.add.sprite(itemToAnimate.x, itemToAnimate.y, itemToAnimate.item.sprite.texture, itemToAnimate.item.sprite.frame).setDisplaySize(64, 64);
+                itemToAnimate = this.add.sprite(itemToAnimate.x, itemToAnimate.y, itemToAnimate.item.sprite.texture, itemToAnimate.item.sprite.frame).setDisplaySize(64, 64).setScale(INVENTORY_ITEM_SCALE);
             }
             this.tweens.add({
                 targets: itemToAnimate,
