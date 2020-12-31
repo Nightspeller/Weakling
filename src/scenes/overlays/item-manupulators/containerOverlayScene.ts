@@ -14,9 +14,7 @@ interface ContainerInitParams {
 
 export default class ContainerOverlayScene extends InventoryOverlayScene {
   private numberOfSlots: number;
-
   private name: string;
-
   private itemsInContainer: Map<Slots, Item>;
 
   constructor(initObject = { key: 'ContainerOverlay' }) {

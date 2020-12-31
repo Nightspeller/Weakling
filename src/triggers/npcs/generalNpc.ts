@@ -19,13 +19,9 @@ export interface NpcOptions {
 
 export default class GeneralNpc extends Trigger {
   public dialog: DialogTree;
-
   protected preInteractionCallback: Function;
-
   private interactionCallback: Function;
-
   private items: Map<Slots, Item>;
-
   private numberOfSlots: number;
 
   constructor(

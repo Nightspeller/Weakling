@@ -11,6 +11,7 @@ export default function preloadInventoryAndItemsAssets(preloadScene: Scene) {
   preloadScene.load.image('spear-weapon', 'assets/images/items/spear-weapon.png');
   preloadScene.load.image('allpowerful-necklace', 'assets/images/items/allpowerful-necklace.png');
   preloadScene.load.spritesheet('icon-item-set', 'assets/images-extruded/items/icon-item-set.png', tilesetConfig);
+  preloadScene.load.spritesheet('price-tag-icons', 'assets/images-extruded/interface/price-tag-icons.png', tilesetConfig);
 
   // Items Atlases
   preloadScene.load.atlas('icons-additional',
