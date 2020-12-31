@@ -7,9 +7,16 @@ Read more about it in this post: https://telegra.ph/Introducing-Weakling-12-23.
 
 To check it out, please go to https://nightspeller.github.io/Weakling/ and try to poke around until you break something :-)
 
-To run it locally, just checkout from the repo and use the web server of your choice to load index.html in your browser.
+To run it locally and for development, just checkout from the repo and:
+```
+npm install
+npm start
+```
+The game will be available at http://localhost:8080.
 
-To compile it, you will need to do npm install and use typescript compiler to work with (and, well, compile) .ts files.
+To build it, run ```npm run build```
+
+To run ESLint, do ```npm run lint```
 
 If you are interested in learning Phaser 3, here is the general article where I covered some of resources I used to learn Phaser, as well as ones I use for the reference: https://telegra.ph/Phaser-3-Materials-and-learning-02-12
 

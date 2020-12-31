@@ -1,1 +1,0 @@
-{"version":3,"file":"effectsData.js","sourceRoot":"","sources":["effectsData.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,cAAc,EAAC,MAAM,6BAA6B,CAAC;AAC3D,OAAO,EAAC,aAAa,EAAC,MAAM,4BAA4B,CAAC;AACzD,OAAO,EAAC,kBAAkB,EAAC,MAAM,iCAAiC,CAAC;AAEnE,MAAM,CAAC,MAAM,WAAW,GAAkC;IACtD,GAAG,cAAc;IACjB,GAAG,aAAa;IAChB,GAAG,kBAAkB;CACxB,CAAC"}

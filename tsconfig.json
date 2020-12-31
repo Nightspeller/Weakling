@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "target": "ESNext",
+    "allowJs": true,
+    "module": "AMD",
+    "moduleResolution": "node",
     "sourceMap": true
   },
-  "include": [
-    "**/*.ts"
-  ],
-  "exclude": [
-    "assets"
-  ]
+  "include": ["./src/*.ts"]
 }

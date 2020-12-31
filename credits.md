@@ -16,4 +16,4 @@ Graphics:
 Audio:
 - Music by Darren Curtis - https://www.darrencurtismusic.com
 
-The list is not complete, I am going to update it! If you want to be added or your information updated - please let me know!
+The list is not complete, I am going to update it! If you want to be added, or your information updated - please let me know!
