@@ -14,7 +14,7 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
     this.item = item;
 
     const image = scene.add.image(0, 0, item.sprite.texture, item.sprite.frame)
-      .setDisplaySize(64, 64).setScale(1.3);
+      .setDisplaySize(64, 64).setScale(INVENTORY_ITEM_SCALE);
     this.quantityText = scene.add.text(32, -15, item.quantity.toString(), {
       font: '14px monospace',
       color: '#000000',
@@ -28,9 +28,10 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
       this.quantityText.setVisible(false);
     }
 
+    this.add([image, this.quantityText]);
     if (scene.scene.key === 'TraderOverlay') {
       this.priceTag = scene.add.image(0, 23, 'price-tag-icons', 3).setScale(1.8, 1.2);
-      this.coinIcon = scene.add.image(17, 23, 'price-tag-icons', 0).setScale(INVENTORY_ITEM_SCALE);
+      this.coinIcon = scene.add.image(17, 23, 'price-tag-icons', 0);
       this.itemPriceText = scene.add.text(10, 32, '', {
         font: '14px monospace',
         color: '#000000',
@@ -38,8 +39,8 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
           left: 1,
         },
       }).setOrigin(1, 1);
+      this.add([this.priceTag, this.itemPriceText, this.coinIcon]);
     }
-    this.add([image, this.quantityText, this.priceTag, this.itemPriceText, this.coinIcon]);
 
     this.setSize(64, 64)
       .setScrollFactor(0)
