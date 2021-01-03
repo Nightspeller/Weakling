@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"caltor.json"
+         "target":"..\/..\/..\/assets\/exported-maps\/caltor.json"
         }
     },
  "height":100,
@@ -36,11 +36,6 @@
                  "name":"Collisions",
                  "opacity":1,
                  "properties":[
-                        {
-                         "name":"dynamic",
-                         "type":"bool",
-                         "value":true
-                        }, 
                         {
                          "name":"hasCollisions",
                          "type":"bool",
@@ -811,7 +806,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/images-extruded\/tilesets\/grass1.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass1.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -890,7 +885,7 @@
         {
          "columns":8,
          "firstgid":49,
-         "image":"..\/images-extruded\/tilesets\/base.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -10706,7 +10701,7 @@
         {
          "columns":8,
          "firstgid":1113,
-         "image":"..\/images-extruded\/tilesets\/dirt1-dirt2.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/dirt1-dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -10785,7 +10780,7 @@
         {
          "columns":8,
          "firstgid":1161,
-         "image":"..\/images-extruded\/tilesets\/grass1-dirt2.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass1-dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -10996,7 +10991,7 @@
         {
          "columns":64,
          "firstgid":1209,
-         "image":"..\/images-extruded\/tilesets\/water2.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/water2.png",
          "imageheight":204,
          "imagewidth":2176,
          "margin":1,
@@ -15786,7 +15781,7 @@
         {
          "columns":16,
          "firstgid":1593,
-         "image":"..\/images-extruded\/items\/icon-item-set.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/items\/icon-item-set.png",
          "imageheight":816,
          "imagewidth":544,
          "margin":1,
@@ -15800,7 +15795,7 @@
         {
          "columns":3,
          "firstgid":1977,
-         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male14-2.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/male14-2.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -15814,7 +15809,7 @@
         {
          "columns":3,
          "firstgid":1989,
-         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male17-4.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/male17-4.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -15828,7 +15823,7 @@
         {
          "columns":3,
          "firstgid":2001,
-         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female19-1.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/female19-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -15842,7 +15837,7 @@
         {
          "columns":8,
          "firstgid":2013,
-         "image":"..\/images-extruded\/tilesets\/flowers.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/flowers.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -15921,7 +15916,7 @@
         {
          "columns":8,
          "firstgid":2061,
-         "image":"..\/images-extruded\/tilesets\/dirt1.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/dirt1.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -16000,7 +15995,7 @@
         {
          "columns":12,
          "firstgid":2109,
-         "image":"..\/images-extruded\/tilesets\/base-addition.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/base-addition.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,
@@ -22927,7 +22922,7 @@
         {
          "columns":8,
          "firstgid":2877,
-         "image":"..\/images-extruded\/tilesets\/dirt2.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -22940,7 +22935,7 @@
         {
          "columns":8,
          "firstgid":2925,
-         "image":"..\/images-extruded\/tilesets\/grass4.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass4.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -22953,7 +22948,7 @@
         {
          "columns":8,
          "firstgid":2973,
-         "image":"..\/images-extruded\/tilesets\/long-grass.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/long-grass.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -23164,7 +23159,7 @@
         {
          "columns":3,
          "firstgid":3021,
-         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male17-3.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/male17-3.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -23178,7 +23173,7 @@
         {
          "columns":32,
          "firstgid":3033,
-         "image":"..\/images-extruded\/tilesets\/houses.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/houses.png",
          "imageheight":1088,
          "imagewidth":1088,
          "margin":1,
@@ -32408,7 +32403,7 @@
         {
          "columns":3,
          "firstgid":4057,
-         "image":"..\/images-extruded\/characters\/world-map\/shadows\/shadow-1.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/shadows\/shadow-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -32421,7 +32416,7 @@
         {
          "columns":3,
          "firstgid":4069,
-         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female18-4.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/female18-4.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -32435,7 +32430,7 @@
         {
          "columns":3,
          "firstgid":4081,
-         "image":"..\/images-extruded\/characters\/world-map\/neutral\/soldier04-3.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/soldier04-3.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -32449,7 +32444,7 @@
         {
          "columns":3,
          "firstgid":4093,
-         "image":"..\/images-extruded\/characters\/world-map\/neutral\/soldier06-1.png",
+         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/soldier06-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,

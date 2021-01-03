@@ -37,11 +37,6 @@
                  "opacity":1,
                  "properties":[
                         {
-                         "name":"dynamic",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"hasCollisions",
                          "type":"bool",
                          "value":true

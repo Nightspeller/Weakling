@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="23">
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="23">
  <editorsettings>
   <export target="../../exported-maps/betweenVillageAndDungeon.json" format="json"/>
  </editorsettings>

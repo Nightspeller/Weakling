@@ -46,8 +46,8 @@
             "fileName": "tilemaps/backCave.tmx",
             "height": 384,
             "width": 448,
-            "x": 7130,
-            "y": 1152
+            "x": 5850,
+            "y": 2240
         },
         {
             "fileName": "tilemaps/honeywood.tmx",

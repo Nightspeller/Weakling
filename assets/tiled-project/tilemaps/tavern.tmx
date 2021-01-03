@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2020.05.27" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="15">
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="15">
  <editorsettings>
   <export target="../../exported-maps/tavern.json" format="json"/>
  </editorsettings>
@@ -89,7 +89,6 @@
   </layer>
   <layer id="12" name="Doors Fringe" width="40" height="22" opacity="0.8">
    <properties>
-    <property name="dynamic" type="bool" value="true"/>
     <property name="fringe" type="bool" value="true"/>
    </properties>
    <data encoding="base64">

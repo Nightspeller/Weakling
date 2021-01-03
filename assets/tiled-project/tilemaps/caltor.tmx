@@ -32,7 +32,6 @@
   </layer>
   <layer id="8" name="Collisions" width="100" height="100">
    <properties>
-    <property name="dynamic" type="bool" value="true"/>
     <property name="hasCollisions" type="bool" value="true"/>
    </properties>
    <data encoding="base64">

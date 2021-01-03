@@ -2,7 +2,7 @@ import * as Phaser from 'phaser';
 import { tilesetConfig } from '../../../config/constants';
 
 const standardCharacterTextures = ['cat-1', 'cat-2', 'cat-3', 'dog-1', 'dog-2', 'dog-3',
-  'female05-4', 'female17-1', 'female18-4', 'female19-1', 'female19-3', 'female20-3',
+  'female05-4', 'female17-1', 'female17-2', 'female18-4', 'female19-1', 'female19-3', 'female20-3',
   'male3-1', 'male10-1', 'male12-1', 'male13-1', 'male14-2', 'male17-3', 'male17-4',
   'soldier04-3', 'soldier06-1'];
 
