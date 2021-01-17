@@ -33,6 +33,8 @@ define(["require", "exports", "phaser", "./adventurer", "../../config/constants"
             this.parameters = { health: 5, manna: 5, energy: 10 };
             this._recalculateCharacteristics();
             if (constants_1.DEBUG) {
+                this.characteristics.health = 50;
+                this.parameters.health = 50;
                 this.addItemToInventory('copper-pieces', 1000);
                 this.addItemToInventory('allpowerful-necklace');
                 this.addItemToInventory('mirror-of-travel');

@@ -95,28 +95,24 @@ export default class BattleScene extends GeneralOverlayScene {
 
   public async animateAction({
     // eslint-disable-next-line no-unused-vars
-    attempted, succeeded, triggeredTraps, source, targets, action,
+    succeeded, triggeredTraps, source, targets, action,
   }: {
-    attempted: boolean;
     succeeded: boolean[];
     triggeredTraps: EffectData[];
     source: Adventurer | GeneralEnemy;
     targets: (Adventurer | GeneralEnemy)[];
     action: ActionData;
   }) {
-    this.charToDrawerMap.get(source)
-      .drawActionPoints(true);
-    if (attempted) {
-      await this.playAnimation(source, action.animation, targets, succeeded);
+    this.charToDrawerMap.get(source).drawActionPoints(true);
+    await this.playAnimation(source, action.animation, targets, succeeded);
 
-      targets.forEach((target) => {
-        if (!target.isAlive) {
-          this.playAnimation(target, 'death');
-        }
-      });
-      if (!source.isAlive) {
-        this.playAnimation(source, 'death');
+    targets.forEach((target) => {
+      if (!target.isAlive) {
+        this.playAnimation(target, 'death');
       }
+    });
+    if (!source.isAlive) {
+      this.playAnimation(source, 'death');
     }
   }
 

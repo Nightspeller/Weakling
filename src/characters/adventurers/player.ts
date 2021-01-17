@@ -45,6 +45,9 @@ export class Player extends Adventurer {
     this._recalculateCharacteristics();
 
     if (DEBUG) {
+      this.characteristics.health = 50;
+      this.parameters.health = 50;
+
       this.addItemToInventory('copper-pieces', 1000);
       this.addItemToInventory('allpowerful-necklace');
       this.addItemToInventory('mirror-of-travel');

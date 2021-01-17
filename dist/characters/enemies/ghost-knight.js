@@ -5,18 +5,27 @@ define(["require", "exports", "phaser", "./generalEnemy", "../../entities/action
         constructor() {
             super();
             this.aiTurn = (disposition) => {
-                const alivePlayers = disposition.playerCharacters.filter((char) => char.isAlive);
-                const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-                let action = 'meleeAttack';
-                if (this.actionPoints.magical >= 2)
-                    action = 'fear';
-                return { action: new action_1.default(action /* , this */), targets: [randomAlivePlayer] };
+                const pickedActionAndTargets = {
+                    action: 'END TURN', targets: [],
+                };
+                // this will loop through the actions in order they specified and will execute first available action
+                this.availableActions.every((actionId) => {
+                    const action = new action_1.default(actionId);
+                    const isAvailable = this.isActionAvailable(action);
+                    if (isAvailable) {
+                        pickedActionAndTargets.action = action;
+                        // @ts-ignore
+                        pickedActionAndTargets.targets = this.pickActionTargets(action, disposition);
+                        return false;
+                    }
+                    return true;
+                });
+                return pickedActionAndTargets;
             };
             this.spriteParams = {
                 texture: 'knight-idle', frame: 0, width: 300, height: 300, flip: true,
             };
             this.level = 3;
-            this.availableActions = ['meleeAttack', 'fear'];
             this.name = 'Ghost of the Knight';
             this.characteristicsModifiers = {
                 strength: [{ source: 'base', value: 20 }],
@@ -43,7 +52,8 @@ define(["require", "exports", "phaser", "./generalEnemy", "../../entities/action
             };
             this._recalculateCharacteristics();
             this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
-            this.actionPointsIncrement = { physical: 1, magical: 1, misc: 0 };
+            this.actionPointsIncrement = { physical: 1, magical: 0.5, misc: 1 };
+            this.availableActions = ['meleeAttack', 'fear', 'catchBreath'];
             this.animations.idle = 'knight_idle';
             this.animations.move = 'knight_move';
             this.animations.attack = 'knight_attack2';

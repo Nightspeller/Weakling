@@ -74,8 +74,6 @@ export default class Disposition {
               if (!this.battleEnded) {
                 if (!this.currentCharacter.isAlive) {
                   this.endTurn();
-                } else if (results.attempted === false) {
-                  this.endTurn();
                 } else if (results.action.actionId !== 'wait') {
                   this.startAction();
                 } else {
@@ -141,44 +139,24 @@ export default class Disposition {
     targets: (Adventurer | GeneralEnemy)[],
     action: ActionData,
   ): {
-    attempted: boolean;
     succeeded: boolean[];
     triggeredTraps: EffectData[],
     source: Adventurer | GeneralEnemy;
     targets: (Adventurer | GeneralEnemy)[];
     action: ActionData;
   } {
-    const targetsNames = targets.map((target) => target.name)
-      .join(', ');
+    const targetsNames = targets.map((target) => target.name).join(', ');
     console.log(`%c${source.name} %ctries to perform %c${action.actionName} %con %c${targetsNames}`, 'color: red', 'color: auto', 'color: green', 'color: auto', 'color: red');
     this.log(`${source.name} tries to perform ${action.actionName} on ${targetsNames}`);
 
     const actionResults = {
-      attempted: false,
       succeeded: [] as boolean[],
       triggeredTraps: [] as EffectData[],
       source,
       targets,
       action,
     };
-    if (source.actionPoints[action.type] < action.actionCost) {
-      console.log(`Action was not performed because ${source.actionPoints[action.type]} ${action.type} action points is not enough - ${action.actionCost} is needed.`);
-      this.log(`Action was not performed because ${source.actionPoints[action.type]} ${action.type} action points is not enough - ${action.actionCost} is needed.`);
-      return actionResults;
-    }
 
-    if (action.parametersCost.manna && source.parameters.manna < action.parametersCost.manna) {
-      console.log(`Action was not performed because ${source.parameters} manna is not enough - ${action.parametersCost.manna} is needed.`);
-      this.log(`Action was not performed because ${source.parameters} manna is not enough - ${action.parametersCost.manna} is needed.`);
-      return actionResults;
-    }
-    if (action.parametersCost.energy && source.parameters.energy < action.parametersCost.energy) {
-      console.log(`Action was not performed because ${source.parameters.energy} energy is not enough - ${action.parametersCost.energy} is needed.`);
-      this.log(`Action was not performed because ${source.parameters.energy} energy is not enough - ${action.parametersCost.energy} is needed.`);
-      return actionResults;
-    }
-
-    actionResults.attempted = true;
     if (action.parametersCost?.energy) {
       source.addToParameter('energy', -action.parametersCost.energy);
     }

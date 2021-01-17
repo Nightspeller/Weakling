@@ -90,6 +90,10 @@ define(["require", "exports"], function (require, exports) {
             target: 'enemy',
             actionCost: 1,
             noticeable: 1,
+            triggers: [
+                { conditionId: 'trapped', probability: 0.75, conditionDisplayName: 'Trapped' },
+                { conditionId: 'cursedSoil', probability: 0.75, conditionDisplayName: 'Cursed Soil' },
+            ],
             animation: 'meleeAttack',
             icon: { texture: 'icons', frame: 'icons/weapons/melee/fist' },
             parametersCost: { energy: 1 },

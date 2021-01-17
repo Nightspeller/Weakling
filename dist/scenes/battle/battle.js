@@ -60,19 +60,16 @@ define(["require", "exports", "phaser", "../../characters/adventurers/player", "
         }
         async animateAction({ 
         // eslint-disable-next-line no-unused-vars
-        attempted, succeeded, triggeredTraps, source, targets, action, }) {
-            this.charToDrawerMap.get(source)
-                .drawActionPoints(true);
-            if (attempted) {
-                await this.playAnimation(source, action.animation, targets, succeeded);
-                targets.forEach((target) => {
-                    if (!target.isAlive) {
-                        this.playAnimation(target, 'death');
-                    }
-                });
-                if (!source.isAlive) {
-                    this.playAnimation(source, 'death');
+        succeeded, triggeredTraps, source, targets, action, }) {
+            this.charToDrawerMap.get(source).drawActionPoints(true);
+            await this.playAnimation(source, action.animation, targets, succeeded);
+            targets.forEach((target) => {
+                if (!target.isAlive) {
+                    this.playAnimation(target, 'death');
                 }
+            });
+            if (!source.isAlive) {
+                this.playAnimation(source, 'death');
             }
         }
         async playAnimation(char, animation, targets, succeeded) {

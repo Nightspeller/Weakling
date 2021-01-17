@@ -6,6 +6,30 @@ define(["require", "exports", "../generalCharacter"], function (require, exports
         constructor() {
             super();
         }
+        isActionAvailable(action) {
+            let result = true;
+            if (action.actionCost > this.actionPoints[action.type]) {
+                result = false;
+            }
+            if (action.parametersCost?.manna > this.parameters.manna) {
+                result = false;
+            }
+            if (action.parametersCost?.energy > this.parameters.energy) {
+                result = false;
+            }
+            return result;
+        }
+        pickActionTargets(action, disposition) {
+            if (action.target === 'self') {
+                return [this];
+            }
+            if (action.target === 'enemy') {
+                const alivePlayers = disposition.playerCharacters.filter((char) => char.isAlive);
+                const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
+                return [randomAlivePlayer];
+            }
+            return [];
+        }
     }
     exports.default = GeneralEnemy;
 });
