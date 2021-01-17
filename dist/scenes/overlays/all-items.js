@@ -20,8 +20,7 @@ define(["require", "exports", "../../characters/adventurers/player", "./generalO
                 color: 'black',
                 fontSize: '32px',
                 fontStyle: 'bold',
-            })
-                .setOrigin(0.5);
+            }).setOrigin(0.5);
             const allItems = itemsData_1.default;
             let itemsInRow = 0;
             let itemColumn = 0;
@@ -44,8 +43,7 @@ define(["require", "exports", "../../characters/adventurers/player", "./generalO
                 itemIcon.setInteractive({ useHandCursor: true });
                 itemIcon.on('pointerdown', () => this.player.addItemToInventory(itemId));
                 itemIcon.on('pointerover', () => {
-                    description.setText(itemId)
-                        .setPosition(x, y - 16);
+                    description.setText(itemId).setPosition(x, y - 16);
                     description.setVisible(true);
                 });
                 itemIcon.on('pointerout', () => description.setVisible(false));
@@ -57,36 +55,29 @@ define(["require", "exports", "../../characters/adventurers/player", "./generalO
                     itemColumn += 1;
                 }
             });
-            const elderIcon = this.add.sprite(16, 16, 'elder')
-                .setOrigin(0, 0)
-                .setDisplaySize(32, 32);
+            const elderIcon = this.add.sprite(16, 16, 'elder').setOrigin(0, 0).setDisplaySize(32, 32);
             elderIcon.setInteractive({ useHandCursor: true });
             elderIcon.once('pointerdown', () => { this.player.party = [...new Set([...this.player.party, elder_1.elderInstance])]; });
             elderIcon.on('pointerover', () => {
-                description.setText('Add Elder to the party')
-                    .setPosition(32, 32);
+                description.setText('Add Elder to the party').setPosition(32, 32);
                 description.setVisible(true);
             });
             elderIcon.on('pointerout', () => description.setVisible(false));
-            const eyeballIcon = this.add.sprite(58, 16, 'eyeball-idle', 0)
-                .setOrigin(0, 0)
-                .setDisplaySize(32, 32);
+            const eyeballIcon = this.add.sprite(58, 16, 'eyeball-idle', 0).setOrigin(0, 0).setDisplaySize(32, 32);
             eyeballIcon.setInteractive({ useHandCursor: true });
             eyeballIcon.once('pointerdown', () => { this.player.party = [...new Set([...this.player.party, eyeball_1.eyeballInstance])]; });
             eyeballIcon.on('pointerover', () => {
-                description.setText('Add Eyeball to the party')
-                    .setPosition(58, 32);
+                description.setText('Add Eyeball to the party').setPosition(58, 32);
                 description.setVisible(true);
             });
             eyeballIcon.on('pointerout', () => description.setVisible(false));
-            const addXPIcon = this.add.sprite(90, 16, 'icon-item-set', 32)
+            const addXPIcon = this.add.sprite(90, 16, 'icons', 'icons/pointers-and-arrows/green-up-arrow')
                 .setOrigin(0, 0)
                 .setDisplaySize(32, 32);
             addXPIcon.setInteractive({ useHandCursor: true });
             addXPIcon.on('pointerdown', () => this.player.addXp(5));
             addXPIcon.on('pointerover', () => {
-                description.setText('Add XP')
-                    .setPosition(32, 32);
+                description.setText('Add XP').setPosition(32, 32);
                 description.setVisible(true);
             });
             addXPIcon.on('pointerout', () => description.setVisible(false));

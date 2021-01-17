@@ -38,10 +38,7 @@ const neckItems: { [key: string]: ItemData } = {
     displayName: 'Minor azure necklace',
     description: 'This simple necklace has a tiny azure stone in it, said to make it\'s owner smarter',
     possibleSlots: ['neck', ...backpackSlotNames, ...containerSlotNames],
-    sprite: {
-      texture: 'icon-item-set',
-      frame: 135,
-    },
+    sprite: { texture: 'icons', frame: 'icons/neck/red-rope-necklace' },
     stackable: false,
     modified: false,
     specifics: {

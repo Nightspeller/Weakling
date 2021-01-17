@@ -7,10 +7,7 @@ const bootsItems: { [key: string]: ItemData } = {
     displayName: 'Leather boots',
     description: 'Basic leather boots',
     possibleSlots: ['boots', ...backpackSlotNames, ...containerSlotNames],
-    sprite: {
-      texture: 'icon-item-set',
-      frame: 130,
-    },
+    sprite: { texture: 'icons', frame: 'icons/clothes/boots/leather-boots' },
     stackable: false,
     modified: false,
     specifics: {

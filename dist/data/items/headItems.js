@@ -7,10 +7,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Ranger\'s hat',
             description: 'Classic ranger\'s hat - provides very little protection, but does not get in a way',
             possibleSlots: ['head', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: {
-                texture: 'icon-item-set',
-                frame: 112,
-            },
+            sprite: { texture: 'icons', frame: 'icons/clothes/hats/rangers-hat' },
             stackable: false,
             modified: false,
             specifics: {

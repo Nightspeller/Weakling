@@ -7,10 +7,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Smoldering ring',
             description: 'This ring looks like it is made of smoldering coal, but it does not burn you, just warming your finger ever so slightly.',
             possibleSlots: ['ringLeft', 'ringRight', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: {
-                texture: 'icon-item-set',
-                frame: 133,
-            },
+            sprite: { texture: 'icons', frame: 'icons/rings/gold-ring-with-ruby' },
             stackable: false,
             modified: false,
             quantity: null,
@@ -25,10 +22,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Minor energy ring',
             description: 'This ring has some simple enchantment on it, making it\'s bearer more energetic.',
             possibleSlots: ['ringLeft', 'ringRight', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: {
-                texture: 'icon-item-set',
-                frame: 132,
-            },
+            sprite: { texture: 'icons', frame: 'icons/rings/gold-ring' },
             stackable: false,
             modified: false,
             quantity: null,

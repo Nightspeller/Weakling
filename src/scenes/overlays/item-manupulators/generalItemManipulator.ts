@@ -68,7 +68,7 @@ export default class GeneralItemManipulatorScene extends GeneralOverlayScene {
       backgroundColor: 'lightgrey',
       color: 'black',
     }).setVisible(false);
-    this.add.sprite(this.opts.windowX + x, this.opts.windowY + y, 'icon-item-set', 205)
+    this.add.sprite(this.opts.windowX + x, this.opts.windowY + y, 'icons', 'icons/misc/drop-coins')
       .setOrigin(0, 0).setDisplaySize(64, 64).setInteractive()
       .on('pointerover', () => dropSlotHoverText.setVisible(true))
       .on('pointerout', () => dropSlotHoverText.setVisible(false));
@@ -342,7 +342,7 @@ export default class GeneralItemManipulatorScene extends GeneralOverlayScene {
     };
 
     if (additionalActionsEnabled) {
-      const dropItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 32 - 5, 5, 'icon-item-set', 205).setOrigin(0, 0);
+      const dropItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 32 - 5, 5, 'icons', 'icons/misc/drop-coins').setOrigin(0, 0);
       dropItemButton.setInteractive({ useHandCursor: true });
       dropItemButton.once('pointerdown', (pointer, eventX, eventY, event) => {
         this._dropItem(slot);
@@ -353,7 +353,8 @@ export default class GeneralItemManipulatorScene extends GeneralOverlayScene {
       descriptionContainer.add(dropItemButton);
 
       if (item.quantity > 1) {
-        const splitItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 64 - 5, 5, 'icon-item-set', 36).setOrigin(0, 0);
+        const splitItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 64 - 5, 5, 'icons', 'icons/pointers-and-arrows/green-curved-arrow-up')
+          .setOrigin(0, 0);
         splitItemButton.setInteractive({ useHandCursor: true });
         splitItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
           const newQuantity = Math.floor(item.quantity / 2);
@@ -367,7 +368,7 @@ export default class GeneralItemManipulatorScene extends GeneralOverlayScene {
       }
 
       if (item.specifics?.worldConsumable && this.parentSceneKey !== 'Battle') {
-        const consumeItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 96 - 10, 5, 'icon-item-set', 18).setOrigin(0, 0);
+        const consumeItemButton = this.add.image(INVENTORY_ITEM_DESCRIPTION_W - 96 - 10, 5, 'icons', 'icons/misc/stomach').setOrigin(0, 0);
         consumeItemButton.setInteractive({ useHandCursor: true });
         consumeItemButton.on('pointerdown', (pointer, eventX, eventY, event) => {
           const currentMax = this.player.characteristics[item.specifics.worldConsumable.type];

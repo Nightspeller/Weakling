@@ -91,7 +91,7 @@ export default class GeneralLocation extends Phaser.Scene {
       camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
       camera.setDeadzone(200, 100);
       this.showOpenInventoryIcon();
-      this.showToggleSoundIcon();
+      this.showToggleMenuIcon();
       this.showToggleQuestLogIcon();
       this.showAchievementsIcon();
       if (DEBUG) this.showAllItemsIcon();
@@ -263,7 +263,7 @@ export default class GeneralLocation extends Phaser.Scene {
 
     this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
 
-    this.levelUpIcon = this.add.sprite(this.playerImage.x, this.playerImage.y, 'icon-item-set', 32)
+    this.levelUpIcon = this.add.sprite(this.playerImage.x, this.playerImage.y, 'icons', 'icons/pointers-and-arrows/green-up-arrow')
       .setOrigin(0, 1)
       .setVisible(false);
     this.levelUpIcon.setInteractive({ useHandCursor: true });
@@ -616,7 +616,7 @@ export default class GeneralLocation extends Phaser.Scene {
     });
   }
 
-  private showToggleSoundIcon() {
+  private showToggleMenuIcon() {
     // soundGraphics
     this.add.graphics()
       .setScrollFactor(0)
@@ -625,12 +625,12 @@ export default class GeneralLocation extends Phaser.Scene {
       .lineStyle(3, 0x907748)
       .strokeRect(+GAME_W - 32 - 32 - 32 - 32, 32, 32, 32)
       .setDepth(10 - 1);
-    const inventoryIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32, 32, 'icon-item-set', 179)
+    const menuIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32, 32, 'icons', 'icons/music/harp')
       .setOrigin(0, 0)
       .setScrollFactor(0)
       .setInteractive({ useHandCursor: true })
       .setDepth(10 - 1);
-    inventoryIconImage.on('pointerdown', () => {
+    menuIconImage.on('pointerdown', () => {
       this.switchToScene('Options', {}, false);
     });
     this.input.keyboard.off('keyup-O');
@@ -665,7 +665,7 @@ export default class GeneralLocation extends Phaser.Scene {
       .lineStyle(3, 0x907748)
       .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
       .setDepth(10 - 1);
-    const questLogIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 'icon-item-set', 216)
+    const questLogIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 'icons', 'icons/books-and-scrolls/book-with-bookmark')
       .setOrigin(0, 0)
       .setScrollFactor(0)
       .setInteractive({ useHandCursor: true })
@@ -688,7 +688,7 @@ export default class GeneralLocation extends Phaser.Scene {
       .lineStyle(3, 0x907748)
       .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
       .setDepth(10 - 1);
-    const achievementsIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32, 32, 'icon-item-set', 199)
+    const achievementsIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32, 32, 'icons', 'icons/coins/large-coin-with-crown')
       .setOrigin(0, 0)
       .setScrollFactor(0)
       .setInteractive({ useHandCursor: true })
@@ -703,7 +703,6 @@ export default class GeneralLocation extends Phaser.Scene {
   }
 
   private showAllItemsIcon() {
-    // allItemsGraphics
     this.add.graphics()
       .setScrollFactor(0)
       .fillStyle(0xf0d191, 0.8)
@@ -711,7 +710,7 @@ export default class GeneralLocation extends Phaser.Scene {
       .lineStyle(3, 0x907748)
       .strokeRect(32, 32, 32, 32)
       .setDepth(10 - 1);
-    const allItemsIconImage = this.add.image(32, 32, 'icon-item-set', 270)
+    const allItemsIconImage = this.add.image(32, 32, 'icons', 'icons/chests/overgrown-chest')
       .setOrigin(0, 0)
       .setScrollFactor(0)
       .setInteractive({ useHandCursor: true })

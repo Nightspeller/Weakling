@@ -25,7 +25,7 @@ const miscActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 167 },
+    icon: { texture: 'icons', frame: 'icons/misc/spyglass' },
     parametersCost: {},
   },
   meditate: {
@@ -62,7 +62,7 @@ const miscActions: { [key: string]: ActionData } = {
     actionCost: 2,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 53 },
+    icon: { texture: 'icons', frame: 'icons/misc/healing' },
     parametersCost: {},
   },
   wait: {
@@ -93,7 +93,7 @@ const miscActions: { [key: string]: ActionData } = {
     actionCost: 1,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 137 },
+    icon: { texture: 'icons', frame: 'icons/bags/leather-bag-with-pockets' },
     parametersCost: {},
   },
   retreat: {
@@ -127,7 +127,7 @@ const miscActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 1,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 59 },
+    icon: { texture: 'icons', frame: 'icons/icons-and-status-effects/rage' },
     parametersCost: { energy: 3 },
   },
   drinkAlcohol: {
@@ -148,7 +148,7 @@ const miscActions: { [key: string]: ActionData } = {
     actionCost: 1,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 254 },
+    icon: { texture: 'icons', frame: 'icons/food-and-drinks/coffee-cup' },
     parametersCost: {},
   },
 };

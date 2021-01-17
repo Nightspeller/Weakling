@@ -7,10 +7,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Leather pants',
             description: 'Basic leather pants',
             possibleSlots: ['pants', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: {
-                texture: 'icon-item-set',
-                frame: 123,
-            },
+            sprite: { texture: 'icons', frame: 'icons/clothes/pants/leather-shorts' },
             stackable: false,
             modified: false,
             specifics: {

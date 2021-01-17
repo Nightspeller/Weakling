@@ -5,8 +5,6 @@ import { DEBUG } from '../../config/constants';
 import questsData from '../../data/quests/questsData';
 import { Quest, SpriteParameters } from '../../types/my-types';
 import achievementsData from '../../data/achievementsData';
-import { elderInstance } from './elder';
-import { eyeballInstance } from './eyeball';
 
 export class Player extends Adventurer {
   public worldImageSpriteParams: { texture: string; frame: number };

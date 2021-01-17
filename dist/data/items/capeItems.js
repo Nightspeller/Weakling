@@ -7,10 +7,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Invisibility cloak',
             description: 'Once per battle allows you to become invisible for your enemies',
             possibleSlots: ['cape', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: {
-                texture: 'icon-item-set',
-                frame: 126,
-            },
+            sprite: { texture: 'icons', frame: 'icons/clothes/capes/purple-cape' },
             stackable: false,
             modified: false,
             specifics: {

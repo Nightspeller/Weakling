@@ -26,17 +26,17 @@ define(["require", "exports", "../../characters/adventurers/player", "./generalO
                 .setOrigin(0.5);
             const textOptions = { color: 'black', wordWrap: { width: 400 }, fontSize: '18px' };
             const availablePointsText = this.add.text(32, 64, `Available points: ${this.availablePoints}`, textOptions);
-            const addStrengthIcon = this.add.sprite(32, 96, 'icon-item-set', 32)
+            const addStrengthIcon = this.add.sprite(32, 96, 'icons', 'icons/pointers-and-arrows/green-up-arrow')
                 .setOrigin(0, 0)
                 .setInteractive({ useHandCursor: true });
             const addStrengthText = this.add.text(64, 106, `Strength: ${this.player.characteristics.strength}`, textOptions)
                 .setOrigin(0, 0);
-            const addAgilityIcon = this.add.sprite(32, 128, 'icon-item-set', 32)
+            const addAgilityIcon = this.add.sprite(32, 128, 'icons', 'icons/pointers-and-arrows/green-up-arrow')
                 .setOrigin(0, 0)
                 .setInteractive({ useHandCursor: true });
             const addAgilityText = this.add.text(64, 138, `Agility: ${this.player.characteristics.agility}`, textOptions)
                 .setOrigin(0, 0);
-            const addIntelligenceIcon = this.add.sprite(32, 160, 'icon-item-set', 32)
+            const addIntelligenceIcon = this.add.sprite(32, 160, 'icons', 'icons/pointers-and-arrows/green-up-arrow')
                 .setOrigin(0, 0)
                 .setInteractive({ useHandCursor: true });
             const addIntelligenceText = this.add.text(64, 170, `Intelligence: ${this.player.characteristics.intelligence}`, textOptions)

@@ -7,10 +7,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Work gloves',
             description: 'Rough-made and simple, but think and reliable gloves ideal for heavy-lifting',
             possibleSlots: ['gloves', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: {
-                texture: 'icon-item-set',
-                frame: 128,
-            },
+            sprite: { texture: 'icons', frame: 'icons/clothes/gloves/leather-gloves' },
             stackable: false,
             modified: false,
             specifics: {
@@ -27,10 +24,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Leather gloves',
             description: 'Basic leather gloves',
             possibleSlots: ['gloves', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: {
-                texture: 'icon-item-set',
-                frame: 128,
-            },
+            sprite: { texture: 'icons', frame: 'icons/clothes/gloves/leather-gloves' },
             stackable: false,
             modified: false,
             specifics: {

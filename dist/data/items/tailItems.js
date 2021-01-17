@@ -7,7 +7,7 @@ define(["require", "exports", "./itemSlots"], function (require, exports, itemSl
             displayName: 'Fire marble',
             description: 'Enchanted stone which burns brightly upon impact.',
             possibleSlots: ['tail', ...itemSlots_1.backpackSlotNames, ...itemSlots_1.containerSlotNames],
-            sprite: { texture: 'icon-item-set', frame: 288 },
+            sprite: { texture: 'icons', frame: 'icons/gems/red-round-stone' },
             stackable: true,
             modified: false,
             specifics: {

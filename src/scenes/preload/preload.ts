@@ -37,9 +37,9 @@ export default class PreloadScene extends Phaser.Scene {
 
     if (DEBUG) {
       const debugScene = 'WeaklingsCave';
-      this.scene.start('Battle', { enemies: [{ type: 'ghost-knight' }, { type: 'skeleton' }, { type: 'wizard' }, { type: 'wildBoar' }], background: 'cave-background', prevScene: 'Caltor' });
+      // this.scene.start('Battle', { enemies: [{ type: 'ghost-knight' }, { type: 'skeleton' }, { type: 'wizard' }, { type: 'wildBoar' }], background: 'cave-background', prevScene: 'Caltor' });
       console.log(`Preload done, starting ${debugScene}`);
-      // this.scene.start(debugScene, { prevScene: this.scene.key });
+      this.scene.start(debugScene, { prevScene: this.scene.key });
     } else {
       console.log('Preload done, starting Main Menu');
       this.scene.start('MainMenu', { prevScene: this.scene.key });

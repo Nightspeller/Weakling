@@ -24,7 +24,7 @@ define(["require", "exports", "../../helpers/helperFunctions"], function (requir
             actionCost: 0.5,
             noticeable: 0,
             animation: 'castBuff',
-            icon: { texture: 'icon-item-set', frame: 167 },
+            icon: { texture: 'icons', frame: 'icons/misc/spyglass' },
             parametersCost: {},
         },
         meditate: {
@@ -61,7 +61,7 @@ define(["require", "exports", "../../helpers/helperFunctions"], function (requir
             actionCost: 2,
             noticeable: 0,
             animation: 'castBuff',
-            icon: { texture: 'icon-item-set', frame: 53 },
+            icon: { texture: 'icons', frame: 'icons/misc/healing' },
             parametersCost: {},
         },
         wait: {
@@ -92,7 +92,7 @@ define(["require", "exports", "../../helpers/helperFunctions"], function (requir
             actionCost: 1,
             noticeable: 0,
             animation: 'castBuff',
-            icon: { texture: 'icon-item-set', frame: 137 },
+            icon: { texture: 'icons', frame: 'icons/bags/leather-bag-with-pockets' },
             parametersCost: {},
         },
         retreat: {
@@ -126,7 +126,7 @@ define(["require", "exports", "../../helpers/helperFunctions"], function (requir
             actionCost: 0.5,
             noticeable: 1,
             animation: 'castBuff',
-            icon: { texture: 'icon-item-set', frame: 59 },
+            icon: { texture: 'icons', frame: 'icons/icons-and-status-effects/rage' },
             parametersCost: { energy: 3 },
         },
         drinkAlcohol: {
@@ -147,7 +147,7 @@ define(["require", "exports", "../../helpers/helperFunctions"], function (requir
             actionCost: 1,
             noticeable: 0,
             animation: 'castBuff',
-            icon: { texture: 'icon-item-set', frame: 254 },
+            icon: { texture: 'icons', frame: 'icons/food-and-drinks/coffee-cup' },
             parametersCost: {},
         },
     };

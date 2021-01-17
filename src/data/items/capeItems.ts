@@ -7,10 +7,7 @@ const capeItems: { [key: string]: ItemData } = {
     displayName: 'Invisibility cloak',
     description: 'Once per battle allows you to become invisible for your enemies',
     possibleSlots: ['cape', ...backpackSlotNames, ...containerSlotNames],
-    sprite: {
-      texture: 'icon-item-set',
-      frame: 126,
-    },
+    sprite: { texture: 'icons', frame: 'icons/clothes/capes/purple-cape' },
     stackable: false,
     modified: false,
     specifics: {
