@@ -60,8 +60,8 @@ const achievementsData: ({
   name: 'See battle, Boo? Run, Boo, run!',
   description: 'Run away from the battle before it begins',
   icon: {
-    texture: 'edited',
-    frame: 'Running',
+    texture: 'icons',
+    frame: 'icons/misc/running',
   },
   achieved: false,
 }, {

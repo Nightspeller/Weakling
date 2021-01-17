@@ -234,6 +234,11 @@
                  "name":"Primula 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -247,6 +252,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"primula-flower\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -267,6 +282,11 @@
                  "name":"Primula 2",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -280,6 +300,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"primula-flower\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -300,6 +330,11 @@
                  "name":"Primula 3",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -313,6 +348,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"primula-flower\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -333,6 +378,11 @@
                  "name":"Primula 4",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -346,6 +396,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"primula-flower\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -366,6 +426,11 @@
                  "name":"Coal",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -379,6 +444,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"coal\", \"quantity\": 3}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -598,9 +678,24 @@
                  "name":"Sign",
                  "properties":[
                         {
+                         "name":"interaction",
+                         "type":"string",
+                         "value":"activate"
+                        }, 
+                        {
                          "name":"messageId",
                          "type":"string",
                          "value":"village_notForPickup"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"singleUse",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Message",
@@ -651,6 +746,11 @@
                          "name":"location",
                          "type":"string",
                          "value":"HargkakhsCave"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": -1, \"y\": -1}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -664,6 +764,11 @@
                  "id":12,
                  "name":"Shortcup to the top of the cliff",
                  "properties":[
+                        {
+                         "name":"location",
+                         "type":"string",
+                         "value":""
+                        }, 
                         {
                          "name":"toCoordinates",
                          "type":"string",
@@ -681,6 +786,11 @@
                  "id":13,
                  "name":"Shortcup to the graveyard",
                  "properties":[
+                        {
+                         "name":"location",
+                         "type":"string",
+                         "value":""
+                        }, 
                         {
                          "name":"toCoordinates",
                          "type":"string",
@@ -702,6 +812,11 @@
                          "name":"location",
                          "type":"string",
                          "value":"WeaklingsCave"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": -1, \"y\": -1}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -719,6 +834,11 @@
                          "name":"location",
                          "type":"string",
                          "value":"EldersCave"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": -1, \"y\": -1}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -758,6 +878,11 @@
                          "name":"location",
                          "type":"string",
                          "value":"NahkhasCave"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": -1, \"y\": -1}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -771,6 +896,11 @@
                  "id":34,
                  "name":"Stone steps down",
                  "properties":[
+                        {
+                         "name":"location",
+                         "type":"string",
+                         "value":""
+                        }, 
                         {
                          "name":"toCoordinates",
                          "type":"string",
@@ -788,6 +918,11 @@
                  "id":35,
                  "name":"Stone steps up",
                  "properties":[
+                        {
+                         "name":"location",
+                         "type":"string",
+                         "value":""
+                        }, 
                         {
                          "name":"toCoordinates",
                          "type":"string",
@@ -860,6 +995,11 @@
                  "id":9,
                  "name":"Boars",
                  "properties":[
+                        {
+                         "name":"background",
+                         "type":"string",
+                         "value":""
+                        }, 
                         {
                          "name":"drop",
                          "type":"string",
@@ -18411,7 +18551,7 @@
         {
          "columns":16,
          "firstgid":2241,
-         "image":"..\/..\/..\/assets\/images-extruded\/items\/icon-item-set.png",
+         "image":"..\/images-extruded\/items\/icon-item-set.png",
          "imageheight":816,
          "imagewidth":544,
          "margin":1,
@@ -18466,7 +18606,7 @@
         {
          "columns":4,
          "firstgid":2661,
-         "image":"..\/..\/..\/assets\/images-extruded\/animations\/fire.png",
+         "image":"..\/images-extruded\/animations\/fire.png",
          "imageheight":34,
          "imagewidth":136,
          "margin":1,

@@ -449,7 +449,7 @@ export default class GeneralLocation extends Phaser.Scene {
       .lineStyle(3, 0x907748)
       .strokeRect(+GAME_W - 32 - 32, 32, 32, 32)
       .setDepth(10 - 1);
-    const inventoryIconImage = this.add.image(+GAME_W - 32 - 32, 32, 'bag-green')
+    const inventoryIconImage = this.add.image(+GAME_W - 32 - 32, 32, 'icons', 'icons/bags/green-bag')
       .setOrigin(0, 0)
       .setScrollFactor(0)
       .setInteractive({ useHandCursor: true })

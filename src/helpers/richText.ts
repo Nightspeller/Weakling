@@ -4,7 +4,6 @@ interface RichTextStyle extends Phaser.Types.GameObjects.Text.TextStyle {
   'text-decoration'?: string
 }
 
-// TODO: investigate properties of text style - there might be built in stroke text
 export default class RichText extends Phaser.GameObjects.Text {
   private additionalElements: Phaser.GameObjects.Group;
 

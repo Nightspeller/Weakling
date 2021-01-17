@@ -76,8 +76,10 @@ export default class Disposition {
                   this.endTurn();
                 } else if (results.attempted === false) {
                   this.endTurn();
-                } else {
+                } else if (results.action.actionId !== 'wait') {
                   this.startAction();
+                } else {
+                  this.startTurn();
                 }
               }
             });
@@ -101,15 +103,20 @@ export default class Disposition {
   calculateTurnOrder() {
     if (this.currentPhase === 'preparation') {
       this.turnOrder = [...this.playerCharacters]
-        .filter((char) => !char.actedThisRound && char.isAlive)
+        .filter((char) => !char.actedThisRound && char.isAlive && !char.currentEffects.find((effect) => effect.effectId === 'waiting'))
         .sort(() => Math.random() - 1)
         .sort((a, b) => b.characteristics.initiative - a.characteristics.initiative);
     } else {
       this.turnOrder = [...this.playerCharacters, ...this.enemyCharacters]
-        .filter((char) => !char.actedThisRound && char.isAlive)
+        .filter((char) => !char.actedThisRound && char.isAlive && !char.currentEffects.find((effect) => effect.effectId === 'waiting'))
         .sort(() => Math.random() - 1)
         .sort((a, b) => b.characteristics.initiative - a.characteristics.initiative);
     }
+    const waitingCharacters = this.playerCharacters
+      .filter((char) => !char.actedThisRound && char.isAlive && char.currentEffects.find((effect) => effect.effectId === 'waiting'))
+      .sort(() => Math.random() - 1)
+      .sort((a, b) => a.characteristics.initiative - b.characteristics.initiative);
+    this.turnOrder = [...this.turnOrder, ...waitingCharacters];
     this.scene.drawTurnOrder(this.turnOrder);
   }
 

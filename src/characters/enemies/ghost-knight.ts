@@ -9,7 +9,7 @@ export default class GhostKnight extends GeneralEnemy {
   constructor() {
     super();
     this.spriteParams = {
-      texture: 'ghost-knight-idle', frame: 0, width: 300, height: 300, flip: true,
+      texture: 'knight-idle', frame: 0, width: 300, height: 300, flip: true,
     };
     this.level = 3;
     this.availableActions = ['meleeAttack', 'fear'];
@@ -41,12 +41,12 @@ export default class GhostKnight extends GeneralEnemy {
     this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
     this.actionPointsIncrement = { physical: 1, magical: 1, misc: 0 };
 
-    this.animations.idle = 'ghost-knight_idle';
-    this.animations.move = 'ghost-knight_move';
-    this.animations.attack = 'ghost-knight_attack2';
-    this.animations.buff = 'ghost-knight_attack1';
-    this.animations.death = 'ghost-knight_death';
-    this.animations.hit = 'ghost-knight_hit';
+    this.animations.idle = 'knight_idle';
+    this.animations.move = 'knight_move';
+    this.animations.attack = 'knight_attack2';
+    this.animations.buff = 'knight_attack1';
+    this.animations.death = 'knight_death';
+    this.animations.hit = 'knight_hit';
   }
 
   public aiTurn = (disposition: Disposition): { action: ActionData, targets: (Adventurer | GeneralEnemy)[] } => {

@@ -35,7 +35,7 @@ export class Eyeball extends Adventurer {
 
     this.name = 'Eyeball';
 
-    this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
+    this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack', 'wait', 'catchBreath'];
 
     this.animations.idle = 'eyeball_idle';
     this.animations.move = 'eyeball_idle';

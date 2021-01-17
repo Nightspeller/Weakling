@@ -7,10 +7,7 @@ const beltItems: { [key: string]: ItemData } = {
     displayName: 'Rope',
     description: 'Simple rope used as a belt',
     possibleSlots: ['belt', ...backpackSlotNames, ...containerSlotNames],
-    sprite: {
-      texture: 'rope-belt',
-      frame: null,
-    },
+    sprite: { texture: 'icons', frame: 'icons/clothes/belts/white-belt' },
     stackable: false,
     modified: false,
     specifics: {
@@ -26,10 +23,7 @@ const beltItems: { [key: string]: ItemData } = {
     displayName: 'Fancy belt',
     description: 'This belt is made of high quality skin and has a lot of little pockets to use',
     possibleSlots: ['belt', ...backpackSlotNames, ...containerSlotNames],
-    sprite: {
-      texture: 'icon-item-set',
-      frame: 127,
-    },
+    sprite: { texture: 'icons', frame: 'icons/clothes/belts/belt-leather' },
     stackable: false,
     modified: false,
     specifics: {

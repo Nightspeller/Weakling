@@ -13,7 +13,7 @@ const conditionalEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 174 },
+    statusImage: { texture: 'icons', frame: 'icons/traps/trap-1' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -31,7 +31,7 @@ const conditionalEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 283 },
+    statusImage: { texture: 'icons', frame: 'icons/traps/cursed-soil' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {

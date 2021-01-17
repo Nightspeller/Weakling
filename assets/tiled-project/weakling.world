@@ -55,6 +55,20 @@
             "width": 1920,
             "x": 1976,
             "y": 3200
+        },
+        {
+            "fileName": "tilemaps/booksStore.tmx",
+            "height": 256,
+            "width": 352,
+            "x": 3328,
+            "y": 576
+        },
+        {
+            "fileName": "tilemaps/tavern.tmx",
+            "height": 704,
+            "width": 1280,
+            "x": 3264,
+            "y": 2144
         }
     ],
     "onlyShowAdjacentMaps": false,

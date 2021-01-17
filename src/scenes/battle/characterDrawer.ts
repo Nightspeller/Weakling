@@ -8,6 +8,7 @@ import {
   ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH,
 } from '../../config/constants';
 import { EffectData } from '../../types/my-types';
+import ProgressBar from '../../helpers/progressBar';
 
 const { Rectangle } = Phaser.Geom;
 
@@ -90,32 +91,37 @@ export default class CharacterDrawer {
 
   private drawHealthAndManna() {
     this.parametersContainer.removeAll(true);
-    const textParams = {
-      font: '12px monospace',
-      fill: '#000000',
-      align: 'center',
-      fixedWidth: BATTLE_CHAR_WIDTH,
-    };
     const { characteristics } = this.char;
     const params = this.char.parameters;
-    const healthText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 36, `${params.health} / ${characteristics.health}`, {
-      ...textParams,
-      backgroundColor: '#ff000075',
-    })
-      .setOrigin(0.5, 0);
-    const mannaText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 24, `${params.manna} / ${characteristics.manna}`, {
-      ...textParams,
-      backgroundColor: '#0000ff75',
-    })
-      .setOrigin(0.5, 0);
-    const energyText = this.scene.add.text(0, -BATTLE_CHAR_HEIGHT / 2 - 12, `${params.energy} / ${characteristics.energy}`, {
-      ...textParams,
-      backgroundColor: '#00ff0075',
-    })
-      .setOrigin(0.5, 0);
-    this.parametersContainer.add(healthText);
-    this.parametersContainer.add(mannaText);
-    this.parametersContainer.add(energyText);
+    const healthText = new ProgressBar({
+      scene: this.scene,
+      x: -BATTLE_CHAR_WIDTH / 2,
+      y: -BATTLE_CHAR_HEIGHT / 2 - 36,
+      color: 0xff0000,
+      current: params.health,
+      max: characteristics.health,
+      width: BATTLE_CHAR_WIDTH
+    });
+    const mannaText = new ProgressBar({
+      scene: this.scene,
+      x: -BATTLE_CHAR_WIDTH / 2,
+      y: -BATTLE_CHAR_HEIGHT / 2 - 24,
+      color: 0x0000ff,
+      current: params.manna,
+      max: characteristics.manna,
+      width: BATTLE_CHAR_WIDTH
+    });
+    const energyText = new ProgressBar({
+      scene: this.scene,
+      x: -BATTLE_CHAR_WIDTH / 2,
+      y: -BATTLE_CHAR_HEIGHT / 2 - 12,
+      color: 0x00ff00,
+      current: params.energy,
+      max: characteristics.energy,
+      width: BATTLE_CHAR_WIDTH
+    });
+
+    this.parametersContainer.add([healthText, mannaText, energyText]);
   }
 
   public drawActionPoints(show: boolean) {
@@ -159,12 +165,13 @@ export default class CharacterDrawer {
         iconX = -48 + 16 + 32 * (index - 4);
         iconY = 48 + 16;
       }
+      const iconBackground = this.scene.add.sprite(iconX, iconY, 'icons', 'icons/backgrounds/beige-background');
       const iconSprite = this.scene.add.sprite(iconX, iconY, effect.statusImage.texture, effect.statusImage.frame);
       iconSprite.setInteractive()
         .on('pointerover', () => this.drawEffectInformation(effect, iconX + 16, iconY - 16))
         .on('pointerout', () => this.effectInformationContainer.removeAll(true))
         .on('destroy', () => this.effectInformationContainer.removeAll(true));
-      this.effectIconsContainer.add(iconSprite);
+      this.effectIconsContainer.add([iconBackground, iconSprite]);
     });
   }
 
@@ -362,31 +369,62 @@ export default class CharacterDrawer {
         this.scene.tweens.add({
           targets: this.mainImage,
           props: {
-            x: {
-              value: targetX,
-            },
-            y: {
-              value: targetY,
-            },
+            x: { value: targetX },
+            y: { value: targetY },
           },
           ease: 'Back.easeOut',
           delay: 300,
           duration: 500,
           yoyo: true,
-          /* paused: true,
-                  onActive: function () { addEvent('onActive') },
-                  onStart: function () { addEvent('onStart') },
-                  onLoop: function () { addEvent('onLoop') }, */
-          onYoyo: () => {
-
-          },
-          /* onRepeat: function () { addEvent('onRepeat') }, */
           onComplete: () => {
             this.mainImage.setDepth(initialImageDepth);
             resolve();
           },
         });
       }
+    });
+  }
+
+  public playRangedAttackAnimation() {
+    return new Promise<void>((resolve) => {
+      if (this.char.animations.ranged) {
+        this.mainImage.anims.play(this.char.animations.ranged);
+        this.mainImage.once('animationcomplete', () => {
+          this.playIdleAnimation();
+          resolve();
+        });
+      } else {
+        this.scene.tweens.add({
+          targets: this.mainImage,
+          props: {
+            x: { value: this.mainImage.x + 30 }
+          },
+          ease: 'Back.easeOut',
+          duration: 300,
+          yoyo: true,
+          onComplete: () => {
+            resolve();
+          },
+        });
+      }
+    });
+  }
+
+  public playRangedProjectileAnimation(targetX: number, targetY: number) {
+    return new Promise<void>((resolve) => {
+      const projectile = this.scene.add.sprite(this.mainImage.x, this.mainImage.y, 'icons', 'icons/weapons/ranged/arrow-evolving-green-1');
+      this.scene.tweens.add({
+        targets: projectile,
+        props: {
+          x: { value: targetX },
+          y: { value: targetY },
+        },
+        duration: 300,
+        onComplete: () => {
+          projectile.destroy();
+          resolve();
+        },
+      });
     });
   }
 

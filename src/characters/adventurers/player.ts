@@ -5,6 +5,8 @@ import { DEBUG } from '../../config/constants';
 import questsData from '../../data/quests/questsData';
 import { Quest, SpriteParameters } from '../../types/my-types';
 import achievementsData from '../../data/achievementsData';
+import { elderInstance } from './elder';
+import { eyeballInstance } from './eyeball';
 
 export class Player extends Adventurer {
   public worldImageSpriteParams: { texture: string; frame: number };
@@ -26,7 +28,7 @@ export class Player extends Adventurer {
       strength: [{ source: 'base', value: 10 }],
       agility: [{ source: 'base', value: 10 }],
       intelligence: [{ source: 'base', value: 10 }],
-      initiative: [{ source: 'base', value: Phaser.Math.Between(0, 30) }],
+      initiative: [{ source: 'base', value: Phaser.Math.Between(30, 30) }],
       health: [{ source: 'base', value: 5 }],
       manna: [{ source: 'base', value: 5 }],
       energy: [{ source: 'base', value: 10 }],
@@ -50,7 +52,8 @@ export class Player extends Adventurer {
       this.addItemToInventory('mirror-of-travel');
       this.addItemToInventory('fancy-belt', 1, 'belt');
       this.addItemToInventory('leather-armor', 1, 'body');
-      this.addItemToInventory('spirit-sword', 1, 'rightHand');
+      this.addItemToInventory('simple-bow', 1, 'rightHand');
+      this.addItemToInventory('wooden-arrow', 2, 'leftHand');
       /* this.addItemToInventory('smoldering-ring', 1, 'ringRight');
           this.addItemToInventory('fire-marble', 3, "tail");
           this.addItemToInventory('trap-kit'); */
@@ -65,7 +68,7 @@ export class Player extends Adventurer {
     }
 
     this.availableActions = ['meditate', 'accessInventory', 'retreat', 'swiftMind',
-      'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack'];
+      'fireProtection', 'drainingSoil', 'warmUp', 'meleeAttack', 'wait', 'catchBreath'];
 
     this.party = [this];
 

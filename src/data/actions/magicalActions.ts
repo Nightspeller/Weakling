@@ -52,7 +52,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 1,
     noticeable: 1,
     animation: 'meleeAttack',
-    icon: { texture: 'edited', frame: 'Tornado' },
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/tornado-white' },
     parametersCost: { manna: 3 },
   },
   drainingSoil: {
@@ -143,7 +143,7 @@ const magicalActions: { [key: string]: ActionData } = {
     noticeable: 1,
     triggers: [],
     animation: 'meleeAttack',
-    icon: { texture: 'icons-additional', frame: 'magic-swirl' },
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/fire-swirl' },
     parametersCost: { manna: 3 },
   },
 };

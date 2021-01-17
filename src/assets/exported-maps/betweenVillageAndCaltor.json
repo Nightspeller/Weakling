@@ -214,6 +214,21 @@
                  "name":"Secret stash",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"copper-pieces\", \"quantity\": 8}]"
@@ -222,6 +237,11 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":45
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -242,6 +262,11 @@
                  "name":"Apple 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -260,6 +285,16 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -275,33 +310,10 @@
                  "name":"Apple 2",
                  "properties":[
                         {
-                         "name":"disableWhenEmpty",
+                         "name":"collides",
                          "type":"bool",
                          "value":true
                         }, 
-                        {
-                         "name":"instantPickup",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"items",
-                         "type":"string",
-                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }],
-                 "rotation":0,
-                 "type":"Container",
-                 "visible":true,
-                 "width":32,
-                 "x":1504,
-                 "y":384
-                }, 
-                {
-                 "gid":982,
-                 "height":32,
-                 "id":14,
-                 "name":"Apple 5",
-                 "properties":[
                         {
                          "name":"disableWhenEmpty",
                          "type":"bool",
@@ -321,6 +333,64 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":1504,
+                 "y":384
+                }, 
+                {
+                 "gid":982,
+                 "height":32,
+                 "id":14,
+                 "name":"Apple 5",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -336,6 +406,11 @@
                  "name":"Apple 9",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -349,6 +424,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -364,6 +454,11 @@
                  "name":"Apple 4",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -377,6 +472,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -392,6 +502,11 @@
                  "name":"Apple 7",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -405,6 +520,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -420,6 +550,11 @@
                  "name":"Apple 3",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -433,6 +568,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -448,6 +598,11 @@
                  "name":"Apple 10",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -461,6 +616,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -476,6 +646,11 @@
                  "name":"Apple 8",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -489,6 +664,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -504,6 +694,11 @@
                  "name":"Apple 6",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -517,6 +712,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -652,6 +862,11 @@
                          "value":"betweenVillageAndCaltor_waymark"
                         }, 
                         {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
@@ -677,6 +892,11 @@
                          "name":"messageId",
                          "type":"string",
                          "value":"betweenVillageAndCaltor_garden_sign"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }, 
                         {
                          "name":"singleUse",
@@ -706,6 +926,12 @@
                  "height":32,
                  "id":7,
                  "name":"Grave",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,

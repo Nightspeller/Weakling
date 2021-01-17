@@ -9,6 +9,7 @@ import ActionInterfaceDrawer from './actionInterfaceDrawer';
 import GeneralOverlayScene from '../overlays/generalOverlayScene';
 import Item from '../../entities/item';
 import { ActionData, EffectData } from '../../types/my-types';
+import RichBitmapText from '../../helpers/richBitmapText';
 
 export default class BattleScene extends GeneralOverlayScene {
   private disposition: Disposition;
@@ -155,6 +156,26 @@ export default class BattleScene extends GeneralOverlayScene {
         await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
         break;
       }
+      case 'rangeAttack': {
+        let attackX = 600;
+        let attackY = 320;
+        if (targetDrawer) {
+          attackX = targetDrawer.position.x;
+          attackY = targetDrawer.position.y;
+        }
+        await Promise.all([
+          charDrawer.playRangedAttackAnimation(),
+          charDrawer.playRangedProjectileAnimation(attackX, attackY)]);
+        targets.forEach((target, index: number) => {
+          if (succeeded[index] && targets[index] !== char) {
+            this.playAnimation(targets[index], 'hit');
+          } else {
+            this.playAnimation(targets[index], 'miss');
+          }
+        });
+        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+        break;
+      }
       case 'castBuff':
         await charDrawer.playCastAnimation();
         break;
@@ -181,23 +202,30 @@ export default class BattleScene extends GeneralOverlayScene {
       .strokeRect(0, 0, 64 * turnOrder.length, 64 + 16));
 
     turnOrder.forEach((char, i) => {
-      const charNameText = this.add.text(64 * i, 16 + 64, char.name, {
-        backgroundColor: 'lightgrey',
-        color: 'black',
-      })
-        .setVisible(false);
-      const initiativeText = this.add.text(64 * i, 0, char.characteristics.initiative.toString(), {
-        fixedWidth: 64,
-        fixedHeight: 16,
-        align: 'center',
-        color: 'black',
-      });
-      initiativeText.setInteractive()
-        .on('pointerover', () => charNameText.setText('Initiative')
-          .setVisible(true))
+      const charNameText = new RichBitmapText(
+        {
+          scene: this,
+          x: 64 * i,
+          y: 16 + 64,
+          font: 'bitmapArial',
+          text: char.name,
+          size: 16,
+          align: undefined,
+          border: { color: 0x000000, alpha: 1, width: 1 },
+          fill: { color: 0xf0d191, alpha: 0.5 },
+        },
+      ).setVisible(false);
+
+      const initiativeText = this.add.bitmapText(64 * i + 32, 0, 'bitmapArial', char.characteristics.initiative.toString(), 16)
+        .setOrigin(0.5, 0);
+
+      initiativeText
+        .setInteractive()
+        .on('pointerover', () => charNameText.setText('Initiative').setVisible(true))
         .on('pointerout', () => charNameText.setVisible(false));
-      this.turnOrderDisplayContainer.add(charNameText);
-      this.turnOrderDisplayContainer.add(initiativeText);
+
+      this.turnOrderDisplayContainer.add([charNameText, /* graphics, */ initiativeText]);
+
       const sprite = this.add.sprite(64 * i + 32, 16 + 32, char.spriteParams.texture, char.spriteParams.frame)
         .setDisplaySize(char.spriteParams.width / 1.5, char.spriteParams.height / 1.5);
       sprite.flipX = char.spriteParams.flip;
@@ -209,12 +237,9 @@ export default class BattleScene extends GeneralOverlayScene {
         64 / sprite.scaleX,
         64 / sprite.scaleY,
       );
-      sprite.setInteractive({
-        hitArea: clickableArea,
-        hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-      })
-        .on('pointerover', () => charNameText.setText(char.name)
-          .setVisible(true))
+      sprite
+        .setInteractive({ hitArea: clickableArea, hitAreaCallback: Phaser.Geom.Rectangle.Contains })
+        .on('pointerover', () => charNameText.setText(char.name).setVisible(true))
         .on('pointerout', () => charNameText.setVisible(false));
       this.turnOrderDisplayContainer.add(sprite);
     });

@@ -16,7 +16,7 @@ const physicalActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 0,
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 288 },
+    icon: { texture: 'icons', frame: 'icons/gems/red-round-stone' },
     parametersCost: { energy: 3 },
   },
   warmUp: {
@@ -36,7 +36,7 @@ const physicalActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 20 },
+    icon: { texture: 'icons', frame: 'icons/icons-and-status-effects/strength' },
     parametersCost: { energy: 3 },
   },
   adjustArmor: {
@@ -56,7 +56,7 @@ const physicalActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 119 },
+    icon: { texture: 'icons', frame: 'icons/clothes/chests/cuirass' },
     parametersCost: { energy: 3 },
   },
   setTrap: {
@@ -73,7 +73,7 @@ const physicalActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 0.1,
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 174 },
+    icon: { texture: 'icons', frame: 'icons/traps/trap-1' },
     parametersCost: { energy: 3 },
   },
   meleeAttack: {
@@ -90,7 +90,25 @@ const physicalActions: { [key: string]: ActionData } = {
     actionCost: 1,
     noticeable: 1,
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 95 },
+    icon: { texture: 'icons', frame: 'icons/weapons/melee/fist' },
+    parametersCost: { energy: 1 },
+  },
+  rangeAttack: {
+    actionId: 'rangeAttack',
+    phase: ['battle'],
+    type: 'physical',
+    actionName: 'Range attack',
+    actionDescription: 'Hits the opponent with equipped range weapon',
+    consumes: 'wooden-arrow',
+    effectsDescriptions: [{
+      effectId: 'physicalDamage',
+      strength: 1,
+    }],
+    target: 'enemy',
+    actionCost: 1,
+    noticeable: 1,
+    animation: 'rangeAttack',
+    icon: { texture: 'icons', frame: 'icons/weapons/ranged/bow-and-arrow' },
     parametersCost: { energy: 1 },
   },
   wildRush: {
@@ -111,7 +129,7 @@ const physicalActions: { [key: string]: ActionData } = {
       { conditionId: 'cursedSoil', probability: 0.75, conditionDisplayName: 'Cursed Soil' },
     ],
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 95 },
+    icon: { texture: 'icons', frame: 'icons/weapons/melee/fist' },
     parametersCost: { energy: 3 },
   },
 };
