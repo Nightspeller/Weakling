@@ -10,6 +10,7 @@ export function preloadWorldAssets(scene: Phaser.Scene) {
 
   scene.load.spritesheet('shadow-1', 'assets/images-extruded/characters/world-map/shadows/shadow-1.png', tilesetConfig);
   scene.load.spritesheet('fire', 'assets/images-extruded/animations/fire.png', tilesetConfig);
+  scene.load.spritesheet('fireflies', 'assets/images-extruded/animations/fireflies.png', tilesetConfig);
 }
 
 export function createWorldAnimations(scene: Phaser.Scene) {
@@ -32,4 +33,28 @@ function createDoorsAnimations(scene: Phaser.Scene) {
     frameRate: 10,
     repeat: 0,
   });
+}
+
+const fireflyTextures = ['firefly-1', 'firefly-2', 'firefly-3'];
+
+export function createFireflyAnimations(scene: Phaser.Scene) {
+  fireflyTextures.forEach((firefly, i) => {
+    scene.anims.create({
+      key: `${firefly}-state-1`,
+      frames: [{ key: firefly, frame: 2 ** (i + 1) }],
+    });
+    scene.anims.create({
+      key: `${firefly}-state-2`,
+      frames: [{ key: firefly, frame: (2 ** (i + 1)) + 1 }],
+    });
+    scene.anims.create({
+      key: `${firefly}-state-3`,
+      frames: [{ key: firefly, frame: (2 ** (i + 1)) + 2 }],
+    });
+    scene.anims.create({
+      key: `${firefly}-state-4`,
+      frames: [{ key: firefly, frame: (2 ** (i + 1)) + 3 }],
+    });
+  });
+  
 }
