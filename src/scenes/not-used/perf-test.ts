@@ -38,6 +38,10 @@ export default class TestPreloadScene extends Phaser.Scene {
     this.load.spritesheet('dirt2', 'assets/images-extruded/tilesets/dirt2.png', tilesetConfig);
     this.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
     this.load.spritesheet('water2', 'assets/images-extruded/tilesets/water2.png', tilesetConfig);
+    this.load.spritesheet('atmospheric-animations', 'assets/images/animations/atmospheric-animations.png', tilesetConfig);
+    this.load.spritesheet('tree2D_ss', 'assets/images-extruded/tilesets/tree2D_ss.png', tilesetConfig);
+    this.load.spritesheet('tree2B_ss', 'assets/images-extruded/tilesets/tree2B_ss.png', tilesetConfig);
+    this.load.spritesheet('Tree01A', 'assets/images-extruded/tilesets/Tree01A.png', tilesetConfig);
     this.load.spritesheet('grass1-dirt1', 'assets/images-extruded/tilesets/grass1-dirt1.png', tilesetConfig);
     this.load.spritesheet('grass1-dirt2', 'assets/images-extruded/tilesets/grass1-dirt2.png', tilesetConfig);
     this.load.spritesheet('grass1-dirt4', 'assets/images-extruded/tilesets/grass1-dirt4.png', tilesetConfig);
