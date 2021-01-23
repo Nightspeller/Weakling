@@ -68,7 +68,14 @@
             "height": 704,
             "width": 1280,
             "x": 3264,
-            "y": 2144
+            "y": 1536
+        },
+        {
+            "fileName": "tilemaps/forest.tmx",
+            "height": 1600,
+            "width": 1600,
+            "x": 4000,
+            "y": 2336
         }
     ],
     "onlyShowAdjacentMaps": false,

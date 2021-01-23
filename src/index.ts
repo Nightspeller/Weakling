@@ -23,6 +23,7 @@ import DungeonScene from './scenes/locations/dungeon/dungeon';
 import OptionsScene from './scenes/intro-and-main-menu/options';
 import BetweenVillageAndDungeonScene from './scenes/locations/roads/betweenVillageAndDungeon';
 import BetweenVillageAndCaltorScene from './scenes/locations/roads/betweenVillageAndCaltor';
+import Forest from './scenes/locations/roads/forest';
 import NahkhasCaveScene from './scenes/locations/village/nahkhasCave';
 import QuestLogScene from './scenes/overlays/questLog';
 import CryptScene from './scenes/locations/caltor/crypt';
@@ -40,6 +41,7 @@ import HoneywoodScene from './scenes/locations/honeywood/honeywood';
 
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
   BetweenVillageAndCaltorScene,
+  Forest,
   DungeonScene,
   DungeonLevel1Scene,
   HoneywoodScene,
