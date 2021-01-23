@@ -16,7 +16,7 @@ export default function preloadTilesetAssets(preloadScene: Scene) {
   preloadScene.load.spritesheet('dirt2', 'assets/images-extruded/tilesets/dirt2.png', tilesetConfig);
   preloadScene.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
   preloadScene.load.spritesheet('water2', 'assets/images-extruded/tilesets/water2.png', tilesetConfig);
-  preloadScene.load.spritesheet('jm-animations', 'assets/images/animations/jm-animations.png', tilesetConfig);
+  preloadScene.load.spritesheet('atmospheric-animations', 'assets/images/animations/atmospheric-animations.png', tilesetConfig);
   preloadScene.load.spritesheet('tree1B_ss_edit', 'assets/images-extruded/tilesets/tree1B_ss_edit.png', tilesetConfig);
   preloadScene.load.spritesheet('tree2D_ss', 'assets/images-extruded/tilesets/tree2D_ss.png', tilesetConfig);
   preloadScene.load.spritesheet('tree2B_ss', 'assets/images-extruded/tilesets/tree2B_ss.png', tilesetConfig);

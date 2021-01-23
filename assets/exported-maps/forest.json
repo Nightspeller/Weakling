@@ -21428,11 +21428,11 @@
         {
          "columns":15,
          "firstgid":2265,
-         "image":"..\/..\/src\/assets\/images\/animations\/jm-animations.png",
+         "image":"..\/..\/src\/assets\/images\/animations\/atmospheric-animations.png",
          "imageheight":510,
          "imagewidth":510,
          "margin":1,
-         "name":"jm-animations",
+         "name":"atmospheric-animations",
          "spacing":2,
          "tilecount":225,
          "tileheight":32,

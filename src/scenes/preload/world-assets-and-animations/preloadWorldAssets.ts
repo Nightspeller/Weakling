@@ -56,5 +56,4 @@ export function createFireflyAnimations(scene: Phaser.Scene) {
       frames: [{ key: firefly, frame: (2 ** (i + 1)) + 3 }],
     });
   });
-  
 }
