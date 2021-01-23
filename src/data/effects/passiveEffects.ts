@@ -4,6 +4,19 @@
 import { EffectData } from '../../types/my-types';
 
 const passiveEffects: { [key: string]: EffectData } = {
+  waiting: {
+    effectId: 'waiting',
+    name: 'Waiting',
+    description: 'This character patiently waits for others to finish their turns',
+    type: 'passive',
+    baseDuration: 1,
+    durationLeft: null,
+    strength: null,
+    source: null,
+    statusImage: { texture: 'icons', frame: 'icons/misc/hourglass' },
+    applicationCheck: (source, target, action) => true,
+    setModifier(source, target, action) {  },
+  },
   terrified: {
     effectId: 'terrified',
     name: 'Terrified',
@@ -13,7 +26,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 4 },
+    statusImage: { texture: 'icons', frame: 'icons/icons-and-status-effects/terrifying-smile' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.baseDuration = this.strength;
@@ -29,7 +42,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 62 },
+    statusImage: { texture: 'icons', frame: 'icons/icons-and-status-effects/spaced-out' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -48,7 +61,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 119 },
+    statusImage: { texture: 'icons', frame: 'icons/clothes/chests/cuirass' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -67,7 +80,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 60 },
+    statusImage: { texture: 'icons', frame: 'icons/icons-and-status-effects/evade' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -86,7 +99,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 20 },
+    statusImage: { texture: 'icons', frame: 'icons/icons-and-status-effects/strength' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -105,7 +118,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 124 },
+    statusImage: { texture: 'icons', frame: 'icons/icons-and-status-effects/swiftness' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -124,7 +137,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 19 },
+    statusImage: { texture: 'icons', frame: 'icons/icons-and-status-effects/brain' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -143,7 +156,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 62 },
+    statusImage: { texture: 'icons', frame: 'icons/icons-and-status-effects/spaced-out' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -162,7 +175,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 35 },
+    statusImage: { texture: 'icons', frame: 'icons/pointers-and-arrows/red-arrow-down-right' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -181,7 +194,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 36 },
+    statusImage: { texture: 'icons', frame: 'icons/pointers-and-arrows/green-curved-arrow-up' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {
@@ -200,7 +213,7 @@ const passiveEffects: { [key: string]: EffectData } = {
     durationLeft: null,
     strength: null,
     source: null,
-    statusImage: { texture: 'icons', frame: 57 },
+    statusImage: { texture: 'icons', frame: 'icons/spells-and-magic/fire-circle' },
     applicationCheck: (source, target, action) => true,
     setModifier(source, target, action) {
       this.modifier = {

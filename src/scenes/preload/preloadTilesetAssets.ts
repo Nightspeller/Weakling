@@ -17,11 +17,11 @@ export default function preloadTilesetAssets(preloadScene: Scene) {
   preloadScene.load.spritesheet('dirt4', 'assets/images-extruded/tilesets/dirt4.png', tilesetConfig);
   preloadScene.load.spritesheet('water2', 'assets/images-extruded/tilesets/water2.png', tilesetConfig);
   preloadScene.load.spritesheet('atmospheric-animations', 'assets/images/animations/atmospheric-animations.png', tilesetConfig);
-  preloadScene.load.spritesheet('tree1B_ss_edit', 'assets/images-extruded/tilesets/tree1B_ss_edit.png', tilesetConfig);
-  preloadScene.load.spritesheet('tree2D_ss', 'assets/images-extruded/tilesets/tree2D_ss.png', tilesetConfig);
-  preloadScene.load.spritesheet('tree2B_ss', 'assets/images-extruded/tilesets/tree2B_ss.png', tilesetConfig);
-  preloadScene.load.spritesheet('tree3B_ss', 'assets/images-extruded/tilesets/tree3B_ss.png', tilesetConfig);
-  preloadScene.load.spritesheet('Tree01A', 'assets/images-extruded/tilesets/Tree01A.png', tilesetConfig);
+  preloadScene.load.spritesheet('tree-emerald-thin', 'assets/images-extruded/tilesets/tree-emerald-thin.png', tilesetConfig);
+  preloadScene.load.spritesheet('tree-green-bushy', 'assets/images-extruded/tilesets/tree-green-bushy.png', tilesetConfig);
+  preloadScene.load.spritesheet('tree-green-thin', 'assets/images-extruded/tilesets/tree-green-thin.png', tilesetConfig);
+  preloadScene.load.spritesheet('tree-green-wide-edit', 'assets/images-extruded/tilesets/tree-green-wide-edit.png', tilesetConfig);
+  preloadScene.load.spritesheet('tree-green-willow', 'assets/images-extruded/tilesets/tree-green-willow.png', tilesetConfig);
   preloadScene.load.spritesheet('grass1-dirt1', 'assets/images-extruded/tilesets/grass1-dirt1.png', tilesetConfig);
   preloadScene.load.spritesheet('grass1-dirt2', 'assets/images-extruded/tilesets/grass1-dirt2.png', tilesetConfig);
   preloadScene.load.spritesheet('grass1-dirt4', 'assets/images-extruded/tilesets/grass1-dirt4.png', tilesetConfig);

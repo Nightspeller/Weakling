@@ -3,25 +3,15 @@ import { ItemData, Slots, SpriteParameters } from '../types/my-types';
 
 export default class Item implements ItemData {
   public itemId: string;
-
   public displayName: string;
-
   public description: string;
-
   public possibleSlots: Slots[];
-
   public sprite: SpriteParameters;
-
   public stackable: boolean;
-
   public modified: boolean;
-
   public quantity: number;
-
   public specifics: any;
-
   public sellPrice: number;
-
   public buyPrice: number;
 
   constructor(itemId: string, quantity = 1, options = {}) {

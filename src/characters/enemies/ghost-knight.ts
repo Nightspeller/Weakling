@@ -9,10 +9,10 @@ export default class GhostKnight extends GeneralEnemy {
   constructor() {
     super();
     this.spriteParams = {
-      texture: 'ghost-knight-idle', frame: 0, width: 300, height: 300, flip: true,
+      texture: 'knight-idle', frame: 0, width: 300, height: 300, flip: true,
     };
     this.level = 3;
-    this.availableActions = ['meleeAttack', 'fear'];
+
     this.name = 'Ghost of the Knight';
     this.characteristicsModifiers = {
       strength: [{ source: 'base', value: 20 }],
@@ -39,21 +39,36 @@ export default class GhostKnight extends GeneralEnemy {
     };
     this._recalculateCharacteristics();
     this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
-    this.actionPointsIncrement = { physical: 1, magical: 1, misc: 0 };
+    this.actionPointsIncrement = { physical: 1, magical: 0.5, misc: 1 };
 
-    this.animations.idle = 'ghost-knight_idle';
-    this.animations.move = 'ghost-knight_move';
-    this.animations.attack = 'ghost-knight_attack2';
-    this.animations.buff = 'ghost-knight_attack1';
-    this.animations.death = 'ghost-knight_death';
-    this.animations.hit = 'ghost-knight_hit';
+    this.availableActions = ['meleeAttack', 'fear', 'catchBreath'];
+
+    this.animations.idle = 'knight_idle';
+    this.animations.move = 'knight_move';
+    this.animations.attack = 'knight_attack2';
+    this.animations.buff = 'knight_attack1';
+    this.animations.death = 'knight_death';
+    this.animations.hit = 'knight_hit';
   }
 
-  public aiTurn = (disposition: Disposition): { action: ActionData, targets: (Adventurer | GeneralEnemy)[] } => {
-    const alivePlayers = disposition.playerCharacters.filter((char) => char.isAlive);
-    const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-    let action = 'meleeAttack';
-    if (this.actionPoints.magical >= 2) action = 'fear';
-    return { action: new Action(action/* , this */), targets: [randomAlivePlayer] };
+  public aiTurn = (disposition: Disposition): { action: ActionData | 'END TURN', targets: (Adventurer | GeneralEnemy)[] } => {
+    const pickedActionAndTargets: { action: ActionData | 'END TURN', targets: (Adventurer | GeneralEnemy)[] } = {
+      action: 'END TURN', targets: [],
+    };
+
+    // this will loop through the actions in order they specified and will execute first available action
+    this.availableActions.every((actionId) => {
+      const action = new Action(actionId);
+      const isAvailable = this.isActionAvailable(action);
+      if (isAvailable) {
+        pickedActionAndTargets.action = action;
+        // @ts-ignore
+        pickedActionAndTargets.targets = this.pickActionTargets(action, disposition);
+        return false;
+      }
+      return true;
+    });
+
+    return pickedActionAndTargets;
   };
 }

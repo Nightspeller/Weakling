@@ -8,6 +8,7 @@ import GeneralEnemy from '../../characters/enemies/generalEnemy';
 import { GAME_W } from '../../config/constants';
 import Action from '../../entities/action';
 import { ActionData } from '../../types/my-types';
+import RichBitmapText from '../../helpers/richBitmapText';
 
 const { Rectangle } = Phaser.Geom;
 
@@ -382,6 +383,20 @@ export default class ActionInterfaceDrawer {
       this.displayContainer.add(this.actionDescriptionContainer);
     }
   }
+
+  // TODO: replace with Bitmap text or something else for performance...
+/*  const endTurnText = new RichBitmapText(
+    {
+      scene: this.scene,
+      x: 800 / 2,
+      y: -40,
+      font: 'bitmapArial',
+      text: 'End Turn',
+      size: 22,
+      border: { color: 0x000000, alpha: 1, width: 1 },
+      fill: { color: 0x8ef000 }
+    }
+  ).setSize(100, 22).setInteractive({ useHandCursor: true });*/
 
   private drawEndTurnButton(resolve: Function) {
     const endTurnText = this.scene.add.text(

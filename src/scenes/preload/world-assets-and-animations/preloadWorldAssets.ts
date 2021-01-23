@@ -20,9 +20,11 @@ export function createWorldAnimations(scene: Phaser.Scene) {
 }
 
 function preloadDoorsAssets(scene: Phaser.Scene) {
-  scene.load.spritesheet('doors2-upscaled', 'assets/images/tilesets/doors2-upscaled.png', {
+  scene.load.spritesheet('doors2-upscaled', 'assets/images-extruded/tilesets/doors2-upscaled.png', {
     frameWidth: 32,
     frameHeight: 96,
+    margin: 1,
+    spacing: 2,
   });
 }
 

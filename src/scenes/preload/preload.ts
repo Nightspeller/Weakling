@@ -3,11 +3,12 @@ import { optionsInstance } from '../../config/optionsConfig';
 import { DEBUG } from '../../config/constants';
 import preloadTilesetAssets from './preloadTilesetAssets';
 import preloadTiledLocationMaps from './preloadTiledLocationMaps';
-import preloadInventoryAndItemsAssets from './preloadInventoryAndItemsAssets';
+import preloadInterfaceAndIconsAssets from './preloadInterfaceAndIconsAssets';
 import preloadAudioAssets from './preloadAudioAssets';
 import drawLoadingProgressBar from './drawLoadingProgressBar';
 import { preloadBattleAssets, createBattleAnimations } from './battle-assets-and-animations/preloadBattleAssets';
 import { preloadWorldAssets, createWorldAnimations } from './world-assets-and-animations/preloadWorldAssets';
+import preloadFonts from './preloadFonts';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -21,13 +22,10 @@ export default class PreloadScene extends Phaser.Scene {
     preloadWorldAssets(this);
     preloadAudioAssets(this);
     preloadTilesetAssets(this);
-    preloadInventoryAndItemsAssets(this);
+    preloadInterfaceAndIconsAssets(this);
     preloadTiledLocationMaps(this);
     preloadTilesetAssets(this);
-
-    // Interface
-    this.load.image('interface-24x19', 'assets/images-extruded/interface/interface-24x19.png');
-    this.load.image('main-menu-background', 'assets/images/interface/main-menu-background.jpg');
+    preloadFonts(this);
   }
 
   create() {
@@ -39,7 +37,11 @@ export default class PreloadScene extends Phaser.Scene {
 
     if (DEBUG) {
       const debugScene = 'WeaklingsCave';
-      // this.scene.start("Battle", {enemies: [{"type": "ghost-knight"}, {"type": "skeleton"}, {"type": "wizard"}, {"type": "wildBoar"}], background: 'cave-background', prevScene: "Caltor"});
+      /* this.scene.start('Battle', {
+        enemies: [{ type: 'ghost-knight' }, { type: 'ghost-knight' }, { type: 'skeleton' }, { type: 'wizard' }, { type: 'wildBoar' }],
+        background: 'cave-background',
+        prevScene: 'Caltor',
+      }); */
       console.log(`Preload done, starting ${debugScene}`);
       this.scene.start(debugScene, { prevScene: this.scene.key });
     } else {

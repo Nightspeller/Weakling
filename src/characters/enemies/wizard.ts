@@ -12,7 +12,6 @@ export default class Wizard extends GeneralEnemy {
       texture: 'wizard-idle', frame: 0, width: 231, height: 190, flip: true,
     };
     this.level = 1;
-    this.availableActions = ['magicMissile', 'swiftMind'];
     this.name = 'Wizard';
     this.characteristicsModifiers = {
       strength: [{ source: 'base', value: 10 }],
@@ -42,6 +41,8 @@ export default class Wizard extends GeneralEnemy {
     this.actionPointsBase = { physical: 0, magical: 1, misc: 0 };
     this.actionPointsIncrement = { physical: 0, magical: 1, misc: 1 };
 
+    this.availableActions = ['magicMissile', 'swiftMind', 'meditate'];
+
     this.animations.idle = 'wizard_idle';
     this.animations.move = 'wizard_move';
     this.animations.attack = 'wizard_attack2';
@@ -50,13 +51,31 @@ export default class Wizard extends GeneralEnemy {
     this.animations.hit = 'wizard_hit';
   }
 
-  public aiTurn = (disposition: Disposition): { action: ActionData, targets: (Adventurer | GeneralEnemy)[] } => {
-    const alivePlayers = disposition.playerCharacters.filter((char) => char.isAlive);
-    const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-    const action = this.currentEffects.some((effect) => effect.effectId === 'intelligenceUp') ? 'magicMissile' : 'swiftMind';
-    if (action === 'swiftMind') {
-      return { action: new Action(action/* , this */), targets: [this] };
-    }
-    return { action: new Action(action/* , this */), targets: [randomAlivePlayer] };
+  public aiTurn = (disposition: Disposition): { action: ActionData | 'END TURN', targets: (Adventurer | GeneralEnemy)[] } => {
+    const pickedActionAndTargets: { action: ActionData | 'END TURN', targets: (Adventurer | GeneralEnemy)[] } = {
+      action: 'END TURN', targets: [],
+    };
+
+    // this will loop through the actions in order they specified and will execute first available action
+    // swiftMind will be skipped if already applied.
+    this.availableActions.every((actionId) => {
+      const action = new Action(actionId);
+      const isAvailable = this.isActionAvailable(action);
+      if (isAvailable) {
+        if (actionId === 'swiftMind') {
+          const isIntelligenceUp = this.currentEffects.some((effect) => effect.effectId === 'intelligenceUp');
+          if (isIntelligenceUp) {
+            return true;
+          }
+        }
+        pickedActionAndTargets.action = action;
+        // @ts-ignore
+        pickedActionAndTargets.targets = this.pickActionTargets(action, disposition);
+        return false;
+      }
+      return true;
+    });
+
+    return pickedActionAndTargets;
   };
 }

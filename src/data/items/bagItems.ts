@@ -7,10 +7,7 @@ const bagItems: { [key: string]: ItemData } = {
     displayName: 'Basic sack',
     description: 'Small and lightweight bag designed to carry just a few items.',
     possibleSlots: ['bag', ...backpackSlotNames, ...containerSlotNames],
-    sprite: {
-      texture: 'icon-item-set',
-      frame: 320,
-    },
+    sprite: { texture: 'icons', frame: 'icons/bags/weaved-basket' },
     stackable: false,
     modified: false,
     specifics: {

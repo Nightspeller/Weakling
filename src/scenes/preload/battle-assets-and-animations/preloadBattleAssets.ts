@@ -13,15 +13,10 @@ export function preloadBattleAssets(preloadScene: Phaser.Scene) {
 
   preloadScene.load.image('cave-background', 'assets/images/interface/cave-background.png');
   preloadScene.load.image('field-background', 'assets/images/interface/field-background.png');
+
   preloadScene.load.spritesheet('action-points', 'assets/images/interface/action-points.png', {
     frameWidth: 16,
     frameHeight: 16,
-  });
-
-  // Icons with background for battle status effects
-  preloadScene.load.spritesheet('icons', 'assets/images/interface/icons-with-background.png', {
-    frameWidth: 32,
-    frameHeight: 32,
   });
 
   preloadScene.load.image('hit', 'assets/images/animations/hit.png');

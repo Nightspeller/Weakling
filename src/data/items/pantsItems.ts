@@ -7,10 +7,7 @@ const pantsItems: { [key: string]: ItemData } = {
     displayName: 'Leather pants',
     description: 'Basic leather pants',
     possibleSlots: ['pants', ...backpackSlotNames, ...containerSlotNames],
-    sprite: {
-      texture: 'icon-item-set',
-      frame: 123,
-    },
+    sprite: { texture: 'icons', frame: 'icons/clothes/pants/leather-shorts' },
     stackable: false,
     modified: false,
     specifics: {

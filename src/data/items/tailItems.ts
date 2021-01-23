@@ -7,7 +7,7 @@ export default {
     displayName: 'Fire marble',
     description: 'Enchanted stone which burns brightly upon impact.',
     possibleSlots: ['tail', ...backpackSlotNames, ...containerSlotNames],
-    sprite: { texture: 'icon-item-set', frame: 288 },
+    sprite: { texture: 'icons', frame: 'icons/gems/red-round-stone' },
     stackable: true,
     modified: false,
     specifics: {

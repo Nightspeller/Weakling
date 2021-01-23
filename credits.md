@@ -12,6 +12,9 @@ Graphics:
 - Wizard and some other characters - Luizmelo - https://luizmelo.itch.io/wizard-pack
 - Interface doll and slots - Heroes 3 - will be replaced, but, for now, thanks 3DO!
 - Copper coin - Loel - https://opengameart.org/content/coins-pixel-art-silver-gold-crystal-and-more
+- Icons - OwlishMedia - https://opengameart.org/users/owlishmedia
+- Icons - Curtis Merry - https://opengameart.org/content/30-ability-icons
+- Evolving bow assets - MUCommissions@gmail.com
 
 Audio:
 - Music by Darren Curtis - https://www.darrencurtismusic.com

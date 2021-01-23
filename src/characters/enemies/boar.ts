@@ -12,7 +12,6 @@ export default class Boar extends GeneralEnemy {
       texture: 'boar-avatar', frame: null, width: 96, height: 96,
     };
     this.level = 1;
-    this.availableActions = ['wildRush', 'enrage'];
     this.name = 'Wild Boar';
     this.characteristicsModifiers = {
       strength: [{ source: 'base', value: 10 }],
@@ -40,15 +39,35 @@ export default class Boar extends GeneralEnemy {
     this._recalculateCharacteristics();
     this.actionPointsBase = { physical: 1, magical: 0, misc: 0 };
     this.actionPointsIncrement = { physical: 1, magical: 0, misc: 1 };
+
+    this.availableActions = ['enrage', 'wildRush', 'catchBreath'];
   }
 
-  public aiTurn = (disposition: Disposition): { action: ActionData, targets: (Adventurer | GeneralEnemy)[] } => {
-    const alivePlayers = disposition.playerCharacters.filter((char) => char.isAlive);
-    const randomAlivePlayer = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
-    const action = this.currentEffects.some((effect) => effect.effectId === 'intelligenceDown') ? 'wildRush' : 'enrage';
-    if (action === 'enrage') {
-      return { action: new Action(action/* , this */), targets: [this] };
-    }
-    return { action: new Action(action/* , this */), targets: [randomAlivePlayer] };
+  public aiTurn = (disposition: Disposition): { action: ActionData | 'END TURN', targets: (Adventurer | GeneralEnemy)[] } => {
+    const pickedActionAndTargets: { action: ActionData | 'END TURN', targets: (Adventurer | GeneralEnemy)[] } = {
+      action: 'END TURN', targets: [],
+    };
+
+    // this will loop through the actions in order they specified and will execute first available action
+    // enrage will be skipped if already applied.
+    this.availableActions.every((actionId) => {
+      const action = new Action(actionId);
+      const isAvailable = this.isActionAvailable(action);
+      if (isAvailable) {
+        if (actionId === 'enrage') {
+          const isEnraged = this.currentEffects.some((effect) => effect.effectId === 'intelligenceDown');
+          if (isEnraged) {
+            return true;
+          }
+        }
+        pickedActionAndTargets.action = action;
+        // @ts-ignore
+        pickedActionAndTargets.targets = this.pickActionTargets(action, disposition);
+        return false;
+      }
+      return true;
+    });
+
+    return pickedActionAndTargets;
   };
 }

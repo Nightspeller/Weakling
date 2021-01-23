@@ -3,31 +3,31 @@ import { generatePotions } from '../../helpers/helperFunctions';
 import { ItemData } from '../../types/my-types';
 
 const healthPotions = generatePotions('health', [
-  { texture: 'potions', frame: 'small-red-potion' },
-  { texture: 'potions', frame: 'medium-red-potion' },
-  { texture: 'potions', frame: 'big-red-potion' },
-  { texture: 'potions', frame: 'giant-red-potion' },
+  { texture: 'icons', frame: 'icons/potions/red/small-red-potion' },
+  { texture: 'icons', frame: 'icons/potions/red/medium-red-potion' },
+  { texture: 'icons', frame: 'icons/potions/red/big-red-potion' },
+  { texture: 'icons', frame: 'icons/potions/red/giant-red-potion' },
 ]);
 
 const energyPotions = generatePotions('energy', [
-  { texture: 'potions', frame: 'small-green-potion' },
-  { texture: 'potions', frame: 'medium-green-potion' },
-  { texture: 'potions', frame: 'big-green-potion' },
-  { texture: 'potions', frame: 'giant-green-potion' },
+  { texture: 'icons', frame: 'icons/potions/green/small-green-potion' },
+  { texture: 'icons', frame: 'icons/potions/green/medium-green-potion' },
+  { texture: 'icons', frame: 'icons/potions/green/big-green-potion' },
+  { texture: 'icons', frame: 'icons/potions/green/giant-green-potion' },
 ]);
 
 const mannaPotions = generatePotions('manna', [
-  { texture: 'potions', frame: 'small-blue-potion' },
-  { texture: 'potions', frame: 'medium-blue-potion' },
-  { texture: 'potions', frame: 'big-blue-potion' },
-  { texture: 'potions', frame: 'giant-blue-potion' },
+  { texture: 'icons', frame: 'icons/potions/blue/small-blue-potion' },
+  { texture: 'icons', frame: 'icons/potions/blue/medium-blue-potion' },
+  { texture: 'icons', frame: 'icons/potions/blue/big-blue-potion' },
+  { texture: 'icons', frame: 'icons/potions/blue/giant-blue-potion' },
 ]);
 
 const strengthPotions = generatePotions('strength', [
-  { texture: 'potions', frame: 'small-yellow-potion' },
-  { texture: 'potions', frame: 'medium-yellow-potion' },
-  { texture: 'potions', frame: 'big-yellow-potion' },
-  { texture: 'potions', frame: 'giant-yellow-potion' },
+  { texture: 'icons', frame: 'icons/potions/yellow/small-yellow-potion' },
+  { texture: 'icons', frame: 'icons/potions/yellow/medium-yellow-potion' },
+  { texture: 'icons', frame: 'icons/potions/yellow/big-yellow-potion' },
+  { texture: 'icons', frame: 'icons/potions/yellow/giant-yellow-potion' },
 ]);
 
 const quickSlotItems: { [key: string]: ItemData } = {
@@ -40,7 +40,7 @@ const quickSlotItems: { [key: string]: ItemData } = {
     displayName: 'Trap kit',
     description: 'Simple trap kit',
     possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-    sprite: { texture: 'icon-item-set', frame: 174 },
+    sprite: { texture: 'icons', frame: 'icons/traps/trap-1' },
     stackable: true,
     modified: false,
     quantity: null,
@@ -55,7 +55,7 @@ const quickSlotItems: { [key: string]: ItemData } = {
     displayName: 'Beer',
     description: 'Local beer.',
     possibleSlots: [...quickSlotNames, ...backpackSlotNames, ...containerSlotNames],
-    sprite: { texture: 'icon-item-set', frame: 254 },
+    sprite: { texture: 'icons', frame: 'icons/food-and-drinks/coffee-cup' },
     stackable: true,
     modified: false,
     quantity: null,

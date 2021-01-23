@@ -15,7 +15,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 1,
     noticeable: 0,
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 53 },
+    icon: { texture: 'icons', frame: 'icons/misc/healing' },
     parametersCost: { manna: 3 },
   },
   fear: {
@@ -32,7 +32,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 2,
     noticeable: 1,
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 4 },
+    icon: { texture: 'icons', frame: 'icons/icons-and-status-effects/terrifying-smile' },
     parametersCost: { manna: 3 },
   },
   dustStorm: {
@@ -52,7 +52,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 1,
     noticeable: 1,
     animation: 'meleeAttack',
-    icon: { texture: 'edited', frame: 'Tornado' },
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/tornado-white' },
     parametersCost: { manna: 3 },
   },
   drainingSoil: {
@@ -70,7 +70,7 @@ const magicalActions: { [key: string]: ActionData } = {
     noticeable: 0,
     special: 'If the trap is on the way, trap gets cursed, both effects are +10%, if trap is placed on cursed land - gets cursed himself',
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 368 },
+    icon: { texture: 'icons', frame: 'icons/traps/cursed-soil' },
     parametersCost: { manna: 3 },
   },
   fireProtection: {
@@ -87,7 +87,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 1.5,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 57 },
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/fire-circle' },
     parametersCost: { manna: 3 },
   },
   swiftMind: {
@@ -107,7 +107,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 0,
     animation: 'castBuff',
-    icon: { texture: 'icon-item-set', frame: 19 },
+    icon: { texture: 'icons', frame: 'icons/icons-and-status-effects/brain' },
     parametersCost: { manna: 3 },
   },
   magicMissile: {
@@ -125,7 +125,7 @@ const magicalActions: { [key: string]: ActionData } = {
     noticeable: 1,
     triggers: [],
     animation: 'meleeAttack',
-    icon: { texture: 'icon-item-set', frame: 336 },
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/cast-spell' },
     parametersCost: { manna: 3 },
   },
   fireball: {
@@ -143,7 +143,7 @@ const magicalActions: { [key: string]: ActionData } = {
     noticeable: 1,
     triggers: [],
     animation: 'meleeAttack',
-    icon: { texture: 'icons-additional', frame: 'magic-swirl' },
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/fire-swirl' },
     parametersCost: { manna: 3 },
   },
 };

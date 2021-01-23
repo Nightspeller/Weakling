@@ -67,7 +67,7 @@ export interface ActionData {
   special?: string;
   consumes?: string;
   triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
-  animation: 'meleeAttack' | 'castAttack' | 'castBuff';
+  animation: 'meleeAttack' | 'rangeAttack' | 'castAttack' | 'castBuff';
   icon?: SpriteParameters;
   parametersCost?: { energy?: number, manna?: number };
 }

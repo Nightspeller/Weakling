@@ -57,6 +57,20 @@
             "y": 3200
         },
         {
+            "fileName": "tilemaps/booksStore.tmx",
+            "height": 256,
+            "width": 352,
+            "x": 3328,
+            "y": 576
+        },
+        {
+            "fileName": "tilemaps/tavern.tmx",
+            "height": 704,
+            "width": 1280,
+            "x": 3264,
+            "y": 1536
+        },
+        {
             "fileName": "tilemaps/forest.tmx",
             "height": 1600,
             "width": 1600,

@@ -28,6 +28,7 @@ module.exports = {
     'no-shadow': 'off',
     'no-param-reassign': 'off',
     'prefer-destructuring': 'off',
+    'linebreak-style': 0,
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     'import/extensions': [
       'error',

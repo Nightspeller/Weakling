@@ -42,6 +42,8 @@ export default class BodgerNpc extends GeneralNpc {
         { itemId: 'leather-armor', quantity: 1 },
         { itemId: 'leather-pants', quantity: 1 },
         { itemId: 'leather-boots', quantity: 1 },
+        { itemId: 'simple-bow', quantity: 1 },
+        { itemId: 'wooden-arrow', quantity: 10 },
       ],
     });
   }

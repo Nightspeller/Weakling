@@ -30,8 +30,8 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
 
     this.add([image, this.quantityText]);
     if (scene.scene.key === 'TraderOverlay') {
-      this.priceTag = scene.add.image(0, 23, 'price-tag-icons', 3).setScale(1.8, 1.2);
-      this.coinIcon = scene.add.image(17, 23, 'price-tag-icons', 0);
+      this.priceTag = scene.add.image(0, 23, 'icons', 'icons/misc/price-tag-green').setScale(1.8, 1.2);
+      this.coinIcon = scene.add.image(17, 23, 'icons', 'icons/coins/coin');
       this.itemPriceText = scene.add.text(10, 32, '', {
         font: '14px monospace',
         color: '#000000',
@@ -67,9 +67,9 @@ export default class ItemRepresentation extends Phaser.GameObjects.Container {
 
   public setPriceTagColor(color: 'green' | 'red') {
     if (color === 'green') {
-      this.priceTag.setFrame(3);
+      this.priceTag.setFrame('icons/misc/price-tag-green');
     } else if (color === 'red') {
-      this.priceTag.setFrame(4);
+      this.priceTag.setFrame('icons/misc/price-tag-red');
     } else {
       throw new Error('Not a valid color. The price tag should either be green or red');
     }

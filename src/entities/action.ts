@@ -1,5 +1,3 @@
-/* import Adventurer from '../characters/adventurers/adventurer';
-import GeneralEnemy from '../characters/enemies/generalEnemy'; */
 import actionsData from '../data/actionsData';
 import Effect from './effect';
 import { ActionData } from '../types/my-types';

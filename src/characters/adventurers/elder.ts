@@ -37,7 +37,7 @@ export default class Elder extends Adventurer {
 
     this.name = 'Elder Guarthh';
 
-    this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack'];
+    this.availableActions = ['meditate', 'dustStorm', 'healingTouch', 'drainingSoil', 'adjustArmor', 'warmUp', 'meleeAttack', 'wait', 'catchBreath'];
   }
 }
 
