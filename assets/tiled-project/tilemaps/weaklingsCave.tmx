@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="14">
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="14">
  <editorsettings>
   <export target="../../exported-maps/weaklingsCave.json" format="json"/>
  </editorsettings>
@@ -97,7 +97,7 @@
  <objectgroup id="13" name="Containers">
   <object id="5" name="Chest 1" type="Container" gid="861" x="192" y="128" width="32" height="32">
    <properties>
-    <property name="items" value="[{&quot;itemId&quot;: &quot;copper-pieces&quot;, &quot;quantity&quot;: 10}, {&quot;itemId&quot;: &quot;leather-armor&quot;, &quot;quantity&quot;: 1}, {&quot;itemId&quot;: &quot;rangers-hat&quot;, &quot;quantity&quot;: 1}]"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;copper-pieces&quot;, &quot;quantity&quot;: 16}, {&quot;itemId&quot;: &quot;leather-armor&quot;, &quot;quantity&quot;: 1}, {&quot;itemId&quot;: &quot;rangers-hat&quot;, &quot;quantity&quot;: 1}]"/>
     <property name="openedFrame" type="int" value="868"/>
    </properties>
   </object>

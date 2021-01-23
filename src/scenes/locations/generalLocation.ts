@@ -308,6 +308,8 @@ export default class GeneralLocation extends Phaser.Scene {
     this.setupAttackKey();
 
     this.setupRunKey();
+
+    this.setupDebugCollisionGraphics();
   }
 
   public createDroppedItem(item: Item | string, quantity = 1): Trigger {

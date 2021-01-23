@@ -816,7 +816,7 @@
                         {
                          "name":"toCoordinates",
                          "type":"string",
-                         "value":"{\"x\": -1, \"y\": -1}"
+                         "value":"{\"x\": 5, \"y\": 12}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -18551,7 +18551,7 @@
         {
          "columns":16,
          "firstgid":2241,
-         "image":"..\/images-extruded\/items\/icon-item-set.png",
+         "image":"..\/images-extruded\/interface\/icon-item-set.png",
          "imageheight":816,
          "imagewidth":544,
          "margin":1,
@@ -18593,7 +18593,7 @@
         {
          "columns":3,
          "firstgid":2649,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/shadows\/shadow-1.png",
+         "image":"..\/images-extruded\/characters\/world-map\/shadows\/shadow-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,

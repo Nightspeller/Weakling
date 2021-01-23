@@ -252,6 +252,7 @@ define(["require", "exports", "phaser", "../../characters/adventurers/player", "
             });
             this.setupAttackKey();
             this.setupRunKey();
+            this.setupDebugCollisionGraphics();
         }
         createDroppedItem(item, quantity = 1) {
             if (typeof item === 'string') {
