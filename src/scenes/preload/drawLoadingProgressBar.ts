@@ -1,16 +1,19 @@
 import { Scene } from 'phaser';
+import { GAME_H, GAME_W } from '../../config/constants';
 
 export default function drawLoadingProgressBar(preloadScene: Scene) {
+  const progressBarWidth = GAME_W / 2.5;
+  const progressBarHeight = GAME_H / 10;
+  const progressBarX = (GAME_W - progressBarWidth) / 2;
+  const progressBarY = (GAME_H - progressBarHeight) / 2;
   const progressBar = preloadScene.add.graphics();
   const progressBox = preloadScene.add.graphics();
   progressBox.fillStyle(0x222222, 0.8);
-  progressBox.fillRect(240, 270, 320, 50);
+  progressBox.fillRect(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
 
-  const { width } = preloadScene.cameras.main;
-  const { height } = preloadScene.cameras.main;
   const loadingText = preloadScene.make.text({
-    x: width / 2,
-    y: height / 2 - 70,
+    x: GAME_W / 2,
+    y: GAME_H / 2 - 70,
     text: 'Loading...',
     style: {
       font: '20px monospace',
@@ -20,8 +23,8 @@ export default function drawLoadingProgressBar(preloadScene: Scene) {
     .setOrigin(0.5, 0.5);
 
   const percentText = preloadScene.make.text({
-    x: width / 2,
-    y: height / 2 - 25,
+    x: GAME_W / 2,
+    y: GAME_H / 2,
     text: '0%',
     style: {
       font: '18px monospace',
@@ -31,8 +34,8 @@ export default function drawLoadingProgressBar(preloadScene: Scene) {
     .setOrigin(0.5, 0.5);
 
   const assetText = preloadScene.make.text({
-    x: width / 2,
-    y: height / 2 + 50,
+    x: GAME_W / 2,
+    y: GAME_H / 2 + 50,
     text: '',
     style: {
       font: '18px monospace',
@@ -45,7 +48,7 @@ export default function drawLoadingProgressBar(preloadScene: Scene) {
     percentText.setText(`${Math.floor(value * 100)}%`);
     progressBar.clear();
     progressBar.fillStyle(0xffffff, 1);
-    progressBar.fillRect(250, 280, 300 * value, 30);
+    progressBar.fillRect(progressBarX + 10, progressBarY + 10, (progressBarWidth - 20) * value, progressBarHeight - 20);
   });
 
   preloadScene.load.on('fileprogress', (file: any) => {

@@ -46,10 +46,12 @@ export default function drawInterface(scene: GeneralLocation) {
     const iconSprite = scene.add.sprite(buttonX, buttonY, button.icon.texture, button.icon.frame)
       .setOrigin(0, 0)
       .setScrollFactor(0)
+      .setDisplaySize(TILE_SIZE, TILE_SIZE)
       .setInteractive({ useHandCursor: true })
       .setDepth(10 - 1)
       .on('pointerdown', button.onClick);
 
+    // TODO: figure out why hover text does not work on half of the locations..
     const hoverText = scene.add.text(buttonX - TILE_SIZE, buttonY + TILE_SIZE, button.hoverText, {
       backgroundColor: 'lightgrey',
       color: 'black',
@@ -75,6 +77,7 @@ export default function drawInterface(scene: GeneralLocation) {
     const allItemsIconImage = scene.add.image(TILE_SIZE, TILE_SIZE, 'icons', 'icons/chests/overgrown-chest')
       .setOrigin(0, 0)
       .setScrollFactor(0)
+      .setDisplaySize(TILE_SIZE, TILE_SIZE)
       .setInteractive({ useHandCursor: true })
       .setDepth(10 - 1);
     allItemsIconImage.on('pointerdown', () => {
