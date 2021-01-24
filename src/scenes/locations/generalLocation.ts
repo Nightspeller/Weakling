@@ -11,6 +11,7 @@ import Trigger from '../../triggers/trigger';
 import prepareLog from '../../helpers/logger';
 import { SpriteParameters, TiledObjectProp } from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
+import drawInterface from './drawInterfaceButtons';
 
 export default class GeneralLocation extends Phaser.Scene {
   public player: Player;
@@ -90,11 +91,7 @@ export default class GeneralLocation extends Phaser.Scene {
       camera.startFollow(this.playerImage);
       camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
       camera.setDeadzone(200, 100);
-      this.showOpenInventoryIcon();
-      this.showToggleMenuIcon();
-      this.showToggleQuestLogIcon();
-      this.showAchievementsIcon();
-      if (DEBUG) this.showAllItemsIcon();
+      drawInterface(this);
     }
 
     const tilesets: Phaser.Tilemaps.Tileset[] = [];
@@ -296,7 +293,7 @@ export default class GeneralLocation extends Phaser.Scene {
     });
 
     this.events.on('wake', (scene: any, data: any) => {
-      if (data?.toCoordinates) {
+      if (data?.toCoordinates && data.toCoordinates.x !== -1) {
         this.playerImage.setPosition(data.toCoordinates.x * 32 + this.offsetX, data.toCoordinates.y * 32 + this.offsetY);
       }
       if (this.objectsHighlightBorders) this.objectsHighlightBorders.clear(true, true);
@@ -431,44 +428,6 @@ export default class GeneralLocation extends Phaser.Scene {
         }
       }
     }
-  }
-
-  public showOpenInventoryIcon(opts?: Object, closeCallback?: Function) {
-    // topMenuBackgroundGraphics
-    this.add.graphics()
-      .setScrollFactor(0)
-      .fillStyle(0xf0d191, 0.8)
-      .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 16, 16, 64 * 4, 64)
-      .lineStyle(3, 0x907748)
-      .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 16, 16, 64 * 4, 64)
-      .setDepth(10 - 1);
-
-    // inventoryGraphics
-    this.add.graphics()
-      .setScrollFactor(0)
-      .fillStyle(0xf0d191, 0.8)
-      .fillRect(+GAME_W - 32 - 32, 32, 32, 32)
-      .lineStyle(3, 0x907748)
-      .strokeRect(+GAME_W - 32 - 32, 32, 32, 32)
-      .setDepth(10 - 1);
-    const inventoryIconImage = this.add.image(+GAME_W - 32 - 32, 32, 'icons', 'icons/bags/green-bag')
-      .setOrigin(0, 0)
-      .setScrollFactor(0)
-      .setInteractive({ useHandCursor: true })
-      .setDepth(10 - 1);
-    inventoryIconImage.on('pointerdown', () => {
-      this.switchToScene('Inventory', {
-        opts,
-        closeCallback,
-      }, false);
-    });
-    this.input.keyboard.off('keyup-I');
-    this.input.keyboard.on('keyup-I', () => {
-      this.switchToScene('Inventory', {
-        opts,
-        closeCallback,
-      }, false);
-    });
   }
 
   public getMapObject(objectName: string, objectLayer = 'Objects'): Phaser.Types.Tilemaps.TiledObject {
@@ -618,33 +577,6 @@ export default class GeneralLocation extends Phaser.Scene {
     });
   }
 
-  private showToggleMenuIcon() {
-    // soundGraphics
-    this.add.graphics()
-      .setScrollFactor(0)
-      .fillStyle(0xf0d191, 0.8)
-      .fillRect(+GAME_W - 32 - 32 - 32 - 32, 32, 32, 32)
-      .lineStyle(3, 0x907748)
-      .strokeRect(+GAME_W - 32 - 32 - 32 - 32, 32, 32, 32)
-      .setDepth(10 - 1);
-    const menuIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32, 32, 'icons', 'icons/music/harp')
-      .setOrigin(0, 0)
-      .setScrollFactor(0)
-      .setInteractive({ useHandCursor: true })
-      .setDepth(10 - 1);
-    menuIconImage.on('pointerdown', () => {
-      this.switchToScene('Options', {}, false);
-    });
-    this.input.keyboard.off('keyup-O');
-    this.input.keyboard.on('keyup-O', () => {
-      this.switchToScene('Options', {}, false);
-    });
-    this.input.keyboard.off('keyup-ESC');
-    this.input.keyboard.on('keyup-ESC', () => {
-      this.switchToScene('Options', {}, false);
-    });
-  }
-
   private setupAttackKey() {
     this.input.keyboard.off('keydown-E');
     this.input.keyboard.on('keydown-E', () => {
@@ -655,70 +587,6 @@ export default class GeneralLocation extends Phaser.Scene {
       if (!isWalkAnimPlaying && !isAttackAnimPlaying) {
         this.playerImage.anims.play(`attack_${this.lastCursor}`, true);
       }
-    });
-  }
-
-  private showToggleQuestLogIcon() {
-    // questLogGraphics
-    this.add.graphics()
-      .setScrollFactor(0)
-      .fillStyle(0xf0d191, 0.8)
-      .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
-      .lineStyle(3, 0x907748)
-      .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
-      .setDepth(10 - 1);
-    const questLogIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32, 32, 'icons', 'icons/books-and-scrolls/book-with-bookmark')
-      .setOrigin(0, 0)
-      .setScrollFactor(0)
-      .setInteractive({ useHandCursor: true })
-      .setDepth(10 - 1);
-    questLogIconImage.on('pointerdown', () => {
-      this.switchToScene('QuestLog', {}, false);
-    });
-    this.input.keyboard.off('keyup-J');
-    this.input.keyboard.on('keyup-J', () => {
-      this.switchToScene('QuestLog', {}, false);
-    });
-  }
-
-  private showAchievementsIcon() {
-    // achievementsGraphics
-    this.add.graphics()
-      .setScrollFactor(0)
-      .fillStyle(0xf0d191, 0.8)
-      .fillRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
-      .lineStyle(3, 0x907748)
-      .strokeRect(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32, 32, 32, 32)
-      .setDepth(10 - 1);
-    const achievementsIconImage = this.add.image(+GAME_W - 32 - 32 - 32 - 32 - 32 - 32 - 32 - 32, 32, 'icons', 'icons/coins/large-coin-with-crown')
-      .setOrigin(0, 0)
-      .setScrollFactor(0)
-      .setInteractive({ useHandCursor: true })
-      .setDepth(10 - 1);
-    achievementsIconImage.on('pointerdown', () => {
-      this.switchToScene('Achievements', {}, false);
-    });
-    this.input.keyboard.off('keyup-K');
-    this.input.keyboard.on('keyup-K', () => {
-      this.switchToScene('Achievements', {}, false);
-    });
-  }
-
-  private showAllItemsIcon() {
-    this.add.graphics()
-      .setScrollFactor(0)
-      .fillStyle(0xf0d191, 0.8)
-      .fillRect(32, 32, 32, 32)
-      .lineStyle(3, 0x907748)
-      .strokeRect(32, 32, 32, 32)
-      .setDepth(10 - 1);
-    const allItemsIconImage = this.add.image(32, 32, 'icons', 'icons/chests/overgrown-chest')
-      .setOrigin(0, 0)
-      .setScrollFactor(0)
-      .setInteractive({ useHandCursor: true })
-      .setDepth(10 - 1);
-    allItemsIconImage.on('pointerdown', () => {
-      this.switchToScene('AllItems', {}, false);
     });
   }
 
