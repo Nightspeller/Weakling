@@ -816,7 +816,7 @@
                         {
                          "name":"toCoordinates",
                          "type":"string",
-                         "value":"{\"x\": 5, \"y\": 12}"
+                         "value":"{\"x\": -1, \"y\": -1}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -18579,7 +18579,7 @@
         {
          "columns":3,
          "firstgid":2637,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/cat-1.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/cat-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,

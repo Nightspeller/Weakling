@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="2020.09.09" name="base" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="1064" columns="8" objectalignment="topleft">
- <image source="../../images-extruded/tilesets/base.png" width="272" height="4522"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="base" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="1064" columns="8" objectalignment="topleft">
+ <image source="../../../src/assets/images-extruded/tilesets/base.png" width="272" height="4522"/>
  <tile id="0">
   <properties>
    <property name="collides" type="bool" value="true"/>
@@ -5323,59 +5323,8 @@
   </properties>
  </tile>
  <wangsets>
-  <wangset name="Stone wall" tile="-1">
-   <wangcolor name="Stone wall" color="#ff0000" tile="-1" probability="1"/>
-   <wangtile tileid="208" wangid="1,0,0,0,1,0,0,0"/>
-   <wangtile tileid="209" wangid="0,0,0,0,1,0,0,0"/>
-   <wangtile tileid="210" wangid="0,0,1,0,1,0,0,0"/>
-   <wangtile tileid="211" wangid="0,0,0,0,1,0,1,0"/>
-   <wangtile tileid="212" wangid="0,0,0,0,0,0,1,0"/>
-   <wangtile tileid="213" wangid="1,0,1,0,0,0,1,0"/>
-   <wangtile tileid="214" wangid="0,0,1,0,1,0,1,0"/>
-   <wangtile tileid="215" wangid="1,0,1,0,1,0,1,0"/>
-   <wangtile tileid="216" wangid="0,0,1,0,0,0,1,0"/>
-   <wangtile tileid="217" wangid="1,0,0,0,0,0,0,0"/>
-   <wangtile tileid="218" wangid="1,0,1,0,0,0,0,0"/>
-   <wangtile tileid="219" wangid="1,0,0,0,0,0,1,0"/>
-   <wangtile tileid="220" wangid="0,0,1,0,0,0,0,0"/>
-   <wangtile tileid="221" wangid="1,0,1,0,1,0,0,0"/>
-   <wangtile tileid="222" wangid="1,0,0,0,1,0,1,0"/>
-  </wangset>
-  <wangset name="Wooden wall" tile="-1">
-   <wangcolor name="" color="#ff9500" tile="-1" probability="1"/>
-   <wangtile tileid="176" wangid="1,0,0,0,1,0,0,0"/>
-   <wangtile tileid="177" wangid="0,0,0,0,1,0,0,0"/>
-   <wangtile tileid="178" wangid="0,0,1,0,1,0,0,0"/>
-   <wangtile tileid="179" wangid="0,0,0,0,1,0,1,0"/>
-   <wangtile tileid="180" wangid="0,0,0,0,0,0,1,0"/>
-   <wangtile tileid="181" wangid="1,0,1,0,0,0,1,0"/>
-   <wangtile tileid="182" wangid="0,0,1,0,1,0,1,0"/>
-   <wangtile tileid="183" wangid="1,0,1,0,1,0,1,0"/>
-   <wangtile tileid="184" wangid="0,0,1,0,0,0,1,0"/>
-   <wangtile tileid="185" wangid="1,0,0,0,0,0,0,0"/>
-   <wangtile tileid="186" wangid="1,0,1,0,0,0,0,0"/>
-   <wangtile tileid="187" wangid="1,0,0,0,0,0,1,0"/>
-   <wangtile tileid="188" wangid="0,0,1,0,0,0,0,0"/>
-   <wangtile tileid="189" wangid="1,0,1,0,1,0,0,0"/>
-   <wangtile tileid="190" wangid="1,0,0,0,1,0,1,0"/>
-  </wangset>
-  <wangset name="Iron wall" tile="-1">
-   <wangcolor name="" color="#0054ba" tile="-1" probability="1"/>
-   <wangtile tileid="192" wangid="1,0,0,0,1,0,0,0"/>
-   <wangtile tileid="193" wangid="0,0,0,0,1,0,0,0"/>
-   <wangtile tileid="194" wangid="0,0,1,0,1,0,0,0"/>
-   <wangtile tileid="195" wangid="0,0,0,0,1,0,1,0"/>
-   <wangtile tileid="196" wangid="0,0,0,0,0,0,1,0"/>
-   <wangtile tileid="197" wangid="1,0,1,0,0,0,1,0"/>
-   <wangtile tileid="198" wangid="0,0,1,0,1,0,1,0"/>
-   <wangtile tileid="199" wangid="1,0,1,0,1,0,1,0"/>
-   <wangtile tileid="200" wangid="0,0,1,0,0,0,1,0"/>
-   <wangtile tileid="201" wangid="1,0,0,0,0,0,0,0"/>
-   <wangtile tileid="202" wangid="1,0,1,0,0,0,0,0"/>
-   <wangtile tileid="203" wangid="1,0,0,0,0,0,1,0"/>
-   <wangtile tileid="204" wangid="0,0,1,0,0,0,0,0"/>
-   <wangtile tileid="205" wangid="1,0,1,0,1,0,0,0"/>
-   <wangtile tileid="206" wangid="1,0,0,0,1,0,1,0"/>
-  </wangset>
+  <wangset name="Stone wall" type="mixed" tile="-1"/>
+  <wangset name="Wooden wall" type="mixed" tile="-1"/>
+  <wangset name="Iron wall" type="mixed" tile="-1"/>
  </wangsets>
 </tileset>

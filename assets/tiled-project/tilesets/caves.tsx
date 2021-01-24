@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.1" name="caves" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="4096" columns="64">
- <image source="../../images-extruded/tilesets/caves.png" width="2176" height="2176"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="caves" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="4096" columns="64">
+ <image source="../../../src/assets/images-extruded/tilesets/caves.png" width="2176" height="2176"/>
  <tile id="0">
   <properties>
    <property name="collides" type="bool" value="true"/>

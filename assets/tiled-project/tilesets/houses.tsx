@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="2020.05.27" name="houses" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="1024" columns="32">
- <image source="../../images-extruded/tilesets/houses.png" width="1088" height="1088"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="houses" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="1024" columns="32">
+ <image source="../../../src/assets/images-extruded/tilesets/houses.png" width="1088" height="1088"/>
  <tile id="0">
   <properties>
    <property name="collides" type="bool" value="true"/>

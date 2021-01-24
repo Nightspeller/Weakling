@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="2020.09.09" name="long-grass" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="48" columns="8">
- <image source="../../images-extruded/tilesets/long-grass.png" width="272" height="204"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="long-grass" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="48" columns="8">
+ <image source="../../../src/assets/images-extruded/tilesets/long-grass.png" width="272" height="204"/>
  <wangsets>
-  <wangset name="Converted Terrains" tile="-1">
+  <wangset name="Converted Terrains" type="mixed" tile="-1">
    <wangcolor name="Long grass" color="#ff0000" tile="14" probability="1"/>
    <wangtile tileid="1" wangid="0,0,1,0,0,0,0,0"/>
    <wangtile tileid="2" wangid="0,0,1,0,0,0,1,0"/>

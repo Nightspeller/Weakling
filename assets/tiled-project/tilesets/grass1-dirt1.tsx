@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="2020.09.09" name="grass1-dirt1" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="48" columns="8">
- <image source="../../images-extruded/tilesets/grass1-dirt1.png" width="272" height="204"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="grass1-dirt1" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="48" columns="8">
+ <image source="../../../src/assets/images-extruded/tilesets/grass1-dirt1.png" width="272" height="204"/>
  <wangsets>
-  <wangset name="New Wang Set" tile="-1">
+  <wangset name="New Wang Set" type="mixed" tile="-1">
    <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>
    <wangtile tileid="1" wangid="0,0,1,0,0,0,0,0"/>
    <wangtile tileid="2" wangid="0,0,1,0,0,0,1,0"/>

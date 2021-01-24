@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="2020.05.27" name="wall-up" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="96" columns="8">
- <image source="../../images-extruded/tilesets/wall-up.png" width="272" height="408"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="wall-up" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="96" columns="8">
+ <image source="../../../src/assets/images-extruded/tilesets/wall-up.png" width="272" height="408"/>
  <tile id="0">
   <properties>
    <property name="collides" type="bool" value="true"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.1" name="caves-decoration-animated-b" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="32" columns="4">
- <image source="../../images-extruded/tilesets/caves-decoration-animated-b.png" width="136" height="272"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="caves-decoration-animated-b" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="32" columns="4">
+ <image source="../../../src/assets/images-extruded/tilesets/caves-decoration-animated-b.png" width="136" height="272"/>
  <tile id="0">
   <animation>
    <frame tileid="0" duration="1000"/>

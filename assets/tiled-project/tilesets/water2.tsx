@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="2020.09.09" name="water2" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="384" columns="64">
- <image source="../../images-extruded/tilesets/water2.png" width="2176" height="204"/>
+<tileset version="1.4" tiledversion="2020.12.18" name="water2" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="384" columns="64">
+ <image source="../../../src/assets/images-extruded/tilesets/water2.png" width="2176" height="204"/>
  <tile id="0">
   <properties>
    <property name="collides" type="bool" value="true"/>
@@ -2262,7 +2262,7 @@
   </properties>
  </tile>
  <wangsets>
-  <wangset name="Converted Terrains" tile="-1">
+  <wangset name="Converted Terrains" type="mixed" tile="-1">
    <wangcolor name="Water" color="#ff0000" tile="70" probability="1"/>
    <wangtile tileid="1" wangid="0,0,1,0,0,0,0,0"/>
    <wangtile tileid="2" wangid="0,0,1,0,0,0,1,0"/>
