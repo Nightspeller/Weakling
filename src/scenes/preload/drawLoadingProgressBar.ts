@@ -19,8 +19,7 @@ export default function drawLoadingProgressBar(preloadScene: Scene) {
       font: '20px monospace',
       color: '#ffffff',
     },
-  })
-    .setOrigin(0.5, 0.5);
+  }).setOrigin(0.5, 0.5);
 
   const percentText = preloadScene.make.text({
     x: GAME_W / 2,
@@ -30,8 +29,7 @@ export default function drawLoadingProgressBar(preloadScene: Scene) {
       font: '18px monospace',
       color: '#ffffff',
     },
-  })
-    .setOrigin(0.5, 0.5);
+  }).setOrigin(0.5, 0.5);
 
   const assetText = preloadScene.make.text({
     x: GAME_W / 2,
@@ -41,8 +39,7 @@ export default function drawLoadingProgressBar(preloadScene: Scene) {
       font: '18px monospace',
       color: '#ffffff',
     },
-  })
-    .setOrigin(0.5, 0.5);
+  }).setOrigin(0.5, 0.5);
 
   preloadScene.load.on('progress', (value: number) => {
     percentText.setText(`${Math.floor(value * 100)}%`);

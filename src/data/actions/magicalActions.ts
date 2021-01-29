@@ -69,7 +69,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 0.5,
     noticeable: 0,
     special: 'If the trap is on the way, trap gets cursed, both effects are +10%, if trap is placed on cursed land - gets cursed himself',
-    animation: 'meleeAttack',
+    animation: 'meleeCast',
     icon: { texture: 'icons', frame: 'icons/traps/cursed-soil' },
     parametersCost: { manna: 3 },
   },

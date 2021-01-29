@@ -16,7 +16,7 @@ export default class Action implements ActionData {
   public special?: string;
   public requires?: string;
   public triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
-  public animation: 'meleeAttack' | 'castAttack' | 'castBuff';
+  public animation: 'meleeAttack' | 'rangeAttack' | 'meleeCast' | 'rangeCast' | 'castBuff';
   public icon?: { texture: string, frame: number | string };
   public parametersCost?: { energy?: number, manna?: number };
 

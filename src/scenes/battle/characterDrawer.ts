@@ -7,7 +7,7 @@ import GeneralEnemy from '../../characters/enemies/generalEnemy';
 import {
   ACTION_POINT_HEIGHT, ACTION_POINT_WIDTH, BATTLE_CHAR_HEIGHT, BATTLE_CHAR_WIDTH,
 } from '../../config/constants';
-import { EffectData } from '../../types/my-types';
+import { EffectData, SpriteParameters } from '../../types/my-types';
 import ProgressBar from '../../helpers/progressBar';
 
 const { Rectangle } = Phaser.Geom;
@@ -402,7 +402,7 @@ export default class CharacterDrawer {
           ease: 'Back.easeOut',
           duration: 300,
           yoyo: true,
-          onComplete: () => {
+          onYoyo: () => {
             resolve();
           },
         });
@@ -410,9 +410,67 @@ export default class CharacterDrawer {
     });
   }
 
-  public playRangedProjectileAnimation(targetX: number, targetY: number) {
+  public playMeleeCastAnimation(targetX: number, targetY: number) {
     return new Promise<void>((resolve) => {
-      const projectile = this.scene.add.sprite(this.mainImage.x, this.mainImage.y, 'icons', 'icons/weapons/ranged/arrow-evolving-green-1');
+      const initialImageDepth = this.mainImage.depth;
+      this.mainImage.setDepth(5);
+      if (this.char.animations?.meleeCast) {
+        this.mainImage.anims.play({ key: this.char.animations.idle, repeat: 0 })
+          .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+            this.mainImage.anims.play({ key: this.char.animations.meleeCast, repeat: 0 })
+              .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+                this.mainImage.setDepth(initialImageDepth);
+                resolve();
+              });
+          });
+      } else {
+        this.scene.tweens.add({
+          targets: this.mainImage,
+          props: {
+            x: { value: targetX },
+            y: { value: targetY },
+          },
+          ease: 'Back.easeOut',
+          delay: 300,
+          duration: 500,
+          yoyo: true,
+          onComplete: () => {
+            this.mainImage.setDepth(initialImageDepth);
+            resolve();
+          },
+        });
+      }
+    });
+  }
+
+  public playRangeCastAnimation() {
+    return new Promise<void>((resolve) => {
+      if (this.char.animations.rangeCast) {
+        this.mainImage.anims.play(this.char.animations.rangeCast);
+        this.mainImage.once('animationcomplete', () => {
+          this.playIdleAnimation();
+          resolve();
+        });
+      } else {
+        this.scene.tweens.add({
+          targets: this.mainImage,
+          props: {
+            x: { value: this.mainImage.x + 30 }
+          },
+          ease: 'Back.easeOut',
+          duration: 300,
+          yoyo: true,
+          onYoyo: () => {
+            resolve();
+          },
+        });
+      }
+    });
+  }
+
+  public playRangedProjectileAnimation(targetX: number, targetY: number, projectileSpriteParams: SpriteParameters = {texture: 'icons', frame: 'icons/weapons/ranged/arrow-evolving-green-1'}) {
+    return new Promise<void>((resolve) => {
+      const projectile = this.scene.add.sprite(this.mainImage.x, this.mainImage.y, projectileSpriteParams.texture, projectileSpriteParams.frame);
       this.scene.tweens.add({
         targets: projectile,
         props: {

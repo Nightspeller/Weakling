@@ -3,10 +3,10 @@ import { createSkeletonAnimations, preloadSkeletonAssets } from './preloadAndCre
 import { createKnightAnimations, preloadKnightAssets } from './preloadAndCreateKnightAnimations';
 import { createWizardAminations, preloadWizardAssets } from './preloadAndCreateWizardAnimations';
 import { preloadCyclopsBatAssets, createCyclopsBatAnimations } from './preloadAndCreateCyclopsBatAnimations';
+import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingAnimations';
 
 export function preloadBattleAssets(preloadScene: Phaser.Scene) {
   // Battle characters images
-  preloadScene.load.image('weakling', 'assets/images/characters/battle/party/weakling.png');
   preloadScene.load.image('elder', 'assets/images/characters/battle/party/elder.png');
   preloadScene.load.image('boar-avatar', 'assets/images/characters/battle/enemies/boar.png');
   preloadScene.load.image('dead-character', 'assets/images/characters/battle/dead-character.png');
@@ -26,6 +26,7 @@ export function preloadBattleAssets(preloadScene: Phaser.Scene) {
   preloadKnightAssets(preloadScene);
   preloadWizardAssets(preloadScene);
   preloadCyclopsBatAssets(preloadScene);
+  preloadWeaklingAssets(preloadScene);
 }
 
 export function createBattleAnimations(scene: Phaser.Scene) {
@@ -34,6 +35,7 @@ export function createBattleAnimations(scene: Phaser.Scene) {
   createKnightAnimations(scene);
   createWizardAminations(scene);
   createCyclopsBatAnimations(scene);
+  createWeaklingAnimations(scene);
 }
 
 function preloadCastAssets(scene: Phaser.Scene) {

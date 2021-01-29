@@ -159,9 +159,47 @@ export default class BattleScene extends GeneralOverlayScene {
           attackX = targetDrawer.position.x;
           attackY = targetDrawer.position.y;
         }
-        await Promise.all([
-          charDrawer.playRangedAttackAnimation(),
-          charDrawer.playRangedProjectileAnimation(attackX, attackY)]);
+        await charDrawer.playRangedAttackAnimation();
+        await charDrawer.playRangedProjectileAnimation(attackX, attackY);
+        targets.forEach((target, index: number) => {
+          if (succeeded[index] && targets[index] !== char) {
+            this.playAnimation(targets[index], 'hit');
+          } else {
+            this.playAnimation(targets[index], 'miss');
+          }
+        });
+        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+        break;
+      }
+      case 'meleeCast': {
+        let attackX = 600;
+        let attackY = 320;
+        if (targetDrawer) {
+          attackX = targetDrawer.position.x;
+          attackY = targetDrawer.position.y;
+        }
+        await charDrawer.playMoveAnimation(attackX + (animatingEnemy ? 96 : -96), attackY);
+        await charDrawer.playMeleeCastAnimation(attackX, attackY);
+        targets.forEach((target, index: number) => {
+          if (succeeded[index] && targets[index] !== char) {
+            this.playAnimation(targets[index], 'hit');
+          } else {
+            this.playAnimation(targets[index], 'miss');
+          }
+        });
+        await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
+        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+        break;
+      }
+      case 'rangeCast': {
+        let attackX = 600;
+        let attackY = 320;
+        if (targetDrawer) {
+          attackX = targetDrawer.position.x;
+          attackY = targetDrawer.position.y;
+        }
+        await charDrawer.playRangeCastAnimation();
+        await charDrawer.playRangedProjectileAnimation(attackX, attackY, { texture: 'icons', frame: 'icons/gems/red-round-stone' });
         targets.forEach((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
             this.playAnimation(targets[index], 'hit');

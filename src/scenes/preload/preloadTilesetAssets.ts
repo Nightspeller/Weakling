@@ -22,6 +22,7 @@ export default function preloadTilesetAssets(preloadScene: Scene) {
   preloadScene.load.spritesheet('tree-green-thin', 'assets/images-extruded/tilesets/tree-green-thin.png', tilesetConfig);
   preloadScene.load.spritesheet('tree-green-wide-edit', 'assets/images-extruded/tilesets/tree-green-wide-edit.png', tilesetConfig);
   preloadScene.load.spritesheet('tree-green-willow', 'assets/images-extruded/tilesets/tree-green-willow.png', tilesetConfig);
+  preloadScene.load.spritesheet('tree-red-thin', 'assets/images-extruded/tilesets/tree-red-thin.png', tilesetConfig);
   preloadScene.load.spritesheet('grass1-dirt1', 'assets/images-extruded/tilesets/grass1-dirt1.png', tilesetConfig);
   preloadScene.load.spritesheet('grass1-dirt2', 'assets/images-extruded/tilesets/grass1-dirt2.png', tilesetConfig);
   preloadScene.load.spritesheet('grass1-dirt4', 'assets/images-extruded/tilesets/grass1-dirt4.png', tilesetConfig);

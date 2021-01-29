@@ -17,7 +17,7 @@ export class Player extends Adventurer {
     super();
     this.name = 'Weakling';
     this.spriteParams = {
-      texture: 'weakling', frame: null, width: 96, height: 96,
+      texture: 'weakling-battle', frame: 7, width: 144, height: 96,
     };
     this.worldImageSpriteParams = { texture: 'jeremy-green', frame: 1 };
     this.quests = [];
@@ -44,6 +44,15 @@ export class Player extends Adventurer {
 
     this._recalculateCharacteristics();
 
+    this.animations.idle = 'weakling_idle';
+    this.animations.move = 'weakling_move';
+    this.animations.attack = 'weakling_attack1';
+    this.animations.meleeCast = 'weakling_cast';
+    this.animations.rangeCast = 'weakling_cast';
+    this.animations.buff = 'weakling_buff';
+    this.animations.death = 'weakling_death';
+    this.animations.hit = 'weakling_hit';
+
     if (DEBUG) {
       this.characteristics.health = 50;
       this.parameters.health = 50;
@@ -60,6 +69,7 @@ export class Player extends Adventurer {
           this.addItemToInventory('trap-kit'); */
       this.addItemToInventory('apple', 5);
       this.addItemToInventory('carrot', 3);
+      this.addItemToInventory('fire-marble', 3, 'tail');
 
       /* this.addQuest('theSelflessSpirit');
            this.updateQuest('theSelflessSpirit', 'falseNameLearned');

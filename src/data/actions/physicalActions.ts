@@ -15,7 +15,7 @@ const physicalActions: { [key: string]: ActionData } = {
     target: 'enemy',
     actionCost: 0.5,
     noticeable: 0,
-    animation: 'meleeAttack',
+    animation: 'rangeCast',
     icon: { texture: 'icons', frame: 'icons/gems/red-round-stone' },
     parametersCost: { energy: 3 },
   },
