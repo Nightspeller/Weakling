@@ -214,21 +214,6 @@
                  "name":"Secret stash",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"disableWhenEmpty",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"instantPickup",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"copper-pieces\", \"quantity\": 8}]"
@@ -237,11 +222,6 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":45
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -262,11 +242,6 @@
                  "name":"Apple 1",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -285,16 +260,6 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -310,11 +275,6 @@
                  "name":"Apple 2",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -328,21 +288,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -358,11 +303,6 @@
                  "name":"Apple 5",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -381,16 +321,6 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -406,11 +336,6 @@
                  "name":"Apple 9",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -424,21 +349,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -454,11 +364,6 @@
                  "name":"Apple 4",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -472,21 +377,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -502,11 +392,6 @@
                  "name":"Apple 7",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -520,21 +405,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -550,11 +420,6 @@
                  "name":"Apple 3",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -568,21 +433,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -598,11 +448,6 @@
                  "name":"Apple 10",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -616,21 +461,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -646,11 +476,6 @@
                  "name":"Apple 8",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -664,21 +489,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -694,11 +504,6 @@
                  "name":"Apple 6",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -712,21 +517,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"apple\", \"quantity\": 2}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -884,11 +674,6 @@
                          "value":"betweenVillageAndCaltor_waymark"
                         }, 
                         {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
@@ -916,11 +701,6 @@
                          "value":"betweenVillageAndCaltor_garden_sign"
                         }, 
                         {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
@@ -940,6 +720,215 @@
         }, 
         {
          "draworder":"topdown",
+         "id":19,
+         "name":"Butterflies",
+         "objects":[
+                {
+                 "height":0,
+                 "id":37,
+                 "name":"Butterfly",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1392,
+                 "y":750
+                }, 
+                {
+                 "height":0,
+                 "id":48,
+                 "name":"Butterfly",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1680,
+                 "y":110.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":58,
+                 "name":"Butterfly",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":271,
+                 "y":81
+                }, 
+                {
+                 "height":0,
+                 "id":59,
+                 "name":"Butterfly",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":653.5,
+                 "y":750
+                }, 
+                {
+                 "height":0,
+                 "id":61,
+                 "name":"Butterfly",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1070,
+                 "y":431
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":20,
+         "name":"Destinationpoints",
+         "objects":[
+                {
+                 "height":0,
+                 "id":31,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1901.16666666667,
+                 "y":527.083333333333
+                }, 
+                {
+                 "height":0,
+                 "id":32,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1774.33333333333,
+                 "y":782
+                }, 
+                {
+                 "height":0,
+                 "id":33,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1549.5,
+                 "y":527.5
+                }, 
+                {
+                 "height":0,
+                 "id":34,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1387.83333333333,
+                 "y":432.166666666667
+                }, 
+                {
+                 "height":0,
+                 "id":46,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1905,
+                 "y":302.625
+                }, 
+                {
+                 "height":0,
+                 "id":49,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1040,
+                 "y":657
+                }, 
+                {
+                 "height":0,
+                 "id":50,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1135,
+                 "y":78
+                }, 
+                {
+                 "height":0,
+                 "id":53,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":462,
+                 "y":657.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":54,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":174.666666666667,
+                 "y":526.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":55,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":110.666666666667,
+                 "y":175.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":56,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":943.333333333333,
+                 "y":430.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":57,
+                 "name":"Flower",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":847,
+                 "y":240
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":18,
          "name":"NPCs",
          "objects":[
@@ -948,12 +937,6 @@
                  "height":32,
                  "id":7,
                  "name":"Grave",
-                 "properties":[
-                        {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }],
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,
@@ -967,8 +950,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":19,
- "nextobjectid":29,
+ "nextlayerid":21,
+ "nextobjectid":63,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2020.12.18",
@@ -977,7 +960,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/base.png",
+         "image":"..\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -10571,229 +10554,31 @@
          "tilewidth":32,
          "wangsets":[
                 {
-                 "colors":[
-                        {
-                         "color":"#ff0000",
-                         "name":"Stone wall",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Stone wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":208,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":209,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":210,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":211,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":212,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":213,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":214,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":215,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":216,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":217,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":218,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":219,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":220,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":221,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":222,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }, 
                 {
-                 "colors":[
-                        {
-                         "color":"#ff9500",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Wooden wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":176,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":177,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":178,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":179,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":180,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":181,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":182,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":183,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":184,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":185,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":186,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":187,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":188,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":189,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":190,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }, 
                 {
-                 "colors":[
-                        {
-                         "color":"#0054ba",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Iron wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":192,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":193,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":194,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":195,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":196,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":197,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":198,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":199,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":200,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":201,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":202,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":203,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":204,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":205,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":206,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }]
         }, 
         {
          "columns":8,
          "firstgid":1065,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/dirt4.png",
+         "image":"..\/images-extruded\/tilesets\/dirt4.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -10872,7 +10657,7 @@
         {
          "columns":8,
          "firstgid":1113,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass1-dirt2.png",
+         "image":"..\/images-extruded\/tilesets\/grass1-dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -11083,7 +10868,7 @@
         {
          "columns":12,
          "firstgid":1161,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/base-addition.png",
+         "image":"..\/images-extruded\/tilesets\/base-addition.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,
@@ -18010,7 +17795,7 @@
         {
          "columns":8,
          "firstgid":1929,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/flowers.png",
+         "image":"..\/images-extruded\/tilesets\/flowers.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -18089,7 +17874,7 @@
         {
          "columns":64,
          "firstgid":1977,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/water2.png",
+         "image":"..\/images-extruded\/tilesets\/water2.png",
          "imageheight":204,
          "imagewidth":2176,
          "margin":1,
@@ -22879,7 +22664,7 @@
         {
          "columns":8,
          "firstgid":2361,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/long-grass.png",
+         "image":"..\/images-extruded\/tilesets\/long-grass.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
