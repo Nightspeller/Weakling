@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as Phaser from 'phaser';
-import { sceneEvents } from '../../triggers/EventsCenter';
+import { sceneEvents } from '../../triggers/eventsCenter';
 
 enum ButterflyState
 {

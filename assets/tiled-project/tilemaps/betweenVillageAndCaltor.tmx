@@ -214,7 +214,7 @@
   <object id="59" name="Butterfly" x="653.5" y="750"/>
   <object id="61" name="Butterfly" x="1070" y="431"/>
  </objectgroup>
- <objectgroup id="20" name="Destinationpoints">
+ <objectgroup id="20" name="DestinationPoints">
   <object id="31" name="Flower" x="1901.17" y="527.083"/>
   <object id="32" name="Flower" x="1774.33" y="782"/>
   <object id="33" name="Flower" x="1549.5" y="527.5"/>

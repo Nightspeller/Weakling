@@ -2,16 +2,16 @@ import * as Phaser from 'phaser';
 import GeneralLocation from '../generalLocation';
 import GraveNpc from '../../../triggers/npcs/betweenVillageAndCaltor/graveNpc';
 
-import { sceneEvents } from '../../../triggers/EventsCenter';
+import { sceneEvents } from '../../../triggers/eventsCenter';
 
-import DestinationPoint from '../../../characters/creatures/DestinationPoint';
-import Butterfly from '../../../characters/creatures/Butterfly';
+import DestinationPoint from '../../../characters/creatures/destinationPoint';
+import Butterfly from '../../../characters/creatures/butterfly';
 
 import findPath from '../../../helpers/findPath';
 
 export default class BetweenVillageAndCaltorScene extends GeneralLocation {
   private destinationPoints!: Phaser.Physics.Arcade.Group
-  private butterFlies!: Phaser.Physics.Arcade.Group
+  private butterflies!: Phaser.Physics.Arcade.Group
 
   constructor() {
     super({ key: 'BetweenVillageAndCaltor' });
@@ -34,13 +34,13 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
       classType: DestinationPoint,
     });
 
-    this.map.getObjectLayer('Destinationpoints')?.objects.forEach((destinationPointObj) => {
+    this.map.getObjectLayer('DestinationPoints')?.objects.forEach((destinationPointObj) => {
       this.destinationPoints.get(
         destinationPointObj.x, destinationPointObj.y, 'base', 55,
       );
     });
 
-    this.butterFlies = this.physics.add.group({
+    this.butterflies = this.physics.add.group({
       classType: Butterfly,
       createCallback: (butterflyGameObject) => {
         const butterflyColors = ['blue', 'pink', 'green', 'yellow'];
@@ -61,7 +61,7 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
     });
 
     this.map.getObjectLayer('Butterflies')?.objects.forEach((butterflyObject) => {
-      this.butterFlies.get(
+      this.butterflies.get(
         butterflyObject.x,
         butterflyObject.y, 'butterflies',
       );
@@ -73,7 +73,6 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
   setupEvents() {
     sceneEvents.on('butterfly-reached-destination-point', (butterfly: Phaser.Physics.Arcade.Sprite) => {
       const butteflyGameObj = butterfly as Butterfly;
-      butteflyGameObj.body.onCollide = true;
       const destinationPoints = this.destinationPoints.getChildren();
       const randomDestinationPoint = destinationPoints[Phaser.Math.Between(0, destinationPoints.length - 1)] as DestinationPoint;
 

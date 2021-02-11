@@ -1,9 +1,9 @@
 import * as Phaser from 'phaser';
 import GeneralLocation from '../generalLocation';
 
-import FireflyPool, { KEY_FIREFLY } from '../../../characters/creatures/FireflyPool';
+import FireflyPool, { KEY_FIREFLY } from '../../../characters/creatures/fireflyPool';
 
-import FireFly from '../../../characters/creatures/FireFly';
+import Firefly from '../../../characters/creatures/firefly';
 
 export default class Forest extends GeneralLocation {
   private fireflyGroup?: FireflyPool
@@ -83,7 +83,7 @@ export default class Forest extends GeneralLocation {
   }
 
   updateFireflyPosition() {
-    this.fireflyGroup.getChildren().forEach((firefly: FireFly) => {
+    this.fireflyGroup.getChildren().forEach((firefly: Firefly) => {
       if (firefly === null) {
         return;
       }
