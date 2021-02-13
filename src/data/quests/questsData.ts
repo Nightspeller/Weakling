@@ -93,6 +93,28 @@ const questsData: { [key: string]: Quest } = {
     },
     currentStates: ['started'],
   },
+  lostInTheWoods: {
+    questId: 'lostInTheWoods',
+    questName: 'Lost in the woods',
+    questReward: { items: [{ itemId: 'chocolatePie', quantity: 1 }], xp: 3 },
+    availableStates: {
+      started: 'Ajika, baker from the Honeywood, asked you to look for her son in the forrest north-east of the village.',
+      kaiFound: 'You found the missing boy - time to bring him home.',
+      completed: 'Kai is at home, safe and sound, thanks to you!',
+    },
+    currentStates: ['started'],
+  },
+  lostInTheWoodsPartTwo: {
+    questId: 'lostInTheWoodsPartTwo',
+    questName: 'Lost in the woods, part two',
+    questReward: { items: [{ itemId: 'chocolatePie', quantity: 1 }], xp: 3 },
+    availableStates: {
+      started: 'You learned that Ajika\'s husband who went looking for Kai, did not come back yet and might be lost too - she asked you to search for him.',
+      ronFound: 'You found the missing husband - time to finally reunite the family!',
+      completed: 'Everybody is at home, safe and sound, thanks to you!',
+    },
+    currentStates: ['started'],
+  },
 };
 
 export default questsData;

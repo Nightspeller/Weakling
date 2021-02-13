@@ -305,9 +305,44 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":20,
+         "name":"NPCs",
+         "objects":[
+                {
+                 "gid":9315,
+                 "height":32,
+                 "id":8,
+                 "name":"Ron",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":32,
+                 "x":320,
+                 "y":1216
+                }, 
+                {
+                 "gid":9327,
+                 "height":32,
+                 "id":9,
+                 "name":"Kai",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":32,
+                 "x":1472,
+                 "y":512
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":20,
- "nextobjectid":8,
+ "nextlayerid":21,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2020.12.18",
@@ -74142,6 +74177,34 @@
                          "value":true
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":9314,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male10-2.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"male10-2",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":9326,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male16-2.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"male16-2",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,

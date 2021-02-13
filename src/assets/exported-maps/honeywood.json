@@ -441,6 +441,11 @@
                          "value":"honeywood_floristSign"
                         }, 
                         {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
@@ -459,9 +464,29 @@
                  "name":"Honeywood sign north",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"interaction",
+                         "type":"string",
+                         "value":"activate"
+                        }, 
+                        {
                          "name":"messageId",
                          "type":"string",
                          "value":"honeywood_honeywoodSign"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"singleUse",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Message",
@@ -477,9 +502,29 @@
                  "name":"Honeywood sign east",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"interaction",
+                         "type":"string",
+                         "value":"activate"
+                        }, 
+                        {
                          "name":"messageId",
                          "type":"string",
                          "value":"honeywood_honeywoodSign"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"singleUse",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Message",
@@ -506,6 +551,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -519,6 +569,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -539,6 +599,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -552,6 +617,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -572,6 +647,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -585,6 +665,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -605,6 +695,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -618,6 +713,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -638,6 +743,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -651,6 +761,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -671,6 +791,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -684,6 +809,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -704,6 +839,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -717,6 +857,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -737,6 +887,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -750,6 +905,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -770,6 +935,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -783,6 +953,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -803,6 +983,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -816,6 +1001,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -836,6 +1031,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -849,6 +1049,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -869,6 +1079,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -882,6 +1097,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -902,6 +1127,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -915,6 +1145,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -935,6 +1175,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -948,6 +1193,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -968,6 +1223,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -981,6 +1241,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1001,6 +1271,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1014,6 +1289,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1034,6 +1319,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1047,6 +1337,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1067,6 +1367,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1080,6 +1385,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1100,6 +1415,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1113,6 +1433,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1133,6 +1463,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1146,6 +1481,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1166,6 +1511,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1179,6 +1529,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1199,6 +1559,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1212,6 +1577,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1232,6 +1607,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1245,6 +1625,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1265,6 +1655,11 @@
                  "name":"Garlic 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
@@ -1278,6 +1673,16 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"garlic\", \"quantity\": 1},{\"itemId\": \"garlic-seeds\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -1366,8 +1771,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1184,
-                 "y":352
+                 "x":1632,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1376,7 +1781,7 @@
          "y":0
         }],
  "nextlayerid":26,
- "nextobjectid":42,
+ "nextobjectid":44,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2020.12.18",
@@ -1385,7 +1790,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/base.png",
+         "image":"..\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -10979,229 +11384,31 @@
          "tilewidth":32,
          "wangsets":[
                 {
-                 "colors":[
-                        {
-                         "color":"#ff0000",
-                         "name":"Stone wall",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Stone wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":208,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":209,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":210,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":211,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":212,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":213,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":214,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":215,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":216,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":217,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":218,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":219,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":220,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":221,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":222,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }, 
                 {
-                 "colors":[
-                        {
-                         "color":"#ff9500",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Wooden wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":176,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":177,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":178,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":179,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":180,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":181,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":182,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":183,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":184,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":185,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":186,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":187,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":188,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":189,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":190,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }, 
                 {
-                 "colors":[
-                        {
-                         "color":"#0054ba",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Iron wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":192,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":193,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":194,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":195,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":196,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":197,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":198,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":199,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":200,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":201,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":202,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":203,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":204,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":205,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":206,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }]
         }, 
         {
          "columns":8,
          "firstgid":1065,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass1-dirt2.png",
+         "image":"..\/images-extruded\/tilesets\/grass1-dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -11412,7 +11619,7 @@
         {
          "columns":64,
          "firstgid":1113,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/water2.png",
+         "image":"..\/images-extruded\/tilesets\/water2.png",
          "imageheight":204,
          "imagewidth":2176,
          "margin":1,
@@ -16202,7 +16409,7 @@
         {
          "columns":3,
          "firstgid":1497,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/male14-2.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male14-2.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -16216,7 +16423,7 @@
         {
          "columns":32,
          "firstgid":1509,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/houses.png",
+         "image":"..\/images-extruded\/tilesets\/houses.png",
          "imageheight":1088,
          "imagewidth":1088,
          "margin":1,
@@ -25446,7 +25653,7 @@
         {
          "columns":3,
          "firstgid":2533,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/female17-1.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female17-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -25460,7 +25667,7 @@
         {
          "columns":3,
          "firstgid":2545,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/female05-4.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female05-4.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -25479,6 +25686,34 @@
          "imagewidth":102,
          "margin":1,
          "name":"female17-2",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":2569,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male16-2.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"male16-2",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":2581,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male10-2.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"male10-2",
          "objectalignment":"topleft",
          "spacing":2,
          "tilecount":12,

@@ -38,12 +38,21 @@ export const ajikaNotYetFoundDialog: DialogTree = [{
   }],
 }];
 
-export const ajikaPersonFoundDialog: DialogTree = [{
+export const ajikaKaiFoundDialog: DialogTree = [{
   id: 'greetings',
   text: '    Oh, I can\'t believe it! You found him! Thank you so so much! Here, please, take this pie I made and my sincere gratitude!',
   replies: [{
     text: 'Sure, I was happy to help!',
-    callbackParam: 'fastEnd',
+    callbackParam: 'sonReturned',
+  }],
+}];
+
+export const ajikaRonFoundDialog: DialogTree = [{
+  id: 'greetings',
+  text: '    Oh, I can\'t believe it! You found him! Thank you so so much! Here, please, take this pie I made and my sincere gratitude!',
+  replies: [{
+    text: 'Sure, I was happy to help!',
+    callbackParam: 'husbandReturned',
   }],
 }];
 
@@ -55,6 +64,18 @@ export const ajikaRonLostDialog: DialogTree = [{
     callbackParam: 'findRonAccepted',
   }, {
     text: 'I am sorry, no. I have to go, bye!',
+    callbackParam: 'fastEnd',
+  }],
+}];
+
+export const ajikaFamilyReunitedDialog: DialogTree = [{
+  id: 'greetings',
+  text: '    Thank you again for bringing everybody back home safe and sound! If you liked my pies, I will be happy to sell you some more!',
+  replies: [{
+    text: 'Sure, your pies are delicious!',
+    callbackParam: 'openShop',
+  }, {
+    text: '(end) Maybe later',
     callbackParam: 'fastEnd',
   }],
 }];

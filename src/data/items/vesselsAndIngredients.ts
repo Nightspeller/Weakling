@@ -206,6 +206,26 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     sellPrice: 1,
     buyPrice: 2,
   },
+  chocolatePie: {
+    itemId: 'chocolatePie',
+    displayName: 'Chocolate Pie',
+    description: 'Slightly hard, but still very tasty chocolate pie! Can be eaten to restore 75% of HP.',
+    possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+    sprite: {
+      texture: 'icons',
+      frame: 'icons/food-and-drinks/pie-slice',
+    },
+    stackable: true,
+    modified: false,
+    specifics: {
+      worldConsumable: {
+        type: 'health',
+        value: 0.75,
+      },
+    },
+    sellPrice: 4,
+    buyPrice: 8,
+  },
   'primula-flower': {
     itemId: 'primula-flower',
     displayName: 'Primula',

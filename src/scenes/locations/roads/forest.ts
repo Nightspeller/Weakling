@@ -1,6 +1,8 @@
 import GeneralLocation from '../generalLocation';
 
 import Firefly from '../../../characters/creatures/firefly';
+import KaiNpc from '../../../triggers/npcs/forest/kaiNpc';
+import RonNpc from '../../../triggers/npcs/forest/ronNpc';
 
 export default class Forest extends GeneralLocation {
   constructor() {
@@ -21,5 +23,8 @@ export default class Forest extends GeneralLocation {
     for (let i = 0; i < 50; i += 1) {
       new Firefly(this);
     }
+
+    new KaiNpc({ scene: this });
+    new RonNpc({ scene: this });
   }
 }
