@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import FireFly from './FireFly';
+import Firefly from './firefly';
 
 declare global {
   // eslint-disable-next-line no-unused-vars
@@ -18,7 +18,7 @@ const KEY_FIREFLY = 'fireflies';
 export default class FireflyPool extends Phaser.GameObjects.Group {
   constructor(scene: Phaser.Scene, config: Phaser.Types.GameObjects.Group.GroupConfig = {}) {
     const defaults: Phaser.Types.GameObjects.Group.GroupConfig = {
-      classType: FireFly,
+      classType: Firefly,
     };
 
     super(scene, Object.assign(defaults, config));
@@ -26,7 +26,7 @@ export default class FireflyPool extends Phaser.GameObjects.Group {
 
   spawn(x = 0, y = 0) {
     const randomFireflyFrame = Phaser.Math.Between(0, 11);
-    const firefly: FireFly = this.get(x, y, KEY_FIREFLY, randomFireflyFrame);
+    const firefly: Firefly = this.get(x, y, KEY_FIREFLY, randomFireflyFrame);
 
     firefly.setVisible(true);
     firefly.setActive(true);
@@ -34,7 +34,7 @@ export default class FireflyPool extends Phaser.GameObjects.Group {
     return firefly;
   }
 
-  despawn(firefly: FireFly) {
+  despawn(firefly: Firefly) {
     this.killAndHide(firefly);
 
     firefly.alpha = 1;

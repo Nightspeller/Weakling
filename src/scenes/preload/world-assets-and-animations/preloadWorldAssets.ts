@@ -1,12 +1,14 @@
 import * as Phaser from 'phaser';
 import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingAnimations';
 import { createWorldCharactersAnimations, preloadWorldCharactersAssets } from './preloadAndCreateWorldCharacters';
+import { createCreatureAnimations, preloadCreaturesAssets } from './preloadAndCreateCreaturesAnimations';
 import { tilesetConfig } from '../../../config/constants';
 
 export function preloadWorldAssets(scene: Phaser.Scene) {
   preloadDoorsAssets(scene);
   preloadWeaklingAssets(scene);
   preloadWorldCharactersAssets(scene);
+  preloadCreaturesAssets(scene);
 
   scene.load.spritesheet('shadow-1', 'assets/images-extruded/characters/world-map/shadows/shadow-1.png', tilesetConfig);
   scene.load.spritesheet('fire', 'assets/images-extruded/animations/fire.png', tilesetConfig);
@@ -17,6 +19,7 @@ export function createWorldAnimations(scene: Phaser.Scene) {
   createDoorsAnimations(scene);
   createWeaklingAnimations(scene, 'jeremy-green');
   createWorldCharactersAnimations(scene);
+  createCreatureAnimations(scene);
 }
 
 function preloadDoorsAssets(scene: Phaser.Scene) {

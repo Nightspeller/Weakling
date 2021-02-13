@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 
-export default class FireFly extends Phaser.Physics.Arcade.Sprite {
+export default class Firefly extends Phaser.Physics.Arcade.Sprite {
     private velX: number
     private velY: number
 
