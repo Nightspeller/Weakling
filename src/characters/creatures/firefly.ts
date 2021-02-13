@@ -33,7 +33,7 @@ export default class Firefly extends Phaser.Physics.Arcade.Sprite {
       .setPosition(Phaser.Math.Between(this.mapStartX, this.mapEndX), Phaser.Math.Between(this.mapStartY, this.mapEndY))
       .setRotation(0)
       .play({
-        key: 'firefly-blinking', frameRate: 10, repeat: 30, startFrame: Phaser.Math.Between(0, 11),
+        key: 'firefly-blinking', frameRate: 10, repeat: Phaser.Math.Between(3, 7), startFrame: Phaser.Math.Between(0, 11),
       })
       .off('animationcomplete')
       .on('animationcomplete', () => {
