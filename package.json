@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "file-loader": "^6.2.0",
-    "phaser": "3.50.1"
+    "phaser": "3.50.1",
+    "phaser3-rex-plugins": "^1.1.39"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.13.0",

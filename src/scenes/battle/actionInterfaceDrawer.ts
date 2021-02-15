@@ -21,8 +21,7 @@ export default class ActionInterfaceDrawer {
   constructor(scene: BattleScene, disposition: Disposition) {
     this.disposition = disposition;
     this.scene = scene;
-    this.displayContainer = this.scene.add.container(16, 500)
-      .setDepth(2);
+    this.displayContainer = this.scene.add.container(16, 500).setDepth(2);
   }
 
   public drawActionInterface() {
@@ -234,8 +233,7 @@ export default class ActionInterfaceDrawer {
             right: 5,
           },
         },
-      )
-        .setOrigin(0, 1);
+      ).setOrigin(0, 1);
       this.actionDescriptionContainer.add(actionNoticableText);
       lastTextY = lastTextY - actionNoticableText.height - 5;
 
@@ -254,8 +252,7 @@ export default class ActionInterfaceDrawer {
             right: 5,
           },
         },
-      )
-        .setOrigin(0, 1);
+      ).setOrigin(0, 1);
       this.actionDescriptionContainer.add(actionEffectsText);
       lastTextY = lastTextY - actionEffectsText.height - 5;
 
@@ -273,8 +270,7 @@ export default class ActionInterfaceDrawer {
             right: 5,
           },
         },
-      )
-        .setOrigin(0, 1);
+      ).setOrigin(0, 1);
       this.actionDescriptionContainer.add(actionTargetText);
       lastTextY = lastTextY - actionTargetText.height - 5;
 
@@ -292,8 +288,7 @@ export default class ActionInterfaceDrawer {
             right: 5,
           },
         },
-      )
-        .setOrigin(0, 1);
+      ).setOrigin(0, 1);
       this.actionDescriptionContainer.add(actionPhaseText);
       lastTextY = lastTextY - actionPhaseText.height - 5;
 
@@ -311,8 +306,7 @@ export default class ActionInterfaceDrawer {
             right: 5,
           },
         },
-      )
-        .setOrigin(0, 1);
+      ).setOrigin(0, 1);
       this.actionDescriptionContainer.add(actionPointsCostText);
       lastTextY = lastTextY - actionPointsCostText.height - 5;
 
@@ -331,8 +325,7 @@ export default class ActionInterfaceDrawer {
               right: 5,
             },
           },
-        )
-          .setOrigin(0, 1);
+        ).setOrigin(0, 1);
         this.actionDescriptionContainer.add(actionParametersCostText);
         lastTextY = lastTextY - actionParametersCostText.height - 5;
       }
@@ -351,8 +344,7 @@ export default class ActionInterfaceDrawer {
             right: 5,
           },
         },
-      )
-        .setOrigin(0, 1);
+      ).setOrigin(0, 1);
       this.actionDescriptionContainer.add(actionDescriptionText);
       lastTextY = lastTextY - actionDescriptionText.height - 5;
 
@@ -370,8 +362,7 @@ export default class ActionInterfaceDrawer {
             right: 5,
           },
         },
-      )
-        .setOrigin(0, 1);
+      ).setOrigin(0, 1);
       this.actionDescriptionContainer.add(actionNameText);
       lastTextY -= actionNameText.height;
 
@@ -385,18 +376,19 @@ export default class ActionInterfaceDrawer {
   }
 
   // TODO: replace with Bitmap text or something else for performance...
-/*  const endTurnText = new RichBitmapText(
-    {
-      scene: this.scene,
-      x: 800 / 2,
-      y: -40,
-      font: 'bitmapArial',
-      text: 'End Turn',
-      size: 22,
-      border: { color: 0x000000, alpha: 1, width: 1 },
-      fill: { color: 0x8ef000 }
-    }
-  ).setSize(100, 22).setInteractive({ useHandCursor: true });*/
+  /*  const endTurnText = new RichBitmapText(
+      {
+        scene: this.scene,
+        x: 800 / 2,
+        y: -40,
+        font: 'bitmapArial',
+        text: 'End Turn',
+        size: 22,
+        border: { color: 0x000000, alpha: 1, width: 1 },
+        fill: { color: 0x8ef000 }
+      }
+    ).setSize(100, 22).setInteractive({ useHandCursor: true });
+    */
 
   private drawEndTurnButton(resolve: Function) {
     const endTurnText = this.scene.add.text(

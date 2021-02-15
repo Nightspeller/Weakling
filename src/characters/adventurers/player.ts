@@ -17,7 +17,7 @@ export class Player extends Adventurer {
     super();
     this.name = 'Weakling';
     this.spriteParams = {
-      texture: 'weakling-battle', frame: 7, width: 144, height: 96,
+      texture: 'weakling-battle', frame: 'weakling-battle-animations/attack1/1', width: 144, height: 96,
     };
     this.worldImageSpriteParams = { texture: 'jeremy-green', frame: 1 };
     this.quests = [];

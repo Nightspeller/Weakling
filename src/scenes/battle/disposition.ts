@@ -194,8 +194,8 @@ export default class Disposition {
     }
     action.effects.forEach((effect) => {
       targets.forEach((target, index) => {
-        if (effect.applicationCheck(source, target, action)) {
-          effect.setModifier(source, target, action);
+        if (effect.applicationCheck(source, target, action, this.scene.battleLog.addLogEntry.bind(this.scene.battleLog))) {
+          effect.setModifier(source, target, action, this.scene.battleLog.addLogEntry.bind(this.scene.battleLog));
           target.applyEffect(effect);
           actionResults.succeeded[index] = true;
         }
@@ -244,12 +244,13 @@ export default class Disposition {
     return triggeredTraps;
   }
 
-  public log(entree: string) {
-    const logElement = document.getElementsByClassName('battle-log')[0] as HTMLElement;
+  public log(entry: string) {
+    this.scene.battleLog.addLogEntry(entry);
+    /* const logElement = document.getElementsByClassName('battle-log')[0] as HTMLElement;
     logElement.style.display = 'block';
     const entreeElement = document.createElement('div');
     entreeElement.innerText = entree;
-    logElement.appendChild(entreeElement);
+    logElement.appendChild(entreeElement); */
   }
 }
 

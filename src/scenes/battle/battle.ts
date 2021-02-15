@@ -10,6 +10,7 @@ import GeneralOverlayScene from '../overlays/generalOverlayScene';
 import Item from '../../entities/item';
 import { ActionData, EffectData } from '../../types/my-types';
 import RichBitmapText from '../../helpers/richBitmapText';
+import BattleLogDrawer from './battleLogDrawer';
 
 export default class BattleScene extends GeneralOverlayScene {
   private disposition: Disposition;
@@ -20,6 +21,7 @@ export default class BattleScene extends GeneralOverlayScene {
   private actionInterfaceDrawer: ActionInterfaceDrawer;
   public droppedItems: Item[];
   private background: string;
+  public battleLog: BattleLogDrawer;
 
   constructor() {
     super({ key: 'Battle' });
@@ -55,6 +57,8 @@ export default class BattleScene extends GeneralOverlayScene {
     this.turnOrderDisplayContainer = this.add.container(16, 16);
 
     this.charToDrawerMap = new Map();
+
+    this.battleLog = new BattleLogDrawer(this);
 
     this.disposition = new Disposition(
       playerInstance.party,

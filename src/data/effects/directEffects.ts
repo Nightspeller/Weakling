@@ -55,7 +55,7 @@ const directEffects: { [key: string]: EffectData } = {
     strength: null,
     source: null,
     statusImage: { texture: 'icons', frame: 0 },
-    applicationCheck: (source: generalCharacter, target: generalCharacter, action) => {
+    applicationCheck: (source: generalCharacter, target: generalCharacter, action, logger?: Function) => {
       let hitChance: number;
       const { agility } = source.characteristics;
       const { dodge } = target.characteristics;
@@ -69,20 +69,20 @@ const directEffects: { [key: string]: EffectData } = {
       const hitRoll = Phaser.Math.Between(0, 100);
       if (hitChance >= hitRoll) {
         console.log(`%cHit!   %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
-        log(`Hit!   ${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+        logger(`Hit!   ${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
       } else {
         console.log(`%cMiss.. %c${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
-        log(`Miss.. ${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+        logger(`Miss.. ${agility} agility vs ${dodge} dodge, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
       }
       return hitChance >= hitRoll;
     },
-    setModifier(source: generalCharacter, target: generalCharacter, action) {
+    setModifier(source: generalCharacter, target: generalCharacter, action, logger?: Function) {
       const damage = source.getAttackDamage();
       let penetration = source.characteristics.strength / target.characteristics.armor;
       penetration = penetration < 1 ? penetration : 1;
       const resultDamage = Math.round(damage * penetration);
       console.log(`%c${resultDamage} damage is done. %c${source.characteristics.strength} strength vs ${target.characteristics.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`, 'color: red', 'color: auto');
-      log(`${resultDamage} damage is done. ${source.characteristics.strength} strength vs ${target.characteristics.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`);
+      logger(`${resultDamage} damage is done. ${source.characteristics.strength} strength vs ${target.characteristics.armor} armor, leads to penetration of ${Math.round(penetration * 100)}%. Weapon attack power was ${damage}, thus final damage is ~${resultDamage}`);
       this.modifier = {
         type: 'value',
         value: -resultDamage,
@@ -100,7 +100,7 @@ const directEffects: { [key: string]: EffectData } = {
     strength: null,
     source: null,
     statusImage: { texture: 'icons', frame: 0 },
-    applicationCheck: (source: generalCharacter, target: generalCharacter, action) => {
+    applicationCheck: (source: generalCharacter, target: generalCharacter, action, logger?: Function) => {
       let hitChance: number;
       const { intelligence } = source.characteristics;
       const { magicResistance } = target.characteristics;
@@ -114,17 +114,17 @@ const directEffects: { [key: string]: EffectData } = {
       const hitRoll = Phaser.Math.Between(0, 100);
       if (hitChance >= hitRoll) {
         console.log(`%cHit!   %c${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
-        log(`Hit!   ${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+        logger(`Hit!   ${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
       } else {
         console.log(`%cMiss.. %c${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`, 'color: red', 'color: auto');
-        log(`Miss.. ${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
+        logger(`Miss.. ${intelligence} intelligence vs ${magicResistance} magicResistance, leads to hit chance of ${hitChance}%. Roll was ${100 - hitRoll}, for success had to be >= then ${100 - hitChance}`);
       }
       return hitChance >= hitRoll;
     },
-    setModifier(source: generalCharacter, target: generalCharacter, action) {
+    setModifier(source: generalCharacter, target: generalCharacter, action, logger?: Function) {
       const damage = source.getAttackDamage();
       console.log(`%c${damage}%c damage is done.`, 'color: red', 'color: auto');
-      log(`${damage} damage is done.`);
+      logger(`${damage} damage is done.`);
       this.modifier = {
         type: 'value',
         value: -damage,
@@ -208,13 +208,5 @@ const directEffects: { [key: string]: EffectData } = {
     },
   },
 };
-
-function log(entree: string) {
-  const logElement = document.getElementsByClassName('battle-log')[0] as HTMLElement;
-  logElement.style.display = 'block';
-  const entreeElement = document.createElement('div');
-  entreeElement.innerText = entree;
-  logElement.appendChild(entreeElement);
-}
 
 export default directEffects;

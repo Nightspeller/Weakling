@@ -22,7 +22,7 @@ export function createWorldAnimations(scene: Phaser.Scene) {
 }
 
 function preloadDoorsAssets(scene: Phaser.Scene) {
-  scene.load.spritesheet('doors2-upscaled', 'assets/images-extruded/tilesets/doors2-upscaled.png', {
+  scene.load.spritesheet('doors2', 'assets/images-extruded/tilesets/doors2.png', {
     frameWidth: 32,
     frameHeight: 96,
     margin: 1,
@@ -33,7 +33,7 @@ function preloadDoorsAssets(scene: Phaser.Scene) {
 function createDoorsAnimations(scene: Phaser.Scene) {
   scene.anims.create({
     key: 'open_door',
-    frames: scene.anims.generateFrameNames('doors2-upscaled', { start: 6, end: 8 }),
+    frames: scene.anims.generateFrameNames('doors2', { start: 6, end: 8 }),
     frameRate: 10,
     repeat: 0,
   });
