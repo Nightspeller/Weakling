@@ -387,8 +387,8 @@ export default class CharacterDrawer {
 
   public playRangedAttackAnimation() {
     return new Promise<void>((resolve) => {
-      if (this.char.animations.ranged) {
-        this.mainImage.anims.play(this.char.animations.ranged);
+      if (this.char.animations.rangeAttack) {
+        this.mainImage.anims.play(this.char.animations.rangeAttack);
         this.mainImage.once('animationcomplete', () => {
           this.playIdleAnimation();
           resolve();

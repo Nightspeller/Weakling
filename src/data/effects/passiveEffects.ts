@@ -70,6 +70,25 @@ const passiveEffects: { [key: string]: EffectData } = {
       };
     },
   },
+  armorDown: {
+    effectId: 'armorDown',
+    name: 'Armor decreased',
+    description: 'Armor is decreased',
+    type: 'passive',
+    targetCharacteristic: 'armor',
+    baseDuration: 3,
+    durationLeft: null,
+    strength: null,
+    source: null,
+    statusImage: { texture: 'icons', frame: 'icons/clothes/chests/cuirass' },
+    applicationCheck: (source, target, action) => true,
+    setModifier(source, target, action) {
+      this.modifier = {
+        type: 'value',
+        value: -2 * this.strength,
+      };
+    },
+  },
   dodgeUp: {
     effectId: 'dodgeUp',
     name: 'Dodge up',

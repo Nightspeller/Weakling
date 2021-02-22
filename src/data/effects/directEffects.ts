@@ -77,7 +77,7 @@ const directEffects: { [key: string]: EffectData } = {
       return hitChance >= hitRoll;
     },
     setModifier(source: generalCharacter, target: generalCharacter, action, logger?: Function) {
-      const damage = source.getAttackDamage();
+      const damage = source.getAttackDamage()*this.strength;
       let penetration = source.characteristics.strength / target.characteristics.armor;
       penetration = penetration < 1 ? penetration : 1;
       const resultDamage = Math.round(damage * penetration);

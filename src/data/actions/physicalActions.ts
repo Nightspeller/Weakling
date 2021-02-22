@@ -136,6 +136,27 @@ const physicalActions: { [key: string]: ActionData } = {
     icon: { texture: 'icons', frame: 'icons/weapons/melee/fist' },
     parametersCost: { energy: 3 },
   },
+  corrosiveEnveloping: {
+    actionId: 'corrosiveEnveloping',
+    phase: ['battle'],
+    type: 'physical',
+    actionName: 'Corrosive enveloping',
+    actionDescription: 'Ooze tries to envelop it\'s victim with it\'s corrosive body',
+    effectsDescriptions: [{
+      effectId: 'physicalDamage',
+      strength: 1,
+    }],
+    target: 'enemy',
+    actionCost: 1,
+    noticeable: 1,
+    triggers: [
+      { conditionId: 'trapped', probability: 0.75, conditionDisplayName: 'Trapped' },
+      { conditionId: 'cursedSoil', probability: 0.75, conditionDisplayName: 'Cursed Soil' },
+    ],
+    animation: 'meleeAttack',
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/acid' },
+    parametersCost: { energy: 3 },
+  },
 };
 
 export default physicalActions;

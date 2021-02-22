@@ -484,12 +484,12 @@
                         {
                          "name":"drop",
                          "type":"string",
-                         "value":"[{\"itemId\": \"bone\", \"quantity\": 2, \"chance\": 1}, {\"itemId\": \"dagger-weapon\", \"quantity\": 1, \"chance\": 0.1}]"
+                         "value":"[{\"itemId\": \"bone\", \"quantity\": 1, \"chance\": 1}, {\"itemId\": \"dagger-weapon\", \"quantity\": 1, \"chance\": 0.1}]"
                         }, 
                         {
                          "name":"enemies",
                          "type":"string",
-                         "value":"[{\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}]"
+                         "value":"[{\"type\": \"skeleton\"}, {\"type\": \"green-ooze\"}]"
                         }, 
                         {
                          "name":"image",
@@ -521,12 +521,12 @@
                         {
                          "name":"drop",
                          "type":"string",
-                         "value":"[{\"itemId\": \"bone\", \"quantity\": 3, \"chance\": 1}, {\"itemId\": \"dagger-weapon\", \"quantity\": 1, \"chance\": 0.1}]"
+                         "value":"[{\"itemId\": \"bone\", \"quantity\": 1, \"chance\": 1}, {\"itemId\": \"dagger-weapon\", \"quantity\": 1, \"chance\": 0.1}]"
                         }, 
                         {
                          "name":"enemies",
                          "type":"string",
-                         "value":"[{\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}]"
+                         "value":"[{\"type\": \"skeleton\"}, {\"type\": \"green-ooze\"}, {\"type\": \"green-ooze\"}]"
                         }, 
                         {
                          "name":"image",
@@ -558,12 +558,12 @@
                         {
                          "name":"drop",
                          "type":"string",
-                         "value":"[{\"itemId\": \"bone\", \"quantity\": 3, \"chance\": 1}, {\"itemId\": \"dagger-weapon\", \"quantity\": 1, \"chance\": 0.1}]"
+                         "value":"[{\"itemId\": \"bone\", \"quantity\": 2, \"chance\": 1}, {\"itemId\": \"dagger-weapon\", \"quantity\": 1, \"chance\": 0.1}]"
                         }, 
                         {
                          "name":"enemies",
                          "type":"string",
-                         "value":"[{\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}]"
+                         "value":"[{\"type\": \"skeleton\"}, {\"type\": \"skeleton\"}, {\"type\": \"green-ooze\"}]"
                         }, 
                         {
                          "name":"image",
@@ -592,7 +592,7 @@
  "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.1",
+ "tiledversion":"2020.12.18",
  "tileheight":32,
  "tilesets":[
         {
@@ -47067,7 +47067,29 @@
                          "value":true
                         }]
                 }],
-         "tilewidth":32
+         "tilewidth":32,
+         "wangsets":[
+                {
+                 "colors":[],
+                 "name":"Stone wall",
+                 "tile":-1,
+                 "type":"mixed",
+                 "wangtiles":[]
+                }, 
+                {
+                 "colors":[],
+                 "name":"Wooden wall",
+                 "tile":-1,
+                 "type":"mixed",
+                 "wangtiles":[]
+                }, 
+                {
+                 "colors":[],
+                 "name":"Iron wall",
+                 "tile":-1,
+                 "type":"mixed",
+                 "wangtiles":[]
+                }]
         }, 
         {
          "columns":4,

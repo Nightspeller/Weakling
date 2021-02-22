@@ -10,6 +10,7 @@ import Skeleton from '../../characters/enemies/skeleton';
 import { playerInstance } from '../../characters/adventurers/player';
 import Item from '../../entities/item';
 import { ActionData, EffectData } from '../../types/my-types';
+import GreenOoze from '../../characters/enemies/green-ooze';
 
 export default class Disposition {
   public playerCharacters: Adventurer[];
@@ -246,11 +247,6 @@ export default class Disposition {
 
   public log(entry: string) {
     this.scene.battleLog.addLogEntry(entry);
-    /* const logElement = document.getElementsByClassName('battle-log')[0] as HTMLElement;
-    logElement.style.display = 'block';
-    const entreeElement = document.createElement('div');
-    entreeElement.innerText = entree;
-    logElement.appendChild(entreeElement); */
   }
 }
 
@@ -259,4 +255,5 @@ const enemiesList: { [key: string]: any } = {
   wizard: Wizard,
   'ghost-knight': GhostKnight,
   skeleton: Skeleton,
+  'green-ooze': GreenOoze,
 };

@@ -4,6 +4,7 @@ import { createKnightAnimations, preloadKnightAssets } from './preloadAndCreateK
 import { createWizardAminations, preloadWizardAssets } from './preloadAndCreateWizardAnimations';
 import { preloadCyclopsBatAssets, createCyclopsBatAnimations } from './preloadAndCreateCyclopsBatAnimations';
 import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingAnimations';
+import { createGreenOozeAnimations, preloadGreenOozeAssets } from './preloadAndCreateGreenOozeAnimations';
 
 export function preloadBattleAssets(preloadScene: Phaser.Scene) {
   // Battle characters images
@@ -27,6 +28,7 @@ export function preloadBattleAssets(preloadScene: Phaser.Scene) {
   preloadWizardAssets(preloadScene);
   preloadCyclopsBatAssets(preloadScene);
   preloadWeaklingAssets(preloadScene);
+  preloadGreenOozeAssets(preloadScene);
 }
 
 export function createBattleAnimations(scene: Phaser.Scene) {
@@ -36,6 +38,7 @@ export function createBattleAnimations(scene: Phaser.Scene) {
   createWizardAminations(scene);
   createCyclopsBatAnimations(scene);
   createWeaklingAnimations(scene);
+  createGreenOozeAnimations(scene);
 }
 
 function preloadCastAssets(scene: Phaser.Scene) {

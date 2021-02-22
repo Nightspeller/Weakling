@@ -151,6 +151,28 @@ const miscActions: { [key: string]: ActionData } = {
     icon: { texture: 'icons', frame: 'icons/food-and-drinks/coffee-cup' },
     parametersCost: {},
   },
+  corrosiveSpit: {
+    actionId: 'corrosiveSpit',
+    phase: ['battle'],
+    type: 'misc',
+    actionName: 'Corrosive spit',
+    actionDescription: 'Ooze spits some of it\'s most potent acid lowering target\'s armor',
+    effectsDescriptions: [{
+      effectId: 'physicalDamage',
+      // @ts-ignore
+      strength: 0.5,
+    }, {
+      effectId: 'armorDown',
+      strength: 1,
+    }],
+    target: 'enemy',
+    actionCost: 1,
+    noticeable: 1,
+    triggers: [],
+    animation: 'rangeAttack',
+    icon: { texture: 'icons', frame: 'icons/spells-and-magic/acid' },
+    parametersCost: { energy: 3 },
+  },
 };
 
 export default miscActions;
