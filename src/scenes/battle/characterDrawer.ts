@@ -470,14 +470,20 @@ export default class CharacterDrawer {
 
   public playRangedProjectileAnimation(targetX: number, targetY: number, projectileSpriteParams: SpriteParameters = {texture: 'icons', frame: 'icons/weapons/ranged/arrow-evolving-green-1'}) {
     return new Promise<void>((resolve) => {
-      const projectile = this.scene.add.sprite(this.mainImage.x, this.mainImage.y, projectileSpriteParams.texture, projectileSpriteParams.frame);
+      const projectile = this.scene.add.sprite(this.mainImage.x, this.mainImage.y, projectileSpriteParams.texture, projectileSpriteParams.frame).setOrigin(0.5);
+      projectile.flipX = projectileSpriteParams.flip;
+      let duration = 300;
+      if (projectileSpriteParams.animation) {
+        projectile.play(projectileSpriteParams.animation);
+        duration = this.scene.anims.get(projectileSpriteParams.animation).duration
+      }
       this.scene.tweens.add({
         targets: projectile,
         props: {
           x: { value: targetX },
           y: { value: targetY },
         },
-        duration: 300,
+        duration: duration,
         onComplete: () => {
           projectile.destroy();
           resolve();

@@ -166,6 +166,7 @@ const miscActions: { [key: string]: ActionData } = {
       strength: 1,
     }],
     target: 'enemy',
+    projectile: { texture: 'green-blast', frame: 0, animation: 'green_blast_animation' },
     actionCost: 1,
     noticeable: 1,
     triggers: [],

@@ -8,10 +8,18 @@ import GeneralEnemy from '../../characters/enemies/generalEnemy';
 import ActionInterfaceDrawer from './actionInterfaceDrawer';
 import GeneralOverlayScene from '../overlays/generalOverlayScene';
 import Item from '../../entities/item';
-import { ActionData, EffectData } from '../../types/my-types';
+import { ActionData, EffectData, SpriteParameters } from '../../types/my-types';
 import RichBitmapText from '../../helpers/richBitmapText';
 import BattleLogDrawer from './battleLogDrawer';
 import { GAME_H, GAME_W } from '../../config/constants';
+
+interface PlayAnimationParams {
+  char: Adventurer | GeneralEnemy;
+  animation: string;
+  targets?: (Adventurer | GeneralEnemy)[];
+  succeeded?: boolean[];
+  projectile?: SpriteParameters;
+}
 
 export default class BattleScene extends GeneralOverlayScene {
   private disposition: Disposition;
@@ -143,23 +151,24 @@ export default class BattleScene extends GeneralOverlayScene {
     action: ActionData;
   }) {
     this.charToDrawerMap.get(source).drawActionPoints(true);
-    await this.playAnimation(source, action.animation, targets, succeeded);
+    await this.playAnimation({
+      char: source, animation: action.animation, targets, succeeded, projectile: action.projectile,
+    });
 
     targets.forEach((target) => {
       if (!target.isAlive) {
-        this.playAnimation(target, 'death');
+        this.playAnimation({ char: target, animation: 'death' });
       }
     });
     if (!source.isAlive) {
-      this.playAnimation(source, 'death');
+      this.playAnimation({ char: source, animation: 'death' });
     }
   }
 
   public async playAnimation(
-    char: Adventurer | GeneralEnemy,
-    animation: string,
-    targets?: (Adventurer | GeneralEnemy)[],
-    succeeded?: boolean[],
+    {
+      char, animation, targets, succeeded, projectile,
+    }: PlayAnimationParams,
   ) {
     const charDrawer = this.charToDrawerMap.get(char);
     let targetDrawer;
@@ -167,6 +176,7 @@ export default class BattleScene extends GeneralOverlayScene {
       targetDrawer = this.charToDrawerMap.get(targets[0]);
     }
     const animatingEnemy = char instanceof GeneralEnemy;
+    projectile = projectile ? { ...projectile, flip: animatingEnemy } : undefined;
     switch (animation) {
       case 'idle':
         await charDrawer.playIdleAnimation();
@@ -182,9 +192,9 @@ export default class BattleScene extends GeneralOverlayScene {
         await charDrawer.playMeleeAttackAnimation(attackX, attackY);
         targets.forEach((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation(targets[index], 'hit');
+            this.playAnimation({ char: targets[index], animation: 'hit' });
           } else {
-            this.playAnimation(targets[index], 'miss');
+            this.playAnimation({ char: targets[index], animation: 'miss' });
           }
         });
         await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
@@ -199,12 +209,13 @@ export default class BattleScene extends GeneralOverlayScene {
           attackY = targetDrawer.position.y;
         }
         await charDrawer.playRangedAttackAnimation();
-        await charDrawer.playRangedProjectileAnimation(attackX, attackY);
+
+        await charDrawer.playRangedProjectileAnimation(attackX, attackY, projectile);
         targets.forEach((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation(targets[index], 'hit');
+            this.playAnimation({ char: targets[index], animation: 'hit' });
           } else {
-            this.playAnimation(targets[index], 'miss');
+            this.playAnimation({ char: targets[index], animation: 'miss' });
           }
         });
         await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
@@ -221,9 +232,9 @@ export default class BattleScene extends GeneralOverlayScene {
         await charDrawer.playMeleeCastAnimation(attackX, attackY);
         targets.forEach((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation(targets[index], 'hit');
+            this.playAnimation({ char: targets[index], animation: 'hit' });
           } else {
-            this.playAnimation(targets[index], 'miss');
+            this.playAnimation({ char: targets[index], animation: 'miss' });
           }
         });
         await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
@@ -238,12 +249,12 @@ export default class BattleScene extends GeneralOverlayScene {
           attackY = targetDrawer.position.y;
         }
         await charDrawer.playRangeCastAnimation();
-        await charDrawer.playRangedProjectileAnimation(attackX, attackY, { texture: 'icons', frame: 'icons/gems/red-round-stone' });
+        await charDrawer.playRangedProjectileAnimation(attackX, attackY, projectile);
         targets.forEach((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation(targets[index], 'hit');
+            this.playAnimation({ char: targets[index], animation: 'hit' });
           } else {
-            this.playAnimation(targets[index], 'miss');
+            this.playAnimation({ char: targets[index], animation: 'miss' });
           }
         });
         await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
