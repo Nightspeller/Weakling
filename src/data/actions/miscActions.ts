@@ -98,10 +98,10 @@ const miscActions: { [key: string]: ActionData } = {
   },
   retreat: {
     actionId: 'retreat',
-    phase: ['preparation', 'battle'],
+    phase: ['battle'],
     type: 'misc',
     actionName: 'Retreat!',
-    actionDescription: 'For Kobolds, retreat is just a fancy way to say RUN AWAY!\nFree during the Preparation.',
+    actionDescription: 'For Kobolds, retreat is just a fancy way to say RUN AWAY!',
     effectsDescriptions: [],
     target: 'self',
     actionCost: 3,

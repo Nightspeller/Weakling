@@ -40,7 +40,17 @@ export default class Disposition {
     this.log(`---------------------------START ${this.currentPhase} ROUND---------------------------`);
     [...this.playerCharacters, ...this.enemyCharacters].forEach((char) => char.startRound(this.currentPhase));
     this.calculateTurnOrder();
-    this.startTurn();
+    if (this.currentPhase === 'preparation') {
+      this.scene.requestBattleConfirmation().then((engage) => {
+        if (engage === true) {
+          this.startTurn();
+        } else {
+          this.retreat();
+        }
+      });
+    } else {
+      this.startTurn();
+    }
   }
 
   public endRound() {
@@ -135,6 +145,14 @@ export default class Disposition {
     }
   }
 
+  private retreat() {
+    console.log('Adventurer party retreated!');
+    this.log('Adventurer party retreated!');
+    this.scene.exitBattle(false);
+    this.battleEnded = true;
+    if (this.currentPhase === 'preparation') playerInstance.updateAchievement('See battle, Boo? Run, Boo, run!', undefined, true);
+  }
+
   public processAction(
     source: Adventurer | GeneralEnemy,
     targets: (Adventurer | GeneralEnemy)[],
@@ -176,11 +194,7 @@ export default class Disposition {
       return actionResults;
     }
     if (action.actionId === 'retreat') {
-      console.log('Adventurer party retreated!');
-      this.log('Adventurer party retreated!');
-      this.scene.exitBattle(false);
-      this.battleEnded = true;
-      if (this.currentPhase === 'preparation') playerInstance.updateAchievement('See battle, Boo? Run, Boo, run!', undefined, true);
+      this.retreat();
       return actionResults;
     }
 

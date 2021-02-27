@@ -11,6 +11,7 @@ import Item from '../../entities/item';
 import { ActionData, EffectData } from '../../types/my-types';
 import RichBitmapText from '../../helpers/richBitmapText';
 import BattleLogDrawer from './battleLogDrawer';
+import { GAME_H, GAME_W } from '../../config/constants';
 
 export default class BattleScene extends GeneralOverlayScene {
   private disposition: Disposition;
@@ -86,6 +87,40 @@ export default class BattleScene extends GeneralOverlayScene {
   public redrawAllCharacters() {
     this.charToDrawerMap.forEach((charDrawer, char) => {
       charDrawer.drawEverything(this.disposition.currentCharacter === char);
+    });
+  }
+
+  public requestBattleConfirmation() {
+    return new Promise((resolve) => {
+      this.redrawAllCharacters();
+      const engage = this.add.text(GAME_W / 2, GAME_H * (3 / 4), 'Engage', {
+        fixedWidth: 140,
+        font: '22px monospace',
+        color: '#000000',
+        backgroundColor: '#f0d191',
+        align: 'center',
+      })
+        .setOrigin(0.5)
+        .setInteractive({ useHandCursor: true })
+        .once('pointerdown', () => {
+          engage.destroy();
+          retreat.destroy();
+          resolve(true);
+        });
+      const retreat = this.add.text(GAME_W / 2, GAME_H * (3 / 4) + 40, 'Retreat', {
+        fixedWidth: 140,
+        font: '22px monospace',
+        color: '#000000',
+        backgroundColor: '#f0d191',
+        align: 'center',
+      })
+        .setOrigin(0.5)
+        .setInteractive({ useHandCursor: true })
+        .once('pointerdown', () => {
+          engage.destroy();
+          retreat.destroy();
+          resolve(false);
+        });
     });
   }
 
