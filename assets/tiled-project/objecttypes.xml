@@ -15,6 +15,9 @@
   <property name="image" type="string" default="boar-avatar"/>
   <property name="xpReward" type="int" default="0"/>
  </objecttype>
+ <objecttype name="Fishing Spot" color="#00a1a4">
+  <property name="fish" type="string" default="[{&quot;fish&quot;: &quot;&quot;, chance: 0.5, &quot;cooldown&quot;: 600}, {&quot;fish&quot;: &quot;&quot;, chance: 0.5, &quot;cooldown&quot;: 600}]"/>
+ </objecttype>
  <objecttype name="Message" color="#a49d12">
   <property name="interaction" type="string" default="activate"/>
   <property name="messageId" type="string"/>

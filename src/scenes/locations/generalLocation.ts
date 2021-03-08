@@ -197,63 +197,82 @@ export default class GeneralLocation extends Phaser.Scene {
       });
     });
 
-    this.map.getObjectLayer('Waypoints')
-      ?.objects
-      .forEach((object) => {
-        const toLocation = object.properties?.find((prop: TiledObjectProp) => prop.name === 'location')?.value;
-        let toCoordinates = object.properties?.find((prop: TiledObjectProp) => prop.name === 'toCoordinates')?.value;
-        if (toCoordinates) toCoordinates = JSON.parse(toCoordinates);
-        new Trigger({
-          scene: this,
-          name: object.name,
-          triggerX: object.x,
-          triggerY: object.y,
-          triggerW: object.width,
-          triggerH: object.height,
-          interaction: 'activateOverlap',
-          callback: () => {
-            if (toLocation) {
-              this.switchToScene(toLocation, undefined, undefined, toCoordinates);
-            } else if (toCoordinates) {
-              this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX, toCoordinates.y * 32 + this.offsetY);
-            }
-          },
-        });
+    this.map.getObjectLayer('Waypoints')?.objects.forEach((object) => {
+      const toLocation = object.properties?.find((prop: TiledObjectProp) => prop.name === 'location')?.value;
+      let toCoordinates = object.properties?.find((prop: TiledObjectProp) => prop.name === 'toCoordinates')?.value;
+      if (toCoordinates) toCoordinates = JSON.parse(toCoordinates);
+      new Trigger({
+        scene: this,
+        name: object.name,
+        triggerX: object.x,
+        triggerY: object.y,
+        triggerW: object.width,
+        triggerH: object.height,
+        interaction: 'activateOverlap',
+        callback: () => {
+          if (toLocation) {
+            this.switchToScene(toLocation, undefined, undefined, toCoordinates);
+          } else if (toCoordinates) {
+            this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX, toCoordinates.y * 32 + this.offsetY);
+          }
+        },
       });
+    });
 
-    this.map.getObjectLayer('Messages')
-      ?.objects
-      .forEach((object) => {
-        const messageId = object.properties?.find((prop: TiledObjectProp) => prop.name === 'messageId')?.value;
-        const messageText = messages[messageId];
-        const interaction = object.properties?.find((prop: TiledObjectProp) => prop.name === 'interaction')?.value;
-        const singleUse = object.properties?.find((prop: TiledObjectProp) => prop.name === 'singleUse')?.value;
-        new Trigger({
-          scene: this,
-          name: object.name,
-          triggerX: object.x,
-          triggerY: object.y,
-          triggerW: object.width,
-          triggerH: object.height,
-          texture: this.getSpriteParamsByObjectName(object.name, 'Messages')?.texture,
-          frame: this.getSpriteParamsByObjectName(object.name, 'Messages')?.frame,
-          interaction,
-          singleUse,
-          callback: () => {
-            this.switchToScene('Dialog', {
-              dialogTree: [{
-                id: 'message',
-                text: messageText,
-                replies: [{
-                  text: '(End)',
-                  callbackParam: 'fastEnd',
-                }],
+    this.map.getObjectLayer('Messages')?.objects.forEach((object) => {
+      const messageId = object.properties?.find((prop: TiledObjectProp) => prop.name === 'messageId')?.value;
+      const messageText = messages[messageId];
+      const interaction = object.properties?.find((prop: TiledObjectProp) => prop.name === 'interaction')?.value;
+      const singleUse = object.properties?.find((prop: TiledObjectProp) => prop.name === 'singleUse')?.value;
+      new Trigger({
+        scene: this,
+        name: object.name,
+        triggerX: object.x,
+        triggerY: object.y,
+        triggerW: object.width,
+        triggerH: object.height,
+        texture: this.getSpriteParamsByObjectName(object.name, 'Messages')?.texture,
+        frame: this.getSpriteParamsByObjectName(object.name, 'Messages')?.frame,
+        interaction,
+        singleUse,
+        callback: () => {
+          this.switchToScene('Dialog', {
+            dialogTree: [{
+              id: 'message',
+              text: messageText,
+              replies: [{
+                text: '(End)',
+                callbackParam: 'fastEnd',
               }],
-              speakerName: object.name,
-            }, false);
-          },
-        });
+            }],
+            speakerName: object.name,
+          }, false);
+        },
       });
+    });
+
+    this.map.getObjectLayer('Fishing Spots')?.objects.forEach((object) => {
+      const objectName = object.name;
+      const fishString = object.properties?.find((prop: TiledObjectProp) => prop.name === 'fish')?.value;
+      const fishes = JSON.parse(fishString);
+      new Trigger({
+        scene: this,
+        name: object.name,
+        triggerX: object.x,
+        triggerY: object.y,
+        triggerW: object.width,
+        triggerH: object.height,
+        texture: 'icons',
+        frame: 'icons/fishing/silver-fish',
+        callback: () => {
+          console.log(fishes);
+          this.switchToScene('Fishing', {
+            fishes,
+            objectName,
+          }, false);
+        },
+      });
+    });
 
     // @ts-ignore
     this.sys.animatedTiles.init(this.map);
@@ -289,6 +308,9 @@ export default class GeneralLocation extends Phaser.Scene {
       }
       if (data?.switchToScene) {
         this.switchToScene(data.switchToScene, data.data);
+      }
+      if (data?.fishingObjectName) {
+        this.triggers.find((trigger) => trigger.name === data.fishingObjectName).destroy();
       }
     });
 

@@ -5324,7 +5324,24 @@
  </tile>
  <wangsets>
   <wangset name="Stone wall" type="mixed" tile="-1"/>
-  <wangset name="Wooden wall" type="mixed" tile="-1"/>
+  <wangset name="Wooden wall" type="mixed" tile="-1">
+   <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>
+   <wangtile tileid="176" wangid="1,0,0,0,1,0,0,0"/>
+   <wangtile tileid="177" wangid="0,0,0,0,1,0,0,0"/>
+   <wangtile tileid="178" wangid="0,0,1,0,1,0,0,0"/>
+   <wangtile tileid="179" wangid="0,0,0,0,1,0,1,0"/>
+   <wangtile tileid="180" wangid="0,0,0,0,0,0,1,0"/>
+   <wangtile tileid="181" wangid="1,0,1,0,0,0,1,0"/>
+   <wangtile tileid="182" wangid="0,0,1,0,1,0,1,0"/>
+   <wangtile tileid="183" wangid="1,0,1,0,1,0,1,0"/>
+   <wangtile tileid="184" wangid="0,0,1,0,0,0,1,0"/>
+   <wangtile tileid="185" wangid="1,0,0,0,0,0,0,0"/>
+   <wangtile tileid="186" wangid="1,0,1,0,0,0,0,0"/>
+   <wangtile tileid="187" wangid="1,0,0,0,0,0,1,0"/>
+   <wangtile tileid="188" wangid="0,0,1,0,0,0,0,0"/>
+   <wangtile tileid="189" wangid="1,0,1,0,1,0,0,0"/>
+   <wangtile tileid="190" wangid="1,0,0,0,1,0,1,0"/>
+  </wangset>
   <wangset name="Iron wall" type="mixed" tile="-1"/>
  </wangsets>
 </tileset>
