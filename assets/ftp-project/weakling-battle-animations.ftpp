@@ -2,37 +2,201 @@
   "meta": {
     "version": "0.6.6"
   },
-  "savePath": "",
-  "images": [],
-  "folders": [
-    "C:/Users/serjn/WebstormProjects/weakling/assets/ftp-project/weakling-battle-animations"
+  "savePath": "C:\\GAME-DEVELOPMENT\\Phaser-projects\\Weakling-collaboration\\Weakling\\src\\assets\\images-extruded\\characters\\battle\\party\\weakling",
+  "images": [
+    {
+      "name": "00.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/00.png",
+      "folder": ""
+    },
+    {
+      "name": "01.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/01.png",
+      "folder": ""
+    },
+    {
+      "name": "02.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/02.png",
+      "folder": ""
+    },
+    {
+      "name": "03.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/03.png",
+      "folder": ""
+    },
+    {
+      "name": "04.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/04.png",
+      "folder": ""
+    },
+    {
+      "name": "05.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/05.png",
+      "folder": ""
+    },
+    {
+      "name": "06.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/06.png",
+      "folder": ""
+    },
+    {
+      "name": "07.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/07.png",
+      "folder": ""
+    },
+    {
+      "name": "08.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/08.png",
+      "folder": ""
+    },
+    {
+      "name": "09.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/09.png",
+      "folder": ""
+    },
+    {
+      "name": "10.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/10.png",
+      "folder": ""
+    },
+    {
+      "name": "11.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/11.png",
+      "folder": ""
+    },
+    {
+      "name": "12.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/12.png",
+      "folder": ""
+    },
+    {
+      "name": "13.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/13.png",
+      "folder": ""
+    },
+    {
+      "name": "14.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/14.png",
+      "folder": ""
+    },
+    {
+      "name": "15.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/15.png",
+      "folder": ""
+    },
+    {
+      "name": "16.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/16.png",
+      "folder": ""
+    },
+    {
+      "name": "17.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/17.png",
+      "folder": ""
+    },
+    {
+      "name": "18.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/18.png",
+      "folder": ""
+    },
+    {
+      "name": "19.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/19.png",
+      "folder": ""
+    },
+    {
+      "name": "20.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/20.png",
+      "folder": ""
+    },
+    {
+      "name": "21.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/21.png",
+      "folder": ""
+    },
+    {
+      "name": "22.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/22.png",
+      "folder": ""
+    },
+    {
+      "name": "23.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/23.png",
+      "folder": ""
+    },
+    {
+      "name": "24.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/24.png",
+      "folder": ""
+    },
+    {
+      "name": "25.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/25.png",
+      "folder": ""
+    },
+    {
+      "name": "26.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/26.png",
+      "folder": ""
+    },
+    {
+      "name": "27.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/27.png",
+      "folder": ""
+    },
+    {
+      "name": "28.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/28.png",
+      "folder": ""
+    },
+    {
+      "name": "29.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/29.png",
+      "folder": ""
+    },
+    {
+      "name": "30.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/30.png",
+      "folder": ""
+    },
+    {
+      "name": "31.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/31.png",
+      "folder": ""
+    },
+    {
+      "name": "32.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/weakling-mc-battle-split/32.png",
+      "folder": ""
+    }
   ],
+  "folders": [],
   "packOptions": {
     "textureName": "weakling-battle",
     "textureFormat": "png",
-    "removeFileExtension": true,
+    "removeFileExtension": false,
     "prependFolderName": true,
     "base64Export": false,
     "tinify": false,
     "tinifyKey": "",
     "scale": 1,
-    "disableSmoothing": true,
+    "disableSmoothing": false,
     "filter": "none",
     "exporter": "Phaser 3",
     "fileName": "pack-result",
-    "savePath": "",
-    "width": 512,
+    "savePath": "C:\\GAME-DEVELOPMENT\\Phaser-projects\\Weakling-collaboration\\Weakling\\src\\assets\\images-extruded\\characters\\battle\\party\\weakling",
+    "width": 2048,
     "height": 2048,
     "fixedSize": false,
     "powerOfTwo": false,
     "padding": 0,
-    "extrude": 1,
+    "extrude": 0,
     "allowRotation": false,
     "allowTrim": false,
     "trimMode": "trim",
     "alphaThreshold": "0",
-    "detectIdentical": true,
+    "detectIdentical": false,
     "packer": "MaxRectsBin",
-    "packerMethod": "BestShortSideFit"
+    "packerMethod": "BottomLeftRule"
   }
 }
