@@ -83,7 +83,7 @@ export default class GeneralLocation extends Phaser.Scene {
       this.playerImage.anims.play('idle_down');
       this.playerImage.setCollideWorldBounds(true);
 
-      this.playerImage.body.setSize(16, 16).setOffset(8, 16);
+      this.playerImage.body.setSize(32, 32).setOffset(32, 48);
 
       this.keys = this.input.keyboard.addKeys('W,S,A,D,left,right,up,down,space');
 
