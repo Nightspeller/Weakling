@@ -38,7 +38,7 @@ export default class ActionInterfaceDrawer {
       let buttonY: number;
       availableActions.forEach((actionId) => {
         const action = new Action(actionId, currentCharacter);
-        if (disposition.currentPhase === 'preparation' && (action.actionId === 'retreat' || action.actionId === 'accessInventory')) {
+        if (disposition.currentPhase === 'preparation' && action.actionId === 'accessInventory') {
           action.actionCost = 0;
         }
 

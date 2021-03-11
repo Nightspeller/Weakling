@@ -12,6 +12,7 @@ import HargkakhsCaveScene from './scenes/locations/village/hargkakhsCave';
 import CharacterPickerScene from './scenes/overlays/characterPicker';
 import BattleScene from './scenes/battle/battle';
 import DialogScene from './scenes/overlays/dialog';
+import FishingScene from './scenes/overlays/fishing';
 import TavernScene from './scenes/locations/caltor/tavern';
 import InventoryOverlayScene from './scenes/overlays/item-manupulators/inventoryOverlayScene';
 import HermitsTowerScene from './scenes/locations/caltor/hermitsTower';
@@ -37,6 +38,7 @@ import AchievementsScene from './scenes/overlays/achievements';
 import AllItemsScene from './scenes/overlays/all-items';
 import LevelUpScreenScene from './scenes/overlays/level-up-screen';
 import HoneywoodScene from './scenes/locations/honeywood/honeywood';
+
 // import { TestPreloadScene } from './scenes/not-used/perf-test';
 
 export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
@@ -77,7 +79,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
     OptionsScene,
     IntroScene,
     ...LOCATION_SCENES,
-    CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, InventoryOverlayScene,
+    CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, FishingScene, InventoryOverlayScene,
     QuestLogScene, AchievementsScene, LevelUpScreenScene, AllItemsScene, AlchemyStandScene, ContainerOverlayScene,
   ],
 };

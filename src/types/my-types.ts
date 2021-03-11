@@ -64,6 +64,7 @@ export interface ActionData {
   noticeable: number;
   actionName: string;
   target: 'self' | 'enemy' | 'friend' | 'any' | 'all' | 'allEnemies' | 'allFriends' | 'party';
+  projectile?: SpriteParameters;
   special?: string;
   consumes?: string;
   triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];

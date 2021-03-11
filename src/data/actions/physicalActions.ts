@@ -12,6 +12,7 @@ const physicalActions: { [key: string]: ActionData } = {
       strength: 1,
     }],
     consumes: 'fire-marble',
+    projectile: { texture: 'icons', frame: 'icons/gems/red-round-stone' },
     target: 'enemy',
     actionCost: 0.5,
     noticeable: 0,
