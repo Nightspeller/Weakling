@@ -45,8 +45,8 @@ export default class Skeleton extends GeneralEnemy {
 
     this.animations.idle = 'skeleton_idle';
     this.animations.move = 'skeleton_move';
-    this.animations.attack = 'skeleton_attack2';
-    this.animations.buff = 'skeleton_attack1';
+    this.animations.meleeAttack = 'skeleton_attack2';
+    this.animations.castBuff = 'skeleton_attack1';
     this.animations.death = 'skeleton_death';
     this.animations.hit = 'skeleton_hit';
   }

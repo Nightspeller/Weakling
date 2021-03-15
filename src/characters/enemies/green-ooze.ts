@@ -45,8 +45,8 @@ export default class GreenOoze extends GeneralEnemy {
 
     this.animations.idle = 'green-ooze_idle';
     this.animations.move = 'green-ooze_move';
-    this.animations.attack = 'green-ooze_attack1';
-    this.animations.rangeAttack = 'green-ooze_attack1';
+    this.animations.meleeAttack = 'green-ooze_attack1';
+    this.animations.rangedAttack = 'green-ooze_attack1';
     this.animations.hit = 'green-ooze_hit';
     this.animations.death = 'green-ooze_death';
   }

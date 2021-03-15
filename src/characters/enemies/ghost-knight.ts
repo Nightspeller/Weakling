@@ -45,8 +45,8 @@ export default class GhostKnight extends GeneralEnemy {
 
     this.animations.idle = 'knight_idle';
     this.animations.move = 'knight_move';
-    this.animations.attack = 'knight_attack2';
-    this.animations.buff = 'knight_attack1';
+    this.animations.meleeAttack = 'knight_attack2';
+    this.animations.castBuff = 'knight_attack1';
     this.animations.death = 'knight_death';
     this.animations.hit = 'knight_hit';
   }

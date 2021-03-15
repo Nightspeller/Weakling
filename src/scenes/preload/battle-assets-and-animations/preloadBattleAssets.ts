@@ -3,7 +3,7 @@ import { createSkeletonAnimations, preloadSkeletonAssets } from './preloadAndCre
 import { createKnightAnimations, preloadKnightAssets } from './preloadAndCreateKnightAnimations';
 import { createWizardAminations, preloadWizardAssets } from './preloadAndCreateWizardAnimations';
 import { preloadCyclopsBatAssets, createCyclopsBatAnimations } from './preloadAndCreateCyclopsBatAnimations';
-import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingAnimations';
+import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingBattleAnimations';
 import { createGreenOozeAnimations, preloadGreenOozeAssets } from './preloadAndCreateGreenOozeAnimations';
 
 export function preloadBattleAssets(preloadScene: Phaser.Scene) {

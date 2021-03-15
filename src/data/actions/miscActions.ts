@@ -170,7 +170,7 @@ const miscActions: { [key: string]: ActionData } = {
     actionCost: 1,
     noticeable: 1,
     triggers: [],
-    animation: 'rangeAttack',
+    animation: 'rangedAttack',
     icon: { texture: 'icons', frame: 'icons/spells-and-magic/acid' },
     parametersCost: { energy: 3 },
   },

@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import * as Phaser from 'phaser';
 import Adventurer from '../../characters/adventurers/adventurer';
 import GeneralEnemy from '../../characters/enemies/generalEnemy';
@@ -9,6 +6,7 @@ import {
 } from '../../config/constants';
 import { EffectData, SpriteParameters } from '../../types/my-types';
 import ProgressBar from '../../helpers/progressBar';
+import GeneralCharacter from '../../characters/generalCharacter';
 
 const { Rectangle } = Phaser.Geom;
 
@@ -100,7 +98,7 @@ export default class CharacterDrawer {
       color: 0xff0000,
       current: params.health,
       max: characteristics.health,
-      width: BATTLE_CHAR_WIDTH
+      width: BATTLE_CHAR_WIDTH,
     });
     const mannaText = new ProgressBar({
       scene: this.scene,
@@ -109,7 +107,7 @@ export default class CharacterDrawer {
       color: 0x0000ff,
       current: params.manna,
       max: characteristics.manna,
-      width: BATTLE_CHAR_WIDTH
+      width: BATTLE_CHAR_WIDTH,
     });
     const energyText = new ProgressBar({
       scene: this.scene,
@@ -118,7 +116,7 @@ export default class CharacterDrawer {
       color: 0x00ff00,
       current: params.energy,
       max: characteristics.energy,
-      width: BATTLE_CHAR_WIDTH
+      width: BATTLE_CHAR_WIDTH,
     });
 
     this.parametersContainer.add([healthText, mannaText, energyText]);
@@ -131,13 +129,13 @@ export default class CharacterDrawer {
     const baseX = BATTLE_CHAR_WIDTH / 2 - ACTION_POINT_WIDTH + ACTION_POINT_WIDTH / 2;
     const baseY = -BATTLE_CHAR_HEIGHT / 2 + ACTION_POINT_HEIGHT / 2;
 
-    Object.keys(this.char.actionPoints)
+    (Object.keys(this.char.actionPoints) as (keyof GeneralCharacter['actionPoints'])[])
       .forEach((pointType, index) => {
         let pointsDrawn = 0;
         const actionPointShift = ACTION_POINT_HEIGHT * 2 * index;
         for (let i = 0; i < Math.min(Math.trunc(this.char.actionPoints[pointType]), 2); i += 1) {
           this.actionPointsContainer.add(this.scene.add.sprite(baseX, baseY + pointsDrawn * ACTION_POINT_HEIGHT + actionPointShift, 'action-points', index));
-          pointsDrawn++;
+          pointsDrawn += 1;
         }
         if (this.char.actionPoints[pointType] % 1 === 0.5) {
           if (pointsDrawn < 2) {
@@ -249,19 +247,16 @@ export default class CharacterDrawer {
     this.characterInfoContainer.add(energy);
 
     let lastTextY = 102;
-    const drawText = (characteristic) => {
-      let charString = `${this.char.characteristics[characteristic]} (`;
-      charString += `${this.char.characteristicsModifiers[characteristic].map((modifier) => modifier.value)
-        .join(' + ')})`;
-      const text = this.scene.add.text(8, lastTextY, `${characteristic}: ${charString}`, textStyle);
-      this.characterInfoContainer.add(text);
-      lastTextY += 14;
-    };
 
-    Object.keys(this.char.characteristics)
+    (Object.keys(this.char.characteristics) as (keyof GeneralCharacter['characteristics'])[])
       .forEach((characteristic) => {
         if (characteristic !== 'health' && characteristic !== 'manna' && characteristic !== 'energy' && !characteristic.includes('Resistance')) {
-          drawText(characteristic);
+          let charString = `${this.char.characteristics[characteristic]} (`;
+          charString += `${this.char.characteristicsModifiers[characteristic].map((modifier) => modifier.value)
+            .join(' + ')})`;
+          const text = this.scene.add.text(8, lastTextY, `${characteristic}: ${charString}`, textStyle);
+          this.characterInfoContainer.add(text);
+          lastTextY += 14;
         }
       });
 
@@ -282,7 +277,7 @@ export default class CharacterDrawer {
     this.characterInfoContainer.add(actionPointsText);
 
     let pointsDrawn = 0;
-    Object.keys(this.char.actionPoints)
+    (Object.keys(this.char.actionPoints) as (keyof GeneralCharacter['actionPoints'])[])
       .forEach((pointType, index) => {
         for (let i = 0; i < Math.trunc(this.char.actionPoints[pointType]); i += 1) {
           this.characterInfoContainer.add(this.scene.add.sprite(8 + pointsDrawn * 16, 270, 'action-points', index)
@@ -356,11 +351,11 @@ export default class CharacterDrawer {
     return new Promise<void>((resolve) => {
       const initialImageDepth = this.mainImage.depth;
       this.mainImage.setDepth(5);
-      if (this.char.animations?.attack) {
+      if (this.char.animations?.meleeAttack) {
         this.mainImage.anims.play({ key: this.char.animations.idle, repeat: 0 })
-          .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
-            this.mainImage.anims.play({ key: this.char.animations.attack, repeat: 0 })
-              .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+          .once('animationcomplete', () => {
+            this.mainImage.anims.play({ key: this.char.animations.meleeAttack, repeat: 0 })
+              .once('animationcomplete', () => {
                 this.mainImage.setDepth(initialImageDepth);
                 resolve();
               });
@@ -387,8 +382,8 @@ export default class CharacterDrawer {
 
   public playRangedAttackAnimation() {
     return new Promise<void>((resolve) => {
-      if (this.char.animations.rangeAttack) {
-        this.mainImage.anims.play(this.char.animations.rangeAttack);
+      if (this.char.animations.rangedAttack) {
+        this.mainImage.anims.play(this.char.animations.rangedAttack);
         this.mainImage.once('animationcomplete', () => {
           this.playIdleAnimation();
           resolve();
@@ -397,7 +392,7 @@ export default class CharacterDrawer {
         this.scene.tweens.add({
           targets: this.mainImage,
           props: {
-            x: { value: this.mainImage.x + 30 }
+            x: { value: this.mainImage.x + 30 },
           },
           ease: 'Back.easeOut',
           duration: 300,
@@ -416,9 +411,9 @@ export default class CharacterDrawer {
       this.mainImage.setDepth(5);
       if (this.char.animations?.meleeCast) {
         this.mainImage.anims.play({ key: this.char.animations.idle, repeat: 0 })
-          .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+          .once('animationcomplete', () => {
             this.mainImage.anims.play({ key: this.char.animations.meleeCast, repeat: 0 })
-              .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+              .once('animationcomplete', () => {
                 this.mainImage.setDepth(initialImageDepth);
                 resolve();
               });
@@ -443,10 +438,10 @@ export default class CharacterDrawer {
     });
   }
 
-  public playRangeCastAnimation() {
+  public playRangedCastAnimation() {
     return new Promise<void>((resolve) => {
-      if (this.char.animations.rangeCast) {
-        this.mainImage.anims.play(this.char.animations.rangeCast);
+      if (this.char.animations.rangedCast) {
+        this.mainImage.anims.play(this.char.animations.rangedCast);
         this.mainImage.once('animationcomplete', () => {
           this.playIdleAnimation();
           resolve();
@@ -455,7 +450,7 @@ export default class CharacterDrawer {
         this.scene.tweens.add({
           targets: this.mainImage,
           props: {
-            x: { value: this.mainImage.x + 30 }
+            x: { value: this.mainImage.x + 30 },
           },
           ease: 'Back.easeOut',
           duration: 300,
@@ -468,14 +463,16 @@ export default class CharacterDrawer {
     });
   }
 
-  public playRangedProjectileAnimation(targetX: number, targetY: number, projectileSpriteParams: SpriteParameters = {texture: 'icons', frame: 'icons/weapons/ranged/arrow-evolving-green-1'}) {
+  public playRangedProjectileAnimation(targetX: number, targetY: number, projectileSpriteParams: SpriteParameters = { texture: 'icons', frame: 'icons/weapons/ranged/arrow-evolving-green-1' }) {
     return new Promise<void>((resolve) => {
-      const projectile = this.scene.add.sprite(this.mainImage.x, this.mainImage.y, projectileSpriteParams.texture, projectileSpriteParams.frame).setOrigin(0.5);
+      const projectile = this.scene.add
+        .sprite(this.mainImage.x, this.mainImage.y, projectileSpriteParams.texture, projectileSpriteParams.frame)
+        .setOrigin(0.5);
       projectile.flipX = projectileSpriteParams.flip;
       let duration = 300;
       if (projectileSpriteParams.animation) {
         projectile.play(projectileSpriteParams.animation);
-        duration = this.scene.anims.get(projectileSpriteParams.animation).duration
+        duration = this.scene.anims.get(projectileSpriteParams.animation).duration;
       }
       this.scene.tweens.add({
         targets: projectile,
@@ -483,7 +480,7 @@ export default class CharacterDrawer {
           x: { value: targetX },
           y: { value: targetY },
         },
-        duration: duration,
+        duration,
         onComplete: () => {
           projectile.destroy();
           resolve();
@@ -492,10 +489,10 @@ export default class CharacterDrawer {
     });
   }
 
-  public playCastAnimation() {
+  public playCastBuffAnimation() {
     return new Promise<void>((resolve) => {
-      if (this.char.animations?.buff) {
-        this.mainImage.anims.play(this.char.animations.buff, true);
+      if (this.char.animations?.castBuff) {
+        this.mainImage.anims.play(this.char.animations.castBuff, true);
         this.mainImage.once('animationcomplete', () => {
           this.playIdleAnimation();
           resolve();
@@ -505,7 +502,7 @@ export default class CharacterDrawer {
         this.scene.add.sprite(this.position.x, this.position.y, null)
           .setDepth(1)
           .play('light_pillar_animation_back')
-          .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+          .once('animationcomplete', (currentAnim: string, currentFrame: string, sprite: Phaser.GameObjects.Sprite) => {
             this.mainImage.setDepth(null);
             sprite.destroy();
             resolve();
@@ -513,7 +510,7 @@ export default class CharacterDrawer {
         this.scene.add.sprite(this.position.x, this.position.y, null)
           .setDepth(3)
           .play('light_pillar_animation_front')
-          .once('animationcomplete', (currentAnim, currentFrame, sprite) => {
+          .once('animationcomplete', (currentAnim: string, currentFrame: string, sprite: Phaser.GameObjects.Sprite) => {
             sprite.destroy();
           });
       }

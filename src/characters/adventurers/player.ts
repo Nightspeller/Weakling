@@ -17,7 +17,7 @@ export class Player extends Adventurer {
     super();
     this.name = 'Weakling';
     this.spriteParams = {
-      texture: 'weakling-battle', frame: 'weakling-battle-animations/attack1/1', width: 144, height: 96,
+      texture: 'weakling-battle', frame: 'weakling-battle-animations/idle/1', width: 96 * 1.5, height: 96 * 1.5,
     };
     this.worldImageSpriteParams = { texture: 'jeremy-green', frame: 1 };
     this.quests = [];
@@ -46,10 +46,11 @@ export class Player extends Adventurer {
 
     this.animations.idle = 'weakling_idle';
     this.animations.move = 'weakling_move';
-    this.animations.attack = 'weakling_attack1';
+    this.animations.meleeAttack = 'weakling_melee_attack';
+    this.animations.rangedAttack = 'weakling_ranged_attack';
     this.animations.meleeCast = 'weakling_cast';
-    this.animations.rangeCast = 'weakling_cast';
-    this.animations.buff = 'weakling_buff';
+    this.animations.rangedCast = 'weakling_cast';
+    this.animations.castBuff = 'weakling_buff';
     this.animations.death = 'weakling_death';
     this.animations.hit = 'weakling_hit';
 

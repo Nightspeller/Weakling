@@ -73,9 +73,10 @@ export default class GeneralLocation extends Phaser.Scene {
       };
     }
     if (this.startPoint) {
+      // -32 + 8 is an adjustment for player image and body, as well as +8 to center it in the cell
       this.playerImage = this.physics.add.sprite(
-        this.startPoint.x + this.offsetX,
-        this.startPoint.y + this.offsetY,
+        this.startPoint.x + this.offsetX - 32 + 8,
+        this.startPoint.y + this.offsetY - 48 + 8,
         this.player.worldImageSpriteParams.texture,
         this.player.worldImageSpriteParams.frame,
       );
@@ -213,7 +214,8 @@ export default class GeneralLocation extends Phaser.Scene {
           if (toLocation) {
             this.switchToScene(toLocation, undefined, undefined, toCoordinates);
           } else if (toCoordinates) {
-            this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX, toCoordinates.y * 32 + this.offsetY);
+            // -32 + 8 is an adjustment for player image and body, as well as +8 to center it in the cell
+            this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX - 32 + 8, toCoordinates.y * 32 + this.offsetY - 48 + 8);
           }
         },
       });
@@ -316,7 +318,8 @@ export default class GeneralLocation extends Phaser.Scene {
 
     this.events.on('wake', (scene: any, data: any) => {
       if (data?.toCoordinates && data.toCoordinates.x !== -1) {
-        this.playerImage.setPosition(data.toCoordinates.x * 32 + this.offsetX, data.toCoordinates.y * 32 + this.offsetY);
+        // -32 + 8 is an adjustment for player image and body, as well as +8 to center it in the cell
+        this.playerImage.setPosition(data.toCoordinates.x * 32 + this.offsetX - 32 + 8, data.toCoordinates.y * 32 + this.offsetY - 48 + 8);
       }
       if (this.objectsHighlightBorders) this.objectsHighlightBorders.clear(true, true);
 

@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "version": "0.6.6"
+  },
+  "savePath": "",
+  "images": [],
+  "folders": [
+    "C:/Users/serjn/WebstormProjects/weakling/assets/ftp-project/weakling-world-animations"
+  ],
+  "packOptions": {
+    "textureName": "weakling-world",
+    "textureFormat": "png",
+    "removeFileExtension": true,
+    "prependFolderName": true,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "disableSmoothing": false,
+    "filter": "none",
+    "exporter": "Phaser 3",
+    "fileName": "pack-result",
+    "savePath": "",
+    "width": 512,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 0,
+    "extrude": 1,
+    "allowRotation": false,
+    "allowTrim": false,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": true,
+    "packer": "MaxRectsBin",
+    "packerMethod": "BestShortSideFit"
+  }
+}

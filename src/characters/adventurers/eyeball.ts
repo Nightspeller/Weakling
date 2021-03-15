@@ -39,8 +39,8 @@ export class Eyeball extends Adventurer {
 
     this.animations.idle = 'eyeball_idle';
     this.animations.move = 'eyeball_idle';
-    this.animations.attack = 'eyeball_attack1';
-    this.animations.buff = 'eyeball_buff';
+    this.animations.meleeAttack = 'eyeball_attack1';
+    this.animations.castBuff = 'eyeball_buff';
     this.animations.death = 'eyeball_death';
     this.animations.hit = 'eyeball_hit';
   }

@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { EffectData, SpriteParameters } from '../types/my-types';
+import { EffectData, PossibleBattleAnimations, SpriteParameters } from '../types/my-types';
 
 export default class GeneralCharacter {
   public spriteParams: SpriteParameters;
@@ -9,7 +9,7 @@ export default class GeneralCharacter {
   public availableActions: string[];
   public actedThisRound: boolean;
   public isAlive: boolean;
-  public animations: { [key: string]: string };
+  public animations: PossibleBattleAnimations;
   public actionPoints: { magical: number; physical: number; misc: number };
   protected actionPointsBase: { magical: number; physical: number; misc: number };
   protected actionPointsIncrement: { magical: number; physical: number; misc: number };

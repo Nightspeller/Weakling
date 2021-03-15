@@ -99,15 +99,17 @@ export default class GeneralNpc extends Trigger {
 
     if (collisionImage.anims == null && collisionImage.anims.currentFrame == null) return;
 
-    if (playerImage.y + playerImage.body.height <= collisionImage.y - collisionImage.body.height / 2) {
-      collisionImage.anims.play(`${collisionImage.texture.key}-idle-up`);
-    } else if (playerImage.y >= collisionImage.y + collisionImage.body.height / 2) {
-      collisionImage.anims.play(`${collisionImage.texture.key}-idle-down`);
-    } else if (playerImage.x < collisionImage.x) {
-      collisionImage.anims.play(`${collisionImage.texture.key}-idle-left`);
-    } else if (playerImage.x > collisionImage.x) {
-      collisionImage.anims.play(`${collisionImage.texture.key}-idle-right`);
-    }
+    const triggerBodyBounds = collisionImage.body.getBounds({
+      x: 0, y: 0, right: 0, bottom: 0,
+    });
+    const playerBodyBounds = playerImage.body.getBounds({
+      x: 0, y: 0, right: 0, bottom: 0,
+    });
+
+    if (triggerBodyBounds.y === playerBodyBounds.bottom) collisionImage.anims.play(`${collisionImage.texture.key}-idle-up`);
+    if (triggerBodyBounds.x === playerBodyBounds.right) collisionImage.anims.play(`${collisionImage.texture.key}-idle-left`);
+    if (triggerBodyBounds.bottom === playerBodyBounds.y) collisionImage.anims.play(`${collisionImage.texture.key}-idle-down`);
+    if (triggerBodyBounds.right === playerBodyBounds.x) collisionImage.anims.play(`${collisionImage.texture.key}-idle-right`);
   }
 
   public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {

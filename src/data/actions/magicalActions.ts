@@ -142,7 +142,7 @@ const magicalActions: { [key: string]: ActionData } = {
     actionCost: 2,
     noticeable: 1,
     triggers: [],
-    animation: 'rangeCast',
+    animation: 'rangedCast',
     projectile: { texture: 'fireball', frame: 0, animation: 'fireball_animation' },
     icon: { texture: 'icons', frame: 'icons/spells-and-magic/fire-swirl' },
     parametersCost: { manna: 3 },

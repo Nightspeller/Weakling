@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingAnimations';
+import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingWorldAnimations';
 import { createWorldCharactersAnimations, preloadWorldCharactersAssets } from './preloadAndCreateWorldCharacters';
 import { createCreatureAnimations, preloadCreaturesAssets } from './preloadAndCreateCreaturesAnimations';
 import { tilesetConfig } from '../../../config/constants';

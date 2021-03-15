@@ -37,6 +37,20 @@ export interface SpriteParameters {
   animation?: string;
 }
 
+export interface PossibleBattleAnimations {
+  idle?: string;
+  move?: string;
+  meleeAttack?: string;
+  rangedAttack?: string;
+  meleeCast?: string;
+  rangedCast?: string;
+  castBuff?: string;
+  physicalBuff?: string;
+  death?: string;
+  hit?: string;
+  miss?: string;
+}
+
 export interface EffectData {
   effectId: string;
   name: string;
@@ -68,7 +82,7 @@ export interface ActionData {
   special?: string;
   consumes?: string;
   triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
-  animation: 'meleeAttack' | 'rangeAttack' | 'meleeCast' | 'rangeCast' | 'castBuff';
+  animation: keyof PossibleBattleAnimations;
   icon?: SpriteParameters;
   parametersCost?: { energy?: number, manna?: number };
 }

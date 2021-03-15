@@ -103,7 +103,7 @@ const handsItems: { [key: string]: ItemData } = {
       additionalCharacteristics: [
         { weaponDamage: 10 },
       ],
-      additionalActions: ['rangeAttack'],
+      additionalActions: ['rangedAttack'],
       size: ['xs', 's', 'm', 'l', 'xl', 'xxxl'],
     },
     sellPrice: 2,

@@ -8,14 +8,16 @@ import GeneralEnemy from '../../characters/enemies/generalEnemy';
 import ActionInterfaceDrawer from './actionInterfaceDrawer';
 import GeneralOverlayScene from '../overlays/generalOverlayScene';
 import Item from '../../entities/item';
-import { ActionData, EffectData, SpriteParameters } from '../../types/my-types';
+import {
+  ActionData, EffectData, PossibleBattleAnimations, SpriteParameters,
+} from '../../types/my-types';
 import RichBitmapText from '../../helpers/richBitmapText';
 import BattleLogDrawer from './battleLogDrawer';
 import { GAME_H, GAME_W } from '../../config/constants';
 
 interface PlayAnimationParams {
   char: Adventurer | GeneralEnemy;
-  animation: string;
+  animation: keyof PossibleBattleAnimations;
   targets?: (Adventurer | GeneralEnemy)[];
   succeeded?: boolean[];
   projectile?: SpriteParameters;
@@ -201,7 +203,7 @@ export default class BattleScene extends GeneralOverlayScene {
         await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
         break;
       }
-      case 'rangeAttack': {
+      case 'rangedAttack': {
         let attackX = 600;
         let attackY = 320;
         if (targetDrawer) {
@@ -241,14 +243,14 @@ export default class BattleScene extends GeneralOverlayScene {
         await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
         break;
       }
-      case 'rangeCast': {
+      case 'rangedCast': {
         let attackX = 600;
         let attackY = 320;
         if (targetDrawer) {
           attackX = targetDrawer.position.x;
           attackY = targetDrawer.position.y;
         }
-        await charDrawer.playRangeCastAnimation();
+        await charDrawer.playRangedCastAnimation();
         await charDrawer.playRangedProjectileAnimation(attackX, attackY, projectile);
         targets.forEach((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
@@ -261,7 +263,7 @@ export default class BattleScene extends GeneralOverlayScene {
         break;
       }
       case 'castBuff':
-        await charDrawer.playCastAnimation();
+        await charDrawer.playCastBuffAnimation();
         break;
       case 'hit':
         await charDrawer.playHitAnimation();

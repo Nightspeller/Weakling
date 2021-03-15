@@ -1,6 +1,6 @@
 import actionsData from '../data/actionsData';
 import Effect from './effect';
-import { ActionData } from '../types/my-types';
+import { ActionData, PossibleBattleAnimations } from '../types/my-types';
 
 export default class Action implements ActionData {
   public phase: ('preparation' | 'battle')[];
@@ -16,7 +16,7 @@ export default class Action implements ActionData {
   public special?: string;
   public requires?: string;
   public triggers?: { conditionId: string, probability: number, conditionDisplayName: string }[];
-  public animation: 'meleeAttack' | 'rangeAttack' | 'meleeCast' | 'rangeCast' | 'castBuff';
+  public animation: keyof PossibleBattleAnimations;
   public icon?: { texture: string, frame: number | string };
   public parametersCost?: { energy?: number, manna?: number };
 
