@@ -4,933 +4,870 @@
 			"image": "weakling-battle.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 490,
-				"h": 528
+				"w": 2016,
+				"h": 192
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "weakling-battle-animations/attack1/1",
+					"filename": "00.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 1,
+						"x": 0,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/attack1/2",
+					"filename": "01.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 1,
+						"x": 96,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/attack1/3",
+					"filename": "02.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 1,
+						"x": 192,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/1",
+					"filename": "03.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 1,
+						"x": 288,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/10",
+					"filename": "04.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 1,
+						"x": 384,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/11",
+					"filename": "05.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 67,
+						"x": 480,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/2",
+					"filename": "06.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 67,
+						"x": 576,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/3",
+					"filename": "07.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 67,
+						"x": 672,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/4",
+					"filename": "08.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 67,
+						"x": 768,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/5",
+					"filename": "09.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 67,
+						"x": 864,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/6",
+					"filename": "10.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 133,
+						"x": 960,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/7",
+					"filename": "11.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 133,
+						"x": 1056,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/8",
+					"filename": "12.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 133,
+						"x": 1152,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/buff/9",
+					"filename": "13.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 133,
+						"x": 1248,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/1",
+					"filename": "14.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 133,
+						"x": 1344,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/2",
+					"filename": "15.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 199,
+						"x": 1440,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/3",
+					"filename": "16.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 199,
+						"x": 1536,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/4",
+					"filename": "17.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 199,
+						"x": 1632,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/5",
+					"filename": "18.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 199,
+						"x": 1728,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/6",
+					"filename": "19.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 199,
+						"x": 1824,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/7",
+					"filename": "20.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 265,
+						"x": 1920,
+						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/8",
+					"filename": "21.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 265,
+						"x": 0,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/cast/9",
+					"filename": "22.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 265,
+						"x": 96,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/10",
+					"filename": "23.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 265,
+						"x": 192,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/11",
+					"filename": "24.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 265,
+						"x": 288,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/12",
+					"filename": "25.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 331,
+						"x": 384,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/13",
+					"filename": "26.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 331,
+						"x": 480,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/14",
+					"filename": "27.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 331,
+						"x": 576,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/15",
+					"filename": "28.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 331,
+						"x": 672,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/2",
+					"filename": "29.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 331,
+						"x": 768,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/3",
+					"filename": "30.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 397,
+						"x": 864,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/4",
+					"filename": "31.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 397,
+						"x": 960,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/5",
+					"filename": "32.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 397,
+						"x": 1056,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/6",
+					"filename": "33.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 397,
+						"x": 1152,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/7",
+					"filename": "34.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 397,
+						"x": 1248,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/9",
+					"filename": "35.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 1,
-						"y": 463,
+						"x": 1344,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/hit/2",
+					"filename": "36.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 463,
+						"x": 1440,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/move/1",
+					"filename": "37.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 463,
+						"x": 1536,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/move/3",
+					"filename": "38.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 463,
+						"x": 1632,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/death/1",
+					"filename": "39.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 133,
+						"x": 1728,
+						"y": 96,
 						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/hit/1",
+					"filename": "40.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 96,
-						"h": 64
+						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 133,
+						"x": 1824,
+						"y": 96,
 						"w": 96,
-						"h": 64
-					}
-				},
-				{
-					"filename": "weakling-battle-animations/idle/1",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 64
-					},
-					"frame": {
-						"x": 393,
-						"y": 133,
-						"w": 96,
-						"h": 64
-					}
-				},
-				{
-					"filename": "weakling-battle-animations/move/2",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 64
-					},
-					"frame": {
-						"x": 393,
-						"y": 133,
-						"w": 96,
-						"h": 64
-					}
-				},
-				{
-					"filename": "weakling-battle-animations/death/8",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 64
-					},
-					"frame": {
-						"x": 295,
-						"y": 397,
-						"w": 96,
-						"h": 64
+						"h": 96
 					}
 				}
 			]
