@@ -73,7 +73,6 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
   },
 
   parent: 'game',
-  backgroundColor: '#000000',
   scene: [/* TestPreloadScene, */PreloadScene,
     MainMenuScene,
     OptionsScene,
