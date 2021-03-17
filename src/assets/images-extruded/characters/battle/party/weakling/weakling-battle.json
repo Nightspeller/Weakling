@@ -220,7 +220,7 @@
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/melee-attack/1",
+					"filename": "weakling-battle-animations/death/3",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -236,6 +236,111 @@
 					"frame": {
 						"x": 1,
 						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/hit/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/hit/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 295,
 						"w": 96,
 						"h": 96
 					}
@@ -256,7 +361,7 @@
 					},
 					"frame": {
 						"x": 99,
-						"y": 197,
+						"y": 295,
 						"w": 96,
 						"h": 96
 					}
@@ -277,7 +382,7 @@
 					},
 					"frame": {
 						"x": 197,
-						"y": 197,
+						"y": 295,
 						"w": 96,
 						"h": 96
 					}
@@ -298,7 +403,7 @@
 					},
 					"frame": {
 						"x": 295,
-						"y": 197,
+						"y": 295,
 						"w": 96,
 						"h": 96
 					}
@@ -319,7 +424,7 @@
 					},
 					"frame": {
 						"x": 393,
-						"y": 197,
+						"y": 295,
 						"w": 96,
 						"h": 96
 					}
@@ -340,7 +445,7 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 295,
+						"y": 393,
 						"w": 96,
 						"h": 96
 					}
@@ -361,7 +466,7 @@
 					},
 					"frame": {
 						"x": 99,
-						"y": 295,
+						"y": 393,
 						"w": 96,
 						"h": 96
 					}
@@ -382,7 +487,7 @@
 					},
 					"frame": {
 						"x": 197,
-						"y": 295,
+						"y": 393,
 						"w": 96,
 						"h": 96
 					}
@@ -403,7 +508,7 @@
 					},
 					"frame": {
 						"x": 295,
-						"y": 295,
+						"y": 393,
 						"w": 96,
 						"h": 96
 					}
@@ -424,27 +529,6 @@
 					},
 					"frame": {
 						"x": 393,
-						"y": 295,
-						"w": 96,
-						"h": 96
-					}
-				},
-				{
-					"filename": "weakling-battle-animations/move/1",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 1,
 						"y": 393,
 						"w": 96,
 						"h": 96
@@ -465,8 +549,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 393,
+						"x": 1,
+						"y": 491,
 						"w": 96,
 						"h": 96
 					}
@@ -486,8 +570,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 393,
+						"x": 99,
+						"y": 491,
 						"w": 96,
 						"h": 96
 					}
@@ -507,8 +591,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 393,
+						"x": 197,
+						"y": 491,
 						"w": 96,
 						"h": 96
 					}
@@ -528,8 +612,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 393,
+						"x": 295,
+						"y": 491,
 						"w": 96,
 						"h": 96
 					}
@@ -549,7 +633,7 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 1,
+						"x": 393,
 						"y": 491,
 						"w": 96,
 						"h": 96
@@ -570,8 +654,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 491,
+						"x": 1,
+						"y": 589,
 						"w": 96,
 						"h": 96
 					}
@@ -591,8 +675,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 491,
+						"x": 99,
+						"y": 589,
 						"w": 96,
 						"h": 96
 					}
@@ -612,8 +696,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 491,
+						"x": 197,
+						"y": 589,
 						"w": 96,
 						"h": 96
 					}
@@ -633,8 +717,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 491,
+						"x": 295,
+						"y": 589,
 						"w": 96,
 						"h": 96
 					}
@@ -654,7 +738,7 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 1,
+						"x": 393,
 						"y": 589,
 						"w": 96,
 						"h": 96
@@ -675,8 +759,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 589,
+						"x": 1,
+						"y": 687,
 						"w": 96,
 						"h": 96
 					}
@@ -696,8 +780,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 197,
-						"y": 589,
+						"x": 99,
+						"y": 687,
 						"w": 96,
 						"h": 96
 					}
@@ -717,8 +801,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 295,
-						"y": 589,
+						"x": 197,
+						"y": 687,
 						"w": 96,
 						"h": 96
 					}
@@ -738,8 +822,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 393,
-						"y": 589,
+						"x": 295,
+						"y": 687,
 						"w": 96,
 						"h": 96
 					}
@@ -759,7 +843,7 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 1,
+						"x": 393,
 						"y": 687,
 						"w": 96,
 						"h": 96
@@ -1354,7 +1438,7 @@
 					}
 				},
 				{
-					"filename": "weakling-battle-animations/hit/1",
+					"filename": "weakling-battle-animations/move/1",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1390,28 +1474,7 @@
 					},
 					"frame": {
 						"x": 295,
-						"y": 99,
-						"w": 96,
-						"h": 96
-					}
-				},
-				{
-					"filename": "weakling-battle-animations/hit/2",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 393,
-						"y": 99,
+						"y": 197,
 						"w": 96,
 						"h": 96
 					}
@@ -1431,8 +1494,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 99,
-						"y": 393,
+						"x": 1,
+						"y": 491,
 						"w": 96,
 						"h": 96
 					}
@@ -1452,7 +1515,7 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 1,
+						"x": 393,
 						"y": 687,
 						"w": 96,
 						"h": 96
@@ -1473,7 +1536,7 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 1,
+						"x": 393,
 						"y": 687,
 						"w": 96,
 						"h": 96

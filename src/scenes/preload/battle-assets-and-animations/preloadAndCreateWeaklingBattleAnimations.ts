@@ -89,7 +89,7 @@ export function createWeaklingAnimations(scene: Phaser.Scene) {
     frames: scene.anims.generateFrameNames('weakling-battle', {
       prefix: 'weakling-battle-animations/death/',
       start: 1,
-      end: 2,
+      end: 5,
       zeroPad: 0,
     }),
     frameRate: 10,
