@@ -34,7 +34,6 @@ export default class GeneralItemManipulatorScene extends GeneralOverlayScene {
 
   public init({ opts, closeCallback, prevScene }: { opts?: OverlaySceneOptions, closeCallback?: Function, prevScene: string }) {
     this.player = playerInstance;
-    this.opts = { backgroundAlpha: 0.8 };
     this.opts = { ...this.opts, ...opts };
     this.closeCallback = closeCallback;
     this.parentSceneKey = prevScene;

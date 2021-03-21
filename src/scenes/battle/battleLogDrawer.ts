@@ -1,7 +1,9 @@
 // @ts-ignore
 import { TextArea } from 'phaser3-rex-plugins/templates/ui/ui-components';
 import BattleScene from './battle';
-import { GAME_H, GAME_W } from '../../config/constants';
+
+let GAME_W = 0;
+let GAME_H = 0;
 
 export default class BattleLogDrawer {
   private scene: BattleScene;
@@ -11,6 +13,10 @@ export default class BattleLogDrawer {
   constructor(battleScene: any) {
     this.scene = battleScene;
     this.logs = [];
+
+    // TODO: rework battle scene to work with the new resolution
+    GAME_W = this.scene.cameras.main.displayWidth;
+    GAME_H = this.scene.cameras.main.displayHeight;
 
     this.textArea = new TextArea(this.scene, {
       x: GAME_W / 2,

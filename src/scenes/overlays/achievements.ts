@@ -31,7 +31,7 @@ export default class AchievementsScene extends GeneralOverlayScene {
       const { achievements } = this.player;
 
       const textOptions = { color: 'black', wordWrap: { width: 400 }, fontSize: '18px' };
-      const achievementDescription = this.add.container(410, 64);
+      const achievementDescription = this.add.container(GAME_W / 2, 64);
       this._updateQuestDescriptionContainer(achievements[0], achievementDescription);
 
       let selectedAchievementName: RichText;
@@ -61,13 +61,13 @@ export default class AchievementsScene extends GeneralOverlayScene {
 
     private _updateQuestDescriptionContainer(achievement: any, achievementDescriptionContainer: GameObjects.Container) {
       achievementDescriptionContainer.removeAll(true);
-      const text = new RichText(this, 0, 10, achievement.description, { color: 'black', wordWrap: { width: 360 }, fontSize: '18px' });
+      const text = new RichText(this, 0, 10, achievement.description, { color: 'black', wordWrap: { width: 460 }, fontSize: '18px' });
       if (achievement.progress) {
         const progress = new RichText(this,
           0,
           text.height + 10 + 10,
           `Progress: ${achievement.progress[0]}/${achievement.progress[1]}`,
-          { color: 'black', wordWrap: { width: 360 }, fontSize: '18px' });
+          { color: 'black', wordWrap: { width: 460 }, fontSize: '18px' });
         achievementDescriptionContainer.add(progress);
       }
       achievementDescriptionContainer.add(text);

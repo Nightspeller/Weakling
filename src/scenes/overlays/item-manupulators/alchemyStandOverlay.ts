@@ -7,6 +7,7 @@ import drawArrow from '../../../helpers/drawArrow';
 import recipes from '../../../data/recipes';
 import InventoryOverlayScene from './inventoryOverlayScene';
 import { OverlaySceneOptions, Slots } from '../../../types/my-types';
+import { INVENTORY_CONTAINER_X, INVENTORY_CONTAINER_Y } from '../../../config/constants';
 
 interface AlchemyStandInitParams {
   opts?: OverlaySceneOptions,
@@ -33,19 +34,19 @@ export default class AlchemyStandScene extends InventoryOverlayScene {
   }
 
   public create() {
-    super.create(false);
+    super.create();
     this._drawAlchemyStand();
     this.itemsOnStand.forEach(this._createItemRepresentation.bind(this));
   }
 
   private _drawAlchemyStand() {
-    const standX = this.opts.windowWidth - 20 - 64 * 5;
-    const standY = 20 + 64 * 5 + 20;
+    const standX = INVENTORY_CONTAINER_X;
+    const standY = INVENTORY_CONTAINER_Y;
     this.add.text(this.opts.windowX + standX, this.opts.windowY + standY, `${this.name}:`, {
       font: 'bold 16px Arial',
       color: '000000',
     });
-    const takeAllButton = this.add.text(this.opts.windowWidth - 20 - 55, this.opts.windowY + standY, 'Take All', {
+    const takeAllButton = this.add.text(this.opts.windowX + INVENTORY_CONTAINER_X + 64 * 5 - 70, this.opts.windowY + standY, 'Take All', {
       font: 'bold 16px Arial',
       color: this.opts.closeButtonColor,
       backgroundColor: 'lightgrey',
@@ -84,8 +85,8 @@ export default class AlchemyStandScene extends InventoryOverlayScene {
   }
 
   private _drawBrewButton() {
-    const buttonX = this.opts.windowX + this.opts.windowWidth - 20 - 64 * 5 + 64 * 2;
-    const buttonY = 20 + 64 * 5 + 20 + 20 + 64 * 2 + 32;
+    const buttonX = this.opts.windowX + INVENTORY_CONTAINER_X + 64 * 2;
+    const buttonY = this.opts.windowY + INVENTORY_CONTAINER_Y + 64 * 2 + 32 + 16;
 
     const brewBtn = this.add.text(buttonX, buttonY, 'Make', {
       font: 'bold 16px Arial',

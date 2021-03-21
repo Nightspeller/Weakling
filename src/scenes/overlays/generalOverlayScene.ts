@@ -17,8 +17,8 @@ export default class GeneralOverlayScene extends Phaser.Scene {
         backgroundAlpha: 1,
         windowX: 16,
         windowY: 16,
-        windowWidth: 32 * 24,
-        windowHeight: 32 * 19,
+        windowWidth: 32 * 39,
+        windowHeight: 32 * 21.5,
 
         borderThickness: 2,
         borderColor: 0x907748,
@@ -46,12 +46,6 @@ export default class GeneralOverlayScene extends Phaser.Scene {
       .setOrigin(0)
       .setScrollFactor(0)
       .setDepth(this.opts.baseDepth);
-    /* this.add.graphics()
-          .fillStyle(this.opts.backgroundColor, this.opts.backgroundAlpha)
-          .fillRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
-          .lineStyle(this.opts.borderThickness, this.opts.borderColor)
-          .strokeRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
-          .setScrollFactor(0).setDepth(this.opts.baseDepth); */
   }
 
   protected _drawCloseButton() {

@@ -84,7 +84,7 @@ export default class QuestLogScene extends GeneralOverlayScene {
       if (quest.availableStates[state] !== '') {
         const textOptions: any = {
           color: 'black',
-          wordWrap: { width: 360 },
+          wordWrap: { width: 460 },
         };
         if (index === quest.currentStates.length - 1 && quest.currentStates.length !== 1) textOptions.fontStyle = 'bold';
         const text = new RichText(this, 0, lastY, `${quest.availableStates[state]}\n\n`, textOptions);

@@ -4,6 +4,9 @@ import GeneralOverlayScene from './generalOverlayScene';
 import {
   DialogLine, DialogOptions, DialogReplay, DialogTree,
 } from '../../types/my-types';
+import {
+  DIALOG_WINDOW_HEIGHT, DIALOG_WINDOW_WIDTH, DIALOG_WINDOW_X, DIALOG_WINDOW_Y,
+} from '../../config/constants';
 
 export default class DialogScene extends GeneralOverlayScene {
   private timedEvent: Phaser.Time.TimerEvent;
@@ -33,10 +36,10 @@ export default class DialogScene extends GeneralOverlayScene {
       backgroundColor: 0x303030,
       backgroundAlpha: 1,
 
-      windowWidth: +this.sys.game.config.width - 32 * 2,
-      windowHeight: 250,
-      windowX: 32,
-      windowY: +this.sys.game.config.height - 32 - 250,
+      windowX: DIALOG_WINDOW_X,
+      windowY: DIALOG_WINDOW_Y,
+      windowWidth: DIALOG_WINDOW_WIDTH,
+      windowHeight: DIALOG_WINDOW_HEIGHT,
 
       responseTextColor: '#47340c',
       responseTextHoverColor: 'black',
@@ -107,6 +110,7 @@ export default class DialogScene extends GeneralOverlayScene {
       const replyY = prevLineTopY - 5;
       const replyGameObject = this.add.text(replyX, replyY, `${reversedReplies.length - index}. ${reply.text}`, {
         color: this.opts.responseTextColor,
+        font: '20px monospace',
         wordWrap: {
           width: this.opts.windowWidth - 50,
         },
@@ -187,6 +191,7 @@ export default class DialogScene extends GeneralOverlayScene {
       const textY = this.opts.windowY + 10;
       const textGameObject = this.add.text(textX, textY, '', {
         color: this.opts.textColor,
+        font: '20px monospace',
         wordWrap: {
           width: this.opts.windowWidth - 50,
         },
@@ -241,13 +246,13 @@ export default class DialogScene extends GeneralOverlayScene {
 
   private _showName() {
     if (this.speakerName) {
-      const name = this.add.text(this.opts.windowX + 5, this.opts.windowY - 20, this.speakerName)
+      const name = this.add.text(this.opts.windowX + 5, this.opts.windowY - 26, this.speakerName, { font: '20px monospace' })
         .setDepth(this.opts.baseDepth + 1);
       const nameBackground = this.add.graphics()
         .fillStyle(this.opts.backgroundColor, this.opts.backgroundAlpha)
-        .fillRect(this.opts.windowX, this.opts.windowY - 25, name.width + 10, name.height + 10)
+        .fillRect(this.opts.windowX, this.opts.windowY - 25, name.width + 10, name.height + 2)
         .lineStyle(this.opts.borderThickness, this.opts.borderColor)
-        .strokeRect(this.opts.windowX, this.opts.windowY - 25, name.width + 10, name.height + 10)
+        .strokeRect(this.opts.windowX, this.opts.windowY - 25, name.width + 10, name.height + 2)
         .setScrollFactor(0)
         .setDepth(this.opts.baseDepth);
       this.dialogDisplayGroup.addMultiple([name, nameBackground]);

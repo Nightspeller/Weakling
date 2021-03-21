@@ -13,7 +13,9 @@ import {
 } from '../../types/my-types';
 import RichBitmapText from '../../helpers/richBitmapText';
 import BattleLogDrawer from './battleLogDrawer';
-import { GAME_H, GAME_W } from '../../config/constants';
+
+let GAME_W = 0;
+let GAME_H = 0;
 
 interface PlayAnimationParams {
   char: Adventurer | GeneralEnemy;
@@ -49,7 +51,8 @@ export default class BattleScene extends GeneralOverlayScene {
       windowY: 0,
       windowWidth: 800,
       windowHeight: 640,
-      borderThickness: 0,
+      borderColor: 0x000000,
+      borderThickness: 10,
       baseDepth: 0,
     };
     this.parentSceneKey = prevScene;
@@ -64,6 +67,15 @@ export default class BattleScene extends GeneralOverlayScene {
 
   public create() {
     super.create(this.parentSceneKey, this.opts);
+
+    // TODO: rework battle scene to work with the new resolution
+    GAME_W = this.cameras.main.displayWidth;
+    GAME_H = this.cameras.main.displayHeight;
+
+    this.cameras.main.setViewport((GAME_W - 800) / 2, (GAME_H - 640) / 2, 800, 640);
+
+    GAME_W = this.cameras.main.displayWidth;
+    GAME_H = this.cameras.main.displayHeight;
 
     this.turnOrderDisplayContainer = this.add.container(16, 16);
 
@@ -336,6 +348,13 @@ export default class BattleScene extends GeneralOverlayScene {
       .setDisplaySize(this.opts.windowWidth, this.opts.windowHeight)
       .setOrigin(0)
       .setDepth(this.opts.baseDepth);
+    if (this.opts.borderThickness !== 0) {
+      this.add.graphics()
+        .lineStyle(this.opts.borderThickness, this.opts.borderColor)
+        .strokeRect(this.opts.windowX, this.opts.windowY, this.opts.windowWidth, this.opts.windowHeight)
+        .setScrollFactor(0)
+        .setDepth(this.opts.baseDepth);
+    }
   }
 
   protected _drawCloseButton() {

@@ -2,6 +2,7 @@ import Item from '../../../entities/item';
 import { backpackSlotNames, containerSlotNames } from '../../../data/items/itemSlots';
 import InventoryOverlayScene from './inventoryOverlayScene';
 import { OverlaySceneOptions, Slots } from '../../../types/my-types';
+import { INVENTORY_CONTAINER_X, INVENTORY_CONTAINER_Y } from '../../../config/constants';
 
 interface ContainerInitParams {
   opts?: OverlaySceneOptions,
@@ -41,20 +42,20 @@ export default class ContainerOverlayScene extends InventoryOverlayScene {
   }
 
   public create() {
-    super.create(false);
+    super.create();
     this._drawContainerSlotsAndTitle();
     this.itemsInContainer.forEach(this._createItemRepresentation.bind(this));
   }
 
   protected _drawContainerSlotsAndTitle(takeAllEnabled = true) {
-    const textX = this.opts.windowWidth - 20 - 64 * 5;
-    const textY = 20 + 64 * 5 + 20;
+    const textX = INVENTORY_CONTAINER_X;
+    const textY = INVENTORY_CONTAINER_Y;
     this.add.text(this.opts.windowX + textX, this.opts.windowY + textY, `${this.name}:`, {
       font: 'bold 16px Arial',
       color: '000000',
     });
     if (takeAllEnabled) {
-      const takeAllButton = this.add.text(this.opts.windowWidth - 20 - 55, this.opts.windowY + textY, 'Take All', {
+      const takeAllButton = this.add.text(this.opts.windowX + INVENTORY_CONTAINER_X + 64 * 5 - 70, this.opts.windowY + textY, 'Take All', {
         font: 'bold 16px Arial',
         color: this.opts.closeButtonColor,
         backgroundColor: 'lightgrey',

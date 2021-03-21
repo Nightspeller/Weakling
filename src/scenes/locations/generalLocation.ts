@@ -3,7 +3,7 @@ import * as Phaser from 'phaser';
 import { Player, playerInstance } from '../../characters/adventurers/player';
 import Item from '../../entities/item';
 import {
-  DEBUG, GAME_H, GAME_W, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED,
+  GAME_H, GAME_W, LOCATION_SCENE_CAMERA_ZOOM, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED,
 } from '../../config/constants';
 import messages from '../../data/messages';
 import Container from '../../triggers/container';
@@ -11,7 +11,6 @@ import Trigger from '../../triggers/trigger';
 import prepareLog from '../../helpers/logger';
 import { SpriteParameters, TiledObjectProp } from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
-import drawInterface from './drawInterfaceButtons';
 
 export default class GeneralLocation extends Phaser.Scene {
   public player: Player;
@@ -61,8 +60,8 @@ export default class GeneralLocation extends Phaser.Scene {
 
   public create(mapKey: string) {
     this.map = this.make.tilemap({ key: mapKey });
-    this.offsetX = this.map.widthInPixels < GAME_W ? (GAME_W - this.map.widthInPixels) / 2 : 0;
-    this.offsetY = this.map.heightInPixels < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
+    this.offsetX = this.map.widthInPixels * LOCATION_SCENE_CAMERA_ZOOM < GAME_W ? (GAME_W - this.map.widthInPixels) / 2 : 0;
+    this.offsetY = this.map.heightInPixels * LOCATION_SCENE_CAMERA_ZOOM < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
 
     this.player = playerInstance;
     const startObject = this.getMapObject('Start');
@@ -90,9 +89,13 @@ export default class GeneralLocation extends Phaser.Scene {
 
       const camera = this.cameras.main;
       camera.startFollow(this.playerImage);
-      camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-      camera.setDeadzone(200, 100);
-      drawInterface(this);
+      camera.setBounds(0, 0, this.offsetX * 2 + this.map.widthInPixels, this.offsetY * 2 + this.map.heightInPixels);
+      camera.zoom = LOCATION_SCENE_CAMERA_ZOOM;
+      camera.setDeadzone(100, 50);
+
+      console.log(camera);
+
+      this.scene.launch('WorldMapUIScene', this);
     }
 
     const tilesets: Phaser.Tilemaps.Tileset[] = [];
@@ -288,6 +291,7 @@ export default class GeneralLocation extends Phaser.Scene {
     this.levelUpIcon.on('pointerdown', () => this.switchToScene('LevelUpScreen', {}, false));
 
     this.events.on('resume', (scene: GeneralLocation, data: any) => {
+      this.scene.launch('WorldMapUIScene', this);
       if (data?.defeatedEnemy) {
         this.player.defeatedEnemies.push(`${mapKey}/${data.defeatedEnemy}`);
         const trigger = this.triggers.find((trigger) => trigger.name === data.defeatedEnemy);
@@ -317,6 +321,7 @@ export default class GeneralLocation extends Phaser.Scene {
     });
 
     this.events.on('wake', (scene: any, data: any) => {
+      this.scene.launch('WorldMapUIScene', this);
       if (data?.toCoordinates && data.toCoordinates.x !== -1) {
         // -32 + 8 is an adjustment for player image and body, as well as +8 to center it in the cell
         this.playerImage.setPosition(data.toCoordinates.x * 32 + this.offsetX - 32 + 8, data.toCoordinates.y * 32 + this.offsetY - 48 + 8);
@@ -463,21 +468,6 @@ export default class GeneralLocation extends Phaser.Scene {
 
   public update() {
     this.updatePlayer();
-    if (DEBUG) {
-      const cursorX = Math.round(this.input.mousePointer.x);
-      const cursorY = Math.round(this.input.mousePointer.y);
-      if (this.cursorCoordinatesText) {
-        this.cursorCoordinatesText.setText(`${cursorX} ${cursorY}`);
-      } else {
-        this.cursorCoordinatesText = this.add.text(0, 0, `${cursorX} ${cursorY}`, {
-          color: 'black',
-          backgroundColor: '#f0d191',
-        })
-          .setDepth(1000)
-          .setScrollFactor(0)
-          .setOrigin(0, 0);
-      }
-    }
   }
 
   public setupDebugCollisionGraphics() {
@@ -537,6 +527,7 @@ export default class GeneralLocation extends Phaser.Scene {
       prevScene: this.scene.key,
       toCoordinates,
     });
+    this.scene.stop('WorldMapUIScene');
   }
 
   public updatePlayer() {
@@ -588,7 +579,9 @@ export default class GeneralLocation extends Phaser.Scene {
     if (this.player.readyForLevelUp) {
       if (!this.levelUpIcon.visible) this.levelUpIcon.setVisible(true);
       this.levelUpIcon.setPosition(this.playerImage.x, this.playerImage.y);
-    } else if (this.levelUpIcon.visible) this.levelUpIcon.setVisible(false);
+    } else if (this.levelUpIcon.visible) {
+      this.levelUpIcon.setVisible(false);
+    }
   }
 
   private setupRunKey() {

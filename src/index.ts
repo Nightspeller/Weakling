@@ -38,10 +38,13 @@ import AchievementsScene from './scenes/overlays/achievements';
 import AllItemsScene from './scenes/overlays/all-items';
 import LevelUpScreenScene from './scenes/overlays/level-up-screen';
 import HoneywoodScene from './scenes/locations/honeywood/honeywood';
+import WorldMapUIScene from './scenes/locations/worldMapUIScene';
 
 // import { TestPreloadScene } from './scenes/not-used/perf-test';
 
-export const LOCATION_SCENES = [BetweenVillageAndDungeonScene,
+export const LOCATION_SCENES = [
+  WorldMapUIScene,
+  BetweenVillageAndDungeonScene,
   BetweenVillageAndCaltorScene,
   Forest,
   DungeonScene,

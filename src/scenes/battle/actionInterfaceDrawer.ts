@@ -5,10 +5,13 @@ import Disposition from './disposition';
 import BattleScene from './battle';
 import Adventurer from '../../characters/adventurers/adventurer';
 import GeneralEnemy from '../../characters/enemies/generalEnemy';
-import { GAME_W } from '../../config/constants';
 import Action from '../../entities/action';
 import { ActionData } from '../../types/my-types';
 import RichBitmapText from '../../helpers/richBitmapText';
+
+// TODO: rework battle scene to work with the new resolution
+let GAME_W = 0;
+let GAME_H = 0;
 
 const { Rectangle } = Phaser.Geom;
 
@@ -22,6 +25,9 @@ export default class ActionInterfaceDrawer {
     this.disposition = disposition;
     this.scene = scene;
     this.displayContainer = this.scene.add.container(16, 500).setDepth(2);
+
+    GAME_W = this.scene.cameras.main.displayWidth;
+    GAME_H = this.scene.cameras.main.displayHeight;
   }
 
   public drawActionInterface() {

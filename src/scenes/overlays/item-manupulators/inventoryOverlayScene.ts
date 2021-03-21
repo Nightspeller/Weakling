@@ -2,6 +2,12 @@ import * as Phaser from 'phaser';
 import GeneralItemManipulatorScene from './generalItemManipulator';
 import { backpackSlotNames, dollSlotNames, playerSlotNames } from '../../../data/items/itemSlots';
 import { Slots } from '../../../types/my-types';
+import {
+  INVENTORY_BACKPACK_X,
+  INVENTORY_BACKPACK_Y,
+  INVENTORY_CHARACTERISTICS_X,
+  INVENTORY_CHARACTERISTICS_Y,
+} from '../../../config/constants';
 
 export default class InventoryOverlayScene extends GeneralItemManipulatorScene {
   private numberOfQuickSlots: number;
@@ -74,8 +80,8 @@ export default class InventoryOverlayScene extends GeneralItemManipulatorScene {
   private _drawBackpack() {
     for (let i = 0; i < 5; i += 1) {
       for (let j = 0; j < 5; j += 1) {
-        const slotX = this.opts.windowWidth - 20 - 64 * 5 + 64 * i;
-        const slotY = 20 + 64 * j;
+        const slotX = INVENTORY_BACKPACK_X + 64 * i;
+        const slotY = INVENTORY_BACKPACK_Y + 64 * j;
         this._createSlot(`backpack${i}_${j}`, slotX, slotY);
       }
     }
@@ -106,8 +112,8 @@ export default class InventoryOverlayScene extends GeneralItemManipulatorScene {
 
   private _drawCharacteristics() {
     console.log('Re-drawing characteristics');
-    const textX = this.opts.windowX + this.opts.windowWidth - 20 - 64 * 5;
-    const textY = this.opts.windowY + 20 + 64 * 5 + 20;
+    const textX = INVENTORY_CHARACTERISTICS_X;
+    const textY = INVENTORY_CHARACTERISTICS_Y;
     const text = `${this.player.name}, level ${this.player.level}, ${this.player.xp}xp / ${this.player.experienceTable[this.player.level]}xp
 HP: ${this.player.parameters.health}/${this.player.characteristics.health}
 MP: ${this.player.parameters.manna}/${this.player.characteristics.manna}
@@ -126,13 +132,14 @@ Actions: ${this.player.getAvailableActions()
 
     if (this.characteristicsText) this.characteristicsText.destroy();
     this.characteristicsText = this.add.text(textX, textY, text, {
-      font: '14px monospace',
+      font: '20px monospace',
       color: '#000000',
       wordWrap: {
         width: 32 * 10,
       },
     })
       .setScrollFactor(0)
+      .setOrigin(0, 0)
       .setDepth(this.opts.baseDepth)
       .setName('characteristicsText');
   }
