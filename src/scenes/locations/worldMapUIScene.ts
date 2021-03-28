@@ -35,7 +35,7 @@ export default class WorldMapUIScene extends Phaser.Scene {
       onClick: () => { this.locationScene.switchToScene('QuestLog', {}, false); },
       hotKeys: ['keyup-J'],
     }, {
-      hoverText: 'Menu (O, ESC)',
+      hoverText: 'Options (O, ESC)',
       icon: { texture: 'icons', frame: 'icons/music/harp' },
       onClick: () => { this.locationScene.switchToScene('Options', {}, false); },
       hotKeys: ['keyup-O', 'keyup-ESC'],
@@ -46,35 +46,43 @@ export default class WorldMapUIScene extends Phaser.Scene {
       hotKeys: ['keyup-I'],
     }];
 
+    let iconBaseSize = TILE_SIZE;
+
+    if (this.sys.game.device.os.android || this.sys.game.device.os.iOS || this.sys.game.device.os.iPad || this.sys.game.device.os.iPhone) {
+      iconBaseSize *= 1.5;
+    }
+
     // topMenuBackgroundGraphics
     this.add.graphics()
       .setScrollFactor(0)
       .fillStyle(0xf0d191, 0.8)
-      .fillRect(+GAME_W - TILE_SIZE / 2 - buttons.length * TILE_SIZE * 2, TILE_SIZE / 2, buttons.length * TILE_SIZE * 2, TILE_SIZE * 2)
+      .fillRect(+GAME_W - iconBaseSize / 2 - buttons.length * iconBaseSize * 2, iconBaseSize / 2,
+        buttons.length * iconBaseSize * 2, iconBaseSize * 2)
       .lineStyle(3, 0x907748)
-      .strokeRect(+GAME_W - TILE_SIZE / 2 - buttons.length * TILE_SIZE * 2, TILE_SIZE / 2, buttons.length * TILE_SIZE * 2, TILE_SIZE * 2)
+      .strokeRect(+GAME_W - iconBaseSize / 2 - buttons.length * iconBaseSize * 2, iconBaseSize / 2,
+        buttons.length * iconBaseSize * 2, iconBaseSize * 2)
       .setDepth(10 - 1);
 
     buttons.forEach((button, i) => {
-      const buttonX = +GAME_W - (buttons.length - i) * TILE_SIZE * 2;
-      const buttonY = TILE_SIZE;
+      const buttonX = +GAME_W - (buttons.length - i) * iconBaseSize * 2;
+      const buttonY = iconBaseSize;
       this.add.graphics()
         .setScrollFactor(0)
         .fillStyle(0xf0d191, 0.8)
-        .fillRect(buttonX, buttonY, TILE_SIZE, TILE_SIZE)
+        .fillRect(buttonX, buttonY, iconBaseSize, iconBaseSize)
         .lineStyle(3, 0x907748)
-        .strokeRect(buttonX, buttonY, TILE_SIZE, TILE_SIZE)
+        .strokeRect(buttonX, buttonY, iconBaseSize, iconBaseSize)
         .setDepth(10 - 1);
       const iconSprite = this.add.sprite(buttonX, buttonY, button.icon.texture, button.icon.frame)
         .setOrigin(0, 0)
         .setScrollFactor(0)
-        .setDisplaySize(TILE_SIZE, TILE_SIZE)
+        .setDisplaySize(iconBaseSize, iconBaseSize)
         .setInteractive({ useHandCursor: true })
         .setDepth(10 - 1)
         .on('pointerdown', button.onClick);
 
       // TODO: figure out why hover text does not work on half of the locations..
-      const hoverText = this.add.text(buttonX - TILE_SIZE, buttonY + TILE_SIZE, button.hoverText, {
+      const hoverText = this.add.text(buttonX - iconBaseSize, buttonY + iconBaseSize, button.hoverText, {
         backgroundColor: 'lightgrey',
         color: 'black',
       }).setDepth(10).setVisible(false);
@@ -92,14 +100,14 @@ export default class WorldMapUIScene extends Phaser.Scene {
       this.add.graphics()
         .setScrollFactor(0)
         .fillStyle(0xf0d191, 0.8)
-        .fillRect(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE)
+        .fillRect(iconBaseSize, iconBaseSize, iconBaseSize, iconBaseSize)
         .lineStyle(3, 0x907748)
-        .strokeRect(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE)
+        .strokeRect(iconBaseSize, iconBaseSize, iconBaseSize, iconBaseSize)
         .setDepth(10 - 1);
-      const allItemsIconImage = this.add.image(TILE_SIZE, TILE_SIZE, 'icons', 'icons/chests/overgrown-chest')
+      const allItemsIconImage = this.add.image(iconBaseSize, iconBaseSize, 'icons', 'icons/chests/overgrown-chest')
         .setOrigin(0, 0)
         .setScrollFactor(0)
-        .setDisplaySize(TILE_SIZE, TILE_SIZE)
+        .setDisplaySize(iconBaseSize, iconBaseSize)
         .setInteractive({ useHandCursor: true })
         .setDepth(10 - 1);
       allItemsIconImage.on('pointerdown', () => {

@@ -114,7 +114,8 @@ export default class InventoryOverlayScene extends GeneralItemManipulatorScene {
     console.log('Re-drawing characteristics');
     const textX = INVENTORY_CHARACTERISTICS_X;
     const textY = INVENTORY_CHARACTERISTICS_Y;
-    const text = `${this.player.name}, level ${this.player.level}, ${this.player.xp}xp / ${this.player.experienceTable[this.player.level]}xp
+    const text = `${this.player.name}, level ${this.player.level}
+Experience: ${this.player.xp}xp / ${this.player.experienceTable[this.player.level]}xp    
 HP: ${this.player.parameters.health}/${this.player.characteristics.health}
 MP: ${this.player.parameters.manna}/${this.player.characteristics.manna}
 EN: ${this.player.parameters.energy}/${this.player.characteristics.energy}

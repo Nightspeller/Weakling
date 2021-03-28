@@ -49,24 +49,25 @@ export default class GeneralOverlayScene extends Phaser.Scene {
   }
 
   protected _drawCloseButton() {
-    const closeButtonX = this.opts.windowX + this.opts.windowWidth - 24;
+    const closeButtonX = this.opts.windowX + this.opts.windowWidth - 36;
     const closeButtonY = this.opts.windowY + 4;
-    this.add.graphics()
-      .lineStyle(this.opts.borderThickness, this.opts.borderColor, this.opts.borderAlpha)
-      .strokeRect(closeButtonX, closeButtonY, 20, 20)
-      .setScrollFactor(0)
-      .setDepth(this.opts.baseDepth);
 
     const closeBtn = this.add.text(closeButtonX, closeButtonY, 'X', {
-      font: 'bold 16px Arial',
+      font: 'bold 32px Arial',
       color: this.opts.closeButtonColor,
-      fixedWidth: 20,
-      fixedHeight: 20,
+      fixedWidth: 32,
+      fixedHeight: 32,
       align: 'center',
     })
       .setScrollFactor(0)
       .setDepth(this.opts.baseDepth)
       .setInteractive({ useHandCursor: true });
+
+    this.add.graphics()
+      .lineStyle(this.opts.borderThickness, this.opts.borderColor, this.opts.borderAlpha)
+      .strokeRect(closeButtonX, closeButtonY, closeBtn.width, closeBtn.height)
+      .setScrollFactor(0)
+      .setDepth(this.opts.baseDepth);
 
     closeBtn.on('pointerover', () => closeBtn.setColor(this.opts.closeButtonHoverColor));
     closeBtn.on('pointerout', () => closeBtn.setColor(this.opts.closeButtonColor));
