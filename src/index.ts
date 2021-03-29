@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 
 import {
-  DEBUG, GAME_H, GAME_W, GAME_ZOOM,
+  DEBUG, GAME_H, GAME_W,
 } from './config/constants';
 import PreloadScene from './scenes/preload/preload';
 import CaltorScene from './scenes/locations/caltor/caltor';
@@ -39,6 +39,7 @@ import AllItemsScene from './scenes/overlays/all-items';
 import LevelUpScreenScene from './scenes/overlays/level-up-screen';
 import HoneywoodScene from './scenes/locations/honeywood/honeywood';
 import WorldMapUIScene from './scenes/locations/worldMapUIScene';
+import AboutScene from './scenes/intro-and-main-menu/about';
 
 // import { TestPreloadScene } from './scenes/not-used/perf-test';
 
@@ -59,10 +60,13 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 
   type: Phaser.AUTO,
 
-  width: GAME_W,
-  height: GAME_H,
-
-  zoom: GAME_ZOOM,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    parent: 'game',
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: GAME_W,
+    height: GAME_H,
+  },
 
   physics: {
     default: 'arcade',
@@ -75,11 +79,8 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
     pixelArt: true,
   },
 
-  parent: 'game',
   scene: [/* TestPreloadScene, */PreloadScene,
-    MainMenuScene,
-    OptionsScene,
-    IntroScene,
+    MainMenuScene, OptionsScene, IntroScene, AboutScene,
     ...LOCATION_SCENES,
     CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, FishingScene, InventoryOverlayScene,
     QuestLogScene, AchievementsScene, LevelUpScreenScene, AllItemsScene, AlchemyStandScene, ContainerOverlayScene,

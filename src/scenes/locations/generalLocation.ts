@@ -1,4 +1,6 @@
 import * as Phaser from 'phaser';
+// @ts-ignore
+import VirtualJoystick from 'phaser3-rex-plugins/plugins/virtualjoystick';
 
 import { Player, playerInstance } from '../../characters/adventurers/player';
 import Item from '../../entities/item';
@@ -31,6 +33,7 @@ export default class GeneralLocation extends Phaser.Scene {
   public somethingTriggered: boolean;
   private abovePlayerTextTween: Phaser.Tweens.Tween;
   private levelUpIcon: Phaser.GameObjects.Sprite;
+  private joyStick: VirtualJoystick;
 
   constructor(sceneSettings: Phaser.Types.Scenes.SettingsConfig) {
     super(sceneSettings);
@@ -92,8 +95,6 @@ export default class GeneralLocation extends Phaser.Scene {
       camera.setBounds(0, 0, this.offsetX * 2 + this.map.widthInPixels, this.offsetY * 2 + this.map.heightInPixels);
       camera.zoom = LOCATION_SCENE_CAMERA_ZOOM;
       camera.setDeadzone(100, 50);
-
-      console.log(camera);
 
       this.scene.launch('WorldMapUIScene', this);
     }
@@ -337,6 +338,8 @@ export default class GeneralLocation extends Phaser.Scene {
     this.setupRunKey();
 
     this.setupDebugCollisionGraphics();
+
+    this.setupMobileControls();
   }
 
   public createDroppedItem(item: Item | string, quantity = 1): Trigger {
@@ -531,10 +534,10 @@ export default class GeneralLocation extends Phaser.Scene {
   }
 
   public updatePlayer() {
-    const up = this.keys.up.isDown || this.keys.W.isDown;
-    const down = this.keys.down.isDown || this.keys.S.isDown;
-    const right = this.keys.right.isDown || this.keys.D.isDown;
-    const left = this.keys.left.isDown || this.keys.A.isDown;
+    const up = this.keys.up.isDown || this.keys.W.isDown || this.joyStick?.up;
+    const down = this.keys.down.isDown || this.keys.S.isDown || this.joyStick?.down;
+    const right = this.keys.right.isDown || this.keys.D.isDown || this.joyStick?.right;
+    const left = this.keys.left.isDown || this.keys.A.isDown || this.joyStick?.left;
 
     this.playerImage.setVelocity(0);
 
@@ -635,5 +638,29 @@ export default class GeneralLocation extends Phaser.Scene {
         this.abovePlayerTextTween = undefined;
       },
     });
+  }
+
+  private setupMobileControls() {
+    if (this.sys.game.device.os.android || this.sys.game.device.os.iOS || this.sys.game.device.os.iPad || this.sys.game.device.os.iPhone) {
+    // keep in mind camera scaling - basically all dimensions here are magic numbers...
+      this.joyStick = new VirtualJoystick(this, {
+        x: 400,
+        y: GAME_H - 260,
+        radius: 50,
+        base: this.add.circle(0, 0, 50, 0x888888, 0.75).setDepth(100),
+        thumb: this.add.circle(0, 0, 25, 0xcccccc, 0.75).setDepth(101),
+      // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
+      // forceMin: 16,
+      // enable: true
+      }).setScrollFactor(0);
+
+      const mobileActionButton = this.add.circle(900, GAME_H - 260, 37.5, 0xcccccc, 0.75)
+        .setDepth(100)
+        .setScrollFactor(0)
+        .setInteractive();
+      mobileActionButton.on('pointerdown', () => {
+        this.input.keyboard.emit('keydown-SPACE', { preventDefault: () => {} });
+      });
+    }
   }
 }

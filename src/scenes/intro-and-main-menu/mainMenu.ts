@@ -28,7 +28,7 @@ export default class MainMenuScene extends Phaser.Scene {
 
     // subtitle
     this.add.text(GAME_W / 2, GAME_H / 2 - 120,
-      'Serg Nights\' presents:',
+      'Serg Nights presents:',
       {
         font: '14px monospace',
         color: '#b5b5b5',
@@ -84,5 +84,14 @@ export default class MainMenuScene extends Phaser.Scene {
       this.scene.pause(this.scene.key);
       this.scene.run('Options', { prevScene: this.scene.key });
     });
+
+    const firstTimeLaunch = localStorage.getItem('firstTimeLaunch') ?? 'true';
+    console.log(firstTimeLaunch);
+    if (firstTimeLaunch === 'true') {
+      localStorage.setItem('firstTimeLaunch', 'false');
+      console.log('here');
+      this.scene.pause(this.scene.key);
+      this.scene.run('About', { prevScene: this.scene.key });
+    }
   }
 }

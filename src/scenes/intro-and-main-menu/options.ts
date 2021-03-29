@@ -48,7 +48,7 @@ export default class OptionsScene extends Phaser.Scene {
         color: '#ffffff',
       })
       .setOrigin(0.5, 0.5);
-    const musicToggle = this.add.text(GAME_W / 2, GAME_H / 2,
+    const musicToggle = this.add.text(GAME_W / 2, GAME_H / 2 - 20,
       `Music is ${optionsInstance.isMusicOn ? 'ON' : 'OFF'}`,
       {
         font: '20px monospace',
@@ -59,6 +59,23 @@ export default class OptionsScene extends Phaser.Scene {
     musicToggle.on('pointerdown', () => {
       optionsInstance.toggleMusic();
       musicToggle.setText(`Music is ${optionsInstance.isMusicOn ? 'ON' : 'OFF'}`);
+    });
+    const fullScreenToggle = this.add.text(GAME_W / 2, GAME_H / 2 + 40,
+      `Full Screen mode is ${this.scale.isFullscreen ? 'ON' : 'OFF'}`,
+      {
+        font: '20px monospace',
+        color: '#ffffff',
+      })
+      .setOrigin(0.5, 0.5)
+      .setInteractive({ useHandCursor: true });
+    fullScreenToggle.on('pointerdown', () => {
+      if (this.scale.isFullscreen) {
+        this.scale.stopFullscreen();
+        fullScreenToggle.setText('Full Screen mode is OFF');
+      } else {
+        this.scale.startFullscreen();
+        fullScreenToggle.setText('Full Screen mode is ON');
+      }
     });
     /*        const effectsToggle = this.add.text(GAME_W / 2, GAME_H / 2 + 40,
                   `Effects are ${optionsInstance.isEffectsOn ? 'ON' : 'OFF'}`,
@@ -72,7 +89,7 @@ export default class OptionsScene extends Phaser.Scene {
                   effectsToggle.setText(`Effects are ${optionsInstance.isEffectsOn ? 'ON' : 'OFF'}`)
               }); */
 
-    const restartButton = this.add.text(GAME_W / 2, GAME_H * (2 / 3) - 30,
+    /*    const restartButton = this.add.text(GAME_W / 2, GAME_H * (2 / 3) - 30,
       'Restart the game',
       {
         font: '20px monospace',
@@ -82,13 +99,31 @@ export default class OptionsScene extends Phaser.Scene {
       .setInteractive({ useHandCursor: true });
     restartButton.on('pointerdown', () => {
       window.location.reload();
-    });
+    }); */
 
-    const backButton = this.add.text(GAME_W / 2, GAME_H * (2 / 3) + 20,
-      'Back to game',
+    const aboutText = this.add.text(GAME_W / 2, GAME_H * (2 / 3) + 20,
+      'About',
       {
         font: '20px monospace',
         color: '#ffffff',
+        padding: {
+          x: 10,
+          y: 10,
+        },
+      })
+      .setOrigin(0.5, 0.5)
+      .setInteractive({ useHandCursor: true });
+
+    aboutText.on('pointerdown', () => {
+      this.scene.pause(this.scene.key);
+      this.scene.run('About', { prevScene: this.scene.key });
+    });
+
+    const backButton = this.add.text(GAME_W / 2, GAME_H * (2 / 3) + 50,
+      'Back to game',
+      {
+        font: '20px monospace',
+        color: '#60ff7b',
       })
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true });
