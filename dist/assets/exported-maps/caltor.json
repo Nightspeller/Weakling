@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"..\/..\/..\/assets\/exported-maps\/caltor.json"
+         "target":"caltor.json"
         }
     },
  "height":100,
@@ -379,6 +379,12 @@
                  "height":32,
                  "id":66,
                  "name":"Fountain sign",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,
@@ -506,6 +512,11 @@
                          "name":"location",
                          "type":"string",
                          "value":"Crypt"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": -1, \"y\": -1}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -569,6 +580,16 @@
                          "value":"[{\"itemId\": \"invisibility-cape\", \"quantity\": 1}]"
                         }, 
                         {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
                          "name":"secret",
                          "type":"bool",
                          "value":true
@@ -602,6 +623,16 @@
                          "value":"[{\"itemId\": \"leather-pants\", \"quantity\": 1}]"
                         }, 
                         {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
                          "name":"secret",
                          "type":"bool",
                          "value":true
@@ -620,9 +651,19 @@
                  "name":"Fire 1",
                  "properties":[
                         {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":false
                         }, 
                         {
                          "name":"items",
@@ -633,6 +674,16 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":69
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -640,6 +691,49 @@
                  "width":32,
                  "x":1792,
                  "y":2656
+                }, 
+                {
+                 "gid":1849,
+                 "height":32,
+                 "id":125,
+                 "name":"Fishing rod",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"flimsy-fishing-rod\", \"quantity\": 1}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":1984,
+                 "y":2880
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -668,6 +762,11 @@
                          "value":"caltor_waymark"
                         }, 
                         {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
@@ -686,9 +785,24 @@
                  "name":"City guard 1",
                  "properties":[
                         {
+                         "name":"interaction",
+                         "type":"string",
+                         "value":"activate"
+                        }, 
+                        {
                          "name":"messageId",
                          "type":"string",
                          "value":"caltor_cityGuard1"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"singleUse",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Message",
@@ -704,9 +818,24 @@
                  "name":"City guard 2",
                  "properties":[
                         {
+                         "name":"interaction",
+                         "type":"string",
+                         "value":"activate"
+                        }, 
+                        {
                          "name":"messageId",
                          "type":"string",
                          "value":"caltor_cityGuard2"
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"singleUse",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Message",
@@ -731,6 +860,11 @@
                  "id":15,
                  "name":"Boars 1",
                  "properties":[
+                        {
+                         "name":"background",
+                         "type":"string",
+                         "value":""
+                        }, 
                         {
                          "name":"drop",
                          "type":"string",
@@ -764,6 +898,11 @@
                  "name":"Boars 2",
                  "properties":[
                         {
+                         "name":"background",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
                          "name":"drop",
                          "type":"string",
                          "value":"[{\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 1}, {\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 0.1}]"
@@ -795,18 +934,73 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":32,
+         "name":"Fishing Spots",
+         "objects":[
+                {
+                 "height":32,
+                 "id":123,
+                 "name":"Fishing spot 1",
+                 "properties":[
+                        {
+                         "name":"cooldown",
+                         "type":"string",
+                         "value":"30"
+                        }, 
+                        {
+                         "name":"fish",
+                         "type":"string",
+                         "value":"[{\"name\": \"carp\", \"chance\": 0.5}, {\"name\": \"perch\", \"chance\": 0.4}, {\"name\": \"wooden-sword-weapon\", \"chance\": 0.1}]"
+                        }],
+                 "rotation":0,
+                 "type":"Fishing Spot",
+                 "visible":true,
+                 "width":32,
+                 "x":2048,
+                 "y":2912
+                }, 
+                {
+                 "height":32,
+                 "id":124,
+                 "name":"Fishing spot 2",
+                 "properties":[
+                        {
+                         "name":"cooldown",
+                         "type":"string",
+                         "value":"30"
+                        }, 
+                        {
+                         "name":"fish",
+                         "type":"string",
+                         "value":"[{\"name\": \"carp\", \"chance\": 0.5}, {\"name\": \"perch\", \"chance\": 0.4}, {\"name\": \"wooden-sword-weapon\", \"chance\": 0.1}]"
+                        }],
+                 "rotation":0,
+                 "type":"Fishing Spot",
+                 "visible":true,
+                 "width":32,
+                 "x":2272,
+                 "y":2880
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":32,
- "nextobjectid":123,
+ "nextlayerid":33,
+ "nextobjectid":126,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.12.18",
+ "tiledversion":"1.5.0",
  "tileheight":32,
  "tilesets":[
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass1.png",
+         "image":"..\/images-extruded\/tilesets\/grass1.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -885,7 +1079,7 @@
         {
          "columns":8,
          "firstgid":49,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/base.png",
+         "image":"..\/images-extruded\/tilesets\/base.png",
          "imageheight":4522,
          "imagewidth":272,
          "margin":1,
@@ -10479,82 +10673,16 @@
          "tilewidth":32,
          "wangsets":[
                 {
-                 "colors":[
-                        {
-                         "color":"#ff0000",
-                         "name":"Stone wall",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Stone wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":208,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":209,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":210,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":211,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":212,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":213,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":214,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":215,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":216,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":217,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":218,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":219,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":220,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":221,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":222,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }, 
                 {
                  "colors":[
                         {
-                         "color":"#ff9500",
+                         "color":"#ff0000",
                          "name":"",
                          "probability":1,
                          "tile":-1
@@ -10625,83 +10753,17 @@
                         }]
                 }, 
                 {
-                 "colors":[
-                        {
-                         "color":"#0054ba",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }],
+                 "colors":[],
                  "name":"Iron wall",
                  "tile":-1,
                  "type":"mixed",
-                 "wangtiles":[
-                        {
-                         "tileid":192,
-                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":193,
-                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":194,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":195,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":196,
-                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":197,
-                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":198,
-                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":199,
-                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":200,
-                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":201,
-                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":202,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":203,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":204,
-                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":205,
-                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":206,
-                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
-                        }]
+                 "wangtiles":[]
                 }]
         }, 
         {
          "columns":8,
          "firstgid":1113,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/dirt1-dirt2.png",
+         "image":"..\/images-extruded\/tilesets\/dirt1-dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -10780,7 +10842,7 @@
         {
          "columns":8,
          "firstgid":1161,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass1-dirt2.png",
+         "image":"..\/images-extruded\/tilesets\/grass1-dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -10991,7 +11053,7 @@
         {
          "columns":64,
          "firstgid":1209,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/water2.png",
+         "image":"..\/images-extruded\/tilesets\/water2.png",
          "imageheight":204,
          "imagewidth":2176,
          "margin":1,
@@ -15781,7 +15843,7 @@
         {
          "columns":16,
          "firstgid":1593,
-         "image":"..\/..\/..\/assets\/images-extruded\/items\/icon-item-set.png",
+         "image":"..\/images-extruded\/interface\/icon-item-set.png",
          "imageheight":816,
          "imagewidth":544,
          "margin":1,
@@ -15795,7 +15857,7 @@
         {
          "columns":3,
          "firstgid":1977,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/male14-2.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male14-2.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -15809,7 +15871,7 @@
         {
          "columns":3,
          "firstgid":1989,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/male17-4.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male17-4.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -15823,7 +15885,7 @@
         {
          "columns":3,
          "firstgid":2001,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/female19-1.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female19-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -15837,7 +15899,7 @@
         {
          "columns":8,
          "firstgid":2013,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/flowers.png",
+         "image":"..\/images-extruded\/tilesets\/flowers.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -15916,7 +15978,7 @@
         {
          "columns":8,
          "firstgid":2061,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/dirt1.png",
+         "image":"..\/images-extruded\/tilesets\/dirt1.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -15995,7 +16057,7 @@
         {
          "columns":12,
          "firstgid":2109,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/base-addition.png",
+         "image":"..\/images-extruded\/tilesets\/base-addition.png",
          "imageheight":2176,
          "imagewidth":408,
          "margin":1,
@@ -22922,7 +22984,7 @@
         {
          "columns":8,
          "firstgid":2877,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/dirt2.png",
+         "image":"..\/images-extruded\/tilesets\/dirt2.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -22930,12 +22992,86 @@
          "spacing":2,
          "tilecount":48,
          "tileheight":32,
-         "tilewidth":32
+         "tilewidth":32,
+         "wangsets":[
+                {
+                 "colors":[
+                        {
+                         "color":"#ff0000",
+                         "name":"",
+                         "probability":1,
+                         "tile":-1
+                        }],
+                 "name":"Small road",
+                 "tile":-1,
+                 "type":"mixed",
+                 "wangtiles":[
+                        {
+                         "tileid":1,
+                         "wangid":[0, 0, 1, 0, 0, 0, 0, 0]
+                        }, 
+                        {
+                         "tileid":2,
+                         "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
+                        }, 
+                        {
+                         "tileid":3,
+                         "wangid":[0, 0, 0, 0, 0, 0, 1, 0]
+                        }, 
+                        {
+                         "tileid":4,
+                         "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
+                        }, 
+                        {
+                         "tileid":8,
+                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
+                        }, 
+                        {
+                         "tileid":9,
+                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
+                        }, 
+                        {
+                         "tileid":10,
+                         "wangid":[1, 0, 1, 0, 1, 0, 0, 0]
+                        }, 
+                        {
+                         "tileid":11,
+                         "wangid":[0, 0, 1, 0, 1, 0, 1, 0]
+                        }, 
+                        {
+                         "tileid":12,
+                         "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
+                        }, 
+                        {
+                         "tileid":16,
+                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
+                        }, 
+                        {
+                         "tileid":17,
+                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
+                        }, 
+                        {
+                         "tileid":18,
+                         "wangid":[1, 0, 1, 0, 0, 0, 1, 0]
+                        }, 
+                        {
+                         "tileid":19,
+                         "wangid":[1, 0, 0, 0, 1, 0, 1, 0]
+                        }, 
+                        {
+                         "tileid":20,
+                         "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
+                        }, 
+                        {
+                         "tileid":46,
+                         "wangid":[1, 0, 1, 0, 1, 0, 1, 0]
+                        }]
+                }]
         }, 
         {
          "columns":8,
          "firstgid":2925,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/grass4.png",
+         "image":"..\/images-extruded\/tilesets\/grass4.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -22948,7 +23084,7 @@
         {
          "columns":8,
          "firstgid":2973,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/long-grass.png",
+         "image":"..\/images-extruded\/tilesets\/long-grass.png",
          "imageheight":204,
          "imagewidth":272,
          "margin":1,
@@ -23159,7 +23295,7 @@
         {
          "columns":3,
          "firstgid":3021,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/male17-3.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male17-3.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -23173,7 +23309,7 @@
         {
          "columns":32,
          "firstgid":3033,
-         "image":"..\/..\/..\/assets\/images-extruded\/tilesets\/houses.png",
+         "image":"..\/images-extruded\/tilesets\/houses.png",
          "imageheight":1088,
          "imagewidth":1088,
          "margin":1,
@@ -32403,7 +32539,7 @@
         {
          "columns":3,
          "firstgid":4057,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/shadows\/shadow-1.png",
+         "image":"..\/images-extruded\/characters\/world-map\/shadows\/shadow-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -32416,7 +32552,7 @@
         {
          "columns":3,
          "firstgid":4069,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/female18-4.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female18-4.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -32430,7 +32566,7 @@
         {
          "columns":3,
          "firstgid":4081,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/soldier04-3.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/soldier04-3.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -32444,7 +32580,7 @@
         {
          "columns":3,
          "firstgid":4093,
-         "image":"..\/..\/..\/assets\/images-extruded\/characters\/world-map\/neutral\/soldier06-1.png",
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/soldier06-1.png",
          "imageheight":136,
          "imagewidth":102,
          "margin":1,
@@ -32457,6 +32593,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":1.5,
  "width":100
 }

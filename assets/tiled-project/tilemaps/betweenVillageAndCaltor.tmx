@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="61" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="63">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="61" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="66">
  <editorsettings>
   <export target="../../../src/assets/exported-maps/betweenVillageAndCaltor.json" format="json"/>
  </editorsettings>
@@ -204,6 +204,23 @@
     <property name="interaction" value="activate"/>
     <property name="messageId" value="betweenVillageAndCaltor_garden_sign"/>
     <property name="singleUse" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="21" name="Fishing Spots">
+  <object id="63" name="Fishing spot 1" type="Fishing Spot" x="672" y="608" width="32" height="32">
+   <properties>
+    <property name="fish" value="[{&quot;name&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5}, {&quot;name&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.4}, {&quot;name&quot;: &quot;wooden-sword-weapon&quot;, &quot;chance&quot;: 0.1}]"/>
+   </properties>
+  </object>
+  <object id="64" name="Fishing spot 2" type="Fishing Spot" x="1248" y="736" width="32" height="32">
+   <properties>
+    <property name="fish" value="[{&quot;name&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5}, {&quot;name&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.4}, {&quot;name&quot;: &quot;wooden-sword-weapon&quot;, &quot;chance&quot;: 0.1}]"/>
+   </properties>
+  </object>
+  <object id="65" name="Fishing spot 3" type="Fishing Spot" x="224" y="288" width="32" height="32">
+   <properties>
+    <property name="fish" value="[{&quot;name&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5}, {&quot;name&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.4}, {&quot;name&quot;: &quot;wooden-sword-weapon&quot;, &quot;chance&quot;: 0.1}]"/>
    </properties>
   </object>
  </objectgroup>

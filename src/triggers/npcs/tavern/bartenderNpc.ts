@@ -29,6 +29,7 @@ export default class BartenderNpc extends GeneralNpc {
         { itemId: 'pumpkin', quantity: 2 },
         { itemId: 'apple', quantity: 3 },
         { itemId: 'carrot', quantity: 4 },
+        { itemId: 'bread', quantity: 5 },
       ],
     });
   }

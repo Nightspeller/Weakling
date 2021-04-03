@@ -66,8 +66,10 @@ export class Player extends Adventurer {
       this.addItemToInventory('simple-bow', 1, 'rightHand');
       this.addItemToInventory('wooden-arrow', 2, 'leftHand');
       this.addItemToInventory('smoldering-ring', 1, 'ringRight');
-      /* this.addItemToInventory('fire-marble', 3, "tail");
-          this.addItemToInventory('trap-kit'); */
+      /*      this.addItemToInventory('flimsy-fishing-rod');
+      this.addItemToInventory('decent-fishing-rod');
+      this.addItemToInventory('bread');
+      this.addItemToInventory('ground-worm'); */
       this.addItemToInventory('apple', 5);
       this.addItemToInventory('carrot', 3);
       this.addItemToInventory('fire-marble', 3, 'tail');

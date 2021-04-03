@@ -30,6 +30,8 @@ export default class Trigger {
   public name: string;
   private disabled: boolean;
   public destroyed: boolean;
+  // If you need to save some data on the trigger, use this field
+  public additionalData: {caughtAt?: number, possibleFishes?: {name: string, chance: number}[], fishCooldown?: number};
 
   constructor(
     {
@@ -57,6 +59,7 @@ export default class Trigger {
     this.isSecret = isSecret;
     this.disabled = false;
     this.destroyed = false;
+    this.additionalData = {};
     this.image = scene.physics.add
       .sprite(triggerX + offsetX, triggerY + offsetY, texture, frame)
       .setOrigin(0, 0)
@@ -132,8 +135,7 @@ export default class Trigger {
     this.scene.triggers = this.scene.triggers.filter((trigger) => trigger !== this);
   }
 
-  // @ts-ignore
-  private onSpaceBarPressed(event) {
+  private onSpaceBarPressed(event: KeyboardEvent) {
     event.preventDefault();
     const { scene } = this;
     // checking if player is looking at the trigger image, adjustments are done in order to reflect the fact that physical body is smaller than the image
@@ -168,14 +170,12 @@ export default class Trigger {
   // eslint-disable-next-line no-unused-vars
   protected handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite, collisionImage: Phaser.Physics.Arcade.Sprite) { }
 
-  // @ts-ignore
-  private onHighlightOn(event) {
+  private onHighlightOn(event: KeyboardEvent) {
     event.preventDefault();
     this.highlightBorder.setVisible(true);
   }
 
-  // @ts-ignore
-  private onHighlightOff(event) {
+  private onHighlightOff(event: KeyboardEvent) {
     event.preventDefault();
     this.highlightBorder.setVisible(false);
   }

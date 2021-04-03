@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="27" nextobjectid="50">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="27" nextobjectid="52">
  <editorsettings>
   <export target="../../../src/assets/exported-maps/honeywood.json" format="json"/>
  </editorsettings>
@@ -361,6 +361,14 @@
     <property name="secret" type="bool" value="false"/>
    </properties>
   </object>
+  <object id="51" name="Worm pit" type="Container" gid="172" x="1536" y="544" width="32" height="32">
+   <properties>
+    <property name="disableWhenEmpty" type="bool" value="false"/>
+    <property name="instantPickup" type="bool" value="false"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;ground-worm&quot;, &quot;quantity&quot;: 10}]"/>
+    <property name="secret" type="bool" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="21" name="Waypoints">
   <object id="1" name="Caltor" type="Waypoint" x="384" y="0" width="64" height="32">
@@ -384,7 +392,12 @@
  <objectgroup id="26" name="Fishing Spots">
   <object id="49" name="Fishing spot 1" type="Fishing Spot" x="1728" y="608" width="32" height="32">
    <properties>
-    <property name="fish" value="[{&quot;fish&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5, &quot;cooldown&quot;: 600}, {&quot;fish&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.5, &quot;cooldown&quot;: 600}]"/>
+    <property name="fish" value="[{&quot;name&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5}, {&quot;name&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.4}, {&quot;name&quot;: &quot;wooden-sword-weapon&quot;, &quot;chance&quot;: 0.1}]"/>
+   </properties>
+  </object>
+  <object id="50" name="Fishing spot 2" type="Fishing Spot" x="1024" y="544" width="32" height="32">
+   <properties>
+    <property name="fish" value="[{&quot;name&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5}, {&quot;name&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.4}, {&quot;name&quot;: &quot;wooden-sword-weapon&quot;, &quot;chance&quot;: 0.1}]"/>
    </properties>
   </object>
  </objectgroup>

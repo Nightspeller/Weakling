@@ -258,10 +258,10 @@ export default class GeneralLocation extends Phaser.Scene {
     });
 
     this.map.getObjectLayer('Fishing Spots')?.objects.forEach((object) => {
-      const objectName = object.name;
       const fishString = object.properties?.find((prop: TiledObjectProp) => prop.name === 'fish')?.value;
+      const fishCooldown = object.properties?.find((prop: TiledObjectProp) => prop.name === 'cooldown')?.value;
       const fishes = JSON.parse(fishString);
-      new Trigger({
+      const fishTrigger = new Trigger({
         scene: this,
         name: object.name,
         triggerX: object.x,
@@ -269,15 +269,12 @@ export default class GeneralLocation extends Phaser.Scene {
         triggerW: object.width,
         triggerH: object.height,
         texture: 'icons',
-        frame: 'icons/fishing/silver-fish',
-        callback: () => {
-          console.log(fishes);
-          this.switchToScene('Fishing', {
-            fishes,
-            objectName,
-          }, false);
-        },
+        frame: 'icons/icons-and-status-effects/sleeping',
+        callback: () => {},
       });
+      fishTrigger.additionalData.caughtAt = 0;
+      fishTrigger.additionalData.possibleFishes = fishes;
+      fishTrigger.additionalData.fishCooldown = fishCooldown;
     });
 
     // @ts-ignore
@@ -317,7 +314,11 @@ export default class GeneralLocation extends Phaser.Scene {
         this.switchToScene(data.switchToScene, data.data);
       }
       if (data?.fishingObjectName) {
-        this.triggers.find((trigger) => trigger.name === data.fishingObjectName).destroy();
+        const fishingTrigger = this.triggers.find((trigger) => trigger.name === data.fishingObjectName);
+        fishingTrigger.image.setTexture('icons', 'icons/icons-and-status-effects/sleeping');
+        fishingTrigger.additionalData.caughtAt = Date.now();
+        fishingTrigger.setDisableState(true);
+        this.showTextAbovePlayer('Caught one!');
       }
     });
 
@@ -471,6 +472,7 @@ export default class GeneralLocation extends Phaser.Scene {
 
   public update() {
     this.updatePlayer();
+    this.updateFishingSpots();
   }
 
   public setupDebugCollisionGraphics() {
@@ -642,16 +644,16 @@ export default class GeneralLocation extends Phaser.Scene {
 
   private setupMobileControls() {
     if (this.sys.game.device.os.android || this.sys.game.device.os.iOS || this.sys.game.device.os.iPad || this.sys.game.device.os.iPhone) {
-    // keep in mind camera scaling - basically all dimensions here are magic numbers...
+      // keep in mind camera scaling - basically all dimensions here are magic numbers...
       this.joyStick = new VirtualJoystick(this, {
         x: 400,
         y: GAME_H - 260,
         radius: 50,
         base: this.add.circle(0, 0, 50, 0x888888, 0.75).setDepth(100),
         thumb: this.add.circle(0, 0, 25, 0xcccccc, 0.75).setDepth(101),
-      // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
-      // forceMin: 16,
-      // enable: true
+        // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
+        // forceMin: 16,
+        // enable: true
       }).setScrollFactor(0);
 
       const mobileActionButton = this.add.circle(900, GAME_H - 260, 37.5, 0xcccccc, 0.75)
@@ -662,5 +664,36 @@ export default class GeneralLocation extends Phaser.Scene {
         this.input.keyboard.emit('keydown-SPACE', { preventDefault: () => {} });
       });
     }
+  }
+
+  private updateFishingSpots() {
+    const fishingTriggers = this.triggers.filter((trigger) => trigger.additionalData.fishCooldown);
+    fishingTriggers.forEach((fishingTrigger) => {
+      if (fishingTrigger.additionalData.caughtAt !== undefined
+        && fishingTrigger.image.frame.name !== 'icons/fishing/fishing-hook'
+        && Date.now() - fishingTrigger.additionalData.caughtAt > fishingTrigger.additionalData.fishCooldown! * 1000
+      ) {
+        fishingTrigger.additionalData.caughtAt = undefined;
+        fishingTrigger.image.setTexture('icons', 'icons/fishing/fishing-hook');
+        fishingTrigger.setDisableState(false);
+        const fishes = fishingTrigger.additionalData.possibleFishes;
+        const randomFishRoll = Math.random();
+        let accumulatedProbability = 0;
+        let currentFishName: string;
+        for (let i = 0; i < fishes.length; i += 1) {
+          accumulatedProbability += fishes[i].chance;
+          if (randomFishRoll < accumulatedProbability) {
+            currentFishName = fishes[i].name;
+            break;
+          }
+        }
+        fishingTrigger.updateCallback(() => {
+          this.switchToScene('Fishing', {
+            currentFishName,
+            objectName: fishingTrigger.name,
+          }, false);
+        }, true);
+      }
+    });
   }
 }

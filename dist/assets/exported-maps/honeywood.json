@@ -1695,6 +1695,54 @@
                  "width":32,
                  "x":832,
                  "y":96
+                }, 
+                {
+                 "gid":172,
+                 "height":32,
+                 "id":51,
+                 "name":"Worm pit",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"ground-worm\", \"quantity\": 10}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":1536,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1791,9 +1839,14 @@
                  "name":"Fishing spot 1",
                  "properties":[
                         {
+                         "name":"cooldown",
+                         "type":"string",
+                         "value":"30"
+                        }, 
+                        {
                          "name":"fish",
                          "type":"string",
-                         "value":"[{\"fish\": \"carp\", \"chance\": 0.5, \"cooldown\": 600}, {\"fish\": \"perch\", \"chance\": 0.5, \"cooldown\": 600}]"
+                         "value":"[{\"name\": \"carp\", \"chance\": 0.5}, {\"name\": \"perch\", \"chance\": 0.4}, {\"name\": \"wooden-sword-weapon\", \"chance\": 0.1}]"
                         }],
                  "rotation":0,
                  "type":"Fishing Spot",
@@ -1801,6 +1854,28 @@
                  "width":32,
                  "x":1728,
                  "y":608
+                }, 
+                {
+                 "height":32,
+                 "id":50,
+                 "name":"Fishing spot 2",
+                 "properties":[
+                        {
+                         "name":"cooldown",
+                         "type":"string",
+                         "value":"30"
+                        }, 
+                        {
+                         "name":"fish",
+                         "type":"string",
+                         "value":"[{\"name\": \"carp\", \"chance\": 0.5}, {\"name\": \"perch\", \"chance\": 0.4}, {\"name\": \"wooden-sword-weapon\", \"chance\": 0.1}]"
+                        }],
+                 "rotation":0,
+                 "type":"Fishing Spot",
+                 "visible":true,
+                 "width":32,
+                 "x":1024,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1809,10 +1884,10 @@
          "y":0
         }],
  "nextlayerid":27,
- "nextobjectid":50,
+ "nextobjectid":52,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.12.18",
+ "tiledversion":"1.5.0",
  "tileheight":32,
  "tilesets":[
         {
@@ -32844,6 +32919,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":1.5,
  "width":60
 }

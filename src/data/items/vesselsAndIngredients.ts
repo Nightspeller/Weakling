@@ -198,6 +198,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     stackable: true,
     modified: false,
     specifics: {
+      fishingBait: true,
       worldConsumable: {
         type: 'health',
         value: 0.25,
@@ -205,26 +206,6 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     },
     sellPrice: 1,
     buyPrice: 2,
-  },
-  carp: {
-    itemId: 'carp',
-    displayName: 'Carp',
-    description: 'Fresh, if somewhat skinny, carp. Can be eaten to restore 50% of HP.',
-    possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
-    sprite: {
-      texture: 'icons',
-      frame: 'icons/fishing/silver-fish',
-    },
-    stackable: true,
-    modified: false,
-    specifics: {
-      worldConsumable: {
-        type: 'health',
-        value: 0.5,
-      },
-    },
-    sellPrice: 3,
-    buyPrice: 6,
   },
   chocolatePie: {
     itemId: 'chocolatePie',
@@ -512,6 +493,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     stackable: true,
     modified: false,
     specifics: {
+      fishingBait: true,
       worldConsumable: {
         type: 'energy',
         value: 0.5,

@@ -14,9 +14,11 @@ import quickSlotItems from './items/quickSlotItems';
 import ringsItems from './items/ringsItems';
 import tailItems from './items/tailItems';
 import { ItemData } from '../types/my-types';
+import fishingItems from './items/fishingItems';
 
 const itemsData: { [key: string]: ItemData } = {
   ...backpackItems,
+  ...fishingItems,
   ...vesselsAndIngredients,
   ...bagItems,
   ...beltItems,

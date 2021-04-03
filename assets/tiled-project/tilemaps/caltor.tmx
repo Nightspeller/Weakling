@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="32" nextobjectid="123">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="33" nextobjectid="126">
  <editorsettings>
-  <export target="../../exported-maps/caltor.json" format="json"/>
+  <export target="../../../src/assets/exported-maps/caltor.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/grass1.tsx"/>
  <tileset firstgid="49" source="../tilesets/base.tsx"/>
@@ -198,6 +198,14 @@
     <property name="openedFrame" type="int" value="69"/>
    </properties>
   </object>
+  <object id="125" name="Fishing rod" type="Container" gid="1849" x="1984" y="2880" width="32" height="32">
+   <properties>
+    <property name="disableWhenEmpty" type="bool" value="true"/>
+    <property name="instantPickup" type="bool" value="true"/>
+    <property name="items" value="[{&quot;itemId&quot;: &quot;flimsy-fishing-rod&quot;, &quot;quantity&quot;: 1}]"/>
+    <property name="secret" type="bool" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="19" name="Messages">
   <object id="27" name="Waymark" type="Message" x="2336" y="3040" width="32" height="32">
@@ -233,6 +241,18 @@
     <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}]"/>
     <property name="image" value="boar-avatar"/>
     <property name="xpReward" type="int" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="32" name="Fishing Spots">
+  <object id="123" name="Fishing spot 1" type="Fishing Spot" x="2048" y="2912" width="32" height="32">
+   <properties>
+    <property name="fish" value="[{&quot;name&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5}, {&quot;name&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.4}, {&quot;name&quot;: &quot;wooden-sword-weapon&quot;, &quot;chance&quot;: 0.1}]"/>
+   </properties>
+  </object>
+  <object id="124" name="Fishing spot 2" type="Fishing Spot" x="2272" y="2880" width="32" height="32">
+   <properties>
+    <property name="fish" value="[{&quot;name&quot;: &quot;carp&quot;, &quot;chance&quot;: 0.5}, {&quot;name&quot;: &quot;perch&quot;, &quot;chance&quot;: 0.4}, {&quot;name&quot;: &quot;wooden-sword-weapon&quot;, &quot;chance&quot;: 0.1}]"/>
    </properties>
   </object>
  </objectgroup>
