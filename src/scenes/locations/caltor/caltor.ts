@@ -7,6 +7,8 @@ import AnnouncementsDeskNpc from '../../../triggers/npcs/caltor/announcementsDes
 import KasimaNpc from '../../../triggers/npcs/caltor/kasimaNpc';
 import FountainNpc from '../../../triggers/npcs/caltor/fountainNpc';
 import FionaNpc from '../../../triggers/npcs/caltor/fionaNpc';
+import RudeStranger1Npc from '../../../triggers/npcs/caltor/rudeStranger1Npc';
+import RudeStranger2Npc from '../../../triggers/npcs/caltor/rudeStranger2Npc';
 
 export default class CaltorScene extends GeneralLocation {
   constructor() {
@@ -55,6 +57,10 @@ export default class CaltorScene extends GeneralLocation {
     new FionaNpc({ scene: this });
 
     new FountainNpc({ scene: this });
+
+    new RudeStranger1Npc({ scene: this });
+
+    new RudeStranger2Npc({ scene: this });
 
     this.events.on('resume', (/* scene, data */) => {
       if (this.player.defeatedEnemies.includes('caltor/Boars 1') && this.player.defeatedEnemies.includes('caltor/Boars 2')) {

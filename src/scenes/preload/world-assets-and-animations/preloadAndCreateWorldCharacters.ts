@@ -3,7 +3,7 @@ import { tilesetConfig } from '../../../config/constants';
 
 const standardCharacterTextures = ['cat-1', 'cat-2', 'cat-3', 'dog-1', 'dog-2', 'dog-3',
   'female05-4', 'female17-1', 'female17-2', 'female18-4', 'female19-1', 'female19-3', 'female20-3',
-  'male3-1', 'male10-1', 'male10-2', 'male12-1', 'male13-1', 'male14-2', 'male16-1', 'male16-2', 'male17-3', 'male17-4',
+  'male3-1', 'male9-1', 'male9-2', 'male9-3', 'male9-4', 'male10-1', 'male10-2', 'male12-1', 'male13-1', 'male14-2', 'male16-1', 'male16-2', 'male17-3', 'male17-4',
   'soldier04-3', 'soldier06-1'];
 
 export function preloadWorldCharactersAssets(scene: Phaser.Scene) {
