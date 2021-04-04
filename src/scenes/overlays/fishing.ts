@@ -16,6 +16,7 @@ export default class FishingScene extends GeneralOverlayScene {
   private baitAttractiveness: number;
   private interfaceText: Phaser.GameObjects.Text;
   private interfaceGraphics: Phaser.GameObjects.Graphics;
+  private interfaceBackground: Phaser.GameObjects.Image;
 
   constructor() {
     super({ key: 'Fishing' });
@@ -90,24 +91,24 @@ export default class FishingScene extends GeneralOverlayScene {
         .setInteractive()
         .on('pointerdown', () => {
           selectedFishingBait = fishingBait;
-          this.baitAttractiveness = 0.25;
-          if (currentFish.specifics.baitPreferences.loves.includes(selectedFishingBait.itemId)) this.baitAttractiveness = 1;
-          if (currentFish.specifics.baitPreferences.likes.includes(selectedFishingBait.itemId)) this.baitAttractiveness = 0.75;
-          if (currentFish.specifics.baitPreferences.hates.includes(selectedFishingBait.itemId)) this.baitAttractiveness = 0;
+          this.baitAttractiveness = selectedFishingBait ? 0.25 : 0;
+          if (currentFish.specifics.baitPreferences?.loves.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 1;
+          if (currentFish.specifics.baitPreferences?.likes.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0.75;
+          if (currentFish.specifics.baitPreferences?.hates.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0;
           this.drawInterface(selectedFishingRod, selectedFishingBait, this.baitAttractiveness, currentFish);
         });
     });
 
     const currentFish = new Item(this.currentFishName);
-    this.drawFish(currentFish);
 
     this.baitAttractiveness = selectedFishingBait ? 0.25 : 0;
     if (currentFish.specifics.baitPreferences?.loves.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 1;
     if (currentFish.specifics.baitPreferences?.likes.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0.75;
     if (currentFish.specifics.baitPreferences?.hates.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0;
 
-    this.add.sprite(GAME_W / 2, GAME_H / 2 - 106, 'icons', 'icons/fishing/fishing-hook').setOrigin(0.5);
     this.drawInterface(selectedFishingRod, selectedFishingBait, this.baitAttractiveness, currentFish);
+    this.add.sprite(GAME_W / 2, GAME_H / 2 - 106, 'icons', 'icons/fishing/fishing-hook').setOrigin(0.5);
+    this.drawFish(currentFish);
 
     const catchButtonPressed = () => {
       if (selectedFishingRod !== undefined) {
@@ -139,11 +140,9 @@ Current Bait: ${bait?.displayName ?? 'none'}, attractiveness: ${baitAttractivene
       { color: '#000000' });
 
     this.interfaceGraphics?.destroy();
+    this.interfaceBackground = this.add.image(TILE_SIZE * 6, GAME_H / 2 - 96, 'fishing-background').setOrigin(0).setDisplaySize(GAME_W - TILE_SIZE * 12, 128);
+    this.interfaceGraphics?.destroy();
     this.interfaceGraphics = this.add.graphics()
-      .lineStyle(2, 0x0000ff)
-      .strokeRect(TILE_SIZE * 6, GAME_H / 2 - 96, GAME_W - TILE_SIZE * 12, 64)
-      .lineStyle(2, 0x00ffff)
-      .strokeRect(TILE_SIZE * 6, GAME_H / 2 - 32, GAME_W - TILE_SIZE * 12, 64)
       .fillStyle(0xff0000, 0.75)
       .fillRect(GAME_W / 2 - catchRange / 2, GAME_H / 2 - 88, catchRange, 6);
   }

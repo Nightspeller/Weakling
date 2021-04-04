@@ -7,6 +7,7 @@ export default function preloadInterfaceAndIconsAssets(preloadScene: Scene) {
 
   preloadScene.load.image('interface-24x19', 'assets/images-extruded/interface/interface-24x19.png');
   preloadScene.load.image('main-menu-background', 'assets/images/interface/main-menu-background.jpg');
+  preloadScene.load.image('fishing-background', 'assets/images/interface/fishing-background.png');
 
   // Items
   preloadScene.load.spritesheet('icon-item-set', 'assets/images-extruded/interface/icon-item-set.png', tilesetConfig);
