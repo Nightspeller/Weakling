@@ -114,6 +114,7 @@ export default class FishingScene extends GeneralOverlayScene {
       if (selectedFishingRod !== undefined) {
         if (Phaser.Math.Within(this.fish.x, GAME_W / 2, selectedFishingRod.specifics.fishingRodCatchRange / 2) && this.baited) {
           this.player.addItemToInventory(currentFish);
+          this.player.updateAchievement('Here, fishy-fishy', undefined, undefined, 1);
           this.closeScene({ fishingObjectName: this.objectName });
         } else {
           // TODO: bait lost

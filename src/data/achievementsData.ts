@@ -50,6 +50,12 @@ const achievementsData: ({
   progress: [0, 5],
   achieved: false,
 }, {
+  name: 'Here, fishy-fishy',
+  description: 'Catch 5 fishes',
+  icon: { texture: 'icons', frame: 'icons/fishing/fishing-hook' },
+  progress: [0, 5],
+  achieved: false,
+}, {
   name: 'Checked, checked aaaand checked!',
   description: 'Complete all the quests',
   icon: { texture: 'icons', frame: 'icons/books-and-scrolls/book-with-bookmark' },
