@@ -9,13 +9,17 @@ import Item from '../../entities/item';
 export default class FishingScene extends GeneralOverlayScene {
   private player: Player;
   public opts: DialogOptions;
-  private currentFishName: string;
   private objectName: string;
   private fish: Phaser.GameObjects.Container;
   private baited: boolean;
   private baitAttractiveness: number;
   private interfaceText: Phaser.GameObjects.Text;
   private interfaceGraphics: Phaser.GameObjects.Graphics;
+  private baitSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private currentFish: Item;
+  private selectedFishingBait: Item;
+  private selectedFishingRod: Item;
+  private baitsGroup: Phaser.GameObjects.Group;
 
   constructor() {
     super({ key: 'Fishing' });
@@ -48,7 +52,7 @@ export default class FishingScene extends GeneralOverlayScene {
       textColor: 'black',
       letterAppearanceDelay: 10,
     };
-    this.currentFishName = currentFishName;
+    this.currentFish = new Item(currentFishName);
     this.objectName = objectName;
     this.player = playerInstance;
     this.parentSceneKey = prevScene;
@@ -61,63 +65,64 @@ export default class FishingScene extends GeneralOverlayScene {
   public create() {
     super.create(this.parentSceneKey, this.opts);
 
-    const availableFishingRods: Item[] = [];
-    const availableFishingBaits: Item[] = [];
-    this.player.getAllItems().forEach((item) => {
-      if (item.specifics.fishingRodCatchRange) {
-        availableFishingRods.push(item);
-      }
-      if (item.specifics.fishingBait) {
-        availableFishingBaits.push(item);
-      }
-    });
+    this.baitSound = this.sound.add('fishing-bait');
+    const successSound = this.sound.add('fishing-success');
+    const missedSound = this.sound.add('fishing-missed');
+    this.baitsGroup = this.add.group();
 
-    let selectedFishingRod = availableFishingRods[0];
-    availableFishingRods.forEach((fishingRod, index) => {
-      this.add.sprite(this.opts.windowX + 32 + 32 * index, this.opts.windowY + this.opts.windowHeight - 48,
-        fishingRod.sprite.texture, fishingRod.sprite.frame)
-        .setInteractive()
-        .on('pointerdown', () => {
-          selectedFishingRod = fishingRod;
-          this.drawInterface(selectedFishingRod, selectedFishingBait, this.baitAttractiveness, currentFish);
-        });
-    });
-
-    let selectedFishingBait = availableFishingBaits[0];
-    availableFishingBaits.forEach((fishingBait, index) => {
-      this.add.sprite(this.opts.windowX + this.opts.windowWidth - 32 - 32 * index, this.opts.windowY + this.opts.windowHeight - 48,
-        fishingBait.sprite.texture, fishingBait.sprite.frame)
-        .setInteractive()
-        .on('pointerdown', () => {
-          selectedFishingBait = fishingBait;
-          this.baitAttractiveness = selectedFishingBait ? 0.25 : 0;
-          if (currentFish.specifics.baitPreferences?.loves.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 1;
-          if (currentFish.specifics.baitPreferences?.likes.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0.75;
-          if (currentFish.specifics.baitPreferences?.hates.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0;
-          this.drawInterface(selectedFishingRod, selectedFishingBait, this.baitAttractiveness, currentFish);
-        });
-    });
-
-    const currentFish = new Item(this.currentFishName);
-
-    this.baitAttractiveness = selectedFishingBait ? 0.25 : 0;
-    if (currentFish.specifics.baitPreferences?.loves.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 1;
-    if (currentFish.specifics.baitPreferences?.likes.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0.75;
-    if (currentFish.specifics.baitPreferences?.hates.includes(selectedFishingBait?.itemId)) this.baitAttractiveness = 0;
+    this.drawRodSelector();
+    this.drawBaitSelector();
 
     this.add.image(TILE_SIZE * 6, GAME_H / 2 - 96, 'fishing-background').setOrigin(0).setDisplaySize(GAME_W - TILE_SIZE * 12, 128);
-    this.add.sprite(GAME_W / 2, GAME_H / 2 - 106, 'icons', 'icons/fishing/fishing-hook').setOrigin(0.5);
-    this.drawInterface(selectedFishingRod, selectedFishingBait, this.baitAttractiveness, currentFish);
-    this.drawFish(currentFish);
+    const hookImage = this.add.sprite(GAME_W / 2, GAME_H / 2 - 106, 'icons', 'icons/fishing/fishing-hook').setOrigin(0.5);
+    this.drawInterface(this.selectedFishingRod, this.selectedFishingBait, this.baitAttractiveness, this.currentFish);
+    this.drawFish(this.currentFish);
 
+    let lastKeyDownTime = Date.now();
     const catchButtonPressed = () => {
-      if (selectedFishingRod !== undefined) {
-        if (Phaser.Math.Within(this.fish.x, GAME_W / 2, selectedFishingRod.specifics.fishingRodCatchRange / 2) && this.baited) {
-          this.player.addItemToInventory(currentFish);
+      if (this.selectedFishingRod !== undefined && Date.now() - lastKeyDownTime > 1000) {
+        lastKeyDownTime = Date.now();
+        if (Phaser.Math.Within(this.fish.x, GAME_W / 2, this.selectedFishingRod.specifics.fishingRodCatchRange / 2) && this.baited) {
+          successSound.play();
+          playerInstance.removeItemFromInventory(this.selectedFishingBait, 1);
+          this.player.addItemToInventory(this.currentFish);
           this.player.updateAchievement('Here, fishy-fishy', undefined, undefined, 1);
           this.closeScene({ fishingObjectName: this.objectName });
         } else {
-          // TODO: bait lost
+          missedSound.play();
+          this.add.tween({
+            targets: hookImage,
+            y: {
+              from: hookImage.y,
+              to: hookImage.y - 32,
+            },
+            duration: 100,
+            yoyo: true,
+            ease: 'Linear',
+            onComplete: () => { },
+          });
+          const baitLost = Math.random() < 0.25;
+          if (this.selectedFishingBait && baitLost) {
+            playerInstance.removeItemFromInventory(this.selectedFishingBait, 1);
+            this.add.tween({
+              targets: this.add.sprite(
+                hookImage.x, hookImage.y,
+                this.selectedFishingBait.sprite.texture, this.selectedFishingBait.sprite.frame,
+              ),
+              y: {
+                from: hookImage.y,
+                to: hookImage.y + 128,
+              },
+              x: {
+                from: hookImage.x,
+                to: hookImage.x + Phaser.Math.Between(-32, 32),
+              },
+              duration: 1000,
+              ease: 'Linear',
+              onComplete: () => { },
+            });
+          }
+          this.drawBaitSelector();
         }
       }
     };
@@ -126,7 +131,7 @@ export default class FishingScene extends GeneralOverlayScene {
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', catchButtonPressed);
-    this.input.keyboard.on('keyup-SPACE', catchButtonPressed);
+    this.input.keyboard.on('keydown-SPACE', catchButtonPressed);
   }
 
   private drawInterface(fishingRod: Item, bait: Item, baitAttractiveness: number, currentFish: Item) {
@@ -137,7 +142,7 @@ export default class FishingScene extends GeneralOverlayScene {
       `Fishing Rod: ${fishingRod?.displayName ?? 'none'}, catch range: ${catchRange}
 Current fish: ${currentFish.displayName}
 Loves: ${currentFish.specifics.baitPreferences?.loves.join(', ') ?? 'nothing'}, likes: ${currentFish.specifics.baitPreferences?.likes.join(', ') ?? 'nothing'}, hates: ${currentFish.specifics.baitPreferences?.hates.join(', ') ?? 'nothing'}
-Current Bait: ${bait?.displayName ?? 'none'}, attractiveness: ${baitAttractiveness * 100}%`,
+Current Bait: ${bait?.displayName ?? 'none'}, attractiveness: ${baitAttractiveness * 100}%, bait loss chance: 25%`,
       { color: '#000000' });
 
     this.interfaceGraphics?.destroy();
@@ -192,5 +197,69 @@ Current Bait: ${bait?.displayName ?? 'none'}, attractiveness: ${baitAttractivene
     };
 
     moveFish(fishPattern[currentPosition], false);
+  }
+
+  update(time: number, delta: number) {
+    super.update(time, delta);
+    if (Phaser.Math.Within(this.fish.x, GAME_W / 2, 16 / 2) && this.baited) {
+      this.baitSound.play();
+    }
+  }
+
+  drawBaitSelector() {
+    const availableFishingBaits: Item[] = [];
+    this.player.getAllItems().forEach((item) => {
+      if (item.specifics.fishingBait) {
+        availableFishingBaits.push(item);
+      }
+    });
+
+    this.selectedFishingBait = this.selectedFishingBait ?? availableFishingBaits[0];
+    const updateAttractiveness = () => {
+      this.baitAttractiveness = this.selectedFishingBait ? 0.25 : 0;
+      if (this.currentFish.specifics.baitPreferences?.loves.includes(this.selectedFishingBait?.itemId)) this.baitAttractiveness = 1;
+      if (this.currentFish.specifics.baitPreferences?.likes.includes(this.selectedFishingBait?.itemId)) this.baitAttractiveness = 0.75;
+      if (this.currentFish.specifics.baitPreferences?.hates.includes(this.selectedFishingBait?.itemId)) this.baitAttractiveness = 0;
+    };
+    updateAttractiveness();
+    this.drawInterface(this.selectedFishingRod, this.selectedFishingBait, this.baitAttractiveness, this.currentFish);
+
+    this.baitsGroup.clear(false, true);
+    availableFishingBaits.forEach((fishingBait, index) => {
+      this.baitsGroup.add(
+        this.add.sprite(this.opts.windowX + this.opts.windowWidth - 32 - 32 * index, this.opts.windowY + this.opts.windowHeight - 48,
+          fishingBait.sprite.texture, fishingBait.sprite.frame)
+          .setInteractive()
+          .on('pointerdown', () => {
+            this.selectedFishingBait = fishingBait;
+            updateAttractiveness();
+            this.drawInterface(this.selectedFishingRod, this.selectedFishingBait, this.baitAttractiveness, this.currentFish);
+          }),
+      );
+      this.baitsGroup.add(
+        this.add.text(this.opts.windowX + this.opts.windowWidth - 32 - 32 * index + 4, this.opts.windowY + this.opts.windowHeight - 48 + 4,
+          `${fishingBait.quantity}`, { color: 'black' }),
+      );
+    });
+  }
+
+  drawRodSelector() {
+    const availableFishingRods: Item[] = [];
+    this.player.getAllItems().forEach((item) => {
+      if (item.specifics.fishingRodCatchRange) {
+        availableFishingRods.push(item);
+      }
+    });
+
+    this.selectedFishingRod = availableFishingRods[0];
+    availableFishingRods.forEach((fishingRod, index) => {
+      this.add.sprite(this.opts.windowX + 32 + 32 * index, this.opts.windowY + this.opts.windowHeight - 48,
+        fishingRod.sprite.texture, fishingRod.sprite.frame)
+        .setInteractive()
+        .on('pointerdown', () => {
+          this.selectedFishingRod = fishingRod;
+          this.drawInterface(this.selectedFishingRod, this.selectedFishingBait, this.baitAttractiveness, this.currentFish);
+        });
+    });
   }
 }
