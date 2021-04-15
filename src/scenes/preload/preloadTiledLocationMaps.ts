@@ -21,5 +21,6 @@ export default function preloadTiledLocationMaps(preloadScene: Scene) {
   preloadScene.load.tilemapTiledJSON('forest', 'assets/exported-maps/forest2.json');
   preloadScene.load.tilemapTiledJSON('backCave', 'assets/exported-maps/backCave.json');
   preloadScene.load.tilemapTiledJSON('greatPlains', 'assets/exported-maps/greatPlains.json');
+  preloadScene.load.tilemapTiledJSON('windmill', 'assets/exported-maps/windmill.json');
   preloadScene.load.tilemapTiledJSON('dungeonLevel1', 'assets/exported-maps/dungeonLevel1.json');
 }

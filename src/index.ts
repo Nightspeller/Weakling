@@ -30,6 +30,7 @@ import QuestLogScene from './scenes/overlays/questLog';
 import CryptScene from './scenes/locations/caltor/crypt';
 import BackCaveScene from './scenes/locations/village/backCave';
 import GreatPlainsScene from './scenes/locations/roads/greatPlains';
+import WindmillScene from './scenes/locations/roads/windmill';
 import BooksStoreScene from './scenes/locations/caltor/booksStore';
 import AlchemyStandScene from './scenes/overlays/item-manupulators/alchemyStandOverlay';
 import ContainerOverlayScene from './scenes/overlays/item-manupulators/containerOverlayScene';
@@ -53,7 +54,7 @@ export const LOCATION_SCENES = [
   HoneywoodScene,
   CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CryptScene, BooksStoreScene,
   VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene, BackCaveScene,
-  GreatPlainsScene] as any[];
+  GreatPlainsScene, WindmillScene] as any[];
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
   title: 'Weakling!!',

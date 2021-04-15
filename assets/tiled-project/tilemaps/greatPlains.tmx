@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="10">
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="12">
  <editorsettings>
   <export target="../../../src/assets/exported-maps/greatPlains.json" format="json"/>
  </editorsettings>
@@ -160,6 +160,12 @@
    <properties>
     <property name="location" value="BetweenVillageAndCaltor"/>
     <property name="toCoordinates" value="{&quot;x&quot;: 51, &quot;y&quot;: 23}"/>
+   </properties>
+  </object>
+  <object id="10" name="Windmill" type="Waypoint" x="1056.25" y="280.75" width="31.75" height="39">
+   <properties>
+    <property name="location" value="Windmill"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 5, &quot;y&quot;: 7}"/>
    </properties>
   </object>
  </objectgroup>
