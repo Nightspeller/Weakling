@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="4">
+ <editorsettings>
+  <export target="../../../src/assets/exported-maps/windmill.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="../tilesets/base.tsx"/>
+ <tileset firstgid="1065" source="../tilesets/wall-up.tsx"/>
+ <tileset firstgid="1161" source="../tilesets/windmill.tsx"/>
+ <tileset firstgid="3240" source="../tilesets/base-addition.tsx"/>
+ <group id="6" name="Layer 1">
+  <layer id="11" name="Below player" width="11" height="9">
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,3588,3588,3588,3588,3588,3588,3588,3588,3588,0,
+0,0,0,0,0,370,370,370,0,0,0,
+0,0,0,0,0,378,378,0,0,0,0,
+0,289,289,289,289,289,289,289,289,289,0,
+0,289,289,289,289,289,289,289,289,289,0,
+0,289,289,289,289,289,289,289,289,289,0,
+0,289,289,289,289,289,289,289,289,289,0,
+0,0,0,0,0,289,0,0,0,0,0
+</data>
+  </layer>
+  <layer id="10" name="Collisions" width="11" height="9">
+   <properties>
+    <property name="hasCollisions" type="bool" value="true"/>
+   </properties>
+   <data encoding="csv">
+1070,1067,1067,1067,1067,1067,1067,1067,1067,1067,1072,
+1077,0,0,0,0,0,0,0,0,0,1077,
+1077,369,370,370,370,3577,0,3603,370,371,1077,
+1077,377,378,378,378,3577,0,378,378,379,1077,
+1077,861,873,0,0,511,0,0,0,0,1077,
+1077,0,0,0,237,227,0,0,0,0,1077,
+1077,0,0,0,0,0,0,0,0,0,1077,
+1077,0,0,0,0,0,0,0,0,0,1077,
+1081,1067,1067,1067,1067,0,1067,1067,1067,1067,1082
+</data>
+  </layer>
+  <layer id="1" name="Fringe non-transparent" width="11" height="9">
+   <properties>
+    <property name="fringe" type="bool" value="true"/>
+   </properties>
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,3579,3578,3578,3578,3614,0,3578,3579,3580,0,
+0,3591,3590,3590,3590,0,0,3590,3590,3592,0,
+0,0,0,0,0,3601,0,0,0,0,0,
+0,0,0,0,0,519,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+  <layer id="18" name="Fringe transparent" width="11" height="9">
+   <properties>
+    <property name="fringe" type="bool" value="true"/>
+   </properties>
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,592,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+ </group>
+ <group id="7" name="Layer 2">
+  <layer id="12" name="Below player" width="11" height="9">
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,295,0,0,0,0,
+0,0,0,0,0,0,303,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+  <layer id="14" name="Collisions" width="11" height="9">
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+  <layer id="17" name="Fringe non-transparent" width="11" height="9">
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+ </group>
+ <group id="8" name="Layer 3">
+  <layer id="13" name="Below player" width="11" height="9">
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+  <layer id="15" name="Collisions" width="11" height="9">
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+  <layer id="16" name="Fringe non-transparent" width="11" height="9">
+   <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+  </layer>
+ </group>
+ <objectgroup id="19" name="Messages">
+  <object id="2" name="Hopper sign" type="Message" x="128.333" y="160" width="31.6667" height="32.4545">
+   <properties>
+    <property name="interaction" value="activate"/>
+    <property name="messageId" value="windmill_hopperSign"/>
+    <property name="secret" type="bool" value="false"/>
+    <property name="singleUse" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="2" name="NPCs"/>
+ <objectgroup id="3" name="Waypoints">
+  <object id="1" name="GreatPlains" type="Waypoint" x="160.667" y="256.333" width="30.6667" height="30.3333">
+   <properties>
+    <property name="location" value="GreatPlains"/>
+    <property name="toCoordinates" value="{&quot;x&quot;: 33, &quot;y&quot;: 10}"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="Objects">
+  <object id="3" name="Start" x="174.636" y="227.182">
+   <point/>
+  </object>
+ </objectgroup>
+</map>

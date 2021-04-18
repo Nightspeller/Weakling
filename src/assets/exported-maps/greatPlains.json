@@ -460,6 +460,28 @@
                  "width":64,
                  "x":1312,
                  "y":0
+                }, 
+                {
+                 "height":39,
+                 "id":10,
+                 "name":"Windmill",
+                 "properties":[
+                        {
+                         "name":"location",
+                         "type":"string",
+                         "value":"Windmill"
+                        }, 
+                        {
+                         "name":"toCoordinates",
+                         "type":"string",
+                         "value":"{\"x\": 5, \"y\": 7}"
+                        }],
+                 "rotation":0,
+                 "type":"Waypoint",
+                 "visible":true,
+                 "width":31.75,
+                 "x":1056.25,
+                 "y":280.75
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -468,7 +490,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":10,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2020.12.18",
