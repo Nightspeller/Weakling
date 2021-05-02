@@ -1,4 +1,5 @@
 import GeneralLocation from '../generalLocation';
+import EvelynNpc from '../../../triggers/npcs/greatPlains/evelynNpc';
 
 export default class GreatPlainsScene extends GeneralLocation {
   constructor() {
@@ -15,6 +16,8 @@ export default class GreatPlainsScene extends GeneralLocation {
 
   public create() {
     super.create('greatPlains');
+
+    new EvelynNpc({ scene: this });
   }
 
   public update() {
