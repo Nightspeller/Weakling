@@ -379,12 +379,6 @@
                  "height":32,
                  "id":66,
                  "name":"Fountain sign",
-                 "properties":[
-                        {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }],
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,
@@ -536,11 +530,6 @@
                          "name":"location",
                          "type":"string",
                          "value":"Crypt"
-                        }, 
-                        {
-                         "name":"toCoordinates",
-                         "type":"string",
-                         "value":"{\"x\": -1, \"y\": -1}"
                         }],
                  "rotation":0,
                  "type":"Waypoint",
@@ -604,16 +593,6 @@
                          "value":"[{\"itemId\": \"invisibility-cape\", \"quantity\": 1}]"
                         }, 
                         {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
                          "name":"secret",
                          "type":"bool",
                          "value":true
@@ -647,16 +626,6 @@
                          "value":"[{\"itemId\": \"leather-pants\", \"quantity\": 1}]"
                         }, 
                         {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
                          "name":"secret",
                          "type":"bool",
                          "value":true
@@ -675,19 +644,9 @@
                  "name":"Fire 1",
                  "properties":[
                         {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":true
-                        }, 
-                        {
-                         "name":"instantPickup",
-                         "type":"bool",
-                         "value":false
                         }, 
                         {
                          "name":"items",
@@ -698,16 +657,6 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":69
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -736,16 +685,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"flimsy-fishing-rod\", \"quantity\": 1}]"
-                        }, 
-                        {
-                         "name":"openedFrame",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"requiresToOpen",
-                         "type":"string",
-                         "value":""
                         }, 
                         {
                          "name":"secret",
@@ -786,11 +725,6 @@
                          "value":"caltor_waymark"
                         }, 
                         {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
                          "name":"singleUse",
                          "type":"bool",
                          "value":false
@@ -809,24 +743,9 @@
                  "name":"City guard 1",
                  "properties":[
                         {
-                         "name":"interaction",
-                         "type":"string",
-                         "value":"activate"
-                        }, 
-                        {
                          "name":"messageId",
                          "type":"string",
                          "value":"caltor_cityGuard1"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"singleUse",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Message",
@@ -842,24 +761,9 @@
                  "name":"City guard 2",
                  "properties":[
                         {
-                         "name":"interaction",
-                         "type":"string",
-                         "value":"activate"
-                        }, 
-                        {
                          "name":"messageId",
                          "type":"string",
                          "value":"caltor_cityGuard2"
-                        }, 
-                        {
-                         "name":"secret",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"singleUse",
-                         "type":"bool",
-                         "value":false
                         }],
                  "rotation":0,
                  "type":"Message",
@@ -884,11 +788,6 @@
                  "id":15,
                  "name":"Boars 1",
                  "properties":[
-                        {
-                         "name":"background",
-                         "type":"string",
-                         "value":""
-                        }, 
                         {
                          "name":"drop",
                          "type":"string",
@@ -921,11 +820,6 @@
                  "id":20,
                  "name":"Boars 2",
                  "properties":[
-                        {
-                         "name":"background",
-                         "type":"string",
-                         "value":""
-                        }, 
                         {
                          "name":"drop",
                          "type":"string",
@@ -970,11 +864,6 @@
                  "name":"Fishing spot 1",
                  "properties":[
                         {
-                         "name":"cooldown",
-                         "type":"string",
-                         "value":"30"
-                        }, 
-                        {
                          "name":"fish",
                          "type":"string",
                          "value":"[{\"name\": \"carp\", \"chance\": 0.5}, {\"name\": \"perch\", \"chance\": 0.4}, {\"name\": \"wooden-sword-weapon\", \"chance\": 0.1}]"
@@ -991,11 +880,6 @@
                  "id":124,
                  "name":"Fishing spot 2",
                  "properties":[
-                        {
-                         "name":"cooldown",
-                         "type":"string",
-                         "value":"30"
-                        }, 
                         {
                          "name":"fish",
                          "type":"string",
@@ -1018,7 +902,7 @@
  "nextobjectid":128,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.5.0",
+ "tiledversion":"2020.12.18",
  "tileheight":32,
  "tilesets":[
         {
@@ -32645,6 +32529,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.5,
+ "version":1.4,
  "width":100
 }

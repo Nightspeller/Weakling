@@ -1,4 +1,5 @@
 import GeneralLocation from '../generalLocation';
+import HopperNpc from '../../../triggers/npcs/windmill/hopperNpc';
 
 export default class WindmillScene extends GeneralLocation {
   constructor() {
@@ -15,6 +16,8 @@ export default class WindmillScene extends GeneralLocation {
 
   public create() {
     super.create('windmill');
+
+    new HopperNpc({ scene: this });
   }
 
   public update() {
