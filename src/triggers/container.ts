@@ -111,4 +111,24 @@ export default class Container extends Trigger {
     if (flipX) this.image.flipX = true;
     if (flipY) this.image.flipY = true;
   }
+
+  public addItem(newItem: Item) {
+    let itemAdded = false;
+    const numberOfSlots = 10;
+    for (let i = 0; i < Math.floor(numberOfSlots / 5) + 1; i += 1) {
+      const slotsInRow = Math.floor((numberOfSlots - 5 * i) / 5) > 0 ? 5 : numberOfSlots % 5;
+      for (let j = 0; j < slotsInRow; j += 1) {
+        if (this.items.get(`containerSlot${j}_${i}` as Slots) === undefined) {
+          this.items.set(`containerSlot${j}_${i}` as Slots, newItem);
+          itemAdded = true;
+          break;
+        } else if (this.items.get(`containerSlot${j}_${i}` as Slots).itemId === newItem.itemId) {
+          this.items.get(`containerSlot${j}_${i}` as Slots).quantity += 1;
+          itemAdded = true;
+          break;
+        }
+      }
+      if (itemAdded) break;
+    }
+  }
 }

@@ -11,6 +11,7 @@ export default function preloadInterfaceAndIconsAssets(preloadScene: Scene) {
 
   // Items
   preloadScene.load.spritesheet('icon-item-set', 'assets/images-extruded/interface/icon-item-set.png', tilesetConfig);
+  preloadScene.load.spritesheet('icon-farming-set', 'assets/images-extruded/interface/icon-farming-set.png', tilesetConfig);
 
   // Icons atlas - Assets for this atlas are under top level assets folder (assets/ftp-project/icons) and compiled during build by Webpack, on the fly.
   preloadScene.load.atlas('icons',

@@ -608,6 +608,80 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     sellPrice: 1,
     buyPrice: 2,
   },
+  wheat: {
+    itemId: 'wheat',
+    displayName: 'Wheat',
+    description: 'Can be ground into wheat flour in a windmill.',
+    possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+    sprite: {
+      texture: 'icon-farming-set',
+      frame: 8,
+    },
+    stackable: true,
+    modified: false,
+    specifics: {
+      craftable: 'wheat-flour',
+    },
+    sellPrice: 1,
+    buyPrice: 2,
+  },
+  'wheat-flour': {
+    itemId: 'wheat-flour',
+    displayName: 'Wheat Flour',
+    description: 'Can be used for making bread',
+    possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+    sprite: {
+      texture: 'icon-farming-set',
+      frame: 10,
+    },
+    stackable: true,
+    modified: false,
+    specifics: {
+      worldConsumable: {
+        type: 'health',
+        value: 0.1,
+      },
+    },
+    sellPrice: 1,
+    buyPrice: 2,
+  },
+  corn: {
+    itemId: 'corn',
+    displayName: 'Corn',
+    description: 'Can be ground into corn flour in a windmill',
+    possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+    sprite: {
+      texture: 'icon-farming-set',
+      frame: 0,
+    },
+    stackable: true,
+    modified: false,
+    specifics: {
+      craftable: 'corn-flour',
+    },
+    sellPrice: 1,
+    buyPrice: 2,
+  },
+  'corn-flour': {
+    itemId: 'corn-flour',
+    displayName: 'Corn Flour',
+    description: 'Corn flour can be used for making gluten-free pastries',
+    possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
+    sprite: {
+      texture: 'icon-farming-set',
+      frame: 2,
+    },
+    stackable: true,
+    modified: false,
+    specifics: {
+      worldConsumable: {
+        type: 'health',
+        value: 0.1,
+      },
+    },
+    sellPrice: 1,
+    buyPrice: 2,
+  },
 };
 
 export default vesselsAndIngredients;

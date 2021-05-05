@@ -26,7 +26,7 @@
                  "y":0
                 }, 
                 {
-                 "data":[1070, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1072, 1077, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1077, 1077, 369, 370, 370, 370, 3577, 0, 3603, 370, 371, 1077, 1077, 377, 378, 378, 378, 3577, 0, 378, 378, 379, 1077, 1077, 861, 873, 0, 0, 511, 0, 0, 0, 0, 1077, 1077, 0, 0, 0, 237, 227, 0, 0, 0, 0, 1077, 1077, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1077, 1077, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1077, 1081, 1067, 1067, 1067, 1067, 0, 1067, 1067, 1067, 1067, 1082],
+                 "data":[1070, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1067, 1072, 1077, 0, 0, 0, 0, 0, 0, 0, 0, 873, 1077, 1077, 369, 370, 370, 370, 3577, 0, 3603, 370, 371, 1077, 1077, 377, 378, 378, 378, 3577, 0, 378, 378, 379, 1077, 1077, 861, 0, 0, 0, 511, 0, 0, 0, 0, 1077, 1077, 0, 0, 0, 237, 227, 0, 0, 0, 0, 1077, 1077, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1077, 1077, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1077, 1081, 1067, 1067, 1067, 1067, 0, 1067, 1067, 1067, 1067, 1082],
                  "height":9,
                  "id":10,
                  "name":"Collisions",
@@ -44,7 +44,7 @@
                  "y":0
                 }, 
                 {
-                 "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3579, 3578, 3578, 3578, 3614, 0, 3578, 3579, 3580, 0, 0, 3591, 3590, 3590, 3590, 0, 0, 3590, 3590, 3592, 0, 0, 0, 0, 0, 0, 3601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 519, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                 "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3579, 3578, 3578, 3578, 3614, 0, 3578, 3578, 3580, 0, 0, 3591, 3590, 3590, 3590, 0, 0, 3590, 3590, 3592, 0, 0, 0, 0, 0, 0, 3601, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 519, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                  "height":9,
                  "id":1,
                  "name":"Fringe non-transparent",
@@ -180,11 +180,121 @@
         }, 
         {
          "draworder":"topdown",
+         "id":22,
+         "name":"Containers",
+         "objects":[
+                {
+                 "gid":3243,
+                 "height":32,
+                 "id":9,
+                 "name":"MillChest",
+                 "properties":[
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":160,
+                 "y":160
+                }, 
+                {
+                 "gid":4016,
+                 "height":32,
+                 "id":11,
+                 "name":"Wheat",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"wheat\", \"quantity\": 2}]"
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":96,
+                 "y":160
+                }, 
+                {
+                 "gid":4008,
+                 "height":32,
+                 "id":13,
+                 "name":"Corn",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"disableWhenEmpty",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"instantPickup",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"[{\"itemId\": \"corn\", \"quantity\": 2}]"
+                        }],
+                 "rotation":0,
+                 "type":"Container",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":160
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":19,
          "name":"Messages",
          "objects":[
                 {
-                 "height":32.4545454545454,
+                 "height":32.4545,
                  "id":2,
                  "name":"Hopper sign",
                  "properties":[
@@ -211,8 +321,8 @@
                  "rotation":0,
                  "type":"Message",
                  "visible":true,
-                 "width":31.6666666666667,
-                 "x":128.333333333333,
+                 "width":31.6667,
+                 "x":128.333,
                  "y":160
                 }],
          "opacity":1,
@@ -225,7 +335,18 @@
          "draworder":"topdown",
          "id":2,
          "name":"NPCs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":32.7878787878788,
+                 "id":4,
+                 "name":"Hopper",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":31.6666666666667,
+                 "x":160,
+                 "y":62.5454545454545
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -238,7 +359,7 @@
          "name":"Waypoints",
          "objects":[
                 {
-                 "height":30.3333333333333,
+                 "height":30.3333,
                  "id":1,
                  "name":"GreatPlains",
                  "properties":[
@@ -255,9 +376,9 @@
                  "rotation":0,
                  "type":"Waypoint",
                  "visible":true,
-                 "width":30.6666666666667,
-                 "x":160.666666666667,
-                 "y":256.333333333333
+                 "width":30.6667,
+                 "x":160.667,
+                 "y":256.333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -279,8 +400,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":174.636363636364,
-                 "y":227.181818181818
+                 "x":174.636,
+                 "y":227.182
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -288,8 +409,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":22,
- "nextobjectid":4,
+ "nextlayerid":23,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2020.12.18",
@@ -23634,6 +23755,33 @@
                          "value":true
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":4,
+         "firstgid":4008,
+         "image":"..\/images-extruded\/interface\/icon-farming-set.png",
+         "imageheight":204,
+         "imagewidth":136,
+         "margin":1,
+         "name":"icon-farming-set",
+         "spacing":2,
+         "tilecount":24,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":16,
+         "firstgid":4032,
+         "image":"..\/images-extruded\/interface\/icon-item-set.png",
+         "imageheight":816,
+         "imagewidth":544,
+         "margin":1,
+         "name":"icon-item-set",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":384,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,

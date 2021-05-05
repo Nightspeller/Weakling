@@ -15,7 +15,8 @@ Graphics:
 - Icons - OwlishMedia - https://opengameart.org/users/owlishmedia
 - Icons - Curtis Merry - https://opengameart.org/content/30-ability-icons
 - Evolving bow assets - MUCommissions@gmail.com
-- Main character, butterflies - johannes-magnusson@hotmail.com
+- Main character, butterflies, windmill - johannes-magnusson@hotmail.com
+- Farming Set - ScratchIO - https://opengameart.org/content/farming-set-pixel-art
 
 Audio:
 - Music by Darren Curtis - https://www.darrencurtismusic.com
