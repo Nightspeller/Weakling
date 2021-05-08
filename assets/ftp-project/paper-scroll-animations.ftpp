@@ -1,0 +1,987 @@
+{
+  "meta": {
+    "version": "0.6.6"
+  },
+  "savePath": "C:\\GAME-DEVELOPMENT\\Phaser-projects\\Weakling-collaboration\\Weakling\\src\\assets\\images-extruded\\animations",
+  "images": [
+    {
+      "name": "scroll-caltor0.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor0.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor1.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor1.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor10.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor10.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor11.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor11.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor12.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor12.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor13.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor13.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor14.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor14.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor15.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor15.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor16.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor16.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor17.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor17.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor18.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor18.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor19.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor19.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor2.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor2.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor20.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor20.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor21.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor21.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor22.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor22.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor23.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor23.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor24.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor24.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor25.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor25.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor26.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor26.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor27.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor27.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor28.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor28.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor29.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor29.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor3.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor3.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor30.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor30.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor31.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor31.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor32.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor32.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor33.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor33.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor34.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor34.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor35.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor35.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor36.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor36.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor37.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor37.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor4.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor4.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor5.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor5.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor6.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor6.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor7.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor7.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor8.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor8.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-caltor9.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-caltor9.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon0.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon0.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon1.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon1.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon10.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon10.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon11.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon11.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon12.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon12.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon13.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon13.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon14.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon14.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon15.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon15.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon16.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon16.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon17.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon17.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon18.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon18.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon19.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon19.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon2.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon2.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon20.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon20.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon21.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon21.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon22.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon22.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon23.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon23.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon24.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon24.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon25.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon25.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon26.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon26.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon27.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon27.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon28.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon28.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon29.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon29.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon3.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon3.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon30.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon30.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon31.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon31.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon32.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon32.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon33.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon33.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon34.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon34.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon35.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon35.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon36.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon36.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon37.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon37.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon4.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon4.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon5.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon5.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon6.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon6.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon7.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon7.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon8.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon8.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-dungeon9.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-dungeon9.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty0.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty0.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty1.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty1.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty10.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty10.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty11.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty11.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty12.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty12.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty13.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty13.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty14.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty14.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty15.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty15.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty16.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty16.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty17.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty17.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty18.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty18.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty19.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty19.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty2.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty2.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty20.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty20.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty21.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty21.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty22.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty22.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty23.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty23.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty24.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty24.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty25.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty25.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty26.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty26.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty27.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty27.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty28.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty28.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty29.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty29.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty3.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty3.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty30.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty30.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty31.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty31.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty32.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty32.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty33.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty33.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty34.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty34.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty35.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty35.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty36.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty36.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty37.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty37.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty4.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty4.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty5.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty5.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty6.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty6.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty7.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty7.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty8.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty8.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-empty9.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-empty9.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains0.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains0.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains1.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains1.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains10.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains10.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains11.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains11.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains12.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains12.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains13.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains13.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains14.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains14.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains15.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains15.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains16.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains16.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains17.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains17.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains18.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains18.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains19.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains19.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains2.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains2.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains20.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains20.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains21.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains21.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains22.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains22.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains23.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains23.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains24.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains24.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains25.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains25.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains26.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains26.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains27.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains27.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains28.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains28.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains29.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains29.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains3.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains3.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains30.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains30.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains31.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains31.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains32.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains32.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains33.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains33.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains34.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains34.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains35.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains35.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains36.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains36.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains37.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains37.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains4.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains4.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains5.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains5.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains6.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains6.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains7.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains7.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains8.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains8.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-greatplains9.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-greatplains9.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood0.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood0.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood1.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood1.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood10.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood10.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood11.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood11.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood12.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood12.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood13.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood13.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood14.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood14.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood15.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood15.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood16.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood16.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood17.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood17.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood18.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood18.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood19.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood19.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood2.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood2.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood20.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood20.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood21.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood21.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood22.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood22.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood23.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood23.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood24.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood24.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood25.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood25.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood26.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood26.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood27.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood27.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood28.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood28.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood29.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood29.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood3.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood3.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood30.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood30.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood31.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood31.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood32.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood32.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood33.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood33.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood34.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood34.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood35.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood35.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood36.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood36.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood37.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood37.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood4.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood4.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood5.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood5.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood6.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood6.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood7.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood7.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood8.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood8.png",
+      "folder": ""
+    },
+    {
+      "name": "scroll-honeywood9.png",
+      "path": "C:/GAME-DEVELOPMENT/Free-TexturePacker-Projects/scroll/scroll-honeywood9.png",
+      "folder": ""
+    }
+  ],
+  "folders": [],
+  "packOptions": {
+    "textureName": "paper-scrolls",
+    "textureFormat": "png",
+    "removeFileExtension": false,
+    "prependFolderName": true,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "disableSmoothing": false,
+    "filter": "none",
+    "exporter": "Phaser 3",
+    "fileName": "pack-result",
+    "savePath": "C:\\GAME-DEVELOPMENT\\Phaser-projects\\Weakling-collaboration\\Weakling\\src\\assets\\images-extruded\\animations",
+    "width": 2048,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 0,
+    "extrude": 0,
+    "allowRotation": false,
+    "allowTrim": false,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": false,
+    "packer": "MaxRectsPacker",
+    "packerMethod": "Smart"
+  }
+}
