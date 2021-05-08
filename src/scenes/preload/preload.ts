@@ -3,7 +3,7 @@ import { optionsInstance } from '../../config/optionsConfig';
 import { DEBUG } from '../../config/constants';
 import preloadTilesetAssets from './preloadTilesetAssets';
 import preloadTiledLocationMaps from './preloadTiledLocationMaps';
-import preloadInterfaceAndIconsAssets from './preloadInterfaceAndIconsAssets';
+import { preloadInterfaceAndIconsAssets, createPaperScrollAnimations } from './preloadInterfaceAndIconsAssets';
 import preloadAudioAssets from './preloadAudioAssets';
 import drawLoadingProgressBar from './drawLoadingProgressBar';
 import { preloadBattleAssets, createBattleAnimations } from './battle-assets-and-animations/preloadBattleAssets';
@@ -31,12 +31,13 @@ export default class PreloadScene extends Phaser.Scene {
   create() {
     createBattleAnimations(this);
     createWorldAnimations(this);
+    createPaperScrollAnimations(this);
 
     optionsInstance.setSoundManager(this);
     if (DEBUG) optionsInstance.toggleMusic();
 
     if (DEBUG) {
-      const debugScene = 'Honeywood';
+      const debugScene = 'Windmill';
       /* this.scene.start('Battle', {
         enemies: [{ type: 'ghost-knight' }, { type: 'ghost-knight' }, { type: 'skeleton' }, { type: 'wizard' }, { type: 'wildBoar' }],
         background: 'cave-background',

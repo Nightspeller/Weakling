@@ -20,6 +20,7 @@ export default class GeneralLocation extends Phaser.Scene {
   public layers: Phaser.Tilemaps.TilemapLayer[];
   public map: Phaser.Tilemaps.Tilemap;
   public prevSceneKey: string;
+  public currSceneKey: string;
   public triggers: Trigger[];
   public spaceBarCooldown: number;
   public offsetX: number;
@@ -510,6 +511,8 @@ export default class GeneralLocation extends Phaser.Scene {
   public switchToScene(sceneKey: string, data: object = {}, shouldSleep = true, toCoordinates: { x: number, y: number } = null) {
     console.log(...prepareLog(`Switching from ??${this.scene.key} to ??${sceneKey}. Should ??${this.scene.key} turn off !!(sleep): !!${shouldSleep}`));
     console.log(`Data passed to ${sceneKey}:`, data);
+
+    this.currSceneKey = sceneKey;
     // TODO: figure out proper way to stop player from sticky controls - caused by scene pausing...
     // further investigation - confirmed in FF, dunno about other browsers. If take away focus from the window and back - no bug.
     // still dont know how to fix properly..

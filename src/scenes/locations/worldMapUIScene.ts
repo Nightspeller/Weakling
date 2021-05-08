@@ -2,12 +2,14 @@ import * as Phaser from 'phaser';
 
 import GeneralLocation from './generalLocation';
 import {
-  DEBUG, GAME_W, TILE_SIZE,
+  DEBUG, GAME_H, GAME_W, TILE_SIZE,
 } from '../../config/constants';
 
 export default class WorldMapUIScene extends Phaser.Scene {
   private locationScene: GeneralLocation;
   private cursorCoordinatesText: Phaser.GameObjects.Text;
+  private openScrollSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private closeScrollSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   constructor() {
     super('WorldMapUIScene');
   }
@@ -21,30 +23,46 @@ export default class WorldMapUIScene extends Phaser.Scene {
       this.scene.stop('WorldMapUIScene');
       return;
     }
+
+    const worldMapUIButtons = ['Achievements', 'QuestLog', 'Options', 'Inventory', 'AllItems'];
+
     console.log('creating UI');
     this.scene.moveAbove(locationScene.scene.key, 'WorldMapUIScene');
     this.locationScene = locationScene;
     const buttons = [{
       hoverText: 'Achievements (K)',
       icon: { texture: 'icons', frame: 'icons/coins/large-coin-with-crown' },
-      onClick: () => { this.locationScene.switchToScene('Achievements', {}, false); },
+      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[0], {}, false); },
       hotKeys: ['keyup-K'],
     }, {
       hoverText: 'Quest Journal (J)',
       icon: { texture: 'icons', frame: 'icons/books-and-scrolls/book-with-bookmark' },
-      onClick: () => { this.locationScene.switchToScene('QuestLog', {}, false); },
+      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[1], {}, false); },
       hotKeys: ['keyup-J'],
     }, {
       hoverText: 'Options (O, ESC)',
       icon: { texture: 'icons', frame: 'icons/music/harp' },
-      onClick: () => { this.locationScene.switchToScene('Options', {}, false); },
+      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[2], {}, false); },
       hotKeys: ['keyup-O', 'keyup-ESC'],
     }, {
       hoverText: 'Inventory (I)',
       icon: { texture: 'icons', frame: 'icons/bags/green-bag' },
-      onClick: () => { this.locationScene.switchToScene('Inventory', {}, false); },
+      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[3], {}, false); },
       hotKeys: ['keyup-I'],
     }];
+
+    this.openScrollSound = this.sound.add('paper-scroll-open', { volume: 0.5 });
+    this.closeScrollSound = this.sound.add('paper-scroll-close', { volume: 0.5 });
+
+    if (!worldMapUIButtons.includes(this.locationScene.currSceneKey)
+    && this.locationScene.currSceneKey !== 'Dialog') {
+      // Only the locations that have a related paper scroll
+      const locationNames = ['caltor', 'greatplains', 'honeywood', 'dungeon'];
+
+      if (locationNames.includes(this.locationScene.scene.key.toLowerCase())) {
+        this.showPaperScroll(this.locationScene.scene.key.toLowerCase());
+      }
+    }
 
     let iconBaseSize = TILE_SIZE;
 
@@ -130,5 +148,28 @@ export default class WorldMapUIScene extends Phaser.Scene {
       const cursorY = Math.round(this.input.mousePointer.y);
       this.cursorCoordinatesText.setText(`${cursorX} ${cursorY}`);
     }
+  }
+
+  private showPaperScroll(location: string) {
+    const paperScroll = this.physics.add.sprite(
+      GAME_W * 0.9, GAME_H * 0.2,
+      'paper-scrolls', 0,
+    ).setScale(2.3).on('animationcomplete', () => {
+      timedEvent.paused = false;
+    }, this);
+
+    const timedEvent = this.time.addEvent({
+      delay: 3000,
+      paused: true,
+      callback: () => {
+        paperScroll.anims.play(`scroll-${location}-close`);
+        this.closeScrollSound.play();
+      },
+      loop: false,
+      repeat: 0,
+    });
+
+    paperScroll.anims.play(`scroll-${location}-open`);
+    this.openScrollSound.play();
   }
 }
