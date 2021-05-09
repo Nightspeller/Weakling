@@ -8,4 +8,7 @@ export default function preloadAudioAssets(preloadScene: Scene) {
   preloadScene.load.audio('fishing-bait', 'assets/audio/fishing/fishing-bait.ogg');
   preloadScene.load.audio('fishing-success', 'assets/audio/fishing/fishing-success.wav');
   preloadScene.load.audio('fishing-missed', 'assets/audio/fishing/fishing-missed.wav');
+
+  preloadScene.load.audio('paper-scroll-open', 'assets/audio/ui/paper-scroll-open.wav');
+  preloadScene.load.audio('paper-scroll-close', 'assets/audio/ui/paper-scroll-close.wav');
 }
