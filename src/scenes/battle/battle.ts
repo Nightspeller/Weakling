@@ -169,13 +169,14 @@ export default class BattleScene extends GeneralOverlayScene {
       char: source, animation: action.animation, targets, succeeded, projectile: action.projectile,
     });
 
-    targets.forEach((target) => {
+    await Promise.all(targets.map((target) => {
       if (!target.isAlive) {
-        this.playAnimation({ char: target, animation: 'death' });
+        return this.playAnimation({ char: target, animation: 'death' });
       }
-    });
+      return Promise.resolve();
+    }));
     if (!source.isAlive) {
-      this.playAnimation({ char: source, animation: 'death' });
+      await this.playAnimation({ char: source, animation: 'death' });
     }
   }
 
@@ -204,15 +205,14 @@ export default class BattleScene extends GeneralOverlayScene {
         }
         await charDrawer.playMoveAnimation(attackX + (animatingEnemy ? 96 : -96), attackY);
         await charDrawer.playMeleeAttackAnimation(attackX, attackY);
-        targets.forEach((target, index: number) => {
-          if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
-          }
-        });
-        await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+        await Promise.all([
+          charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y),
+          ...targets.map((target, index: number) => {
+            if (succeeded[index] && targets[index] !== char) {
+              return this.playAnimation({ char: targets[index], animation: 'hit' });
+            }
+            return this.playAnimation({ char: targets[index], animation: 'miss' });
+          })]);
         break;
       }
       case 'rangedAttack': {
@@ -223,16 +223,13 @@ export default class BattleScene extends GeneralOverlayScene {
           attackY = targetDrawer.position.y;
         }
         await charDrawer.playRangedAttackAnimation();
-
         await charDrawer.playRangedProjectileAnimation(attackX, attackY, projectile);
-        targets.forEach((target, index: number) => {
+        await Promise.all(targets.map((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
+            return this.playAnimation({ char: targets[index], animation: 'hit' });
           }
-        });
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+          return this.playAnimation({ char: targets[index], animation: 'miss' });
+        }));
         break;
       }
       case 'meleeCast': {
@@ -244,15 +241,14 @@ export default class BattleScene extends GeneralOverlayScene {
         }
         await charDrawer.playMoveAnimation(attackX + (animatingEnemy ? 96 : -96), attackY);
         await charDrawer.playMeleeCastAnimation(attackX, attackY);
-        targets.forEach((target, index: number) => {
-          if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
-          }
-        });
-        await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+        await Promise.all([
+          charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y),
+          ...targets.map((target, index: number) => {
+            if (succeeded[index] && targets[index] !== char) {
+              return this.playAnimation({ char: targets[index], animation: 'hit' });
+            }
+            return this.playAnimation({ char: targets[index], animation: 'miss' });
+          })]);
         break;
       }
       case 'rangedCast': {
@@ -264,14 +260,12 @@ export default class BattleScene extends GeneralOverlayScene {
         }
         await charDrawer.playRangedCastAnimation();
         await charDrawer.playRangedProjectileAnimation(attackX, attackY, projectile);
-        targets.forEach((target, index: number) => {
+        await Promise.all(targets.map((target, index: number) => {
           if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
+            return this.playAnimation({ char: targets[index], animation: 'hit' });
           }
-        });
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+          return this.playAnimation({ char: targets[index], animation: 'miss' });
+        }));
         break;
       }
       case 'castBuff':

@@ -17,6 +17,7 @@ Graphics:
 - Evolving bow assets - MUCommissions@gmail.com
 - Main character, butterflies, windmill - johannes-magnusson@hotmail.com
 - Farming Set - ScratchIO - https://opengameart.org/content/farming-set-pixel-art
+- Rat and bat - Calciumtrice, twitter: @Calciumtrice, https://opengameart.org/content/animated-rat-and-bat
 
 Audio:
 - Music by Darren Curtis - https://www.darrencurtismusic.com

@@ -5,6 +5,7 @@ import { createWizardAminations, preloadWizardAssets } from './preloadAndCreateW
 import { preloadCyclopsBatAssets, createCyclopsBatAnimations } from './preloadAndCreateCyclopsBatAnimations';
 import { createWeaklingAnimations, preloadWeaklingAssets } from './preloadAndCreateWeaklingBattleAnimations';
 import { createGreenOozeAnimations, preloadGreenOozeAssets } from './preloadAndCreateGreenOozeAnimations';
+import { createRatAnimations, preloadRatAssets } from './preloadAndCreateRatAnimations';
 
 export function preloadBattleAssets(preloadScene: Phaser.Scene) {
   // Battle characters images
@@ -29,6 +30,7 @@ export function preloadBattleAssets(preloadScene: Phaser.Scene) {
   preloadCyclopsBatAssets(preloadScene);
   preloadWeaklingAssets(preloadScene);
   preloadGreenOozeAssets(preloadScene);
+  preloadRatAssets(preloadScene);
 }
 
 export function createBattleAnimations(scene: Phaser.Scene) {
@@ -39,6 +41,7 @@ export function createBattleAnimations(scene: Phaser.Scene) {
   createCyclopsBatAnimations(scene);
   createWeaklingAnimations(scene);
   createGreenOozeAnimations(scene);
+  createRatAnimations(scene);
 }
 
 function preloadCastAssets(scene: Phaser.Scene) {
