@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 // eslint-disable-next-line no-unused-vars
@@ -59,6 +61,37 @@ module.exports = {
       template: './src/index.html',
       favicon: './src/favicon.png',
     }),
+    new WebpackPwaManifest({
+      name: 'Weakling!',
+      short_name: 'Weakling!',
+      description: 'Serg Nights presents: Weakling!',
+      theme_color: '#2196f3',
+      background_color: '#2196f3',
+      fingerprints: false,
+      ios: true,
+      includeDirectory: false,
+      publicPath: '.',
+      display: 'fullscreen',
+      orientation: 'landscape',
+      scope: '.',
+      start_url: 'https://nightspeller.github.io/Weakling/dist/',
+      icons: [
+        {
+          src: path.resolve('src/pwa-icons/icon-512x512.png'),
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+        },
+        {
+          src: path.resolve('src/pwa-icons/icon-512x512.png'),
+          size: '1024x1024', // you can also use the specifications pattern
+        },
+        {
+          src: path.resolve('src/pwa-icons/icon-512x512.png'),
+          size: '1024x1024',
+          purpose: 'maskable',
+        },
+      ],
+    }),
+    new WorkboxPlugin.GenerateSW({ maximumFileSizeToCacheInBytes: 26214400 }),
     new CopyPlugin({
       patterns: [
         { from: './src/assets', to: 'assets' },

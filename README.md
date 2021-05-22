@@ -18,14 +18,14 @@ To build it, run ```npm run build```
 
 To run ESLint, do ```npm run lint```
 
-If you are interested in learning Phaser 3, here is the general article where I covered some of resources I used to learn Phaser, as well as ones I use for the reference: https://telegra.ph/Phaser-3-Materials-and-learning-02-12
+If you are interested in learning Phaser 3, here is the general article where I covered some resources I used to learn Phaser, as well as ones I use for the reference: https://telegra.ph/Phaser-3-Materials-and-learning-02-12
 
 If you want to know more about the development process, or even wish to join me, feel free to check out Trello board for more information:
 https://trello.com/b/71vXonBk/weakling
 
-All games assets are free to use under different free licenses (as far as i can say ._.), all the credit for it goes to their authors.
+All games assets are free to use under different free licenses (as far as I can say ._.), all the credit for it goes to their authors.
 
 UPD: Oups..not anymore - I borrowed the doll image from the heroes 3 and a couple others, will definitely replace it in the future. 
-If you see any art which you believe is yours, and would like to be credited or it to be removed immediately - please create the issue request (or use any other way to contact me), I will do it with the highest priority.
+If you see any art which you believe is yours, and would like to be credited, or it to be removed immediately - please create the issue request (or use any other way to contact me), I will do it with the highest priority.
 
 Can somebody draw replacements for me, please >_<

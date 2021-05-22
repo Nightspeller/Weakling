@@ -180,6 +180,54 @@
         }, 
         {
          "draworder":"topdown",
+         "id":23,
+         "name":"Enemies",
+         "objects":[
+                {
+                 "height":32,
+                 "id":14,
+                 "name":"Rats",
+                 "properties":[
+                        {
+                         "name":"background",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"drop",
+                         "type":"string",
+                         "value":"[]"
+                        }, 
+                        {
+                         "name":"enemies",
+                         "type":"string",
+                         "value":"[{\"type\": \"rat\"},{\"type\": \"rat\"},{\"type\": \"rat\"},{\"type\": \"rat\"}]"
+                        }, 
+                        {
+                         "name":"image",
+                         "type":"string",
+                         "value":"rat-battle"
+                        }, 
+                        {
+                         "name":"xpReward",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"Enemy",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":32
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":22,
          "name":"Containers",
          "objects":[
@@ -189,6 +237,11 @@
                  "id":9,
                  "name":"MillChest",
                  "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
                         {
                          "name":"disableWhenEmpty",
                          "type":"bool",
@@ -208,6 +261,16 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -241,6 +304,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"wheat\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -274,6 +352,21 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"corn\", \"quantity\": 2}]"
+                        }, 
+                        {
+                         "name":"openedFrame",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"requiresToOpen",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"secret",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -337,15 +430,15 @@
          "name":"NPCs",
          "objects":[
                 {
-                 "height":32.7878787878788,
+                 "height":32.7879,
                  "id":4,
                  "name":"Hopper",
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,
-                 "width":31.6666666666667,
+                 "width":31.6667,
                  "x":160,
-                 "y":62.5454545454545
+                 "y":62.5455
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -409,11 +502,11 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":23,
- "nextobjectid":14,
+ "nextlayerid":24,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.12.18",
+ "tiledversion":"1.5.0",
  "tileheight":32,
  "tilesets":[
         {
@@ -23786,6 +23879,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":1.5,
  "width":11
 }

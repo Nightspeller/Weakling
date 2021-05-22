@@ -1,8 +1,8 @@
 import * as Phaser from 'phaser';
 import { Scene } from 'phaser';
-import { tilesetConfig } from '../../config/constants';
+import { tilesetConfig } from '../../../config/constants';
 
-export function preloadInterfaceAndIconsAssets(preloadScene: Scene) {
+export function preloadInterfaceAssets(preloadScene: Scene) {
   preloadScene.load.image('doll', 'assets/images/interface/doll.png');
   preloadScene.load.image('inventory-slot', 'assets/images/interface/inventory-slot.png');
 
@@ -24,7 +24,7 @@ export function preloadInterfaceAndIconsAssets(preloadScene: Scene) {
     'assets/images-extruded/animations/paper-scrolls.json');
 }
 
-export function createPaperScrollAnimations(scene: Phaser.Scene) {
+export function createInterfaceAnimations(scene: Phaser.Scene) {
   const paperScrollKeys = ['scroll-caltor', 'scroll-greatplains', 'scroll-honeywood', 'scroll-dungeon', 'scroll-empty'];
   const paperScrollTexture = 'paper-scrolls';
 
