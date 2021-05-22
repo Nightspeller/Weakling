@@ -116,8 +116,17 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
     "url": "assets/audio/fishing/fishing-success.wav",
     "revision": "35f94ea9f728fdc346ff660f145bda8f"
   }, {
+    "url": "assets/audio/intro.mp3",
+    "revision": "88e797a745fcc90946e49ce6f712e483"
+  }, {
     "url": "assets/audio/intro.ogg",
     "revision": "66579eb675dc2281ac5c33c88bfc4f30"
+  }, {
+    "url": "assets/audio/keys-for-success.mp3",
+    "revision": "9913f01518c6ff4b0afeaf5ec97eee46"
+  }, {
+    "url": "assets/audio/keys-for-success.ogg",
+    "revision": "cee27c01ff08b6372fbf092cc8ff885e"
   }, {
     "url": "assets/audio/labyrinth-of-lost-dreams.mp3",
     "revision": "3e8480c7aa42ce5bd68e661a8a411f58"
@@ -169,6 +178,9 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
   }, {
     "url": "assets/exported-maps/forest.json",
     "revision": "89da36fbb9345f6312ede1b5940369fd"
+  }, {
+    "url": "assets/exported-maps/forest2.json",
+    "revision": "74618bb48ffc61b9a9d7e101711e4f40"
   }, {
     "url": "assets/exported-maps/greatPlains.json",
     "revision": "2a3c0ffd5bbfa0b63b6c685b34c0bf40"
@@ -664,6 +676,9 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
   }, {
     "url": "assets/images/interface/main-menu-background.jpg",
     "revision": "303ffce3b26234b4a9306873dcec9a40"
+  }, {
+    "url": "bundle.js",
+    "revision": "f0c8e81cfc89f4dad3e0bed6c3026d4a"
   }, {
     "url": "plugins/AnimatedTiles.js",
     "revision": "05f11f651be4669c9992474645eed1d3"

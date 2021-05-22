@@ -91,7 +91,7 @@ module.exports = {
         },
       ],
     }),
-    new WorkboxPlugin.GenerateSW(),
+    new WorkboxPlugin.GenerateSW({ maximumFileSizeToCacheInBytes: 26214400 }),
     new CopyPlugin({
       patterns: [
         { from: './src/assets', to: 'assets' },
