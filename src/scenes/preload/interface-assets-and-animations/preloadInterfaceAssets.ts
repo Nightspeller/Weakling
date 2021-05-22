@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 import { Scene } from 'phaser';
-import { tilesetConfig, tilesetConfig64x64 } from '../../config/constants';
+import { tilesetConfig, tilesetConfig64x64 } from '../../../config/constants';
 
 export function preloadInterfaceAssets(preloadScene: Scene) {
   preloadScene.load.image('doll', 'assets/images/interface/doll.png');

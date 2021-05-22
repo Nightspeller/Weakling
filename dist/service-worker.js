@@ -131,17 +131,44 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
     "url": "assets/audio/labyrinth-of-lost-dreams.mp3",
     "revision": "3e8480c7aa42ce5bd68e661a8a411f58"
   }, {
+    "url": "assets/audio/main-menu.mp3",
+    "revision": "76e3dca77646ea481ad434319c4c3f10"
+  }, {
+    "url": "assets/audio/main-menu.ogg",
+    "revision": "17e3a9aa85b15058c285b84a1040870e"
+  }, {
+    "url": "assets/audio/main-menu.wav",
+    "revision": "09ce6512d00e2a608b09ee06e3b04bab"
+  }, {
+    "url": "assets/audio/ui/checkbox-checked.ogg",
+    "revision": "14009200a7e7c82269f22ebbf49ffa72"
+  }, {
+    "url": "assets/audio/ui/main-menu-start-game.ogg",
+    "revision": "52f99985c0b2c8a590e214efd4e462bf"
+  }, {
     "url": "assets/audio/ui/paper-scroll-close.wav",
     "revision": "e77d86d20f5b9c4893d0547f46001438"
   }, {
     "url": "assets/audio/ui/paper-scroll-open.wav",
     "revision": "1c8600bf33ba5574a588ecae5b99c227"
   }, {
+    "url": "assets/audio/ui/text-button-hover.ogg",
+    "revision": "85fea221b1327bed14bc2ee18dedfbda"
+  }, {
+    "url": "assets/audio/ui/text-button-select.ogg",
+    "revision": "a47bedabd59b767ea342f7e4d32d8897"
+  }, {
     "url": "assets/bitmap-fonts/bitmapArial16.fnt",
     "revision": "440a57f77e5525f3f629c6fd32ba2baf"
   }, {
     "url": "assets/bitmap-fonts/bitmapArial16.png",
     "revision": "b84c6ab532b097d01ef2825f13a77a1d"
+  }, {
+    "url": "assets/bitmap-fonts/harrington.fnt",
+    "revision": "273d9ce16aab663b0a8c7cdc14b07065"
+  }, {
+    "url": "assets/bitmap-fonts/harrington.png",
+    "revision": "81194a7b898565d0dc2f1a9b8152f129"
   }, {
     "url": "assets/exported-maps/atmospheric-animations.json",
     "revision": "8c29ea6fe7770f18900b4fcfa8f92e5f"
@@ -388,6 +415,9 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
   }, {
     "url": "assets/images-extruded/interface/interface-tiles.png",
     "revision": "930fefca64725cba6ecdd17dcd031ba7"
+  }, {
+    "url": "assets/images-extruded/interface/paper-scroll-background.png",
+    "revision": "c4931f6588a0c9e859082d87c8e02cdd"
   }, {
     "url": "assets/images-extruded/tilesets/base-addition.png",
     "revision": "d50e9e20dba2c7cef09fc34f91966266"
@@ -662,6 +692,12 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
     "url": "assets/images/interface/cave-background.png",
     "revision": "1e1bae70aada409386fd78dc22ff0539"
   }, {
+    "url": "assets/images/interface/checkbox-checked.png",
+    "revision": "84e6126fc76055f613d8615a827bd58e"
+  }, {
+    "url": "assets/images/interface/checkbox-unchecked.png",
+    "revision": "a2be71fc71900646e7601b5ecb124139"
+  }, {
     "url": "assets/images/interface/doll.png",
     "revision": "238ce0f03a0fe8685a725c8f1a69549a"
   }, {
@@ -677,8 +713,20 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
     "url": "assets/images/interface/main-menu-background.jpg",
     "revision": "303ffce3b26234b4a9306873dcec9a40"
   }, {
+    "url": "assets/images/interface/main-menu-clouds.png",
+    "revision": "a3c33b2be4b7b5c7df0420230a87458d"
+  }, {
+    "url": "assets/images/interface/main-menu-logo.png",
+    "revision": "403f3336f970031d1ffca7d1ecc2e0e7"
+  }, {
+    "url": "assets/images/interface/main-menu-mountains.png",
+    "revision": "b20ba0fb1c0464ed493907d004a73cae"
+  }, {
+    "url": "assets/images/interface/main-menu-sky.png",
+    "revision": "d2319790c653eaad8b44b779ebec6eca"
+  }, {
     "url": "bundle.js",
-    "revision": "f0c8e81cfc89f4dad3e0bed6c3026d4a"
+    "revision": "ee4d9f78e85b7363ec1da3bb4e0d9a8f"
   }, {
     "url": "plugins/AnimatedTiles.js",
     "revision": "05f11f651be4669c9992474645eed1d3"
