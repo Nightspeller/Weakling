@@ -9,21 +9,14 @@ import ActionInterfaceDrawer from './actionInterfaceDrawer';
 import GeneralOverlayScene from '../overlays/generalOverlayScene';
 import Item from '../../entities/item';
 import {
-  ActionData, EffectData, PossibleBattleAnimations, SpriteParameters,
+  ActionData, EffectData,
 } from '../../types/my-types';
 import RichBitmapText from '../../helpers/richBitmapText';
 import BattleLogDrawer from './battleLogDrawer';
+import { animateBuffSequence, animateMeleeSequence, animateRangedSequence } from './battleAnimationsDrawer';
 
 let GAME_W = 0;
 let GAME_H = 0;
-
-interface PlayAnimationParams {
-  char: Adventurer | GeneralEnemy;
-  animation: keyof PossibleBattleAnimations;
-  targets?: (Adventurer | GeneralEnemy)[];
-  succeeded?: boolean[];
-  projectile?: SpriteParameters;
-}
 
 export default class BattleScene extends GeneralOverlayScene {
   private disposition: Disposition;
@@ -165,129 +158,14 @@ export default class BattleScene extends GeneralOverlayScene {
     action: ActionData;
   }) {
     this.charToDrawerMap.get(source).drawActionPoints(true);
-    await this.playAnimation({
-      char: source, animation: action.animation, targets, succeeded, projectile: action.projectile,
-    });
-
-    targets.forEach((target) => {
-      if (!target.isAlive) {
-        this.playAnimation({ char: target, animation: 'death' });
-      }
-    });
-    if (!source.isAlive) {
-      this.playAnimation({ char: source, animation: 'death' });
+    if (action.animation === 'meleeAttack' || action.animation === 'meleeCast') {
+      await animateMeleeSequence(this, source, targets, succeeded, action.animation);
     }
-  }
-
-  public async playAnimation(
-    {
-      char, animation, targets, succeeded, projectile,
-    }: PlayAnimationParams,
-  ) {
-    const charDrawer = this.charToDrawerMap.get(char);
-    let targetDrawer;
-    if (targets?.length === 1) {
-      targetDrawer = this.charToDrawerMap.get(targets[0]);
+    if (action.animation === 'rangedAttack' || action.animation === 'rangedCast') {
+      await animateRangedSequence(this, source, targets, succeeded, action.projectile, action.animation);
     }
-    const animatingEnemy = char instanceof GeneralEnemy;
-    projectile = projectile ? { ...projectile, flip: animatingEnemy } : undefined;
-    switch (animation) {
-      case 'idle':
-        await charDrawer.playIdleAnimation();
-        break;
-      case 'meleeAttack': {
-        let attackX = 600;
-        let attackY = 320;
-        if (targetDrawer) {
-          attackX = targetDrawer.position.x;
-          attackY = targetDrawer.position.y;
-        }
-        await charDrawer.playMoveAnimation(attackX + (animatingEnemy ? 96 : -96), attackY);
-        await charDrawer.playMeleeAttackAnimation(attackX, attackY);
-        targets.forEach((target, index: number) => {
-          if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
-          }
-        });
-        await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
-        break;
-      }
-      case 'rangedAttack': {
-        let attackX = 600;
-        let attackY = 320;
-        if (targetDrawer) {
-          attackX = targetDrawer.position.x;
-          attackY = targetDrawer.position.y;
-        }
-        await charDrawer.playRangedAttackAnimation();
-
-        await charDrawer.playRangedProjectileAnimation(attackX, attackY, projectile);
-        targets.forEach((target, index: number) => {
-          if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
-          }
-        });
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
-        break;
-      }
-      case 'meleeCast': {
-        let attackX = 600;
-        let attackY = 320;
-        if (targetDrawer) {
-          attackX = targetDrawer.position.x;
-          attackY = targetDrawer.position.y;
-        }
-        await charDrawer.playMoveAnimation(attackX + (animatingEnemy ? 96 : -96), attackY);
-        await charDrawer.playMeleeCastAnimation(attackX, attackY);
-        targets.forEach((target, index: number) => {
-          if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
-          }
-        });
-        await charDrawer.playMoveAnimation(charDrawer.position.x, charDrawer.position.y);
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
-        break;
-      }
-      case 'rangedCast': {
-        let attackX = 600;
-        let attackY = 320;
-        if (targetDrawer) {
-          attackX = targetDrawer.position.x;
-          attackY = targetDrawer.position.y;
-        }
-        await charDrawer.playRangedCastAnimation();
-        await charDrawer.playRangedProjectileAnimation(attackX, attackY, projectile);
-        targets.forEach((target, index: number) => {
-          if (succeeded[index] && targets[index] !== char) {
-            this.playAnimation({ char: targets[index], animation: 'hit' });
-          } else {
-            this.playAnimation({ char: targets[index], animation: 'miss' });
-          }
-        });
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
-        break;
-      }
-      case 'castBuff':
-        await charDrawer.playCastBuffAnimation();
-        break;
-      case 'hit':
-        await charDrawer.playHitAnimation();
-        break;
-      case 'miss':
-        await charDrawer.playMissAnimation();
-        break;
-      case 'death':
-        await charDrawer.playDeathAnimation();
-        break;
-      default:
-        throw new Error(`Unknown animation "${animation}" is requested!`);
+    if (action.animation === 'castBuff' || action.animation === 'physicalBuff') {
+      await animateBuffSequence(this, source, targets, succeeded, action.animation);
     }
   }
 

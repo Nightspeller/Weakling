@@ -18,6 +18,7 @@ Graphics:
 - Main character, title screen logo, butterflies, windmill - johannes-magnusson@hotmail.com
 - Farming Set - ScratchIO - https://opengameart.org/content/farming-set-pixel-art
 - Paper Scrolls - daneeklu - https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements
+- Rat and bat - Calciumtrice, twitter: @Calciumtrice, https://opengameart.org/content/animated-rat-and-bat
 
 Audio:
 - Music by: 

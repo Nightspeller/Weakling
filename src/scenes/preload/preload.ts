@@ -3,7 +3,7 @@ import { optionsInstance } from '../../config/optionsConfig';
 import { DEBUG } from '../../config/constants';
 import preloadTilesetAssets from './preloadTilesetAssets';
 import preloadTiledLocationMaps from './preloadTiledLocationMaps';
-import { preloadInterfaceAndIconsAssets, createPaperScrollAnimations } from './preloadInterfaceAndIconsAssets';
+import { preloadInterfaceAssets, createInterfaceAnimations } from './interface-assets-and-animations/preloadInterfaceAssets';
 import preloadAudioAssets from './preloadAudioAssets';
 import drawLoadingProgressBar from './drawLoadingProgressBar';
 import { preloadBattleAssets, createBattleAnimations } from './battle-assets-and-animations/preloadBattleAssets';
@@ -20,9 +20,10 @@ export default class PreloadScene extends Phaser.Scene {
 
     preloadBattleAssets(this);
     preloadWorldAssets(this);
+    preloadInterfaceAssets(this);
+
     preloadAudioAssets(this);
     preloadTilesetAssets(this);
-    preloadInterfaceAndIconsAssets(this);
     preloadTiledLocationMaps(this);
     preloadTilesetAssets(this);
     preloadFonts(this);
@@ -31,7 +32,7 @@ export default class PreloadScene extends Phaser.Scene {
   create() {
     createBattleAnimations(this);
     createWorldAnimations(this);
-    createPaperScrollAnimations(this);
+    createInterfaceAnimations(this);
 
     optionsInstance.setSoundManager(this);
     if (DEBUG) optionsInstance.toggleMusic();

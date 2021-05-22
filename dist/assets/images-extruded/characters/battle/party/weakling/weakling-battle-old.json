@@ -1,0 +1,943 @@
+{
+	"textures": [
+		{
+			"image": "weakling-battle.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 490,
+				"h": 528
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "weakling-battle-animations/attack1/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/attack1/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 1,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/attack1/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 1,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 1,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/10",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 1,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/11",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 67,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 67,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 67,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 67,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 67,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/buff/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 199,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 199,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 199,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 199,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 199,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 265,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 265,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 265,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/10",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 265,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/11",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 265,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/12",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 331,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/13",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 331,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/14",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 331,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/15",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 331,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 331,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 397,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 397,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 397,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 397,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 397,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 463,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/hit/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 99,
+						"y": 463,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 463,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 463,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/hit/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/idle/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 393,
+						"y": 133,
+						"w": 96,
+						"h": 64
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 64
+					},
+					"frame": {
+						"x": 295,
+						"y": 397,
+						"w": 96,
+						"h": 64
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

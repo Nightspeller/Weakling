@@ -11,6 +11,7 @@ import { playerInstance } from '../../characters/adventurers/player';
 import Item from '../../entities/item';
 import { ActionData, EffectData } from '../../types/my-types';
 import GreenOoze from '../../characters/enemies/green-ooze';
+import Rat from '../../characters/enemies/rat';
 
 export default class Disposition {
   public playerCharacters: Adventurer[];
@@ -270,4 +271,5 @@ const enemiesList: { [key: string]: any } = {
   'ghost-knight': GhostKnight,
   skeleton: Skeleton,
   'green-ooze': GreenOoze,
+  rat: Rat,
 };

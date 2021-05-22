@@ -347,25 +347,21 @@ export default class CharacterDrawer {
     });
   }
 
-  public playMeleeAttackAnimation(targetX: number, targetY: number) {
+  public playMeleeAttackAnimation() {
     return new Promise<void>((resolve) => {
       const initialImageDepth = this.mainImage.depth;
       this.mainImage.setDepth(5);
       if (this.char.animations?.meleeAttack) {
-        this.mainImage.anims.play({ key: this.char.animations.idle, repeat: 0 })
+        this.mainImage.anims.play({ key: this.char.animations.meleeAttack, repeat: 0 })
           .once('animationcomplete', () => {
-            this.mainImage.anims.play({ key: this.char.animations.meleeAttack, repeat: 0 })
-              .once('animationcomplete', () => {
-                this.mainImage.setDepth(initialImageDepth);
-                resolve();
-              });
+            this.mainImage.setDepth(initialImageDepth);
+            resolve();
           });
       } else {
         this.scene.tweens.add({
           targets: this.mainImage,
           props: {
-            x: { value: targetX },
-            y: { value: targetY },
+            x: { value: this.mainImage.x + (this.isParty ? BATTLE_CHAR_WIDTH : -BATTLE_CHAR_WIDTH) },
           },
           ease: 'Back.easeOut',
           delay: 300,
@@ -405,25 +401,21 @@ export default class CharacterDrawer {
     });
   }
 
-  public playMeleeCastAnimation(targetX: number, targetY: number) {
+  public playMeleeCastAnimation() {
     return new Promise<void>((resolve) => {
       const initialImageDepth = this.mainImage.depth;
       this.mainImage.setDepth(5);
       if (this.char.animations?.meleeCast) {
-        this.mainImage.anims.play({ key: this.char.animations.idle, repeat: 0 })
+        this.mainImage.anims.play({ key: this.char.animations.meleeCast, repeat: 0 })
           .once('animationcomplete', () => {
-            this.mainImage.anims.play({ key: this.char.animations.meleeCast, repeat: 0 })
-              .once('animationcomplete', () => {
-                this.mainImage.setDepth(initialImageDepth);
-                resolve();
-              });
+            this.mainImage.setDepth(initialImageDepth);
+            resolve();
           });
       } else {
         this.scene.tweens.add({
           targets: this.mainImage,
           props: {
-            x: { value: targetX },
-            y: { value: targetY },
+            x: { value: this.mainImage.x + (this.isParty ? BATTLE_CHAR_WIDTH : -BATTLE_CHAR_WIDTH) },
           },
           ease: 'Back.easeOut',
           delay: 300,
