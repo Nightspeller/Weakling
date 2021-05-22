@@ -42,6 +42,12 @@ import HoneywoodScene from './scenes/locations/honeywood/honeywood';
 import WorldMapUIScene from './scenes/locations/worldMapUIScene';
 import AboutScene from './scenes/intro-and-main-menu/about';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
+
 // import { TestPreloadScene } from './scenes/not-used/perf-test';
 
 export const LOCATION_SCENES = [
