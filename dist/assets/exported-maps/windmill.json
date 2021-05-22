@@ -180,8 +180,6 @@
         }, 
         {
          "draworder":"topdown",
-<<<<<<< HEAD
-=======
          "id":23,
          "name":"Enemies",
          "objects":[
@@ -230,7 +228,6 @@
         }, 
         {
          "draworder":"topdown",
->>>>>>> upstream/master
          "id":22,
          "name":"Containers",
          "objects":[
@@ -241,14 +238,11 @@
                  "name":"MillChest",
                  "properties":[
                         {
-<<<<<<< HEAD
-=======
                          "name":"collides",
                          "type":"bool",
                          "value":true
                         }, 
                         {
->>>>>>> upstream/master
                          "name":"disableWhenEmpty",
                          "type":"bool",
                          "value":false
@@ -267,8 +261,6 @@
                          "name":"openedFrame",
                          "type":"int",
                          "value":-1
-<<<<<<< HEAD
-=======
                         }, 
                         {
                          "name":"requiresToOpen",
@@ -279,7 +271,6 @@
                          "name":"secret",
                          "type":"bool",
                          "value":false
->>>>>>> upstream/master
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -313,8 +304,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"wheat\", \"quantity\": 2}]"
-<<<<<<< HEAD
-=======
                         }, 
                         {
                          "name":"openedFrame",
@@ -330,7 +319,6 @@
                          "name":"secret",
                          "type":"bool",
                          "value":false
->>>>>>> upstream/master
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -364,8 +352,6 @@
                          "name":"items",
                          "type":"string",
                          "value":"[{\"itemId\": \"corn\", \"quantity\": 2}]"
-<<<<<<< HEAD
-=======
                         }, 
                         {
                          "name":"openedFrame",
@@ -381,7 +367,6 @@
                          "name":"secret",
                          "type":"bool",
                          "value":false
->>>>>>> upstream/master
                         }],
                  "rotation":0,
                  "type":"Container",
@@ -445,25 +430,15 @@
          "name":"NPCs",
          "objects":[
                 {
-<<<<<<< HEAD
-                 "height":32.7878787878788,
-=======
                  "height":32.7879,
->>>>>>> upstream/master
                  "id":4,
                  "name":"Hopper",
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,
-<<<<<<< HEAD
-                 "width":31.6666666666667,
-                 "x":160,
-                 "y":62.5454545454545
-=======
                  "width":31.6667,
                  "x":160,
                  "y":62.5455
->>>>>>> upstream/master
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -527,19 +502,11 @@
          "x":0,
          "y":0
         }],
-<<<<<<< HEAD
- "nextlayerid":23,
- "nextobjectid":14,
- "orientation":"orthogonal",
- "renderorder":"right-down",
- "tiledversion":"2020.12.18",
-=======
  "nextlayerid":24,
  "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",
->>>>>>> upstream/master
  "tileheight":32,
  "tilesets":[
         {
@@ -23912,10 +23879,6 @@
         }],
  "tilewidth":32,
  "type":"map",
-<<<<<<< HEAD
- "version":1.4,
-=======
  "version":1.5,
->>>>>>> upstream/master
  "width":11
 }
