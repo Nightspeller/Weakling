@@ -19,6 +19,8 @@ Graphics:
 - Farming Set - ScratchIO - https://opengameart.org/content/farming-set-pixel-art
 
 Audio:
-- Music by Darren Curtis - https://www.darrencurtismusic.com
+- Music by: 
+- Darren Curtis - https://www.darrencurtismusic.com
+- Juhani Junkala - https://juhanijunkala.com/
 
 The list is not complete, I am going to update it! If you want to be added, or your information updated - please let me know!
