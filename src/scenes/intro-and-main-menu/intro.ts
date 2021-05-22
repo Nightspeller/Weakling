@@ -10,6 +10,7 @@ export default class IntroScene extends Phaser.Scene {
   }
 
   create() {
+    this.cameras.main.fadeIn(2000, 0, 0, 0);
     const bgMusic = this.sound.add('intro', {
       loop: true,
       volume: 0.3,
