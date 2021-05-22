@@ -44,7 +44,7 @@ import AboutScene from './scenes/intro-and-main-menu/about';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js');
+    navigator.serviceWorker.register('/Weakling/dist/service-worker.js');
   });
 }
 
