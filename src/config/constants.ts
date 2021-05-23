@@ -53,6 +53,13 @@ export const tilesetConfig = {
   spacing: 2,
 };
 
+export const tilesetConfig64x64 = {
+  frameWidth: 64,
+  frameHeight: 64,
+  margin: 1,
+  spacing: 2,
+};
+
 export const tilesetConfig80x96 = {
   frameWidth: 80,
   frameHeight: 96,

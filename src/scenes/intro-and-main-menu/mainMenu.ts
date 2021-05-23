@@ -1,89 +1,98 @@
 import * as Phaser from 'phaser';
+import TextButton from '../../helpers/textButton';
+import PaperScrollLabel from '../../helpers/paperScrollLabel';
 
 import { GAME_H, GAME_W } from '../../config/constants';
 
 export default class MainMenuScene extends Phaser.Scene {
+  private clouds: Phaser.GameObjects.TileSprite;
+
   constructor() {
     super({ key: 'MainMenu' });
   }
 
   preload() {
-
   }
 
   create() {
     console.log('Creating main menu');
 
-    // backgroundImage
-    this.add.image(0, 0, 'main-menu-background')
-      .setOrigin(0, 0)
-      .setDisplaySize(GAME_W, GAME_H);
+    const buttonTextSize = 32;
+    const textFont = 'harrington';
+    const maxButtonWidth = 300;
+    const startGameSound = this.sound.add('main-menu-start-game', { volume: 0.5 });
 
-    // menuBackground
-    this.add.graphics()
-      .lineStyle(3, 0x222222)
-      .fillStyle(0x2A3E07)
-      .fillRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300)
-      .strokeRect(GAME_W / 3 - 25, 150, GAME_W / 3 + 40, GAME_H - 300);
+    const bgMusic = this.sound.add('main-menu-theme', {
+      loop: true,
+      volume: 0.1,
+    });
+    bgMusic.play();
+
+    // backgroundImage
+    this.add.image(0, 0, 'main-menu-sky')
+      .setOrigin(0, 0)
+      .setDisplaySize(GAME_W, GAME_H).setScrollFactor(0);
+
+    this.clouds = this.add.tileSprite(640, GAME_H * 0.4, 1440, 480, 'clouds');
+
+    this.add.image(0, GAME_H / 6, 'main-menu-mountains')
+      .setOrigin(0, 0)
+      .setDisplaySize(GAME_W, GAME_H).setScrollFactor(0);
+
+    const paperScrollLabel = new PaperScrollLabel(this, GAME_W * 0.43, GAME_H * 0.45, 4, 5, 'paper-scroll-background');
+    this.add.existing(paperScrollLabel);
 
     // subtitle
-    this.add.text(GAME_W / 2, GAME_H / 2 - 120,
+    this.add.text(GAME_W / 2, GAME_H * 0.15,
       'Serg Nights presents:',
       {
-        font: '14px monospace',
-        color: '#b5b5b5',
+        font: `14px ${textFont}`,
+        color: '#222222',
       })
-      .setOrigin(0.5, 0.5);
+      .setOrigin(0.5, 0.5)
+      .setScrollFactor(0);
 
-    // title
-    this.add.text(GAME_W / 2, GAME_H / 2 - 70,
-      'Weakling!',
-      {
-        font: '50px monospace',
-        color: '#ca0000',
-      })
-      .setOrigin(0.5, 0.5);
+    const buttonTexts = ['Play', 'Options', 'About'];
 
-    const startButtonText = this.add.text(GAME_W / 2, GAME_H * (2 / 3) - 70,
-      'Let it begin...',
-      {
-        font: '20px monospace',
-        color: '#ffffff',
-        backgroundColor: '#222222',
+    buttonTexts.forEach((buttonText, i) => {
+      const buttonObj = new TextButton(this, GAME_W / 2, GAME_H * (2 / 3) + i * 60 - 100, buttonText, {
+        font: `${buttonTextSize}px ${textFont}`,
+        color: '#222222',
+        align: 'center',
+        // backgroundColor: '#222222',
+        fixedWidth: maxButtonWidth,
         padding: {
           x: 10,
           y: 10,
         },
       })
-      .setOrigin(0.5, 0.5)
-      .setInteractive({ useHandCursor: true });
+        .setOrigin(0.5, 0.5)
+        .setInteractive({ useHandCursor: true })
+        .setScrollFactor(0);
 
-    // border
-    this.add.graphics()
-      .lineStyle(2, 0xffffff, 0.4)
-      .strokeRect(startButtonText.getTopLeft().x, startButtonText.getTopLeft().y, startButtonText.width, startButtonText.height);
+      if (buttonText === 'Play') {
+        buttonObj.once('pointerdown', () => {
+          startGameSound.play();
+          this.cameras.main.fadeOut(1500, 0, 0, 0);
+          this.time.delayedCall(1500, () => {
+            bgMusic.stop();
+            this.scene.start('Intro', { prevScene: this.scene.key });
+          });
+        }).setScrollFactor(0);
+      } else {
+        buttonObj.on('pointerdown', () => {
+          // this.scene.pause(this.scene.key);
+          this.scene.run(buttonText, { prevScene: this.scene.key });
+        });
+      }
 
-    startButtonText.once('pointerdown', () => {
-      this.scene.start('Intro', { prevScene: this.scene.key });
+      // add button to scene
+      this.add.existing(buttonObj);
     });
 
-    const optionsText = this.add.text(GAME_W / 2, GAME_H * (2 / 3) + 20,
-      'Options',
-      {
-        font: '20px monospace',
-        color: '#ffffff',
-        padding: {
-          x: 10,
-          y: 10,
-        },
-      })
-      .setOrigin(0.5, 0.5)
-      .setInteractive({ useHandCursor: true });
-
-    optionsText.on('pointerdown', () => {
-      this.scene.pause(this.scene.key);
-      this.scene.run('Options', { prevScene: this.scene.key });
-    });
+    // logo
+    this.add.image((GAME_W * 0.03), (GAME_H * 0.06), 'main-menu-logo')
+      .setOrigin(0, 0).setScrollFactor(0);
 
     const firstTimeLaunch = localStorage.getItem('firstTimeLaunch') ?? 'true';
     console.log(firstTimeLaunch);
@@ -93,5 +102,9 @@ export default class MainMenuScene extends Phaser.Scene {
       this.scene.pause(this.scene.key);
       this.scene.run('About', { prevScene: this.scene.key });
     }
+  }
+
+  update() {
+    this.clouds.tilePositionX += 0.5;
   }
 }

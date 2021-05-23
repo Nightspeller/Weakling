@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
-
 import { GAME_H, GAME_W } from '../../config/constants';
+import TextButton from '../../helpers/textButton';
+import PaperScrollLabel from '../../helpers/paperScrollLabel';
 
 export default class AboutScene extends Phaser.Scene {
   private parentSceneKey: string;
@@ -18,6 +19,9 @@ export default class AboutScene extends Phaser.Scene {
   }
 
   create() {
+    const textFont = 'harrington';
+    const textColor = '#222222';
+
     const aboutZone = this.add.zone(0, 0, GAME_W, GAME_H)
       .setOrigin(0, 0)
       .setInteractive();
@@ -33,11 +37,14 @@ export default class AboutScene extends Phaser.Scene {
       });
     aboutBackground.on('pointerdown', (pointer: any, x: number, y: number, event: any) => event.stopPropagation());
 
+    const paperScrollBackground = new PaperScrollLabel(this, GAME_W / 10, 130, 18, 9, 'paper-scroll-background');
+    this.add.existing(paperScrollBackground);
+
     this.add.text(GAME_W / 2, GAME_H / 2 - 180,
       'About the game',
       {
-        font: '30px monospace',
-        color: '#ffffff',
+        font: `30px ${textFont}`,
+        color: `${textColor}`,
       })
       .setOrigin(0.5, 0.5);
     this.add.text(GAME_W / 2, GAME_H / 2 - 60,
@@ -47,10 +54,10 @@ export default class AboutScene extends Phaser.Scene {
   
   Pull requests and any other help is greatly welcomed! If you can code, draw, write, crete music, or simply play the game and share bugs and ideas, get in touch:`,
       {
-        font: '20px monospace',
+        font: `20px ${textFont}`,
         fixedWidth: GAME_W * (4 / 5) - 20,
         wordWrap: { width: GAME_W * (4 / 5) - 20 },
-        color: '#ffffff',
+        color: `${textColor}`,
       })
       .setOrigin(0.5, 0.5);
 
@@ -63,7 +70,7 @@ export default class AboutScene extends Phaser.Scene {
     this.add.text(GAME_W / 2, GAME_H / 2 + 50,
       'https://github.com/Nightspeller/Weakling',
       {
-        font: '20px monospace',
+        font: `20px ${textFont}`,
         color: '#6b6fff',
       })
       .setOrigin(0.5, 0.5)
@@ -71,21 +78,23 @@ export default class AboutScene extends Phaser.Scene {
       .on('pointerdown', () => { window.open('https://github.com/Nightspeller/Weakling', '_blank'); });
     this.add.text(GAME_W / 2, GAME_H / 2 + 120, fullscreenText,
       {
-        font: '16px monospace',
+        font: `20px ${textFont}`,
         fixedWidth: GAME_W * (4 / 5) - 20,
         wordWrap: { width: GAME_W * (4 / 5) - 20 },
-        color: '#8f8f8f',
+        color: `${textColor}`,
       })
       .setOrigin(0.5, 0.5);
 
-    const backButton = this.add.text(GAME_W / 2, GAME_H * (2 / 3) + 60,
+    const backButton = new TextButton(this, GAME_W / 2, GAME_H * (2 / 3) + 60,
       'Close',
       {
-        font: '20px monospace',
-        color: '#60ff7b',
+        font: `20px ${textFont}`,
+        color: `${textColor}`,
       })
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true });
+
+    this.add.existing(backButton);
     backButton.on('pointerdown', () => this._close());
     this.input.keyboard.on('keyup-ESC', () => this._close());
     aboutZone.once('pointerdown', () => this._close());
@@ -95,6 +104,5 @@ export default class AboutScene extends Phaser.Scene {
 
   private _close() {
     this.scene.stop(this.scene.key);
-    this.scene.run(this.parentSceneKey);
   }
 }

@@ -15,11 +15,14 @@ Graphics:
 - Icons - OwlishMedia - https://opengameart.org/users/owlishmedia
 - Icons - Curtis Merry - https://opengameart.org/content/30-ability-icons
 - Evolving bow assets - MUCommissions@gmail.com
-- Main character, butterflies, windmill - johannes-magnusson@hotmail.com
+- Main character, title screen logo, butterflies, windmill - johannes-magnusson@hotmail.com
 - Farming Set - ScratchIO - https://opengameart.org/content/farming-set-pixel-art
+- Paper Scrolls - daneeklu - https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements
 - Rat and bat - Calciumtrice, twitter: @Calciumtrice, https://opengameart.org/content/animated-rat-and-bat
 
 Audio:
-- Music by Darren Curtis - https://www.darrencurtismusic.com
+- Music by: 
+- Darren Curtis - https://www.darrencurtismusic.com
+- Juhani Junkala - https://juhanijunkala.com/
 
 The list is not complete, I am going to update it! If you want to be added, or your information updated - please let me know!
