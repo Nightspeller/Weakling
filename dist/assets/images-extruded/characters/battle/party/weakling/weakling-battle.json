@@ -1,0 +1,1552 @@
+{
+	"textures": [
+		{
+			"image": "weakling-battle.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 490,
+				"h": 784
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "weakling-battle-animations/cast-buff/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/death/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/hit/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/hit/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 295,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/10",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 295,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 295,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 295,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 295,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 393,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 393,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 393,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 393,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-attack/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 393,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 491,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 491,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 491,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 491,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 491,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 589,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 589,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/10",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 589,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/11",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 589,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 589,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 687,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 687,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 687,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 687,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 687,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 99,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/cast-buff/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/melee-cast/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/physical-buff/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-cast/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 197,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/idle/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 295,
+						"y": 197,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/move/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 491,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 687,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-battle-animations/ranged-attack/9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 393,
+						"y": 687,
+						"w": 96,
+						"h": 96
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

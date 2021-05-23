@@ -98,5 +98,8 @@ export default class OptionsScene extends Phaser.Scene {
 
   private _close() {
     this.scene.stop(this.scene.key);
+    if (this.parentSceneKey !== 'MainMenu') { // to prevent the cloud animation from restarting
+      this.scene.run(this.parentSceneKey);
+    }
   }
 }

@@ -1,0 +1,1552 @@
+{
+	"textures": [
+		{
+			"image": "weakling-world.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 492,
+				"h": 1078
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "weakling-world-animations/attack-down/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-down/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 1,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-down/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 1,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-down/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 1,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-down/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 1,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-down/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 1,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 99,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 99,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 99,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 99,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 99,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 99,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 197,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-left/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 197,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 197,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 197,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 197,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 197,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 295,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 295,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 295,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-right/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 295,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-up/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 295,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-up/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 295,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-up/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 393,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-up/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 393,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-up/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 393,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/attack-up/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 393,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/hit/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 393,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/hit/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 393,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 491,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 491,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 491,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 491,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 491,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 491,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 589,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 589,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 589,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 589,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 589,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 589,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 687,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 687,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 687,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 687,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 687,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 687,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 785,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 785,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 785,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 785,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 785,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 785,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-up/8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-down/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-down/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 1,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-left/42",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-left/43",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-right/52",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-right/53",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 329,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-up/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-down/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 83,
+						"y": 491,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-left/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 165,
+						"y": 589,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-right/4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 247,
+						"y": 687,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-down/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-down/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 883,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-up/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				},
+				{
+					"filename": "weakling-world-animations/walk-weapon-up/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 80,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 80,
+						"h": 96
+					},
+					"frame": {
+						"x": 411,
+						"y": 981,
+						"w": 80,
+						"h": 96
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}
