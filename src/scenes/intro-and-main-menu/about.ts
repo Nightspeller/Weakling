@@ -71,11 +71,20 @@ export default class AboutScene extends Phaser.Scene {
       'https://github.com/Nightspeller/Weakling',
       {
         font: `20px ${textFont}`,
-        color: '#6b6fff',
+        color: '#252acb',
       })
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => { window.open('https://github.com/Nightspeller/Weakling', '_blank'); });
+    this.add.text(GAME_W / 2, GAME_H / 2 + 80,
+      'https://discord.gg/uRqzU6ZqGn',
+      {
+        font: `20px ${textFont}`,
+        color: '#252acb',
+      })
+      .setOrigin(0.5, 0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => { window.open('https://discord.gg/uRqzU6ZqGn', '_blank'); });
     this.add.text(GAME_W / 2, GAME_H / 2 + 120, fullscreenText,
       {
         font: `20px ${textFont}`,

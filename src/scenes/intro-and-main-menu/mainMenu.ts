@@ -98,8 +98,6 @@ export default class MainMenuScene extends Phaser.Scene {
     console.log(firstTimeLaunch);
     if (firstTimeLaunch === 'true') {
       localStorage.setItem('firstTimeLaunch', 'false');
-      console.log('here');
-      this.scene.pause(this.scene.key);
       this.scene.run('About', { prevScene: this.scene.key });
     }
   }

@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "icons.png",
+			"image": "",
 			"format": "RGBA8888",
 			"size": {
 				"w": 510,
@@ -15134,6 +15134,6 @@
 	],
 	"meta": {
 		"app": "https://github.com/odrick/webpack-free-tex-packer",
-		"version": "0.3.4"
+		"version": "0.3.1"
 	}
 }
