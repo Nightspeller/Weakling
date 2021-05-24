@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="15">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="15">
  <editorsettings>
   <export target="../../../src/assets/exported-maps/windmill.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/base.tsx"/>
- <tileset firstgid="1065" source="../tilesets/wall-up.tsx"/>
- <tileset firstgid="1161" source="../tilesets/windmill.tsx"/>
- <tileset firstgid="3240" source="../tilesets/base-addition.tsx"/>
- <tileset firstgid="4008" source="../tilesets/icon-farming-set.tsx"/>
- <tileset firstgid="4032" source="../tilesets/icon-item-set.tsx"/>
+ <tileset firstgid="953" source="../tilesets/wall-up.tsx"/>
+ <tileset firstgid="1049" source="../tilesets/windmill.tsx"/>
+ <tileset firstgid="3425" source="../tilesets/base-addition.tsx"/>
+ <tileset firstgid="4193" source="../tilesets/icon-farming-set.tsx"/>
+ <tileset firstgid="4217" source="../tilesets/icon-item-set.tsx"/>
  <group id="6" name="Layer 1">
   <layer id="11" name="Below player" width="11" height="9">
    <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,
-0,3588,3588,3588,3588,3588,3588,3588,3588,3588,0,
+0,3773,3773,3773,3773,3773,3773,3773,3773,3773,0,
 0,0,0,0,0,370,370,370,0,0,0,
 0,0,0,0,0,378,378,0,0,0,0,
 0,289,289,289,289,289,289,289,289,289,0,
@@ -28,15 +28,15 @@
     <property name="hasCollisions" type="bool" value="true"/>
    </properties>
    <data encoding="csv">
-1070,1067,1067,1067,1067,1067,1067,1067,1067,1067,1072,
-1077,0,0,0,0,0,0,0,0,873,1077,
-1077,369,370,370,370,3577,0,3603,370,371,1077,
-1077,377,378,378,378,3577,0,378,378,379,1077,
-1077,861,0,0,0,511,0,0,0,0,1077,
-1077,0,0,0,237,227,0,0,0,0,1077,
-1077,0,0,0,0,0,0,0,0,0,1077,
-1077,0,0,0,0,0,0,0,0,0,1077,
-1081,1067,1067,1067,1067,0,1067,1067,1067,1067,1082
+958,955,955,955,955,955,955,955,955,955,960,
+965,0,0,0,0,0,0,0,0,873,965,
+965,369,370,370,370,3762,0,3788,370,371,965,
+965,377,378,378,378,3762,0,378,378,379,965,
+965,861,0,0,0,511,0,0,0,0,965,
+965,0,0,0,237,227,0,0,0,0,965,
+965,0,0,0,0,0,0,0,0,0,965,
+965,0,0,0,0,0,0,0,0,0,965,
+969,955,955,955,955,0,955,955,955,955,970
 </data>
   </layer>
   <layer id="1" name="Fringe non-transparent" width="11" height="9">
@@ -46,9 +46,9 @@
    <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,
-0,3579,3578,3578,3578,3614,0,3578,3578,3580,0,
-0,3591,3590,3590,3590,0,0,3590,3590,3592,0,
-0,0,0,0,0,3601,0,0,0,0,0,
+0,3764,3763,3763,3763,3799,0,3763,3763,3765,0,
+0,3776,3775,3775,3775,0,0,3775,3775,3777,0,
+0,0,0,0,0,3786,0,0,0,0,0,
 0,0,0,0,0,519,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,
@@ -165,7 +165,7 @@
   </object>
  </objectgroup>
  <objectgroup id="22" name="Containers">
-  <object id="9" name="MillChest" type="Container" gid="3243" x="160" y="160" width="32" height="32">
+  <object id="9" name="MillChest" type="Container" gid="3428" x="160" y="160" width="32" height="32">
    <properties>
     <property name="disableWhenEmpty" type="bool" value="false"/>
     <property name="instantPickup" type="bool" value="false"/>
@@ -173,7 +173,7 @@
     <property name="openedFrame" type="int" value="-1"/>
    </properties>
   </object>
-  <object id="11" name="Wheat" type="Container" gid="4016" x="96" y="160" width="32" height="32">
+  <object id="11" name="Wheat" type="Container" gid="4201" x="96" y="160" width="32" height="32">
    <properties>
     <property name="collides" type="bool" value="true"/>
     <property name="disableWhenEmpty" type="bool" value="true"/>
@@ -181,7 +181,7 @@
     <property name="items" value="[{&quot;itemId&quot;: &quot;wheat&quot;, &quot;quantity&quot;: 2}]"/>
    </properties>
   </object>
-  <object id="13" name="Corn" type="Container" gid="4008" x="64" y="160" width="32" height="32">
+  <object id="13" name="Corn" type="Container" gid="4193" x="64" y="160" width="32" height="32">
    <properties>
     <property name="collides" type="bool" value="true"/>
     <property name="disableWhenEmpty" type="bool" value="true"/>

@@ -36,7 +36,7 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
 
     this.map.getObjectLayer('DestinationPoints')?.objects.forEach((destinationPointObj) => {
       this.destinationPoints.get(
-        destinationPointObj.x, destinationPointObj.y, 'base', 55,
+        destinationPointObj.x, destinationPointObj.y, 'base-separated-1', 55,
       );
     });
 

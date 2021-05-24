@@ -43,7 +43,7 @@ const backpackItems: { [key: string]: ItemData } = {
     displayName: 'Basket',
     description: 'Accurately made, sturdy baskets made by aunt Nahkha for sale',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames],
-    sprite: { texture: 'base', frame: 876 },
+    sprite: { texture: 'base-separated-1', frame: 876 },
     stackable: true,
     modified: false,
     specifics: {},

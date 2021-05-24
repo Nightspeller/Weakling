@@ -3,7 +3,8 @@ import { tilesetConfig } from '../../config/constants';
 
 export default function preloadTilesetAssets(preloadScene: Scene) {
   // Tilesets
-  preloadScene.load.spritesheet('base', 'assets/images-extruded/tilesets/base.png', tilesetConfig);
+  preloadScene.load.spritesheet('base-separated-1', 'assets/images-extruded/tilesets/base-separated-1.png', tilesetConfig);
+  preloadScene.load.spritesheet('base-separated-2', 'assets/images-extruded/tilesets/base-separated-2.png', tilesetConfig);
   preloadScene.load.spritesheet('base-addition', 'assets/images-extruded/tilesets/base-addition.png', tilesetConfig);
   preloadScene.load.spritesheet('houses', 'assets/images-extruded/tilesets/houses.png', tilesetConfig);
   preloadScene.load.spritesheet('dirt1-dirt2', 'assets/images-extruded/tilesets/dirt1-dirt2.png', tilesetConfig);

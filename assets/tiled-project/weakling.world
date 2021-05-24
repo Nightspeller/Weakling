@@ -74,7 +74,7 @@
             "fileName": "tilemaps/forest.tmx",
             "height": 1600,
             "width": 1600,
-            "x": 5984,
+            "x": 6304,
             "y": 4032
         },
         {
@@ -83,6 +83,69 @@
             "width": 1600,
             "x": 4032,
             "y": 2368
+        },
+        {
+            "fileName": "tilemaps/weaklingsCave.tmx",
+            "height": 448,
+            "width": 256,
+            "x": 7328,
+            "y": 3456
+        },
+        {
+            "fileName": "tilemaps/nahkhasCave.tmx",
+            "height": 384,
+            "width": 320,
+            "x": 7616,
+            "y": 3456
+        },
+        {
+            "fileName": "tilemaps/eldersCave.tmx",
+            "height": 416,
+            "width": 544,
+            "x": 7968,
+            "y": 3456
+        },
+        {
+            "fileName": "tilemaps/hargkakhsCave.tmx",
+            "height": 384,
+            "width": 256,
+            "x": 8544,
+            "y": 3456
+        },
+        {
+            "fileName": "tilemaps/dungeonLevel1.tmx",
+            "height": 1024,
+            "width": 1600,
+            "x": 8672,
+            "y": 1024
+        },
+        {
+            "fileName": "tilemaps/crypt.tmx",
+            "height": 384,
+            "width": 352,
+            "x": 832,
+            "y": -416
+        },
+        {
+            "fileName": "tilemaps/house.tmx",
+            "height": 640,
+            "width": 800,
+            "x": 1152,
+            "y": 3232
+        },
+        {
+            "fileName": "tilemaps/hermitsTower.tmx",
+            "height": 1184,
+            "width": 320,
+            "x": 3808,
+            "y": -32
+        },
+        {
+            "fileName": "tilemaps/windmill.tmx",
+            "height": 288,
+            "width": 352,
+            "x": 5888,
+            "y": 4800
         }
     ],
     "onlyShowAdjacentMaps": false,

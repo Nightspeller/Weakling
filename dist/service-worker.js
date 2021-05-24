@@ -201,73 +201,73 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
     "revision": "8c29ea6fe7770f18900b4fcfa8f92e5f"
   }, {
     "url": "assets/exported-maps/backCave.json",
-    "revision": "5f61a2347d3447535adf6e11f92c9238"
+    "revision": "4e0f484c0cfdc60840dd6eb47053989a"
   }, {
     "url": "assets/exported-maps/betweenVillageAndCaltor.json",
-    "revision": "24caf9220573112b231545bb801e65cd"
+    "revision": "649703404166c71d0dc023711f53b1e5"
   }, {
     "url": "assets/exported-maps/betweenVillageAndDungeon.json",
-    "revision": "99aca89b537fac40412aded3345896f8"
+    "revision": "fad010e54d36017b397f90b207e51bdc"
   }, {
     "url": "assets/exported-maps/booksStore.json",
-    "revision": "593b8e758019c15497f4610bd343fce8"
+    "revision": "c5a73d8460af240ba09f57d0965f354b"
   }, {
     "url": "assets/exported-maps/caltor.json",
-    "revision": "894d88db0e23106e07fe68458530613e"
+    "revision": "2f28dc808bcca85e9c7c88ed7bf4baef"
   }, {
     "url": "assets/exported-maps/crypt.json",
-    "revision": "d35ef37befd6f7398ef6eacd58bb6ebf"
+    "revision": "2407254fbaf1d8e34c6abd4738865690"
   }, {
     "url": "assets/exported-maps/dungeon.json",
-    "revision": "a1ea0db4d528b8a5af62f254dc66dcf3"
+    "revision": "1f6c5991e0fa2f81345ccfb221324834"
   }, {
     "url": "assets/exported-maps/dungeonLevel1.json",
-    "revision": "f3713fe4e14e27212ba40c9a55f71a92"
+    "revision": "3327b95b09737bbc998a343553de7036"
   }, {
     "url": "assets/exported-maps/eldersCave.json",
-    "revision": "8871e039f25a05c129f70e0df51d3d32"
+    "revision": "e25b7e445ca405a64ea11e2f8917bba3"
   }, {
     "url": "assets/exported-maps/fight.json",
     "revision": "ef06a8dc74382ceb278e7a647dea3e6f"
   }, {
     "url": "assets/exported-maps/forest.json",
-    "revision": "89da36fbb9345f6312ede1b5940369fd"
+    "revision": "48cf06ac64590eed2c950f10a9cf16a7"
   }, {
     "url": "assets/exported-maps/forest2.json",
-    "revision": "74618bb48ffc61b9a9d7e101711e4f40"
+    "revision": "e20861921d512bcfd5e3f4b71ff5bba3"
   }, {
     "url": "assets/exported-maps/greatPlains.json",
-    "revision": "2a3c0ffd5bbfa0b63b6c685b34c0bf40"
+    "revision": "784fdebd434879a32ed80f32ae620f35"
   }, {
     "url": "assets/exported-maps/hargkakhsCave.json",
-    "revision": "d8c3c4081ac1ed58249ebdff28370d20"
+    "revision": "fe3822a18a85712e475d1e20c307bfca"
   }, {
     "url": "assets/exported-maps/hermitsTower.json",
-    "revision": "343658448512d709280332ec2bbab754"
+    "revision": "d395c8f0722947f64fb6846188d6bcaf"
   }, {
     "url": "assets/exported-maps/honeywood.json",
-    "revision": "3b2866be3837cb5b6537b39be161b482"
+    "revision": "acdbb77c38ddc3a24fa3066227b048cd"
   }, {
     "url": "assets/exported-maps/house.json",
-    "revision": "ddc6f03854c6a34cf53017bbfd175b80"
+    "revision": "33567edfb3460b35c96be19061aa6a51"
   }, {
     "url": "assets/exported-maps/interface.json",
     "revision": "723b12011ddee0510585cb4043fac8e8"
   }, {
     "url": "assets/exported-maps/nahkhasCave.json",
-    "revision": "331d860a33017de0a0746b4c86b96abd"
+    "revision": "e94732e410f3339ee2070b3b5a45748c"
   }, {
     "url": "assets/exported-maps/tavern.json",
-    "revision": "b8eaf825c92c3cb037a0e330ffff5231"
+    "revision": "f6c87af1e5cbc1f22bb8074989a40022"
   }, {
     "url": "assets/exported-maps/village.json",
-    "revision": "d494742e5c354938a579ae61cdac9e9b"
+    "revision": "2bcd9cd4711bbaf5c68ec0a4997cc512"
   }, {
     "url": "assets/exported-maps/weaklingsCave.json",
-    "revision": "f85234fbeccc21694252930742900eb3"
+    "revision": "638aea786fc88aa2066c82028f3a03bc"
   }, {
     "url": "assets/exported-maps/windmill.json",
-    "revision": "53c9e1eb9816b29f71c3c8de1dcd2bb6"
+    "revision": "180311917836c9eeb589362a917aa84e"
   }, {
     "url": "assets/images-extruded/animations/butterflies.json",
     "revision": "432501c98649ceda90f45a570d64a0e7"
@@ -291,7 +291,7 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
     "revision": "3ee6d63bd3c959e688e673885428c144"
   }, {
     "url": "assets/images-extruded/animations/windmill.png",
-    "revision": "b32a9f5d4bb06c05f41a840db8550255"
+    "revision": "448e420cc3cd19adb1b07e588ab2c050"
   }, {
     "url": "assets/images-extruded/characters/battle/enemies/rat/rat-battle.json",
     "revision": "8983616dfad047ebc3bedca38f8b17e4"
@@ -448,6 +448,12 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
   }, {
     "url": "assets/images-extruded/tilesets/base-addition.png",
     "revision": "d50e9e20dba2c7cef09fc34f91966266"
+  }, {
+    "url": "assets/images-extruded/tilesets/base-separated-1.png",
+    "revision": "8a60cd4ee30f53b36e0e04dd2a4d6151"
+  }, {
+    "url": "assets/images-extruded/tilesets/base-separated-2.png",
+    "revision": "abfc948f077ec5696f040d992f7e6956"
   }, {
     "url": "assets/images-extruded/tilesets/base.png",
     "revision": "523c247ccf981b243f18bfa9a24ffbfc"
@@ -753,7 +759,7 @@ define("./service-worker.js",['./workbox-903cc191'], function (workbox) { 'use s
     "revision": "d2319790c653eaad8b44b779ebec6eca"
   }, {
     "url": "bundle.js",
-    "revision": "7a6af43c5bdfa15195547da991e1caab"
+    "revision": "34d6ef2ac780b97906c344a3db048859"
   }, {
     "url": "plugins/AnimatedTiles.js",
     "revision": "05f11f651be4669c9992474645eed1d3"

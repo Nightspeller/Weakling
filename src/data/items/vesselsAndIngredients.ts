@@ -68,7 +68,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'A piece of coal which can be used for alchemy or just to paint something on the wall.',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 69,
     },
     stackable: true,
@@ -128,7 +128,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'Delicious mushroom growing deep in the caverns.',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 57,
     },
     stackable: true,
@@ -233,7 +233,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'Beautiful blue flower',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 54,
     },
     stackable: true,
@@ -248,7 +248,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'The flower of Rocky Rose',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 172,
     },
     stackable: true,
@@ -263,7 +263,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'The flower of Yellow Fingers flower',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 55,
     },
     stackable: true,
@@ -278,7 +278,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'The flower of Pinky Pie flower',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 53,
     },
     stackable: true,
@@ -378,7 +378,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'The chamomile flower',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 52,
     },
     stackable: true,
@@ -525,7 +525,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'Nice grown cabbage. Restores 10% of HP',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 167,
     },
     stackable: true,
@@ -562,7 +562,7 @@ const vesselsAndIngredients: { [key: string]: ItemData } = {
     description: 'Nice grown pumpkin. Restores quarter of energy.',
     possibleSlots: [...backpackSlotNames, ...containerSlotNames, ...componentSlotNames],
     sprite: {
-      texture: 'base',
+      texture: 'base-separated-1',
       frame: 166,
     },
     stackable: true,
