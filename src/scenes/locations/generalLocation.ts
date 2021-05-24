@@ -352,8 +352,8 @@ export default class GeneralLocation extends Phaser.Scene {
     const droppedItemTrigger = new Trigger({
       scene: this,
       name: item.displayName,
-      triggerX: this.playerImage.x,
-      triggerY: this.playerImage.y,
+      triggerX: this.playerImage.x + this.playerImage.width / 4,
+      triggerY: this.playerImage.y + this.playerImage.height / 4,
       triggerW: 32,
       triggerH: 32,
       offsetX: 0,
@@ -365,7 +365,7 @@ export default class GeneralLocation extends Phaser.Scene {
       callback: () => {
         const itemInInventory = this.player.addItemToInventory(item);
         if (itemInInventory !== undefined) {
-          this.showTextAbovePlayer(`${itemInInventory.displayName} (${quantity})`);
+          this.showTextAbovePlayer(`${itemInInventory.displayName} (${itemInInventory.quantity})`);
           droppedItemTrigger.destroy();
         }
       },
