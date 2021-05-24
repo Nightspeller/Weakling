@@ -231,21 +231,34 @@ export default class GeneralItemManipulatorScene extends GeneralOverlayScene {
       scene.dragStarted = false;
     });
     let doubleClickTimer = 0;
+    let longPressTimerId: number;
     itemRepresentation.on('pointerdown', (pointer) => {
       const itemCurrentSlot = this._getSlotByItem(itemRepresentation);
       if (pointer.rightButtonDown()) {
         this._showItemDescriptionAndActions(itemCurrentSlot);
-      } else if (doubleClickTimer === 0) {
-        doubleClickTimer = Date.now();
       } else {
-        const delta = Date.now() - doubleClickTimer;
-        if (delta > 350) {
+        // setting up doubleClick event for automatically moving items on doubleClick
+        if (doubleClickTimer === 0) {
           doubleClickTimer = Date.now();
         } else {
-          this._itemDoubleClickCallback(itemCurrentSlot);
+          const delta = Date.now() - doubleClickTimer;
+          if (delta > 350) {
+            doubleClickTimer = Date.now();
+          } else {
+            this._itemDoubleClickCallback(itemCurrentSlot);
+          }
         }
+        // setting up long press event so mobile users could get same functionality as right click
+        const initialPointerX = pointer.x;
+        const initialPointerY = pointer.y;
+        longPressTimerId = setTimeout(() => {
+          if (this.input.activePointer.x === initialPointerX && this.input.activePointer.y === initialPointerY) {
+            this._showItemDescriptionAndActions(itemCurrentSlot);
+          }
+        }, 500);
       }
     });
+    itemRepresentation.on('pointerup', () => { clearTimeout(longPressTimerId)});
     this.itemsDisplayGroup.add(itemRepresentation);
     return itemRepresentation;
   }
