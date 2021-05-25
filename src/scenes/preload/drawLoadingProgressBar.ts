@@ -11,35 +11,35 @@ export default function drawLoadingProgressBar(preloadScene: Scene) {
   progressBox.fillStyle(0x222222, 0.8);
   progressBox.fillRect(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
 
-  const loadingText = preloadScene.make.text({
-    x: GAME_W / 2,
-    y: GAME_H / 2 - 70,
-    text: 'Loading...',
-    style: {
+  const loadingText = preloadScene.add.text(
+    GAME_W / 2,
+    GAME_H / 2 - 70,
+    'Loading...',
+    {
       font: '20px monospace',
       color: '#ffffff',
     },
-  }).setOrigin(0.5, 0.5);
+  ).setOrigin(0.5, 0.5);
 
-  const percentText = preloadScene.make.text({
-    x: GAME_W / 2,
-    y: GAME_H / 2,
-    text: '0%',
-    style: {
+  const percentText = preloadScene.add.text(
+    GAME_W / 2,
+    GAME_H / 2,
+    '0%',
+    {
       font: '18px monospace',
       color: '#ffffff',
     },
-  }).setOrigin(0.5, 0.5);
+  ).setOrigin(0.5, 0.5);
 
-  const assetText = preloadScene.make.text({
-    x: GAME_W / 2,
-    y: GAME_H / 2 + 50,
-    text: '',
-    style: {
+  const assetText = preloadScene.add.text(
+    GAME_W / 2,
+    GAME_H / 2 + 50,
+    '',
+    {
       font: '18px monospace',
       color: '#ffffff',
     },
-  }).setOrigin(0.5, 0.5);
+  ).setOrigin(0.5, 0.5);
 
   preloadScene.load.on('progress', (value: number) => {
     percentText.setText(`${Math.floor(value * 100)}%`);
