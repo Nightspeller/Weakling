@@ -43,3 +43,4 @@ jobs:
           target_branch: master
           # Build directory to deploy
           build_dir: dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
