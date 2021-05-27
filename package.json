@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve --host 0.0.0.0",
+    "build": "webpack --config webpack.config.prod.js",
+    "start": "webpack serve --host 0.0.0.0 --config webpack.config.js",
     "lint": "eslint ./src --ext .ts"
   },
   "author": "",
