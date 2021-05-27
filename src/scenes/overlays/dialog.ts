@@ -14,7 +14,7 @@ export default class DialogScene extends GeneralOverlayScene {
   private closeCallback: Function;
   private dialogTree: any[];
   private player: Player;
-  public opts: DialogOptions;
+  declare public opts: DialogOptions;
   private speakerName: string;
 
   constructor() {

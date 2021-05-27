@@ -2,13 +2,11 @@ import * as Phaser from 'phaser';
 
 import { Player, playerInstance } from '../../characters/adventurers/player';
 import GeneralOverlayScene from './generalOverlayScene';
-import { DialogOptions } from '../../types/my-types';
 import { GAME_H, GAME_W, TILE_SIZE } from '../../config/constants';
 import Item from '../../entities/item';
 
 export default class FishingScene extends GeneralOverlayScene {
   private player: Player;
-  public opts: DialogOptions;
   private objectName: string;
   private fish: Phaser.GameObjects.Container;
   private baited: boolean;
@@ -43,14 +41,10 @@ export default class FishingScene extends GeneralOverlayScene {
       windowX: TILE_SIZE * 5,
       windowY: TILE_SIZE * 5,
 
-      responseTextColor: '#47340c',
-      responseTextHoverColor: 'black',
-
       // closeButtonColor: 'darkgoldenrod',
       // closeButtonHoverColor: 'red',
 
       textColor: 'black',
-      letterAppearanceDelay: 10,
     };
     this.currentFish = new Item(currentFishName);
     this.objectName = objectName;

@@ -31,8 +31,6 @@ export default class Butterfly extends Phaser.Physics.Arcade.Sprite {
     private landingTime: Phaser.Time.TimerEvent
     private restEvent: Phaser.Time.TimerEvent;
 
-    public scene: Phaser.Scene
-
     private _direction = Direction.NONE;
     private _butterflyState = ButterflyState.FLYING
 
@@ -51,7 +49,6 @@ export default class Butterfly extends Phaser.Physics.Arcade.Sprite {
 
       this.currentButterflySpeed = 40;
       this.currentFlappingFrequency = 40;
-      this.scene = scene;
 
       scene.physics.world.enable(this);
       this.setCollideWorldBounds(true);
