@@ -34,13 +34,8 @@ jobs:
           npm install
           npm run build
           
-      - name: GitHub Pages
-        # You may pin to the exact commit or the version.
-        # uses: crazy-max/ghaction-github-pages@47836d5feff6e01257a3ff5faf9a04f2f2454012
-        uses: crazy-max/ghaction-github-pages@v2.4.1
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          # Git branch where assets will be deployed
-          target_branch: master
-          # Build directory to deploy
-          build_dir: dist
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
