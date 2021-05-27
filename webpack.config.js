@@ -74,7 +74,7 @@ module.exports = {
       display: 'fullscreen',
       orientation: 'landscape',
       scope: '.',
-      start_url: 'https://nightspeller.github.io/Weakling/dist/',
+      start_url: 'https://weakling.nights.im/',
       icons: [
         {
           src: path.resolve('src/pwa-icons/icon-512x512.png'),
