@@ -4,6 +4,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const CreateFileWebpack = require('create-file-webpack');
 // eslint-disable-next-line no-unused-vars
 const WebpackFreeTexPacker = require('webpack-free-tex-packer');
 
@@ -94,6 +95,14 @@ module.exports = {
         { from: './src/assets', to: 'assets' },
         { from: './src/plugins', to: 'plugins' },
       ],
+    }),
+    new CreateFileWebpack({
+      // path to folder in which the file will be created
+      path: './dist',
+      // file name
+      fileName: 'CNAME',
+      // content of the file
+      content: 'weakling.nights.im',
     }),
     new WebpackFreeTexPacker(freeTexturePackerSources, 'assets/images-extruded/interface', freeTexturePackerOptions),
   ],
