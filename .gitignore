@@ -2,5 +2,6 @@
 /assets/tiled-project/weakling.tiled-session
 /node_modules/
 /.idea
+/dist
 CONTRIBUTING.md
 diagram.drawio
