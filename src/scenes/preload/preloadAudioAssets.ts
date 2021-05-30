@@ -6,6 +6,9 @@ export default function preloadAudioAssets(preloadScene: Scene) {
   preloadScene.load.audio('text-button-hover', ['assets/audio/ui/text-button-hover.ogg', 'assets/audio/ui/text-button-hover.mp3']);
   preloadScene.load.audio('text-button-select', ['assets/audio/ui/text-button-select.ogg', 'assets/audio/ui/text-button-select.mp3']);
   preloadScene.load.audio('checkbox-checked', ['assets/audio/ui/checkbox-checked.ogg', 'assets/audio/ui/checkbox-checked.mp3']);
+  preloadScene.load.audio('typewriter-long', ['assets/audio/ui/typewriter-long.ogg', 'assets/audio/ui/typewriter-long.mp3']);
+  preloadScene.load.audio('typewriter-short', ['assets/audio/ui/typewriter-short.ogg', 'assets/audio/ui/typewriter-short.mp3']);
+  preloadScene.load.audio('typewriter-end', ['assets/audio/ui/typewriter-end.ogg', 'assets/audio/ui/typewriter-end.mp3']);
   preloadScene.load.audio('main-menu-start-game', ['assets/audio/ui/main-menu-start-game.ogg', 'assets/audio/ui/main-menu-start-game.mp3']);
 
   preloadScene.load.audio('intro', ['assets/audio/intro.ogg', 'assets/audio/intro.mp3']);

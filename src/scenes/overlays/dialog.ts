@@ -17,6 +17,10 @@ export default class DialogScene extends GeneralOverlayScene {
   declare public opts: DialogOptions;
   private speakerName: string;
 
+  private typewriterLongSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private typewriterShortSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private typewriterEndSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+
   constructor() {
     super({ key: 'Dialog' });
   }
@@ -48,7 +52,7 @@ export default class DialogScene extends GeneralOverlayScene {
       // closeButtonHoverColor: 'red',
 
       textColor: 'black',
-      letterAppearanceDelay: 10,
+      letterAppearanceDelay: 15,
     };
     this.speakerName = speakerName;
     this.dialogTree = dialogTree;
@@ -64,6 +68,9 @@ export default class DialogScene extends GeneralOverlayScene {
 
   public create() {
     super.create(this.parentSceneKey, this.opts);
+    this.typewriterLongSound = this.sound.add('typewriter-long');
+    this.typewriterShortSound = this.sound.add('typewriter-short');
+    this.typewriterEndSound = this.sound.add('typewriter-end');
     this.dialogDisplayGroup = this.add.group();
     this._showDialog();
     // @ts-ignore
@@ -211,7 +218,9 @@ export default class DialogScene extends GeneralOverlayScene {
           delay: this.opts.letterAppearanceDelay,
           callback: () => {
             textGameObject.setText(text.slice(0, shownLettersCounter));
+            this.playTypewriterSound(shownLettersCounter, text[shownLettersCounter]);
             if (text.length === shownLettersCounter) {
+              this.playTypewriterSound();
               this.timedEvent.remove();
               zone.destroy();
               this.input.keyboard.off('keydown-SPACE');
@@ -224,6 +233,9 @@ export default class DialogScene extends GeneralOverlayScene {
         });
 
         zone.once('pointerdown', () => {
+          this.typewriterEndSound.play({
+            volume: 0.5,
+          });
           zone.destroy();
           this.input.keyboard.off('keydown-SPACE');
           this.timedEvent.remove();
@@ -242,6 +254,29 @@ export default class DialogScene extends GeneralOverlayScene {
         resolve();
       }
     });
+  }
+
+  private playTypewriterSound(letterCounter?: number, currentLetter?: string) {
+    if (currentLetter === '—') return;
+
+    if (letterCounter === undefined) {
+      this.typewriterEndSound.play({
+        volume: 0.5,
+      });
+      return;
+    }
+
+    if (letterCounter % 7 === 0) {
+      if (Phaser.Math.Between(0, 1) === 1) {
+        this.typewriterLongSound.play({
+          volume: 0.5,
+        });
+      } else {
+        this.typewriterShortSound.play({
+          volume: 0.5,
+        });
+      }
+    }
   }
 
   private _showName() {
