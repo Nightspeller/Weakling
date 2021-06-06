@@ -347,7 +347,7 @@
                         {
                          "name":"drop",
                          "type":"string",
-                         "value":"[{\"itemId\": \"\", \"quantity\": 1, \"chance\": 1}]"
+                         "value":"[{\"itemId\": \"bacon\", \"quantity\": 2, \"chance\": 1}, {\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 0.1}, {\"itemId\": \"fire-marble\", \"quantity\": 4, \"chance\": 1}]"
                         }, 
                         {
                          "name":"enemies",
@@ -381,7 +381,7 @@
  "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.6.0",
+ "tiledversion":"1.7.0",
  "tileheight":32,
  "tilesets":[
         {
