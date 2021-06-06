@@ -107,7 +107,7 @@ const questsData: { [key: string]: Quest } = {
   lostInTheWoodsPartTwo: {
     questId: 'lostInTheWoodsPartTwo',
     questName: 'Lost in the woods, part two',
-    questReward: { items: [{ itemId: 'chocolatePie', quantity: 1 }], xp: 3 },
+    questReward: { items: [{ itemId: 'silver-pieces', quantity: 1 }], xp: 3 },
     availableStates: {
       started: 'You learned that Ajika\'s husband who went looking for Kai, did not come back yet and might be lost too - she asked you to search for him.',
       ronFound: 'You found the missing husband - time to finally reunite the family!',

@@ -38,7 +38,7 @@ export default class FarmerJoeNpc extends GeneralNpc {
           playerInstance.getQuestById('boarsAtTheFields')
             .questReward
             .items
-            .push({ itemId: 'copper-pieces', quantity: 10 });
+            .push({ itemId: 'silver-pieces', quantity: 1 });
           if (playerInstance.defeatedEnemies.includes('caltor/Boars 1') && playerInstance.defeatedEnemies.includes('caltor/Boars 2')) {
             playerInstance.updateQuest('boarsAtTheFields', 'boarsKilled');
           }

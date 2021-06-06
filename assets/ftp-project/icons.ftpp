@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "0.6.6"
+    "version": "0.6.7"
   },
   "savePath": "C:\\Users\\serjn\\WebstormProjects\\weakling\\src\\assets\\images-extruded\\interface",
   "images": [],
@@ -16,7 +16,6 @@
     "tinify": false,
     "tinifyKey": "",
     "scale": 1,
-    "disableSmoothing": false,
     "filter": "none",
     "exporter": "Phaser 3",
     "fileName": "pack-result",
