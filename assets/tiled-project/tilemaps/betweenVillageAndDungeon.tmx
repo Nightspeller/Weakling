@@ -121,10 +121,12 @@
   </object>
  </objectgroup>
  <objectgroup id="8" name="Enemies">
-  <object id="3" name="Boars" type="Enemy" x="224" y="192" width="64" height="64">
+  <object id="3" name="Boars" type="Enemy" x="320" y="192" width="64" height="64">
    <properties>
-    <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}, {&quot;type&quot;: &quot;wildBoar&quot;}]"/>
+    <property name="drop" value="[{&quot;itemId&quot;: &quot;bacon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 1}, {&quot;itemId&quot;: &quot;bacon&quot;, &quot;quantity&quot;: 1, &quot;chance&quot;: 0.1}]"/>
+    <property name="enemies" value="[{&quot;type&quot;: &quot;wildBoar&quot;}]"/>
     <property name="image" value="boar-avatar"/>
+    <property name="xpReward" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>
