@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 // eslint-disable-next-line no-unused-vars
@@ -91,7 +90,6 @@ module.exports = {
         },
       ],
     }),
-    new WorkboxPlugin.GenerateSW({ maximumFileSizeToCacheInBytes: 26214400 }),
     new CopyPlugin({
       patterns: [
         { from: './src/assets', to: 'assets' },
