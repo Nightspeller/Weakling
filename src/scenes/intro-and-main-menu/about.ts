@@ -52,7 +52,7 @@ export default class AboutScene extends Phaser.Scene {
       
   This is just the beginning and very much work in progress on it's early stage, but there are already a few things you can do to explore it yourself!
   
-  Pull requests and any other help is greatly welcomed! If you can code, draw, write, crete music, or simply play the game and share bugs and ideas, get in touch:`,
+  Pull requests and any other help is greatly welcomed! If you can code, draw, write, create music, or simply play the game and share bugs and ideas, get in touch:`,
       {
         font: `20px ${textFont}`,
         fixedWidth: GAME_W * (4 / 5) - 20,
