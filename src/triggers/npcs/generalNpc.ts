@@ -106,10 +106,10 @@ export default class GeneralNpc extends Trigger {
       x: 0, y: 0, right: 0, bottom: 0,
     });
 
-    if (triggerBodyBounds.y === playerBodyBounds.bottom) collisionImage.anims.play(`${collisionImage.texture.key}-idle-up`);
-    if (triggerBodyBounds.x === playerBodyBounds.right) collisionImage.anims.play(`${collisionImage.texture.key}-idle-left`);
-    if (triggerBodyBounds.bottom === playerBodyBounds.y) collisionImage.anims.play(`${collisionImage.texture.key}-idle-down`);
-    if (triggerBodyBounds.right === playerBodyBounds.x) collisionImage.anims.play(`${collisionImage.texture.key}-idle-right`);
+    if (triggerBodyBounds.y === Math.round(playerBodyBounds.bottom)) collisionImage.anims.play(`${collisionImage.texture.key}-idle-up`);
+    if (triggerBodyBounds.x === Math.round(playerBodyBounds.right)) collisionImage.anims.play(`${collisionImage.texture.key}-idle-left`);
+    if (triggerBodyBounds.bottom === Math.round(playerBodyBounds.y)) collisionImage.anims.play(`${collisionImage.texture.key}-idle-down`);
+    if (triggerBodyBounds.right === Math.round(playerBodyBounds.x)) collisionImage.anims.play(`${collisionImage.texture.key}-idle-right`);
   }
 
   public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
