@@ -30,5 +30,29 @@ export function createWorldCharactersAnimations(scene: Phaser.Scene) {
       key: `${npc}-idle-right`,
       frames: [{ key: npc, frame: 7 }],
     });
+    scene.anims.create({
+      key: `${npc}-walk-up`,
+      frames: scene.anims.generateFrameNames(npc, { start: 9, end: 11 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+    scene.anims.create({
+      key: `${npc}-walk-down`,
+      frames: scene.anims.generateFrameNames(npc, { start: 0, end: 2 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+    scene.anims.create({
+      key: `${npc}-walk-left`,
+      frames: scene.anims.generateFrameNames(npc, { start: 3, end: 5 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+    scene.anims.create({
+      key: `${npc}-walk-right`,
+      frames: scene.anims.generateFrameNames(npc, { start: 6, end: 8 }),
+      frameRate: 8,
+      repeat: -1,
+    });
   });
 }
