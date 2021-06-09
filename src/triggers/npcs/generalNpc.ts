@@ -5,6 +5,21 @@ import Trigger from '../trigger';
 import GeneralLocation from '../../scenes/locations/generalLocation';
 import { DialogTree, Slots, SpriteParameters } from '../../types/my-types';
 
+enum NpcActionState
+{
+  WALKING,
+  IDLE
+}
+
+export const enum Direction {
+  IDLE_DOWN,
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT,
+  NONE
+}
+
 export interface NpcOptions {
   scene: GeneralLocation;
   name: string;
@@ -23,6 +38,11 @@ export default class GeneralNpc extends Trigger {
   private interactionCallback: Function;
   private items: Map<Slots, Item>;
   private numberOfSlots: number;
+
+  private walkPath: Phaser.Math.Vector2[];
+  private walkToTarget?: Phaser.Math.Vector2;
+  private _direction: Direction;
+  private _npcActionState: NpcActionState;
 
   constructor(
     {
@@ -75,6 +95,11 @@ export default class GeneralNpc extends Trigger {
         }
       },
     });
+
+    this.walkPath = [];
+    this._direction = Direction.NONE;
+    this._npcActionState = NpcActionState.IDLE;
+
     if (spriteParams.animation) this.image.anims.play(spriteParams.animation);
     this.dialog = initDialog;
     this.preInteractionCallback = preInteractionCallback;
@@ -112,6 +137,10 @@ export default class GeneralNpc extends Trigger {
     if (triggerBodyBounds.right === playerBodyBounds.x) collisionImage.anims.play(`${collisionImage.texture.key}-idle-right`);
   }
 
+  public playNpcAnimation(npcImage: Phaser.Physics.Arcade.Sprite) {
+    npcImage.anims.play('female22-2-walk-down');
+  }
+
   public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
     this.dialog = newDialog;
     if (newInteractionCallback) this.interactionCallback = newInteractionCallback;
@@ -142,5 +171,80 @@ export default class GeneralNpc extends Trigger {
       }
       throw new Error('Trader is full, cant add items! Write more code to handle it properly!');
     });
+  }
+
+  walkAlong(path: Phaser.Math.Vector2[]) {
+    if (!path || path.length <= 0) {
+      return;
+    }
+
+    this.walkPath = path;
+    this.walkTo(this.walkPath.shift()!);
+  }
+
+  private walkTo(target: Phaser.Math.Vector2) {
+    this.walkToTarget = target;
+    this.walk();
+  }
+
+  public walk() {
+    if (!this.image.body) {
+      return;
+    }
+
+    let dx = 0;
+    let dy = 0;
+
+    if (this.walkToTarget) {
+      dx = this.walkToTarget.x - this.image.x;
+      dy = this.walkToTarget.y - this.image.y;
+
+      if (Math.abs(dx) < 1) {
+        dx = 0;
+      }
+      if (Math.abs(dy) < 1) {
+        dy = 0;
+      }
+      if (dx === 0 && dy === 0) {
+        if (this.walkPath.length > 0) {
+          this.walkTo(this.walkPath.shift()!);
+          return;
+        }
+
+        this.walkToTarget = undefined;
+        this._npcActionState = NpcActionState.IDLE;
+      }
+    }
+
+    this.mimicKeys(dx, dy);
+  }
+
+  mimicKeys(dx: number, dy: number) {
+    const walkLeft = dx < 0;
+    const walkRight = dx > 0;
+    const walkUp = dy < 0;
+    const walkDown = dy > 0;
+
+    const speed = 25;
+
+    if (walkLeft) {
+      this._direction = Direction.LEFT;
+      this.image.anims.play(`${this.image.texture.key}-walk-left`, true);
+      this.image.setVelocity(-speed, 0);
+    } else if (walkRight) {
+      this._direction = Direction.RIGHT;
+      this.image.anims.play(`${this.image.texture.key}-walk-right`, true);
+      this.image.setVelocity(speed, 0);
+    } else if (walkUp) {
+      this._direction = Direction.UP;
+      this.image.anims.play(`${this.image.texture.key}-walk-up`, true);
+      this.image.setVelocity(0, -speed);
+    } else if (walkDown) {
+      this._direction = Direction.DOWN;
+      this.image.anims.play(`${this.image.texture.key}-walk-down`, true);
+      this.image.setVelocity(0, speed);
+    } else {
+      this.image.setVelocity(0, 0);
+    }
   }
 }
