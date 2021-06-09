@@ -226,6 +226,26 @@ export default class GeneralLocation extends Phaser.Scene {
       });
     });
 
+    this.map.getObjectLayer('EventTriggers')?.objects.forEach((object) => {
+      const cutscene = object.properties?.find((prop: TiledObjectProp) => prop.name === 'cutscene')?.value;
+      const singleUse = object.properties?.find((prop: TiledObjectProp) => prop.name === 'singleUse')?.value;
+      const interaction = object.properties?.find((prop: TiledObjectProp) => prop.name === 'interaction')?.value;
+      new Trigger({
+        scene: this,
+        name: object.name,
+        triggerX: object.x,
+        triggerY: object.y,
+        triggerW: object.width,
+        triggerH: object.height,
+        interaction,
+        singleUse,
+        callback: () => {
+          // TODO: handle the collision from all four sides of the collision area
+          this.switchToScene(cutscene, undefined, true, { x: this.playerImage.x / 32 + 1, y: this.playerImage.y / 32 + 2 });
+        },
+      });
+    });
+
     this.map.getObjectLayer('Messages')?.objects.forEach((object) => {
       const messageId = object.properties?.find((prop: TiledObjectProp) => prop.name === 'messageId')?.value;
       const messageText = messages[messageId];
