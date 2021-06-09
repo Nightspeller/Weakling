@@ -38,7 +38,7 @@ export default class PreloadScene extends Phaser.Scene {
     if (DEBUG) optionsInstance.toggleMusic();
 
     if (DEBUG) {
-      const debugScene = 'Windmill';
+      const debugScene = 'GreatPlains';
       /* this.scene.start('Battle', {
         enemies: [{ type: 'ghost-knight' }, { type: 'ghost-knight' }, { type: 'skeleton' }, { type: 'wizard' }, { type: 'wildBoar' }],
         background: 'cave-background',

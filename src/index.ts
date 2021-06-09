@@ -42,6 +42,9 @@ import HoneywoodScene from './scenes/locations/honeywood/honeywood';
 import WorldMapUIScene from './scenes/locations/worldMapUIScene';
 import AboutScene from './scenes/intro-and-main-menu/about';
 
+// Cutscenes
+import EvelynsDreamCutscene from './scenes/cutscenes/evelynsDream';
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/Weakling/dist/service-worker.js');
@@ -60,7 +63,7 @@ export const LOCATION_SCENES = [
   HoneywoodScene,
   CaltorScene, HouseScene, TavernScene, HermitsTowerScene, CryptScene, BooksStoreScene,
   VillageScene, HargkakhsCaveScene, NahkhasCaveScene, WeaklingsCaveScene, EldersCaveScene, BackCaveScene,
-  GreatPlainsScene, WindmillScene] as any[];
+  GreatPlainsScene, WindmillScene, EvelynsDreamCutscene] as any[];
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
   title: 'Weakling!!',
