@@ -4,6 +4,7 @@ import Item from '../../entities/item';
 import Trigger from '../trigger';
 import GeneralLocation from '../../scenes/locations/generalLocation';
 import { DialogTree, Slots, SpriteParameters } from '../../types/my-types';
+import findPath from '../../helpers/findPath';
 
 enum NpcActionState
 {
@@ -11,15 +12,13 @@ enum NpcActionState
   IDLE
 }
 
-export const enum Direction {
-  IDLE_DOWN,
-  UP,
-  DOWN,
-  LEFT,
-  RIGHT,
-  NONE
+export enum Direction {
+  none,
+  up = 1,
+  down = 2,
+  left = 4,
+  right = 8
 }
-
 export interface NpcOptions {
   scene: GeneralLocation;
   name: string;
@@ -43,6 +42,7 @@ export default class GeneralNpc extends Trigger {
   private walkToTarget?: Phaser.Math.Vector2;
   private _direction: Direction;
   private _npcActionState: NpcActionState;
+  public walkEvent: Phaser.Time.TimerEvent
 
   constructor(
     {
@@ -97,8 +97,18 @@ export default class GeneralNpc extends Trigger {
     });
 
     this.walkPath = [];
-    this._direction = Direction.NONE;
+    this._direction = Direction.none;
     this._npcActionState = NpcActionState.IDLE;
+
+    this.walkEvent = this.scene.time.addEvent({
+      delay: 60,
+      callback: () => {
+        this.walk();
+      },
+      loop: true,
+    });
+
+    this.walkEvent.paused = false;
 
     if (spriteParams.animation) this.image.anims.play(spriteParams.animation);
     this.dialog = initDialog;
@@ -118,6 +128,25 @@ export default class GeneralNpc extends Trigger {
     }
   }
 
+  /**
+   * Needs to be called repeatedly
+   * @param map
+   * @param toPositionX
+   * @param toPositionY
+   */
+  public moveCharacter(map: Phaser.Tilemaps.Tilemap, toPositionX: number, toPositionY: number) {
+    const { worldX, worldY } = { worldX: toPositionX, worldY: toPositionY };
+
+    const groundLayerObject = map.getLayer('Layer 1/Below player').tilemapLayer;
+    const wallsLayerObject = map.getLayer('Layer 1/Collisions').tilemapLayer;
+
+    const startVector = groundLayerObject.worldToTileXY(this.image.x, this.image.y);
+    const targetVector = groundLayerObject.worldToTileXY(worldX, worldY);
+
+    const generatedPath = findPath(startVector, targetVector, groundLayerObject, wallsLayerObject);
+    this.walkAlong(generatedPath);
+  }
+
   protected handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite, collisionImage: Phaser.Physics.Arcade.Sprite) {
     // to prevent the animation to play for graveNpc
     if (collisionImage.frame.texture.key === 'base-addition') return;
@@ -135,10 +164,6 @@ export default class GeneralNpc extends Trigger {
     if (triggerBodyBounds.x === playerBodyBounds.right) collisionImage.anims.play(`${collisionImage.texture.key}-idle-left`);
     if (triggerBodyBounds.bottom === playerBodyBounds.y) collisionImage.anims.play(`${collisionImage.texture.key}-idle-down`);
     if (triggerBodyBounds.right === playerBodyBounds.x) collisionImage.anims.play(`${collisionImage.texture.key}-idle-right`);
-  }
-
-  public playNpcAnimation(npcImage: Phaser.Physics.Arcade.Sprite) {
-    npcImage.anims.play('female22-2-walk-down');
   }
 
   public setDialog(newDialog?: DialogTree, newInteractionCallback?: Function) {
@@ -178,13 +203,15 @@ export default class GeneralNpc extends Trigger {
       return;
     }
 
+    this._npcActionState = NpcActionState.WALKING;
+
     this.walkPath = path;
     this.walkTo(this.walkPath.shift()!);
   }
 
   private walkTo(target: Phaser.Math.Vector2) {
     this.walkToTarget = target;
-    this.walk();
+    // this.walk();
   }
 
   public walk() {
@@ -213,6 +240,7 @@ export default class GeneralNpc extends Trigger {
 
         this.walkToTarget = undefined;
         this._npcActionState = NpcActionState.IDLE;
+        this.image.anims.play(`${this.image.texture.key}-idle-${Direction[this._direction]}`);
       }
     }
 
@@ -225,26 +253,34 @@ export default class GeneralNpc extends Trigger {
     const walkUp = dy < 0;
     const walkDown = dy > 0;
 
-    const speed = 25;
+    const speed = 35;
+
+    if (this._npcActionState === NpcActionState.IDLE) {
+      this.image.setVelocity(0, 0);
+      this.image.setImmovable(true);
+      this.walkEvent.paused = true;
+      return;
+    }
 
     if (walkLeft) {
-      this._direction = Direction.LEFT;
+      this._direction = Direction.left;
       this.image.anims.play(`${this.image.texture.key}-walk-left`, true);
       this.image.setVelocity(-speed, 0);
     } else if (walkRight) {
-      this._direction = Direction.RIGHT;
+      this._direction = Direction.right;
       this.image.anims.play(`${this.image.texture.key}-walk-right`, true);
       this.image.setVelocity(speed, 0);
     } else if (walkUp) {
-      this._direction = Direction.UP;
+      this._direction = Direction.up;
       this.image.anims.play(`${this.image.texture.key}-walk-up`, true);
       this.image.setVelocity(0, -speed);
     } else if (walkDown) {
-      this._direction = Direction.DOWN;
+      this._direction = Direction.down;
       this.image.anims.play(`${this.image.texture.key}-walk-down`, true);
       this.image.setVelocity(0, speed);
     } else {
       this.image.setVelocity(0, 0);
+      this.image.setImmovable(true);
     }
   }
 }
