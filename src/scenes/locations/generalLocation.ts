@@ -13,6 +13,7 @@ import Trigger from '../../triggers/trigger';
 import prepareLog from '../../helpers/logger';
 import { SpriteParameters, TiledObjectProp } from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
+import GreatPlainsScene from './roads/greatPlains';
 
 export default class GeneralLocation extends Phaser.Scene {
   public player: Player;
@@ -240,8 +241,7 @@ export default class GeneralLocation extends Phaser.Scene {
         interaction,
         singleUse,
         callback: () => {
-          // TODO: handle the collision from all four sides of the collision area
-          this.switchToScene(cutscene, undefined, true, { x: this.playerImage.x / 32 + 1, y: this.playerImage.y / 32 + 2 });
+          this.playCutscene(cutscene);
         },
       });
     });
@@ -363,6 +363,10 @@ export default class GeneralLocation extends Phaser.Scene {
 
     this.setupMobileControls();
   }
+
+  // This is overridden by the child
+  // eslint-disable-next-line no-unused-vars
+  protected playCutscene(cutsceneKey: string) { }
 
   public createDroppedItem(item: Item | string, quantity = 1): Trigger {
     if (typeof item === 'string') {
