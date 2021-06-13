@@ -2152,7 +2152,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/200",
+					"filename": "icons/coins/coin",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2173,7 +2173,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/201",
+					"filename": "icons/coins/coins-pile-gold",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2194,7 +2194,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/202",
+					"filename": "icons/coins/coins-pile-silver",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2215,7 +2215,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/203",
+					"filename": "icons/coins/copper-pieces",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2236,7 +2236,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/coin",
+					"filename": "icons/coins/gold-pieces-bag",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2257,7 +2257,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/coins-pile-gold",
+					"filename": "icons/coins/gold-pieces",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2278,7 +2278,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/coins-pile-silver",
+					"filename": "icons/coins/large-coin-with-crown",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2299,7 +2299,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/large-coin-with-crown",
+					"filename": "icons/coins/sack-gold-nuggets",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -2320,7 +2320,7 @@
 					}
 				},
 				{
-					"filename": "icons/coins/sack-gold-nuggets",
+					"filename": "icons/coins/silver-pieces",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
