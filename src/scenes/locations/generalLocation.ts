@@ -11,7 +11,9 @@ import messages from '../../data/messages';
 import Container from '../../triggers/container';
 import Trigger from '../../triggers/trigger';
 import prepareLog from '../../helpers/logger';
-import { SpriteParameters, TiledObjectProp, CutsceneEvent, DialogTree } from '../../types/my-types';
+import {
+  SpriteParameters, TiledObjectProp, CutsceneEvent, DialogTree,
+} from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
 import cutsceneData from '../../data/cutsceneData';
 
@@ -403,14 +405,13 @@ export default class GeneralLocation extends Phaser.Scene {
             // cutsceneData.ts and my-types.ts for more info
 
             const [sceneKey, dialogTree, dialogDelay, ...onCloseEvents] = Object.values(event.eventData);
-            const dialogEvent = { ...event.eventData };
-            // const sebsequentEvents = { ...dialogEvent.onCloseEvents };
+            const subSequentEvents = Object.values(onCloseEvents);
+
             this.playDialog(sceneKey, dialogTree, dialogDelay, () => {
-              dialogEvent.onCloseEvents.forEach((subEvent: CutsceneEvent) => {
+              subSequentEvents[0].forEach((subEvent: CutsceneEvent) => {
                 if (subEvent.eventName === 'changeCameraFormatEvent') {
                   const [type, changeViewportHeight, zoomNumber, tweenDuration] = Object.values(subEvent.eventData);
                   this.changeCameraFormat(type, changeViewportHeight, zoomNumber, tweenDuration);
-                  // this.restoreCameraFormat(100, 2, 1500);
                 } else if (subEvent.eventName === 'playAudio') {
                   const [soundAssetKey, loopAudio, audioVolume, audioOffset] = Object.values(subEvent.eventData);
                   this.playAudio(soundAssetKey, loopAudio, audioVolume, audioOffset);

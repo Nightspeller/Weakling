@@ -1,0 +1,15 @@
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+
+/*! all exports used */
+
+/*! no static exports found */
+
+/*!*****************!*\
+  !*** ./main.js ***!
+  \*****************/
+
+/**
+ * @author       Niklas Berg <nkholski@niklasberg.se>
+ * @copyright    2018 Niklas Berg
+ * @license      {@link https://github.com/nkholski/phaser3-animated-tiles/blob/master/LICENSE|MIT License}
+ */
