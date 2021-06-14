@@ -180,6 +180,10 @@ export interface StartMovingObjectEvent {
   toPosY: number | string;
 }
 
+export interface DisablePlayerMovementEvent {
+  disableMovement: boolean;
+}
+
 export interface StopMovingObjectEvent {
   target: 'npc';
 }
@@ -212,8 +216,10 @@ export interface StartDialogEvent {
   onCloseEvents?: CutsceneEvent[];
 }
 export interface CutsceneEvent {
-  eventName: 'startMovingObject' | 'stopMovingObject' | 'startDialog' | 'playAudio' | 'fadeAudio' | 'changeCameraFormatEvent';
-  eventData: StartMovingObjectEvent | StopMovingObjectEvent | StartDialogEvent | PlayAudioEvent | FadeAudioEvent | ChangeCameraFormatEvent;
+  eventName: 'startMovingObject' | 'stopMovingObject' | 'disablePlayerMovement'
+  | 'startDialog' | 'playAudio' | 'fadeAudio' | 'changeCameraFormatEvent';
+  eventData: StartMovingObjectEvent | StopMovingObjectEvent | DisablePlayerMovementEvent
+  | StartDialogEvent | PlayAudioEvent | FadeAudioEvent | ChangeCameraFormatEvent;
 }
 
 export interface Cutscene {

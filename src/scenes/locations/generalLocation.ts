@@ -40,6 +40,7 @@ export default class GeneralLocation extends Phaser.Scene {
   private joyStick: VirtualJoystick;
   protected updateNpcPath: boolean;
   private cutsceneMusic: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private updatePlayerMovement: boolean;
 
   constructor(sceneSettings: Phaser.Types.Scenes.SettingsConfig) {
     super(sceneSettings);
@@ -73,6 +74,7 @@ export default class GeneralLocation extends Phaser.Scene {
     this.offsetY = this.map.heightInPixels * LOCATION_SCENE_CAMERA_ZOOM < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
 
     this.player = playerInstance;
+    this.updatePlayerMovement = true;
     const startObject = this.getMapObject('Start');
     if (!this.startPoint && startObject) {
       this.startPoint = {
@@ -385,7 +387,10 @@ export default class GeneralLocation extends Phaser.Scene {
       if (cutscene.cutsceneId === cutsceneKey) {
         // iterate through all events
         cutscene.events.forEach((event: CutsceneEvent) => {
-          if (event.eventName === 'changeCameraFormatEvent') {
+          if (event.eventName === 'disablePlayerMovement') {
+            const [disableMovement] = Object.values(event.eventData);
+            this.disablePlayerMovement(disableMovement);
+          } else if (event.eventName === 'changeCameraFormatEvent') {
             const [type, changeViewportHeight, zoomNumber, tweenDuration] = Object.values(event.eventData);
             this.changeCameraFormat(type, changeViewportHeight, zoomNumber, tweenDuration);
           } else if (event.eventName === 'playAudio') {
@@ -425,6 +430,9 @@ export default class GeneralLocation extends Phaser.Scene {
                 } else if (subEvent.eventName === 'stopMovingObject') {
                   const [target] = Object.values(subEvent.eventData);
                   this.stopMovingObject(target);
+                } else if (subEvent.eventName === 'disablePlayerMovement') {
+                  const [disableMovement] = Object.values(subEvent.eventData);
+                  this.disablePlayerMovement(disableMovement);
                 }
               });
             });
@@ -432,6 +440,14 @@ export default class GeneralLocation extends Phaser.Scene {
         });
       }
     });
+  }
+
+  private disablePlayerMovement(disableMovement: boolean) {
+    this.updatePlayerMovement = !disableMovement;
+    const parts = this.playerImage.anims.currentAnim.key.split('_');
+    if (parts.length !== null) {
+      this.playerImage.anims.play(`idle_${parts[1]}`);
+    }
   }
 
   private startMovingObject(target: string, toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') {
@@ -720,6 +736,8 @@ export default class GeneralLocation extends Phaser.Scene {
   }
 
   public updatePlayer() {
+    if (!this.updatePlayerMovement) return
+
     const up = this.keys.up.isDown || this.keys.W.isDown || this.joyStick?.up;
     const down = this.keys.down.isDown || this.keys.S.isDown || this.joyStick?.down;
     const right = this.keys.right.isDown || this.keys.D.isDown || this.joyStick?.right;

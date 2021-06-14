@@ -5,6 +5,12 @@ const cutsceneData: CutsceneTree = [{
   cutsceneId: 'evelynsDream',
   events: [
     {
+      eventName: 'disablePlayerMovement',
+      eventData: {
+        disableMovement: true,
+      },
+    },
+    {
       eventName: 'fadeAudio',
       eventData: {
         audioType: 'mainAudio',
@@ -50,6 +56,12 @@ const cutsceneData: CutsceneTree = [{
             eventName: 'stopMovingObject',
             eventData: {
               target: 'npc',
+            },
+          },
+          {
+            eventName: 'disablePlayerMovement',
+            eventData: {
+              disableMovement: false,
             },
           },
           {
