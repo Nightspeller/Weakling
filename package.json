@@ -12,14 +12,15 @@
   "license": "ISC",
   "dependencies": {
     "file-loader": "^6.2.0",
-    "phaser": "^3.55.1",
-    "phaser3-rex-plugins": "^1.1.48"
+    "phaser": "^3.55.2",
+    "phaser3-rex-plugins": "^1.1.50"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
+    "create-file-webpack": "^1.0.2",
     "eslint": "^7.27.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.3",
@@ -28,7 +29,7 @@
     "tslib": "^2.2.0",
     "typescript": "^4.3.2",
     "url-loader": "^4.1.1",
-    "webpack": "^5.37.1",
+    "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-free-tex-packer": "^0.3.4",

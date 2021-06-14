@@ -19,7 +19,7 @@ export default class BodgerNpc extends GeneralNpc {
           this.startTrade();
         }
         if (param === 'goodsSold') {
-          scene.player.addItemToInventory('copper-pieces', 100, undefined, scene);
+          scene.player.addItemToInventory('silver-pieces', 10, undefined, scene);
           this.addItemsToTrade([
             { itemId: 'minerals', quantity: 10 },
             { itemId: 'basket', quantity: 10 },
@@ -27,7 +27,7 @@ export default class BodgerNpc extends GeneralNpc {
           scene.player.updateQuest('bigCaltorTrip', 'goodsSold');
         }
         if (param === 'goodsSoldAndOpenShop') {
-          scene.player.addItemToInventory('copper-pieces', 100, undefined, scene);
+          scene.player.addItemToInventory('silver-pieces', 10, undefined, scene);
           this.addItemsToTrade([
             { itemId: 'minerals', quantity: 10 },
             { itemId: 'basket', quantity: 10 },

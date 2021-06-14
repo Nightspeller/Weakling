@@ -477,12 +477,12 @@
                         {
                          "name":"drop",
                          "type":"string",
-                         "value":"[{\"itemId\": \"\", \"quantity\": 1, \"chance\": 1}]"
+                         "value":"[{\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 1}, {\"itemId\": \"bacon\", \"quantity\": 1, \"chance\": 0.1}]"
                         }, 
                         {
                          "name":"enemies",
                          "type":"string",
-                         "value":"[{\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}, {\"type\": \"wildBoar\"}]"
+                         "value":"[{\"type\": \"wildBoar\"}]"
                         }, 
                         {
                          "name":"image",
@@ -492,13 +492,13 @@
                         {
                          "name":"xpReward",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }],
                  "rotation":0,
                  "type":"Enemy",
                  "visible":true,
                  "width":64,
-                 "x":224,
+                 "x":320,
                  "y":192
                 }],
          "opacity":1,

@@ -49,7 +49,7 @@ export const farmerJoeDialogQuestNotObtained: DialogTree = [{
   }],
 }, {
   id: 'readyToHelpForReward2',
-  text: 'Oh well, I guess you are right... Fine, I will give you 10 copper for the job, but please hurry!',
+  text: 'Oh well, I guess you are right... Fine, I will give you a silver piece for the job, but please hurry!',
   replies: [{
     text: '(End) Time to make some kebabs!',
     callbackParam: 'questAcceptedForReward',

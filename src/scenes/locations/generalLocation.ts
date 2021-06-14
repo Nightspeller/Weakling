@@ -192,6 +192,7 @@ export default class GeneralLocation extends Phaser.Scene {
       const enemies = JSON.parse(object.properties.find((prop: TiledObjectProp) => prop.name === 'enemies')?.value) as { 'type': string }[];
       const background = object.properties.find((prop: TiledObjectProp) => prop.name === 'background')?.value || 'field-background';
       const drop = JSON.parse(object.properties.find((prop: TiledObjectProp) => prop.name === 'drop')?.value || '[]') as { 'itemId': string, 'quantity': number, 'chance': number }[];
+      if (drop[0]?.itemId === '') drop.pop(); // in case somebody left 'default' empty item drop in tiled, delete it
       const xpReward = object.properties?.find((prop: TiledObjectProp) => prop.name === 'xpReward')?.value ?? 0;
       new EnemyTrigger({
         scene: this,

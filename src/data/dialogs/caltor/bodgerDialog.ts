@@ -19,7 +19,7 @@ const bodgerDialog: DialogTree = [
     }],
   }, {
     id: 'goodsSold',
-    text: 'Here is 100 copper pieces - the best I can do.',
+    text: 'Here is 5 silver pieces - the best I can do.',
     replies: [{
       text: 'I was hoping for more, but I guess we have to take it...',
       callbackParam: 'goodsSold',

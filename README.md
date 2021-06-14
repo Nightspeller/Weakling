@@ -5,7 +5,9 @@ HTML5 RPG game sketch built with Phaser 3 and typescript
 
 This is very much work in progress game with a few locations available to explore - The city of Caltor, House, Village and Battle - none of which are completed.
 
-Read more about it in this post: https://telegra.ph/Introducing-Weakling-12-23.
+For any questions, join discord (as an option, no pressure): https://discord.gg/7E5B8Jp8
+
+Read more about the game in this post: https://telegra.ph/Introducing-Weakling-12-23.
 
 To check it out, please go to https://nightspeller.github.io/Weakling/ and try to poke around until you break something :-)
 
