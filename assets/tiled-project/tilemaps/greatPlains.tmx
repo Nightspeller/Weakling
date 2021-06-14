@@ -174,7 +174,7 @@
  <objectgroup id="26" name="EventTriggers">
   <object id="19" name="Cutscene" type="EventTrigger" x="1312" y="800" width="96" height="32">
    <properties>
-    <property name="cutscene" value="EvelynsDream"/>
+    <property name="cutscene" value="evelynsDream"/>
     <property name="interaction" value="collide"/>
     <property name="singleUse" type="bool" value="true"/>
    </properties>
