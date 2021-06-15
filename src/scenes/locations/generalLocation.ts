@@ -38,7 +38,6 @@ export default class GeneralLocation extends Phaser.Scene {
   private abovePlayerTextTween: Phaser.Tweens.Tween;
   private levelUpIcon: Phaser.GameObjects.Sprite;
   private joyStick: VirtualJoystick;
-  protected updateNpcPath: boolean;
   private cutsceneMusic: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   private updatePlayerMovement: boolean;
 
