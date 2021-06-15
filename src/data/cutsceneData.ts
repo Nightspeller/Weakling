@@ -5,7 +5,7 @@ const cutsceneData: CutsceneTree = [{
   cutsceneId: 'evelynsDream',
   events: [
     {
-      eventName: 'disablePlayerMovement',
+      eventName: 'togglePlayerMovement',
       eventData: {
         disableMovement: true,
       },
@@ -59,7 +59,7 @@ const cutsceneData: CutsceneTree = [{
             },
           },
           {
-            eventName: 'disablePlayerMovement',
+            eventName: 'togglePlayerMovement',
             eventData: {
               disableMovement: false,
             },

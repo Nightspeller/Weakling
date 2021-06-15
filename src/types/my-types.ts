@@ -180,7 +180,7 @@ export interface StartMovingObjectEvent {
   toPosY: number | string;
 }
 
-export interface DisablePlayerMovementEvent {
+export interface TogglePlayerMovementEvent {
   disableMovement: boolean;
 }
 
@@ -216,9 +216,9 @@ export interface StartDialogEvent {
   onCloseEvents?: CutsceneEvent[];
 }
 export interface CutsceneEvent {
-  eventName: 'startMovingObject' | 'stopMovingObject' | 'disablePlayerMovement'
+  eventName: 'startMovingObject' | 'stopMovingObject' | 'togglePlayerMovement'
   | 'startDialog' | 'playAudio' | 'fadeAudio' | 'changeCameraFormatEvent';
-  eventData: StartMovingObjectEvent | StopMovingObjectEvent | DisablePlayerMovementEvent
+  eventData: StartMovingObjectEvent | StopMovingObjectEvent | TogglePlayerMovementEvent
   | StartDialogEvent | PlayAudioEvent | FadeAudioEvent | ChangeCameraFormatEvent;
 }
 

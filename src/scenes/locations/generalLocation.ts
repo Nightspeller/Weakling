@@ -386,9 +386,9 @@ export default class GeneralLocation extends Phaser.Scene {
       if (cutscene.cutsceneId === cutsceneKey) {
         // iterate through all events
         cutscene.events.forEach((event: CutsceneEvent) => {
-          if (event.eventName === 'disablePlayerMovement') {
+          if (event.eventName === 'togglePlayerMovement') {
             const [disableMovement] = Object.values(event.eventData);
-            this.disablePlayerMovement(disableMovement);
+            this.togglePlayerMovement(disableMovement);
           } else if (event.eventName === 'changeCameraFormatEvent') {
             const [type, changeViewportHeight, zoomNumber, tweenDuration] = Object.values(event.eventData);
             this.changeCameraFormat(type, changeViewportHeight, zoomNumber, tweenDuration);
@@ -429,9 +429,9 @@ export default class GeneralLocation extends Phaser.Scene {
                 } else if (subEvent.eventName === 'stopMovingObject') {
                   const [target] = Object.values(subEvent.eventData);
                   this.stopMovingObject(target);
-                } else if (subEvent.eventName === 'disablePlayerMovement') {
+                } else if (subEvent.eventName === 'togglePlayerMovement') {
                   const [disableMovement] = Object.values(subEvent.eventData);
-                  this.disablePlayerMovement(disableMovement);
+                  this.togglePlayerMovement(disableMovement);
                 }
               });
             });
@@ -441,7 +441,7 @@ export default class GeneralLocation extends Phaser.Scene {
     });
   }
 
-  private disablePlayerMovement(disableMovement: boolean) {
+  private togglePlayerMovement(disableMovement: boolean) {
     this.updatePlayerMovement = !disableMovement;
     const parts = this.playerImage.anims.currentAnim.key.split('_');
     if (parts.length !== null) {
