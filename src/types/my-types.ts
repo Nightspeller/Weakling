@@ -173,3 +173,58 @@ export interface DialogLine {
 }
 
 export type DialogTree = DialogLine[];
+
+export interface StartMovingObjectEvent {
+  target: 'npc';
+  toPosX: number | string;
+  toPosY: number | string;
+}
+
+export interface TogglePlayerMovementEvent {
+  disableMovement: boolean;
+}
+
+export interface StopMovingObjectEvent {
+  target: 'npc';
+}
+
+export interface ChangeCameraFormatEvent {
+  type: 'widenCameraFormat' | 'restoreCameraFormat';
+  changeViewportHeight: number;
+  zoomNumber: number;
+  tweenDuration: number;
+}
+
+export interface PlayAudioEvent {
+  soundAssetKey: string;
+  loopAudio: boolean;
+  audioVolume: number;
+  audioOffset: number;
+}
+
+export interface FadeAudioEvent {
+  audioType: 'cutsceneAudio' | 'mainAudio';
+  fadeDuration: number;
+  fadeToVolume: number;
+  audioOffset: number;
+}
+
+export interface StartDialogEvent {
+  sceneKey: string;
+  dialogTree: DialogTree;
+  dialogDelay?: number;
+  onCloseEvents?: CutsceneEvent[];
+}
+export interface CutsceneEvent {
+  eventName: 'startMovingObject' | 'stopMovingObject' | 'togglePlayerMovement'
+  | 'startDialog' | 'playAudio' | 'fadeAudio' | 'changeCameraFormatEvent';
+  eventData: StartMovingObjectEvent | StopMovingObjectEvent | TogglePlayerMovementEvent
+  | StartDialogEvent | PlayAudioEvent | FadeAudioEvent | ChangeCameraFormatEvent;
+}
+
+export interface Cutscene {
+  cutsceneId: string;
+  events: CutsceneEvent[];
+}
+
+export type CutsceneTree = Cutscene[];

@@ -2,6 +2,9 @@ import GeneralLocation from '../generalLocation';
 import EvelynNpc from '../../../triggers/npcs/greatPlains/evelynNpc';
 
 export default class GreatPlainsScene extends GeneralLocation {
+  protected updateNpcPath: boolean;
+  protected evelyn: EvelynNpc
+
   constructor() {
     super({ key: 'GreatPlains' });
   }
@@ -17,10 +20,28 @@ export default class GreatPlainsScene extends GeneralLocation {
   public create() {
     super.create('greatPlains');
 
-    new EvelynNpc({ scene: this });
+    this.evelyn = new EvelynNpc({ scene: this });
+    this.updateNpcPath = false;
   }
 
   public update() {
     super.update();
+
+    if (this.updateNpcPath) {
+      this.evelyn.moveCharacter(this.map, this.playerImage.x, this.playerImage.y);
+    }
+  }
+
+  protected startMovingNPC(toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') {
+    this.evelyn.walkEvent.paused = false;
+    if (toPosX === 'playerPosX' && toPosY === 'playerPosY') {
+      this.evelyn.moveCharacter(this.map, this.playerImage.x, this.playerImage.y);
+    } else if (typeof toPosX === 'number' && typeof toPosY === 'number') {
+      this.evelyn.moveCharacter(this.map, toPosX, toPosY);
+    }
+  }
+
+  protected setUpdateNpcPath(isTrue: boolean) {
+    this.updateNpcPath = isTrue;
   }
 }

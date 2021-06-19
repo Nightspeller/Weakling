@@ -11,8 +11,11 @@ import messages from '../../data/messages';
 import Container from '../../triggers/container';
 import Trigger from '../../triggers/trigger';
 import prepareLog from '../../helpers/logger';
-import { SpriteParameters, TiledObjectProp } from '../../types/my-types';
+import {
+  SpriteParameters, TiledObjectProp, CutsceneEvent, DialogTree,
+} from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
+import cutsceneData from '../../data/cutsceneData';
 
 export default class GeneralLocation extends Phaser.Scene {
   public player: Player;
@@ -35,6 +38,8 @@ export default class GeneralLocation extends Phaser.Scene {
   private abovePlayerTextTween: Phaser.Tweens.Tween;
   private levelUpIcon: Phaser.GameObjects.Sprite;
   private joyStick: VirtualJoystick;
+  private cutsceneMusic: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private updatePlayerMovement: boolean;
 
   constructor(sceneSettings: Phaser.Types.Scenes.SettingsConfig) {
     super(sceneSettings);
@@ -68,6 +73,7 @@ export default class GeneralLocation extends Phaser.Scene {
     this.offsetY = this.map.heightInPixels * LOCATION_SCENE_CAMERA_ZOOM < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
 
     this.player = playerInstance;
+    this.updatePlayerMovement = true;
     const startObject = this.getMapObject('Start');
     if (!this.startPoint && startObject) {
       this.startPoint = {
@@ -227,6 +233,25 @@ export default class GeneralLocation extends Phaser.Scene {
       });
     });
 
+    this.map.getObjectLayer('EventTriggers')?.objects.forEach((object) => {
+      const cutscene = object.properties?.find((prop: TiledObjectProp) => prop.name === 'cutscene')?.value;
+      const singleUse = object.properties?.find((prop: TiledObjectProp) => prop.name === 'singleUse')?.value;
+      const interaction = object.properties?.find((prop: TiledObjectProp) => prop.name === 'interaction')?.value;
+      new Trigger({
+        scene: this,
+        name: object.name,
+        triggerX: object.x,
+        triggerY: object.y,
+        triggerW: object.width,
+        triggerH: object.height,
+        interaction,
+        singleUse,
+        callback: () => {
+          this.playCutscene(cutscene);
+        },
+      });
+    });
+
     this.map.getObjectLayer('Messages')?.objects.forEach((object) => {
       const messageId = object.properties?.find((prop: TiledObjectProp) => prop.name === 'messageId')?.value;
       const messageText = messages[messageId];
@@ -343,6 +368,176 @@ export default class GeneralLocation extends Phaser.Scene {
     this.setupDebugCollisionGraphics();
 
     this.setupMobileControls();
+  }
+
+  // These functions are overridden by the child
+  // eslint-disable-next-line no-unused-vars
+  protected startMovingNPC(toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') { }
+  // eslint-disable-next-line no-unused-vars
+  protected setUpdateNpcPath(isTrue: boolean) { }
+
+  /**
+ *
+ * @param cutsceneKey - cutscene key to fetch custom data for the corresponding cutscene
+ */
+  public playCutscene(cutsceneKey: string) {
+    cutsceneData.forEach((cutscene) => {
+      console.log(cutscene);
+      if (cutscene.cutsceneId === cutsceneKey) {
+        // iterate through all events
+        cutscene.events.forEach((event: CutsceneEvent) => {
+          if (event.eventName === 'togglePlayerMovement') {
+            const [disableMovement] = Object.values(event.eventData);
+            this.togglePlayerMovement(disableMovement);
+          } else if (event.eventName === 'changeCameraFormatEvent') {
+            const [type, changeViewportHeight, zoomNumber, tweenDuration] = Object.values(event.eventData);
+            this.changeCameraFormat(type, changeViewportHeight, zoomNumber, tweenDuration);
+          } else if (event.eventName === 'playAudio') {
+            const [soundAssetKey, loopAudio, audioVolume, audioOffset] = Object.values(event.eventData);
+            this.playAudio(soundAssetKey, loopAudio, audioVolume, audioOffset);
+          } else if (event.eventName === 'fadeAudio') {
+            const [audioType, fadeDuration, fadeToVolume, audioOffset] = Object.values(event.eventData);
+            this.fadeAudio(audioType, fadeDuration, fadeToVolume, audioOffset);
+          } else if (event.eventName === 'startMovingObject') {
+            const [target, toPosX, toPosY] = Object.values(event.eventData);
+            this.startMovingObject(target, toPosX, toPosY);
+          } else if (event.eventName === 'stopMovingObject') {
+            const [target] = Object.values(event.eventData);
+            this.stopMovingObject(target);
+          } else if (event.eventName === 'startDialog') {
+            // since the duration of this event depends on when the player chooses to end
+            // the dialogue, this event store the subsequent events as well. Check
+            // cutsceneData.ts and my-types.ts for more info
+
+            const [sceneKey, dialogTree, dialogDelay, ...onCloseEvents] = Object.values(event.eventData);
+            const subSequentEvents = Object.values(onCloseEvents);
+
+            this.playDialog(sceneKey, dialogTree, dialogDelay, () => {
+              subSequentEvents[0].forEach((subEvent: CutsceneEvent) => {
+                if (subEvent.eventName === 'changeCameraFormatEvent') {
+                  const [type, changeViewportHeight, zoomNumber, tweenDuration] = Object.values(subEvent.eventData);
+                  this.changeCameraFormat(type, changeViewportHeight, zoomNumber, tweenDuration);
+                } else if (subEvent.eventName === 'playAudio') {
+                  const [soundAssetKey, loopAudio, audioVolume, audioOffset] = Object.values(subEvent.eventData);
+                  this.playAudio(soundAssetKey, loopAudio, audioVolume, audioOffset);
+                } else if (subEvent.eventName === 'fadeAudio') {
+                  const [audioType, fadeDuration, fadeToVolume, audioOffset] = Object.values(subEvent.eventData);
+                  this.fadeAudio(audioType, fadeDuration, fadeToVolume, audioOffset);
+                } else if (subEvent.eventName === 'startMovingObject') {
+                  const [target, toPosX, toPosY] = Object.values(subEvent.eventData);
+                  this.startMovingObject(target, toPosX, toPosY);
+                } else if (subEvent.eventName === 'stopMovingObject') {
+                  const [target] = Object.values(subEvent.eventData);
+                  this.stopMovingObject(target);
+                } else if (subEvent.eventName === 'togglePlayerMovement') {
+                  const [disableMovement] = Object.values(subEvent.eventData);
+                  this.togglePlayerMovement(disableMovement);
+                }
+              });
+            });
+          }
+        });
+      }
+    });
+  }
+
+  private togglePlayerMovement(disableMovement: boolean) {
+    this.updatePlayerMovement = !disableMovement;
+    const parts = this.playerImage.anims.currentAnim.key.split('_');
+    if (parts.length !== null) {
+      this.playerImage.anims.play(`idle_${parts[1]}`);
+    }
+  }
+
+  private startMovingObject(target: string, toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') {
+    if (target !== 'npc') {
+      console.log(`${target} is not a valid argument`);
+      return;
+    }
+    this.setUpdateNpcPath(true);
+
+    this.startMovingNPC(toPosX, toPosY);
+  }
+
+  private stopMovingObject(target: 'npc') {
+    if (target !== 'npc') {
+      console.log(`${target} is not a valid argument`);
+      return;
+    }
+
+    this.setUpdateNpcPath(false);
+    console.log(`${target} has stopped moving`);
+  }
+
+  private changeCameraFormat(type: 'widenCameraFormat' | 'restoreCameraFormat', changeViewportHeight: number, zoomNumber: number, tweenDuration: number) {
+    if (type !== 'widenCameraFormat' && type !== 'restoreCameraFormat') {
+      console.log(`${type} is not a valid argument`);
+      return;
+    }
+
+    let camHeight = this.cameras.main.height;
+    if (type === 'widenCameraFormat') {
+      camHeight -= (changeViewportHeight * zoomNumber);
+    } else if (type === 'restoreCameraFormat') {
+      camHeight += (changeViewportHeight * zoomNumber);
+    }
+    const toHeight = camHeight;
+    this.tweens.add({
+      targets: this.cameras.main,
+      y: type === 'widenCameraFormat' ? changeViewportHeight : 0,
+      height: toHeight,
+      zoom: zoomNumber,
+      duration: tweenDuration,
+      ease: 'Power2',
+      completeDelay: tweenDuration,
+    });
+  }
+
+  private playAudio(soundAssetKey: string, loopAudio: boolean, audioVolume: number, audioOffset: number) {
+    setTimeout(() => {
+      this.cutsceneMusic = this.sound.add(soundAssetKey, {
+        loop: loopAudio,
+        volume: audioVolume,
+      });
+      this.cutsceneMusic.play();
+    }, audioOffset);
+  }
+
+  private fadeAudio(audioType: 'cutsceneAudio' | 'mainAudio',
+    fadeDuration: number, fadeToVolume: number, audioOffset: number = 0) {
+    setTimeout(() => {
+      if (audioType === 'cutsceneAudio') {
+        this.tweens.add({
+          targets: this.cutsceneMusic,
+          volume: fadeToVolume,
+          duration: fadeDuration,
+        });
+      } else if (audioType === 'mainAudio') {
+        this.tweens.add({
+          targets: this.scene.scene.sound.get('keys-for-success'),
+          volume: fadeToVolume,
+          duration: fadeDuration,
+        });
+      }
+    }, audioOffset);
+  }
+
+  private playDialog(sceneKey: string, dialogTree: DialogTree, dialogDelay?: number, callback?: Function) {
+    const delay = new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, dialogDelay);
+    }).then(() => {
+      console.log('Done waiting.');
+      this.switchToScene(sceneKey, {
+        dialogTree,
+        closeCallback: () => {
+          if (callback !== undefined) {
+            callback();
+          }
+        },
+      }, false);
+    });
   }
 
   public createDroppedItem(item: Item | string, quantity = 1): Trigger {
@@ -540,6 +735,8 @@ export default class GeneralLocation extends Phaser.Scene {
   }
 
   public updatePlayer() {
+    if (!this.updatePlayerMovement) return
+
     const up = this.keys.up.isDown || this.keys.W.isDown || this.joyStick?.up;
     const down = this.keys.down.isDown || this.keys.S.isDown || this.joyStick?.down;
     const right = this.keys.right.isDown || this.keys.D.isDown || this.joyStick?.right;
