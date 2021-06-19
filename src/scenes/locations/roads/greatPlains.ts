@@ -32,6 +32,13 @@ export default class GreatPlainsScene extends GeneralLocation {
     }
   }
 
+  protected async performSpecificCutsceneActions(cutsceneId: string) {
+    console.log(cutsceneId);
+    return new Promise<void>((resolve) => {
+      setTimeout(() => resolve(), 5000);
+    });
+  }
+
   protected startMovingNPC(toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') {
     this.evelyn.walkEvent.paused = false;
     if (toPosX === 'playerPosX' && toPosY === 'playerPosY') {

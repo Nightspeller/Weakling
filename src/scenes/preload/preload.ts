@@ -9,6 +9,7 @@ import drawLoadingProgressBar from './drawLoadingProgressBar';
 import { preloadBattleAssets, createBattleAnimations } from './battle-assets-and-animations/preloadBattleAssets';
 import { preloadWorldAssets, createWorldAnimations } from './world-assets-and-animations/preloadWorldAssets';
 import preloadFonts from './preloadFonts';
+import { soundManager } from '../../sound-manager/soundManager';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -35,7 +36,7 @@ export default class PreloadScene extends Phaser.Scene {
     createInterfaceAnimations(this);
 
     optionsInstance.setSoundManager(this);
-    if (DEBUG) optionsInstance.toggleMusic();
+    // if (DEBUG) optionsInstance.toggleMusic();
 
     if (DEBUG) {
       const debugScene = 'GreatPlains';
