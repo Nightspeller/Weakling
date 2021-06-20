@@ -12,11 +12,9 @@ import Container from '../../triggers/container';
 import Trigger from '../../triggers/trigger';
 import prepareLog from '../../helpers/logger';
 import {
-  SpriteParameters, TiledObjectProp, CutsceneEvent, DialogTree,
+  SpriteParameters, TiledObjectProp,
 } from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
-import cutsceneData from '../../data/cutsceneData';
-import { soundManager } from '../../sound-manager/soundManager';
 
 export default class GeneralLocation extends Phaser.Scene {
   public player: Player;
@@ -39,7 +37,6 @@ export default class GeneralLocation extends Phaser.Scene {
   private abovePlayerTextTween: Phaser.Tweens.Tween;
   private levelUpIcon: Phaser.GameObjects.Sprite;
   private joyStick: VirtualJoystick;
-  private cutsceneMusic: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   private updatePlayerMovement: boolean;
 
   constructor(sceneSettings: Phaser.Types.Scenes.SettingsConfig) {
@@ -371,73 +368,24 @@ export default class GeneralLocation extends Phaser.Scene {
     this.setupMobileControls();
   }
 
-  // These functions are overridden by the child
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected startMovingNPC(toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') { }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected setUpdateNpcPath(isTrue: boolean) { }
-
+  // This function contains actual cutscene actions and will be implemented in child scene
   // eslint-disable-next-line no-empty-function,@typescript-eslint/no-unused-vars
   protected async performSpecificCutsceneActions(cutsceneId: string): Promise<void> { }
 
   /**
- *
  * @param cutsceneId - cutscene key to fetch custom data for the corresponding cutscene
  */
   public async performGeneralCutsceneActions(cutsceneId: string) {
-    // @ts-ignore
-    const cutscene = cutsceneData[cutsceneId];
-    if (!cutscene) throw Error(`Cutscene Data for ${cutsceneId} not found!`);
-
-    console.log(cutscene);
-    // execute common cutscene actions:
+    // Execute common cutscene actions:
     // First, disable player controls:
     this.togglePlayerMovement(true);
-    // If cutscene has special music, lets mute currently playing one and play the new one:
-    if (cutscene.soundAssetKey) {
-      const currentSound = this.sound.get('keys-for-success');
-      if (currentSound) {
-        this.tweens.add({
-          targets: currentSound,
-          volume: 0,
-          duration: 1500,
-        });
-      }
-      const newSound = this.sound.add(cutscene.soundAssetKey, { loop: true });
-      newSound.play();
-      this.tweens.add({
-        targets: newSound,
-        volume: 0.1,
-        duration: 1500,
-      });
-    }
     // Now lets widen the camera and await until its done before continue
     await this.changeCameraFormat('widenCameraFormat', 100, 2, 1500);
-
     // We are ready to play cutscene, lets pass control to actual Location to show cutscene actions:
     await this.performSpecificCutsceneActions(cutsceneId);
-
     // Child scene is done with cutscene, lets return everything to normal:
     // Start with restoring the camera
     await this.changeCameraFormat('restoreCameraFormat', 100, 2, 1500);
-
-    // Now, lets restore sounds:
-    if (cutscene.soundAssetKey) {
-      const currentSound = this.sound.get('keys-for-success');
-      if (currentSound) {
-        this.tweens.add({
-          targets: currentSound,
-          volume: 0.10,
-          duration: 1500,
-        });
-      }
-      this.tweens.add({
-        targets: this.sound.get(cutscene.soundAssetKey),
-        volume: 0.0,
-        duration: 1500,
-      });
-    }
-
     // And finally return control to the player:
     this.togglePlayerMovement(false);
   }
@@ -448,26 +396,6 @@ export default class GeneralLocation extends Phaser.Scene {
     if (parts.length !== null) {
       this.playerImage.anims.play(`idle_${parts[1]}`);
     }
-  }
-
-  private startMovingObject(target: string, toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') {
-    if (target !== 'npc') {
-      console.log(`${target} is not a valid argument`);
-      return;
-    }
-    this.setUpdateNpcPath(true);
-
-    this.startMovingNPC(toPosX, toPosY);
-  }
-
-  private stopMovingObject(target: 'npc') {
-    if (target !== 'npc') {
-      console.log(`${target} is not a valid argument`);
-      return;
-    }
-
-    this.setUpdateNpcPath(false);
-    console.log(`${target} has stopped moving`);
   }
 
   private async changeCameraFormat(type: 'widenCameraFormat' | 'restoreCameraFormat', changeViewportHeight: number, zoomNumber: number, tweenDuration: number): Promise<void> {
@@ -491,26 +419,8 @@ export default class GeneralLocation extends Phaser.Scene {
         zoom: zoomNumber,
         duration: tweenDuration,
         ease: 'Power2',
-        onComplete: () => { resolve(); },
+        onComplete: () => resolve(),
       });
-    });
-  }
-
-  private playDialog(sceneKey: string, dialogTree: DialogTree, dialogDelay?: number, callback?: Function) {
-    new Promise<void>((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, dialogDelay);
-    }).then(() => {
-      console.log('Done waiting.');
-      this.switchToScene(sceneKey, {
-        dialogTree,
-        closeCallback: () => {
-          if (callback !== undefined) {
-            callback();
-          }
-        },
-      }, false);
     });
   }
 

@@ -1,24 +1,7 @@
 import evelynDialog from './dialogs/greatPlains/evelynDialog';
 import { CutsceneTree } from '../types/my-types';
 
-const cutsceneData = {
-  evelynsDream: {
-    id: 'evelynsDream',
-    soundAssetKey: 'evelyns-story',
-    events: [
-      {
-        eventName: 'startMovingObject',
-        eventData: {
-          target: 'Evelyn',
-          toPosX: 'playerPosX',
-          toPosY: 'playerPosY',
-        },
-      },
-    ],
-  },
-};
-
-const cutsceneData1: CutsceneTree = [{
+const cutsceneData: CutsceneTree = [{
   cutsceneId: 'evelynsDream',
   events: [
     {

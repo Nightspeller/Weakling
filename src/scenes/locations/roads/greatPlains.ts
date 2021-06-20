@@ -1,9 +1,9 @@
 import GeneralLocation from '../generalLocation';
 import EvelynNpc from '../../../triggers/npcs/greatPlains/evelynNpc';
+import evelynDialog from '../../../data/dialogs/greatPlains/evelynDialog';
 
 export default class GreatPlainsScene extends GeneralLocation {
-  protected updateNpcPath: boolean;
-  protected evelyn: EvelynNpc
+  protected evelyn: EvelynNpc;
 
   constructor() {
     super({ key: 'GreatPlains' });
@@ -21,34 +21,53 @@ export default class GreatPlainsScene extends GeneralLocation {
     super.create('greatPlains');
 
     this.evelyn = new EvelynNpc({ scene: this });
-    this.updateNpcPath = false;
-  }
-
-  public update() {
-    super.update();
-
-    if (this.updateNpcPath) {
-      this.evelyn.moveCharacter(this.map, this.playerImage.x, this.playerImage.y);
-    }
   }
 
   protected async performSpecificCutsceneActions(cutsceneId: string) {
-    console.log(cutsceneId);
-    return new Promise<void>((resolve) => {
-      setTimeout(() => resolve(), 5000);
-    });
-  }
+    if (cutsceneId === 'evelynsDream') {
 
-  protected startMovingNPC(toPosX: number | 'playerPosX', toPosY: number | 'playerPosY') {
-    this.evelyn.walkEvent.paused = false;
-    if (toPosX === 'playerPosX' && toPosY === 'playerPosY') {
-      this.evelyn.moveCharacter(this.map, this.playerImage.x, this.playerImage.y);
-    } else if (typeof toPosX === 'number' && typeof toPosY === 'number') {
-      this.evelyn.moveCharacter(this.map, toPosX, toPosY);
+      const currentSound = this.sound.get('keys-for-success');
+      const newSound = this.sound.add('evelyns-story', { loop: true });
+      if (currentSound) {
+        this.tweens.add({
+          targets: currentSound,
+          volume: 0,
+          duration: 1500,
+        });
+      }
+      newSound.play();
+      this.tweens.add({
+        targets: newSound,
+        volume: 0.1,
+        duration: 1500,
+      });
+
+      await this.evelyn.walkThePathToCoords(this.playerImage.x + this.playerImage.width / 4, this.playerImage.y);
+      await new Promise<void>(resolve => {
+        this.switchToScene('Dialog', {
+          dialogTree: evelynDialog,
+          speakerName: 'Evelyn',
+          closeCallback: () => {
+            resolve();
+          },
+        }, false);
+      });
+
+      // Now, lets restore sounds:
+
+      if (currentSound) {
+        this.tweens.add({
+          targets: currentSound,
+          volume: 0.10,
+          duration: 1500,
+        });
+      }
+      this.tweens.add({
+        targets: this.sound.get('evelyns-story'),
+        volume: 0.0,
+        duration: 1500,
+      });
+
     }
-  }
-
-  protected setUpdateNpcPath(isTrue: boolean) {
-    this.updateNpcPath = isTrue;
   }
 }

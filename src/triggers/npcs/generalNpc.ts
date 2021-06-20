@@ -6,19 +6,6 @@ import GeneralLocation from '../../scenes/locations/generalLocation';
 import { DialogTree, Slots, SpriteParameters } from '../../types/my-types';
 import findPath from '../../helpers/findPath';
 
-enum NpcActionState
-{
-  WALKING,
-  IDLE
-}
-
-export enum Direction {
-  none,
-  up = 1,
-  down = 2,
-  left = 4,
-  right = 8
-}
 export interface NpcOptions {
   scene: GeneralLocation;
   name: string;
@@ -37,13 +24,6 @@ export default class GeneralNpc extends Trigger {
   private interactionCallback: Function;
   private items: Map<Slots, Item>;
   private numberOfSlots: number;
-
-  private walkPath: Phaser.Math.Vector2[];
-  private walkToTarget?: Phaser.Math.Vector2;
-  private _direction: Direction;
-  private _npcActionState: NpcActionState;
-  public walkEvent: Phaser.Time.TimerEvent
-
   constructor(
     {
       scene,
@@ -95,21 +75,6 @@ export default class GeneralNpc extends Trigger {
         }
       },
     });
-
-    this.walkPath = [];
-    this._direction = Direction.none;
-    this._npcActionState = NpcActionState.IDLE;
-
-    this.walkEvent = this.scene.time.addEvent({
-      delay: 60,
-      callback: () => {
-        this.walk();
-      },
-      loop: true,
-    });
-
-    this.walkEvent.paused = false;
-
     if (spriteParams.animation) this.image.anims.play(spriteParams.animation);
     this.dialog = initDialog;
     this.preInteractionCallback = preInteractionCallback;
@@ -128,23 +93,56 @@ export default class GeneralNpc extends Trigger {
     }
   }
 
-  /**
-   * Needs to be called repeatedly
-   * @param map
-   * @param toPositionX
-   * @param toPositionY
-   */
-  public moveCharacter(map: Phaser.Tilemaps.Tilemap, toPositionX: number, toPositionY: number) {
-    const { worldX, worldY } = { worldX: toPositionX, worldY: toPositionY };
+  public async walkThePathToCoords(x: number, y: number, finalFacingDirection = 'down', walkingSpeed = 0.05) {
+    const groundLayerObject = this.scene.map.getLayer('Layer 1/Below player').tilemapLayer;
+    const wallsLayerObject = this.scene.map.getLayer('Layer 1/Collisions').tilemapLayer;
+    const path = findPath(
+      {x: this.image.x, y: this.image.y},
+      { x, y },
+      groundLayerObject,
+      wallsLayerObject
+    );
+    console.log('Walking along the path', path);
+    if (path.length !== 0) {
+      for (const pathSegment of path) {
+        await this.animateWalkingTo(pathSegment.x, pathSegment.y, walkingSpeed);
+      }
+      console.log(`${this.image.texture.key}-idle-${finalFacingDirection}`);
+      this.image.anims.play(`${this.image.texture.key}-idle-${finalFacingDirection}`);
+    }
+  }
 
-    const groundLayerObject = map.getLayer('Layer 1/Below player').tilemapLayer;
-    const wallsLayerObject = map.getLayer('Layer 1/Collisions').tilemapLayer;
-
-    const startVector = groundLayerObject.worldToTileXY(this.image.x, this.image.y);
-    const targetVector = groundLayerObject.worldToTileXY(worldX, worldY);
-
-    const generatedPath = findPath(startVector, targetVector, groundLayerObject, wallsLayerObject);
-    this.walkAlong(generatedPath);
+  private async animateWalkingTo(targetX: number, targetY: number, walkingSpeed: number) {
+    const currentX = this.image.x;
+    const currentY = this.image.y;
+    const dx = currentX - targetX;
+    const dy = currentY - targetY;
+    // Lets see if char moves more along X or along Y to play more suitable animation
+    const primaryAxe = Math.abs(dx) > Math.abs(dy) ? 'axeX' : 'axeY';
+    const distance = Math.sqrt((currentX - targetX)**2 + (currentY- targetY)**2);
+    if (primaryAxe === 'axeX' && dx < 0) {
+      this.image.anims.play(`${this.image.texture.key}-walk-right`, true);
+    }
+    if (primaryAxe === 'axeX' && dx > 0) {
+      this.image.anims.play(`${this.image.texture.key}-walk-left`, true);
+    }
+    if (primaryAxe === 'axeY' && dy < 0) {
+      this.image.anims.play(`${this.image.texture.key}-walk-down`, true);
+    }
+    if (primaryAxe === 'axeY' && dy > 0) {
+      this.image.anims.play(`${this.image.texture.key}-walk-up`, true);
+    }
+    await new Promise<void>(resolve => {
+      this.scene.tweens.add({
+        targets: this.image,
+        x: targetX,
+        y: targetY,
+        duration: distance/walkingSpeed,
+        onComplete: () => {
+          resolve();
+        },
+      })
+    })
   }
 
   protected handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite, collisionImage: Phaser.Physics.Arcade.Sprite) {
@@ -196,91 +194,5 @@ export default class GeneralNpc extends Trigger {
       }
       throw new Error('Trader is full, cant add items! Write more code to handle it properly!');
     });
-  }
-
-  walkAlong(path: Phaser.Math.Vector2[]) {
-    if (!path || path.length <= 0) {
-      return;
-    }
-
-    this._npcActionState = NpcActionState.WALKING;
-
-    this.walkPath = path;
-    this.walkTo(this.walkPath.shift()!);
-  }
-
-  private walkTo(target: Phaser.Math.Vector2) {
-    this.walkToTarget = target;
-    // this.walk();
-  }
-
-  public walk() {
-    if (!this.image.body) {
-      return;
-    }
-
-    let dx = 0;
-    let dy = 0;
-
-    if (this.walkToTarget) {
-      dx = this.walkToTarget.x - this.image.x;
-      dy = this.walkToTarget.y - this.image.y;
-
-      if (Math.abs(dx) < 1) {
-        dx = 0;
-      }
-      if (Math.abs(dy) < 1) {
-        dy = 0;
-      }
-      if (dx === 0 && dy === 0) {
-        if (this.walkPath.length > 0) {
-          this.walkTo(this.walkPath.shift()!);
-          return;
-        }
-
-        this.walkToTarget = undefined;
-        this._npcActionState = NpcActionState.IDLE;
-        this.image.anims.play(`${this.image.texture.key}-idle-${Direction[this._direction]}`);
-      }
-    }
-
-    this.mimicKeys(dx, dy);
-  }
-
-  mimicKeys(dx: number, dy: number) {
-    const walkLeft = dx < 0;
-    const walkRight = dx > 0;
-    const walkUp = dy < 0;
-    const walkDown = dy > 0;
-
-    const speed = 35;
-
-    if (this._npcActionState === NpcActionState.IDLE) {
-      this.image.setVelocity(0, 0);
-      this.image.setImmovable(true);
-      this.walkEvent.paused = true;
-      return;
-    }
-
-    if (walkLeft) {
-      this._direction = Direction.left;
-      this.image.anims.play(`${this.image.texture.key}-walk-left`, true);
-      this.image.setVelocity(-speed, 0);
-    } else if (walkRight) {
-      this._direction = Direction.right;
-      this.image.anims.play(`${this.image.texture.key}-walk-right`, true);
-      this.image.setVelocity(speed, 0);
-    } else if (walkUp) {
-      this._direction = Direction.up;
-      this.image.anims.play(`${this.image.texture.key}-walk-up`, true);
-      this.image.setVelocity(0, -speed);
-    } else if (walkDown) {
-      this._direction = Direction.down;
-      this.image.anims.play(`${this.image.texture.key}-walk-down`, true);
-      this.image.setVelocity(0, speed);
-    } else {
-      this.image.setVelocity(0, 0);
-      this.image.setImmovable(true);
-    }
   }
 }

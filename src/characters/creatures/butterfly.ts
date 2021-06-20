@@ -20,8 +20,8 @@ export const enum Direction {
 
 export default class Butterfly extends Phaser.Physics.Arcade.Sprite {
     public _butterflyColor: string
-    private flyPath: Phaser.Math.Vector2[] = []
-    private flyToTarget?: Phaser.Math.Vector2
+    private flyPath: {x: number, y: number}[] = []
+    private flyToTarget?: {x: number, y: number}
 
     private currentFlappingFrequency: number
     private currentButterflySpeed: number
@@ -100,7 +100,7 @@ export default class Butterfly extends Phaser.Physics.Arcade.Sprite {
       this.landingTime.paused = true;
     }
 
-    flyAlong(path: Phaser.Math.Vector2[]) {
+    flyAlong(path: {x: number, y: number}[]) {
       if (!path || path.length <= 0) {
         return;
       }
@@ -109,7 +109,7 @@ export default class Butterfly extends Phaser.Physics.Arcade.Sprite {
       this.flyTo(this.flyPath.shift()!);
     }
 
-    private flyTo(target: Phaser.Math.Vector2) {
+    private flyTo(target: {x: number, y: number}) {
       this.flyToTarget = target;
     }
 
