@@ -9,7 +9,6 @@ import drawLoadingProgressBar from './drawLoadingProgressBar';
 import { preloadBattleAssets, createBattleAnimations } from './battle-assets-and-animations/preloadBattleAssets';
 import { preloadWorldAssets, createWorldAnimations } from './world-assets-and-animations/preloadWorldAssets';
 import preloadFonts from './preloadFonts';
-import { soundManager } from '../../sound-manager/soundManager';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {

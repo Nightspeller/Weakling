@@ -25,7 +25,6 @@ export default class GreatPlainsScene extends GeneralLocation {
 
   protected async performSpecificCutsceneActions(cutsceneId: string) {
     if (cutsceneId === 'evelynsDream') {
-
       const currentSound = this.sound.get('keys-for-success');
       const newSound = this.sound.add('evelyns-story', { loop: true });
       if (currentSound) {
@@ -43,7 +42,7 @@ export default class GreatPlainsScene extends GeneralLocation {
       });
 
       await this.evelyn.walkThePathToCoords(this.playerImage.x + this.playerImage.width / 4, this.playerImage.y);
-      await new Promise<void>(resolve => {
+      await new Promise<void>((resolve) => {
         this.switchToScene('Dialog', {
           dialogTree: evelynDialog,
           speakerName: 'Evelyn',
@@ -67,7 +66,6 @@ export default class GreatPlainsScene extends GeneralLocation {
         volume: 0.0,
         duration: 1500,
       });
-
     }
   }
 }

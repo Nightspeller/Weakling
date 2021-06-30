@@ -22,6 +22,7 @@ module.exports = {
       ignoreStrings: true,
       ignoreTemplateLiterals: true,
     }],
+    'no-await-in-loop': 'off',
     'no-console': 'off',
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',

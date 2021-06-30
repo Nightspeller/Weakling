@@ -24,6 +24,7 @@ export default class GeneralNpc extends Trigger {
   private interactionCallback: Function;
   private items: Map<Slots, Item>;
   private numberOfSlots: number;
+
   constructor(
     {
       scene,
@@ -97,13 +98,14 @@ export default class GeneralNpc extends Trigger {
     const groundLayerObject = this.scene.map.getLayer('Layer 1/Below player').tilemapLayer;
     const wallsLayerObject = this.scene.map.getLayer('Layer 1/Collisions').tilemapLayer;
     const path = findPath(
-      {x: this.image.x, y: this.image.y},
+      { x: this.image.x, y: this.image.y },
       { x, y },
       groundLayerObject,
-      wallsLayerObject
+      wallsLayerObject,
     );
     console.log('Walking along the path', path);
     if (path.length !== 0) {
+      // eslint-disable-next-line no-restricted-syntax
       for (const pathSegment of path) {
         await this.animateWalkingTo(pathSegment.x, pathSegment.y, walkingSpeed);
       }
@@ -119,7 +121,7 @@ export default class GeneralNpc extends Trigger {
     const dy = currentY - targetY;
     // Lets see if char moves more along X or along Y to play more suitable animation
     const primaryAxe = Math.abs(dx) > Math.abs(dy) ? 'axeX' : 'axeY';
-    const distance = Math.sqrt((currentX - targetX)**2 + (currentY- targetY)**2);
+    const distance = Math.sqrt((currentX - targetX) ** 2 + (currentY - targetY) ** 2);
     if (primaryAxe === 'axeX' && dx < 0) {
       this.image.anims.play(`${this.image.texture.key}-walk-right`, true);
     }
@@ -132,17 +134,17 @@ export default class GeneralNpc extends Trigger {
     if (primaryAxe === 'axeY' && dy > 0) {
       this.image.anims.play(`${this.image.texture.key}-walk-up`, true);
     }
-    await new Promise<void>(resolve => {
+    await new Promise<void>((resolve) => {
       this.scene.tweens.add({
         targets: this.image,
         x: targetX,
         y: targetY,
-        duration: distance/walkingSpeed,
+        duration: distance / walkingSpeed,
         onComplete: () => {
           resolve();
         },
-      })
-    })
+      });
+    });
   }
 
   protected handlePlayerImageCollision(playerImage: Phaser.Physics.Arcade.Sprite, collisionImage: Phaser.Physics.Arcade.Sprite) {
