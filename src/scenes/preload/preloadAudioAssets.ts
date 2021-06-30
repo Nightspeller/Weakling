@@ -5,6 +5,7 @@ export default function preloadAudioAssets(preloadScene: Scene) {
   preloadScene.load.audio('main-menu-theme', ['assets/audio/main-menu.ogg', 'assets/audio/main-menu.mp3']);
   preloadScene.load.audio('evelyns-story', ['assets/audio/evelyns-story.ogg', 'assets/audio/evelyns-story.mp3']);
   preloadScene.load.audio('intro', ['assets/audio/intro.ogg', 'assets/audio/intro.mp3']);
+  preloadScene.load.audio('intro-voice', ['assets/audio/weakling-intro-voice.mp3']);
   preloadScene.load.audio('keys-for-success', ['assets/audio/keys-for-success.ogg', 'assets/audio/keys-for-success.mp3']);
 
   // Sound effects
