@@ -41,6 +41,7 @@ import LevelUpScreenScene from './scenes/overlays/level-up-screen';
 import HoneywoodScene from './scenes/locations/honeywood/honeywood';
 import WorldMapUIScene from './scenes/locations/worldMapUIScene';
 import AboutScene from './scenes/intro-and-main-menu/about';
+import { MyWebAudioSoundManager } from './sound-manager/soundManager';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -95,6 +96,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 };
 
 export const game = new Phaser.Game(gameConfig);
+/* game.sound = new MyWebAudioSoundManager(game); */
 
 document.getElementById('game')
   ?.addEventListener('contextmenu', (e) => {

@@ -15,8 +15,11 @@ export default class IntroScene extends Phaser.Scene {
       loop: true,
       volume: 0.3,
     });
-    // bgMusic.soundType = 'music';
+    const bgVoice = this.sound.add('intro-voice', {
+      volume: 0, // currently disabled since audio probably should be re-recorded
+    });
 
+    bgVoice.play();
     bgMusic.play();
 
     this.add.text(GAME_W / 2, GAME_H / 2 - 70,
@@ -56,6 +59,7 @@ export default class IntroScene extends Phaser.Scene {
 
     showHimVillage.once('pointerdown', () => {
       bgMusic.stop();
+      bgVoice.stop();
       this.scene.start('WeaklingsCave', { prevScene: this.scene.key });
     });
 

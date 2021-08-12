@@ -45,18 +45,18 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
       createCallback: (butterflyGameObject) => {
         const butterflyColors = ['blue', 'pink', 'green', 'yellow'];
         const randomButterflyColor = Phaser.Math.Between(0, butterflyColors.length - 1);
-        const butteflyGameObj = butterflyGameObject as Butterfly;
+        const butterflyGameObj = butterflyGameObject as Butterfly;
 
-        butteflyGameObj.body.onCollide = true;
+        butterflyGameObj.body.onCollide = true;
 
         const destinationPoints = this.destinationPoints.getChildren();
 
         const randomDestinationPoint = destinationPoints[Phaser.Math.Between(0, destinationPoints.length - 1)] as DestinationPoint;
 
-        butteflyGameObj.butterflyColor = butterflyColors[randomButterflyColor];
+        butterflyGameObj.butterflyColor = butterflyColors[randomButterflyColor];
 
-        // move the buttersly to the randomly picket destination point
-        this.moveButterfly(randomDestinationPoint.x, randomDestinationPoint.y, butteflyGameObj);
+        // move the butterfly to the randomly picket destination point
+        this.moveButterfly(randomDestinationPoint.x, randomDestinationPoint.y, butterflyGameObj);
       },
     });
 
@@ -86,18 +86,18 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
     });
   }
 
-  moveButterfly(toPositionX: number, toPositionY: number, butterflyObject: any) {
-    const { worldX, worldY } = { worldX: toPositionX, worldY: toPositionY };
-
-    const butterfly = butterflyObject as Butterfly;
+  moveButterfly(toPositionX: number, toPositionY: number, butterflyObject: Butterfly) {
+    const butterfly = butterflyObject;
 
     const groundLayerObject = this.map.getLayer('Layer 1/Below player').tilemapLayer;
     const wallsLayerObject = this.map.getLayer('Layer 1/Collisions').tilemapLayer;
 
-    const startVector = groundLayerObject.worldToTileXY(butterfly.x, butterfly.y);
-    const targetVector = groundLayerObject.worldToTileXY(worldX, worldY);
-
-    const generatedPath = findPath(startVector, targetVector, groundLayerObject, wallsLayerObject);
+    const generatedPath = findPath(
+      { x: butterfly.x, y: butterfly.y },
+      { x: toPositionX, y: toPositionY },
+      groundLayerObject,
+      wallsLayerObject,
+    );
     butterfly.flyAlong(generatedPath);
   }
 

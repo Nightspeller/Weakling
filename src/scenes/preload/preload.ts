@@ -35,7 +35,7 @@ export default class PreloadScene extends Phaser.Scene {
     createInterfaceAnimations(this);
 
     optionsInstance.setSoundManager(this);
-    if (DEBUG) optionsInstance.toggleMusic();
+    // if (DEBUG) optionsInstance.toggleMusic();
 
     if (DEBUG) {
       const debugScene = 'GreatPlains';
