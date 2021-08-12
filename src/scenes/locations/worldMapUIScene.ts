@@ -10,6 +10,8 @@ export default class WorldMapUIScene extends Phaser.Scene {
   private cursorCoordinatesText: Phaser.GameObjects.Text;
   private openScrollSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   private closeScrollSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private hoverTextSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private selectTextSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   constructor() {
     super('WorldMapUIScene');
   }
@@ -32,27 +34,29 @@ export default class WorldMapUIScene extends Phaser.Scene {
     const buttons = [{
       hoverText: 'Achievements (K)',
       icon: { texture: 'icons', frame: 'icons/coins/large-coin-with-crown' },
-      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[0], {}, false); },
+      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[0], {}, false); },
       hotKeys: ['keyup-K'],
     }, {
       hoverText: 'Quest Journal (J)',
       icon: { texture: 'icons', frame: 'icons/books-and-scrolls/book-with-bookmark' },
-      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[1], {}, false); },
+      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[1], {}, false); },
       hotKeys: ['keyup-J'],
     }, {
       hoverText: 'Options (O, ESC)',
       icon: { texture: 'icons', frame: 'icons/music/harp' },
-      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[2], {}, false); },
+      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[2], {}, false); },
       hotKeys: ['keyup-O', 'keyup-ESC'],
     }, {
       hoverText: 'Inventory (I)',
       icon: { texture: 'icons', frame: 'icons/bags/green-bag' },
-      onClick: () => { this.locationScene.switchToScene(worldMapUIButtons[3], {}, false); },
+      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[3], {}, false); },
       hotKeys: ['keyup-I'],
     }];
 
     this.openScrollSound = this.sound.add('paper-scroll-open', { volume: 0.5 });
     this.closeScrollSound = this.sound.add('paper-scroll-close', { volume: 0.5 });
+    this.hoverTextSound = this.sound.add('hover', { volume: 0.7 });
+    this.selectTextSound = this.sound.add('world-map-ui-button-select', { volume: 0.1 });
 
     if (!worldMapUIButtons.includes(this.locationScene.currSceneKey)
     && this.locationScene.currSceneKey !== 'Dialog') {
@@ -105,7 +109,10 @@ export default class WorldMapUIScene extends Phaser.Scene {
         color: 'black',
       }).setDepth(10).setVisible(false);
       iconSprite
-        .on('pointerover', () => hoverText.setVisible(true))
+        .on('pointerover', () => {
+          hoverText.setVisible(true)
+          this.hoverTextSound.play();
+        })
         .on('pointerout', () => hoverText.setVisible(false));
 
       button.hotKeys.forEach((hotKey) => {
