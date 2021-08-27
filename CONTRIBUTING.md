@@ -22,16 +22,16 @@ Submit one pull request per bug fix or feature
 ![Source Code Structure](./assets/contribution-guide/architecture-overview-210826.png)
 
 # Assets
-If you use someone else's work, make sure you read the license of the asset. If unsure of license term meaning, you will find more information [here](https://choosealicense.com/non-software/). If credits are required, be sure to add it to [credit.md](./credit.md)
+If you use someone else's work, make sure you read the license of the asset. If you do not know the conditions for using a specific license, you will find more information [here](https://choosealicense.com/non-software/). If credits are required, be sure to add it to [credit.md](./credit.md)
 
 We have two asset folders in the repository. One on the top level and another one inside the **/src**.
 
-**/assets**
+**/assets** \
 The top-level assets folder should be only for stash, Tiled files, unexported maps, Free Texture Packer files, and so on.
 
 An exception to this rule is icons. Now they are stored as separate named pictures under **/assets/ftp-project/icons** and *automatically* converted to a single spritesheet 'icons' via Webpack pipeline. So if you want to add an icon, simply drop it into the correct folder.
 
-**/src/assets**
+**/src/assets** \
 All assets used in the game, like images, atlases, and exported Tiled maps should go under **/src**. 
 
 ## Tilemaps
