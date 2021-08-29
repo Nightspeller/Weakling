@@ -6,6 +6,7 @@ import RichText from '../../helpers/richText';
 
 export default class AchievementsScene extends GeneralOverlayScene {
     private player: Player;
+    private hoverTextSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
 
     constructor() {
       super({ key: 'Achievements' });
@@ -24,6 +25,7 @@ export default class AchievementsScene extends GeneralOverlayScene {
       super.create(this.parentSceneKey);
       this._drawAchievements();
       this.input.keyboard.on('keyup-K', () => this.closeScene());
+      this.hoverTextSound = this.sound.add('hover', { volume: 0.7 });
     }
 
     private _drawAchievements() {
@@ -56,6 +58,16 @@ export default class AchievementsScene extends GeneralOverlayScene {
         };
         achievementName.on('pointerdown', selectAchievement);
         achievementIcon.on('pointerdown', selectAchievement);
+
+        const hoverOverAchievement = () => { 
+          selectedAchievementName.setStyle({ fontStyle: 'normal' });
+          selectedAchievementName = achievementName;
+          achievementName.setStyle({ fontStyle: 'bold' });
+          this._updateQuestDescriptionContainer(achievements[index], achievementDescription);
+          this.hoverTextSound.play();
+        };
+
+        achievementName.on('pointerover', hoverOverAchievement);
       });
     }
 
