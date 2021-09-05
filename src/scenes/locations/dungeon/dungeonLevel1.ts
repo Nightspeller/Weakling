@@ -1,4 +1,5 @@
 import GeneralLocation from '../generalLocation';
+import BackgroundSoundScene from '../../backgroundSoundScene';
 
 export default class DungeonLevel1Scene extends GeneralLocation {
   constructor() {
@@ -7,7 +8,6 @@ export default class DungeonLevel1Scene extends GeneralLocation {
 
   public preload() {
     super.preload();
-    this.load.audio('labyrinth-of-lost-dreams', ['assets/audio/labyrinth-of-lost-dreams.mp3', 'assets/audio/keys-for-success.ogg']);
   }
 
   public init(data: any) {
@@ -17,12 +17,27 @@ export default class DungeonLevel1Scene extends GeneralLocation {
   public create() {
     super.create('dungeonLevel1');
 
-    const bgMusic = this.sound.add('labyrinth-of-lost-dreams', { loop: true, volume: 0.1 });
-    // bgMusic.soundType = 'music';
-    bgMusic.play();
+    // This is where my current solution for background sound seems to fail - better handling needed...
+    const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+    backgroundSoundScene.playBackgroundMusic('caves');
+
+    this.events.on('resume', () => {
+      backgroundSoundScene.playBackgroundMusic('caves');
+    });
+
+    this.events.on('wake', () => {
+      backgroundSoundScene.playBackgroundMusic('caves');
+    });
   }
 
   public update() {
     super.update();
+  }
+
+  public switchToScene(...args: any[]) {
+    const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+    backgroundSoundScene.playBackgroundMusic('world');
+    // @ts-ignore
+    super.switchToScene(...args);
   }
 }

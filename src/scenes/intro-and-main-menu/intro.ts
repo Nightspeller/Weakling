@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser';
 import { GAME_H, GAME_W } from '../../config/constants';
+import BackgroundSoundScene from '../backgroundSoundScene';
 
 export default class IntroScene extends Phaser.Scene {
   constructor() {
@@ -11,16 +12,15 @@ export default class IntroScene extends Phaser.Scene {
 
   create() {
     this.cameras.main.fadeIn(2000, 0, 0, 0);
-    const bgMusic = this.sound.add('intro', {
-      loop: true,
-      volume: 0.3,
-    });
-    const bgVoice = this.sound.add('intro-voice', {
+
+    const soundManagerScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+    soundManagerScene.playBackgroundMusic('intro');
+
+    /*    const bgVoice = this.sound.add('intro-voice', {
       volume: 0, // currently disabled since audio probably should be re-recorded
     });
 
-    bgVoice.play();
-    bgMusic.play();
+    bgVoice.play(); */
 
     this.add.text(GAME_W / 2, GAME_H / 2 - 70,
       'Still... Stay still... Calm... Stay calm... \n\n'
@@ -58,8 +58,7 @@ export default class IntroScene extends Phaser.Scene {
       .strokeRect(showHimVillage.getTopLeft().x, showHimVillage.getTopLeft().y, showHimVillage.width, showHimVillage.height);
 
     showHimVillage.once('pointerdown', () => {
-      bgMusic.stop();
-      bgVoice.stop();
+      // bgVoice.stop();
       this.scene.start('WeaklingsCave', { prevScene: this.scene.key });
     });
 

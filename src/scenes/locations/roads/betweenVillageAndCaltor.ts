@@ -8,10 +8,16 @@ import DestinationPoint from '../../../characters/creatures/destinationPoint';
 import Butterfly from '../../../characters/creatures/butterfly';
 
 import findPath from '../../../helpers/findPath';
+import RudeStranger1Npc from '../../../triggers/npcs/caltor/rudeStranger1Npc';
+import RudeStranger2Npc from '../../../triggers/npcs/caltor/rudeStranger2Npc';
+import { burglaryDialog } from '../../../data/dialogs/caltor/rudeStrangerDialog';
+import BackgroundSoundScene from '../../backgroundSoundScene';
 
 export default class BetweenVillageAndCaltorScene extends GeneralLocation {
   private destinationPoints!: Phaser.Physics.Arcade.Group
   private butterflies!: Phaser.Physics.Arcade.Group
+  private burglar1: RudeStranger1Npc;
+  private burglar2: RudeStranger2Npc;
 
   constructor() {
     super({ key: 'BetweenVillageAndCaltor' });
@@ -72,14 +78,14 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
 
   setupEvents() {
     sceneEvents.on('butterfly-reached-destination-point', (butterfly: Phaser.Physics.Arcade.Sprite) => {
-      const butteflyGameObj = butterfly as Butterfly;
+      const butterflyGameObj = butterfly as Butterfly;
       const destinationPoints = this.destinationPoints.getChildren();
       const randomDestinationPoint = destinationPoints[Phaser.Math.Between(0, destinationPoints.length - 1)] as DestinationPoint;
 
       this.time.addEvent({
         delay: Phaser.Math.Between(1000, 4000),
         callback: () => {
-          this.moveButterfly(randomDestinationPoint.x, randomDestinationPoint.y, butteflyGameObj);
+          this.moveButterfly(randomDestinationPoint.x, randomDestinationPoint.y, butterflyGameObj);
         },
         loop: false,
       });
@@ -99,6 +105,84 @@ export default class BetweenVillageAndCaltorScene extends GeneralLocation {
       wallsLayerObject,
     );
     butterfly.flyAlong(generatedPath);
+  }
+
+  protected async performSpecificCutsceneActions(cutsceneId: string) {
+    if (cutsceneId === 'burglary' && this.player.getQuestById('bigCaltorTrip').currentStates.includes('goodsSold')) {
+      console.log('burglary!!!');
+      const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+      backgroundSoundScene.pauseBackgroundMusic();
+
+      let newSound: Phaser.Sound.BaseSound;
+      if (this.sound.get('massacre-on-teddy-bear-hill')) {
+        newSound = this.sound.get('massacre-on-teddy-bear-hill');
+      } else {
+        newSound = this.sound.add('massacre-on-teddy-bear-hill');
+      }
+      newSound.play({ loop: true, volume: 0.2 });
+      // no idea why but sound refuses to be tweened if player leaves cutscene and then comes back
+      /*      this.tweens.add({
+        targets: newSound,
+        volume: 1,
+        duration: 1500,
+      }); */
+
+      if (!this.burglar1) {
+        this.burglar1 = new RudeStranger1Npc({
+          scene: this,
+          x: 1875,
+          y: 77,
+          spriteParams: {
+            texture: 'male9-1', frame: 2, width: 32, height: 32,
+          },
+        });
+
+        this.burglar2 = new RudeStranger2Npc({
+          scene: this,
+          x: 1900,
+          y: 150,
+          spriteParams: {
+            texture: 'male9-3', frame: 2, width: 32, height: 32,
+          },
+        });
+
+        await Promise.all([
+          this.burglar1.walkThePathToCoords(this.playerImage.x + this.playerImage.width / 4, this.playerImage.y),
+          this.burglar2.walkThePathToCoords(this.playerImage.x + this.playerImage.width / 4 + 32, this.playerImage.y + 32, 'left'),
+        ]);
+      }
+
+      await new Promise<void>((resolve) => {
+        this.switchToScene('Dialog', {
+          dialogTree: burglaryDialog,
+          speakerName: 'Burglars',
+          closeCallback: async (param: string) => {
+            if (param === 'silverGiven') {
+              await Promise.all([
+                this.burglar1.walkThePathToCoords(1950, 75, 'right'),
+                this.burglar2.walkThePathToCoords(1950, 150, 'right'),
+              ]);
+              this.burglar1.destroy();
+              this.burglar2.destroy();
+              this.triggers.find((trigger) => trigger.name === 'Burglary').destroy();
+            }
+            resolve();
+          },
+        }, false);
+      });
+
+      // Now, lets restore sounds:
+      backgroundSoundScene.resumeBackgroundMusic();
+
+      this.tweens.add({
+        targets: newSound,
+        volume: 0.0,
+        duration: 1500,
+        onComplete: () => {
+          newSound.stop();
+        },
+      });
+    }
   }
 
   public update() {

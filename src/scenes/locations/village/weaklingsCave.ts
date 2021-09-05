@@ -19,13 +19,6 @@ export default class WeaklingsCaveScene extends GeneralLocation {
   public create() {
     super.create('weaklingsCave');
 
-    const bgMusic = this.sound.add('keys-for-success', {
-      loop: true,
-      volume: 0.1,
-    });
-    // bgMusic.soundType = 'music';
-    bgMusic.play();
-
     const chest1trigger = this.triggers.find((trigger) => trigger.name === 'Chest 1');
     const destroyCallback = chest1trigger.callback;
     chest1trigger.updateCallback(() => {

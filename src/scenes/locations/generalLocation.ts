@@ -15,6 +15,7 @@ import {
   SpriteParameters, TiledObjectProp,
 } from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
+import BackgroundSoundScene from '../backgroundSoundScene';
 
 export default class GeneralLocation extends Phaser.Scene {
   public player: Player;
@@ -102,6 +103,8 @@ export default class GeneralLocation extends Phaser.Scene {
       camera.setDeadzone(100, 50);
 
       this.scene.launch('WorldMapUIScene', this);
+      const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+      backgroundSoundScene.playBackgroundMusic('world');
     }
 
     const tilesets: Phaser.Tilemaps.Tileset[] = [];

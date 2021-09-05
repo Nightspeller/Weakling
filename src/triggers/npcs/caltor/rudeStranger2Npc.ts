@@ -1,7 +1,7 @@
 import GeneralNpc from '../generalNpc';
 import GeneralLocation from '../../../scenes/locations/generalLocation';
 import { SpriteParameters } from '../../../types/my-types';
-import rudeStrangerDialog from '../../../data/dialogs/caltor/rudeStrangerDialog';
+import { rudeStrangerDialog } from '../../../data/dialogs/caltor/rudeStrangerDialog';
 
 export default class RudeStranger2Npc extends GeneralNpc {
   constructor({

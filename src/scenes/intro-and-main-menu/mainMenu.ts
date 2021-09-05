@@ -3,6 +3,7 @@ import TextButton from '../../helpers/textButton';
 import PaperScrollLabel from '../../helpers/paperScrollLabel';
 
 import { GAME_H, GAME_W } from '../../config/constants';
+import BackgroundSoundScene from '../backgroundSoundScene';
 
 export default class MainMenuScene extends Phaser.Scene {
   private clouds: Phaser.GameObjects.TileSprite;
@@ -22,11 +23,8 @@ export default class MainMenuScene extends Phaser.Scene {
     const maxButtonWidth = 300;
     const startGameSound = this.sound.add('main-menu-start-game', { volume: 0.5 });
 
-    const bgMusic = this.sound.add('main-menu-theme', {
-      loop: true,
-      volume: 0.1,
-    });
-    bgMusic.play();
+    const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+    backgroundSoundScene.playBackgroundMusic('menu');
 
     // backgroundImage
     this.add.image(0, 0, 'main-menu-sky')
@@ -75,7 +73,6 @@ export default class MainMenuScene extends Phaser.Scene {
           startGameSound.play();
           this.cameras.main.fadeOut(1500, 0, 0, 0);
           this.time.delayedCall(1500, () => {
-            bgMusic.stop();
             this.scene.start('Intro', { prevScene: this.scene.key });
           });
         }).setScrollFactor(0);
@@ -95,7 +92,6 @@ export default class MainMenuScene extends Phaser.Scene {
       .setOrigin(0, 0).setScrollFactor(0);
 
     const firstTimeLaunch = localStorage.getItem('firstTimeLaunch') ?? 'true';
-    console.log(firstTimeLaunch);
     if (firstTimeLaunch === 'true') {
       localStorage.setItem('firstTimeLaunch', 'false');
       this.scene.run('About', { prevScene: this.scene.key });

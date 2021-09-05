@@ -20,8 +20,9 @@ export default class WorldMapUIScene extends Phaser.Scene {
     // This is a hack needed to avoid UI scene being show during overlay scenes, it checks if current active scene is a Location Scene.
     // Without it, it will happen when one overlay quickly switched to another one - like when dialog switched to location and then instantly to Trader inventory or container
     // It caused by fact that events, like scene.launch and scene.stop, are async and not guaranteed to be received in order emitted...
-    if (!(this.scene.manager.getScenes(true)[0] instanceof GeneralLocation)) {
-      // console.log('Trying to create UI scene while no Location Scene is running - aborting');
+    // UPD: switched 0 index to 1 since the first active scene now will be BackgroundSound scene - this hack will come back to bite me, i feel it :-(
+    if (!(this.scene.manager.getScenes(true)[1] instanceof GeneralLocation)) {
+      console.log('Trying to create UI scene while no Location Scene is running - aborting');
       this.scene.stop('WorldMapUIScene');
       return;
     }
@@ -110,7 +111,7 @@ export default class WorldMapUIScene extends Phaser.Scene {
       }).setDepth(10).setVisible(false);
       iconSprite
         .on('pointerover', () => {
-          hoverText.setVisible(true)
+          hoverText.setVisible(true);
           this.hoverTextSound.play();
         })
         .on('pointerout', () => hoverText.setVisible(false));

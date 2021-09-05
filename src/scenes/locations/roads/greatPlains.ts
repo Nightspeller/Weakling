@@ -1,6 +1,7 @@
 import GeneralLocation from '../generalLocation';
 import EvelynNpc from '../../../triggers/npcs/greatPlains/evelynNpc';
 import evelynDialog from '../../../data/dialogs/greatPlains/evelynDialog';
+import BackgroundSoundScene from '../../backgroundSoundScene';
 
 export default class GreatPlainsScene extends GeneralLocation {
   protected evelyn: EvelynNpc;
@@ -25,15 +26,10 @@ export default class GreatPlainsScene extends GeneralLocation {
 
   protected async performSpecificCutsceneActions(cutsceneId: string) {
     if (cutsceneId === 'evelynsDream') {
-      const currentSound = this.sound.get('keys-for-success');
-      const newSound = this.sound.add('evelyns-story', { loop: true });
-      if (currentSound) {
-        this.tweens.add({
-          targets: currentSound,
-          volume: 0,
-          duration: 1500,
-        });
-      }
+      const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+      backgroundSoundScene.pauseBackgroundMusic();
+      const newSound = this.sound.add('evelyns-story', { loop: true, volume: 0 });
+
       newSound.play();
       this.tweens.add({
         targets: newSound,
@@ -53,18 +49,15 @@ export default class GreatPlainsScene extends GeneralLocation {
       });
 
       // Now, lets restore sounds:
+      backgroundSoundScene.resumeBackgroundMusic();
 
-      if (currentSound) {
-        this.tweens.add({
-          targets: currentSound,
-          volume: 0.10,
-          duration: 1500,
-        });
-      }
       this.tweens.add({
-        targets: this.sound.get('evelyns-story'),
+        targets: newSound,
         volume: 0.0,
         duration: 1500,
+        onComplete: () => {
+          newSound.stop();
+        },
       });
     }
   }

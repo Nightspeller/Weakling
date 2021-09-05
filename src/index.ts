@@ -41,7 +41,7 @@ import LevelUpScreenScene from './scenes/overlays/level-up-screen';
 import HoneywoodScene from './scenes/locations/honeywood/honeywood';
 import WorldMapUIScene from './scenes/locations/worldMapUIScene';
 import AboutScene from './scenes/intro-and-main-menu/about';
-import { MyWebAudioSoundManager } from './sound-manager/soundManager';
+import BackgroundSoundScene from './scenes/backgroundSoundScene';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -52,7 +52,7 @@ if ('serviceWorker' in navigator) {
 // import { TestPreloadScene } from './scenes/not-used/perf-test';
 
 export const LOCATION_SCENES = [
-  WorldMapUIScene,
+  WorldMapUIScene, BackgroundSoundScene,
   BetweenVillageAndDungeonScene,
   BetweenVillageAndCaltorScene,
   Forest,
@@ -64,7 +64,7 @@ export const LOCATION_SCENES = [
   GreatPlainsScene, WindmillScene] as any[];
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
-  title: 'Weakling!!',
+  title: 'Weakling!',
 
   type: Phaser.AUTO,
 

@@ -14,6 +14,7 @@ import {
 import RichBitmapText from '../../helpers/richBitmapText';
 import BattleLogDrawer from './battleLogDrawer';
 import { animateBuffSequence, animateMeleeSequence, animateRangedSequence } from './battleAnimationsDrawer';
+import BackgroundSoundScene from '../backgroundSoundScene';
 
 let GAME_W = 0;
 let GAME_H = 0;
@@ -60,6 +61,9 @@ export default class BattleScene extends GeneralOverlayScene {
 
   public create() {
     super.create(this.parentSceneKey, this.opts);
+
+    const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+    backgroundSoundScene.playBackgroundMusic('battle');
 
     // TODO: rework battle scene to work with the new resolution
     GAME_W = this.cameras.main.displayWidth;
@@ -240,6 +244,9 @@ export default class BattleScene extends GeneralOverlayScene {
 
   public exitBattle(isPartyWon: boolean) {
     console.log(`The party has ${isPartyWon ? 'won!' : 'lost...'}. Name of enemy object: ${this.enemyName}`);
+
+    const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
+    backgroundSoundScene.playBackgroundMusic('world');
     this.disposition.playerCharacters.forEach((adventurer) => {
       if (adventurer.parameters.health === 0) adventurer.addToParameter('health', 1);
     });
