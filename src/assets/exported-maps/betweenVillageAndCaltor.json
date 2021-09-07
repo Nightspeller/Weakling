@@ -768,34 +768,7 @@
          "draworder":"topdown",
          "id":22,
          "name":"EventTriggers",
-         "objects":[
-                {
-                 "height":64,
-                 "id":67,
-                 "name":"Burglary",
-                 "properties":[
-                        {
-                         "name":"cutscene",
-                         "type":"string",
-                         "value":"burglary"
-                        }, 
-                        {
-                         "name":"interaction",
-                         "type":"string",
-                         "value":"collide"
-                        }, 
-                        {
-                         "name":"singleUse",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"EventTrigger",
-                 "visible":true,
-                 "width":32,
-                 "x":1760,
-                 "y":128
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
