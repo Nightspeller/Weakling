@@ -24,17 +24,24 @@ export default class OptionsScene extends Phaser.Scene {
   create() {
     const maxButtonWidth = 300;
     const buttonTextSize = 20;
+    
+    // positioning of UI elements
+    const navButtonPosX: number = GAME_W / 2.04;
+    const checkboxPosX: number = GAME_W / 1.69;
+    const buttonStartPosY: number = GAME_H * 0.33 + 90;
+    const buttonYDist: number = 60;
+  
     const textFont = 'harrington';
     const optionsZone = this.add.zone(0, 0, GAME_W, GAME_H)
       .setOrigin(0, 0)
       .setInteractive();
 
-    const optionsBackground = new PaperScrollLabel(this, GAME_W * 0.43, GAME_H * 0.33, 5, 6, 'paper-scroll-background');
+    const optionsBackground = new PaperScrollLabel(this, GAME_W * 0.40, GAME_H * 0.38, 5, 6, 'paper-scroll-background');
     this.add.existing(optionsBackground);
 
     optionsBackground.on('pointerdown', (pointer: any, x: number, y: number, event: any) => event.stopPropagation());
 
-    const audioToggleText = new TextButton(this, GAME_W / 2, GAME_H * 0.33 + 60,
+    const audioToggleText = new TextButton(this, navButtonPosX, buttonStartPosY,
       'Audio: ',
       {
         font: `${buttonTextSize}px ${textFont}`,
@@ -49,7 +56,7 @@ export default class OptionsScene extends Phaser.Scene {
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true });
 
-    const audioToggleCheckbox = new CheckboxButton(this, GAME_W / 1.65, GAME_H * 0.33 + 60, optionsInstance.isMusicOn, 'checkbox-unchecked')
+    const audioToggleCheckbox = new CheckboxButton(this, checkboxPosX, buttonStartPosY, optionsInstance.isMusicOn, 'checkbox-unchecked')
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true });
 
@@ -61,7 +68,7 @@ export default class OptionsScene extends Phaser.Scene {
     audioToggleText.on('pointerdown', toggleAudio);
     audioToggleCheckbox.on('pointerdown', toggleAudio);
 
-    const fullScreenToggleText = new TextButton(this, GAME_W / 2, GAME_H * 0.33 + 120,
+    const fullScreenToggleText = new TextButton(this, navButtonPosX, buttonStartPosY + buttonYDist,
       'Full Screen Mode: ',
       {
         font: `${buttonTextSize}px ${textFont}`,
@@ -76,7 +83,7 @@ export default class OptionsScene extends Phaser.Scene {
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true });
 
-    const fullScreenToggleCheckbox = new CheckboxButton(this, GAME_W / 1.65, GAME_H * 0.33 + 120, this.scale.isFullscreen, 'checkbox-unchecked')
+    const fullScreenToggleCheckbox = new CheckboxButton(this, checkboxPosX, buttonStartPosY + buttonYDist, this.scale.isFullscreen, 'checkbox-unchecked')
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true });
 
@@ -93,7 +100,7 @@ export default class OptionsScene extends Phaser.Scene {
     fullScreenToggleText.on('pointerdown', () => { toggleFullScreen(); });
     fullScreenToggleCheckbox.on('pointerdown', () => { toggleFullScreen(); });
 
-    const aboutButton = new TextButton(this, GAME_W / 2, GAME_H * 0.33 + 180,
+    const aboutButton = new TextButton(this, navButtonPosX, buttonStartPosY + buttonYDist * 2,
       'About', {
         font: `${buttonTextSize}px ${textFont}`,
         color: '#222222',
@@ -108,7 +115,7 @@ export default class OptionsScene extends Phaser.Scene {
       .setOrigin(0.5, 0.5)
       .setInteractive({ useHandCursor: true });
 
-    const backButton = new TextButton(this, GAME_W / 2, GAME_H * 0.33 + 240,
+    const backButton = new TextButton(this, GAME_W / 2.04, buttonStartPosY + buttonYDist * 3,
       'Back to game', {
         font: `${buttonTextSize}px ${textFont}`,
         color: '#222222',
