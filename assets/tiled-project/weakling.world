@@ -67,8 +67,8 @@
             "fileName": "tilemaps/tavern.tmx",
             "height": 704,
             "width": 1280,
-            "x": 3264,
-            "y": 1536
+            "x": 1888,
+            "y": -800
         },
         {
             "fileName": "tilemaps/forest.tmx",
@@ -146,6 +146,13 @@
             "width": 352,
             "x": 5888,
             "y": 4800
+        },
+        {
+            "fileName": "tilemaps/varadunsGrove.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 4224,
+            "y": 1728
         }
     ],
     "onlyShowAdjacentMaps": false,

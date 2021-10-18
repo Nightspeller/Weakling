@@ -5,22 +5,19 @@ import VirtualJoystick from 'phaser3-rex-plugins/plugins/virtualjoystick';
 import { Player, playerInstance } from '../../characters/adventurers/player';
 import Item from '../../entities/item';
 import {
-  GAME_H, GAME_W, LOCATION_SCENE_CAMERA_ZOOM, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED,
+  GAME_H, LOCATION_SCENE_CAMERA_ZOOM, PLAYER_RUN_WORLD_SPEED, PLAYER_WORLD_SPEED,
 } from '../../config/constants';
-import messages from '../../data/messages';
-import Container from '../../triggers/container';
 import Trigger from '../../triggers/trigger';
 import prepareLog from '../../helpers/logger';
-import {
-  SpriteParameters, TiledObjectProp,
-} from '../../types/my-types';
+import { SpriteParameters } from '../../types/my-types';
 import EnemyTrigger from '../../triggers/enemyTrigger';
 import BackgroundSoundScene from '../backgroundSoundScene';
+import populateLocationFromTiled from './tiledMapParser';
 
 export default class GeneralLocation extends Phaser.Scene {
   public player: Player;
   public keys: { [key: string]: any };
-  public layers: Phaser.Tilemaps.TilemapLayer[];
+  public layers: Phaser.Tilemaps.TilemapLayer[] = [];
   public map: Phaser.Tilemaps.Tilemap;
   public prevSceneKey: string;
   public currSceneKey: string;
@@ -28,7 +25,7 @@ export default class GeneralLocation extends Phaser.Scene {
   public spaceBarCooldown: number;
   public offsetX: number;
   public offsetY: number;
-  private startPoint: { x: number; y: number };
+  startPoint: { x: number; y: number };
   public playerImage: Phaser.Physics.Arcade.Sprite;
   private playerSpeed: number;
   private lastCursor: string;
@@ -39,6 +36,7 @@ export default class GeneralLocation extends Phaser.Scene {
   private levelUpIcon: Phaser.GameObjects.Sprite;
   private joyStick: VirtualJoystick;
   private updatePlayerMovement: boolean;
+  public playerLight: Phaser.GameObjects.Light;
 
   constructor(sceneSettings: Phaser.Types.Scenes.SettingsConfig) {
     super(sceneSettings);
@@ -67,27 +65,17 @@ export default class GeneralLocation extends Phaser.Scene {
   }
 
   public create(mapKey: string) {
-    this.map = this.make.tilemap({ key: mapKey });
-    this.offsetX = this.map.widthInPixels * LOCATION_SCENE_CAMERA_ZOOM < GAME_W ? (GAME_W - this.map.widthInPixels) / 2 : 0;
-    this.offsetY = this.map.heightInPixels * LOCATION_SCENE_CAMERA_ZOOM < GAME_H ? (GAME_H - this.map.heightInPixels) / 2 : 0;
-
     this.player = playerInstance;
     this.updatePlayerMovement = true;
-    const startObject = this.getMapObject('Start');
-    if (!this.startPoint && startObject) {
-      this.startPoint = {
-        x: startObject.x,
-        y: startObject.y,
-      };
-    }
+    this.playerImage = this.physics.add.sprite(0, 0, null);
+
+    // Helper function which reads all layers and objects from Tiled Map and creates Phaser Map and Game Objects
+    populateLocationFromTiled.apply(this, [mapKey]);
+
     if (this.startPoint) {
       // -32 + 8 is an adjustment for player image and body, as well as +8 to center it in the cell
-      this.playerImage = this.physics.add.sprite(
-        this.startPoint.x + this.offsetX - 32 + 8,
-        this.startPoint.y + this.offsetY - 48 + 8,
-        this.player.worldImageSpriteParams.texture,
-        this.player.worldImageSpriteParams.frame,
-      );
+      this.playerImage.setPosition(this.startPoint.x + this.offsetX - 32 + 8, this.startPoint.y + this.offsetY - 48 + 8);
+      this.playerImage.setTexture(this.player.worldImageSpriteParams.texture, this.player.worldImageSpriteParams.frame);
       this.playerImage.setOrigin(0, 0).setDepth(1);
       this.playerImage.anims.play('idle_down');
       this.playerImage.setCollideWorldBounds(true);
@@ -106,207 +94,6 @@ export default class GeneralLocation extends Phaser.Scene {
       const backgroundSoundScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
       backgroundSoundScene.playBackgroundMusic('world');
     }
-
-    const tilesets: Phaser.Tilemaps.Tileset[] = [];
-    this.map.tilesets.forEach((tileset) => {
-      tilesets.push(this.map.addTilesetImage(tileset.name, tileset.name));
-    });
-
-    this.layers = [];
-    this.map.layers.forEach((layer) => {
-      const createdLayer = this.map.createLayer(layer.name, tilesets, this.offsetX, this.offsetY);
-
-      if (layer.alpha !== 1) createdLayer.setAlpha(layer.alpha);
-      this.layers.push(createdLayer);
-      // lol kek if there is no props then it is an object, otherwise - array.. Phaser bug?
-      if (Array.isArray(layer.properties) && layer.properties.find((prop: any) => prop.name === 'hasCollisions' && prop.value === true)) {
-        createdLayer.setCollisionByProperty({ collides: true });
-        this.setSidesCollisions(createdLayer.layer);
-        this.physics.add.collider(this.playerImage, createdLayer);
-      }
-      if (Array.isArray(layer.properties) && layer.properties.find((prop: any) => prop.name === 'fringe')) {
-        createdLayer.setDepth(1);
-      }
-    });
-
-    this.map.getObjectLayer('Doors/Doors Objects')?.objects.forEach((object) => {
-      const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Doors/Doors Objects');
-      // Todo: there must be a better way to do that but I am way too tired now to find it...
-      const trigger = new Trigger({
-        scene: this,
-        name: object.name,
-        triggerX: object.x,
-        triggerY: object.y,
-        triggerW: object.width,
-        triggerH: object.height,
-        texture: spriteParams.texture,
-        frame: spriteParams.frame,
-        interaction: 'activate',
-        callback: () => {
-          trigger.setDisableState(true);
-          trigger.image.disableBody();
-          this.layers.find((layer) => layer.layer.name === 'Doors/Doors Fringe')
-            .getTileAtWorldXY(trigger.image.x + 16, trigger.image.y - 16)
-            .setVisible(false);
-          trigger.image.anims.play('open_door');
-          trigger.image.y -= 64;
-          trigger.image.body.setOffset(0, 64);
-        },
-      });
-    });
-
-    this.map.getObjectLayer('Containers')?.objects.forEach((object) => {
-      const spriteParams = this.getSpriteParamsByObjectName(object.name, 'Containers');
-      const { texture } = spriteParams;
-      const frame = spriteParams.frame as number;
-      const emptyFrame = object.properties?.find((prop: TiledObjectProp) => prop.name === 'openedFrame')?.value;
-      const isSecret = object.properties?.find((prop: TiledObjectProp) => prop.name === 'secret')?.value;
-      const items = JSON.parse(
-        object.properties?.find((prop: TiledObjectProp) => prop.name === 'items')?.value,
-      ) as { itemId: string, quantity: number }[];
-      const disableWhenEmpty = object.properties?.find((prop: TiledObjectProp) => prop.name === 'disableWhenEmpty')?.value;
-      const requiresToOpen = object.properties?.find((prop: TiledObjectProp) => prop.name === 'requiresToOpen')?.value;
-      const instantPickup = object.properties?.find((prop: TiledObjectProp) => prop.name === 'instantPickup')?.value;
-
-      new Container({
-        scene: this,
-        triggerX: object.x,
-        triggerY: object.y,
-        triggerW: object.width,
-        triggerH: object.height,
-        name: object.name,
-        items: items.map((itemDescription) => new Item(itemDescription.itemId, itemDescription.quantity)),
-        texture,
-        frame,
-        isSecret,
-        emptyTexture: texture,
-        emptyFrame,
-        flipX: object.flippedHorizontal,
-        flipY: object.flippedVertical,
-        disableWhenEmpty,
-        requiresToOpen,
-        instantPickup,
-      });
-    });
-
-    this.map.getObjectLayer('Enemies')?.objects.forEach((object) => {
-      const enemyImage = object.properties?.find((prop: TiledObjectProp) => prop.name === 'image')?.value;
-      const enemies = JSON.parse(object.properties.find((prop: TiledObjectProp) => prop.name === 'enemies')?.value) as { 'type': string }[];
-      const background = object.properties.find((prop: TiledObjectProp) => prop.name === 'background')?.value || 'field-background';
-      const drop = JSON.parse(object.properties.find((prop: TiledObjectProp) => prop.name === 'drop')?.value || '[]') as { 'itemId': string, 'quantity': number, 'chance': number }[];
-      if (drop[0]?.itemId === '') drop.pop(); // in case somebody left 'default' empty item drop in tiled, delete it
-      const xpReward = object.properties?.find((prop: TiledObjectProp) => prop.name === 'xpReward')?.value ?? 0;
-      new EnemyTrigger({
-        scene: this,
-        name: object.name,
-        triggerX: object.x,
-        triggerY: object.y,
-        triggerW: object.width,
-        triggerH: object.height,
-        spriteParameters: { texture: enemyImage, frame: null },
-        enemies,
-        drop,
-        xpReward,
-        background,
-      });
-    });
-
-    this.map.getObjectLayer('Waypoints')?.objects.forEach((object) => {
-      const toLocation = object.properties?.find((prop: TiledObjectProp) => prop.name === 'location')?.value;
-      let toCoordinates = object.properties?.find((prop: TiledObjectProp) => prop.name === 'toCoordinates')?.value;
-      if (toCoordinates) toCoordinates = JSON.parse(toCoordinates);
-      new Trigger({
-        scene: this,
-        name: object.name,
-        triggerX: object.x,
-        triggerY: object.y,
-        triggerW: object.width,
-        triggerH: object.height,
-        interaction: 'activateOverlap',
-        callback: () => {
-          if (toLocation) {
-            this.switchToScene(toLocation, undefined, undefined, toCoordinates);
-          } else if (toCoordinates) {
-            // -32 + 8 is an adjustment for player image and body, as well as +8 to center it in the cell
-            this.playerImage.setPosition(toCoordinates.x * 32 + this.offsetX - 32 + 8, toCoordinates.y * 32 + this.offsetY - 48 + 8);
-          }
-        },
-      });
-    });
-
-    this.map.getObjectLayer('EventTriggers')?.objects.forEach((object) => {
-      const cutscene = object.properties?.find((prop: TiledObjectProp) => prop.name === 'cutscene')?.value;
-      const singleUse = object.properties?.find((prop: TiledObjectProp) => prop.name === 'singleUse')?.value;
-      const interaction = object.properties?.find((prop: TiledObjectProp) => prop.name === 'interaction')?.value;
-      new Trigger({
-        scene: this,
-        name: object.name,
-        triggerX: object.x,
-        triggerY: object.y,
-        triggerW: object.width,
-        triggerH: object.height,
-        interaction,
-        singleUse,
-        callback: () => {
-          this.performGeneralCutsceneActions(cutscene);
-        },
-      });
-    });
-
-    this.map.getObjectLayer('Messages')?.objects.forEach((object) => {
-      const messageId = object.properties?.find((prop: TiledObjectProp) => prop.name === 'messageId')?.value;
-      const messageText = messages[messageId];
-      const interaction = object.properties?.find((prop: TiledObjectProp) => prop.name === 'interaction')?.value;
-      const singleUse = object.properties?.find((prop: TiledObjectProp) => prop.name === 'singleUse')?.value;
-      new Trigger({
-        scene: this,
-        name: object.name,
-        triggerX: object.x,
-        triggerY: object.y,
-        triggerW: object.width,
-        triggerH: object.height,
-        texture: this.getSpriteParamsByObjectName(object.name, 'Messages')?.texture,
-        frame: this.getSpriteParamsByObjectName(object.name, 'Messages')?.frame,
-        interaction,
-        singleUse,
-        callback: () => {
-          this.switchToScene('Dialog', {
-            dialogTree: [{
-              id: 'message',
-              text: messageText,
-              replies: [{
-                text: '(End)',
-                callbackParam: 'fastEnd',
-              }],
-            }],
-            speakerName: object.name,
-          }, false);
-        },
-      });
-    });
-
-    this.map.getObjectLayer('Fishing Spots')?.objects.forEach((object) => {
-      const fishString = object.properties?.find((prop: TiledObjectProp) => prop.name === 'fish')?.value;
-      const fishCooldown = object.properties?.find((prop: TiledObjectProp) => prop.name === 'cooldown')?.value;
-      const fishes = JSON.parse(fishString);
-      const fishTrigger = new Trigger({
-        scene: this,
-        name: object.name,
-        triggerX: object.x,
-        triggerY: object.y,
-        triggerW: object.width,
-        triggerH: object.height,
-        texture: 'icons',
-        frame: 'icons/icons-and-status-effects/sleeping',
-        callback: () => {},
-      });
-      fishTrigger.additionalData.caughtAt = 0;
-      fishTrigger.additionalData.possibleFishes = fishes;
-      fishTrigger.additionalData.fishCooldown = fishCooldown;
-    });
-
-    // @ts-ignore
-    this.sys.animatedTiles.init(this.map);
 
     this.physics.world.setBounds(this.offsetX, this.offsetY, this.map.widthInPixels, this.map.heightInPixels);
 
@@ -497,7 +284,7 @@ export default class GeneralLocation extends Phaser.Scene {
     return tilesetImageKey + gid;
   }
 
-  private setSidesCollisions(layer: Phaser.Tilemaps.LayerData) {
+  setSidesCollisions(layer: Phaser.Tilemaps.LayerData) {
     for (let ty = 0; ty < layer.height; ty += 1) {
       for (let tx = 0; tx < layer.width; tx += 1) {
         const tile = layer.data[ty][tx];
@@ -557,6 +344,11 @@ export default class GeneralLocation extends Phaser.Scene {
   public update() {
     this.updatePlayer();
     this.updateFishingSpots();
+
+    if (this.playerLight) {
+      this.playerLight.x = this.playerImage.getCenter().x;
+      this.playerLight.y = this.playerImage.getCenter().y;
+    }
   }
 
   public setupDebugCollisionGraphics() {

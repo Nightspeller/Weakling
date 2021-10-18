@@ -166,15 +166,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="22" name="EventTriggers">
-  <object id="67" name="Burglary" type="EventTrigger" x="1760" y="128" width="32" height="64">
-   <properties>
-    <property name="cutscene" value="burglary"/>
-    <property name="interaction" value="collide"/>
-    <property name="singleUse" type="bool" value="false"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup id="22" name="EventTriggers"/>
  <objectgroup id="7" name="Waypoints">
   <object id="2" name="Village" type="Waypoint" x="1824" y="0" width="64" height="32">
    <properties>

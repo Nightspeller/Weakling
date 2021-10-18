@@ -19,6 +19,12 @@
   <property name="cooldown" type="string" default="30"/>
   <property name="fish" type="string" default="[{&quot;name&quot;: &quot;&quot;, chance: 0.5}, {&quot;name&quot;: &quot;&quot;, chance: 0.5}]"/>
  </objecttype>
+ <objecttype name="Light Source" color="#ffee00">
+  <property name="color" type="string" default="0xffffff"/>
+  <property name="flickerSpeed" type="string" default="0"/>
+  <property name="intensity" type="int" default="1"/>
+  <property name="radius" type="int" default="128"/>
+ </objecttype>
  <objecttype name="Message" color="#a49d12">
   <property name="interaction" type="string" default="activate"/>
   <property name="messageId" type="string"/>
