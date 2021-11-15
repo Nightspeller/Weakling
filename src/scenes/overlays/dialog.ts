@@ -20,6 +20,8 @@ export default class DialogScene extends GeneralOverlayScene {
   private typewriterLongSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   private typewriterShortSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   private typewriterEndSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+  private focusedReply: number;
+  private currentReplies: Phaser.GameObjects.Text[];
 
   constructor() {
     super({ key: 'Dialog' });
@@ -109,8 +111,8 @@ export default class DialogScene extends GeneralOverlayScene {
     const keyCodes = ['ZERO', 'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE'];
     ['ZERO', 'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE'].forEach((keyCode) => this.input.keyboard.off(`keyup-${keyCode}`));
     let prevLineTopY = this.opts.windowY + this.opts.windowHeight - 5;
-    const reversedReplies = JSON.parse(JSON.stringify(replies))
-      .reverse();
+    const reversedReplies = JSON.parse(JSON.stringify(replies)).reverse();
+    this.currentReplies = [];
     reversedReplies.forEach((reply: DialogReplay, index: number) => {
       if (reply.text.length > 200) console.warn('Dialog line is longer than 200 characters! Might be looking bad!...', reply.text);
       const replyX = this.opts.windowX + 25;
@@ -135,8 +137,11 @@ export default class DialogScene extends GeneralOverlayScene {
         keyCodes.forEach((keyCode) => this.input.keyboard.off(`keyup-${keyCode}`));
         this._replaySelected(reply);
       });
+      this.currentReplies.push(replyGameObject);
       this.dialogDisplayGroup.add(replyGameObject);
     });
+    this.currentReplies = this.currentReplies.reverse();
+    this.updateGamepadTriggers();
   }
 
   private _replaySelected(reply: DialogReplay) {
@@ -242,7 +247,22 @@ export default class DialogScene extends GeneralOverlayScene {
           textGameObject.setText(text);
           resolve();
         });
+        this.input.gamepad.pad1?.on('down', (index: number) => {
+          if (index === 1) {
+            this.typewriterEndSound.play({
+              volume: 0.5,
+            });
+            zone.destroy();
+            this.input.keyboard.off('keydown-SPACE');
+            this.timedEvent.remove();
+            textGameObject.setText(text);
+            resolve();
+          }
+        });
         this.input.keyboard.once('keydown-SPACE', () => {
+          this.typewriterEndSound.play({
+            volume: 0.5,
+          });
           zone.destroy();
           this.timedEvent.remove();
           textGameObject.setText(text);
@@ -292,5 +312,33 @@ export default class DialogScene extends GeneralOverlayScene {
         .setDepth(this.opts.baseDepth);
       this.dialogDisplayGroup.addMultiple([name, nameBackground]);
     }
+  }
+
+  protected updateGamepadTriggers() {
+    this.focusedReply = 0;
+    this.currentReplies[0].setColor(this.opts.responseTextHoverColor);
+    this.input.gamepad.pad1?.on('down', (index: number) => {
+      // 'A' key
+      if (index === 1) {
+        const keyCodes = ['ZERO', 'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE'];
+        this.input.keyboard.emit(`keyup-${keyCodes[this.focusedReply + 1]}`, { preventDefault: () => {} });
+      }
+      // arrow up
+      if (index === 12) {
+        if (this.focusedReply !== 0) {
+          this.focusedReply -= 1;
+          this.currentReplies[this.focusedReply].setColor(this.opts.responseTextHoverColor);
+          this.currentReplies[this.focusedReply + 1].setColor(this.opts.responseTextColor);
+        }
+      }
+      // arrow down
+      if (index === 13) {
+        if (this.focusedReply !== this.currentReplies.length - 1) {
+          this.focusedReply += 1;
+          this.currentReplies[this.focusedReply].setColor(this.opts.responseTextHoverColor);
+          this.currentReplies[this.focusedReply - 1].setColor(this.opts.responseTextColor);
+        }
+      }
+    });
   }
 }

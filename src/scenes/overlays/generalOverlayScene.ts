@@ -75,10 +75,10 @@ export default class GeneralOverlayScene extends Phaser.Scene {
     this.input.keyboard.on('keyup-ESC', () => this.closeScene());
     if (this.input.gamepad.total === 0) {
       this.input.gamepad.once('connected', (pad: Phaser.Input.Gamepad.Gamepad) => {
-        this.setupControllerCursor(pad);
+        this.setupGamepadControls(pad);
       });
     } else {
-      this.setupControllerCursor(this.input.gamepad.pad1);
+      this.setupGamepadControls(this.input.gamepad.pad1);
     }
   }
 
@@ -89,7 +89,7 @@ export default class GeneralOverlayScene extends Phaser.Scene {
     this.scene.stop(this.scene.key);
   }
 
-  private setupControllerCursor(pad: Phaser.Input.Gamepad.Gamepad) {
+  protected setupGamepadControls(pad: Phaser.Input.Gamepad.Gamepad) {
     pad.on('down', (index: number) => {
       if (index === 0) {
         this.closeScene();

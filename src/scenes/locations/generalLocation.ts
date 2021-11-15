@@ -159,10 +159,10 @@ export default class GeneralLocation extends Phaser.Scene {
 
     if (this.input.gamepad.total === 0) {
       this.input.gamepad.once('connected', (pad: Phaser.Input.Gamepad.Gamepad) => {
-        this.setupControllerControls(pad);
+        this.setupGamepadControls(pad);
       });
     } else {
-      this.setupControllerControls(this.input.gamepad.pad1);
+      this.setupGamepadControls(this.input.gamepad.pad1);
     }
   }
 
@@ -598,7 +598,7 @@ export default class GeneralLocation extends Phaser.Scene {
     });
   }
 
-  private setupControllerControls(pad: Phaser.Input.Gamepad.Gamepad) {
+  private setupGamepadControls(pad: Phaser.Input.Gamepad.Gamepad) {
     // see updatePlayer() for axis setup
     pad.off('down');
     pad.on('down', (index: number) => {
