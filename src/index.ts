@@ -68,6 +68,10 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 
   type: Phaser.AUTO,
 
+  input: {
+    gamepad: true,
+  },
+
   scale: {
     mode: Phaser.Scale.FIT,
     parent: 'game',

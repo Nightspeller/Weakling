@@ -156,6 +156,14 @@ export default class GeneralLocation extends Phaser.Scene {
     this.setupDebugCollisionGraphics();
 
     this.setupMobileControls();
+
+    if (this.input.gamepad.total === 0) {
+      this.input.gamepad.once('connected', (pad: Phaser.Input.Gamepad.Gamepad) => {
+        this.setupControllerControls(pad);
+      });
+    } else {
+      this.setupControllerControls(this.input.gamepad.pad1);
+    }
   }
 
   // This function contains actual cutscene actions and will be implemented in child scene
@@ -163,8 +171,8 @@ export default class GeneralLocation extends Phaser.Scene {
   protected async performSpecificCutsceneActions(cutsceneId: string): Promise<void> { }
 
   /**
- * @param cutsceneId - cutscene key to fetch custom data for the corresponding cutscene
- */
+   * @param cutsceneId - cutscene key to fetch custom data for the corresponding cutscene
+   */
   public async performGeneralCutsceneActions(cutsceneId: string) {
     // Execute common cutscene actions:
     // First, disable player controls:
@@ -416,10 +424,23 @@ export default class GeneralLocation extends Phaser.Scene {
   public updatePlayer() {
     if (!this.updatePlayerMovement) return;
 
-    const up = this.keys.up.isDown || this.keys.W.isDown || this.joyStick?.up;
-    const down = this.keys.down.isDown || this.keys.S.isDown || this.joyStick?.down;
-    const right = this.keys.right.isDown || this.keys.D.isDown || this.joyStick?.right;
-    const left = this.keys.left.isDown || this.keys.A.isDown || this.joyStick?.left;
+    let upStick = false;
+    let downStick = false;
+    let rightStick = false;
+    let leftStick = false;
+
+    if (this.input.gamepad.total !== 0) {
+      const pad = this.input.gamepad.getPad(0);
+      rightStick = pad.axes[0].getValue() > 0.5;
+      leftStick = pad.axes[0].getValue() < -0.5;
+      downStick = pad.axes[1].getValue() > 0.5;
+      upStick = pad.axes[1].getValue() < -0.5;
+    }
+
+    const up = this.keys.up.isDown || this.keys.W.isDown || this.joyStick?.up || upStick;
+    const down = this.keys.down.isDown || this.keys.S.isDown || this.joyStick?.down || downStick;
+    const right = this.keys.right.isDown || this.keys.D.isDown || this.joyStick?.right || rightStick;
+    const left = this.keys.left.isDown || this.keys.A.isDown || this.joyStick?.left || leftStick;
 
     this.playerImage.setVelocity(0);
 
@@ -573,6 +594,35 @@ export default class GeneralLocation extends Phaser.Scene {
             objectName: fishingTrigger.name,
           }, false);
         }, true);
+      }
+    });
+  }
+
+  private setupControllerControls(pad: Phaser.Input.Gamepad.Gamepad) {
+    // see updatePlayer() for axis setup
+    pad.off('down');
+    pad.on('down', (index: number) => {
+      console.log(index);
+      if (index === 3) {
+        this.input.keyboard.emit('keyup-Q', { preventDefault: () => {} });
+      }
+      if (index === 1) {
+        this.input.keyboard.emit('keydown-SPACE', { preventDefault: () => {} });
+      }
+      if (index === 2) {
+        this.input.keyboard.emit('keydown-E', { preventDefault: () => {} });
+      }
+      if (index === 8) {
+        this.scene.get('WorldMapUIScene').input.keyboard.emit('keyup-ESC', { preventDefault: () => {} });
+      }
+      if (index === 4) {
+        this.scene.get('WorldMapUIScene').input.keyboard.emit('keyup-J', { preventDefault: () => {} });
+      }
+      if (index === 5) {
+        this.scene.get('WorldMapUIScene').input.keyboard.emit('keyup-I', { preventDefault: () => {} });
+      }
+      if (index === 9) {
+        this.scene.get('WorldMapUIScene').input.keyboard.emit('keyup-K', { preventDefault: () => {} });
       }
     });
   }

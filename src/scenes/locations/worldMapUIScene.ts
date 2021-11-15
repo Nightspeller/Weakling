@@ -35,22 +35,22 @@ export default class WorldMapUIScene extends Phaser.Scene {
     const buttons = [{
       hoverText: 'Achievements (K)',
       icon: { texture: 'icons', frame: 'icons/coins/large-coin-with-crown' },
-      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[0], {}, false); },
+      onClick: () => { this.selectTextSound.play(); this.locationScene.switchToScene(worldMapUIButtons[0], {}, false); },
       hotKeys: ['keyup-K'],
     }, {
       hoverText: 'Quest Journal (J)',
       icon: { texture: 'icons', frame: 'icons/books-and-scrolls/book-with-bookmark' },
-      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[1], {}, false); },
+      onClick: () => { this.selectTextSound.play(); this.locationScene.switchToScene(worldMapUIButtons[1], {}, false); },
       hotKeys: ['keyup-J'],
     }, {
       hoverText: 'Options (O, ESC)',
       icon: { texture: 'icons', frame: 'icons/music/harp' },
-      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[2], {}, false); },
+      onClick: () => { this.selectTextSound.play(); this.locationScene.switchToScene(worldMapUIButtons[2], {}, false); },
       hotKeys: ['keyup-O', 'keyup-ESC'],
     }, {
       hoverText: 'Inventory (I)',
       icon: { texture: 'icons', frame: 'icons/bags/green-bag' },
-      onClick: () => { this.selectTextSound.play(), this.locationScene.switchToScene(worldMapUIButtons[3], {}, false); },
+      onClick: () => { this.selectTextSound.play(); this.locationScene.switchToScene(worldMapUIButtons[3], {}, false); },
       hotKeys: ['keyup-I'],
     }];
 
