@@ -199,7 +199,9 @@ export default class DialogScene extends GeneralOverlayScene {
       }
     } else if (reply.successTriggers !== undefined) {
       const nextLine = this.dialogTree.find((line) => line.id === reply.successTriggers);
-      this.updateCallback()
+      
+      if (this.updateCallback) this.updateCallback()
+      
       this._showLine(nextLine);
     } else {
       this.closeScene(reply.callbackParam);
