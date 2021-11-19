@@ -8,14 +8,21 @@ import {
   DIALOG_WINDOW_HEIGHT, DIALOG_WINDOW_WIDTH, DIALOG_WINDOW_X, DIALOG_WINDOW_Y,
 } from '../../config/constants';
 
+interface TypewriterSoundParams {
+  volume: number,
+  soundKeys: { shortSound: string, longSound: string, endSound: string }
+}
+
 export default class DialogScene extends GeneralOverlayScene {
   private timedEvent: Phaser.Time.TimerEvent;
   private dialogDisplayGroup: Phaser.GameObjects.Group;
   private closeCallback: Function;
+  private updateCallback?: Function;
   private dialogTree: any[];
   private player: Player;
   declare public opts: DialogOptions;
   private speakerName: string;
+  private sounds?: TypewriterSoundParams;
 
   private typewriterLongSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
   private typewriterShortSound: Phaser.Sound.BaseSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
@@ -29,9 +36,11 @@ export default class DialogScene extends GeneralOverlayScene {
     dialogTree,
     opts,
     closeCallback,
+    updateCallback,
     prevScene,
     speakerName,
-  }: { dialogTree: DialogTree, opts?: DialogOptions, closeCallback?: Function, prevScene: string, speakerName: string }) {
+    sounds,
+  }: { dialogTree: DialogTree, opts?: DialogOptions, closeCallback?: Function, updateCallback?: Function, prevScene: string, speakerName: string, sounds?: TypewriterSoundParams }) {
     this.opts = {
       borderThickness: 3,
       borderColor: 0x907748,
@@ -54,10 +63,12 @@ export default class DialogScene extends GeneralOverlayScene {
       textColor: 'black',
       letterAppearanceDelay: 15,
     };
+    this.sounds = sounds;
     this.speakerName = speakerName;
     this.dialogTree = dialogTree;
     this.opts = { ...this.opts, ...opts };
     this.closeCallback = closeCallback;
+    this.updateCallback = updateCallback;
     this.player = playerInstance;
     this.parentSceneKey = prevScene;
   }
@@ -68,9 +79,21 @@ export default class DialogScene extends GeneralOverlayScene {
 
   public create() {
     super.create(this.parentSceneKey, this.opts);
-    this.typewriterLongSound = this.sound.add('typewriter-long');
-    this.typewriterShortSound = this.sound.add('typewriter-short');
-    this.typewriterEndSound = this.sound.add('typewriter-end');
+
+    if(!this.sounds) { //if no sound data has been specified for the current dialog
+      // default settings
+      this.sounds = {
+        volume: 0.1,
+        soundKeys: {shortSound: "typewriter-short", longSound: "typewriter-long", endSound: "typewriter-end"}
+      }
+    }
+
+    const soundKeyObject = this.sounds['soundKeys'] 
+    
+    this.typewriterLongSound = this.sound.add(soundKeyObject.longSound ?? 'typewriter-long');
+    this.typewriterShortSound = this.sound.add(soundKeyObject.shortSound ?? 'typewriter-short');
+    this.typewriterEndSound = this.sound.add(soundKeyObject.endSound ?? 'typewriter-end');
+    
     this.dialogDisplayGroup = this.add.group();
     this._showDialog();
     // @ts-ignore
@@ -78,6 +101,7 @@ export default class DialogScene extends GeneralOverlayScene {
       dialogTree,
       opts,
       closeCallback,
+      updateCallback,
       prevScene,
       speakerName,
     }: any) => {
@@ -86,6 +110,7 @@ export default class DialogScene extends GeneralOverlayScene {
       this.speakerName = speakerName;
       this.opts = { ...this.opts, ...opts };
       this.closeCallback = closeCallback;
+      this.updateCallback = updateCallback;
       this._showDialog();
     });
   }
@@ -174,6 +199,7 @@ export default class DialogScene extends GeneralOverlayScene {
       }
     } else if (reply.successTriggers !== undefined) {
       const nextLine = this.dialogTree.find((line) => line.id === reply.successTriggers);
+      this.updateCallback()
       this._showLine(nextLine);
     } else {
       this.closeScene(reply.callbackParam);
@@ -256,12 +282,12 @@ export default class DialogScene extends GeneralOverlayScene {
     });
   }
 
-  private playTypewriterSound(letterCounter?: number, currentLetter?: string) {
+  private playTypewriterSound(letterCounter?: number, currentLetter?: string ) {
     if (currentLetter === '—') return;
 
     if (letterCounter === undefined) {
       this.typewriterEndSound.play({
-        volume: 0.5,
+        volume: this.sounds.volume ?? 0.5,
       });
       return;
     }
@@ -269,11 +295,11 @@ export default class DialogScene extends GeneralOverlayScene {
     if (letterCounter % 7 === 0) {
       if (Phaser.Math.Between(0, 1) === 1) {
         this.typewriterLongSound.play({
-          volume: 0.5,
+          volume: this.sounds.volume ?? 0.5,
         });
       } else {
         this.typewriterShortSound.play({
-          volume: 0.5,
+          volume: this.sounds.volume ?? 0.5,
         });
       }
     }

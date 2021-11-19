@@ -26,42 +26,23 @@ export default class IntroScene extends GeneralLocation {
     this.time.delayedCall(7500, () => {
     this.switchToScene('Dialog', {
       dialogTree: introRevivalDialog,
-      speakerName: 'Unknown'
-        },
+      speakerName: 'Unknown',
+      sounds: {
+        volume: 0.1,
+        soundKeys: {shortSound: "typewriter-intro-short", longSound: "typewriter-intro-long", endSound: "typewriter-end"}
+      },
       closeCallback: () => {
         this.cameras.main.fadeOut(1500, 0, 0, 0);
         this.scene.remove('StoryTellingWindow');
           this.time.delayedCall(1500, () => {
-      this.scene.start('WeaklingsCave', { prevScene: this.scene.key });
-    });
-
-    const showHimDungeon = this.add.text(GAME_W / 2, GAME_H / 2 + 250,
-      'Show him the dungeon',
-      {
-        font: '14px monospace',
-        color: '#ffffff',
-        backgroundColor: '#222222',
-        padding: {
-          x: 10,
-          y: 10,
-        },
+            this.scene.start('WeaklingsCave', { prevScene: this.scene.key });
+        });
+      },
       updateCallback: () => {
         console.log('updateCallback')
         sceneEvents.emit('change-intro-story-video')
       }
     }, false);
-      })
-      .setOrigin(0.5, 0.5)
-      .setInteractive({ useHandCursor: true });
-
-    this.add.graphics()
-      .lineStyle(2, 0xffffff, 0.4)
-      .strokeRect(showHimDungeon.getTopLeft().x, showHimDungeon.getTopLeft().y, showHimDungeon.width, showHimDungeon.height);
-
-    showHimDungeon.once('pointerdown', () => {
-      alert('Coming soon!');
-      // bgMusic.stop();
-      // this.scene.start("Dungeon", {prevScene: this.scene.key});
-    });
+  })
   }
 }
