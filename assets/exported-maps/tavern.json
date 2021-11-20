@@ -1,12 +1,4 @@
 { "compressionlevel":0,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"tavern.json"
-        }
-    },
  "height":22,
  "infinite":false,
  "layers":[
@@ -344,6 +336,54 @@
                  "width":32,
                  "x":704,
                  "y":256
+                }, 
+                {
+                 "gid":2146,
+                 "height":32,
+                 "id":15,
+                 "name":"Victous",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":32,
+                 "x":160,
+                 "y":288
+                }, 
+                {
+                 "gid":2162,
+                 "height":32,
+                 "id":16,
+                 "name":"Melody",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":32,
+                 "x":224,
+                 "y":320
+                }, 
+                {
+                 "gid":2177,
+                 "height":32,
+                 "id":17,
+                 "name":"Verdeck",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":32,
+                 "x":128,
+                 "y":352
+                }, 
+                {
+                 "gid":2191,
+                 "height":32,
+                 "id":18,
+                 "name":"Sylvia",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":384
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -385,10 +425,10 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":15,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.6.0",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -17977,6 +18017,62 @@
                          "value":true
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":2145,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male1-1.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"male1-1",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":2157,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female10-3.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"female10-3",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":2169,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/male19-1.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"male19-1",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":3,
+         "firstgid":2181,
+         "image":"..\/images-extruded\/characters\/world-map\/neutral\/female24-1.png",
+         "imageheight":136,
+         "imagewidth":102,
+         "margin":1,
+         "name":"female24-1",
+         "objectalignment":"topleft",
+         "spacing":2,
+         "tilecount":12,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,
