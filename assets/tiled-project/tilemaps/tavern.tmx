@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="15">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="19">
  <editorsettings>
   <export target="../../../src/assets/exported-maps/tavern.json" format="json"/>
  </editorsettings>
@@ -12,6 +12,10 @@
  <tileset firstgid="2009" source="../tilesets/male13-1.tsx"/>
  <tileset firstgid="2021" source="../tilesets/shadow-1.tsx"/>
  <tileset firstgid="2033" source="../tilesets/base-separated-2.tsx"/>
+ <tileset firstgid="2145" source="../tilesets/male1-1.tsx"/>
+ <tileset firstgid="2157" source="../tilesets/female10-3.tsx"/>
+ <tileset firstgid="2169" source="../tilesets/male19-1.tsx"/>
+ <tileset firstgid="2181" source="../tilesets/female24-1.tsx"/>
  <group id="9" name="Layer 1">
   <layer id="1" name="Below player" width="40" height="22">
    <data encoding="base64">
@@ -105,6 +109,10 @@
  <objectgroup id="18" name="NPCs">
   <object id="13" name="Farmer Joe" type="NPC" gid="2015" x="352" y="416" width="32" height="32"/>
   <object id="14" name="Bartender" type="NPC" gid="1986" x="704" y="256" width="32" height="32"/>
+  <object id="15" name="Victous" type="NPC" gid="2146" x="160" y="288" width="32" height="32"/>
+  <object id="16" name="Melody" type="NPC" gid="2162" x="224" y="320" width="32" height="32"/>
+  <object id="17" name="Verdeck" type="NPC" gid="2177" x="128" y="352" width="32" height="32"/>
+  <object id="18" name="Sylvia" type="NPC" gid="2191" x="192" y="384" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="3" name="Waypoints">
   <object id="2" name="Caltor" type="Waypoint" x="704" y="672" width="32" height="32">

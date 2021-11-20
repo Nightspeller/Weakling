@@ -2,8 +2,8 @@ import * as Phaser from 'phaser';
 import { tilesetConfig } from '../../../config/constants';
 
 const standardCharacterTextures = ['cat-1', 'cat-2', 'cat-3', 'dog-1', 'dog-2', 'dog-3',
-  'female05-4', 'female17-1', 'female17-2', 'female18-4', 'female19-1', 'female19-3', 'female20-3', 'female22-2',
-  'male3-1', 'male9-1', 'male9-2', 'male9-3', 'male9-4', 'male10-1', 'male10-2', 'male12-1', 'male13-1', 'male14-2', 'male16-1', 'male16-2', 'male17-3', 'male17-4',
+  'female05-4', 'female10-3', 'female17-1', 'female17-2', 'female18-4', 'female19-1', 'female19-3', 'female20-3', 'female22-2', 'female24-1',
+  'male1-1', 'male3-1', 'male9-1', 'male9-2', 'male9-3', 'male9-4', 'male10-1', 'male10-2', 'male12-1', 'male13-1', 'male14-2', 'male16-1', 'male16-2', 'male17-3', 'male17-4', 'male19-1',
   'soldier04-3', 'soldier06-1'];
 
 export function preloadWorldCharactersAssets(scene: Phaser.Scene) {

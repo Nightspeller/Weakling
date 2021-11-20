@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="50" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="18">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="20">
  <editorsettings>
   <export target="../../../src/assets/exported-maps/dungeonLevel1.json" format="json"/>
  </editorsettings>
+ <properties>
+  <property name="ambientLightColor" value="0x111111"/>
+ </properties>
  <tileset firstgid="1" source="../tilesets/caves.tsx"/>
  <tileset firstgid="4097" source="../tilesets/base.tsx"/>
  <tileset firstgid="5049" source="../tilesets/caves-decoration-animated-b.tsx"/>
@@ -185,6 +188,15 @@
     <property name="enemies" value="[{&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;skeleton&quot;}, {&quot;type&quot;: &quot;green-ooze&quot;}]"/>
     <property name="image" value="skeleton-idle"/>
     <property name="xpReward" type="int" value="9"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="24" name="Lights">
+  <object id="18" type="Light Source" x="160" y="768" width="32" height="32">
+   <properties>
+    <property name="color" value="0x00ff00"/>
+    <property name="flickerSpeed" value="10000"/>
+    <property name="radius" type="int" value="50"/>
    </properties>
   </object>
  </objectgroup>
