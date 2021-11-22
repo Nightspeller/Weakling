@@ -1,3 +1,4 @@
+import * as Phaser from 'phaser';
 import { GameObjects } from 'phaser';
 import { Player, playerInstance } from '../../characters/adventurers/player';
 import GeneralOverlayScene from './generalOverlayScene';
@@ -59,7 +60,7 @@ export default class AchievementsScene extends GeneralOverlayScene {
         achievementName.on('pointerdown', selectAchievement);
         achievementIcon.on('pointerdown', selectAchievement);
 
-        const hoverOverAchievement = () => { 
+        const hoverOverAchievement = () => {
           selectedAchievementName.setStyle({ fontStyle: 'normal' });
           selectedAchievementName = achievementName;
           achievementName.setStyle({ fontStyle: 'bold' });

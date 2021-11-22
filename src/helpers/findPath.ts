@@ -1,14 +1,14 @@
 import * as Phaser from 'phaser';
 
 const toKey = (x: number, y: number) => `${x}x${y}`;
-const fromKey = (key: string) => [+key.split('x')[0], +key.split('x')[1]]
+const fromKey = (key: string) => [+key.split('x')[0], +key.split('x')[1]];
 
 // For better understanding, check out the Breath-first search algorithm
 const findPath = (
-  startCoords: {x: number, y: number},
-  targetCoords: {x: number, y: number},
+  startCoords: { x: number, y: number },
+  targetCoords: { x: number, y: number },
   groundLayer: Phaser.Tilemaps.TilemapLayer,
-  wallsLayer: Phaser.Tilemaps.TilemapLayer
+  wallsLayer: Phaser.Tilemaps.TilemapLayer,
 ) => {
   const startTile = groundLayer.worldToTileXY(startCoords.x, startCoords.y);
   const startKey = toKey(startTile.x, startTile.y);
@@ -42,7 +42,7 @@ const findPath = (
       { x: x - 1, y }, // left
     ];
 
-    for (let i = 0; i < neighbors.length; i++) {
+    for (let i = 0; i < neighbors.length; i += 1) {
       const neighbor = neighbors[i];
       const neighborKey = toKey(neighbor.x, neighbor.y);
       const isNeighborGround = !!groundLayer.getTileAt(neighbor.x, neighbor.y);
@@ -67,14 +67,14 @@ const findPath = (
   }
 
   let currentKey = targetKey;
-  let path = [];
+  const path = [];
 
   while (currentKey !== startKey) {
     const [x, y] = fromKey(currentKey);
     const pos = groundLayer.tileToWorldXY(+x, +y);
     pos.x += groundLayer.tilemap.tileWidth * 0.5;
     pos.y += groundLayer.tilemap.tileHeight * 0.5;
-    path.push({x: pos.x, y: pos.y});
+    path.push({ x: pos.x, y: pos.y });
     currentKey = parentForKey[currentKey];
   }
 

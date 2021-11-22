@@ -24,13 +24,13 @@ export default class OptionsScene extends Phaser.Scene {
   create() {
     const maxButtonWidth = 300;
     const buttonTextSize = 20;
-    
+
     // positioning of UI elements
     const navButtonPosX: number = GAME_W / 2.04;
     const checkboxPosX: number = GAME_W / 1.69;
     const buttonStartPosY: number = GAME_H * 0.33 + 90;
     const buttonYDist: number = 60;
-  
+
     const textFont = 'harrington';
     const optionsZone = this.add.zone(0, 0, GAME_W, GAME_H)
       .setOrigin(0, 0)
