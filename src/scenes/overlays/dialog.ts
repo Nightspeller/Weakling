@@ -40,7 +40,8 @@ export default class DialogScene extends GeneralOverlayScene {
     prevScene,
     speakerName,
     sounds,
-  }: { dialogTree: DialogTree, opts?: DialogOptions, closeCallback?: Function, updateCallback?: Function, prevScene: string, speakerName: string, sounds?: TypewriterSoundParams }) {
+  }: { dialogTree: DialogTree, opts?: DialogOptions, closeCallback?: Function, updateCallback?: Function,
+    prevScene: string, speakerName: string, sounds?: TypewriterSoundParams }) {
     this.opts = {
       borderThickness: 3,
       borderColor: 0x907748,
@@ -80,20 +81,20 @@ export default class DialogScene extends GeneralOverlayScene {
   public create() {
     super.create(this.parentSceneKey, this.opts);
 
-    if(!this.sounds) { //if no sound data has been specified for the current dialog
+    if (!this.sounds) { // if no sound data has been specified for the current dialog
       // default settings
       this.sounds = {
         volume: 0.1,
-        soundKeys: {shortSound: "typewriter-short", longSound: "typewriter-long", endSound: "typewriter-end"}
-      }
+        soundKeys: { shortSound: 'typewriter-short', longSound: 'typewriter-long', endSound: 'typewriter-end' },
+      };
     }
 
-    const soundKeyObject = this.sounds['soundKeys'] 
-    
+    const soundKeyObject = this.sounds.soundKeys;
+
     this.typewriterLongSound = this.sound.add(soundKeyObject.longSound ?? 'typewriter-long');
     this.typewriterShortSound = this.sound.add(soundKeyObject.shortSound ?? 'typewriter-short');
     this.typewriterEndSound = this.sound.add(soundKeyObject.endSound ?? 'typewriter-end');
-    
+
     this.dialogDisplayGroup = this.add.group();
     this._showDialog();
     // @ts-ignore
@@ -199,9 +200,9 @@ export default class DialogScene extends GeneralOverlayScene {
       }
     } else if (reply.successTriggers !== undefined) {
       const nextLine = this.dialogTree.find((line) => line.id === reply.successTriggers);
-      
-      if (this.updateCallback) this.updateCallback()
-      
+
+      if (this.updateCallback) this.updateCallback();
+
       this._showLine(nextLine);
     } else {
       this.closeScene(reply.callbackParam);
@@ -284,7 +285,7 @@ export default class DialogScene extends GeneralOverlayScene {
     });
   }
 
-  private playTypewriterSound(letterCounter?: number, currentLetter?: string ) {
+  private playTypewriterSound(letterCounter?: number, currentLetter?: string) {
     if (currentLetter === '—') return;
 
     if (letterCounter === undefined) {
