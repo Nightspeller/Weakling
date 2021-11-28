@@ -228,3 +228,14 @@ export interface Cutscene {
 }
 
 export type CutsceneTree = Cutscene[];
+
+export interface VideoData {
+  order: number;
+  key: string;
+  playbackRate: number;
+  loop: boolean;
+  fadeIn: boolean;
+  fadeOut: boolean;
+}
+
+export type VideoDataTree = VideoData[];

@@ -20,6 +20,7 @@ import MainMenuScene from './scenes/intro-and-main-menu/mainMenu';
 import WeaklingsCaveScene from './scenes/locations/village/weaklingsCave';
 import EldersCaveScene from './scenes/locations/village/eldersCave';
 import IntroScene from './scenes/intro-and-main-menu/intro';
+import StoryTellingWindowScene from './scenes/intro-and-main-menu/storyTellingWindow';
 import DungeonScene from './scenes/locations/dungeon/dungeon';
 import OptionsScene from './scenes/intro-and-main-menu/options';
 import BetweenVillageAndDungeonScene from './scenes/locations/roads/betweenVillageAndDungeon';
@@ -92,7 +93,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
   },
 
   scene: [/* TestPreloadScene, */PreloadScene,
-    MainMenuScene, OptionsScene, IntroScene, AboutScene,
+    MainMenuScene, OptionsScene, IntroScene, StoryTellingWindowScene, AboutScene,
     ...LOCATION_SCENES,
     CharacterPickerScene, TraderOverlayScene, BattleScene, DialogScene, FishingScene, InventoryOverlayScene,
     QuestLogScene, AchievementsScene, LevelUpScreenScene, AllItemsScene, AlchemyStandScene, ContainerOverlayScene,

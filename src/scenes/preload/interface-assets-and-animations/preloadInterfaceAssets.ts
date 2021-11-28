@@ -14,6 +14,17 @@ export function preloadInterfaceAssets(preloadScene: Scene) {
   preloadScene.load.image('checkbox-checked', 'assets/images/interface/checkbox-checked.png');
   preloadScene.load.image('checkbox-unchecked', 'assets/images/interface/checkbox-unchecked.png');
 
+  // Intro
+  preloadScene.load.video('intro-part-1', 'assets/videos/intro-scene-p1.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-2', 'assets/videos/intro-scene-p2.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-3', 'assets/videos/intro-scene-p3.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-4', 'assets/videos/intro-scene-p4.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-5', 'assets/videos/intro-scene-p5.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-6', 'assets/videos/intro-scene-p6.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-7', 'assets/videos/intro-scene-p7.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-8', 'assets/videos/intro-scene-p8.mp4', 'loadeddata', false, true);
+  preloadScene.load.video('intro-part-9', 'assets/videos/intro-scene-p9.mp4', 'loadeddata', false, true);
+
   preloadScene.load.image('fishing-background', 'assets/images/interface/fishing-background.png');
 
   // Items
