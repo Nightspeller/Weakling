@@ -27,6 +27,10 @@ export function preloadInterfaceAssets(preloadScene: Scene) {
 
   preloadScene.load.image('fishing-background', 'assets/images/interface/fishing-background.png');
 
+  preloadScene.load.image('light-mask', 'assets/images/interface/light-mask.png');
+  preloadScene.load.image('dark-spot', 'assets/images/interface/dark-spot.png');
+  preloadScene.load.image('dark-spot-32x32', 'assets/images/interface/dark-spot-32x32.png');
+
   // Items
   preloadScene.load.spritesheet('icon-item-set', 'assets/images-extruded/interface/icon-item-set.png', tilesetConfig);
   preloadScene.load.spritesheet('icon-farming-set', 'assets/images-extruded/interface/icon-farming-set.png', tilesetConfig);

@@ -40,7 +40,7 @@ export default class BackgroundSoundScene extends Phaser.Scene {
       this.currentlyPlayingMusicType = type;
       // shuffling the array so the songs are playing in different order
       if (type === 'world') {
-        this.playSongSet(this.worldBackgroundMusicKeys.sort(() => Math.random() - 0.5), 0);
+        this.playSongSet(this.worldBackgroundMusicKeys, 0);
       }
       if (type === 'caves') {
         this.playSongSet(this.cavesBackgroundMusicKeys.sort(() => Math.random() - 0.5), 0);
