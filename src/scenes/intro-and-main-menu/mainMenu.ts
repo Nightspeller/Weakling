@@ -44,7 +44,7 @@ export default class MainMenuScene extends Phaser.Scene {
     this.add.text(GAME_W / 2, GAME_H * 0.15,
       'Serg Nights presents:',
       {
-        font: `14px ${textFont}`,
+        font: `16px ${textFont}`,
         color: '#222222',
       })
       .setOrigin(0.5, 0.5)
