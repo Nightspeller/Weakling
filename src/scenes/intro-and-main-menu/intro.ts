@@ -22,7 +22,12 @@ export default class IntroScene extends GeneralLocation {
     const soundManagerScene = this.scene.get('BackgroundSound') as BackgroundSoundScene;
     soundManagerScene.playBackgroundMusic('intro');
 
-    this.scene.run('StoryTellingWindow');
+    this.cameras.main.on('camerafadeoutcomplete', () => {
+      this.scene.remove('StorytellingWindow');
+      this.scene.start('WeaklingsCave', { prevScene: this.scene.key });
+    });
+
+    this.scene.run('StorytellingWindow');
 
     this.time.delayedCall(7500, () => {
       this.switchToScene('Dialog', {
@@ -34,10 +39,6 @@ export default class IntroScene extends GeneralLocation {
         },
         closeCallback: () => {
           this.cameras.main.fadeOut(1500, 0, 0, 0);
-          this.scene.remove('StoryTellingWindow');
-          this.time.delayedCall(1500, () => {
-            this.scene.start('WeaklingsCave', { prevScene: this.scene.key });
-          });
         },
         updateCallback: () => {
           console.log('updateCallback');

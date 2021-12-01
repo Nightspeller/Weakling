@@ -3,12 +3,12 @@ import * as Phaser from 'phaser';
 import { sceneEvents } from '../../triggers/eventsCenter';
 import { introVideoData } from '../../data/videoData';
 
-export default class StoryTellingWindow extends Phaser.Scene {
+export default class StorytellingWindow extends Phaser.Scene {
   private currentVideo = 0;
   public storyImage!: Phaser.Physics.Arcade.Sprite
 
   constructor() {
-    super('StoryTellingWindow');
+    super('StorytellingWindow');
   }
 
   preload() {
